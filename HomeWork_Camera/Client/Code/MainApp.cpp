@@ -96,6 +96,8 @@ CMainApp* CMainApp::Create(void)
 
 void CMainApp::Free(void)
 {
+	::ShowCursor(TRUE);
+
 	Engine::Safe_Release(m_pGraphicDev);
 	Engine::Safe_Release(m_pDeviceClass);
 	Engine::Safe_Release(m_pManagement);

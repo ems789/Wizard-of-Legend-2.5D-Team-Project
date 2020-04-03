@@ -34,8 +34,8 @@ private:
 	Engine::CTransform*		m_pTransformCom = nullptr;
 	Engine::CRenderer*		m_pRendererCom = nullptr;
 	
-	_vec3					m_vDir;
-	_float					m_fSpeed = 20.f;
+	_vec3					m_vDir, m_vRight;
+	_float					m_fSpeed = 5.f;
 public:
 	static CPlayer*		Create(LPDIRECT3DDEVICE9 pGraphicDev);
 

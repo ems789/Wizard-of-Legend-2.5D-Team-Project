@@ -6,6 +6,7 @@
 
 #include "Terrain.h"
 #include "Player.h"
+#include "Camera.h"
 
 class CStage : public Engine::CScene
 {
@@ -27,7 +28,7 @@ private:
 
 private:
 	_matrix						m_matView, m_matProj;
-
+	CCamera*					m_pCamera = nullptr;
 
 public:
 	static CStage*		Create(LPDIRECT3DDEVICE9 pGraphicDev);

@@ -75,36 +75,47 @@ HRESULT CPlayer::Add_Component(void)
 void CPlayer::Key_Input(const _float& fTimeDelta)
 {
 	m_pTransformCom->Get_Info(Engine::INFO_LOOK, &m_vDir);
+	m_pTransformCom->Get_Info(Engine::INFO_RIGHT, &m_vRight);
 
-	if (GetAsyncKeyState(VK_UP) & 0x8000)
+	if (GetAsyncKeyState('W') & 0x8000)
 	{
 		D3DXVec3Normalize(&m_vDir, &m_vDir);
 		m_pTransformCom->Move_Pos(&(m_vDir * m_fSpeed * fTimeDelta));
 	}
 
-	if (GetAsyncKeyState(VK_DOWN) & 0x8000)
+	if (GetAsyncKeyState('S') & 0x8000)
 	{
 		D3DXVec3Normalize(&m_vDir, &m_vDir);
 		m_pTransformCom->Move_Pos(&(m_vDir * -m_fSpeed * fTimeDelta));
 	}
 
-	if (GetAsyncKeyState('Q') & 0x8000)
-		m_pTransformCom->Rotation(Engine::ROT_X, D3DXToRadian(90.f * fTimeDelta));
+	if (GetAsyncKeyState('D') & 0x8000)
+	{
+		D3DXVec3Normalize(&m_vDir, &m_vDir);
+		m_pTransformCom->Move_Pos(&(m_vDir * m_fSpeed * fTimeDelta));
+	}
 
 	if (GetAsyncKeyState('A') & 0x8000)
-		m_pTransformCom->Rotation(Engine::ROT_X, D3DXToRadian(-90.f * fTimeDelta));
+	{
+		D3DXVec3Normalize(&m_vDir, &m_vDir);
+		m_pTransformCom->Move_Pos(&(m_vDir * -m_fSpeed * fTimeDelta));
+	}
 
-	if (GetAsyncKeyState('W') & 0x8000)
-		m_pTransformCom->Rotation(Engine::ROT_Y, D3DXToRadian(90.f * fTimeDelta));
+	::POINT pt;
+	::GetCursorPos(&pt);
+	::ScreenToClient(g_hWnd, &pt);
 
-	if (GetAsyncKeyState('S') & 0x8000)
-		m_pTransformCom->Rotation(Engine::ROT_Y, D3DXToRadian(-90.f * fTimeDelta));
+	_vec2 vDifference = _vec2(pt.x - (WINCX / 2), pt.y - (WINCY / 2));
 
-	if (GetAsyncKeyState('E') & 0x8000)
-		m_pTransformCom->Rotation(Engine::ROT_Z, D3DXToRadian(90.f * fTimeDelta));
+	if (vDifference.x != 0.f)
+		m_pTransformCom->Rotation(Engine::ROT_Y, D3DXToRadian(vDifference.x * m_fSpeed * fTimeDelta));
 
-	if (GetAsyncKeyState('D') & 0x8000)
-		m_pTransformCom->Rotation(Engine::ROT_Z, D3DXToRadian(-90.f * fTimeDelta));
+	if (vDifference.y != 0.f)
+		m_pTransformCom->Rotation(Engine::ROT_X, D3DXToRadian(vDifference.y * m_fSpeed* fTimeDelta));
+
+	pt = { WINCX / 2, WINCY / 2 };
+	::ClientToScreen(g_hWnd, &pt);
+	::SetCursorPos(pt.x, pt.y);
 }
 
 CPlayer* CPlayer::Create(LPDIRECT3DDEVICE9 pGraphicDev)

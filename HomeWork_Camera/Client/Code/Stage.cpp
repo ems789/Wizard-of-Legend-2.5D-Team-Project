@@ -26,12 +26,16 @@ HRESULT CStage::Ready_Scene(void)
 	m_pGraphicDev->SetTransform(D3DTS_VIEW, &m_matView);
 	m_pGraphicDev->SetTransform(D3DTS_PROJECTION, &m_matProj);
 
+	m_pCamera = CCamera::Create(m_pGraphicDev);
+
 	return S_OK;
 }
 
 _int CStage::Update_Scene(const _float& fTimeDelta)
 {
 	Engine::CScene::Update_Scene(fTimeDelta);
+
+	m_pCamera->Update_GameObject(fTimeDelta);
 
 	return S_OK;
 }
@@ -53,6 +57,7 @@ CStage* CStage::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CStage::Free(void)
 {
+	Engine::Safe_Release(m_pCamera);
 	Engine::CScene::Free();
 }
 
