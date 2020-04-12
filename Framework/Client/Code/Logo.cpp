@@ -19,7 +19,7 @@ HRESULT CLogo::Ready_Scene()
 	FAILED_CHECK_RETURN(Ready_Resource(m_pGraphicDev, RESOURCE_END), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::CScene::Ready_Scene(), E_FAIL);
 	FAILED_CHECK_RETURN(Ready_GameLogic_Layer(L"GameLogic"), E_FAIL);
-
+	//FAILED_CHECK_RETURN(Ready_UI_Layer(L"UI"), E_FAIL);
 	
 
 	return S_OK;
@@ -64,6 +64,12 @@ HRESULT CLogo::Ready_GameLogic_Layer(const _tchar * pLayerTag)
 	FAILED_CHECK_RETURN_MSG(pLayer->Add_GameObject(L"BackGround", pGameObject), E_FAIL, L"Failed to add BackGround");
 
 	m_mapLayer.emplace(pLayerTag, pLayer);
+
+	return S_OK;
+}
+
+HRESULT CLogo::Ready_UI_Layer(const _tchar* pLayerTag)
+{
 
 	return S_OK;
 }

@@ -18,7 +18,6 @@ public:	//	Get Functions
 	const CGameObject*	Get_GameObjcet(const _tchar* pLayerTag, const _tchar* pObjTag) const;
 
 	CLayer*	Get_StaticLayer() const { return m_pStaticLayer; }
-	CLayer*	Get_UILayer() const { return m_pUILayer; }
 	
 	const CComponent*	Get_Component_From_StaticLayer(const _tchar* pObjTag, const _tchar* pComponentTag, COMPONENTID eID) const;
 	const CGameObject*	Get_GameObject_From_StaticLayer(const _tchar* pObjTag) const;
@@ -33,12 +32,10 @@ public:
 
 public:
 	HRESULT		Add_GameObjectToStaticLayer(const _tchar* pObjTag, CGameObject* pObj);
-	HRESULT		Add_UI(const _tchar* pObjTag, CGameObject* pObj);
 
 private:
 	CScene*		m_pScene = nullptr;
 	CLayer*		m_pStaticLayer = nullptr;
-	CLayer*		m_pUILayer = nullptr;
 
 public:
 	virtual void Free(void);

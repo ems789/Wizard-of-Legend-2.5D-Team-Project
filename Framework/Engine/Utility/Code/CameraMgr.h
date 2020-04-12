@@ -15,10 +15,12 @@ private:
 public:
 	HRESULT		Ready_CameraMgr(LPDIRECT3DDEVICE9 pGraphicDev, _ulong dwWinCX, _ulong dwWinCY);
 	_int		Update_MainCamera(const _float& fTimeDelta);
+	HRESULT		SetUp_RenderUI();
+	HRESULT		Finish_RenderUI();
 	
 private:
 	_int		Update_NullCamera(const _float& fTimeDelta);
-	_int		Update_OrthogonalCam(const _float& fTimeDelta);
+	_int		Update_OrthogonalCam();
 
 public:
 	HRESULT		SetUp_MainCamera(const _ulong& dwContainerIdx, const _tchar* pCameraTag);

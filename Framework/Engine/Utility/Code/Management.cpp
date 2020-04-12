@@ -46,11 +46,6 @@ _int Engine::CManagement::Update_Scene(const _float& fTimeDelta)
 	if (iExit & 0x80000000)
 		return -1;
 
-	iExit = m_pUILayer->Update_Layer(fTimeDelta);
-
-	if (iExit & 0x80000000)
-		return -1;
-
 	return iExit;
 }
 
@@ -62,7 +57,7 @@ void Engine::CManagement::Render_Scene()
 		return;
 
 	m_pScene->Render_Scene();
-	m_pStaticLayer->Render_Layer();
+	//m_pStaticLayer->Render_Layer();
 }
 
 HRESULT CManagement::Add_GameObjectToStaticLayer(const _tchar * pObjTag, CGameObject * pObj)
@@ -74,17 +69,8 @@ HRESULT CManagement::Add_GameObjectToStaticLayer(const _tchar * pObjTag, CGameOb
 	return S_OK;
 }
 
-HRESULT CManagement::Add_UI(const _tchar * pObjTag, CGameObject * pObj)
-{
-	if (nullptr == m_pUILayer)
-		m_pUILayer = CLayer::Create();
-	
-	return m_pUILayer->Add_GameObject(pObjTag, pObj);
-}
-
 void Engine::CManagement::Free(void)
 {
-	Safe_Release(m_pUILayer);
 	Safe_Release(m_pStaticLayer);
 	Safe_Release(m_pScene);
 }

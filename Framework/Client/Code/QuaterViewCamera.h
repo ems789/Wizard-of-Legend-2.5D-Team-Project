@@ -14,6 +14,9 @@ public:
 	virtual HRESULT Ready_Camera() override;
 	virtual _int Update_Camera(const _float& fTimeDelta) override;
 
+private:
+
+
 public:
 	static CQuaterViewCamera* Create(LPDIRECT3DDEVICE9 pGraphicDev);
 

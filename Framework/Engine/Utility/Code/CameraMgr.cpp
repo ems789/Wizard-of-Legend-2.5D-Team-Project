@@ -18,11 +18,31 @@ _int Engine::CCameraMgr::Update_MainCamera(const _float& fTimeDelta)
 	_int iExit = 0;
 
 	if (nullptr == m_pMainCamera)
-		iExit = Update_OrthogonalCam(fTimeDelta);
+		iExit = Update_OrthogonalCam();
 	else
 		iExit = m_pMainCamera->Update_Camera(fTimeDelta);
 	
 	return iExit;
+}
+
+HRESULT CCameraMgr::SetUp_RenderUI()
+{
+	_int iExit = Update_OrthogonalCam();
+
+	if (-1 == iExit)
+		return E_FAIL;
+
+	return S_OK;
+}
+
+HRESULT CCameraMgr::Finish_RenderUI()
+{
+	_int iExit = Update_MainCamera(0.f);
+
+	if (-1 == iExit)
+		return E_FAIL;
+
+	return S_OK;
 }
 
 HRESULT Engine::CCameraMgr::Ready_CameraMgr(LPDIRECT3DDEVICE9 pGraphicDev, _ulong dwWinCX, _ulong dwWinCY)
@@ -50,7 +70,7 @@ _int CCameraMgr::Update_NullCamera(const _float & fTimeDelta)
 	return 0;
 }
 
-_int CCameraMgr::Update_OrthogonalCam(const _float & fTimeDelta)
+_int CCameraMgr::Update_OrthogonalCam()
 {
 	_matrix matView, matProj;
 	D3DXMatrixIdentity(&matView);

@@ -42,8 +42,8 @@ _int CMainApp::Update_MainApp(const _float& fTimeDelta)
 
 void CMainApp::Render_MainApp(void)
 {
-	//if (m_iExit == 1)
-	//	return;
+	if (m_iExit == 1)
+		return;
 
 	Engine::Render_Begin(D3DXCOLOR(0.f, 0.f, 1.f, 1.f));
 	

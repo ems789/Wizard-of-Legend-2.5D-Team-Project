@@ -1,4 +1,5 @@
 #include "Renderer.h"
+#include "CameraMgr.h"
 
 USING(Engine)
 IMPLEMENT_SINGLETON(CRenderer)
@@ -25,7 +26,7 @@ void Engine::CRenderer::Add_RenderGroup(RENDERID eGroup, CGameObject* pGameObjec
 
 void Engine::CRenderer::Render_GameObject()
 {
-	for (_uint i = 0; i < RENDER_END; ++i)
+	for (_uint i = 0; i < RENDER_UI; ++i)
 	{
 		for (auto& pObj : m_RenderGroup[i])
 		{
@@ -35,6 +36,18 @@ void Engine::CRenderer::Render_GameObject()
 
 		m_RenderGroup[i].clear();
 	}
+
+	CCameraMgr::GetInstance()->SetUp_RenderUI();
+
+	for (auto& pObj : m_RenderGroup[RENDER_UI])
+	{
+		pObj->Render_GameObjcet();
+		Safe_Release(pObj);
+	}
+
+	m_RenderGroup[RENDER_UI].clear();
+
+	//CCameraMgr::GetInstance()->Finish_RenderUI();
 }
 
 void Engine::CRenderer::Clear_RenderGroup()

@@ -38,6 +38,9 @@ _int Engine::CCamera::Update_Camera(const _float& fTimeDelta)
 	D3DXMatrixLookAtLH(&m_matView, &m_vEye, &m_vAt, &m_vUp);
 	m_pGraphicDev->SetTransform(D3DTS_VIEW, &m_matView);
 
+	D3DXMatrixPerspectiveFovLH(&m_matProj, m_fFovY, m_fAspect, m_fNear, m_fFar);
+	m_pGraphicDev->SetTransform(D3DTS_PROJECTION, &m_matProj);
+
 	return 0;
 }
 

@@ -57,8 +57,8 @@ _int Engine::CScene::Update_Scene(const _float& fTimeDelta)
 
 void Engine::CScene::Render_Scene()
 {
-	for (auto& iter : m_mapLayer)
-		iter.second->Render_Layer();
+	//for (auto& iter : m_mapLayer)
+	//	iter.second->Render_Layer();
 }
 
 HRESULT CScene::Add_Layer(const _tchar * pLayerTag, CLayer * pLayer)

@@ -42,6 +42,7 @@ public:	//	return Reference
 public:	//	Move or Rotationd etc
 	void			Move_Pos(const _vec3* const pDir)				{ m_vInfo[INFO_POS] += *pDir; }
 	void			Rotation(ROTATION eType, const _float& fAngle)	{ *(((_float*)&m_vAngle) + eType) += fAngle; }
+	void			Multiply_Scale(const _vec3* const pScale)		{ m_vScale.x *= pScale->x, m_vScale.y *= pScale->y, m_vScale.z *= pScale->z; }
 
 public:
 	HRESULT			Ready_Component();

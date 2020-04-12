@@ -71,15 +71,19 @@ void CThirdViewCamera::Mouse_Move(const _float& fTimeDelta)
 		m_vAngle.y += D3DXToRadian(m_fSpeed * fTimeDelta * dwMouseMove);
 	
 	if (dwMouseMove = Engine::Get_DIMouseMove(Engine::DIMS_Z))	//	Zoom In & Out
-		m_fDistance += fTimeDelta * m_fSpeed;
+		m_fDistance += fTimeDelta * m_fSpeed * 0.3f * dwMouseMove;
 
 	if (m_fDistance < 0.f)
 		m_fDistance = 0.f;
+
+	POINT pt = {WINCX / 2, WINCY / 2};
+	ClientToScreen(g_hWnd, &pt);
+	SetCursorPos(pt.x, pt.y);
 }
 
 void CThirdViewCamera::Key_Input()
 {
-	if (Engine::Get_DIKeyState(DIK_TAB) & 0x80)
+	if (Engine::KeyDown(DIK_TAB))
 	{
 		m_bFixCursor = !m_bFixCursor;
 

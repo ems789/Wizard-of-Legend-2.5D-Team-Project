@@ -1,4 +1,4 @@
-﻿     Creating library ../Bin/Resources.lib and object ../Bin/Resources.exp
+﻿  Texture.cpp
   Resources.vcxproj -> D:\Direct3D Project\Framework\Engine\Resources\Default\../Bin/Resources.dll
   Resources.vcxproj -> ../Bin/Resources.pdb (Full PDB)
   .\Engine\Resources\Code\RcCol.h
@@ -6,11 +6,10 @@
   .\Engine\Resources\Code\Resources.h
   .\Engine\Resources\Code\ResourcesMgr.h
   .\Engine\Resources\Code\TerrainTex.h
-  다른 프로세스가 파일을 사용 중이기 때문에 프로세스가 액세스 할 수 없습니다.
   .\Engine\Resources\Code\Texture.h
   .\Engine\Resources\Code\TriCol.h
   .\Engine\Resources\Code\VIBuffer.h
-          7개 파일이 복사되었습니다.
+          8개 파일이 복사되었습니다.
           1개 파일이 복사되었습니다.
           1개 파일이 복사되었습니다.
   .\Engine\Header\Engine_Defines.h

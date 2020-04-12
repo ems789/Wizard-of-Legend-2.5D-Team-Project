@@ -50,6 +50,12 @@ namespace Engine
 		_ulong	_0, _1, _2;
 
 	}INDEX32;
+
+	typedef struct tagTextureInfo
+	{
+		IDirect3DBaseTexture9*	pTexture;
+		D3DXIMAGE_INFO			tImgInfo;
+	}TEX_INFO, *PTEX_INFO;
 }
 
 #endif // Engine_Struct_h__

@@ -76,6 +76,12 @@
     <Filter Include="02.GameObject\99.public\00.Player">
       <UniqueIdentifier>{ac5ac14f-ac16-4ec2-83ec-6004d268faa1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObject\99.public\01.UI">
+      <UniqueIdentifier>{4748d5fd-57ff-4fae-b36e-0a7377353a74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\99.public\01.UI\00.PlayerHP">
+      <UniqueIdentifier>{9fb6dd0a-9e6a-4721-bd3b-502422c6d242}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -144,6 +150,9 @@
     <ClInclude Include="..\Code\Player.h">
       <Filter>02.GameObject\99.public\00.Player</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\PlayerHP.h">
+      <Filter>02.GameObject\99.public\01.UI\00.PlayerHP</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -187,6 +196,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\Player.cpp">
       <Filter>02.GameObject\99.public\00.Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\PlayerHP.cpp">
+      <Filter>02.GameObject\99.public\01.UI\00.PlayerHP</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

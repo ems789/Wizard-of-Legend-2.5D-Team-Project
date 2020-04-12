@@ -34,9 +34,10 @@ private:
 	Engine::CTexture*		m_pTextureCom	= nullptr;
 	Engine::CRenderer*		m_pRendererCom	= nullptr;
 	FRAME					m_tFrame;
+	Engine::RENDERID		m_eRenderID		= Engine::RENDER_UI;
 
 public:
-	static CCastingCircle* Create(LPDIRECT3DDEVICE9 pGraphicDev, const _float& fScale, const _vec3* pPos);
+	static CCastingCircle* Create(LPDIRECT3DDEVICE9 pGraphicDev, const _float& fScale, const _vec3* pPos, Engine::RENDERID eRenderID = Engine::RENDER_UI);
 
 private:
 	virtual void Free() override;

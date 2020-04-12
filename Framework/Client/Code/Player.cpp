@@ -36,7 +36,7 @@ _int CPlayer::Update_GameObject(const _float& fTimeDelta)
 
 	_int iExit = CGameObject::Update_GameObject(fTimeDelta);
 
-	m_pRendererCom->Add_RenderGroup(Engine::RENDER_PRIORITY, this);
+	m_pRendererCom->Add_RenderGroup(Engine::RENDER_ALPHA, this);
 
 	return iExit;
 }

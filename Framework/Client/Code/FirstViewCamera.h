@@ -22,10 +22,13 @@ public:
 
 private:
 	void	Update_EyeAtUp(const _float& fTimeDelta);
-	void	Mouse_Input(const _float& fTimeDelta);
+	void	Mouse_Move(const _float& fTimeDelta);
 
 private:
-	const Engine::CTransform*		m_pTargetInfo = nullptr;
+	const Engine::CTransform*	m_pTargetInfo	= nullptr;
+	_float						m_fSpeed		= 10.f;
+	_vec3						m_vAngle		= { 0.f, 0.f, 0.f };
+	_bool						m_bFixCursor	= true;
 
 public:
 	static CFirstViewCamera* Create(LPDIRECT3DDEVICE9 pGraphicDev);

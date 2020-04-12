@@ -1,4 +1,5 @@
-﻿  Management.cpp
+﻿  CameraMgr.cpp
+d:\direct3d project\framework\engine\utility\code\cameramgr.cpp(110): warning C4715: 'Engine::CCameraMgr::Add_Camera': not all control paths return a value
   Utility.vcxproj -> D:\Direct3D Project\Framework\Engine\Utility\Default\../Bin/Utility.dll
   Utility.vcxproj -> ../Bin/Utility.pdb (Full PDB)
   .\Engine\Utility\Code\Camera.h
@@ -11,7 +12,8 @@
   .\Engine\Utility\Code\Renderer.h
   .\Engine\Utility\Code\Scene.h
   .\Engine\Utility\Code\Transform.h
-         10개 파일이 복사되었습니다.
+  .\Engine\Utility\Code\UI.h
+         11개 파일이 복사되었습니다.
   .\Engine\Utility\Code\*.hpp 
   지정된 파일을 찾을 수 없습니다.
           0개 파일이 복사되었습니다.

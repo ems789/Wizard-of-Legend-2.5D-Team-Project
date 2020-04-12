@@ -65,7 +65,7 @@ HRESULT CLoadingScene::Ready_Effect_Layer(const _tchar * pLayerTag)
 	Engine::CGameObject* pGameObject = nullptr;
 
 	//	CastingCircle
-	pGameObject = CCastingCircle::Create(m_pGraphicDev, 200.f, &_vec3(WINCX / 2 - 200.f, -WINCY / 2 + 200.f, 0.f));
+	pGameObject = CCastingCircle::Create(m_pGraphicDev, 200.f, &_vec3(WINCX / 2 - 200.f, -WINCY / 2 + 200.f, 0.f), Engine::RENDER_UI);
 	NULL_CHECK_RETURN(pGameObject, E_FAIL);
 	FAILED_CHECK_RETURN(pLayer->Add_GameObject(L"CastingCircle", pGameObject), E_FAIL);
 	

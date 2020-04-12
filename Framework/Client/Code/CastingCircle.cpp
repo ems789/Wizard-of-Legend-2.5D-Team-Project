@@ -31,7 +31,7 @@ _int CCastingCircle::Update_GameObject(const _float& fTimeDelta)
 
 	_int iExit = CGameObject::Update_GameObject(fTimeDelta);
 
-	m_pRendererCom->Add_RenderGroup(Engine::RENDER_PRIORITY, this);
+	m_pRendererCom->Add_RenderGroup(m_eRenderID, this);
 
 	return iExit;
 }
@@ -83,7 +83,7 @@ void CCastingCircle::Animation(const _float & fTimeDelta)
 		m_tFrame.fCurFrame = 0.f;
 }
 
-CCastingCircle * CCastingCircle::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _float& fScale, const _vec3* pPos)
+CCastingCircle * CCastingCircle::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _float& fScale, const _vec3* pPos, Engine::RENDERID eRenderID /*= Engine::RENDER_UI*/)
 {
 	CCastingCircle* pInstance = new CCastingCircle(pGraphicDev);
 
@@ -92,6 +92,7 @@ CCastingCircle * CCastingCircle::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _fl
 
 	pInstance->m_pTransformCom->Set_Scale(fScale);
 	pInstance->m_pTransformCom->Set_Pos(pPos);
+	pInstance->m_eRenderID = eRenderID;
 
 	return pInstance;
 }

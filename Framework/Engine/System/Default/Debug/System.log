@@ -1,8 +1,17 @@
-﻿  InputDev.cpp
+﻿  Font.cpp
+  Generating Code...
+  Compiling...
+  TimerMgr.cpp
+  Timer.cpp
+  InputDev.cpp
 d:\direct3d project\framework\engine\system\code\inputdev.cpp(18): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
 d:\direct3d project\framework\engine\system\code\inputdev.cpp(39): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
 d:\direct3d project\framework\engine\system\code\inputdev.cpp(60): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
-     Creating library ../Bin/System.lib and object ../Bin/System.exp
+  GraphicDev.cpp
+  FrameMgr.cpp
+  Frame.cpp
+  FontMgr.cpp
+  Generating Code...
   System.vcxproj -> D:\Direct3D Project\Framework\Engine\System\Default\../Bin/System.dll
   System.vcxproj -> ../Bin/System.pdb (Full PDB)
   .\Engine\System\Code\Font.h
