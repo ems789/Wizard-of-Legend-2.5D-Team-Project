@@ -1,0 +1,100 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Client", "Client\Default\Client.vcxproj", "{3D31B2A8-4777-4DCF-9773-9F4FFC6AA9C2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FF8D431D-09E6-4BB1-A8EE-F074AC7B4B93} = {FF8D431D-09E6-4BB1-A8EE-F074AC7B4B93}
+		{99F4E047-1C32-4D96-9C34-C8519D9D6610} = {99F4E047-1C32-4D96-9C34-C8519D9D6610}
+		{4ABECB71-1D17-4C14-ABF0-CD51B9F8BD08} = {4ABECB71-1D17-4C14-ABF0-CD51B9F8BD08}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "99.base", "99.base", "{76ED0829-8261-4A43-8D2E-228277FB1C9D}"
+	ProjectSection(SolutionItems) = preProject
+		Base\Base.h = Base\Base.h
+		Base\Base.inl = Base\Base.inl
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01.Engine", "01.Engine", "{4EF5BA31-C83C-4785-A8CA-1E9199289608}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00.Client", "00.Client", "{3F8BFCC0-FE28-43AD-8D67-1C68AB7855ED}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "System", "Engine\System\Default\System.vcxproj", "{99F4E047-1C32-4D96-9C34-C8519D9D6610}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00.System", "00.System", "{3465D48E-3FAB-4721-A76D-052B3F1B6F19}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03.Header", "03.Header", "{39C7AEFA-11AD-4EE1-A0DD-017A25187244}"
+	ProjectSection(SolutionItems) = preProject
+		Engine\Header\Engine_Defines.h = Engine\Header\Engine_Defines.h
+		Engine\Header\Engine_Enum.h = Engine\Header\Engine_Enum.h
+		Engine\Header\Engine_Function.h = Engine\Header\Engine_Function.h
+		Engine\Header\Engine_Macro.h = Engine\Header\Engine_Macro.h
+		Engine\Header\Engine_Struct.h = Engine\Header\Engine_Struct.h
+		Engine\Header\Engine_Typedef.h = Engine\Header\Engine_Typedef.h
+		Engine\Header\Export_Function.h = Engine\Header\Export_Function.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01.Utility", "01.Utility", "{6D04D506-F291-40DC-94C9-D935B39D4032}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02.Resources", "02.Resources", "{9B348946-06F4-40B2-94E4-C1C8839BC15D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Utility", "Engine\Utility\Default\Utility.vcxproj", "{4ABECB71-1D17-4C14-ABF0-CD51B9F8BD08}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Resources", "Engine\Resources\Default\Resources.vcxproj", "{FF8D431D-09E6-4BB1-A8EE-F074AC7B4B93}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3D31B2A8-4777-4DCF-9773-9F4FFC6AA9C2}.Debug|x64.ActiveCfg = Debug|x64
+		{3D31B2A8-4777-4DCF-9773-9F4FFC6AA9C2}.Debug|x64.Build.0 = Debug|x64
+		{3D31B2A8-4777-4DCF-9773-9F4FFC6AA9C2}.Debug|x86.ActiveCfg = Debug|Win32
+		{3D31B2A8-4777-4DCF-9773-9F4FFC6AA9C2}.Debug|x86.Build.0 = Debug|Win32
+		{3D31B2A8-4777-4DCF-9773-9F4FFC6AA9C2}.Release|x64.ActiveCfg = Release|x64
+		{3D31B2A8-4777-4DCF-9773-9F4FFC6AA9C2}.Release|x64.Build.0 = Release|x64
+		{3D31B2A8-4777-4DCF-9773-9F4FFC6AA9C2}.Release|x86.ActiveCfg = Release|Win32
+		{3D31B2A8-4777-4DCF-9773-9F4FFC6AA9C2}.Release|x86.Build.0 = Release|Win32
+		{99F4E047-1C32-4D96-9C34-C8519D9D6610}.Debug|x64.ActiveCfg = Debug|x64
+		{99F4E047-1C32-4D96-9C34-C8519D9D6610}.Debug|x64.Build.0 = Debug|x64
+		{99F4E047-1C32-4D96-9C34-C8519D9D6610}.Debug|x86.ActiveCfg = Debug|Win32
+		{99F4E047-1C32-4D96-9C34-C8519D9D6610}.Debug|x86.Build.0 = Debug|Win32
+		{99F4E047-1C32-4D96-9C34-C8519D9D6610}.Release|x64.ActiveCfg = Release|x64
+		{99F4E047-1C32-4D96-9C34-C8519D9D6610}.Release|x64.Build.0 = Release|x64
+		{99F4E047-1C32-4D96-9C34-C8519D9D6610}.Release|x86.ActiveCfg = Release|Win32
+		{99F4E047-1C32-4D96-9C34-C8519D9D6610}.Release|x86.Build.0 = Release|Win32
+		{4ABECB71-1D17-4C14-ABF0-CD51B9F8BD08}.Debug|x64.ActiveCfg = Debug|x64
+		{4ABECB71-1D17-4C14-ABF0-CD51B9F8BD08}.Debug|x64.Build.0 = Debug|x64
+		{4ABECB71-1D17-4C14-ABF0-CD51B9F8BD08}.Debug|x86.ActiveCfg = Debug|Win32
+		{4ABECB71-1D17-4C14-ABF0-CD51B9F8BD08}.Debug|x86.Build.0 = Debug|Win32
+		{4ABECB71-1D17-4C14-ABF0-CD51B9F8BD08}.Release|x64.ActiveCfg = Release|x64
+		{4ABECB71-1D17-4C14-ABF0-CD51B9F8BD08}.Release|x64.Build.0 = Release|x64
+		{4ABECB71-1D17-4C14-ABF0-CD51B9F8BD08}.Release|x86.ActiveCfg = Release|Win32
+		{4ABECB71-1D17-4C14-ABF0-CD51B9F8BD08}.Release|x86.Build.0 = Release|Win32
+		{FF8D431D-09E6-4BB1-A8EE-F074AC7B4B93}.Debug|x64.ActiveCfg = Debug|x64
+		{FF8D431D-09E6-4BB1-A8EE-F074AC7B4B93}.Debug|x64.Build.0 = Debug|x64
+		{FF8D431D-09E6-4BB1-A8EE-F074AC7B4B93}.Debug|x86.ActiveCfg = Debug|Win32
+		{FF8D431D-09E6-4BB1-A8EE-F074AC7B4B93}.Debug|x86.Build.0 = Debug|Win32
+		{FF8D431D-09E6-4BB1-A8EE-F074AC7B4B93}.Release|x64.ActiveCfg = Release|x64
+		{FF8D431D-09E6-4BB1-A8EE-F074AC7B4B93}.Release|x64.Build.0 = Release|x64
+		{FF8D431D-09E6-4BB1-A8EE-F074AC7B4B93}.Release|x86.ActiveCfg = Release|Win32
+		{FF8D431D-09E6-4BB1-A8EE-F074AC7B4B93}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3D31B2A8-4777-4DCF-9773-9F4FFC6AA9C2} = {3F8BFCC0-FE28-43AD-8D67-1C68AB7855ED}
+		{99F4E047-1C32-4D96-9C34-C8519D9D6610} = {3465D48E-3FAB-4721-A76D-052B3F1B6F19}
+		{3465D48E-3FAB-4721-A76D-052B3F1B6F19} = {4EF5BA31-C83C-4785-A8CA-1E9199289608}
+		{39C7AEFA-11AD-4EE1-A0DD-017A25187244} = {4EF5BA31-C83C-4785-A8CA-1E9199289608}
+		{6D04D506-F291-40DC-94C9-D935B39D4032} = {4EF5BA31-C83C-4785-A8CA-1E9199289608}
+		{9B348946-06F4-40B2-94E4-C1C8839BC15D} = {4EF5BA31-C83C-4785-A8CA-1E9199289608}
+		{4ABECB71-1D17-4C14-ABF0-CD51B9F8BD08} = {6D04D506-F291-40DC-94C9-D935B39D4032}
+		{FF8D431D-09E6-4BB1-A8EE-F074AC7B4B93} = {9B348946-06F4-40B2-94E4-C1C8839BC15D}
+	EndGlobalSection
+EndGlobal
