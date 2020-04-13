@@ -27,12 +27,12 @@ public:
 	void	Render_Mouse();
 
 public:
-	void CursorRenderOn()	{ m_bCursorRender = true; }
-	void CursorRenderOff()	{ m_bCursorRender = false; }
+	void	CursorRenderOn()	{ m_bCursorRender = true; }
+	void	CursorRenderOff()	{ m_bCursorRender = false; }
 
 private:
-	HRESULT		Add_Component();
-	void		Update_MousePos();
+	HRESULT	Add_Component();
+	void	Update_MousePos();
 
 private:	//	Components
 	Engine::CRcTex*			m_pBufferCom = nullptr;

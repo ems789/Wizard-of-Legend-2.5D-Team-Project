@@ -19,6 +19,9 @@ HRESULT CFirstViewCamera::Ready_Camera()
 	FAILED_CHECK_RETURN(CCamera::Ready_Camera(), E_FAIL);
 
 	m_pTargetInfo = dynamic_cast<const Engine::CTransform*>(Engine::Get_Component_of_Player(L"Com_Transform", Engine::ID_DYNAMIC));
+	NULL_CHECK_RETURN(m_pTargetInfo, E_FAIL);
+
+	m_fNear = 0.1f;
 
 	return S_OK;
 }
@@ -47,6 +50,7 @@ void CFirstViewCamera::Update_EyeAtUp(const _float & fTimeDelta)
 	matRotAll = matRotX * matRotY * matRotZ;
 
 	D3DXVec3TransformNormal(&m_vAt, &AXIS_Z, &matRotAll);
+	m_vAt += m_vEye;
 	D3DXVec3TransformNormal(&m_vUp, &AXIS_Y, &matRotAll);
 }
 
@@ -62,6 +66,11 @@ void CFirstViewCamera::Mouse_Move(const _float & fTimeDelta)
 
 	if (dwMouseMove = Engine::Get_DIMouseMove(Engine::DIMS_X))	//	Y 축 회전
 		m_vAngle.y += D3DXToRadian(m_fSpeed * fTimeDelta * dwMouseMove);
+
+	//	마우스 중심 고정
+	POINT pt = { WINCX / 2, WINCY / 2 };
+	ClientToScreen(g_hWnd, &pt);
+	SetCursorPos(pt.x, pt.y);
 }
 
 CFirstViewCamera * CFirstViewCamera::Create(LPDIRECT3DDEVICE9 pGraphicDev)

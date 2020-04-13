@@ -29,15 +29,15 @@ public:	//	Set Functions
 	void			Set_Angle(const _vec3* pAngle)									{ memcpy(&m_vAngle, pAngle, sizeof(_vec3)); }
 
 public:	//	Get Functions
-	const _vec3*	GetInfo(INFO eType, _vec3* pInfo = nullptr)	const { if (pInfo)		memcpy(pInfo, &m_matWorld.m[eType][0], sizeof(_vec3));	return &m_vInfo[eType]; }
-	const _matrix*	GetWorldMatrix(_matrix* pMatrix = nullptr)	const { if (pMatrix)	memcpy(pMatrix, &m_matWorld, sizeof(_matrix));			return &m_matWorld; }
-	const _vec3*	GetAngle(_vec3* pAngle = nullptr)			const {	if (pAngle)		memcpy(pAngle, &m_vAngle, sizeof(_vec3));				return &m_vAngle; }
+	const _vec3*	GetInfo(INFO eType, _vec3* pInfo = nullptr)		const { if (pInfo)		memcpy(pInfo, &m_matWorld.m[eType][0], sizeof(_vec3));	return &m_vInfo[eType]; }
+	const _matrix*	GetWorldMatrix(_matrix* pMatrix = nullptr)		const { if (pMatrix)	memcpy(pMatrix, &m_matWorld, sizeof(_matrix));			return &m_matWorld; }
+	const _vec3*	GetAngle(_vec3* pAngle = nullptr)				const {	if (pAngle)		memcpy(pAngle, &m_vAngle, sizeof(_vec3));				return &m_vAngle; }
 
 public:	//	return Reference
-	const _vec3&	GetInfoRef(INFO eType)	const { return m_vInfo[eType]; }
-	const _vec3&	GetScaleRef()			const { return m_vScale; }
-	const _vec3&	GetAngleRef()			const { return m_vAngle; }
-	const _matrix&	GetWorldMatrixRef()		const { return m_matWorld; }
+	const _vec3&	GetInfoRef(INFO eType)							const { return m_vInfo[eType]; }
+	const _vec3&	GetScaleRef()									const { return m_vScale; }
+	const _vec3&	GetAngleRef()									const { return m_vAngle; }
+	const _matrix&	GetWorldMatrixRef()								const { return m_matWorld; }
 
 public:	//	Move or Rotationd etc
 	void			Move_Pos(const _vec3* const pDir)				{ m_vInfo[INFO_POS] += *pDir; }

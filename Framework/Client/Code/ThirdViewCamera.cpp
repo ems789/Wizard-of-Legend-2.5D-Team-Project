@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "ThirdViewCamera.h"
+#include "Mouse.h"
 
 #include "Export_Function.h"
 
@@ -21,6 +22,8 @@ HRESULT CThirdViewCamera::Ready_Camera()
 	m_pTargetInfo = dynamic_cast<const Engine::CTransform*>(Engine::Get_Component_of_Player(L"Com_Transform", Engine::ID_DYNAMIC));
 	NULL_CHECK_RETURN(m_pTargetInfo, E_FAIL);
 
+	m_fNear = 0.1f;
+
 	return S_OK;
 }
 
@@ -41,7 +44,7 @@ void CThirdViewCamera::Update_EyeAtUp(const _float& fTimeDelta)
 	Mouse_Move(fTimeDelta);
 
 	m_vAt = *m_pTargetInfo->GetInfo(Engine::INFO_POS);
-
+	m_vAt.y += 1.f;
 	_matrix matRotX, matRotY, matRotZ, matRotAll;
 
 	D3DXMatrixRotationX(&matRotX, m_vAngle.x);
@@ -71,7 +74,7 @@ void CThirdViewCamera::Mouse_Move(const _float& fTimeDelta)
 		m_vAngle.y += D3DXToRadian(m_fSpeed * fTimeDelta * dwMouseMove);
 	
 	if (dwMouseMove = Engine::Get_DIMouseMove(Engine::DIMS_Z))	//	Zoom In & Out
-		m_fDistance += fTimeDelta * m_fSpeed * 0.3f * dwMouseMove;
+		m_fDistance -= fTimeDelta * m_fSpeed * 0.1f * dwMouseMove;
 
 	if (m_fDistance < 0.f)
 		m_fDistance = 0.f;
@@ -86,11 +89,10 @@ void CThirdViewCamera::Key_Input()
 	if (Engine::KeyDown(DIK_TAB))
 	{
 		m_bFixCursor = !m_bFixCursor;
-
 		if (m_bFixCursor)
-			::ShowCursor(FALSE);
+			CMouse::GetInstance()->CursorRenderOff();
 		else
-			::ShowCursor(TRUE);
+			CMouse::GetInstance()->CursorRenderOn();
 	}
 }
 

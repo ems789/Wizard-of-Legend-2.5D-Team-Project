@@ -25,6 +25,8 @@ HRESULT CPlayer::Ready_GameObject()
 
 	m_eCurState = CPlayer::P_IDLE;
 
+	m_pTransformCom->Move_Pos(Engine::INFO_UP, 0.5f);
+
 	return S_OK;
 }
 
