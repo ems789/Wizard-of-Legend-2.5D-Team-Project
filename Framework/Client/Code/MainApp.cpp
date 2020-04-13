@@ -118,7 +118,7 @@ CMainApp* CMainApp::Create(void)
 void CMainApp::Free(void)
 {
 	::ShowCursor(TRUE);
-	Safe_Release(m_pMouse);
+	m_pMouse->DestroyInstance();
 	_ulong dwRef = Engine::Safe_Release(m_pGraphicDev);
 	dwRef = Engine::Safe_Release(m_pDeviceClass);
 	dwRef = Engine::Safe_Release(m_pManagement);
