@@ -170,6 +170,7 @@ call CopyResources.bat
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Code\CubeTex.cpp" />
     <ClCompile Include="..\Code\RcCol.cpp" />
     <ClCompile Include="..\Code\RcTex.cpp" />
     <ClCompile Include="..\Code\Resources.cpp" />
@@ -181,6 +182,7 @@ call CopyResources.bat
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Header\Export_Resources.h" />
+    <ClInclude Include="..\Code\CubeTex.h" />
     <ClInclude Include="..\Code\RcCol.h" />
     <ClInclude Include="..\Code\RcTex.h" />
     <ClInclude Include="..\Code\Resources.h" />

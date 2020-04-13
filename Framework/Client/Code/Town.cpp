@@ -8,6 +8,7 @@
 
 #include "Export_Function.h"
 #include "PlayerHP.h"
+#include "TestTerrain.h"
 
 CTown::CTown(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CScene(pGraphicDev)
@@ -58,7 +59,10 @@ HRESULT CTown::Ready_GameLogic_Layer(const _tchar * pLayerTag)
 	Engine::CLayer* pLayer = Engine::CLayer::Create();
 	NULL_CHECK_RETURN(pLayer, E_FAIL);
 
-
+	Engine::CGameObject* pGameObject = nullptr;
+	pGameObject = CTestTerrain::Create(m_pGraphicDev);
+	NULL_CHECK_RETURN(pGameObject, E_FAIL);
+	pLayer->Add_GameObject(L"TestTerrain", pGameObject);
 
 	m_mapLayer.emplace(pLayerTag, pLayer);
 
@@ -100,17 +104,27 @@ HRESULT CTown::Ready_Camera()
 	
 	pCamera = CFirstViewCamera::Create(m_pGraphicDev);
 	NULL_CHECK_RETURN(pCamera, E_FAIL);
-	Engine::Add_Camera(Engine::CAM_STATIC, L"First_View_Camera", pCamera);
+	Engine::Add_BasicCamera(0, L"First_View_Camera", pCamera);
 	
 	pCamera = CThirdViewCamera::Create(m_pGraphicDev);
 	NULL_CHECK_RETURN(pCamera, E_FAIL);
-	Engine::Add_Camera(Engine::CAM_STATIC, L"Third_View_Camera", pCamera);
+	Engine::Add_BasicCamera(1, L"Third_View_Camera", pCamera);
 
 	pCamera = CQuaterViewCamera::Create(m_pGraphicDev);
 	NULL_CHECK_RETURN(pCamera, E_FAIL);
-	Engine::Add_Camera(Engine::CAM_STATIC, L"Quater_View_Camera", pCamera);
+	Engine::Add_BasicCamera(2, L"Quater_View_Camera", pCamera);
 
 	Engine::SetUp_MainCamera(Engine::CAM_STATIC, L"Third_View_Camera");
+
+
+
+	return S_OK;
+}
+
+HRESULT CTown::Loading_Data(const _tchar * pPath)
+{
+
+
 
 	return S_OK;
 }

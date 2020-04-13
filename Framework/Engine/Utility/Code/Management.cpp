@@ -69,6 +69,16 @@ HRESULT CManagement::Add_GameObjectToStaticLayer(const _tchar * pObjTag, CGameOb
 	return S_OK;
 }
 
+HRESULT CManagement::Create_StaticLayer()
+{
+	if (nullptr != m_pStaticLayer)
+		return E_FAIL;
+	
+	m_pStaticLayer = CLayer::Create();
+
+	return S_OK;
+}
+
 void Engine::CManagement::Free(void)
 {
 	Safe_Release(m_pStaticLayer);

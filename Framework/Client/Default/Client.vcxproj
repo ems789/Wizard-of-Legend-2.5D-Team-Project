@@ -167,10 +167,12 @@
     <ClInclude Include="..\Code\LoadingScene.h" />
     <ClInclude Include="..\Code\Logo.h" />
     <ClInclude Include="..\Code\MainApp.h" />
+    <ClInclude Include="..\Code\Mouse.h" />
     <ClInclude Include="..\Code\Player.h" />
     <ClInclude Include="..\Code\PlayerHP.h" />
     <ClInclude Include="..\Code\QuaterViewCamera.h" />
     <ClInclude Include="..\Code\Stage.h" />
+    <ClInclude Include="..\Code\TestTerrain.h" />
     <ClInclude Include="..\Code\ThirdViewCamera.h" />
     <ClInclude Include="..\Code\Town.h" />
     <ClInclude Include="..\Header\Defines.h" />
@@ -192,10 +194,12 @@
     <ClCompile Include="..\Code\LoadingScene.cpp" />
     <ClCompile Include="..\Code\Logo.cpp" />
     <ClCompile Include="..\Code\MainApp.cpp" />
+    <ClCompile Include="..\Code\Mouse.cpp" />
     <ClCompile Include="..\Code\Player.cpp" />
     <ClCompile Include="..\Code\PlayerHP.cpp" />
     <ClCompile Include="..\Code\QuaterViewCamera.cpp" />
     <ClCompile Include="..\Code\Stage.cpp" />
+    <ClCompile Include="..\Code\TestTerrain.cpp" />
     <ClCompile Include="..\Code\ThirdViewCamera.cpp" />
     <ClCompile Include="..\Code\Town.cpp" />
     <ClCompile Include="Client.cpp" />

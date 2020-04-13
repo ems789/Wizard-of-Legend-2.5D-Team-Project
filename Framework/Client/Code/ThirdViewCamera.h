@@ -25,6 +25,9 @@ private:
 	void	Mouse_Move(const _float& fTimeDelta);
 	void	Key_Input();
 
+public:
+	virtual const _vec3* Get_Angle(_vec3* pAngle) { if (pAngle) memcpy(pAngle, &m_vAngle, sizeof(_vec3)); return &m_vAngle; }
+
 private:
 	const Engine::CTransform*	m_pTargetInfo	= nullptr;
 	_float						m_fDistance		= 10.f;

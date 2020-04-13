@@ -18,8 +18,8 @@ public:	//	Set Functions
 	void			Set_Scale(const _float& fScale)									{ m_vScale.x = fScale, m_vScale.y = fScale, m_vScale.z = fScale; }
 
 	void			Set_ScaleX(const _float& fx)									{ m_vScale.x = fx; }
-	void			Set_ScaleY(const _float& fy)									{ m_vScale.x = fy; }
-	void			Set_ScaleZ(const _float& fz)									{ m_vScale.x = fz; }
+	void			Set_ScaleY(const _float& fy)									{ m_vScale.y = fy; }
+	void			Set_ScaleZ(const _float& fz)									{ m_vScale.z = fz; }
 
 	void			Set_Pos(const _vec3& vPos)										{ m_vInfo[INFO_POS] = vPos; }
 	void			Set_Pos(const _vec3* pPos)										{ memcpy(&m_vInfo[INFO_POS], pPos, sizeof(_vec3)); }
@@ -41,6 +41,8 @@ public:	//	return Reference
 
 public:	//	Move or Rotationd etc
 	void			Move_Pos(const _vec3* const pDir)				{ m_vInfo[INFO_POS] += *pDir; }
+	void			Move_Pos(const _vec3& vDir)						{ m_vInfo[INFO_POS] += vDir; }
+	void			Move_Pos(INFO eType, const _float& fDist)		{ m_vInfo[INFO_POS] += m_vInfo[eType] * fDist; }
 	void			Rotation(ROTATION eType, const _float& fAngle)	{ *(((_float*)&m_vAngle) + eType) += fAngle; }
 	void			Multiply_Scale(const _vec3* const pScale)		{ m_vScale.x *= pScale->x, m_vScale.y *= pScale->y, m_vScale.z *= pScale->z; }
 

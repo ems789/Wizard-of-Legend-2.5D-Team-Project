@@ -38,7 +38,6 @@ private:
 	_byte			m_byKeyState[256];
 	_bool			m_bKeyDown[256];
 	_bool			m_bKeyUp[256];
-	_bool			m_bKeyPress[256];
 	DIMOUSESTATE	m_tMouseState;
 
 public:

@@ -78,7 +78,6 @@ HRESULT Engine::CInputDev::Ready_InputDev(HINSTANCE hInst, HWND hWnd)
 	
 	ZeroMemory(m_bKeyDown,	sizeof(_bool) * 256);
 	ZeroMemory(m_bKeyUp,	sizeof(_bool) * 256);
-	ZeroMemory(m_bKeyPress, sizeof(_bool) * 256);
 
 	return S_OK;
 }

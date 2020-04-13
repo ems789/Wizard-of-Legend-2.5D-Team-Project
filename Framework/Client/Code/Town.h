@@ -22,6 +22,9 @@ private:
 	HRESULT		Ready_StaticLayer();
 	HRESULT		Ready_Camera();
 
+private:
+	HRESULT		Loading_Data(const _tchar* pPath);
+
 public:
 	static CTown* Create(LPDIRECT3DDEVICE9 pGraphicDev);
 

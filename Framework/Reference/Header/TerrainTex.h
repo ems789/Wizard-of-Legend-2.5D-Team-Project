@@ -12,10 +12,18 @@ class ENGINE_DLL CTerrainTex : public CVIBuffer
 	virtual ~CTerrainTex();
 
 public:
-	HRESULT Ready_Buffer(const _ulong& dwCntX, const _ulong& dwCntZ, const _ulong& dwVtxItv = 1);
+	HRESULT Ready_Buffer(const _tchar* pPath, const _ulong& dwCntX, const _ulong& dwCntZ, const _ulong& dwVtxItv = 1);
+
+private:
+	HANDLE				m_hFile;
+	BITMAPFILEHEADER	m_fH;
+	BITMAPINFOHEADER	m_iH;
+
+	_vec3*				m_pPos;
+	_bool				m_bClone;
 
 public:
-	static CTerrainTex* Create(LPDIRECT3DDEVICE9 pGraphicDev, const _ulong& dwCntX, const _ulong& dwCntZ, const _ulong& dwVtxItv = 1);
+	static CTerrainTex* Create(LPDIRECT3DDEVICE9 pGraphicDev, const _tchar* pPath, const _ulong& dwCntX, const _ulong& dwCntZ, const _ulong& dwVtxItv = 1);
 	virtual CResources*	Clone() override;
 	
 private:

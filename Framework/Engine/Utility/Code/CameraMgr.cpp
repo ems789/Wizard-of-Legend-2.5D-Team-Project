@@ -1,4 +1,5 @@
 #include "CameraMgr.h"
+#include "InputDev.h"
 
 USING(Engine)
 IMPLEMENT_SINGLETON(CCameraMgr)
@@ -17,6 +18,8 @@ _int Engine::CCameraMgr::Update_MainCamera(const _float& fTimeDelta)
 {
 	_int iExit = 0;
 
+	Key_Input();
+
 	if (nullptr == m_pMainCamera)
 		iExit = Update_OrthogonalCam();
 	else
@@ -29,6 +32,10 @@ HRESULT CCameraMgr::SetUp_RenderUI()
 {
 	_int iExit = Update_OrthogonalCam();
 
+	m_pGraphicDev->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
+	m_pGraphicDev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+	m_pGraphicDev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+
 	if (-1 == iExit)
 		return E_FAIL;
 
@@ -37,10 +44,8 @@ HRESULT CCameraMgr::SetUp_RenderUI()
 
 HRESULT CCameraMgr::Finish_RenderUI()
 {
-	_int iExit = Update_MainCamera(0.f);
-
-	if (-1 == iExit)
-		return E_FAIL;
+	m_pGraphicDev->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
+	//_int iExit = Update_MainCamera(0.f);
 
 	return S_OK;
 }
@@ -107,6 +112,23 @@ HRESULT Engine::CCameraMgr::Add_Camera(const _ulong& dwContainerIdx, const _tcha
 	}
 
 	m_mapCamera[dwContainerIdx].emplace(pCameraTag, pCamera);
+
+	return S_OK;
+}
+
+HRESULT CCameraMgr::Add_BasicCamera(const _ubyte & byOrder, const _tchar * pCameraTag, CCamera * pCamera)
+{
+	if (byOrder > 3)
+	{
+		MSG_BOX("Add_BasicCamera Failed. byOrder is bigger than 3.");
+		return E_FAIL;
+	}
+
+	FAILED_CHECK_RETURN(Add_Camera(CAM_STATIC, pCameraTag, pCamera), E_FAIL);
+	
+	m_szBasicCamTag[byOrder] = pCameraTag;
+	
+	return S_OK;
 }
 
 HRESULT Engine::CCameraMgr::Remove_Camera(const _ulong& dwContainerIdx, const _tchar* pCameraTag)
@@ -148,6 +170,20 @@ Engine::CCamera* Engine::CCameraMgr::Get_Camera(const _ulong& dwContainerIdx, co
 		return nullptr;
 
 	return iter->second;
+}
+
+void CCameraMgr::Key_Input()
+{
+	if (false == m_bCanKeyInput)
+		return;
+	if (CInputDev::GetInstance()->KeyDown(DIK_F1))
+		m_eMainCam = MAIN_CAM_1ST;
+	if (CInputDev::GetInstance()->KeyDown(DIK_F2))
+		m_eMainCam = MAIN_CAM_3RD;
+	if (CInputDev::GetInstance()->KeyDown(DIK_F3))
+		m_eMainCam = MAIN_CAM_QUATER;
+
+	SetUp_MainCamera(CAM_STATIC, m_szBasicCamTag[m_eMainCam]);
 }
 
 void Engine::CCameraMgr::Free()

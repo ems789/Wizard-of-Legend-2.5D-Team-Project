@@ -24,6 +24,11 @@ public:	//	Get Functions
 	const _vec3*	Get_Eye(_vec3* pEye = nullptr)	const { if (pEye) memcpy(pEye, &m_vEye, sizeof(_vec3)); return &m_vEye; }
 	const _vec3*	Get_At(_vec3* pAt = nullptr)	const { if (pAt) memcpy(pAt, &m_vAt, sizeof(_vec3)); return &m_vAt; }
 	const _vec3*	Get_Up(_vec3* pUp = nullptr)	const { if (pUp) memcpy(pUp, &m_vUp, sizeof(_vec3)); return &m_vUp; }
+	
+	void			Get_Right(_vec3* pRight) const;
+	void			Get_Look(_vec3* pLook) const;
+
+	virtual	const _vec3* Get_Angle(_vec3* pAngle);
 
 	const _float Get_Fovy()		const { return m_fFovY; }
 	const _float Get_Aspect()	const { return m_fAspect; }

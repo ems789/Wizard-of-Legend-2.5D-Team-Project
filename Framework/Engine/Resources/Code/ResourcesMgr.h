@@ -8,6 +8,7 @@
 #include "RcTex.h"
 #include "TerrainTex.h"
 #include "Texture.h"
+#include "CubeTex.h"
 
 BEGIN(Engine)
 
@@ -21,7 +22,7 @@ private:
 
 public:
 	HRESULT		Reserve_ContainerSize(const _ushort& wSize);
-	HRESULT		Ready_Buffer(LPDIRECT3DDEVICE9 pGraphicDev, const _ushort& wContainerIdx, const _tchar* pBufferTag, BUFFERID eID, const _ulong& dwCntX, const _ulong& dwCntZ, const _ulong& dwVtxItv);
+	HRESULT		Ready_Buffer(LPDIRECT3DDEVICE9 pGraphicDev, const _ushort& wContainerIdx, const _tchar* pBufferTag, BUFFERID eID, const _tchar* pPath, const _ulong& dwCntX, const _ulong& dwCntZ, const _ulong& dwVtxItv);
 	HRESULT		Ready_Texture(LPDIRECT3DDEVICE9 pGraphicDev, const _ushort& wContainerIdx, const _tchar* pTextureTag, TEXTURETYPE eType, const _tchar* pPath, const _uint& iCnt = 1);
 
 	void		Render_Buffer(const _ushort& wContainerIdx, const _tchar* pBufferTag);

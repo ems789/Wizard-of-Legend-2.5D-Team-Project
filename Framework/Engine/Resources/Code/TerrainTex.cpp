@@ -10,6 +10,10 @@ Engine::CTerrainTex::CTerrainTex(LPDIRECT3DDEVICE9 pGraphicDev)
 
 Engine::CTerrainTex::CTerrainTex(const CTerrainTex& rhs)
 	: CVIBuffer(rhs)
+	, m_pPos(rhs.m_pPos)
+	, m_bClone(true)
+	, m_fH(rhs.m_fH)
+	, m_iH(rhs.m_iH)
 {
 
 }
@@ -19,7 +23,7 @@ Engine::CTerrainTex::~CTerrainTex()
 
 }
 
-HRESULT Engine::CTerrainTex::Ready_Buffer(const _ulong& dwCntX, const _ulong& dwCntZ, const _ulong& dwVtxItv /*= 1*/)
+HRESULT Engine::CTerrainTex::Ready_Buffer(const _tchar* pPath, const _ulong& dwCntX, const _ulong& dwCntZ, const _ulong& dwVtxItv /*= 1*/)
 {
 	m_dwVtxSize = sizeof(VTXTEX);
 	m_dwVtxCnt = dwCntX * dwCntZ;
@@ -30,6 +34,25 @@ HRESULT Engine::CTerrainTex::Ready_Buffer(const _ulong& dwCntX, const _ulong& dw
 	m_IdxFmt = D3DFMT_INDEX32;
 
 	FAILED_CHECK_RETURN(CVIBuffer::Ready_Buffer(), E_FAIL);
+
+	_ulong*		pPixel = nullptr;
+
+	if (wcscmp(pPath, L"") != 0)
+	{
+		_ulong	dwByte = 0;
+
+		m_hFile = CreateFile(pPath, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
+
+		ReadFile(m_hFile, &m_fH, sizeof(BITMAPFILEHEADER), &dwByte, NULL);
+		ReadFile(m_hFile, &m_iH, sizeof(BITMAPINFOHEADER), &dwByte, NULL);
+
+		pPixel = new _ulong[m_iH.biHeight * m_iH.biWidth];
+
+		ReadFile(m_hFile, pPixel, sizeof(_ulong) * m_iH.biHeight * m_iH.biWidth, &dwByte, NULL);
+
+		CloseHandle(m_hFile);
+	}
+	
 
 	_ulong		dwIndex = 0;
 	VTXTEX*		pVertex = nullptr;
@@ -42,12 +65,15 @@ HRESULT Engine::CTerrainTex::Ready_Buffer(const _ulong& dwCntX, const _ulong& dw
 		{
 			dwIndex = z * dwCntX + x;
 
-			pVertex[dwIndex].vPos = _vec3(_float(x * dwVtxItv), 0.f, _float(z * dwVtxItv));
-			pVertex[dwIndex].vTexUV = _vec2(_float(x) / (dwCntX - 1), _float(z) / (dwCntZ - 1));
+			_float fHeight = nullptr != pPixel ? (pPixel[dwIndex] & 0x000000ff) / 20.f : 0.f;
+
+			pVertex[dwIndex].vPos = _vec3(_float(x * dwVtxItv), fHeight, _float(z * dwVtxItv));
+			pVertex[dwIndex].vTexUV = _vec2(_float(x) / (dwCntX - 1) * 20.f, _float(z) / (dwCntZ - 1) * 20.f);
 		}
 	}
 
 	m_pVB->Unlock();
+	Safe_Delete_Array(pPixel);
 
 	_ulong	dwTriCnt = 0;
 
@@ -71,6 +97,7 @@ HRESULT Engine::CTerrainTex::Ready_Buffer(const _ulong& dwCntX, const _ulong& dw
 			pIndex[dwTriCnt]._0 = dwIndex + dwCntX;
 			pIndex[dwTriCnt]._1 = dwIndex + 1;
 			pIndex[dwTriCnt]._2 = dwIndex;
+			++dwTriCnt;
 		}
 	}
 
@@ -79,11 +106,11 @@ HRESULT Engine::CTerrainTex::Ready_Buffer(const _ulong& dwCntX, const _ulong& dw
 	return S_OK;
 }
 
-Engine::CTerrainTex* Engine::CTerrainTex::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _ulong& dwCntX, const _ulong& dwCntZ, const _ulong& dwVtxItv /*= 1*/)
+Engine::CTerrainTex* Engine::CTerrainTex::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _tchar* pPath, const _ulong& dwCntX, const _ulong& dwCntZ, const _ulong& dwVtxItv /*= 1*/)
 {
 	CTerrainTex* pInstance = new CTerrainTex(pGraphicDev);
 
-	if (FAILED(pInstance->Ready_Buffer(dwCntX, dwCntZ, dwVtxItv)))
+	if (FAILED(pInstance->Ready_Buffer(pPath, dwCntX, dwCntZ, dwVtxItv)))
 		Safe_Release(pInstance);
 
 	return pInstance;
@@ -97,5 +124,8 @@ Engine::CResources* Engine::CTerrainTex::Clone()
 void Engine::CTerrainTex::Free()
 {
 	CVIBuffer::Free();
+
+	if (false == m_bClone)
+		Safe_Delete_Array(m_pPos);
 }
 

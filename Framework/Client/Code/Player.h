@@ -32,8 +32,11 @@ private:
 	void	Animation(const _float& fTimeDelta);
 	void	Change_State();
 	_int	Update_State(const _float& fTimeDelta);
+	void	Key_Input(const _float& fTimeDelta);
+	void	Key_Input_For_QuaterView(const _float& fTimeDelta);
+	void	Key_Input_For_1stAnd3rdView(const _float& fTimeDelta);
 
-private:
+private:	//	State Setting
 	void	Idle_State();
 	void	Run_State();
 	void	Attack_State();
@@ -41,7 +44,7 @@ private:
 	void	Skill1_State();
 	void	Skill2_State();
 
-private:
+private:	//	State Udate
 	_int	Idle_Update(const _float& fTimeDelta);
 	_int	Run_Update(const _float& fTimeDelta);
 	_int	Attack_Update(const _float& fTimeDelta);
@@ -63,6 +66,7 @@ private:
 	FRAME	m_tFrame;
 	CPlayer::PLAYER_STATE m_ePreState = CPlayer::P_END;
 	CPlayer::PLAYER_STATE m_eCurState = CPlayer::P_END;
+	_float	m_fSpeed = 10.f;
 
 public:
 	static CPlayer* Create(LPDIRECT3DDEVICE9 pGraphicDev);

@@ -25,7 +25,7 @@ HRESULT Engine::CResourcesMgr::Reserve_ContainerSize(const _ushort& wSize)
 	return S_OK;
 }
 
-HRESULT Engine::CResourcesMgr::Ready_Buffer(LPDIRECT3DDEVICE9 pGraphicDev, const _ushort& wContainerIdx, const _tchar* pBufferTag, BUFFERID eID, const _ulong& dwCntX, const _ulong& dwCntZ, const _ulong& dwVtxItv)
+HRESULT Engine::CResourcesMgr::Ready_Buffer(LPDIRECT3DDEVICE9 pGraphicDev, const _ushort& wContainerIdx, const _tchar* pBufferTag, BUFFERID eID, const _tchar* pPath, const _ulong& dwCntX, const _ulong& dwCntZ, const _ulong& dwVtxItv)
 {
 	NULL_CHECK_RETURN(m_pMapResources, E_FAIL);
 
@@ -46,9 +46,10 @@ HRESULT Engine::CResourcesMgr::Ready_Buffer(LPDIRECT3DDEVICE9 pGraphicDev, const
 		pResources = CRcTex::Create(pGraphicDev);
 		break;
 	case Engine::BUFFER_TERRAINTEX:
-		pResources = CTerrainTex::Create(pGraphicDev, dwCntX, dwCntZ, dwVtxItv);
+		pResources = CTerrainTex::Create(pGraphicDev, pPath, dwCntX, dwCntZ, dwVtxItv);
 		break;
 	case Engine::BUFFER_CUBETEX:
+		pResources = CCubeTex::Create(pGraphicDev);
 		break;
 	}
 	NULL_CHECK_RETURN(pResources, E_FAIL);

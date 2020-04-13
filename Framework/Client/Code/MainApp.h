@@ -13,6 +13,9 @@ class CGraphicDev;
 class CManagement;
 
 END
+
+class CMouse;
+
 class CMainApp : public CBase
 {
 private:
@@ -27,11 +30,14 @@ public:
 private:
 	HRESULT	SetUp_DefaultSetting(LPDIRECT3DDEVICE9* ppGraphicDev);
 	HRESULT	Ready_Scene(LPDIRECT3DDEVICE9& pGraphicDev, Engine::CManagement** ppManagement);
+	HRESULT	Mouse_Setting();
 
 private:
 	Engine::CGraphicDev*	m_pDeviceClass = nullptr;
 	Engine::CManagement*	m_pManagement = nullptr;
 	LPDIRECT3DDEVICE9		m_pGraphicDev = nullptr;;
+
+	CMouse*					m_pMouse = nullptr;
 
 	_int					m_iExit = 0;
 

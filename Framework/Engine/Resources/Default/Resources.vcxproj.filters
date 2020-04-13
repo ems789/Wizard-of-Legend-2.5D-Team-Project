@@ -28,6 +28,9 @@
     <Filter Include="00.Resources\00.VIBuffer\03.TerrainTex">
       <UniqueIdentifier>{6a2b8883-1657-439a-a6bd-ee8450cac853}</UniqueIdentifier>
     </Filter>
+    <Filter Include="00.Resources\00.VIBuffer\04.CubeTex">
+      <UniqueIdentifier>{77576233-c6d6-4077-a846-6c4410aea60f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Code\Resources.cpp">
@@ -53,6 +56,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\TerrainTex.cpp">
       <Filter>00.Resources\00.VIBuffer\03.TerrainTex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CubeTex.cpp">
+      <Filter>00.Resources\00.VIBuffer\04.CubeTex</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -82,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="..\Code\TerrainTex.h">
       <Filter>00.Resources\00.VIBuffer\03.TerrainTex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\CubeTex.h">
+      <Filter>00.Resources\00.VIBuffer\04.CubeTex</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

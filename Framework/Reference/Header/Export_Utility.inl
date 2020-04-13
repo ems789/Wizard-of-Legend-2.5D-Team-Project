@@ -52,6 +52,10 @@ HRESULT Add_GameObjectToStaticLayer(const _tchar* pObjTag, CGameObject* pObj)
 {
 	return CManagement::GetInstance()->Add_GameObjectToStaticLayer(pObjTag, pObj);
 }
+HRESULT Create_StaticLayer()
+{
+	return CManagement::GetInstance()->Create_StaticLayer();
+}
 
 //	Renderer
 CRenderer* Get_Renderer()
@@ -65,6 +69,31 @@ CRenderer* Get_Renderer()
 CCamera* Get_Camera(const _ulong& dwContainerIdx, const _tchar* pCameraTag)
 {
 	return CCameraMgr::GetInstance()->Get_Camera(dwContainerIdx, pCameraTag);
+}
+CCamera* Get_MainCamera()
+{
+	return CCameraMgr::GetInstance()->Get_MainCamera();
+}
+void Get_MainCameraLook(_vec3* pLook)
+{
+	CCameraMgr::GetInstance()->Get_MainCameraLook(pLook);
+}
+void Get_MainCameraRight(_vec3* pRight)
+{
+	CCameraMgr::GetInstance()->Get_MainCameraRight(pRight);
+}
+void Get_MainCameraUp(_vec3* pUp)
+{
+	CCameraMgr::GetInstance()->Get_MainCameraUp(pUp);
+}
+
+const _vec3* Get_MainCameraAngle(_vec3* pAngle)
+{
+	return CCameraMgr::GetInstance()->Get_MainCameraAngle(pAngle);
+}
+CCameraMgr::MAIN_CAM Get_MainCamType()
+{
+	return CCameraMgr::GetInstance()->Get_MainCamType();
 }
 //	Set
 //	General
@@ -85,6 +114,10 @@ HRESULT	SetUp_MainCamera(const _ulong& dwContainerIdx, const _tchar* pCameraTag)
 HRESULT	Add_Camera(const _ulong& dwContainerIdx, const _tchar* pCameraTag, CCamera* pCamera)
 {
 	return CCameraMgr::GetInstance()->Add_Camera(dwContainerIdx, pCameraTag, pCamera);
+}
+HRESULT	Add_BasicCamera(const _ubyte& byOrder, const _tchar* pCameraTag, CCamera* pCamera)
+{
+	return CCameraMgr::GetInstance()->Add_BasicCamera(byOrder, pCameraTag, pCamera);
 }
 HRESULT	Remove_Camera(const _ulong& dwContainerIdx, const _tchar* pCameraTag)
 {

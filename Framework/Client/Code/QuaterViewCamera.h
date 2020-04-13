@@ -1,8 +1,15 @@
 #ifndef QuaterViewCamera_h__
 #define QuaterViewCamera_h__
+#define	INITIAL_ANGLE _vec3(D3DXToRadian(45.f), 0.f, 0.f)
 
 #include "Defines.h"
 #include "Camera.h"
+
+BEGIN(Engine)
+
+class CTransform;
+
+END
 
 class CQuaterViewCamera : public Engine::CCamera
 {
@@ -15,7 +22,18 @@ public:
 	virtual _int Update_Camera(const _float& fTimeDelta) override;
 
 private:
+	_int	Update_EyeAtUp(const _float& fTimeDelta);
+	_int	Key_Input(const _float& fTimeDelta);
+	_int	Reset_Angle();
 
+public:
+	virtual const _vec3* Get_Angle(_vec3* pAngle) { if (pAngle) memcpy(pAngle, &m_vAngle, sizeof(_vec3)); return &m_vAngle; }
+
+private:
+	const Engine::CTransform*	m_pTargetInfo = nullptr;
+	_float						m_fDistance = 10.f;
+	_float						m_fSpeed = 10.f;
+	_vec3						m_vAngle = INITIAL_ANGLE;
 
 public:
 	static CQuaterViewCamera* Create(LPDIRECT3DDEVICE9 pGraphicDev);

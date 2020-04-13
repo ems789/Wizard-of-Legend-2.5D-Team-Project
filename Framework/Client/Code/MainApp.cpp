@@ -3,6 +3,7 @@
 
 #include "Export_Function.h"
 #include "Logo.h"
+#include "Mouse.h"
 
 CMainApp::CMainApp(void)
 {
@@ -16,9 +17,12 @@ CMainApp::~CMainApp(void)
 
 HRESULT CMainApp::Ready_MainApp(void)
 {
+	::ShowCursor(FALSE);
+
 	FAILED_CHECK_RETURN(SetUp_DefaultSetting(&m_pGraphicDev), E_FAIL);
 	FAILED_CHECK_RETURN(Ready_Scene(m_pGraphicDev, &m_pManagement), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_CameraMgr(m_pGraphicDev, WINCX, WINCY), E_FAIL);
+	FAILED_CHECK_RETURN(Mouse_Setting(), E_FAIL);
 	
 	m_pGraphicDev->SetRenderState(D3DRS_LIGHTING, FALSE);
 	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
@@ -36,6 +40,7 @@ _int CMainApp::Update_MainApp(const _float& fTimeDelta)
 		m_iExit = m_pManagement->Update_Scene(fTimeDelta);
 
 	Engine::Update_MainCamera(fTimeDelta);
+	m_pMouse->Update_Mouse(fTimeDelta);
 
 	return m_iExit;
 }
@@ -49,6 +54,8 @@ void CMainApp::Render_MainApp(void)
 	
 	if (nullptr != m_pManagement)
 		m_pManagement->Render_Scene();
+
+	m_pMouse->Render_Mouse();
 
 	Engine::Render_End();
 }
@@ -79,10 +86,21 @@ HRESULT CMainApp::Ready_Scene(LPDIRECT3DDEVICE9 & pGraphicDev, Engine::CManageme
 	FAILED_CHECK_RETURN(Engine::Create_Management(ppManagement), E_FAIL);
 	(*ppManagement)->AddRef();
 
+	Engine::Create_StaticLayer();
+
 	pScene = CLogo::Create(pGraphicDev);
 	NULL_CHECK_RETURN(pScene, E_FAIL);
 
 	FAILED_CHECK_RETURN((*ppManagement)->SetUp_Scene(pScene), E_FAIL);
+
+	return S_OK;
+}
+
+HRESULT CMainApp::Mouse_Setting()
+{
+	m_pMouse = CMouse::GetInstance();
+
+	m_pMouse->Ready_Mouse(m_pGraphicDev);
 
 	return S_OK;
 }
@@ -99,6 +117,8 @@ CMainApp* CMainApp::Create(void)
 
 void CMainApp::Free(void)
 {
+	::ShowCursor(TRUE);
+	Safe_Release(m_pMouse);
 	_ulong dwRef = Engine::Safe_Release(m_pGraphicDev);
 	dwRef = Engine::Safe_Release(m_pDeviceClass);
 	dwRef = Engine::Safe_Release(m_pManagement);

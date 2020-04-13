@@ -22,6 +22,7 @@ private:
 	HRESULT		Ready_GameLogic_Layer(const _tchar* pLayerTag);
 	HRESULT		Ready_UI_Layer(const _tchar* pLayerTag);
 	HRESULT		Ready_Resource(LPDIRECT3DDEVICE9& pGraphicDev, RESOURCEID eMax);
+	HRESULT		Ready_StaticLayer();
 
 public:
 	static CLogo* Create(LPDIRECT3DDEVICE9 pGraphicDev);

@@ -47,7 +47,7 @@ void Engine::CRenderer::Render_GameObject()
 
 	m_RenderGroup[RENDER_UI].clear();
 
-	//CCameraMgr::GetInstance()->Finish_RenderUI();
+	CCameraMgr::GetInstance()->Finish_RenderUI();
 }
 
 void Engine::CRenderer::Clear_RenderGroup()

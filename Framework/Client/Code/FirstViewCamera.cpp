@@ -18,7 +18,7 @@ HRESULT CFirstViewCamera::Ready_Camera()
 {
 	FAILED_CHECK_RETURN(CCamera::Ready_Camera(), E_FAIL);
 
-	m_pTargetInfo = dynamic_cast<const Engine::CTransform*>(Engine::Get_Component(L"GameLogic", L"Player", L"Com_Transform", Engine::ID_DYNAMIC));
+	m_pTargetInfo = dynamic_cast<const Engine::CTransform*>(Engine::Get_Component_of_Player(L"Com_Transform", Engine::ID_DYNAMIC));
 
 	return S_OK;
 }
@@ -39,9 +39,11 @@ void CFirstViewCamera::Update_EyeAtUp(const _float & fTimeDelta)
 	Mouse_Move(fTimeDelta);
 
 	_matrix matRotX, matRotY, matRotZ, matRotAll;
+
 	D3DXMatrixRotationX(&matRotX, m_vAngle.x);
 	D3DXMatrixRotationY(&matRotY, m_vAngle.y);
 	D3DXMatrixRotationZ(&matRotZ, m_vAngle.z);
+
 	matRotAll = matRotX * matRotY * matRotZ;
 
 	D3DXVec3TransformNormal(&m_vAt, &AXIS_Z, &matRotAll);

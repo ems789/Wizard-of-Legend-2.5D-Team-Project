@@ -24,6 +24,9 @@ private:
 	void	Update_EyeAtUp(const _float& fTimeDelta);
 	void	Mouse_Move(const _float& fTimeDelta);
 
+public:
+	virtual const _vec3* Get_Angle(_vec3* pAngle) { if (pAngle) memcpy(pAngle, &m_vAngle, sizeof(_vec3)); return &m_vAngle; }
+
 private:
 	const Engine::CTransform*	m_pTargetInfo	= nullptr;
 	_float						m_fSpeed		= 10.f;

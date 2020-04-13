@@ -44,6 +44,30 @@ _int Engine::CCamera::Update_Camera(const _float& fTimeDelta)
 	return 0;
 }
 
+void CCamera::Get_Right(_vec3 * pRight) const
+{
+	_vec3 vLook = m_vAt - m_vEye;
+	D3DXVec3Normalize(&vLook, &vLook);
+
+	D3DXVec3Cross(pRight, &m_vUp, &vLook);
+	D3DXVec3Normalize(pRight, pRight);
+}
+
+void CCamera::Get_Look(_vec3 * pLook) const
+{
+	*pLook = m_vAt - m_vEye;
+	D3DXVec3Normalize(pLook, pLook);
+}
+
+const _vec3 * CCamera::Get_Angle(_vec3 * pAngle)
+{
+	_vec3 vAngle;
+
+
+
+	return nullptr;
+}
+
 void Engine::CCamera::Free(void)
 {
 	Safe_Release(m_pGraphicDev);

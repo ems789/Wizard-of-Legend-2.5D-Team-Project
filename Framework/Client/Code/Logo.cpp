@@ -3,6 +3,7 @@
 #include "LoadingScene.h"
 
 #include "Export_Function.h"
+#include "Mouse.h"
 
 CLogo::CLogo(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CScene(pGraphicDev)
@@ -19,6 +20,7 @@ HRESULT CLogo::Ready_Scene()
 	FAILED_CHECK_RETURN(Ready_Resource(m_pGraphicDev, RESOURCE_END), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::CScene::Ready_Scene(), E_FAIL);
 	FAILED_CHECK_RETURN(Ready_GameLogic_Layer(L"GameLogic"), E_FAIL);
+	FAILED_CHECK_RETURN(Ready_StaticLayer(), E_FAIL);
 	//FAILED_CHECK_RETURN(Ready_UI_Layer(L"UI"), E_FAIL);
 	
 
@@ -86,6 +88,13 @@ HRESULT CLogo::Ready_Resource(LPDIRECT3DDEVICE9 & pGraphicDev, RESOURCEID eMax)
 	//	Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(pGraphicDev, RESOURCE_LOGO, L"Texture_Logo", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/BG/Background%d.png"), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(pGraphicDev, RESOURCE_STATIC, L"Texture_CastingCircle", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/CastingCircle/CastingCircle_%d.png", 27), E_FAIL);
+	//FAILED_CHECK_RETURN(Engine::Ready_Texture(pGraphicDev, RESOURCE_STATIC, L"Texture_MouseCursor0", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Mouse/MouseCursor0.png"), E_FAIL);
+
+	return S_OK;
+}
+
+HRESULT CLogo::Ready_StaticLayer()
+{
 
 	return S_OK;
 }
