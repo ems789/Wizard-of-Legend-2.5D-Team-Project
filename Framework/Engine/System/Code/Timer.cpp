@@ -52,9 +52,7 @@ _float CTimer::Get_CumulativeTime()
 		m_FixTime = m_FrameTime;
 	}
 
-	m_fTimeDelta = (m_FrameTime.QuadPart - m_LastTime.QuadPart) / static_cast<_float>(m_CpuTick.QuadPart);
-
-	return m_fTimeDelta;
+	return (m_FrameTime.QuadPart - m_LastTime.QuadPart) / static_cast<_float>(m_CpuTick.QuadPart);;
 }
 
 Engine::CTimer* Engine::CTimer::Create()

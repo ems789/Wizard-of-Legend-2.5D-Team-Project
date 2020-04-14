@@ -12,10 +12,7 @@
 #include <windows.h>
 
 // C RunTime Header Files
-#define CRTDBG_MAP_ALLOC
 #include <stdlib.h>
-#include <crtdbg.h>
-
 #include <malloc.h>
 #include <memory.h>
 #include <tchar.h>
@@ -39,8 +36,29 @@
 
 using namespace std;
 
+#ifdef _DEBUG
+
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+
+#ifndef DBG_NEW 
+
+#define DBG_NEW new ( _NORMAL_BLOCK , __FILE__ , __LINE__ ) 
+#define new DBG_NEW 
+
+#endif
+
+#endif // _DEBUG
+
+
+#ifdef _DEBUG
+
 #ifdef UNICODE
 #pragma comment(linker, "/entry:wWinMainCRTStartup /subsystem:console")
 #else
 #pragma comment(linker, "/entry:WinMainCRTStartup /subsystem:console")
 #endif
+
+#endif // _DEBUG
+

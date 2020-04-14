@@ -57,6 +57,7 @@ _int Engine::CLayer::Update_Layer(const _float& fTimeDelta)
 				iter->second->Set_IsDead(true);
 			else
 				iter = m_mapObject.erase(iter);
+			
 		}
 		else
 			++iter;

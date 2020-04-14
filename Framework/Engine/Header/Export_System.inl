@@ -27,6 +27,10 @@ _float Get_TimeDelta(const _tchar* pTimerTag)
 {
 	return CTimerMgr::GetInstance()->Get_TimeDelta(pTimerTag);
 }
+_float	Get_CummulativeTime(const _tchar* pTimerTag)
+{
+	return CTimerMgr::GetInstance()->Get_CummulativeTime(pTimerTag);
+}
 
 HRESULT Ready_Timer(const _tchar* pTimerTag)
 {

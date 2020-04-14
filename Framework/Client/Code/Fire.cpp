@@ -30,16 +30,24 @@ _int CFire::Update_GameObject(const _float& fTimeDelta)
 	_vec3 vDistance = m_pTransformCom->GetInfoRef(Engine::INFO_POS) - m_vInitialPos;
 	_float fDist = D3DXVec3Length(&vDistance);
 	if (fDist > 50.f)
+	{
 		m_bIsDead = true;
+		return 0;
+	}
 
 	_int	iExit = CGameObject::Update_GameObject(fTimeDelta);
+
+	m_pRendererCom->Add_RenderGroup(Engine::RENDER_ALPHA, this);
 
 	return 0;
 }
 
 void CFire::Render_GameObjcet()
 {
-	
+	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->GetWorldMatrix());
+
+	m_pTextureCom->Render_Texture(static_cast<_uint>(m_tFrame.fCurFrame));
+	m_pBufferCom->Render_Buffer();
 }
 
 HRESULT CFire::Add_Component()
@@ -81,6 +89,7 @@ CFire* CFire::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3& vInitialPos, co
 		Engine::Safe_Release(pInstance);
 
 	pInstance->m_vInitialPos = vInitialPos;
+	pInstance->m_pTransformCom->Set_Pos(vInitialPos);
 	pInstance->m_pTransformCom->Set_Angle(vAngle);
 	pInstance->m_fSpeed = fSpeed;
 	pInstance->m_tFrame.fCurFrame = 0;

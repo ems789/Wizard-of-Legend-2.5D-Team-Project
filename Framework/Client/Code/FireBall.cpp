@@ -20,13 +20,15 @@ HRESULT CFireBall::Ready_Skill()
 	Engine::Ready_Timer(L"FireBall_CoolTime");
 	Engine::Set_TimeDelta(L"FireBall_CoolTime");
 
-	m_fCoolTime = 3.f;
+	m_fCoolTime = 1.f;
+
+
 	return S_OK;
 }
 
 _int CFireBall::Use_Skill(const _float& fTimeDelta)
 {
-	_float fCurTime = Engine::Get_TimeDelta(L"FireBall_CoolTime");
+	_float fCurTime = Engine::Get_CummulativeTime(L"FireBall_CoolTime");
 
 	if (fCurTime < m_fCoolTime)
 		return 0;

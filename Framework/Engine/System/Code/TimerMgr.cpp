@@ -34,6 +34,16 @@ _float Engine::CTimerMgr::Get_TimeDelta(const _tchar* pTimerTag)
 	return pInst->Get_TimeDelta();
 }
 
+_float CTimerMgr::Get_CummulativeTime(const _tchar * pTimerTag)
+{
+	CTimer*		pInst = Find_Timer(pTimerTag);
+
+	if (nullptr == pInst)
+		return 0.f;
+
+	return pInst->Get_CumulativeTime();
+}
+
 HRESULT Engine::CTimerMgr::Ready_Timer(const _tchar* pTimerTag)
 {
 	CTimer*		pInst = Find_Timer(pTimerTag);

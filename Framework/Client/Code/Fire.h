@@ -37,7 +37,7 @@ private:	//	Components
 private:
 	_vec3	m_vInitialPos	= { 0.f, 0.f, 0.f };
 	_vec3	m_vDir			= { 0.f, 0.f, 0.f };
-	_float	m_fSpeed		= 10.f;
+	_float	m_fSpeed		= 50.f;
 	_float	m_fLimitDistance = 50.f;
 
 	FRAME	m_tFrame;

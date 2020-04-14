@@ -23,6 +23,7 @@ inline void		Render_End(void);
 inline void		Set_TimeDelta(const _tchar* pTimerTag);
 //	Set
 inline _float	Get_TimeDelta(const _tchar* pTimerTag);
+inline _float	Get_CummulativeTime(const _tchar* pTimerTag);
 //	General
 inline HRESULT	Ready_Timer(const _tchar* pTimerTag);
 

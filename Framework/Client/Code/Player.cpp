@@ -34,7 +34,8 @@ HRESULT CPlayer::Ready_GameObject()
 
 	CFireBall*	pFireBall = CFireBall::Create(m_pGraphicDev);
 	NULL_CHECK_RETURN(pFireBall, E_FAIL);
-	Change_Normal_Skill(pFireBall);
+	//Change_Normal_Skill(pFireBall);
+	m_vecEquipSkill[0] = pFireBall;
 
 	return S_OK;
 }

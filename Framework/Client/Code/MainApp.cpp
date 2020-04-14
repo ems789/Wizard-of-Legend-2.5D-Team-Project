@@ -4,6 +4,7 @@
 #include "Export_Function.h"
 #include "Logo.h"
 #include "Mouse.h"
+#include "Inven.h"
 
 CMainApp::CMainApp(void)
 {
@@ -23,6 +24,8 @@ HRESULT CMainApp::Ready_MainApp(void)
 	FAILED_CHECK_RETURN(Ready_Scene(m_pGraphicDev, &m_pManagement), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_CameraMgr(m_pGraphicDev, WINCX, WINCY), E_FAIL);
 	FAILED_CHECK_RETURN(Mouse_Setting(), E_FAIL);
+	FAILED_CHECK_RETURN(Inven_Setting(), E_FAIL);
+
 	
 	m_pGraphicDev->SetRenderState(D3DRS_LIGHTING, FALSE);
 	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
@@ -41,6 +44,7 @@ _int CMainApp::Update_MainApp(const _float& fTimeDelta)
 
 	Engine::Update_MainCamera(fTimeDelta);
 	m_pMouse->Update_Mouse(fTimeDelta);
+	m_pInven->Update_Inven(fTimeDelta);
 
 	return m_iExit;
 }
@@ -55,7 +59,14 @@ void CMainApp::Render_MainApp(void)
 	if (nullptr != m_pManagement)
 		m_pManagement->Render_Scene();
 
+	m_pGraphicDev->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
+	m_pGraphicDev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+	m_pGraphicDev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+
 	m_pMouse->Render_Mouse();
+	m_pInven->Render_Inven();
+
+	m_pGraphicDev->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
 
 	Engine::Render_End();
 }
@@ -105,6 +116,15 @@ HRESULT CMainApp::Mouse_Setting()
 	return S_OK;
 }
 
+HRESULT CMainApp::Inven_Setting()
+{
+	m_pInven = CInven::GetInstance();
+
+	m_pInven->Ready_Inven(m_pGraphicDev);
+
+	return S_OK;
+}
+
 CMainApp* CMainApp::Create(void)
 {
 	CMainApp* pInst = new CMainApp;
@@ -118,6 +138,7 @@ CMainApp* CMainApp::Create(void)
 void CMainApp::Free(void)
 {
 	::ShowCursor(TRUE);
+	m_pInven->DestroyInstance();
 	m_pMouse->DestroyInstance();
 	_ulong dwRef = Engine::Safe_Release(m_pGraphicDev);
 	dwRef = Engine::Safe_Release(m_pDeviceClass);

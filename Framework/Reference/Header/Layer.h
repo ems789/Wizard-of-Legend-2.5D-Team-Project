@@ -24,7 +24,7 @@ public:
 	HRESULT		Add_GameObject(const _tchar* pObjTag, CGameObject* pGameObject);
 
 private:
-	map<const _tchar*, CGameObject*>	m_mapObject;
+	multimap<const _tchar*, CGameObject*>	m_mapObject;
 
 public:
 	static CLayer*	Create();

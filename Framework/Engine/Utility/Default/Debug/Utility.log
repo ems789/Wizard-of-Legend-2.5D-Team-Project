@@ -1,7 +1,9 @@
-﻿  Management.cpp
+﻿  Layer.cpp
   Generating Code...
   Compiling...
   Skill.cpp
+  Scene.cpp
+  Management.cpp
   Generating Code...
      Creating library ../Bin/Utility.lib and object ../Bin/Utility.exp
   Utility.vcxproj -> D:\Direct3D Project\Framework\Engine\Utility\Default\../Bin/Utility.dll
