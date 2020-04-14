@@ -71,6 +71,8 @@ _uint CLoading::Loading_ForState()
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_HPBarFill",		Engine::TEX_NORMAL, L"../Bin/Resource/Texture/UI/HP/HPBarFill.png"), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_HPBarHurtFill", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/UI/HP/HPBarHurtFill.png"), E_FAIL);
 
+	//	FireBall Texture
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Fire", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Skill/FireBall/Fireball_%d.png", 12), E_FAIL);
 
 
 	m_bFinish = true;

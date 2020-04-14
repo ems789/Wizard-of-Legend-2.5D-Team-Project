@@ -162,7 +162,10 @@
   <ItemGroup>
     <ClInclude Include="..\Code\BackGround.h" />
     <ClInclude Include="..\Code\CastingCircle.h" />
+    <ClInclude Include="..\Code\Fire.h" />
+    <ClInclude Include="..\Code\FireBall.h" />
     <ClInclude Include="..\Code\FirstViewCamera.h" />
+    <ClInclude Include="..\Code\Inven.h" />
     <ClInclude Include="..\Code\Loading.h" />
     <ClInclude Include="..\Code\LoadingScene.h" />
     <ClInclude Include="..\Code\Logo.h" />
@@ -189,7 +192,10 @@
   <ItemGroup>
     <ClCompile Include="..\Code\BackGround.cpp" />
     <ClCompile Include="..\Code\CastingCircle.cpp" />
+    <ClCompile Include="..\Code\Fire.cpp" />
+    <ClCompile Include="..\Code\FireBall.cpp" />
     <ClCompile Include="..\Code\FirstViewCamera.cpp" />
+    <ClCompile Include="..\Code\Inven.cpp" />
     <ClCompile Include="..\Code\Loading.cpp" />
     <ClCompile Include="..\Code\LoadingScene.cpp" />
     <ClCompile Include="..\Code\Logo.cpp" />

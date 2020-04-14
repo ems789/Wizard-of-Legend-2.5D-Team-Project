@@ -11,6 +11,8 @@ class CTexture;
 class CTransform;
 class CRenderer;
 
+class CSkill;
+
 END
 
 class CPlayer : public Engine::CGameObject
@@ -27,12 +29,17 @@ public:
 	virtual _int Update_GameObject(const _float& fTimeDelta) override;
 	virtual void Render_GameObjcet() override;
 
+public:
+	_int	Change_Normal_Skill(Engine::CSkill* pSkill);
+	_int	Change_Upgrade_Skill(Engine::CSkill* pSkill);
+
 private:
 	HRESULT Add_Component();
 	void	Animation(const _float& fTimeDelta);
 	void	Change_State();
 	_int	Update_State(const _float& fTimeDelta);
 	void	Key_Input(const _float& fTimeDelta);
+	void	Key_Input_For_Move(const _float& fTimeDelta);
 	void	Key_Input_For_QuaterView(const _float& fTimeDelta);
 	void	Key_Input_For_1stAnd3rdView(const _float& fTimeDelta);
 
@@ -67,6 +74,8 @@ private:
 	CPlayer::PLAYER_STATE m_ePreState = CPlayer::P_END;
 	CPlayer::PLAYER_STATE m_eCurState = CPlayer::P_END;
 	_float	m_fSpeed = 10.f;
+
+	vector<Engine::CSkill*>		m_vecEquipSkill;
 
 public:
 	static CPlayer* Create(LPDIRECT3DDEVICE9 pGraphicDev);

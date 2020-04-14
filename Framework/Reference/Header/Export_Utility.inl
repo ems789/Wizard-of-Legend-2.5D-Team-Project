@@ -48,6 +48,11 @@ HRESULT SetUp_Scene(CScene* pScene)
 	return CManagement::GetInstance()->SetUp_Scene(pScene);
 }
 
+HRESULT	Add_GameObject(const _tchar* pLayerTag, const _tchar* pObjTag, CGameObject* pObj)
+{
+	return CManagement::GetInstance()->Add_GameObject(pLayerTag, pObjTag, pObj);
+}
+
 HRESULT Add_GameObjectToStaticLayer(const _tchar* pObjTag, CGameObject* pObj)
 {
 	return CManagement::GetInstance()->Add_GameObjectToStaticLayer(pObjTag, pObj);

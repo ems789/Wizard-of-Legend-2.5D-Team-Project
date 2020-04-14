@@ -91,6 +91,30 @@
     <Filter Include="97.Mouse">
       <UniqueIdentifier>{93269142-c5a2-4b79-992a-360722fa4800}</UniqueIdentifier>
     </Filter>
+    <Filter Include="05.Skill">
+      <UniqueIdentifier>{99e76ddf-6e3d-4cff-b025-0ed0425479ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Skill\00.Fire">
+      <UniqueIdentifier>{612987a2-6bb3-459f-a711-073bf36f5726}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Skill\01.Ice">
+      <UniqueIdentifier>{0d554a0f-4834-4a70-bd49-a9bed46016b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Skill\02.Earth">
+      <UniqueIdentifier>{58604baa-f0d3-4ecf-8131-3bf05ea8fc8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Skill\03.Wind">
+      <UniqueIdentifier>{88ac741b-ae59-4662-abd4-a7dd9717148a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Skill\00.Fire\00.FireBall">
+      <UniqueIdentifier>{a522b784-efa5-4aab-8537-3db62cd507e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06.Inventory">
+      <UniqueIdentifier>{0a333ae8-8e01-4877-b9c0-4b82e61c4a2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Skill\00.Fire\00.FireBall\00.Fire">
+      <UniqueIdentifier>{5bfa02da-70d8-46fd-b727-64560f59d56e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -168,6 +192,15 @@
     <ClInclude Include="..\Code\Mouse.h">
       <Filter>97.Mouse</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\FireBall.h">
+      <Filter>05.Skill\00.Fire\00.FireBall</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Inven.h">
+      <Filter>06.Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Fire.h">
+      <Filter>05.Skill\00.Fire\00.FireBall\00.Fire</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -220,6 +253,15 @@
     </ClCompile>
     <ClCompile Include="..\Code\Mouse.cpp">
       <Filter>97.Mouse</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\FireBall.cpp">
+      <Filter>05.Skill\00.Fire\00.FireBall</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Inven.cpp">
+      <Filter>06.Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Fire.cpp">
+      <Filter>05.Skill\00.Fire\00.FireBall\00.Fire</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

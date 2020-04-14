@@ -1,7 +1,8 @@
-﻿  InputDev.cpp
-d:\direct3d project\framework\engine\system\code\inputdev.cpp(18): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
-d:\direct3d project\framework\engine\system\code\inputdev.cpp(39): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
-d:\direct3d project\framework\engine\system\code\inputdev.cpp(60): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+﻿  Timer.cpp
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  TimerMgr.cpp
+     Creating library ../Bin/System.lib and object ../Bin/System.exp
   System.vcxproj -> D:\Direct3D Project\Framework\Engine\System\Default\../Bin/System.dll
   System.vcxproj -> ../Bin/System.pdb (Full PDB)
   .\Engine\System\Code\Font.h

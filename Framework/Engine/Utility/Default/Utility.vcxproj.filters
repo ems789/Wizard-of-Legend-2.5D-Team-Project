@@ -34,6 +34,9 @@
     <Filter Include="06.Camera\00.Manager">
       <UniqueIdentifier>{874f1247-f9c1-4d22-a305-4971952cc529}</UniqueIdentifier>
     </Filter>
+    <Filter Include="08.Skill">
+      <UniqueIdentifier>{581d0862-b640-4a4d-b8d2-7067fb836bf7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Code\Management.cpp">
@@ -65,6 +68,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\CameraMgr.cpp">
       <Filter>06.Camera\00.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Skill.cpp">
+      <Filter>08.Skill</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -100,6 +106,9 @@
     </ClInclude>
     <ClInclude Include="..\Code\CameraMgr.h">
       <Filter>06.Camera\00.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Skill.h">
+      <Filter>08.Skill</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

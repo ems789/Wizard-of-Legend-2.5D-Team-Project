@@ -16,18 +16,19 @@ inline const	CComponent*		Get_Component(const _tchar* pLayerTag, const _tchar* p
 inline const	CGameObject*	Get_GameObjcet(const _tchar* pLayerTag, const _tchar* pObjTag);
 inline			CLayer*			Get_StaticLayer();
 
-inline const CComponent*	Get_Component_From_StaticLayer(const _tchar* pObjTag, const _tchar* pComponentTag, COMPONENTID eID);
-inline const CGameObject*	Get_GameObject_From_StaticLayer(const _tchar* pObjTag);
+inline const	CComponent*		Get_Component_From_StaticLayer(const _tchar* pObjTag, const _tchar* pComponentTag, COMPONENTID eID);
+inline const	CGameObject*	Get_GameObject_From_StaticLayer(const _tchar* pObjTag);
 
-inline const CComponent*	Get_Component_of_Player(const _tchar* pComponentTag, COMPONENTID eID);
-inline const CGameObject*	Get_Player();
+inline const	CComponent*		Get_Component_of_Player(const _tchar* pComponentTag, COMPONENTID eID);
+inline const	CGameObject*	Get_Player();
 
 //	Set
 //	General
-inline HRESULT Create_Management(CManagement** ppManagemet);
-inline HRESULT SetUp_Scene(CScene* pScene);
-inline HRESULT Add_GameObjectToStaticLayer(const _tchar* pObjTag, CGameObject* pObj);
-inline HRESULT Create_StaticLayer();
+inline HRESULT	Create_Management(CManagement** ppManagemet);
+inline HRESULT	SetUp_Scene(CScene* pScene);
+inline HRESULT	Add_GameObject(const _tchar* pLayerTag, const _tchar* pObjTag, CGameObject* pObj);
+inline HRESULT	Add_GameObjectToStaticLayer(const _tchar* pObjTag, CGameObject* pObj);
+inline HRESULT	Create_StaticLayer();
 
 //	Renderer
 inline CRenderer* Get_Renderer();

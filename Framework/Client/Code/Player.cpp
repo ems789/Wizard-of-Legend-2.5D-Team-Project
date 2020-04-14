@@ -2,6 +2,8 @@
 #include "Player.h"
 
 #include "Export_Function.h"
+#include "Skill.h"
+#include "FireBall.h"
 
 CPlayer::CPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev)
@@ -19,6 +21,9 @@ HRESULT CPlayer::Ready_GameObject()
 	FAILED_CHECK_RETURN(CGameObject::Ready_GameObject(), E_FAIL);
 	FAILED_CHECK_RETURN(Add_Component(), E_FAIL);
 
+	m_vecEquipSkill.push_back(nullptr);
+	m_vecEquipSkill.push_back(nullptr);
+
 	m_tFrame.fCurFrame = 0.f;
 	m_tFrame.fMaxFrame = 1.f;
 	m_tFrame.fFrameSpeed = 0.f;
@@ -26,6 +31,10 @@ HRESULT CPlayer::Ready_GameObject()
 	m_eCurState = CPlayer::P_IDLE;
 
 	m_pTransformCom->Move_Pos(Engine::INFO_UP, 0.5f);
+
+	CFireBall*	pFireBall = CFireBall::Create(m_pGraphicDev);
+	NULL_CHECK_RETURN(pFireBall, E_FAIL);
+	Change_Normal_Skill(pFireBall);
 
 	return S_OK;
 }
@@ -56,6 +65,26 @@ void CPlayer::Render_GameObjcet()
 	m_pBufferCom->Render_Buffer();
 
 	m_pGraphicDev->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
+}
+
+_int CPlayer::Change_Normal_Skill(Engine::CSkill * pSkill)
+{
+	if (m_vecEquipSkill[0] != nullptr)
+		Engine::Safe_Release(m_vecEquipSkill[0]);
+	m_vecEquipSkill[0] = pSkill;
+	m_vecEquipSkill[0]->AddRef();
+
+	return 0;
+}
+
+_int CPlayer::Change_Upgrade_Skill(Engine::CSkill * pSkill)
+{
+	if (m_vecEquipSkill[1] != nullptr)
+		Engine::Safe_Release(m_vecEquipSkill[1]);
+	m_vecEquipSkill[1] = pSkill;
+	m_vecEquipSkill[1]->AddRef();
+
+	return 0;
 }
 
 HRESULT CPlayer::Add_Component()
@@ -161,6 +190,20 @@ void CPlayer::Key_Input(const _float & fTimeDelta)
 	//	break;
 	//}
 
+	Key_Input_For_Move(fTimeDelta);
+	
+	if (Engine::Get_DIMouseState(Engine::DIM_RB) & 0x80)
+	{
+		m_vecEquipSkill[0]->Use_Skill(fTimeDelta);
+	}
+
+	if (Engine::KeyDown(DIK_Q))
+		m_vecEquipSkill[1]->Use_Skill(fTimeDelta);
+
+}
+
+void CPlayer::Key_Input_For_Move(const _float & fTimeDelta)
+{
 	_vec3 vCamLook, vCamRight;
 	Engine::Get_MainCameraLook(&vCamLook);
 	Engine::Get_MainCameraRight(&vCamRight);
@@ -323,6 +366,9 @@ _int CPlayer::Dash_Update(const _float& fTimeDelta)
 
 _int CPlayer::Skill1_Update(const _float& fTimeDelta)
 {
+	m_vecEquipSkill[0]->Use_Skill(fTimeDelta);
+	
+
 	return 0;
 }
 
@@ -353,5 +399,12 @@ CPlayer* CPlayer::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CPlayer::Free()
 {
+	for (_uint i = 0; i < m_vecEquipSkill.size(); ++i)
+	{
+		if (m_vecEquipSkill[i])
+			Engine::Safe_Release(m_vecEquipSkill[i]);
+	}
+
+	m_vecEquipSkill.clear();
 	CGameObject::Free();
 }

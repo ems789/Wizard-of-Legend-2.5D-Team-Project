@@ -16,6 +16,7 @@ public:
 	HRESULT Ready_Timer();
 	void	Set_TimeDelta();
 	_float	Get_TimeDelta() { return m_fTimeDelta; }
+	_float	Get_CumulativeTime();
 
 private:
 	LARGE_INTEGER		m_FrameTime;

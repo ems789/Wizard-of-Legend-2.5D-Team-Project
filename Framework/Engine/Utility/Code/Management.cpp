@@ -60,6 +60,14 @@ void Engine::CManagement::Render_Scene()
 	//m_pStaticLayer->Render_Layer();
 }
 
+HRESULT CManagement::Add_GameObject(const _tchar * pLayerTag, const _tchar * pObjTag, CGameObject * pObj)
+{
+	if (nullptr == m_pScene)
+		E_FAIL;
+
+	return m_pScene->Add_GameObject(pLayerTag, pObjTag, pObj);
+}
+
 HRESULT CManagement::Add_GameObjectToStaticLayer(const _tchar * pObjTag, CGameObject * pObj)
 {
 	NULL_CHECK_RETURN_MSG(m_pStaticLayer, E_FAIL, L"Add GameObject to static layer failed, m_pStaticLayer is nullptr");

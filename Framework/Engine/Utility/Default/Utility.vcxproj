@@ -179,6 +179,7 @@ call CopyUtility.bat
     <ClCompile Include="..\Code\Management.cpp" />
     <ClCompile Include="..\Code\Renderer.cpp" />
     <ClCompile Include="..\Code\Scene.cpp" />
+    <ClCompile Include="..\Code\Skill.cpp" />
     <ClCompile Include="..\Code\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -192,6 +193,7 @@ call CopyUtility.bat
     <ClInclude Include="..\Code\Management.h" />
     <ClInclude Include="..\Code\Renderer.h" />
     <ClInclude Include="..\Code\Scene.h" />
+    <ClInclude Include="..\Code\Skill.h" />
     <ClInclude Include="..\Code\Transform.h" />
   </ItemGroup>
   <ItemGroup>
