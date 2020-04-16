@@ -30,7 +30,7 @@ _int CEffect::Update_GameObject(const _float& fTimeDelta)
 	return iExit;
 }
 
-void CEffect::Render_GameObjcet()
+void CEffect::Render_GameObject()
 {
 	
 }

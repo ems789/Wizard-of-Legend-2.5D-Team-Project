@@ -58,7 +58,7 @@ void CMainApp::Render_MainApp(void)
 	if (m_iExit == 1)
 		return;
 
-	Engine::Render_Begin(D3DXCOLOR(0.f, 0.f, 1.f, 1.f));
+	Engine::Render_Begin(D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
 	
 	if (nullptr != m_pManagement)
 		m_pManagement->Render_Scene();

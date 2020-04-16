@@ -35,7 +35,7 @@ _int CPlayerHP::Update_GameObject(const _float& fTimeDelta)
 	return iExit;
 }
 
-void CPlayerHP::Render_GameObjcet()
+void CPlayerHP::Render_GameObject()
 {
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->GetWorldMatrix());
 

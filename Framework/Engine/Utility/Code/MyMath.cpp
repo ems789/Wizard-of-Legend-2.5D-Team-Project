@@ -200,7 +200,7 @@ void CMyMath::DirectionalVectorToAngle(_vec3 * pOut, const _vec3 * pDir)
 	D3DXVec3Normalize(&vTemp, &vTemp);
 
 	pOut->x = acosf(D3DXVec3Dot(&AXIS_Z, &vTemp));
-	if (pDir->y < 0.f) 
+	if (pDir->y > 0.f) 
 		pOut->x = -pOut->x;
 
 	vTemp = *pDir;
@@ -208,8 +208,78 @@ void CMyMath::DirectionalVectorToAngle(_vec3 * pOut, const _vec3 * pDir)
 	D3DXVec3Normalize(&vTemp, &vTemp);
 
 	pOut->y = acosf(D3DXVec3Dot(&AXIS_Z, &vTemp));
-	if (pOut->x < 0.f)
+
+	if (pDir->z < 0.f)
+		pOut->y += D3DXToRadian(180.f);
+
+	if (pDir->x < 0.f)
 		pOut->y = -pOut->y;
 
+
 	pOut->z = 0;
+}
+
+_float CMyMath::XAngleTransformFromVec(const _vec3 * pDir)
+{
+	_vec3 vTemp = *pDir;
+
+	vTemp.x = 0;
+	D3DXVec3Normalize(&vTemp, &vTemp);
+
+	_float fx = acosf(D3DXVec3Dot(&AXIS_Z, &vTemp));
+
+	if (pDir->z > 0.f)
+		fx += D3DXToRadian(180.f);
+
+	if (pDir->y < 0.f)
+		fx = -fx;
+
+	return fx;
+}
+
+_float CMyMath::YAngleTransformFromVec(const _vec3 * pDir)
+{
+	_vec3 vTemp = *pDir;
+
+	vTemp.y = 0;
+	D3DXVec3Normalize(&vTemp, &vTemp);
+
+	_float fy = acosf(D3DXVec3Dot(&AXIS_Z, &vTemp));
+
+	if (pDir->z < 0.f)
+		fy += D3DXToRadian(180.f);
+
+	if (pDir->x < 0.f)
+		fy = -fy;
+
+	return fy;
+}
+
+_float CMyMath::ZAngleTransformFromVec(const _vec3 * pDir)
+{
+	_vec3 vTemp = *pDir;
+
+	vTemp.z = 0;
+	D3DXVec3Normalize(&vTemp, &vTemp);
+
+	_float fz = acosf(D3DXVec3Dot(&AXIS_Z, &vTemp));
+
+	if (pDir->y < 0.f)
+		fz += D3DXToRadian(180.f);
+
+	if (pDir->x < 0.f)
+		fz = -fz;
+
+	return fz;
+}
+
+void CMyMath::ClientMousePos(HWND hWnd, _vec2 * pOut)
+{
+	POINT			ptMouse{};
+
+	GetCursorPos(&ptMouse);
+	ScreenToClient(hWnd, &ptMouse);
+
+	pOut->x = ptMouse.x;
+	pOut->y = ptMouse.y;
 }

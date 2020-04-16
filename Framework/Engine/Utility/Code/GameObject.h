@@ -18,7 +18,7 @@ public:
 public:
 	virtual HRESULT Ready_GameObject();
 	virtual	_int	Update_GameObject(const _float& fTimeDelta);
-	virtual	void	Render_GameObjcet();
+	virtual	void	Render_GameObject();
 
 	virtual void		Collision(const _float& fTimeDelta) {}
 	virtual CCollider*	Get_Collider() { return nullptr; }

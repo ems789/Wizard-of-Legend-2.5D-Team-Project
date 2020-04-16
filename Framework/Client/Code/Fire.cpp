@@ -49,7 +49,7 @@ _int CFire::Update_GameObject(const _float& fTimeDelta)
 	return 0;
 }
 
-void CFire::Render_GameObjcet()
+void CFire::Render_GameObject()
 {
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->GetWorldMatrix());
 

@@ -36,7 +36,7 @@ _int CCastingCircle::Update_GameObject(const _float& fTimeDelta)
 	return iExit;
 }
 
-void CCastingCircle::Render_GameObjcet()
+void CCastingCircle::Render_GameObject()
 {
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->GetWorldMatrix());
 

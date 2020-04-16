@@ -68,7 +68,7 @@ _int Engine::CLayer::Update_Layer(const _float& fTimeDelta)
 void Engine::CLayer::Render_Layer()
 {
 	for (auto& iter : m_mapObject)
-		iter.second->Render_GameObjcet();
+		iter.second->Render_GameObject();
 }
 
 HRESULT Engine::CLayer::Add_GameObject(const _tchar* pObjTag, CGameObject* pGameObject)

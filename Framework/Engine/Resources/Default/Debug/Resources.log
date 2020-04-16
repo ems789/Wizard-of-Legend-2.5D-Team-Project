@@ -1,16 +1,4 @@
-﻿  CubeTex.cpp
-  Generating Code...
-d:\direct3d project\framework\engine\resources\code\cubetex.cpp(125): warning C4715: 'Engine::CCubeTex::Ready_Buffer': not all control paths return a value
-  Compiling...
-  VIBuffer.cpp
-  TriCol.cpp
-  Texture.cpp
-  TerrainTex.cpp
-  ResourcesMgr.cpp
-  Resources.cpp
-  RcTex.cpp
-  RcCol.cpp
-  Generating Code...
+﻿     Creating library ../Bin/Resources.lib and object ../Bin/Resources.exp
   Resources.vcxproj -> D:\Direct3D Project\Framework\Engine\Resources\Default\../Bin/Resources.dll
   Resources.vcxproj -> ../Bin/Resources.pdb (Full PDB)
   .\Engine\Resources\Code\CubeTex.h

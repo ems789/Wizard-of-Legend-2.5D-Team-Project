@@ -1,4 +1,7 @@
-﻿  Player.cpp
+﻿  MainApp.cpp
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  Town.cpp
      Creating library ../Bin/Client_DBG.lib and object ../Bin/Client_DBG.exp
   Client.vcxproj -> D:\Direct3D Project\Framework\Client\Default\../Bin/Client_DBG.exe
   Client.vcxproj -> ../Bin/Client_DBG.pdb (Full PDB)

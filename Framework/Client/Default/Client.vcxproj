@@ -181,6 +181,8 @@
     <ClInclude Include="..\Code\TestTerrain.h" />
     <ClInclude Include="..\Code\ThirdViewCamera.h" />
     <ClInclude Include="..\Code\Town.h" />
+    <ClInclude Include="..\Code\Wind.h" />
+    <ClInclude Include="..\Code\WindSlash.h" />
     <ClInclude Include="..\Header\Defines.h" />
     <ClInclude Include="..\Header\Enum.h" />
     <ClInclude Include="..\Header\Function.h" />
@@ -214,6 +216,8 @@
     <ClCompile Include="..\Code\TestTerrain.cpp" />
     <ClCompile Include="..\Code\ThirdViewCamera.cpp" />
     <ClCompile Include="..\Code\Town.cpp" />
+    <ClCompile Include="..\Code\Wind.cpp" />
+    <ClCompile Include="..\Code\WindSlash.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

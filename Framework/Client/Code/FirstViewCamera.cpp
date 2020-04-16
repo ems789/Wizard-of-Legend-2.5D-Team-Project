@@ -50,6 +50,7 @@ HRESULT CFirstViewCamera::Reset_Camera()
 void CFirstViewCamera::Update_EyeAtUp(const _float & fTimeDelta)
 {
 	m_vEye = *m_pTargetInfo->GetInfo(Engine::INFO_POS);
+	m_vEye.y += 0.5f;
 
 	Mouse_Move(fTimeDelta);
 

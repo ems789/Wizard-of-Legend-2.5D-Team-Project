@@ -33,7 +33,7 @@ _int CBackGround::Update_GameObject(const _float& fTimeDelta)
 	return iExit;
 }
 
-void CBackGround::Render_GameObjcet()
+void CBackGround::Render_GameObject()
 {
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->GetWorldMatrix());
 	

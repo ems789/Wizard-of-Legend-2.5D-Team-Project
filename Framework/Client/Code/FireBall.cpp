@@ -39,7 +39,7 @@ _int CFireBall::Use_Skill(const _float& fTimeDelta)
 	_vec3 vLook = pTransform->GetInfoRef(Engine::INFO_LOOK);
 	vStartPos += vLook;
 
-	CFire* pFire = CFire::Create(m_pGraphicDev, vStartPos, pTransform->GetAngleRef(), 10.f, 4, 30.f);
+	CFire* pFire = CFire::Create(m_pGraphicDev, vStartPos, pTransform->GetAngleRef(), m_fSpeed, 4, 30.f);
 	FAILED_CHECK_RETURN(Engine::Add_GameObject(L"GameLogic", L"Fire", pFire), -1);
 
 	m_fCurTime = m_fCoolTime;
@@ -56,13 +56,13 @@ _int CFireBall::Use_Skill(const _float & fTimeDelta, const _vec3 * pPos, const _
 		Engine::Set_TimeDelta(L"FireBall_CoolTime");
 	
 	_vec3 vStartPos = *pPos;
-	vStartPos += *pDir;
+	vStartPos += *pDir * 1.5f;
 
 	_vec3 vAngle;
 	Engine::CMyMath::DirectionalVectorToAngle(&vAngle, pDir);
 
 
-	CFire* pFire = CFire::Create(m_pGraphicDev, vStartPos, vAngle, 100.f, 4, 30.f);
+	CFire* pFire = CFire::Create(m_pGraphicDev, vStartPos, vAngle, m_fSpeed, 4, 30.f);
 	FAILED_CHECK_RETURN(Engine::Add_GameObject(L"GameLogic", L"Fire", pFire), -1);
 
 	m_fCurTime = m_fCoolTime;

@@ -30,7 +30,7 @@ void Engine::CRenderer::Render_GameObject()
 	{
 		for (auto& pObj : m_RenderGroup[i])
 		{
-			pObj->Render_GameObjcet();
+			pObj->Render_GameObject();
 			Safe_Release(pObj);
 		}
 
@@ -41,7 +41,7 @@ void Engine::CRenderer::Render_GameObject()
 
 	for (auto& pObj : m_RenderGroup[RENDER_ALPHA])
 	{
-		pObj->Render_GameObjcet();
+		pObj->Render_GameObject();
 		Safe_Release(pObj);
 	}
 
@@ -53,7 +53,7 @@ void Engine::CRenderer::Render_GameObject()
 
 	for (auto& pObj : m_RenderGroup[RENDER_UI])
 	{
-		pObj->Render_GameObjcet();
+		pObj->Render_GameObject();
 		Safe_Release(pObj);
 	}
 

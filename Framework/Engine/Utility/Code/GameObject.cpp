@@ -36,7 +36,7 @@ _int Engine::CGameObject::Update_GameObject(const _float& fTimeDelta)
 	return 0;
 }
 
-void Engine::CGameObject::Render_GameObjcet()
+void Engine::CGameObject::Render_GameObject()
 {
 
 }

@@ -22,7 +22,7 @@ HRESULT CQuaterViewCamera::Reset_Camera()
 
 	return S_OK;
 }
-
+ 
 HRESULT CQuaterViewCamera::Ready_Camera()
 {
 	FAILED_CHECK_RETURN(CCamera::Ready_Camera(), E_FAIL);

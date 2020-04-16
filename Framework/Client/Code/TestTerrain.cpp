@@ -35,7 +35,7 @@ _int CTestTerrain::Update_GameObject(const _float& fTimeDelta)
 	return iExit;
 }
 
-void CTestTerrain::Render_GameObjcet()
+void CTestTerrain::Render_GameObject()
 {
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->GetWorldMatrix());
 

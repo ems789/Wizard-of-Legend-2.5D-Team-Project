@@ -4,6 +4,7 @@
 #include "Export_Function.h"
 #include "Skill.h"
 #include "FireBall.h"
+#include "WindSlash.h"
 
 CPlayer::CPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev)
@@ -23,6 +24,7 @@ HRESULT CPlayer::Ready_GameObject()
 
 	m_vecEquipSkill.push_back(nullptr);
 	m_vecEquipSkill.push_back(nullptr);
+	m_vecEquipSkill.push_back(nullptr);
 
 	m_tFrame.fCurFrame = 0.f;
 	m_tFrame.fMaxFrame = 1.f;
@@ -35,7 +37,12 @@ HRESULT CPlayer::Ready_GameObject()
 	CFireBall*	pFireBall = CFireBall::Create(m_pGraphicDev);
 	NULL_CHECK_RETURN(pFireBall, E_FAIL);
 	//Change_Normal_Skill(pFireBall);
-	m_vecEquipSkill[0] = pFireBall;
+	m_vecEquipSkill[1] = pFireBall;
+
+	CWindSlash* pWindSlash = CWindSlash::Create(m_pGraphicDev);
+	NULL_CHECK_RETURN(pWindSlash, E_FAIL);
+
+	m_vecEquipSkill[0] = pWindSlash;
 
 	return S_OK;
 }
@@ -57,7 +64,7 @@ _int CPlayer::Update_GameObject(const _float& fTimeDelta)
 	return iExit;
 }
 
-void CPlayer::Render_GameObjcet()
+void CPlayer::Render_GameObject()
 {
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->GetWorldMatrix());
 
@@ -73,22 +80,22 @@ void CPlayer::Render_GameObjcet()
 
 _int CPlayer::Change_Normal_Skill(Engine::CSkill * pSkill)
 {
-	if (m_vecEquipSkill[0] != nullptr)
-		Engine::Safe_Release(m_vecEquipSkill[0]);
+	if (m_vecEquipSkill[1] != nullptr)
+		Engine::Safe_Release(m_vecEquipSkill[1]);
 
-	m_vecEquipSkill[0] = pSkill;
-	m_vecEquipSkill[0]->AddRef();
+	m_vecEquipSkill[1] = pSkill;
+	m_vecEquipSkill[1]->AddRef();
 
 	return 0;
 }
 
 _int CPlayer::Change_Upgrade_Skill(Engine::CSkill * pSkill)
 {
-	if (m_vecEquipSkill[1] != nullptr)
-		Engine::Safe_Release(m_vecEquipSkill[1]);
+	if (m_vecEquipSkill[2] != nullptr)
+		Engine::Safe_Release(m_vecEquipSkill[2]);
 
-	m_vecEquipSkill[1] = pSkill;
-	m_vecEquipSkill[1]->AddRef();
+	m_vecEquipSkill[2] = pSkill;
+	m_vecEquipSkill[2]->AddRef();
 
 	return 0;
 }
@@ -222,36 +229,68 @@ void CPlayer::Key_Input(const _float & fTimeDelta)
 
 void CPlayer::Key_Input_For_Attack(const _float & fTimeDelta)
 {
-
-	if (Engine::MousePress(Engine::DIM_RB))
+	if (Engine::MouseDown(Engine::DIM_LB))
 	{
 		Turn_To_Camera_Look();
 		m_vecEquipSkill[0]->Use_Skill(fTimeDelta);
 	}
 
-	if (Engine::KeyDown(DIK_Q))
+	if (Engine::MousePress(Engine::DIM_RB))
 	{
 		Turn_To_Camera_Look();
 		m_vecEquipSkill[1]->Use_Skill(fTimeDelta);
+	}
+
+	if (Engine::KeyDown(DIK_Q))
+	{
+		Turn_To_Camera_Look();
+		m_vecEquipSkill[2]->Use_Skill(fTimeDelta);
 	}
 
 }
 
 void CPlayer::Key_Input_Attack_For_QuaterView(const _float & fTimeDelta)
 {
+	if (Engine::MouseDown(Engine::DIM_LB))
+	{
+		D3DXPLANE Plane = { 0.f, 1.f, 0.f, 0.f };
+		_vec3	vPicking;
+		_vec2	vMouse;
+
+		_matrix	matProj, matView;
+		Engine::Get_MainCamera()->Get_View(&matView);
+		Engine::Get_MainCamera()->Get_Projection(&matProj);
+		Engine::CMyMath::ClientMousePos(g_hWnd, &vMouse);
+
+		Engine::CMyMath::PickingOnPlane(&vPicking, &vMouse, WINCX, WINCY, &matProj, &matView, &Plane);
+
+		_vec3 vCurPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
+		_vec3 vDir = vPicking - vCurPos;
+		vDir.y = 0;
+		D3DXVec3Normalize(&vDir, &vDir);
+
+		m_vecEquipSkill[0]->Use_Skill(fTimeDelta, &vCurPos, &vDir);
+	}
+
 	if (Engine::MousePress(Engine::DIM_RB))
 	{
 		D3DXPLANE Plane = { 0.f, 1.f, 0.f, 0.f };
 		_vec3	vPicking;
-		Engine::CMyMath::PickingOnPlane(g_hWnd, m_pGraphicDev, &vPicking, &Plane);
+		_vec2	vMouse;
 
-		cout << "x : " << vPicking.x << " y : " << vPicking.y << " z : " << vPicking.z << endl;
+		_matrix	matProj, matView;
+		Engine::Get_MainCamera()->Get_View(&matView);
+		Engine::Get_MainCamera()->Get_Projection(&matProj);
+		Engine::CMyMath::ClientMousePos(g_hWnd, &vMouse);
+
+		Engine::CMyMath::PickingOnPlane(&vPicking, &vMouse, WINCX, WINCY, &matProj, &matView, &Plane);
 
 		_vec3 vCurPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
 		_vec3 vDir = vPicking - vCurPos;
+		vDir.y = 0;
 		D3DXVec3Normalize(&vDir, &vDir);
 
-		m_vecEquipSkill[0]->Use_Skill(fTimeDelta, &vCurPos, &vDir);
+		m_vecEquipSkill[1]->Use_Skill(fTimeDelta, &vCurPos, &vDir);
 	}
 
 	if (Engine::KeyDown(DIK_Q))
@@ -260,7 +299,7 @@ void CPlayer::Key_Input_Attack_For_QuaterView(const _float & fTimeDelta)
 		_vec3	vPicking;
 		Engine::CMyMath::PickingOnPlane(g_hWnd, m_pGraphicDev, &vPicking, &Plane);
 
-		m_vecEquipSkill[1]->Use_Skill(fTimeDelta);
+		m_vecEquipSkill[2]->Use_Skill(fTimeDelta);
 	}
 }
 

@@ -44,6 +44,11 @@ public:
 	static void LinearEquationFromPoints(LINE3D* pOut, const _vec3* pPos1, const _vec3* pPos2);
 
 	static void	DirectionalVectorToAngle(_vec3* pOut, const _vec3* pDir);
+	static _float XAngleTransformFromVec(const _vec3* pDir);
+	static _float YAngleTransformFromVec(const _vec3* pDir);
+	static _float ZAngleTransformFromVec(const _vec3* pDir);
+
+	static void ClientMousePos(HWND hWnd, _vec2* pOut);
 };
 
 END

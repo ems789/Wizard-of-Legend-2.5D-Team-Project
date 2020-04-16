@@ -74,6 +74,9 @@ _uint CLoading::Loading_ForState()
 	//	FireBall Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Fire", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Skill/FireBall/IgnitionOrb_%d.png", 4), E_FAIL);
 
+	//	WindSlash Texture
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WindSlash", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Skill/WindSlash/WindSlashLarge%d.png", 7), E_FAIL);
+
 	//	FireBoss Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STAGE, L"Texture_FireBoss_Idle", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/FireBoss/FireBossIdle.png"), E_FAIL);
 
