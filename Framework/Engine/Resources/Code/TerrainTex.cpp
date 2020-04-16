@@ -12,6 +12,8 @@ Engine::CTerrainTex::CTerrainTex(const CTerrainTex& rhs)
 	: CVIBuffer(rhs)
 	, m_pPos(rhs.m_pPos)
 	, m_bClone(true)
+	, m_dwCntX(rhs.m_dwCntX)
+	, m_dwCntZ(rhs.m_dwCntZ)
 	, m_fH(rhs.m_fH)
 	, m_iH(rhs.m_iH)
 {
@@ -26,9 +28,13 @@ Engine::CTerrainTex::~CTerrainTex()
 HRESULT Engine::CTerrainTex::Ready_Buffer(const _tchar* pPath, const _ulong& dwCntX, const _ulong& dwCntZ, const _ulong& dwVtxItv /*= 1*/)
 {
 	m_dwVtxSize = sizeof(VTXTEX);
+	m_dwCntX = dwCntX;
+	m_dwCntZ = dwCntZ;
 	m_dwVtxCnt = dwCntX * dwCntZ;
 	m_dwVtxFVF = FVF_TEX;
 	m_dwTriCnt = (dwCntX - 1) * (dwCntZ - 1) * 2;
+
+	m_pPos = new _vec3[m_dwVtxCnt];
 
 	m_dwIdxSize = sizeof(INDEX32);
 	m_IdxFmt = D3DFMT_INDEX32;

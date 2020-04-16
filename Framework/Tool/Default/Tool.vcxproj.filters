@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="99. Etc">
+      <UniqueIdentifier>{cf4e5a92-c56e-4d51-b2e7-d6339a259acd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99. Etc\리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="99. Etc\소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="99. Etc\헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="00. WinApp">
+      <UniqueIdentifier>{8445aba1-2820-4c4b-877b-b5e3102522d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. FrameWnd">
+      <UniqueIdentifier>{751707cb-70c8-4431-b65c-e0a7840b2547}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Document">
+      <UniqueIdentifier>{7e9d6a0f-9933-4065-a3e2-02c7594178c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. View">
+      <UniqueIdentifier>{0135a77b-d8dd-4353-81ef-97367edea1f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98. Header">
+      <UniqueIdentifier>{75169ba9-de31-4147-af53-84d99fa4206e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. View\00. PropertyFormView">
+      <UniqueIdentifier>{7653ed1a-69da-4e44-8f3c-f741884f4239}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. PropertySheet">
+      <UniqueIdentifier>{2d512c0e-f1cb-41e2-9037-48e08f3c96c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. PropertySheet\00. TilePage">
+      <UniqueIdentifier>{02f16678-9439-46fb-b175-b26beb63f5f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. PropertySheet\01. WallPage">
+      <UniqueIdentifier>{f1712189-1cca-4ac8-b3fa-e7f51bc4b1fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. GameObject">
+      <UniqueIdentifier>{d1c7c29b-4120-4059-940b-5bf1dbeee8d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. GameObject\00. Terrain">
+      <UniqueIdentifier>{da1f8404-01c1-4533-bf05-8655ae4c5896}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. GameObject\01. TerrainGuidLine">
+      <UniqueIdentifier>{5c5296fb-99c5-4aa1-9891-872faf2a7af5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. GameObject\03. Public">
+      <UniqueIdentifier>{bbdf1e05-5c84-424f-8510-7070276279cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. GameObject\02. Tile">
+      <UniqueIdentifier>{2d540e87-a31d-4805-94ff-36333d27d213}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Dialog">
+      <UniqueIdentifier>{f4b43e99-6548-4579-88a1-4aaa7e82a5c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98. Managers">
+      <UniqueIdentifier>{db256776-51e0-4a2a-8456-4cae9a9e0ace}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="targetver.h">
+      <Filter>99. Etc\헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>99. Etc\헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Tool.h">
+      <Filter>00. WinApp</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrm.h">
+      <Filter>02. FrameWnd</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolDoc.h">
+      <Filter>01. Document</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolView.h">
+      <Filter>03. View</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\typedef.h">
+      <Filter>98. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\Defines.h">
+      <Filter>98. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\Enum.h">
+      <Filter>98. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\Function.h">
+      <Filter>98. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\Macro.h">
+      <Filter>98. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>98. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="MySheet.h">
+      <Filter>05. PropertySheet</Filter>
+    </ClInclude>
+    <ClInclude Include="TilePage.h">
+      <Filter>05. PropertySheet\00. TilePage</Filter>
+    </ClInclude>
+    <ClInclude Include="PropertyFormView.h">
+      <Filter>03. View\00. PropertyFormView</Filter>
+    </ClInclude>
+    <ClInclude Include="WallPage.h">
+      <Filter>05. PropertySheet\01. WallPage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Terrain.h">
+      <Filter>06. GameObject\00. Terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\DynamicCamera.h">
+      <Filter>06. GameObject\03. Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\TerrainGuidLine.h">
+      <Filter>06. GameObject\01. TerrainGuidLine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Tile.h">
+      <Filter>06. GameObject\02. Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="PathTool.h">
+      <Filter>04. Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectoryMgr.h">
+      <Filter>98. Managers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>99. Etc\소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Tool.cpp">
+      <Filter>00. WinApp</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrm.cpp">
+      <Filter>02. FrameWnd</Filter>
+    </ClCompile>
+    <ClCompile Include="ToolDoc.cpp">
+      <Filter>01. Document</Filter>
+    </ClCompile>
+    <ClCompile Include="ToolView.cpp">
+      <Filter>03. View</Filter>
+    </ClCompile>
+    <ClCompile Include="MySheet.cpp">
+      <Filter>05. PropertySheet</Filter>
+    </ClCompile>
+    <ClCompile Include="TilePage.cpp">
+      <Filter>05. PropertySheet\00. TilePage</Filter>
+    </ClCompile>
+    <ClCompile Include="PropertyFormView.cpp">
+      <Filter>03. View\00. PropertyFormView</Filter>
+    </ClCompile>
+    <ClCompile Include="WallPage.cpp">
+      <Filter>05. PropertySheet\01. WallPage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Terrain.cpp">
+      <Filter>06. GameObject\00. Terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\DynamicCamera.cpp">
+      <Filter>06. GameObject\03. Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\TerrainGuidLine.cpp">
+      <Filter>06. GameObject\01. TerrainGuidLine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Tile.cpp">
+      <Filter>06. GameObject\02. Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="PathTool.cpp">
+      <Filter>04. Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectoryMgr.cpp">
+      <Filter>98. Managers</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Tool.rc">
+      <Filter>99. Etc\리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\Tool.rc2">
+      <Filter>99. Etc\리소스 파일</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\ToolDoc.ico">
+      <Filter>99. Etc\리소스 파일</Filter>
+    </Image>
+    <Image Include="res\Tool.ico">
+      <Filter>99. Etc\리소스 파일</Filter>
+    </Image>
+    <Image Include="res\Toolbar.bmp">
+      <Filter>99. Etc\리소스 파일</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt">
+      <Filter>99. Etc</Filter>
+    </Text>
+  </ItemGroup>
+</Project>

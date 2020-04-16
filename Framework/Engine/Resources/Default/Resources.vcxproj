@@ -177,6 +177,7 @@ call CopyResources.bat
     <ClCompile Include="..\Code\ResourcesMgr.cpp" />
     <ClCompile Include="..\Code\TerrainTex.cpp" />
     <ClCompile Include="..\Code\Texture.cpp" />
+    <ClCompile Include="..\Code\TileTex.cpp" />
     <ClCompile Include="..\Code\TriCol.cpp" />
     <ClCompile Include="..\Code\VIBuffer.cpp" />
   </ItemGroup>
@@ -189,6 +190,7 @@ call CopyResources.bat
     <ClInclude Include="..\Code\ResourcesMgr.h" />
     <ClInclude Include="..\Code\TerrainTex.h" />
     <ClInclude Include="..\Code\Texture.h" />
+    <ClInclude Include="..\Code\TileTex.h" />
     <ClInclude Include="..\Code\TriCol.h" />
     <ClInclude Include="..\Code\VIBuffer.h" />
   </ItemGroup>

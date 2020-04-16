@@ -31,6 +31,9 @@
     <Filter Include="00.Resources\00.VIBuffer\04.CubeTex">
       <UniqueIdentifier>{77576233-c6d6-4077-a846-6c4410aea60f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="00.Resources\00.VIBuffer\05.TileTex">
+      <UniqueIdentifier>{924da431-0238-4e75-9bdd-c59bd3285627}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Code\Resources.cpp">
@@ -59,6 +62,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\CubeTex.cpp">
       <Filter>00.Resources\00.VIBuffer\04.CubeTex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\TileTex.cpp">
+      <Filter>00.Resources\00.VIBuffer\05.TileTex</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -91,6 +97,9 @@
     </ClInclude>
     <ClInclude Include="..\Code\CubeTex.h">
       <Filter>00.Resources\00.VIBuffer\04.CubeTex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\TileTex.h">
+      <Filter>00.Resources\00.VIBuffer\05.TileTex</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

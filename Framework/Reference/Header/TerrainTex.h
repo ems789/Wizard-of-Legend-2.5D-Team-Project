@@ -12,10 +12,17 @@ class ENGINE_DLL CTerrainTex : public CVIBuffer
 	virtual ~CTerrainTex();
 
 public:
+	const _vec3*		Get_VtxPos(void) const { return m_pPos; }
+	_ulong				Get_VtxCntX(void) const { return m_dwCntX; }
+	_ulong				Get_VtxCntZ(void) const { return m_dwCntZ; }
+
+public:
 	HRESULT Ready_Buffer(const _tchar* pPath, const _ulong& dwCntX, const _ulong& dwCntZ, const _ulong& dwVtxItv = 1);
 
 private:
 	HANDLE				m_hFile;
+	_ulong				m_dwCntX;
+	_ulong				m_dwCntZ;
 	BITMAPFILEHEADER	m_fH;
 	BITMAPINFOHEADER	m_iH;
 

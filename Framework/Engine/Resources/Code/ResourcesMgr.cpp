@@ -51,6 +51,9 @@ HRESULT Engine::CResourcesMgr::Ready_Buffer(LPDIRECT3DDEVICE9 pGraphicDev, const
 	case Engine::BUFFER_CUBETEX:
 		pResources = CCubeTex::Create(pGraphicDev);
 		break;
+	case Engine::BUFFER_TILETEX:
+		pResources = CTileTex::Create(pGraphicDev, dwVtxItv);
+		break;
 	}
 	NULL_CHECK_RETURN(pResources, E_FAIL);
 

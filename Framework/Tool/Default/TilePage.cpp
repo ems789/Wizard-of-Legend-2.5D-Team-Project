@@ -1,0 +1,216 @@
+// TilePage.cpp : 구현 파일입니다.
+//
+
+#include "stdafx.h"
+#include "Tool.h"
+#include "MainFrm.h"
+#include "ToolView.h"
+#include "TilePage.h"
+#include "afxdialogex.h"
+
+#include "Export_Function.h"
+USING(Engine)
+
+// CTilePage 대화 상자입니다.
+
+IMPLEMENT_DYNAMIC(CTilePage, CPropertyPage)
+
+CTilePage::CTilePage()
+	: CPropertyPage(IDD_TILEPAGE),
+	m_iDrawID(0),
+	m_pGraphicDev(Engine::CGraphicDev::GetInstance())
+{
+
+}
+
+CTilePage::~CTilePage()
+{
+}
+
+void CTilePage::DoDataExchange(CDataExchange* pDX)
+{
+	CPropertyPage::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_LIST1, m_ListBox);
+	DDX_Control(pDX, IDC_PICTURE, m_Picture);
+}
+
+BEGIN_MESSAGE_MAP(CTilePage, CDialog)
+	ON_WM_DROPFILES()
+	ON_LBN_SELCHANGE(IDC_LIST1, &CTilePage::OnLbnSelchangeList)
+	ON_BN_CLICKED(IDC_BUTTON1, &CTilePage::OnBnClickedSave)
+	ON_BN_CLICKED(IDC_BUTTON2, &CTilePage::OnBnClickedLoad)
+END_MESSAGE_MAP()
+
+//BEGIN_MESSAGE_MAP(CTilePage, CPropertyPage)
+//END_MESSAGE_MAP()
+
+// CTilePage 메시지 처리기입니다.
+
+void CTilePage::OnDropFiles(HDROP hDropInfo)
+{
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+
+	TCHAR szFileName[MAX_STR] = L"";
+
+	// 드래그 앤 드롭된 대상들 중 인덱스에 해당하는 파일의 이름을 얻어온다.
+	//::DragQueryFile(hDropInfo, 1, szFileName, MAX_STR);
+	//::AfxMessageBox(szFileName);
+
+	// 두번째인자가 -1일 때 드래그 앤 드롭된 대상들의 전체 개수를 얻어온다.
+	int iCount = ::DragQueryFile(hDropInfo, -1, nullptr, 0);
+
+	CString strRelative = L"";
+	CString strFileName = L"";
+
+	for (int i = 0; i < iCount; ++i)
+	{
+		::DragQueryFile(hDropInfo, i, szFileName, MAX_STR);
+
+		//strRelative = CDirectoryMgr::ConvertRelativePath(szFileName);
+		strFileName = ::PathFindFileName(szFileName); // 파일명 얻어내는 함수.
+
+		lstrcpy(szFileName, strFileName);
+		::PathRemoveExtension(szFileName); // 확장자 제거.
+
+		m_ListBox.AddString(szFileName);
+	}
+
+	SettingHorizontalScrollSize();
+
+	CDialog::OnDropFiles(hDropInfo);
+}
+
+void CTilePage::OnLbnSelchangeList()
+{
+	int iIndex = m_ListBox.GetCurSel();
+
+	if (-1 == iIndex)
+		return;
+
+	CString strName = L"";
+	m_ListBox.GetText(iIndex, strName);
+
+	int i = 0;
+
+	for (; i < strName.GetLength(); ++i)
+	{
+		// 현재 문자가 글자인지 숫자인지 판별. 숫자라면 true
+		if (isdigit(strName[i]))
+			break;
+	}
+
+	// Delete(index, count): 현재 문자열의 index자리부터 count만큼 제거.
+	strName.Delete(0, i);
+
+	// 문자 -> 정수로 변환.
+	m_iDrawID = _ttoi(strName);
+
+	// 픽처 컨트롤에 타일 미리보기 출력.
+	/*const TEX_INFO* pTexInfo = m_pTextureMgr->GetTexInfo(L"Terrain", L"Tile", m_iDrawID);
+	NULL_CHECK(pTexInfo);
+
+	float fCenterX = pTexInfo->tImgInfo.Width * 0.5f;
+	float fCenterY = pTexInfo->tImgInfo.Height * 0.5f;
+
+	D3DXMATRIX matScale, matTrans, matWorld;
+	D3DXMatrixScaling(&matScale, (float)WINCX / TILECX, (float)WINCY / TILECY, 0.f);
+	D3DXMatrixTranslation(&matTrans, 400.f, 300.f, 0.f);
+
+	matWorld = matScale * matTrans;
+
+	m_pDeviceMgr->GetSprite()->SetTransform(&matWorld);
+
+	m_pDeviceMgr->Render_Begin();
+
+	m_pDeviceMgr->GetSprite()->Draw(pTexInfo->pTexture, nullptr, &D3DXVECTOR3(fCenterX, fCenterY, 0.f),
+		nullptr, D3DCOLOR_ARGB(255, 255, 255, 255));
+
+	m_pDeviceMgr->Render_End(m_Picture.m_hWnd);*/
+
+}
+
+void CTilePage::OnBnClickedSave()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	CFileDialog Dlg(FALSE, L".dat", L"제목 없음.dat", OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,
+		L"Data Files(*.dat)|*.dat|Text Files(*.txt)|*.txt||", this);
+
+	TCHAR szCurrentDir[MAX_STR] = L"";
+
+	::GetCurrentDirectory(MAX_STR, szCurrentDir);
+	::PathRemoveFileSpec(szCurrentDir);
+	::PathRemoveFileSpec(szCurrentDir);
+	::PathCombine(szCurrentDir, szCurrentDir, L"Data");
+
+	Dlg.m_ofn.lpstrInitialDir = szCurrentDir;
+
+	if (IDOK == Dlg.DoModal())
+	{
+		CMainFrame* pFrameWnd = dynamic_cast<CMainFrame*>(::AfxGetApp()->GetMainWnd());
+		NULL_CHECK(pFrameWnd);
+
+		CToolView* pView = dynamic_cast<CToolView*>(pFrameWnd->m_MainSplitter.GetPane(0, 1));
+		NULL_CHECK(pView);
+
+		//NULL_CHECK(pView->m_pTerrain);
+		//pView->m_pTerrain->SaveTile(Dlg.GetPathName());
+	}
+}
+
+void CTilePage::OnBnClickedLoad()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	CFileDialog Dlg(TRUE, L".dat", L"제목 없음.dat", OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,
+		L"Data Files(*.dat)|*.dat|Text Files(*.txt)|*.txt||", this);
+
+	TCHAR szCurrentDir[MAX_STR] = L"";
+
+	::GetCurrentDirectory(MAX_STR, szCurrentDir);
+	::PathRemoveFileSpec(szCurrentDir);
+	::PathCombine(szCurrentDir, szCurrentDir, L"Data");
+
+	Dlg.m_ofn.lpstrInitialDir = szCurrentDir;
+
+	if (IDOK == Dlg.DoModal())
+	{
+		CMainFrame* pFrameWnd = dynamic_cast<CMainFrame*>(::AfxGetApp()->GetMainWnd());
+		NULL_CHECK(pFrameWnd);
+
+		CToolView* pView = dynamic_cast<CToolView*>(pFrameWnd->m_MainSplitter.GetPane(0, 1));
+		NULL_CHECK(pView);
+
+		/*NULL_CHECK(pView->m_pTerrain);
+		pView->m_pTerrain->LoadTile(Dlg.GetPathName());
+		pView->Invalidate(FALSE);*/
+	}
+}
+
+void CTilePage::SettingHorizontalScrollSize()
+{
+	// 리스트박스에 수평 스크롤 확장하기.
+
+	CString strName = L"";
+
+	int iSrcCX = 0, iDstCX = 0;
+
+	CDC* pDC = m_ListBox.GetDC();
+
+	for (int i = 0; i < m_ListBox.GetCount(); ++i)
+	{
+		m_ListBox.GetText(i, strName);
+
+		// 현재 문자열의 길이를 픽셀 단위로 환산.
+		iSrcCX = pDC->GetTextExtent(strName).cx;
+
+		if (iDstCX < iSrcCX)
+			iDstCX = iSrcCX;
+	}
+
+	m_ListBox.ReleaseDC(pDC);
+
+	// 현재 리스트박스가 가지고 있는 수평 스크롤 범위보다 클 때
+	if (iDstCX > m_ListBox.GetHorizontalExtent())
+		m_ListBox.SetHorizontalExtent(iDstCX); // 수평 스크롤 크기 갱신.
+}
+
+
