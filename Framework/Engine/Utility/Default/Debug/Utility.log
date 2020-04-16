@@ -1,5 +1,23 @@
-﻿  LINK : ../Bin/Utility.dll을(를) 찾을 수 없거나 마지막 증분 링크에 의해 빌드되지 않았습니다. 전체 링크를 수행하고 있습니다.
-     ../Bin/Utility.lib 라이브러리 및 ../Bin/Utility.exp 개체를 생성하고 있습니다.
+﻿  Camera.cpp
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  Transform.cpp
+  Skill.cpp
+  Scene.cpp
+  Renderer.cpp
+  MyMath.cpp
+c:\users\ems78\documents\github\teamproject\framework\engine\utility\code\mymath.cpp(283): warning C4244: '=': 'LONG'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\ems78\documents\github\teamproject\framework\engine\utility\code\mymath.cpp(284): warning C4244: '=': 'LONG'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  MoveObject.cpp
+  Management.cpp
+  Layer.cpp
+  GameObject.cpp
+  Effect.cpp
+  Component.cpp
+  CollisionMgr.cpp
+  Collider.cpp
+  CameraMgr.cpp
+  코드를 생성하고 있습니다...
   Utility.vcxproj -> C:\Users\ems78\Documents\GitHub\TeamProject\Framework\Engine\Utility\Default\../Bin/Utility.dll
   Utility.vcxproj -> ../Bin/Utility.pdb (Full PDB)
   .\Engine\Utility\Code\Camera.h
@@ -33,12 +51,10 @@
   .\Engine\Header\Engine_Struct.h
   .\Engine\Header\Engine_Typedef.h
   .\Engine\Header\Export_Function.h
-  다른 프로세스가 파일을 사용 중이기 때문에 프로세스가 액세스 할 수 없습니다.
   .\Engine\Header\Export_Resources.h
   .\Engine\Header\Export_System.h
-  다른 프로세스가 파일을 사용 중이기 때문에 프로세스가 액세스 할 수 없습니다.
   .\Engine\Header\Export_Utility.h
-          8개 파일이 복사되었습니다.
+         10개 파일이 복사되었습니다.
   .\Engine\Header\Export_Resources.inl
   .\Engine\Header\Export_System.inl
   .\Engine\Header\Export_Utility.inl
