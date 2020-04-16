@@ -1,12 +1,4 @@
-﻿  MyMath.cpp
-d:\direct3d project\framework\engine\utility\code\mymath.cpp(283): warning C4244: '=': conversion from 'LONG' to 'FLOAT', possible loss of data
-d:\direct3d project\framework\engine\utility\code\mymath.cpp(284): warning C4244: '=': conversion from 'LONG' to 'FLOAT', possible loss of data
-  Generating Code...
-  Skipping... (no relevant changes detected)
-  Skill.cpp
-  Management.cpp
-     Creating library ../Bin/Utility.lib and object ../Bin/Utility.exp
-  Utility.vcxproj -> D:\Direct3D Project\Framework\Engine\Utility\Default\../Bin/Utility.dll
+﻿  Utility.vcxproj -> C:\Users\user\OneDrive\Desktop\TeamProject\TeamProject\Framework\Engine\Utility\Default\../Bin/Utility.dll
   Utility.vcxproj -> ../Bin/Utility.pdb (Full PDB)
   .\Engine\Utility\Code\Camera.h
   .\Engine\Utility\Code\CameraMgr.h
