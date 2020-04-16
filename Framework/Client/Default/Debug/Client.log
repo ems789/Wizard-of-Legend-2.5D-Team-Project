@@ -1,4 +1,8 @@
-﻿  Inven.cpp
-     ../Bin/Client_DBG.lib 라이브러리 및 ../Bin/Client_DBG.exp 개체를 생성하고 있습니다.
-  Client.vcxproj -> C:\Users\user\OneDrive\Desktop\TeamProject\TeamProject\Framework\Client\Default\../Bin/Client_DBG.exe
+﻿  TestMonster.cpp
+  Generating Code...
+  Compiling...
+  Town.cpp
+  Generating Code...
+     Creating library ../Bin/Client_DBG.lib and object ../Bin/Client_DBG.exp
+  Client.vcxproj -> D:\TeamProject\Framework\Client\Default\../Bin/Client_DBG.exe
   Client.vcxproj -> ../Bin/Client_DBG.pdb (Full PDB)

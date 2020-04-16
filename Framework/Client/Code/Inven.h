@@ -41,8 +41,8 @@ public:
 private:
 	HRESULT Add_Component();
 	HRESULT	Setting_SelectBox();
-	HRESULT Setting_BaseSkill();
-	HRESULT Setting_UpgradedSkill();
+	//HRESULT Setting_BaseSkill();
+	//HRESULT Setting_UpgradedSkill();
 	HRESULT Setting_BasicSkill();
 	HRESULT Setting_SignatureSkill();
 	HRESULT Setting_SkillImage();

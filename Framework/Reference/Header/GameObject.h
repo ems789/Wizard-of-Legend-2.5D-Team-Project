@@ -21,9 +21,19 @@ public:
 	virtual	void	Render_GameObject();
 
 	virtual void		Collision(const _float& fTimeDelta) {}
+
+public:		//	Get Functions
 	virtual CCollider*	Get_Collider() { return nullptr; }
 	virtual SPHERE*		Get_Sphere() { return nullptr; }
+	virtual const _vec3*	Get_Pos() const { return nullptr; }
+	
+public:	//	About Collision
+	virtual void	Hit(const _int& iAtk, const _vec3* pAtkPos) {}
+	virtual int		Get_Attack() { return 0; }
 
+public:
+	virtual _int	Get_HP() const { return 0; }
+	virtual _int	Get_HPMax() const { return 0; }
 
 public:
 	const _bool& IsDead() const { return m_bIsDead; }

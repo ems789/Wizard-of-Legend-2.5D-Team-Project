@@ -69,6 +69,14 @@ public:		//	Set_Functions
 
 public:		//	Get Functions
 	virtual Engine::SPHERE*		Get_Sphere() override { return &m_tSphere; }
+	virtual const _vec3*		Get_Pos()	const override;
+
+public:		//	About Collision
+	virtual void	Hit(const _int& iAtk, const _vec3* pAtkPos) {}
+	
+public:		//	About HP
+	virtual _int	Get_HP()	const { return m_iHP; }
+	virtual _int	Get_HPMax() const { return m_iHPMax; }
 
 
 private:	//	Components
@@ -86,6 +94,9 @@ private:
 	Engine::SPHERE	m_tSphere;
 
 	vector<Engine::CSkill*>		m_vecEquipSkill;
+
+	_int	m_iHP		= 500;
+	_int	m_iHPMax	= 500;
 
 public:
 	static CPlayer* Create(LPDIRECT3DDEVICE9 pGraphicDev);

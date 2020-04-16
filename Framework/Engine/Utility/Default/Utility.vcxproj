@@ -179,6 +179,7 @@ call CopyUtility.bat
     <ClCompile Include="..\Code\GameObject.cpp" />
     <ClCompile Include="..\Code\Layer.cpp" />
     <ClCompile Include="..\Code\Management.cpp" />
+    <ClCompile Include="..\Code\MoveObject.cpp" />
     <ClCompile Include="..\Code\MyMath.cpp" />
     <ClCompile Include="..\Code\Renderer.cpp" />
     <ClCompile Include="..\Code\Scene.cpp" />
@@ -196,6 +197,7 @@ call CopyUtility.bat
     <ClInclude Include="..\Code\GameObject.h" />
     <ClInclude Include="..\Code\Layer.h" />
     <ClInclude Include="..\Code\Management.h" />
+    <ClInclude Include="..\Code\MoveObject.h" />
     <ClInclude Include="..\Code\MyMath.h" />
     <ClInclude Include="..\Code\Renderer.h" />
     <ClInclude Include="..\Code\Scene.h" />

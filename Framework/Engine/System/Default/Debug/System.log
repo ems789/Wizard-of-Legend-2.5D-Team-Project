@@ -1,4 +1,4 @@
-﻿  System.vcxproj -> C:\Users\user\OneDrive\Desktop\TeamProject\TeamProject\Framework\Engine\System\Default\../Bin/System.dll
+﻿  System.vcxproj -> D:\TeamProject\Framework\Engine\System\Default\../Bin/System.dll
   System.vcxproj -> ../Bin/System.pdb (Full PDB)
   .\Engine\System\Code\Font.h
   .\Engine\System\Code\FontMgr.h
@@ -20,8 +20,9 @@
   .\Engine\Header\Export_Function.h
   .\Engine\Header\Export_Resources.h
   .\Engine\Header\Export_System.h
+  다른 프로세스가 파일을 사용 중이기 때문에 프로세스가 액세스 할 수 없습니다.
   .\Engine\Header\Export_Utility.h
-         10개 파일이 복사되었습니다.
+          9개 파일이 복사되었습니다.
   .\Engine\Header\Export_Resources.inl
   .\Engine\Header\Export_System.inl
   .\Engine\Header\Export_Utility.inl

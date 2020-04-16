@@ -485,6 +485,11 @@ void CPlayer::Set_Pos(const _vec3 & vPos)
 	m_pTransformCom->Set_Pos(vPos);
 }
 
+const _vec3 * CPlayer::Get_Pos() const
+{ 
+	return m_pTransformCom->GetInfo(Engine::INFO_POS);
+}
+
 CPlayer* CPlayer::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 {
 	CPlayer* pInstance = new CPlayer(pGraphicDev);

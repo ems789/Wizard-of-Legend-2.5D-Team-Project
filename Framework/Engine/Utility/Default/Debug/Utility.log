@@ -1,4 +1,19 @@
-﻿  Utility.vcxproj -> C:\Users\user\OneDrive\Desktop\TeamProject\TeamProject\Framework\Engine\Utility\Default\../Bin/Utility.dll
+﻿  Collider.cpp
+  Generating Code...
+  Compiling...
+  Renderer.cpp
+  MoveObject.cpp
+  Layer.cpp
+  Effect.cpp
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  Skill.cpp
+  Scene.cpp
+  Management.cpp
+  GameObject.cpp
+  CollisionMgr.cpp
+     Creating library ../Bin/Utility.lib and object ../Bin/Utility.exp
+  Utility.vcxproj -> D:\TeamProject\Framework\Engine\Utility\Default\../Bin/Utility.dll
   Utility.vcxproj -> ../Bin/Utility.pdb (Full PDB)
   .\Engine\Utility\Code\Camera.h
   .\Engine\Utility\Code\CameraMgr.h
@@ -9,6 +24,7 @@
   .\Engine\Utility\Code\GameObject.h
   .\Engine\Utility\Code\Layer.h
   .\Engine\Utility\Code\Management.h
+  .\Engine\Utility\Code\MoveObject.h
   .\Engine\Utility\Code\MyMath.h
   .\Engine\Utility\Code\Renderer.h
   .\Engine\Utility\Code\Scene.h
@@ -16,7 +32,7 @@
   .\Engine\Utility\Code\Transform.h
   .\Engine\Utility\Code\UI.h
   .\Engine\Utility\Code\UIImage.h
-         16개 파일이 복사되었습니다.
+         17개 파일이 복사되었습니다.
   .\Engine\Utility\Code\*.hpp 
   지정된 파일을 찾을 수 없습니다.
           0개 파일이 복사되었습니다.

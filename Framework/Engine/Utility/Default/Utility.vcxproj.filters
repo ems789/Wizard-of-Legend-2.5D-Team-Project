@@ -46,6 +46,9 @@
     <Filter Include="98.MyMath">
       <UniqueIdentifier>{7f6b66ef-ea27-417f-925b-8eeb5dc7edcb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.GameObject\00.MoveObject">
+      <UniqueIdentifier>{debe3855-77a2-42fa-a76f-61d3c4c34ff7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Code\Management.cpp">
@@ -89,6 +92,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\MyMath.cpp">
       <Filter>98.MyMath</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\MoveObject.cpp">
+      <Filter>03.GameObject\00.MoveObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -136,6 +142,9 @@
     </ClInclude>
     <ClInclude Include="..\Code\MyMath.h">
       <Filter>98.MyMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\MoveObject.h">
+      <Filter>03.GameObject\00.MoveObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

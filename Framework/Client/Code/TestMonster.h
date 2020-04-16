@@ -26,9 +26,14 @@ public:
 
 public:
 	virtual Engine::SPHERE*		Get_Sphere() override { return &m_tSphere; }
-
+	virtual const _vec3*		Get_Pos()	const override;
 private:
 	HRESULT Add_Component();
+
+
+public:		//	About HP
+	virtual _int	Get_HP()	const { return m_iHP; }
+	virtual _int	Get_HPMax() const { return m_iHPMax; }
 
 private:	//	Components
 	Engine::CRcTex*		m_pBufferCom = nullptr;
@@ -38,6 +43,8 @@ private:	//	Components
 
 private:
 	Engine::SPHERE	m_tSphere;
+	_int	m_iHP		= 200;
+	_int	m_iHPMax	= 200;
 
 
 public:

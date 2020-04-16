@@ -1,4 +1,5 @@
-﻿  Resources.vcxproj -> C:\Users\user\OneDrive\Desktop\TeamProject\TeamProject\Framework\Engine\Resources\Default\../Bin/Resources.dll
+﻿     Creating library ../Bin/Resources.lib and object ../Bin/Resources.exp
+  Resources.vcxproj -> D:\TeamProject\Framework\Engine\Resources\Default\../Bin/Resources.dll
   Resources.vcxproj -> ../Bin/Resources.pdb (Full PDB)
   .\Engine\Resources\Code\CubeTex.h
   .\Engine\Resources\Code\RcCol.h

@@ -40,7 +40,7 @@ void CCollisionFunctions::CollisionBulletToObject(const _tchar * pSrcTag, const 
 			if (Engine::CCollisionMgr::CollisionSphereToSphere(tSrcSph, tDestSph))
 			{
 				pSrc->Die();
-				
+				pDest->Hit(pSrc->Get_Attack(), pSrc->Get_Pos());
 			}
 		}
 	}

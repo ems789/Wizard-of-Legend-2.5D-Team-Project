@@ -50,6 +50,11 @@ void CTestMonster::Render_GameObject()
 	m_pBufferCom->Render_Buffer();
 }
 
+const _vec3 * CTestMonster::Get_Pos() const
+{
+	return m_pTransformCom->GetInfo(Engine::INFO_POS);
+}
+
 HRESULT CTestMonster::Add_Component()
 {
 	Engine::CComponent*	pComponent = nullptr;

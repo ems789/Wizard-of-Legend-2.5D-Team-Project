@@ -389,29 +389,29 @@ HRESULT CInven::Setting_SelectBox()
 	return S_OK;
 }
 
-HRESULT CInven::Setting_BaseSkill()
-{
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_BaseSkill", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Inven/spellbookui.png"), E_FAIL);
-
-	CUIImage* pUIBaseImage = CUIImage::Create(m_pGraphicDev, _vec3(850.f, 850.f, 0.f), _vec3(-500.f, 0.f, 0.f), L"Texture_BaseSkill");
-
-	NULL_CHECK_RETURN(pUIBaseImage, E_FAIL);
-	m_pBaseBox = pUIBaseImage;
-
-	return S_OK;
-}
-
-HRESULT CInven::Setting_UpgradedSkill()
-{
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_UpgradeSkill", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Inven/upgradespellbook.png"), E_FAIL);
-
-	CUIImage* pUIUpgradeSpellImage = CUIImage::Create(m_pGraphicDev, _vec3(850.f, 850.f, 0.f), _vec3(-500.f, 0.f, 0.f), L"Texture_UpgradeSkill");
-
-	NULL_CHECK_RETURN(pUIUpgradeSpellImage, E_FAIL);
-	m_pUpgradeBox = pUIUpgradeSpellImage;
-
-	return S_OK;
-}
+//HRESULT CInven::Setting_BaseSkill()
+//{
+//	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_BaseSkill", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Inven/spellbookui.png"), E_FAIL);
+//
+//	CUIImage* pUIBaseImage = CUIImage::Create(m_pGraphicDev, _vec3(850.f, 850.f, 0.f), _vec3(-500.f, 0.f, 0.f), L"Texture_BaseSkill");
+//
+//	NULL_CHECK_RETURN(pUIBaseImage, E_FAIL);
+//	m_pBaseBox = pUIBaseImage;
+//
+//	return S_OK;
+//}
+//
+//HRESULT CInven::Setting_UpgradedSkill()
+//{
+//	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_UpgradeSkill", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Inven/upgradespellbook.png"), E_FAIL);
+//
+//	CUIImage* pUIUpgradeSpellImage = CUIImage::Create(m_pGraphicDev, _vec3(850.f, 850.f, 0.f), _vec3(-500.f, 0.f, 0.f), L"Texture_UpgradeSkill");
+//
+//	NULL_CHECK_RETURN(pUIUpgradeSpellImage, E_FAIL);
+//	m_pUpgradeBox = pUIUpgradeSpellImage;
+//
+//	return S_OK;
+//}
 
 HRESULT CInven::Setting_BasicSkill()
 {
@@ -522,8 +522,8 @@ void CInven::Free()
 	Engine::Safe_Release(m_pBasicWater);
 	Engine::Safe_Release(m_pBasicLightning);
 	Engine::Safe_Release(m_pBasicWind);
-	Engine::Safe_Release(m_pBaseBox);
-	Engine::Safe_Release(m_pUpgradeBox);
+	//Engine::Safe_Release(m_pBaseBox);
+	//Engine::Safe_Release(m_pUpgradeBox);
 	Engine::Safe_Release(m_pSelectBox);
 	Engine::Safe_Release(m_pBufferCom);
 	Engine::Safe_Release(m_pTextureCom);

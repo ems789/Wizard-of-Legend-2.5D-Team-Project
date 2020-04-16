@@ -67,8 +67,8 @@ void CMainApp::Render_MainApp(void)
 	m_pGraphicDev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
 	m_pGraphicDev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 
-	m_pMouse->Render_Mouse();
 	m_pInven->Render_Inven();
+	m_pMouse->Render_Mouse();
 
 	m_pGraphicDev->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
 
