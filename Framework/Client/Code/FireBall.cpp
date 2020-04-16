@@ -37,6 +37,7 @@ _int CFireBall::Use_Skill(const _float& fTimeDelta)
 	
 	_vec3 vStartPos = pTransform->GetInfoRef(Engine::INFO_POS);
 	_vec3 vLook = pTransform->GetInfoRef(Engine::INFO_LOOK);
+	D3DXVec3Normalize(&vLook, &vLook);
 	vStartPos += vLook;
 
 	CFire* pFire = CFire::Create(m_pGraphicDev, vStartPos, pTransform->GetAngleRef(), m_fSpeed, 4, 30.f);
@@ -56,7 +57,7 @@ _int CFireBall::Use_Skill(const _float & fTimeDelta, const _vec3 * pPos, const _
 		Engine::Set_TimeDelta(L"FireBall_CoolTime");
 	
 	_vec3 vStartPos = *pPos;
-	vStartPos += *pDir * 1.5f;
+	vStartPos += *pDir;
 
 	_vec3 vAngle;
 	Engine::CMyMath::DirectionalVectorToAngle(&vAngle, pDir);

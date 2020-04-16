@@ -18,8 +18,6 @@ HRESULT CTestMonster::Ready_GameObject()
 {
 	FAILED_CHECK_RETURN(Add_Component(), E_FAIL);
 
-	m_pTransformCom->Set_Pos(10.f, 0.5f, 10.f);
-
 	m_tSphere.fRadius = 1.f;
 
 	return S_OK;
@@ -35,7 +33,6 @@ _int CTestMonster::Update_GameObject(const _float& fTimeDelta)
 	m_pRendererCom->Add_RenderGroup(Engine::RENDER_ALPHA, this);
 
 	m_tSphere.vPos = m_pTransformCom->GetInfoRef(Engine::INFO_POS);
-
 
 	Engine::Add_GameObject_To_CollisionList(L"Monster", this);
 
@@ -76,6 +73,12 @@ HRESULT CTestMonster::Add_Component()
 	m_mapComponent[Engine::ID_STATIC].emplace(L"Com_Renderer", pComponent);
 	m_pRendererCom->AddRef();
 
+
+
+	const Engine::TEX_INFO* pTexInfo = m_pTextureCom->Get_TexInfo();
+	_vec3 vScale = { pTexInfo->tImgInfo.Width * m_fScale, pTexInfo->tImgInfo.Height * m_fScale, 1.f };
+	m_pTransformCom->Set_Scale(vScale);
+	m_pTransformCom->Update_Component(0.f);
 
 	return S_OK;
 }

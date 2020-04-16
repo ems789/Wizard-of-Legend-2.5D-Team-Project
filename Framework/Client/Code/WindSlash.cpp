@@ -38,7 +38,8 @@ _int CWindSlash::Use_Skill(const _float& fTimeDelta)
 
 	_vec3 vStartPos = pTransform->GetInfoRef(Engine::INFO_POS);
 	_vec3 vLook = pTransform->GetInfoRef(Engine::INFO_LOOK);
-	vStartPos += vLook;
+	D3DXVec3Normalize(&vLook, &vLook);
+	vStartPos += vLook * 1.f;
 
 	_vec3 vAngle = pTransform->GetAngleRef();
 	vAngle.x += D3DXToRadian(90.f);
@@ -60,7 +61,7 @@ _int CWindSlash::Use_Skill(const _float & fTimeDelta, const _vec3 * pPos, const 
 		Engine::Set_TimeDelta(L"WindSlash_CoolTime");
 
 	_vec3 vStartPos = *pPos;
-	vStartPos += *pDir * 1.5f;
+	vStartPos += *pDir * 1.f;
 
 	_vec3 vAngle;
 	Engine::CMyMath::DirectionalVectorToAngle(&vAngle, pDir);

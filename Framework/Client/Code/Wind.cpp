@@ -30,10 +30,7 @@ _int CWind::Update_GameObject(const _float& fTimeDelta)
 	if (m_bIsDead)
 		return 0;
 
-
 	m_pTransformCom->Move_Pos(Engine::INFO_UP, fTimeDelta * m_fSpeed);
-	_vec3 vDistance = m_pTransformCom->GetInfoRef(Engine::INFO_POS) - m_vInitialPos;
-	_float fDist = D3DXVec3Length(&vDistance);
 
 	_int	iExit = CGameObject::Update_GameObject(fTimeDelta);
 
@@ -97,6 +94,7 @@ CWind* CWind::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3& vInitialPos, co
 	pInstance->m_vInitialPos = vInitialPos;
 	pInstance->m_pTransformCom->Set_Pos(vInitialPos);
 	pInstance->m_pTransformCom->Set_Angle(vAngle);
+	pInstance->m_pTransformCom->Update_Component(0.f);
 	pInstance->m_fSpeed = fSpeed;
 	pInstance->m_tFrame.fCurFrame = 0;
 	pInstance->m_tFrame.fMaxFrame = fMaxFrame;

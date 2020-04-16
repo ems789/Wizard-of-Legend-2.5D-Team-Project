@@ -103,6 +103,7 @@ CFire* CFire::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3& vInitialPos, co
 	pInstance->m_vInitialPos = vInitialPos;
 	pInstance->m_pTransformCom->Set_Pos(vInitialPos);
 	pInstance->m_pTransformCom->Set_Angle(vAngle);
+	pInstance->m_pTransformCom->Update_Component(0.f);
 	pInstance->m_fSpeed = fSpeed;
 	pInstance->m_tFrame.fCurFrame = 0;
 	pInstance->m_tFrame.fMaxFrame = fMaxFrame;

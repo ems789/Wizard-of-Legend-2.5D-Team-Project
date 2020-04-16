@@ -39,7 +39,7 @@ _int CTown::Update_Scene(const _float& fTimeDelta)
 	if (Engine::KeyDown(DIK_F7))
 	{
 		//	TestMonster
-		Engine::CGameObject* pGameObject = CTestMonster::Create(m_pGraphicDev, &_vec3(rand()%20 + 10.f, 0.f, rand()%20 + 10.f));
+		Engine::CGameObject* pGameObject = CTestMonster::Create(m_pGraphicDev, &_vec3(rand()%20 + 10.f, 1.f, rand()%20 + 10.f));
 		NULL_CHECK_RETURN(pGameObject, E_FAIL);
 
 		Add_GameObject(L"GameLogic", L"Monster", pGameObject);
@@ -80,7 +80,7 @@ HRESULT CTown::Ready_GameLogic_Layer(const _tchar * pLayerTag)
 
 
 	//	TestMonster
-	pGameObject = CTestMonster::Create(m_pGraphicDev, &_vec3(20.f, 0.f, 20.f));
+	pGameObject = CTestMonster::Create(m_pGraphicDev, &_vec3(20.f, 1.f, 20.f));
 	NULL_CHECK_RETURN(pGameObject, E_FAIL);
 	pLayer->Add_GameObject(L"Monster", pGameObject);
 

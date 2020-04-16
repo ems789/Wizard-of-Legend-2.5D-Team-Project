@@ -94,6 +94,8 @@ private:
 	CPlayer::PLAYER_STATE m_ePreState	= CPlayer::P_END;
 	CPlayer::PLAYER_STATE m_eCurState	= CPlayer::P_END;
 	CPlayer::PLAYER_DIR	  m_eCurDir		= CPlayer::PD_END;
+	_uint	m_iPreCamState = 0;
+	
 	_bool		m_bDir = true;	//	true : right, false : left
 
 	_float	m_fSpeed = 10.f;
@@ -104,6 +106,8 @@ private:
 
 	_int	m_iHP		= 500;
 	_int	m_iHPMax	= 500;
+
+	_float	m_fScale = 0.2f;
 
 public:
 	static CPlayer* Create(LPDIRECT3DDEVICE9 pGraphicDev);

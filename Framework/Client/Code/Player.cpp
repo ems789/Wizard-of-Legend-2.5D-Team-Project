@@ -31,6 +31,9 @@ HRESULT CPlayer::Ready_GameObject()
 	m_tFrame.fFrameSpeed = 0.f;
 
 	m_eCurState = CPlayer::P_IDLE;
+	m_eCurDir = CPlayer::PD_UP;
+	m_iPreCamState = Engine::Get_MainCamType();
+	m_fScale = 0.04f;
 
 	m_pTransformCom->Move_Pos(Engine::INFO_UP, 0.5f);
 
@@ -49,6 +52,12 @@ HRESULT CPlayer::Ready_GameObject()
 
 _int CPlayer::Update_GameObject(const _float& fTimeDelta)
 {
+	if (Engine::Get_MainCamType() != m_iPreCamState)
+	{
+		Turn_To_Camera_Look();
+		m_iPreCamState = Engine::Get_MainCamType();
+	}
+
 	Key_Input(fTimeDelta);
 	Change_State();
 	Update_State(fTimeDelta);
@@ -60,15 +69,16 @@ _int CPlayer::Update_GameObject(const _float& fTimeDelta)
 
 	Engine::Add_GameObject_To_CollisionList(L"Player", this);
 
+	_vec3 vPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
+	
+	cout << "x : " << vPos.x << " y : " << vPos.y << " z : " << vPos.z << endl;
+
 	return iExit;
 }
 
 void CPlayer::Render_GameObject()
 {
-	_matrix matWorld = m_pTransformCom->GetWorldMatrixRef();
-	if (!m_bDir)
-		matWorld._11 = -matWorld._11;
-	m_pGraphicDev->SetTransform(D3DTS_WORLD, &matWorld);
+	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->GetWorldMatrix());
 
 	m_pGraphicDev->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
 	m_pGraphicDev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
@@ -230,20 +240,11 @@ void CPlayer::Turn_To_Camera_Look()
 	vAngle.x = 0.f;
 
 	m_pTransformCom->Set_Angle(&vAngle);
+	m_pTransformCom->Update_Component(0.f);
 }
 
 void CPlayer::Key_Input(const _float & fTimeDelta)
 {
-	//switch (Engine::Get_MainCamType())
-	//{
-	//case Engine::CCameraMgr::MAIN_CAM_1ST:
-	//case Engine::CCameraMgr::MAIN_CAM_3RD:
-	//	Key_Input_For_1stAnd3rdView(fTimeDelta);
-	//	break;
-	//case Engine::CCameraMgr::MAIN_CAM_QUATER:
-	//	Key_Input_For_QuaterView(fTimeDelta);
-	//	break;
-	//}
 
 	
 	switch(Engine::Get_MainCamType())
@@ -278,7 +279,8 @@ void CPlayer::Key_Input_For_Attack(const _float & fTimeDelta)
 	if (Engine::KeyDown(DIK_Q))
 	{
 		Turn_To_Camera_Look();
-		m_vecEquipSkill[2]->Use_Skill(fTimeDelta);
+		if (m_vecEquipSkill[2])
+			m_vecEquipSkill[2]->Use_Skill(fTimeDelta);
 	}
 
 }
@@ -331,9 +333,22 @@ void CPlayer::Key_Input_Attack_For_QuaterView(const _float & fTimeDelta)
 	{
 		D3DXPLANE Plane = { 0.f, 1.f, 0.f, 0.f };
 		_vec3	vPicking;
-		Engine::CMyMath::PickingOnPlane(g_hWnd, m_pGraphicDev, &vPicking, &Plane);
+		_vec2	vMouse;
 
-		m_vecEquipSkill[2]->Use_Skill(fTimeDelta);
+		_matrix	matProj, matView;
+		Engine::Get_MainCamera()->Get_View(&matView);
+		Engine::Get_MainCamera()->Get_Projection(&matProj);
+		Engine::CMyMath::ClientMousePos(g_hWnd, &vMouse);
+
+		Engine::CMyMath::PickingOnPlane(&vPicking, &vMouse, WINCX, WINCY, &matProj, &matView, &Plane);
+
+		_vec3 vCurPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
+		_vec3 vDir = vPicking - vCurPos;
+		vDir.y = 0;
+		D3DXVec3Normalize(&vDir, &vDir);
+
+		if (m_vecEquipSkill[2])
+			m_vecEquipSkill[1]->Use_Skill(fTimeDelta, &vCurPos, &vDir);
 	}
 }
 
@@ -351,6 +366,7 @@ void CPlayer::Key_Input_For_Move(const _float & fTimeDelta)
 
 	_vec3 vMove = { 0.f, 0.f, 0.f };
 
+	_bool bDir = m_bDir;
 	if (Engine::KeyPress(DIK_W))
 	{
 		vMove += vCamLook * m_fSpeed * fTimeDelta;
@@ -365,19 +381,27 @@ void CPlayer::Key_Input_For_Move(const _float & fTimeDelta)
 	{
 		vMove -= vCamRight * m_fSpeed * fTimeDelta;
 		m_eCurDir = PD_RIGHT;
-		m_bDir = false;
+		bDir = false;
 	}
 	if (Engine::KeyPress(DIK_D))
 	{
 		vMove += vCamRight * m_fSpeed * fTimeDelta;
 		m_eCurDir = PD_RIGHT;
-		m_bDir = true;
+		bDir = true;
+	}
+
+	if (m_bDir != bDir)
+	{
+		_vec3 vScale = m_pTransformCom->GetScaleRef();
+		m_pTransformCom->Set_ScaleX(-vScale.x);
+		m_bDir = bDir;
 	}
 
 	if (0.f != vMove.x || 0.f != vMove.y || 0.f != vMove.z)
 	{
 		m_pTransformCom->Move_Pos(vMove);
 		Turn_To_Camera_Look();
+		m_eCurState = P_RUN;
 	}
 	else
 		m_eCurState = P_IDLE;
@@ -397,15 +421,37 @@ void CPlayer::Key_Input_Move_For_QuaterView(const _float & fTimeDelta)
 
 	_vec3 vMove = { 0.f, 0.f, 0.f };
 
+	_bool bDir = m_bDir;
 	if (Engine::KeyPress(DIK_W))
+	{
 		vMove += vCamLook * m_fSpeed * fTimeDelta;
+		m_eCurDir = PD_UP;
+	}
 	if (Engine::KeyPress(DIK_S))
+	{
 		vMove -= vCamLook * m_fSpeed * fTimeDelta;
+		m_eCurDir = PD_DOWN;
+	}
 	if (Engine::KeyPress(DIK_A))
+	{
 		vMove -= vCamRight * m_fSpeed * fTimeDelta;
+		m_eCurDir = PD_RIGHT;
+		bDir = false;
+	}
 	if (Engine::KeyPress(DIK_D))
+	{
 		vMove += vCamRight * m_fSpeed * fTimeDelta;
+		m_eCurDir = PD_RIGHT;
+		bDir = true;
+	}
 	
+	if (m_bDir != bDir)
+	{
+		_vec3 vScale = m_pTransformCom->GetScaleRef();
+		m_pTransformCom->Set_ScaleX(-vScale.x);
+		m_bDir = bDir;
+	}
+
 	if (0.f != vMove.x || 0.f != vMove.y || 0.f != vMove.z)
 	{
 		m_pTransformCom->Move_Pos(vMove);
@@ -458,6 +504,16 @@ void CPlayer::Idle_State()
 	m_tFrame.fCurFrame = 0.f;
 	m_tFrame.fMaxFrame = 0.f;
 	m_tFrame.fFrameSpeed = 10.f;
+
+	const Engine::TEX_INFO* pTexInfo = m_vvTextureCom[P_IDLE][m_eCurDir]->Get_TexInfo();
+
+	_vec3 vScale = { pTexInfo->tImgInfo.Width * m_fScale, pTexInfo->tImgInfo.Height * m_fScale, 1.f };
+	if (!m_bDir)
+		vScale.x = -vScale.x;
+
+	cout << "x : " << vScale.x << " y : " << vScale.y << endl;
+
+	m_pTransformCom->Set_Scale(vScale);
 }
 
 void CPlayer::Run_State()
@@ -465,6 +521,16 @@ void CPlayer::Run_State()
 	m_tFrame.fCurFrame = 0.f;
 	m_tFrame.fMaxFrame = 10.f;
 	m_tFrame.fFrameSpeed = 20.f;
+
+	const Engine::TEX_INFO* pTexInfo = m_vvTextureCom[P_RUN][m_eCurDir]->Get_TexInfo();
+
+	_vec3 vScale = { pTexInfo->tImgInfo.Width * m_fScale, pTexInfo->tImgInfo.Height * m_fScale, 1.f };
+	if (!m_bDir)
+		vScale.x = -vScale.x;
+
+	cout << "x : " << vScale.x << " y : " << vScale.y << endl;
+
+	m_pTransformCom->Set_Scale(vScale);
 }
 
 void CPlayer::Attack_State()

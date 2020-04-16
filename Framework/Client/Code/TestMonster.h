@@ -48,6 +48,8 @@ private:
 	_int	m_iHP		= 200;
 	_int	m_iHPMax	= 200;
 
+	_float	m_fScale = 0.05f;
+	_float	m_fHeight = 0.5f;
 
 public:
 	static CTestMonster* Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3* pPos);
