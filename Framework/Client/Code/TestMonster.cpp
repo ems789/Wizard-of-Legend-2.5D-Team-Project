@@ -80,6 +80,14 @@ HRESULT CTestMonster::Add_Component()
 	return S_OK;
 }
 
+void CTestMonster::Hit(const _int & iAtk, const _vec3 * pAtkPos)
+{
+	m_iHP -= iAtk;
+	if (m_iHP <= 0)
+		m_bIsDead = true;
+
+}
+
 CTestMonster* CTestMonster::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 {
 	CTestMonster* pInstance = new CTestMonster(pGraphicDev);

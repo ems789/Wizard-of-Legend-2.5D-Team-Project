@@ -30,6 +30,8 @@ public:
 private:
 	HRESULT Add_Component();
 
+public:
+	virtual void Hit(const _int& iAtk, const _vec3* pAtkPos) override;
 
 public:		//	About HP
 	virtual _int	Get_HP()	const { return m_iHP; }
