@@ -58,7 +58,6 @@ _int CPlayer::Update_GameObject(const _float& fTimeDelta)
 
 	m_pRendererCom->Add_RenderGroup(Engine::RENDER_ALPHA, this);
 
-
 	Engine::Add_GameObject_To_CollisionList(L"Player", this);
 
 	return iExit;
@@ -66,13 +65,17 @@ _int CPlayer::Update_GameObject(const _float& fTimeDelta)
 
 void CPlayer::Render_GameObject()
 {
-	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->GetWorldMatrix());
+	_matrix matWorld = m_pTransformCom->GetWorldMatrixRef();
+	if (!m_bDir)
+		matWorld._11 = -matWorld._11;
+	m_pGraphicDev->SetTransform(D3DTS_WORLD, &matWorld);
 
 	m_pGraphicDev->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
 	m_pGraphicDev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
 	m_pGraphicDev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 
-	m_pTextureCom->Render_Texture(static_cast<_ulong>(m_tFrame.fCurFrame));
+	//m_pTextureCom->Render_Texture(static_cast<_ulong>(m_tFrame.fCurFrame));
+	m_vvTextureCom[m_eCurState][m_eCurDir]->Render_Texture(static_cast<_ulong>(m_tFrame.fCurFrame));
 	m_pBufferCom->Render_Buffer();
 
 	m_pGraphicDev->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
@@ -108,9 +111,9 @@ HRESULT CPlayer::Add_Component()
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
 	m_mapComponent[Engine::ID_STATIC].emplace(L"Com_Buffer", pComponent);
 
-	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_Player_Idle"));
-	NULL_CHECK_RETURN(pComponent, E_FAIL);
-	m_mapComponent[Engine::ID_STATIC].emplace(L"Com_Texture", pComponent);
+	//pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_Player_Idle"));
+	//NULL_CHECK_RETURN(pComponent, E_FAIL);
+	//m_mapComponent[Engine::ID_STATIC].emplace(L"Com_Texture", pComponent);
 
 	pComponent = m_pTransformCom = Engine::CTransform::Create();
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
@@ -120,6 +123,36 @@ HRESULT CPlayer::Add_Component()
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
 	m_mapComponent[Engine::ID_STATIC].emplace(L"Com_Renderer", pComponent);
 	m_pRendererCom->AddRef();
+	
+	Engine::CTexture* pTextureCom = nullptr;
+
+	m_vvTextureCom.resize(CPlayer::P_END, vector<Engine::CTexture*>(CPlayer::PD_END));
+
+	//	Texture Component Setting;
+	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_Player_IdleUp"));
+	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	m_vvTextureCom[P_IDLE][PD_UP] = pTextureCom;
+
+	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_Player_IdleDown"));
+	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	m_vvTextureCom[P_IDLE][PD_DOWN] = pTextureCom;
+
+	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_Player_IdleRight"));
+	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	m_vvTextureCom[P_IDLE][PD_RIGHT] = pTextureCom;
+
+
+	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_Player_RunUp"));
+	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	m_vvTextureCom[P_RUN][PD_UP] = pTextureCom;
+
+	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_Player_RunDown"));
+	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	m_vvTextureCom[P_RUN][PD_DOWN] = pTextureCom;
+
+	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_Player_RunRight"));
+	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	m_vvTextureCom[P_RUN][PD_RIGHT] = pTextureCom;
 
 	return S_OK;
 }
@@ -212,6 +245,7 @@ void CPlayer::Key_Input(const _float & fTimeDelta)
 	//	break;
 	//}
 
+	
 	switch(Engine::Get_MainCamType())
 	{
 	case Engine::CCameraMgr::MAIN_CAM_1ST:
@@ -315,26 +349,38 @@ void CPlayer::Key_Input_For_Move(const _float & fTimeDelta)
 	D3DXVec3Normalize(&vCamLook, &vCamLook);
 	D3DXVec3Normalize(&vCamRight, &vCamRight);
 
+	_vec3 vMove = { 0.f, 0.f, 0.f };
+
 	if (Engine::KeyPress(DIK_W))
 	{
-		m_pTransformCom->Move_Pos(&(vCamLook * m_fSpeed * fTimeDelta));
-		Turn_To_Camera_Look();
+		vMove += vCamLook * m_fSpeed * fTimeDelta;
+		m_eCurDir = PD_UP;
 	}
 	if (Engine::KeyPress(DIK_S))
 	{
-		m_pTransformCom->Move_Pos(&(vCamLook * -m_fSpeed * fTimeDelta));
-		Turn_To_Camera_Look();
+		vMove -= vCamLook * m_fSpeed * fTimeDelta;
+		m_eCurDir = PD_DOWN;
 	}
 	if (Engine::KeyPress(DIK_A))
 	{
-		m_pTransformCom->Move_Pos(&(vCamRight * -m_fSpeed * fTimeDelta));
-		Turn_To_Camera_Look();
+		vMove -= vCamRight * m_fSpeed * fTimeDelta;
+		m_eCurDir = PD_RIGHT;
+		m_bDir = false;
 	}
 	if (Engine::KeyPress(DIK_D))
 	{
-		m_pTransformCom->Move_Pos(&(vCamRight * m_fSpeed * fTimeDelta));
+		vMove += vCamRight * m_fSpeed * fTimeDelta;
+		m_eCurDir = PD_RIGHT;
+		m_bDir = true;
+	}
+
+	if (0.f != vMove.x || 0.f != vMove.y || 0.f != vMove.z)
+	{
+		m_pTransformCom->Move_Pos(vMove);
 		Turn_To_Camera_Look();
 	}
+	else
+		m_eCurState = P_IDLE;
 }
 
 void CPlayer::Key_Input_Move_For_QuaterView(const _float & fTimeDelta)
@@ -360,7 +406,14 @@ void CPlayer::Key_Input_Move_For_QuaterView(const _float & fTimeDelta)
 	if (Engine::KeyPress(DIK_D))
 		vMove += vCamRight * m_fSpeed * fTimeDelta;
 	
-	m_pTransformCom->Move_Pos(vMove);
+	if (0.f != vMove.x || 0.f != vMove.y || 0.f != vMove.z)
+	{
+		m_pTransformCom->Move_Pos(vMove);
+		m_eCurState = P_RUN;
+	}
+	else
+		m_eCurState = P_IDLE;
+		
 }
 
 void CPlayer::Key_Input_For_1stAnd3rdView(const _float & fTimeDelta)
@@ -410,8 +463,8 @@ void CPlayer::Idle_State()
 void CPlayer::Run_State()
 {
 	m_tFrame.fCurFrame = 0.f;
-	m_tFrame.fMaxFrame = 0.f;
-	m_tFrame.fFrameSpeed = 10.f;
+	m_tFrame.fMaxFrame = 10.f;
+	m_tFrame.fFrameSpeed = 20.f;
 }
 
 void CPlayer::Attack_State()
@@ -502,6 +555,12 @@ CPlayer* CPlayer::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CPlayer::Free()
 {
+	for (_uint i = 0; i < m_vvTextureCom.size(); ++i)
+	{
+		for (_uint j = 0; j < m_vvTextureCom[i].size(); ++j)
+			Engine::Safe_Release(m_vvTextureCom[i][j]);
+	}
+
 	for (_uint i = 0; i < m_vecEquipSkill.size(); ++i)
 	{
 		if (m_vecEquipSkill[i])

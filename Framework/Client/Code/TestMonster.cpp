@@ -80,12 +80,22 @@ HRESULT CTestMonster::Add_Component()
 	return S_OK;
 }
 
-CTestMonster* CTestMonster::Create(LPDIRECT3DDEVICE9 pGraphicDev)
+void CTestMonster::Hit(const _int & iAtk, const _vec3 * pAtkPos)
+{
+	m_iHP -= iAtk;
+	if (m_iHP <= 0)
+		m_bIsDead = true;
+
+}
+
+CTestMonster* CTestMonster::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3* pPos)
 {
 	CTestMonster* pInstance = new CTestMonster(pGraphicDev);
 
 	if (FAILED(pInstance->Ready_GameObject()))
 		Engine::Safe_Release(pInstance);
+
+	pInstance->m_pTransformCom->Set_Pos(pPos);
 
 	return pInstance;
 }
