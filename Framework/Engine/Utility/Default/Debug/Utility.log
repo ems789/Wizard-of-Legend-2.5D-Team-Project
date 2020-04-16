@@ -1,19 +1,23 @@
-﻿  Collider.cpp
-  Generating Code...
-  Compiling...
-  Renderer.cpp
-  MoveObject.cpp
-  Layer.cpp
-  Effect.cpp
-  Generating Code...
-  Skipping... (no relevant changes detected)
+﻿  Transform.cpp
   Skill.cpp
   Scene.cpp
+  Renderer.cpp
+  MyMath.cpp
+d:\direct3d project\새 폴더\framework\engine\utility\code\mymath.cpp(283): warning C4244: '=': conversion from 'LONG' to 'FLOAT', possible loss of data
+d:\direct3d project\새 폴더\framework\engine\utility\code\mymath.cpp(284): warning C4244: '=': conversion from 'LONG' to 'FLOAT', possible loss of data
+  MoveObject.cpp
   Management.cpp
+  Layer.cpp
   GameObject.cpp
+  Effect.cpp
+  Component.cpp
   CollisionMgr.cpp
+  Collider.cpp
+  CameraMgr.cpp
+  Camera.cpp
+  Generating Code...
      Creating library ../Bin/Utility.lib and object ../Bin/Utility.exp
-  Utility.vcxproj -> D:\TeamProject\Framework\Engine\Utility\Default\../Bin/Utility.dll
+  Utility.vcxproj -> D:\Direct3D Project\새 폴더\Framework\Engine\Utility\Default\../Bin/Utility.dll
   Utility.vcxproj -> ../Bin/Utility.pdb (Full PDB)
   .\Engine\Utility\Code\Camera.h
   .\Engine\Utility\Code\CameraMgr.h

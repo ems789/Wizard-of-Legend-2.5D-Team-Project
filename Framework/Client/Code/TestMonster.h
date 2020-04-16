@@ -50,7 +50,7 @@ private:
 
 
 public:
-	static CTestMonster* Create(LPDIRECT3DDEVICE9 pGraphicDev);
+	static CTestMonster* Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3* pPos);
 
 private:
 	virtual void Free() override;

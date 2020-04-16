@@ -88,12 +88,14 @@ void CTestMonster::Hit(const _int & iAtk, const _vec3 * pAtkPos)
 
 }
 
-CTestMonster* CTestMonster::Create(LPDIRECT3DDEVICE9 pGraphicDev)
+CTestMonster* CTestMonster::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3* pPos)
 {
 	CTestMonster* pInstance = new CTestMonster(pGraphicDev);
 
 	if (FAILED(pInstance->Ready_GameObject()))
 		Engine::Safe_Release(pInstance);
+
+	pInstance->m_pTransformCom->Set_Pos(pPos);
 
 	return pInstance;
 }
