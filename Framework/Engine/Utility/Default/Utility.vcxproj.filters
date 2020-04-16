@@ -37,6 +37,15 @@
     <Filter Include="08.Skill">
       <UniqueIdentifier>{581d0862-b640-4a4d-b8d2-7067fb836bf7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="09.Collision">
+      <UniqueIdentifier>{660e1e1b-532a-43cf-ab51-83576bab3050}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="09.Collision\00.Manager">
+      <UniqueIdentifier>{e1f5ddf5-3a67-41b5-a33b-7ef513e959a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98.MyMath">
+      <UniqueIdentifier>{7f6b66ef-ea27-417f-925b-8eeb5dc7edcb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Code\Management.cpp">
@@ -71,6 +80,15 @@
     </ClCompile>
     <ClCompile Include="..\Code\Skill.cpp">
       <Filter>08.Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Collider.cpp">
+      <Filter>09.Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CollisionMgr.cpp">
+      <Filter>09.Collision\00.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\MyMath.cpp">
+      <Filter>98.MyMath</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +127,15 @@
     </ClInclude>
     <ClInclude Include="..\Code\Skill.h">
       <Filter>08.Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Collider.h">
+      <Filter>09.Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\CollisionMgr.h">
+      <Filter>09.Collision\00.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\MyMath.h">
+      <Filter>98.MyMath</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

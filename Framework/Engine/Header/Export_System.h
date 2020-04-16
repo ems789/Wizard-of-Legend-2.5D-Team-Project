@@ -55,7 +55,9 @@ inline HRESULT	Ready_InputDev(HINSTANCE hInst, HWND hWnd);
 inline _bool	KeyDown(_ubyte byKeyID);
 inline _bool	KeyUp(_ubyte byKeyID);
 inline _bool	KeyPress(_ubyte byKeyID);
-
+inline _bool	MouseDown(MOUSEKEYSTATE eMouse);
+inline _bool	MouseUp(MOUSEKEYSTATE eMouse);
+inline _bool	MousePress(MOUSEKEYSTATE eMouse);
 
 //	Release System
 inline void Release_System();

@@ -23,6 +23,10 @@ public:
 	_bool KeyUp(_ubyte byKeyID);
 	_bool KeyPress(_ubyte byKeyID);
 
+	_bool MouseDown(MOUSEKEYSTATE eMouse);
+	_bool MouseUp(MOUSEKEYSTATE eMouse);
+	_bool MousePress(MOUSEKEYSTATE eMouse);
+
 public:
 	HRESULT		Ready_InputDev(HINSTANCE hInst, HWND hWnd);
 	void		Set_InputDev();
@@ -39,6 +43,8 @@ private:
 	_bool			m_bKeyDown[256];
 	_bool			m_bKeyUp[256];
 	DIMOUSESTATE	m_tMouseState;
+	_bool			m_bMouseDown[DIM_END];
+	_bool			m_bMouseUp[DIM_END];
 
 public:
 	virtual void Free();

@@ -115,6 +115,15 @@
     <Filter Include="05.Skill\00.Fire\00.FireBall\00.Fire">
       <UniqueIdentifier>{5bfa02da-70d8-46fd-b727-64560f59d56e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObject\03.Town\00.TestMonster">
+      <UniqueIdentifier>{f64d61ae-4f8a-42b2-8539-97c0eef3e42b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="96.UIImage">
+      <UniqueIdentifier>{3a3a0145-d36f-45c8-aff7-79c17c1647db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="95.CollisionFunctions">
+      <UniqueIdentifier>{048c20da-9fe8-42fe-a349-5ef6cd2675ae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -201,6 +210,15 @@
     <ClInclude Include="..\Code\Fire.h">
       <Filter>05.Skill\00.Fire\00.FireBall\00.Fire</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\TestMonster.h">
+      <Filter>02.GameObject\03.Town\00.TestMonster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Engine\Utility\Code\UIImage.h">
+      <Filter>96.UIImage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\CollisionFunctions.h">
+      <Filter>95.CollisionFunctions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -262,6 +280,15 @@
     </ClCompile>
     <ClCompile Include="..\Code\Fire.cpp">
       <Filter>05.Skill\00.Fire\00.FireBall\00.Fire</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\TestMonster.cpp">
+      <Filter>02.GameObject\03.Town\00.TestMonster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Engine\Utility\Code\UIImage.cpp">
+      <Filter>96.UIImage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CollisionFunctions.cpp">
+      <Filter>95.CollisionFunctions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

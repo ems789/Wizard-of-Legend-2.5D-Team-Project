@@ -131,10 +131,24 @@ HRESULT	Remove_Camera(const _ulong& dwContainerIdx, const _tchar* pCameraTag)
 
 
 
+//	CollisionMgr
+//	Get
+list<CGameObject*>*	Get_CollisionObjectList(const _tchar* pCollisionListTag)
+{
+	return CCollisionMgr::GetInstance()->Get_CollisionObjectList(pCollisionListTag);
+}
+//	Set
+//	General
+void	Add_GameObject_To_CollisionList(const _tchar* pCollisionListTag, CGameObject* pObj)
+{
+	CCollisionMgr::GetInstance()->Add_GameObject(pCollisionListTag, pObj);
+}
+
 
 //	Utility Release
 void Release_Utility(void)
 {
+	CCollisionMgr::GetInstance()->DestroyInstance();
 	CCameraMgr::GetInstance()->DestroyInstance();
 	CRenderer::GetInstance()->DestroyInstance();
 	CManagement::GetInstance()->DestroyInstance();

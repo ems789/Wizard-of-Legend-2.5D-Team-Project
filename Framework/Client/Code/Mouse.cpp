@@ -47,7 +47,14 @@ void CMouse::Render_Mouse()
 	if (false == m_bCursorRender)
 		return;
 
-	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->GetWorldMatrix());
+	if (m_bAimingPoint)
+	{
+		_matrix matWorld = m_pTransformCom->GetWorldMatrixRef();
+		ZeroMemory(&matWorld.m[3][0], sizeof(_vec3));
+		m_pGraphicDev->SetTransform(D3DTS_WORLD, &matWorld);
+	}
+	else
+		m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->GetWorldMatrix());
 
 	m_pTextureCom->Render_Texture();
 	m_pBufferCom->Render_Buffer();

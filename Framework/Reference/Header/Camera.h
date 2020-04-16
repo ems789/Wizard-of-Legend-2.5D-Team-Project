@@ -15,7 +15,7 @@ protected:
 public:
 	virtual HRESULT Ready_Camera();
 	virtual	_int	Update_Camera(const _float& fTimeDelta);
-
+	virtual HRESULT Reset_Camera() { return S_OK; }
 
 public:	//	Get Functions
 	const _matrix*	Get_View(_matrix* pmatView = nullptr)		const { if (pmatView) memcpy(pmatView, &m_matView, sizeof(_matrix)); return &m_matView; }

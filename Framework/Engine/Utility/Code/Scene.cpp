@@ -1,5 +1,5 @@
 #include "Scene.h"
-
+#include "CollisionMgr.h"
 USING(Engine)
 
 Engine::CScene::CScene(LPDIRECT3DDEVICE9 pGraphicDev)
@@ -37,6 +37,8 @@ const CGameObject * CScene::Get_GameObjcet(const _tchar * pLayerTag, const _tcha
 
 HRESULT Engine::CScene::Ready_Scene()
 {
+	m_pCollisionMgr = CCollisionMgr::GetInstance();
+	NULL_CHECK_RETURN(m_pCollisionMgr, E_FAIL);
 	return S_OK;
 }
 
@@ -51,6 +53,8 @@ _int Engine::CScene::Update_Scene(const _float& fTimeDelta)
 		if (iExit & 0x80000000)
 			return -1;
 	}
+
+	m_pCollisionMgr->Collision(fTimeDelta);
 
 	return 0;
 }
@@ -93,6 +97,8 @@ HRESULT CScene::Add_GameObject(const _tchar * pLayerTag, const _tchar * pObjTag,
 
 void Engine::CScene::Free()
 {
+	//m_pCollisionMgr->DestroyInstance();
+
 	for_each(m_mapLayer.begin(), m_mapLayer.end(), CDeleteMap());
 	m_mapLayer.clear();
 

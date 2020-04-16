@@ -28,6 +28,23 @@ _int Engine::CCameraMgr::Update_MainCamera(const _float& fTimeDelta)
 	return iExit;
 }
 
+HRESULT CCameraMgr::SetUp_Alpha()
+{
+	m_pGraphicDev->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
+	m_pGraphicDev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+	m_pGraphicDev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+
+	return S_OK;
+
+}
+
+HRESULT CCameraMgr::Finish_Alpha()
+{
+	m_pGraphicDev->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
+
+	return S_OK;
+}
+
 HRESULT CCameraMgr::SetUp_RenderUI()
 {
 	_int iExit = Update_OrthogonalCam();
@@ -96,6 +113,7 @@ HRESULT Engine::CCameraMgr::SetUp_MainCamera(const _ulong& dwContainerIdx, const
 
 	Safe_Release(m_pMainCamera);
 	m_pMainCamera = pCamera;
+	m_pMainCamera->Reset_Camera();
 	m_pMainCamera->AddRef();
 
 	return S_OK;
@@ -177,13 +195,20 @@ void CCameraMgr::Key_Input()
 	if (false == m_bCanKeyInput)
 		return;
 	if (CInputDev::GetInstance()->KeyDown(DIK_F1))
+	{
 		m_eMainCam = MAIN_CAM_1ST;
+		SetUp_MainCamera(CAM_STATIC, m_szBasicCamTag[m_eMainCam]);
+	}
 	if (CInputDev::GetInstance()->KeyDown(DIK_F2))
+	{
 		m_eMainCam = MAIN_CAM_3RD;
+		SetUp_MainCamera(CAM_STATIC, m_szBasicCamTag[m_eMainCam]);
+	}
 	if (CInputDev::GetInstance()->KeyDown(DIK_F3))
+	{
 		m_eMainCam = MAIN_CAM_QUATER;
-
-	SetUp_MainCamera(CAM_STATIC, m_szBasicCamTag[m_eMainCam]);
+		SetUp_MainCamera(CAM_STATIC, m_szBasicCamTag[m_eMainCam]);
+	}
 }
 
 void Engine::CCameraMgr::Free()

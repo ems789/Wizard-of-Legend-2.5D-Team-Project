@@ -15,7 +15,7 @@ Engine::CInputDev::~CInputDev()
 
 _bool CInputDev::KeyDown(_ubyte byKeyID)
 {
-	_bool	bCurKeyState = m_byKeyState[byKeyID] & 0x80;
+	_bool	bCurKeyState = (_bool)(m_byKeyState[byKeyID] & 0x80);
 
 	//	전에 누른 적 없고 현재 눌렀을 때 true
 	if (!(m_bKeyDown[byKeyID]) && (bCurKeyState))
@@ -36,7 +36,7 @@ _bool CInputDev::KeyDown(_ubyte byKeyID)
 
 _bool CInputDev::KeyUp(_ubyte byKeyID)
 {
-	_bool	bCurKeyState = m_byKeyState[byKeyID] & 0x80;
+	_bool	bCurKeyState = (_bool)(m_byKeyState[byKeyID] & 0x80);
 
 	//	전에 누른 적 있고 현재 누르지 않았을 때 true;
 	if (m_bKeyUp[byKeyID] && !bCurKeyState)
@@ -57,7 +57,54 @@ _bool CInputDev::KeyUp(_ubyte byKeyID)
 
 _bool CInputDev::KeyPress(_ubyte byKeyID)
 {
-	return m_byKeyState[byKeyID] & 0x80;
+	return  (_bool)(m_byKeyState[byKeyID] & 0x80);
+}
+
+_bool CInputDev::MouseDown(MOUSEKEYSTATE eMouse)
+{
+	_bool	bCurKeyState = (_bool)(m_tMouseState.rgbButtons[eMouse] & 0x80);
+
+	//	전에 누른 적 없고 현재 눌렀을 때 true
+	if (!(m_bMouseDown[eMouse]) && (bCurKeyState))
+	{
+		m_bMouseDown[eMouse] = true;
+		return true;
+	}
+
+	//	전에 누른 적 있고 현재 누르지 않았을 때 false
+	if (m_bMouseDown[eMouse] && !bCurKeyState)
+	{
+		m_bMouseDown[eMouse] = false;
+		return false;
+	}
+
+	return false;
+}
+
+_bool CInputDev::MouseUp(MOUSEKEYSTATE eMouse)
+{
+	_bool	bCurKeyState = (_bool)(m_tMouseState.rgbButtons[eMouse] & 0x80);
+
+	//	전에 누른 적 있고 현재 누르지 않았을 때 true;
+	if (m_bMouseUp[eMouse] && !bCurKeyState)
+	{
+		m_bMouseUp[eMouse] = false;
+		return true;
+
+	}
+
+	if (!m_bMouseUp[eMouse] && bCurKeyState)
+	{
+		m_bMouseUp[eMouse] = true;
+		return false;
+	}
+
+	return false;
+}
+
+_bool CInputDev::MousePress(MOUSEKEYSTATE eMouse)
+{
+	return  (_bool)(m_tMouseState.rgbButtons[eMouse] & 0x80);
 }
 
 HRESULT Engine::CInputDev::Ready_InputDev(HINSTANCE hInst, HWND hWnd)

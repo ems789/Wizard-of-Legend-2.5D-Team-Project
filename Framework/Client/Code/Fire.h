@@ -24,6 +24,9 @@ public:
 	virtual _int Update_GameObject(const _float& fTimeDelta) override;
 	virtual void Render_GameObjcet() override;
 
+public:
+	virtual Engine::SPHERE*		Get_Sphere() override { return &m_tSphere; }
+
 private:
 	HRESULT		Add_Component();
 	void		Animation(const _float& fTimeDelta);
@@ -37,10 +40,11 @@ private:	//	Components
 private:
 	_vec3	m_vInitialPos	= { 0.f, 0.f, 0.f };
 	_vec3	m_vDir			= { 0.f, 0.f, 0.f };
-	_float	m_fSpeed		= 50.f;
+	_float	m_fSpeed		= 10.f;
 	_float	m_fLimitDistance = 50.f;
 
 	FRAME	m_tFrame;
+	Engine::SPHERE m_tSphere;
 
 public:
 	static CFire* Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3& vInitialPos, const _vec3& vAngle, const _float& fSpeed, const _float& fMaxFrame, const _float& fFrameSpeed);

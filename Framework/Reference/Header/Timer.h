@@ -16,6 +16,7 @@ public:
 	HRESULT Ready_Timer();
 	void	Set_TimeDelta();
 	_float	Get_TimeDelta() { return m_fTimeDelta; }
+	void	Set_CumulativeTime();
 	_float	Get_CumulativeTime();
 
 private:
@@ -25,6 +26,7 @@ private:
 	LARGE_INTEGER		m_CpuTick;
 
 	_float				m_fTimeDelta;
+	_float				m_fPrevTime;
 
 public:
 	static CTimer*	Create();

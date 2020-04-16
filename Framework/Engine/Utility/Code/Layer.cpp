@@ -57,7 +57,6 @@ _int Engine::CLayer::Update_Layer(const _float& fTimeDelta)
 				iter->second->Set_IsDead(true);
 			else
 				iter = m_mapObject.erase(iter);
-			
 		}
 		else
 			++iter;
@@ -74,10 +73,10 @@ void Engine::CLayer::Render_Layer()
 
 HRESULT Engine::CLayer::Add_GameObject(const _tchar* pObjTag, CGameObject* pGameObject)
 {
-	auto iter = find_if(m_mapObject.begin(), m_mapObject.end(), CTag_Finder(pObjTag));
+	//auto iter = find_if(m_mapObject.begin(), m_mapObject.end(), CTag_Finder(pObjTag));
 
-	if (m_mapObject.end() != iter)
-		return E_FAIL;
+	//if (m_mapObject.end() != iter)
+	//	return E_FAIL;
 
 	m_mapObject.emplace(pObjTag, pGameObject);
 

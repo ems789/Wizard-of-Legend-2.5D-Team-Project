@@ -160,8 +160,10 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Engine\Utility\Code\UIImage.h" />
     <ClInclude Include="..\Code\BackGround.h" />
     <ClInclude Include="..\Code\CastingCircle.h" />
+    <ClInclude Include="..\Code\CollisionFunctions.h" />
     <ClInclude Include="..\Code\Fire.h" />
     <ClInclude Include="..\Code\FireBall.h" />
     <ClInclude Include="..\Code\FirstViewCamera.h" />
@@ -175,6 +177,7 @@
     <ClInclude Include="..\Code\PlayerHP.h" />
     <ClInclude Include="..\Code\QuaterViewCamera.h" />
     <ClInclude Include="..\Code\Stage.h" />
+    <ClInclude Include="..\Code\TestMonster.h" />
     <ClInclude Include="..\Code\TestTerrain.h" />
     <ClInclude Include="..\Code\ThirdViewCamera.h" />
     <ClInclude Include="..\Code\Town.h" />
@@ -190,8 +193,10 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Engine\Utility\Code\UIImage.cpp" />
     <ClCompile Include="..\Code\BackGround.cpp" />
     <ClCompile Include="..\Code\CastingCircle.cpp" />
+    <ClCompile Include="..\Code\CollisionFunctions.cpp" />
     <ClCompile Include="..\Code\Fire.cpp" />
     <ClCompile Include="..\Code\FireBall.cpp" />
     <ClCompile Include="..\Code\FirstViewCamera.cpp" />
@@ -205,6 +210,7 @@
     <ClCompile Include="..\Code\PlayerHP.cpp" />
     <ClCompile Include="..\Code\QuaterViewCamera.cpp" />
     <ClCompile Include="..\Code\Stage.cpp" />
+    <ClCompile Include="..\Code\TestMonster.cpp" />
     <ClCompile Include="..\Code\TestTerrain.cpp" />
     <ClCompile Include="..\Code\ThirdViewCamera.cpp" />
     <ClCompile Include="..\Code\Town.cpp" />

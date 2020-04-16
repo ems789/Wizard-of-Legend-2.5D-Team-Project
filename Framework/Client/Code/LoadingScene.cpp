@@ -18,6 +18,8 @@ CLoadingScene::~CLoadingScene()
 
 HRESULT CLoadingScene::Ready_Scene()
 {
+	FAILED_CHECK_RETURN(CScene::Ready_Scene(), E_FAIL);
+
 	m_pLoading = CLoading::Create(m_pGraphicDev, LOADING_STAGE);
 	NULL_CHECK_RETURN(m_pLoading, E_FAIL);
 

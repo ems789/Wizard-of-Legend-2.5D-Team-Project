@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "FirstViewCamera.h"
+#include "Mouse.h"
 
 #include "Export_Function.h"
 
@@ -29,10 +30,21 @@ HRESULT CFirstViewCamera::Ready_Camera()
 _int CFirstViewCamera::Update_Camera(const _float& fTimeDelta)
 {
 	Update_EyeAtUp(fTimeDelta);
+	Key_Input();
 
 	_int iExit = Engine::CCamera::Update_Camera(fTimeDelta);
 
 	return 0;
+}
+
+HRESULT CFirstViewCamera::Reset_Camera()
+{
+	m_bFixCursor = true;
+	
+	CMouse::GetInstance()->AnimingPointOn();
+	CMouse::GetInstance()->CursorRenderOn();
+
+	return S_OK;
 }
 
 void CFirstViewCamera::Update_EyeAtUp(const _float & fTimeDelta)
@@ -71,6 +83,24 @@ void CFirstViewCamera::Mouse_Move(const _float & fTimeDelta)
 	POINT pt = { WINCX / 2, WINCY / 2 };
 	ClientToScreen(g_hWnd, &pt);
 	SetCursorPos(pt.x, pt.y);
+}
+
+void CFirstViewCamera::Key_Input()
+{
+	if (Engine::KeyDown(DIK_TAB))
+	{
+		m_bFixCursor = !m_bFixCursor;
+		if (m_bFixCursor)
+		{
+			//CMouse::GetInstance()->CursorRenderOff();
+			CMouse::GetInstance()->AnimingPointOn();
+		}
+		else
+		{
+			//CMouse::GetInstance()->CursorRenderOn();
+			CMouse::GetInstance()->AnimingPointOff();
+		}
+	}
 }
 
 CFirstViewCamera * CFirstViewCamera::Create(LPDIRECT3DDEVICE9 pGraphicDev)

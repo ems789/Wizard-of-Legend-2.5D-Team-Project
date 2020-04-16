@@ -39,6 +39,16 @@ _int CThirdViewCamera::Update_Camera(const _float& fTimeDelta)
 	return iExit;
 }
 
+HRESULT CThirdViewCamera::Reset_Camera()
+{
+	m_bFixCursor = true;
+
+	CMouse::GetInstance()->CursorRenderOn();
+	CMouse::GetInstance()->AnimingPointOn();
+
+	return S_OK;
+}
+
 void CThirdViewCamera::Update_EyeAtUp(const _float& fTimeDelta)
 {
 	Mouse_Move(fTimeDelta);
@@ -89,10 +99,12 @@ void CThirdViewCamera::Key_Input()
 	if (Engine::KeyDown(DIK_TAB))
 	{
 		m_bFixCursor = !m_bFixCursor;
+
 		if (m_bFixCursor)
-			CMouse::GetInstance()->CursorRenderOff();
+			CMouse::GetInstance()->AnimingPointOn();
 		else
-			CMouse::GetInstance()->CursorRenderOn();
+			CMouse::GetInstance()->AnimingPointOff();
+		
 	}
 }
 

@@ -26,7 +26,7 @@ void Engine::CRenderer::Add_RenderGroup(RENDERID eGroup, CGameObject* pGameObjec
 
 void Engine::CRenderer::Render_GameObject()
 {
-	for (_uint i = 0; i < RENDER_UI; ++i)
+	for (_uint i = 0; i < RENDER_ALPHA; ++i)
 	{
 		for (auto& pObj : m_RenderGroup[i])
 		{
@@ -36,6 +36,18 @@ void Engine::CRenderer::Render_GameObject()
 
 		m_RenderGroup[i].clear();
 	}
+
+	CCameraMgr::GetInstance()->SetUp_Alpha();
+
+	for (auto& pObj : m_RenderGroup[RENDER_ALPHA])
+	{
+		pObj->Render_GameObjcet();
+		Safe_Release(pObj);
+	}
+
+	m_RenderGroup[RENDER_ALPHA].clear();
+
+	CCameraMgr::GetInstance()->Finish_Alpha();
 
 	CCameraMgr::GetInstance()->SetUp_RenderUI();
 

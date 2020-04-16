@@ -51,6 +51,9 @@ _int CPlayer::Update_GameObject(const _float& fTimeDelta)
 
 	m_pRendererCom->Add_RenderGroup(Engine::RENDER_ALPHA, this);
 
+
+	Engine::Add_GameObject_To_CollisionList(L"Player", this);
+
 	return iExit;
 }
 
@@ -72,6 +75,7 @@ _int CPlayer::Change_Normal_Skill(Engine::CSkill * pSkill)
 {
 	if (m_vecEquipSkill[0] != nullptr)
 		Engine::Safe_Release(m_vecEquipSkill[0]);
+
 	m_vecEquipSkill[0] = pSkill;
 	m_vecEquipSkill[0]->AddRef();
 
@@ -82,6 +86,7 @@ _int CPlayer::Change_Upgrade_Skill(Engine::CSkill * pSkill)
 {
 	if (m_vecEquipSkill[1] != nullptr)
 		Engine::Safe_Release(m_vecEquipSkill[1]);
+
 	m_vecEquipSkill[1] = pSkill;
 	m_vecEquipSkill[1]->AddRef();
 
@@ -178,6 +183,15 @@ _int CPlayer::Update_State(const _float& fTimeDelta)
 	return iExit;
 }
 
+void CPlayer::Turn_To_Camera_Look()
+{
+	_vec3 vAngle = { 0.f, 0.f, 0.f };
+	Engine::Get_MainCameraAngle(&vAngle);
+	vAngle.x = 0.f;
+
+	m_pTransformCom->Set_Angle(&vAngle);
+}
+
 void CPlayer::Key_Input(const _float & fTimeDelta)
 {
 	//switch (Engine::Get_MainCamType())
@@ -191,16 +205,63 @@ void CPlayer::Key_Input(const _float & fTimeDelta)
 	//	break;
 	//}
 
-	Key_Input_For_Move(fTimeDelta);
-	
-	if (Engine::Get_DIMouseState(Engine::DIM_RB) & 0x80)
+	switch(Engine::Get_MainCamType())
 	{
+	case Engine::CCameraMgr::MAIN_CAM_1ST:
+	case Engine::CCameraMgr::MAIN_CAM_3RD:
+		Key_Input_For_Move(fTimeDelta);
+		Key_Input_For_Attack(fTimeDelta);
+		break;
+	case Engine::CCameraMgr::MAIN_CAM_QUATER:
+		Key_Input_Move_For_QuaterView(fTimeDelta);
+		Key_Input_Attack_For_QuaterView(fTimeDelta);
+		break;
+	}
+
+}
+
+void CPlayer::Key_Input_For_Attack(const _float & fTimeDelta)
+{
+
+	if (Engine::MousePress(Engine::DIM_RB))
+	{
+		Turn_To_Camera_Look();
 		m_vecEquipSkill[0]->Use_Skill(fTimeDelta);
 	}
 
 	if (Engine::KeyDown(DIK_Q))
+	{
+		Turn_To_Camera_Look();
 		m_vecEquipSkill[1]->Use_Skill(fTimeDelta);
+	}
 
+}
+
+void CPlayer::Key_Input_Attack_For_QuaterView(const _float & fTimeDelta)
+{
+	if (Engine::MousePress(Engine::DIM_RB))
+	{
+		D3DXPLANE Plane = { 0.f, 1.f, 0.f, 0.f };
+		_vec3	vPicking;
+		Engine::CMyMath::PickingOnPlane(g_hWnd, m_pGraphicDev, &vPicking, &Plane);
+
+		cout << "x : " << vPicking.x << " y : " << vPicking.y << " z : " << vPicking.z << endl;
+
+		_vec3 vCurPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
+		_vec3 vDir = vPicking - vCurPos;
+		D3DXVec3Normalize(&vDir, &vDir);
+
+		m_vecEquipSkill[0]->Use_Skill(fTimeDelta, &vCurPos, &vDir);
+	}
+
+	if (Engine::KeyDown(DIK_Q))
+	{
+		D3DXPLANE Plane = { 0.f, 1.f, 0.f, 0.f };
+		_vec3	vPicking;
+		Engine::CMyMath::PickingOnPlane(g_hWnd, m_pGraphicDev, &vPicking, &Plane);
+
+		m_vecEquipSkill[1]->Use_Skill(fTimeDelta);
+	}
 }
 
 void CPlayer::Key_Input_For_Move(const _float & fTimeDelta)
@@ -215,32 +276,29 @@ void CPlayer::Key_Input_For_Move(const _float & fTimeDelta)
 	D3DXVec3Normalize(&vCamLook, &vCamLook);
 	D3DXVec3Normalize(&vCamRight, &vCamRight);
 
-	_vec3 vAngle = { 0.f, 0.f, 0.f };
-	Engine::Get_MainCameraAngle(&vAngle);
-	vAngle.x = 0.f;
 	if (Engine::KeyPress(DIK_W))
 	{
 		m_pTransformCom->Move_Pos(&(vCamLook * m_fSpeed * fTimeDelta));
-		m_pTransformCom->Set_Angle(&vAngle);
+		Turn_To_Camera_Look();
 	}
 	if (Engine::KeyPress(DIK_S))
 	{
 		m_pTransformCom->Move_Pos(&(vCamLook * -m_fSpeed * fTimeDelta));
-		m_pTransformCom->Set_Angle(&vAngle);
+		Turn_To_Camera_Look();
 	}
 	if (Engine::KeyPress(DIK_A))
 	{
 		m_pTransformCom->Move_Pos(&(vCamRight * -m_fSpeed * fTimeDelta));
-		m_pTransformCom->Set_Angle(&vAngle);
+		Turn_To_Camera_Look();
 	}
 	if (Engine::KeyPress(DIK_D))
 	{
 		m_pTransformCom->Move_Pos(&(vCamRight * m_fSpeed * fTimeDelta));
-		m_pTransformCom->Set_Angle(&vAngle);
+		Turn_To_Camera_Look();
 	}
 }
 
-void CPlayer::Key_Input_For_QuaterView(const _float & fTimeDelta)
+void CPlayer::Key_Input_Move_For_QuaterView(const _float & fTimeDelta)
 {
 	_vec3 vCamLook, vCamRight;
 	Engine::Get_MainCameraLook(&vCamLook);
@@ -255,13 +313,13 @@ void CPlayer::Key_Input_For_QuaterView(const _float & fTimeDelta)
 	_vec3 vMove = { 0.f, 0.f, 0.f };
 
 	if (Engine::KeyPress(DIK_W))
-		vMove += vCamLook;
+		vMove += vCamLook * m_fSpeed * fTimeDelta;
 	if (Engine::KeyPress(DIK_S))
-		vMove -= vCamLook;
+		vMove -= vCamLook * m_fSpeed * fTimeDelta;
 	if (Engine::KeyPress(DIK_A))
-		vMove -= vCamRight;
+		vMove -= vCamRight * m_fSpeed * fTimeDelta;
 	if (Engine::KeyPress(DIK_D))
-		vMove += vCamRight;
+		vMove += vCamRight * m_fSpeed * fTimeDelta;
 	
 	m_pTransformCom->Move_Pos(vMove);
 }

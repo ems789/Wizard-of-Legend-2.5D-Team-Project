@@ -18,12 +18,16 @@ HRESULT CFire::Ready_GameObject()
 {
 	FAILED_CHECK_RETURN(Add_Component(), E_FAIL);
 
+	m_tSphere.fRadius = 1.f;
 
 	return S_OK;
 }
 
 _int CFire::Update_GameObject(const _float& fTimeDelta)
 {
+	if (m_bIsDead)
+		return 0;
+
 	Animation(fTimeDelta);
 
 	m_pTransformCom->Move_Pos(Engine::INFO_LOOK, fTimeDelta * m_fSpeed);
@@ -38,6 +42,9 @@ _int CFire::Update_GameObject(const _float& fTimeDelta)
 	_int	iExit = CGameObject::Update_GameObject(fTimeDelta);
 
 	m_pRendererCom->Add_RenderGroup(Engine::RENDER_ALPHA, this);
+
+	Engine::Add_GameObject_To_CollisionList(L"Player_Bullet", this);
+	m_tSphere.vPos = m_pTransformCom->GetInfoRef(Engine::INFO_POS);
 
 	return 0;
 }
@@ -101,6 +108,7 @@ CFire* CFire::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3& vInitialPos, co
 
 void CFire::Free()
 {
-	
+
+	CGameObject::Free();
 }
 

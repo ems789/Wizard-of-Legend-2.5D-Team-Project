@@ -19,6 +19,10 @@ private:
 public:
 	HRESULT		Ready_CameraMgr(LPDIRECT3DDEVICE9 pGraphicDev, _ulong dwWinCX, _ulong dwWinCY);
 	_int		Update_MainCamera(const _float& fTimeDelta);
+	
+	HRESULT		SetUp_Alpha();
+	HRESULT		Finish_Alpha();
+
 	HRESULT		SetUp_RenderUI();
 	HRESULT		Finish_RenderUI();
 	

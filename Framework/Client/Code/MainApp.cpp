@@ -5,6 +5,7 @@
 #include "Logo.h"
 #include "Mouse.h"
 #include "Inven.h"
+#include "CollisionFunctions.h"
 
 CMainApp::CMainApp(void)
 {
@@ -26,9 +27,12 @@ HRESULT CMainApp::Ready_MainApp(void)
 	FAILED_CHECK_RETURN(Mouse_Setting(), E_FAIL);
 	FAILED_CHECK_RETURN(Inven_Setting(), E_FAIL);
 
+	FAILED_CHECK_RETURN(CCollisionFunctions::Ready_Functions(), E_FAIL);
 	
 	m_pGraphicDev->SetRenderState(D3DRS_LIGHTING, FALSE);
 	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
+
+
 
 	return S_OK;
 }

@@ -17,6 +17,8 @@ private:
 	explicit CQuaterViewCamera(LPDIRECT3DDEVICE9 pGraphicDev);
 	virtual ~CQuaterViewCamera();
 
+	virtual HRESULT Reset_Camera() override;
+
 public:
 	virtual HRESULT Ready_Camera() override;
 	virtual _int Update_Camera(const _float& fTimeDelta) override;

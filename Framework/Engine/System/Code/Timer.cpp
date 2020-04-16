@@ -42,6 +42,11 @@ void Engine::CTimer::Set_TimeDelta()
 	m_LastTime = m_FrameTime;
 }
 
+void CTimer::Set_CumulativeTime()
+{
+	m_fPrevTime = 0.f;
+}
+
 _float CTimer::Get_CumulativeTime()
 {
 	QueryPerformanceCounter(&m_FrameTime);
@@ -52,7 +57,9 @@ _float CTimer::Get_CumulativeTime()
 		m_FixTime = m_FrameTime;
 	}
 
-	return (m_FrameTime.QuadPart - m_LastTime.QuadPart) / static_cast<_float>(m_CpuTick.QuadPart);;
+	_float fTimeDelta = (m_FrameTime.QuadPart - m_LastTime.QuadPart) / static_cast<_float>(m_CpuTick.QuadPart);
+
+	return fTimeDelta;
 }
 
 Engine::CTimer* Engine::CTimer::Create()

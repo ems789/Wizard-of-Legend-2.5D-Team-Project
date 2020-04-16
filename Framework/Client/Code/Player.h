@@ -38,9 +38,13 @@ private:
 	void	Animation(const _float& fTimeDelta);
 	void	Change_State();
 	_int	Update_State(const _float& fTimeDelta);
+	
+	void	Turn_To_Camera_Look();
 	void	Key_Input(const _float& fTimeDelta);
+	void	Key_Input_For_Attack(const _float& fTimeDelta);
+	void	Key_Input_Attack_For_QuaterView(const _float& fTimeDelta);
 	void	Key_Input_For_Move(const _float& fTimeDelta);
-	void	Key_Input_For_QuaterView(const _float& fTimeDelta);
+	void	Key_Input_Move_For_QuaterView(const _float& fTimeDelta);
 	void	Key_Input_For_1stAnd3rdView(const _float& fTimeDelta);
 
 private:	//	State Setting
@@ -63,6 +67,10 @@ public:		//	Set_Functions
 	void	Set_Pos(const _vec3* pPos);
 	void	Set_Pos(const _vec3& vPos);
 
+public:		//	Get Functions
+	virtual Engine::SPHERE*		Get_Sphere() override { return &m_tSphere; }
+
+
 private:	//	Components
 	Engine::CRcTex*		m_pBufferCom	= nullptr;
 	Engine::CTexture*	m_pTextureCom	= nullptr;
@@ -74,6 +82,8 @@ private:
 	CPlayer::PLAYER_STATE m_ePreState = CPlayer::P_END;
 	CPlayer::PLAYER_STATE m_eCurState = CPlayer::P_END;
 	_float	m_fSpeed = 10.f;
+
+	Engine::SPHERE	m_tSphere;
 
 	vector<Engine::CSkill*>		m_vecEquipSkill;
 

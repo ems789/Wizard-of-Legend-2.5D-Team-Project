@@ -9,6 +9,8 @@
 #include "Export_Function.h"
 #include "PlayerHP.h"
 #include "TestTerrain.h"
+#include "TestMonster.h"
+#include "Mouse.h"
 
 CTown::CTown(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CScene(pGraphicDev)
@@ -60,9 +62,19 @@ HRESULT CTown::Ready_GameLogic_Layer(const _tchar * pLayerTag)
 	NULL_CHECK_RETURN(pLayer, E_FAIL);
 
 	Engine::CGameObject* pGameObject = nullptr;
+	
+	//	Terrain
 	pGameObject = CTestTerrain::Create(m_pGraphicDev);
 	NULL_CHECK_RETURN(pGameObject, E_FAIL);
 	pLayer->Add_GameObject(L"TestTerrain", pGameObject);
+
+
+	//	TestMonster
+	pGameObject = CTestMonster::Create(m_pGraphicDev);
+	NULL_CHECK_RETURN(pGameObject, E_FAIL);
+	pLayer->Add_GameObject(L"Monster", pGameObject);
+
+
 
 	m_mapLayer.emplace(pLayerTag, pLayer);
 
@@ -114,9 +126,8 @@ HRESULT CTown::Ready_Camera()
 	NULL_CHECK_RETURN(pCamera, E_FAIL);
 	Engine::Add_BasicCamera(2, L"Quater_View_Camera", pCamera);
 
-	Engine::SetUp_MainCamera(Engine::CAM_STATIC, L"Third_View_Camera");
-
-
+	Engine::SetUp_MainCamera(Engine::CAM_STATIC, L"Third_View_Camera");	
+	CMouse::GetInstance()->AnimingPointOn();
 
 	return S_OK;
 }

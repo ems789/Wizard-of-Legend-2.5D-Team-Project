@@ -24,7 +24,7 @@ HRESULT CInven::Ready_Inven(LPDIRECT3DDEVICE9 pGraphicDev)
 
 	FAILED_CHECK_RETURN(Add_Component(), E_FAIL);
 
-	m_vPos = { 0.f, 0.f, 0.f };
+	m_vPos = { -500.f, 0.f, 0.f };
 	_matrix matScale, matTrans;
 	D3DXMatrixScaling(&matScale, m_vScale.x, m_vScale.y, m_vScale.z);
 	D3DXMatrixTranslation(&matTrans, m_vPos.x, m_vPos.y, m_vPos.z);

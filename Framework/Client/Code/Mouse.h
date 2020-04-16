@@ -27,8 +27,10 @@ public:
 	void	Render_Mouse();
 
 public:
-	void	CursorRenderOn()	{ m_bCursorRender = true; }
-	void	CursorRenderOff()	{ m_bCursorRender = false; }
+	void	CursorRenderOn()	{ m_bCursorRender	= true;		}
+	void	CursorRenderOff()	{ m_bCursorRender	= false;	}
+	void	AnimingPointOn()	{ m_bAimingPoint	= true;		}
+	void	AnimingPointOff()	{ m_bAimingPoint	= false;	}
 
 private:
 	HRESULT	Add_Component();
@@ -43,6 +45,7 @@ private:
 	LPDIRECT3DDEVICE9	m_pGraphicDev = nullptr;
 
 	_bool				m_bCursorRender = true;
+	_bool				m_bAimingPoint = false;
 
 public:
 	static CMouse* Create(LPDIRECT3DDEVICE9 pGraphicDev);

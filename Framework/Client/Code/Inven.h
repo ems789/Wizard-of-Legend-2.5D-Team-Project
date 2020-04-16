@@ -36,8 +36,8 @@ private:
 
 	_bool	m_bInvenOn = false;
 
-	_vec3		m_vScale = { 300.f, 300.f, 0.f };
-	_vec3		m_vPos = { 0.f, 0.f, 0.f };
+	_vec3		m_vScale	= { 300.f, 300.f, 0.f };
+	_vec3		m_vPos		= { 0.f, 0.f, 0.f };
 	_matrix		m_matWorld;
 
 	vector<Engine::CSkill*> m_vecSkill[SKILL_END];

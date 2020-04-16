@@ -5,6 +5,8 @@
 #include "Transform.h"
 #include "Renderer.h"
 #include "CameraMgr.h"
+#include "CollisionMgr.h"
+#include "MyMath.h"
 
 //#include "Camera.h"
 
@@ -53,6 +55,14 @@ inline HRESULT	SetUp_MainCamera(const _ulong& dwContainerIdx, const _tchar* pCam
 inline HRESULT	Add_Camera(const _ulong& dwContainerIdx, const _tchar* pCameraTag, CCamera* pCamera);
 inline HRESULT	Add_BasicCamera(const _ubyte& byOrder, const _tchar* pCameraTag, CCamera* pCamera);
 inline HRESULT	Remove_Camera(const _ulong& dwContainerIdx, const _tchar* pCameraTag);
+
+
+//	CollisionMgr
+//	Get
+inline list<CGameObject*>*	Get_CollisionObjectList(const _tchar* pCollisionListTag);
+//	Set
+//	General
+inline void					Add_GameObject_To_CollisionList(const _tchar* pCollisionListTag, CGameObject* pObj);
 
 
 //	Utility Release

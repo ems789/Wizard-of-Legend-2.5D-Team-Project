@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "QuaterViewCamera.h"
+#include "Mouse.h"
 
 #include "Export_Function.h"
 
@@ -12,6 +13,14 @@ CQuaterViewCamera::CQuaterViewCamera(LPDIRECT3DDEVICE9 pGraphicDev)
 CQuaterViewCamera::~CQuaterViewCamera()
 {
 
+}
+
+HRESULT CQuaterViewCamera::Reset_Camera()
+{
+	CMouse::GetInstance()->AnimingPointOff();
+	CMouse::GetInstance()->CursorRenderOn();
+
+	return S_OK;
 }
 
 HRESULT CQuaterViewCamera::Ready_Camera()

@@ -101,6 +101,19 @@ _bool	KeyPress(_ubyte byKeyID)
 	return CInputDev::GetInstance()->KeyPress(byKeyID);
 }
 
+_bool	MouseDown(MOUSEKEYSTATE eMouse)
+{
+	return CInputDev::GetInstance()->MouseDown(eMouse);
+}
+_bool	MouseUp(MOUSEKEYSTATE eMouse)
+{
+	return CInputDev::GetInstance()->MouseUp(eMouse);
+}
+_bool	MousePress(MOUSEKEYSTATE eMouse)
+{
+	return CInputDev::GetInstance()->MousePress(eMouse);
+}
+
 //	Release System
 void Release_System()
 {

@@ -13,6 +13,7 @@ private:
 public:
 	virtual HRESULT Ready_Skill() override;
 	virtual _int Use_Skill(const _float& fTimeDelta) override;
+	virtual _int Use_Skill(const _float& fTimeDelta, const _vec3* pPos, const _vec3* pDir) override;
 	virtual _int Use_UpgradedSkill(const _float& fTimeDelta) override;
 
 public:

@@ -56,6 +56,85 @@ namespace Engine
 		IDirect3DBaseTexture9*	pTexture;
 		D3DXIMAGE_INFO			tImgInfo;
 	}TEX_INFO, *PTEX_INFO;
+
+	typedef struct tagLine
+	{
+		tagLine()
+			: a(0.f), b(0.f), c(0.f)
+		{
+
+		}
+		//	ax + by + c = 0
+		_float a, b, c;
+	}LINE, *PLINE;
+
+	typedef struct tagLine3D
+	{
+		tagLine3D()
+			: dx(0.f), dy(0.f), dz(0.f)
+			, px(0.f), py(0.f), pz(0.f)
+		{
+
+		}
+		union
+		{
+			_vec3 vDir;
+			struct
+			{
+				_float dx, dy, dz;
+			};
+			struct
+			{
+				_float a, b, c;
+			};
+		};
+
+		union 
+		{
+			_vec3 vPos;
+			struct
+			{
+				_float px, py, pz;
+			};
+		};
+	}LINE3D, *PLINE3D;
+
+	typedef struct tagSphere
+	{
+	public:
+		tagSphere()
+			: vPos(0.f, 0.f, 0.f)
+			, fRadius(0.f)
+		{
+
+		}
+
+		union 
+		{
+			_vec3	vPos;
+			_float	x, y, z;
+		};
+		_float	fRadius;
+	}SPHERE, *PSPHERE;
+
+	typedef struct tagCube
+	{
+		union 
+		{
+			_vec3	vPos;
+			_float	x, y, z;
+		};
+		union 
+		{
+			_vec3	vSize;
+			_float	Width, Height, Depth;
+		};
+		union 
+		{
+			_vec3	vAngle;
+			_float	alpha,	Beta,	Gamma;
+		};
+	}MY_CUBE, *PMY_CUBE;
 }
 
 #endif // Engine_Struct_h__

@@ -20,6 +20,8 @@ public:
 	virtual HRESULT Ready_Camera() override;
 	virtual _int Update_Camera(const _float& fTimeDelta) override;
 
+	virtual HRESULT Reset_Camera() override;
+
 private:
 	void	Update_EyeAtUp(const _float& fTimeDelta);
 	void	Mouse_Move(const _float& fTimeDelta);

@@ -5,6 +5,7 @@
 
 BEGIN(Engine)
 
+class CCollisionMgr;
 class ENGINE_DLL CScene : public CBase
 {
 protected:
@@ -27,6 +28,7 @@ public:
 protected:
 	LPDIRECT3DDEVICE9			m_pGraphicDev = nullptr;
 	map<const _tchar*, CLayer*> m_mapLayer;
+	CCollisionMgr*				m_pCollisionMgr = nullptr;
 	
 protected:
 	virtual void Free();

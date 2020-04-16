@@ -172,11 +172,14 @@ call CopyUtility.bat
   <ItemGroup>
     <ClCompile Include="..\Code\Camera.cpp" />
     <ClCompile Include="..\Code\CameraMgr.cpp" />
+    <ClCompile Include="..\Code\Collider.cpp" />
+    <ClCompile Include="..\Code\CollisionMgr.cpp" />
     <ClCompile Include="..\Code\Component.cpp" />
     <ClCompile Include="..\Code\Effect.cpp" />
     <ClCompile Include="..\Code\GameObject.cpp" />
     <ClCompile Include="..\Code\Layer.cpp" />
     <ClCompile Include="..\Code\Management.cpp" />
+    <ClCompile Include="..\Code\MyMath.cpp" />
     <ClCompile Include="..\Code\Renderer.cpp" />
     <ClCompile Include="..\Code\Scene.cpp" />
     <ClCompile Include="..\Code\Skill.cpp" />
@@ -186,11 +189,14 @@ call CopyUtility.bat
     <ClInclude Include="..\..\Header\Export_Utility.h" />
     <ClInclude Include="..\Code\Camera.h" />
     <ClInclude Include="..\Code\CameraMgr.h" />
+    <ClInclude Include="..\Code\Collider.h" />
+    <ClInclude Include="..\Code\CollisionMgr.h" />
     <ClInclude Include="..\Code\Component.h" />
     <ClInclude Include="..\Code\Effect.h" />
     <ClInclude Include="..\Code\GameObject.h" />
     <ClInclude Include="..\Code\Layer.h" />
     <ClInclude Include="..\Code\Management.h" />
+    <ClInclude Include="..\Code\MyMath.h" />
     <ClInclude Include="..\Code\Renderer.h" />
     <ClInclude Include="..\Code\Scene.h" />
     <ClInclude Include="..\Code\Skill.h" />

@@ -19,9 +19,10 @@ public:	//	Get Functions
 	const wstring&	Get_Name()			const { return m_wstrName; }
 
 public:
-	virtual HRESULT		Ready_Skill()	PURE;
-	virtual	_int		Use_Skill(const _float& fTimeDelta)PURE;
-	virtual	_int		Use_UpgradedSkill(const _float& fTimeDelta)PURE;
+	virtual HRESULT		Ready_Skill() { return S_OK;}
+	virtual	_int		Use_Skill(const _float& fTimeDelta) { return 0; };
+	virtual _int		Use_Skill(const _float& fTimeDelta, const _vec3* pPos, const _vec3* pDir)  { return 0; }
+	virtual	_int		Use_UpgradedSkill(const _float& fTimeDelta) { return 0; };
 
 	virtual void		Render_SkillCard() {};
 
