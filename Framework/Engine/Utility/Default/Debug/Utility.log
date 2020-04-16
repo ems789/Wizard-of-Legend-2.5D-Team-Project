@@ -1,13 +1,10 @@
-﻿  Camera.cpp
-  코드를 생성하고 있습니다...
-  컴파일하고 있습니다...
-  Transform.cpp
+﻿  Transform.cpp
   Skill.cpp
   Scene.cpp
   Renderer.cpp
   MyMath.cpp
-c:\users\ems78\documents\github\teamproject\framework\engine\utility\code\mymath.cpp(283): warning C4244: '=': 'LONG'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\ems78\documents\github\teamproject\framework\engine\utility\code\mymath.cpp(284): warning C4244: '=': 'LONG'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\teamproject\framework\engine\utility\code\mymath.cpp(283): warning C4244: '=': conversion from 'LONG' to 'FLOAT', possible loss of data
+d:\teamproject\framework\engine\utility\code\mymath.cpp(284): warning C4244: '=': conversion from 'LONG' to 'FLOAT', possible loss of data
   MoveObject.cpp
   Management.cpp
   Layer.cpp
@@ -17,8 +14,11 @@ c:\users\ems78\documents\github\teamproject\framework\engine\utility\code\mymath
   CollisionMgr.cpp
   Collider.cpp
   CameraMgr.cpp
-  코드를 생성하고 있습니다...
-  Utility.vcxproj -> C:\Users\ems78\Documents\GitHub\TeamProject\Framework\Engine\Utility\Default\../Bin/Utility.dll
+  Camera.cpp
+  Generating Code...
+  LINK : ../Bin/Utility.dll not found or not built by the last incremental link; performing full link
+     Creating library ../Bin/Utility.lib and object ../Bin/Utility.exp
+  Utility.vcxproj -> D:\TeamProject\Framework\Engine\Utility\Default\../Bin/Utility.dll
   Utility.vcxproj -> ../Bin/Utility.pdb (Full PDB)
   .\Engine\Utility\Code\Camera.h
   .\Engine\Utility\Code\CameraMgr.h

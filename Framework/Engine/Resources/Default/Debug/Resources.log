@@ -1,8 +1,4 @@
-﻿  CubeTex.cpp
-  코드를 생성하고 있습니다...
-c:\users\ems78\documents\github\teamproject\framework\engine\resources\code\cubetex.cpp(125): warning C4715: 'Engine::CCubeTex::Ready_Buffer': 모든 제어 경로에서 값을 반환하지는 않습니다.
-  컴파일하고 있습니다...
-  VIBuffer.cpp
+﻿  VIBuffer.cpp
   TriCol.cpp
   TileTex.cpp
   Texture.cpp
@@ -11,8 +7,12 @@ c:\users\ems78\documents\github\teamproject\framework\engine\resources\code\cube
   Resources.cpp
   RcTex.cpp
   RcCol.cpp
-  코드를 생성하고 있습니다...
-  Resources.vcxproj -> C:\Users\ems78\Documents\GitHub\TeamProject\Framework\Engine\Resources\Default\../Bin/Resources.dll
+  CubeTex.cpp
+  Generating Code...
+d:\teamproject\framework\engine\resources\code\cubetex.cpp(125): warning C4715: 'Engine::CCubeTex::Ready_Buffer': not all control paths return a value
+  LINK : ../Bin/Resources.dll not found or not built by the last incremental link; performing full link
+     Creating library ../Bin/Resources.lib and object ../Bin/Resources.exp
+  Resources.vcxproj -> D:\TeamProject\Framework\Engine\Resources\Default\../Bin/Resources.dll
   Resources.vcxproj -> ../Bin/Resources.pdb (Full PDB)
   .\Engine\Resources\Code\CubeTex.h
   .\Engine\Resources\Code\RcCol.h
