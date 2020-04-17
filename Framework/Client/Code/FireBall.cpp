@@ -17,7 +17,7 @@ CFireBall::~CFireBall()
 
 HRESULT CFireBall::Ready_Skill()
 {
-	m_fCoolTime = 0.0f;
+	m_fCoolTime = 3.f;
 
 	Engine::Ready_Timer(L"FireBall_CoolTime");
 	Engine::Set_TimeDelta(L"FireBall_CoolTime");
@@ -40,7 +40,7 @@ _int CFireBall::Use_Skill(const _float& fTimeDelta)
 	D3DXVec3Normalize(&vLook, &vLook);
 	vStartPos += vLook;
 
-	CFire* pFire = CFire::Create(m_pGraphicDev, vStartPos, pTransform->GetAngleRef(), m_fSpeed, 4, 30.f);
+	CFire* pFire = CFire::Create(m_pGraphicDev, vStartPos, vLook, m_fSpeed, 4, 30.f);
 	FAILED_CHECK_RETURN(Engine::Add_GameObject(L"GameLogic", L"Fire", pFire), -1);
 
 	m_fCurTime = m_fCoolTime;
@@ -63,7 +63,7 @@ _int CFireBall::Use_Skill(const _float & fTimeDelta, const _vec3 * pPos, const _
 	Engine::CMyMath::DirectionalVectorToAngle(&vAngle, pDir);
 
 
-	CFire* pFire = CFire::Create(m_pGraphicDev, vStartPos, vAngle, m_fSpeed, 4, 30.f);
+	CFire* pFire = CFire::Create(m_pGraphicDev, vStartPos, *pDir, m_fSpeed, 4, 30.f);
 	FAILED_CHECK_RETURN(Engine::Add_GameObject(L"GameLogic", L"Fire", pFire), -1);
 
 	m_fCurTime = m_fCoolTime;

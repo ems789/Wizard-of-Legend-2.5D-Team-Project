@@ -23,6 +23,7 @@ HRESULT CThirdViewCamera::Ready_Camera()
 	NULL_CHECK_RETURN(m_pTargetInfo, E_FAIL);
 
 	m_fNear = 0.1f;
+	m_fDistance = 3.f;
 
 	return S_OK;
 }
@@ -86,8 +87,8 @@ void CThirdViewCamera::Mouse_Move(const _float& fTimeDelta)
 	if (dwMouseMove = Engine::Get_DIMouseMove(Engine::DIMS_Z))	//	Zoom In & Out
 		m_fDistance -= fTimeDelta * m_fSpeed * 0.1f * dwMouseMove;
 
-	if (m_fDistance < 0.f)
-		m_fDistance = 0.f;
+	if (m_fDistance < 1.f)
+		m_fDistance = 1.f;
 
 	POINT pt = {WINCX / 2, WINCY / 2};
 	ClientToScreen(g_hWnd, &pt);

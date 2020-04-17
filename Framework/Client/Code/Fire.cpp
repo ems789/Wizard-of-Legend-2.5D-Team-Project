@@ -25,12 +25,14 @@ HRESULT CFire::Ready_GameObject()
 
 _int CFire::Update_GameObject(const _float& fTimeDelta)
 {
+	Turn_To_Camera_Look();
+
 	if (m_bIsDead)
 		return 0;
 
 	Animation(fTimeDelta);
 
-	m_pTransformCom->Move_Pos(Engine::INFO_LOOK, fTimeDelta * m_fSpeed);
+	m_pTransformCom->Move_Pos(m_vDir * m_fSpeed * fTimeDelta);
 	_vec3 vDistance = m_pTransformCom->GetInfoRef(Engine::INFO_POS) - m_vInitialPos;
 	_float fDist = D3DXVec3Length(&vDistance);
 	if (fDist > 50.f)
@@ -93,7 +95,17 @@ void CFire::Animation(const _float & fTimeDelta)
 		m_tFrame.fCurFrame = 0.f;
 }
 
-CFire* CFire::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3& vInitialPos, const _vec3& vAngle, const _float& fSpeed, const _float& fMaxFrame, const _float& fFrameSpeed)
+void CFire::Turn_To_Camera_Look()
+{
+	_vec3 vAngle = { 0.f, 0.f, 0.f };
+	Engine::Get_MainCameraAngle(&vAngle);
+	//vAngle.x = 0.f;
+
+	m_pTransformCom->Set_Angle(&vAngle);
+	m_pTransformCom->Update_Component(0.f);
+}
+
+CFire* CFire::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3& vInitialPos, const _vec3& vDir, const _float& fSpeed, const _float& fMaxFrame, const _float& fFrameSpeed)
 {
 	CFire*	pInstance = new CFire(pGraphicDev);
 
@@ -101,8 +113,8 @@ CFire* CFire::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3& vInitialPos, co
 		Engine::Safe_Release(pInstance);
 
 	pInstance->m_vInitialPos = vInitialPos;
+	pInstance->m_vDir = vDir;
 	pInstance->m_pTransformCom->Set_Pos(vInitialPos);
-	pInstance->m_pTransformCom->Set_Angle(vAngle);
 	pInstance->m_pTransformCom->Update_Component(0.f);
 	pInstance->m_fSpeed = fSpeed;
 	pInstance->m_tFrame.fCurFrame = 0;

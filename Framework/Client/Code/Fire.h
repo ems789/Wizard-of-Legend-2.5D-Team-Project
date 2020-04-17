@@ -32,6 +32,9 @@ private:
 	HRESULT		Add_Component();
 	void		Animation(const _float& fTimeDelta);
 
+private:
+	void Turn_To_Camera_Look();
+
 private:	//	Components
 	Engine::CRcTex*		m_pBufferCom = nullptr;
 	Engine::CTexture*	m_pTextureCom = nullptr;

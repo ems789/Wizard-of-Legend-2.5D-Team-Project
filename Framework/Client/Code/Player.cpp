@@ -52,11 +52,7 @@ HRESULT CPlayer::Ready_GameObject()
 
 _int CPlayer::Update_GameObject(const _float& fTimeDelta)
 {
-	if (Engine::Get_MainCamType() != m_iPreCamState)
-	{
-		Turn_To_Camera_Look();
-		m_iPreCamState = Engine::Get_MainCamType();
-	}
+	Turn_To_Camera_Look();
 
 	Key_Input(fTimeDelta);
 	Change_State();
@@ -69,10 +65,6 @@ _int CPlayer::Update_GameObject(const _float& fTimeDelta)
 
 	Engine::Add_GameObject_To_CollisionList(L"Player", this);
 
-	_vec3 vPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
-	
-	cout << "x : " << vPos.x << " y : " << vPos.y << " z : " << vPos.z << endl;
-
 	return iExit;
 }
 
@@ -80,15 +72,18 @@ void CPlayer::Render_GameObject()
 {
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->GetWorldMatrix());
 
-	m_pGraphicDev->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
-	m_pGraphicDev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
-	m_pGraphicDev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+	//m_pGraphicDev->SetRenderState(D3DRS_ALPHATESTENABLE, TRUE);
+	//m_pGraphicDev->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
+
+	//m_pGraphicDev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+	//m_pGraphicDev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 
 	//m_pTextureCom->Render_Texture(static_cast<_ulong>(m_tFrame.fCurFrame));
 	m_vvTextureCom[m_eCurState][m_eCurDir]->Render_Texture(static_cast<_ulong>(m_tFrame.fCurFrame));
 	m_pBufferCom->Render_Buffer();
 
-	m_pGraphicDev->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
+	//m_pGraphicDev->SetRenderState(D3DRS_ALPHATESTENABLE, FALSE);
+	//m_pGraphicDev->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
 }
 
 _int CPlayer::Change_Normal_Skill(Engine::CSkill * pSkill)
@@ -245,14 +240,13 @@ void CPlayer::Turn_To_Camera_Look()
 
 void CPlayer::Key_Input(const _float & fTimeDelta)
 {
-
-	
-	switch(Engine::Get_MainCamType())
+	switch (Engine::Get_MainCamType())
 	{
 	case Engine::CCameraMgr::MAIN_CAM_1ST:
 	case Engine::CCameraMgr::MAIN_CAM_3RD:
 		Key_Input_For_Move(fTimeDelta);
 		Key_Input_For_Attack(fTimeDelta);
+
 		break;
 	case Engine::CCameraMgr::MAIN_CAM_QUATER:
 		Key_Input_Move_For_QuaterView(fTimeDelta);
@@ -266,7 +260,6 @@ void CPlayer::Key_Input_For_Attack(const _float & fTimeDelta)
 {
 	if (Engine::MouseDown(Engine::DIM_LB))
 	{
-		Turn_To_Camera_Look();
 		m_vecEquipSkill[0]->Use_Skill(fTimeDelta);
 	}
 
@@ -400,7 +393,6 @@ void CPlayer::Key_Input_For_Move(const _float & fTimeDelta)
 	if (0.f != vMove.x || 0.f != vMove.y || 0.f != vMove.z)
 	{
 		m_pTransformCom->Move_Pos(vMove);
-		Turn_To_Camera_Look();
 		m_eCurState = P_RUN;
 	}
 	else
@@ -497,6 +489,18 @@ void CPlayer::Key_Input_For_1stAnd3rdView(const _float & fTimeDelta)
 		m_pTransformCom->Move_Pos(&(vCamRight * m_fSpeed * fTimeDelta));
 		m_pTransformCom->Set_Angle(&vAngle);
 	}
+}
+
+void CPlayer::Key_Input_Dash(const _float & fTimeDelta)
+{
+}
+
+void CPlayer::Key_Input_Dash_For_1stAnd3RDView(const _float & fTimeDelta)
+{
+}
+
+void CPlayer::Key_Input_Dash_For_QuaterView(const _float & fTimeDleta)
+{
 }
 
 void CPlayer::Idle_State()

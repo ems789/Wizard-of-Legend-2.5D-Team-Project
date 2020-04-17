@@ -1,4 +1,5 @@
-﻿  Resources.vcxproj -> D:\TeamProject\Framework\Engine\Resources\Default\../Bin/Resources.dll
+﻿  Texture.cpp
+  Resources.vcxproj -> D:\TeamProject\Framework\Engine\Resources\Default\../Bin/Resources.dll
   Resources.vcxproj -> ../Bin/Resources.pdb (Full PDB)
   .\Engine\Resources\Code\CubeTex.h
   .\Engine\Resources\Code\RcCol.h

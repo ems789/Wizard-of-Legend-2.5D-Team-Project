@@ -41,12 +41,20 @@ private:
 	_int	Update_State(const _float& fTimeDelta);
 	
 	void	Turn_To_Camera_Look();
+
+private:	//	Key_Input Functions
 	void	Key_Input(const _float& fTimeDelta);
 	void	Key_Input_For_Attack(const _float& fTimeDelta);
 	void	Key_Input_Attack_For_QuaterView(const _float& fTimeDelta);
+	
 	void	Key_Input_For_Move(const _float& fTimeDelta);
 	void	Key_Input_Move_For_QuaterView(const _float& fTimeDelta);
 	void	Key_Input_For_1stAnd3rdView(const _float& fTimeDelta);
+
+	void	Key_Input_Dash(const _float& fTimeDelta);
+	void	Key_Input_Dash_For_1stAnd3RDView(const _float& fTimeDelta);
+	void	Key_Input_Dash_For_QuaterView(const _float& fTimeDleta);
+
 
 private:	//	State Setting
 	void	Idle_State();

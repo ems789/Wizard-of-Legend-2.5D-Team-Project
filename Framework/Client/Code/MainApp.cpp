@@ -30,8 +30,15 @@ HRESULT CMainApp::Ready_MainApp(void)
 	FAILED_CHECK_RETURN(CCollisionFunctions::Ready_Functions(), E_FAIL);
 	
 	m_pGraphicDev->SetRenderState(D3DRS_LIGHTING, FALSE);
-	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
 
+	//	绵家 矫 可记. 
+	m_pGraphicDev->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_NONE);
+	//	犬措 矫 可记.
+	m_pGraphicDev->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_NONE);
+
+	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
+	
+	
 
 
 	return S_OK;

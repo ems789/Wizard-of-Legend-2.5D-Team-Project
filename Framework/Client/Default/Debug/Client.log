@@ -1,10 +1,18 @@
-﻿  WindSlash.cpp
+﻿  Player.cpp
 d:\teamproject\framework\reference\header\engine_macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
   d:\teamproject\framework\client\header\macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
 d:\teamproject\framework\reference\header\engine_macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
   d:\teamproject\framework\client\header\macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
-d:\teamproject\framework\client\code\windslash.cpp(76): warning C4035: 'CWindSlash::Use_Skill': no return value
-d:\teamproject\framework\client\code\windslash.cpp(77): warning C4715: 'CWindSlash::Use_Skill': not all control paths return a value
+  Loading.cpp
+d:\teamproject\framework\reference\header\engine_macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\engine_macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  Town.cpp
+  MainApp.cpp
+  Inven.cpp
      Creating library ../Bin/Client_DBG.lib and object ../Bin/Client_DBG.exp
   Client.vcxproj -> D:\TeamProject\Framework\Client\Default\../Bin/Client_DBG.exe
   Client.vcxproj -> ../Bin/Client_DBG.pdb (Full PDB)
