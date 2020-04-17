@@ -59,9 +59,12 @@ CToolView::CToolView() :
 CToolView::~CToolView()
 {
 	Engine::Safe_Release(m_pGraphicDev);
-
 	Engine::Release_Resources();
 	Engine::CInputDev::GetInstance()->DestroyInstance();
+	Engine::CGraphicDev::GetInstance()->DestroyInstance();
+	m_pTerrain->Release();
+	m_pTerrainGuidLine->Release();
+	m_pDynamicCamera->Release();
 	//CGraphicDev::GetInstance()->DestroyInstance();
 }
 
@@ -427,6 +430,7 @@ void CToolView::OnRButtonDown(UINT nFlags, CPoint point)
 					pTerrainVtx[dwVtxIdx[2]].z + (pTerrainVtx[dwVtxIdx[0]].z - pTerrainVtx[dwVtxIdx[2]].z) * fV);
 			}
 		}
+
 	}
 
 	return ::_vec3(0.f, 0.f, 0.f);

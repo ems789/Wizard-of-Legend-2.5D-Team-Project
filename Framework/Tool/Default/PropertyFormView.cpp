@@ -110,6 +110,7 @@ void CPropertyFormView::OnBnClickedRefresh()
 	FAILED_CHECK_VOID(pGraphicDev);
 
 	Engine::CResourcesMgr::GetInstance()->Remove_Resource(::RESOURCE_STATIC, L"Buffer_TerrainTex");
+	Engine::CResourcesMgr::GetInstance()->Remove_Resource(::RESOURCE_STATIC, L"Buffer_TileTex");
 	pToolView->m_pTerrain->Release_GameObject();
 
 	FAILED_CHECK_RETURN_VOID(Engine::Ready_Buffer(pGraphicDev,
