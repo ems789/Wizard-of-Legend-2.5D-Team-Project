@@ -14,6 +14,7 @@ CTerrain::CTerrain(LPDIRECT3DDEVICE9 pGraphicDev)
 
 CTerrain::~CTerrain(void)
 {
+	Free();
 }
 
 //HRESULT CTerrain::Ready_GameObject(void)
