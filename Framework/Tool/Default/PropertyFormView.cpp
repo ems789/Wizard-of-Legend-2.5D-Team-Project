@@ -25,6 +25,7 @@ CPropertyFormView::CPropertyFormView()
 
 CPropertyFormView::~CPropertyFormView()
 {
+	Safe_Delete(m_MySheet);
 }
 
 void CPropertyFormView::DoDataExchange(CDataExchange* pDX)
