@@ -58,13 +58,14 @@ CToolView::CToolView() :
 
 CToolView::~CToolView()
 {
+	Engine::Safe_Release(m_pGraphicDev);
+	Engine::Release_Resources();
+	Engine::CInputDev::GetInstance()->DestroyInstance();
+	Engine::CGraphicDev::GetInstance()->DestroyInstance();
 	m_pTerrain->Release();
 	m_pTerrainGuidLine->Release();
 	m_pDynamicCamera->Release();
-	Engine::CInputDev::GetInstance()->DestroyInstance();
-	Engine::Release_Resources();
-	Engine::CGraphicDev::GetInstance()->DestroyInstance();
-	Engine::Safe_Release(m_pGraphicDev);	
+	//CGraphicDev::GetInstance()->DestroyInstance();
 }
 
 BOOL CToolView::PreCreateWindow(CREATESTRUCT& cs)
