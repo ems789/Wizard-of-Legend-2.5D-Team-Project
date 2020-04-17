@@ -1,2 +1,14 @@
-﻿  Tool.vcxproj -> D:\TeamProject\Framework\Tool\Default\../Bin\Tool.exe
+﻿  ToolView.cpp
+  PropertyFormView.cpp
+  MainFrm.cpp
+  Terrain.cpp
+  Generating Code...
+  Compiling...
+  TilePage.cpp
+  Tile.cpp
+  TerrainGuidLine.cpp
+  DynamicCamera.cpp
+  Generating Code...
+     Creating library ../Bin\Tool.lib and object ../Bin\Tool.exp
+  Tool.vcxproj -> D:\TeamProject\Framework\Tool\Default\../Bin\Tool.exe
   Tool.vcxproj -> ../Bin\Tool.pdb (Partial PDB)

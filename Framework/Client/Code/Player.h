@@ -18,7 +18,7 @@ END
 class CPlayer : public Engine::CGameObject
 {
 public:
-	enum PLAYER_STATE	{ P_IDLE, P_RUN, P_ATTACK, P_DASH, P_SKILL1, P_SKILL2, P_END };
+	enum PLAYER_STATE	{ P_IDLE, P_RUN, P_ATTACK, P_ATTACK2, P_DASH, P_SKILL1, P_SKILL2, P_END };
 	enum PLAYER_DIR		{ PD_UP, PD_DOWN, PD_RIGHT, PD_END };
 
 private:
@@ -39,27 +39,41 @@ private:
 	void	Animation(const _float& fTimeDelta);
 	void	Change_State();
 	_int	Update_State(const _float& fTimeDelta);
-	
 	void	Turn_To_Camera_Look();
+	void	Fitting_Scale_With_Texture(CPlayer::PLAYER_STATE eState);
+	void	Fitting_Scale_With_Texture(CPlayer::PLAYER_STATE eState, _ulong dwIndex);
 
 private:	//	Key_Input Functions
 	void	Key_Input(const _float& fTimeDelta);
-	void	Key_Input_For_Attack(const _float& fTimeDelta);
+
+	void	Key_Input_Attack(const _float& fTimeDelta);
+	void	Key_Input_Attack_For_1stAnd3rdView(const _float& fTimeDelta);
 	void	Key_Input_Attack_For_QuaterView(const _float& fTimeDelta);
 	
-	void	Key_Input_For_Move(const _float& fTimeDelta);
+	void	Key_Input_Move(const _float& fTimeDelta);
 	void	Key_Input_Move_For_QuaterView(const _float& fTimeDelta);
-	void	Key_Input_For_1stAnd3rdView(const _float& fTimeDelta);
+	void	Key_Input_Move_For_1stAnd3rdView(const _float& fTimeDelta);
 
 	void	Key_Input_Dash(const _float& fTimeDelta);
-	void	Key_Input_Dash_For_1stAnd3RDView(const _float& fTimeDelta);
+	void	Key_Input_Dash_For_1stAnd3rdView(const _float& fTimeDelta);
 	void	Key_Input_Dash_For_QuaterView(const _float& fTimeDleta);
+
+	void	Key_Input_Skill1(const _float& fTimeDelta);
+	void	Key_Input_Skill1_For_1stAnd3rdView(const _float& fTimeDelta);
+	void	Key_Input_Skill1_For_QuaterView(const _float& fTimeDelta);
+
+	void	Key_Input_Skill2(const _float& fTimeDelta);
+	void	Key_Input_Skill2_For_1stAnd3rdView(const _float& fTimeDelta);
+	void	Key_Input_Skill2_For_QuaterView(const _float& fTimeDelta);
+
+
 
 
 private:	//	State Setting
 	void	Idle_State();
 	void	Run_State();
 	void	Attack_State();
+	void	Attack2_State();
 	void	Dash_State();
 	void	Skill1_State();
 	void	Skill2_State();
@@ -98,6 +112,8 @@ private:	//	Components
 
 private:
 	FRAME	m_tFrame;
+	_bool	m_bAnimFinish = false;
+	_bool	m_bAnimRepeat = true;
 
 	CPlayer::PLAYER_STATE m_ePreState	= CPlayer::P_END;
 	CPlayer::PLAYER_STATE m_eCurState	= CPlayer::P_END;
@@ -116,6 +132,12 @@ private:
 	_int	m_iHPMax	= 500;
 
 	_float	m_fScale = 0.2f;
+
+	//	Variable about dash
+	_float	m_fDashSpeed = 20.f;
+	_vec3	m_vDashDir = {0.f, 0.f, 0.f};
+
+	_ulong	m_dwAttackCnt = 0;
 
 public:
 	static CPlayer* Create(LPDIRECT3DDEVICE9 pGraphicDev);

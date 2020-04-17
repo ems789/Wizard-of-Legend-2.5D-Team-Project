@@ -28,6 +28,11 @@ HRESULT CFireBall::Ready_Skill()
 _int CFireBall::Use_Skill(const _float& fTimeDelta)
 {
 	_float fCumulativeTime = Engine::Get_CummulativeTime(L"FireBall_CoolTime");
+	if (m_bFirstShot)
+	{
+		fCumulativeTime = 10000.f;
+		m_bFirstShot = false;
+	}
 	if (fCumulativeTime < m_fCoolTime)
 		return 0;
 	else
@@ -45,7 +50,7 @@ _int CFireBall::Use_Skill(const _float& fTimeDelta)
 
 	m_fCurTime = m_fCoolTime;
 
-	return 0;
+	return 1;
 }
 
 _int CFireBall::Use_Skill(const _float & fTimeDelta, const _vec3 * pPos, const _vec3 * pDir)
@@ -68,7 +73,7 @@ _int CFireBall::Use_Skill(const _float & fTimeDelta, const _vec3 * pPos, const _
 
 	m_fCurTime = m_fCoolTime;
 
-	return ;
+	return 1;
 }
 
 _int CFireBall::Use_UpgradedSkill(const _float & fTimeDelta)

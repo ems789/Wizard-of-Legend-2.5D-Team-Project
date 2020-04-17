@@ -17,6 +17,11 @@ CWind::~CWind()
 HRESULT CWind::Ready_GameObject()
 {
 	FAILED_CHECK_RETURN(Add_Component(), E_FAIL);
+	
+	m_fScale = 0.05f;
+
+	const Engine::TEX_INFO*	pTexInfo = m_pTextureCom->Get_TexInfo();
+	m_pTransformCom->Set_Scale(pTexInfo->tImgInfo.Width * m_fScale, pTexInfo->tImgInfo.Height * m_fScale, 1.f);
 
 	m_tSphere.fRadius = 1.f;
 
@@ -84,7 +89,7 @@ void CWind::Animation(const _float & fTimeDelta)
 	}
 }
 
-CWind* CWind::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3& vInitialPos, const _vec3& vAngle, const _float& fSpeed, const _float& fMaxFrame, const _float& fFrameSpeed)
+CWind* CWind::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3& vInitialPos, const _vec3& vAngle, const _float& fSpeed, const _float& fMaxFrame, const _float& fFrameSpeed, _float fDir)
 {
 	CWind*	pInstance = new CWind(pGraphicDev);
 
@@ -94,6 +99,7 @@ CWind* CWind::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3& vInitialPos, co
 	pInstance->m_vInitialPos = vInitialPos;
 	pInstance->m_pTransformCom->Set_Pos(vInitialPos);
 	pInstance->m_pTransformCom->Set_Angle(vAngle);
+	pInstance->m_pTransformCom->Set_Scale(fDir);
 	pInstance->m_pTransformCom->Update_Component(0.f);
 	pInstance->m_fSpeed = fSpeed;
 	pInstance->m_tFrame.fCurFrame = 0;

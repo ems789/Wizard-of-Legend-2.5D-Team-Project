@@ -1,4 +1,6 @@
-﻿  CameraMgr.cpp
+﻿  MyMath.cpp
+d:\teamproject\framework\engine\utility\code\mymath.cpp(283): warning C4244: '=': conversion from 'LONG' to 'FLOAT', possible loss of data
+d:\teamproject\framework\engine\utility\code\mymath.cpp(284): warning C4244: '=': conversion from 'LONG' to 'FLOAT', possible loss of data
   Utility.vcxproj -> D:\TeamProject\Framework\Engine\Utility\Default\../Bin/Utility.dll
   Utility.vcxproj -> ../Bin/Utility.pdb (Full PDB)
   .\Engine\Utility\Code\Camera.h

@@ -45,11 +45,13 @@ private:
 	_float	m_fLimitDistance = 50.f;
 	_int	m_iAttack = 10;
 
+	_float	m_fScale = 0.2f;
+
 	FRAME	m_tFrame;
 	Engine::SPHERE m_tSphere;
 
 public:
-	static CWind* Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3& vInitialPos, const _vec3& vAngle, const _float& fSpeed, const _float& fMaxFrame, const _float& fFrameSpeed);
+	static CWind* Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3& vInitialPos, const _vec3& vAngle, const _float& fSpeed, const _float& fMaxFrame, const _float& fFrameSpeed, _float fDir);
 
 private:
 	virtual void Free() override;

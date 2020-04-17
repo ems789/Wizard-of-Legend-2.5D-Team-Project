@@ -44,7 +44,7 @@ _int CWindSlash::Use_Skill(const _float& fTimeDelta)
 	_vec3 vAngle = pTransform->GetAngleRef();
 	vAngle.x += D3DXToRadian(90.f);
 
-	CWind* pWind = CWind::Create(m_pGraphicDev, vStartPos, vAngle, m_fSpeed, 7, 30.f);
+	CWind* pWind = CWind::Create(m_pGraphicDev, vStartPos, vAngle, m_fSpeed, 7, 30.f, 1.f);
 	FAILED_CHECK_RETURN(Engine::Add_GameObject(L"GameLogic", L"Wind", pWind), -1);
 
 	m_fCurTime = m_fCoolTime;
@@ -61,19 +61,22 @@ _int CWindSlash::Use_Skill(const _float & fTimeDelta, const _vec3 * pPos, const 
 		Engine::Set_TimeDelta(L"WindSlash_CoolTime");
 
 	_vec3 vStartPos = *pPos;
-	vStartPos += *pDir * 1.f;
+	vStartPos += *pDir * 0.5f;
 
 	_vec3 vAngle;
-	Engine::CMyMath::DirectionalVectorToAngle(&vAngle, pDir);
+	//Engine::CMyMath::DirectionalVectorToAngle(&vAngle, pDir);
+	vAngle.y = Engine::CMyMath::YAngleTransformFromVec(pDir);
+	_float fDir = pDir->z < 0.f ? -1.f : 1.f;
 
 	vAngle.x = D3DXToRadian(90.f);
+	vAngle.z = 0.f;
 
-	CWind* pWind = CWind::Create(m_pGraphicDev, vStartPos, vAngle, m_fSpeed, 7, 30.f);
+	CWind* pWind = CWind::Create(m_pGraphicDev, vStartPos, vAngle, m_fSpeed, 7, 30.f, fDir);
 	FAILED_CHECK_RETURN(Engine::Add_GameObject(L"GameLogic", L"Wind", pWind), -1);
 
 	m_fCurTime = m_fCoolTime;
 
-	return;
+	return 1;
 }
 
 _int CWindSlash::Use_UpgradedSkill(const _float & fTimeDelta)

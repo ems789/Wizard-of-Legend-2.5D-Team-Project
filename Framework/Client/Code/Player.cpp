@@ -47,6 +47,8 @@ HRESULT CPlayer::Ready_GameObject()
 
 	m_vecEquipSkill[0] = pWindSlash;
 
+	m_fDashSpeed = 30.f;
+
 	return S_OK;
 }
 
@@ -54,9 +56,9 @@ _int CPlayer::Update_GameObject(const _float& fTimeDelta)
 {
 	Turn_To_Camera_Look();
 
-	Key_Input(fTimeDelta);
-	Change_State();
+	//Key_Input(fTimeDelta);
 	Update_State(fTimeDelta);
+	Change_State();
 	Animation(fTimeDelta);
 
 	_int iExit = CGameObject::Update_GameObject(fTimeDelta);
@@ -147,6 +149,7 @@ HRESULT CPlayer::Add_Component()
 	m_vvTextureCom[P_IDLE][PD_RIGHT] = pTextureCom;
 
 
+	//	RunTexture
 	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_Player_RunUp"));
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
 	m_vvTextureCom[P_RUN][PD_UP] = pTextureCom;
@@ -159,6 +162,55 @@ HRESULT CPlayer::Add_Component()
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
 	m_vvTextureCom[P_RUN][PD_RIGHT] = pTextureCom;
 
+
+	//	Dash Texture
+	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_Player_DashUp"));
+	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	m_vvTextureCom[P_DASH][PD_UP] = pTextureCom;
+
+	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_Player_DashDown"));
+	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	m_vvTextureCom[P_DASH][PD_DOWN] = pTextureCom;
+
+	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_Player_DashRight"));
+	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	m_vvTextureCom[P_DASH][PD_RIGHT] = pTextureCom;
+
+
+	//	Attack Texture
+	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_Player_AttackUp"));
+	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	m_vvTextureCom[P_ATTACK][PD_UP] = pTextureCom;
+
+	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_Player_AttackDown"));
+	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	m_vvTextureCom[P_ATTACK][PD_DOWN] = pTextureCom;
+
+	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_Player_AttackRight"));
+	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	m_vvTextureCom[P_ATTACK][PD_RIGHT] = pTextureCom;
+
+	//	Attack2 Texture
+	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_Player_Attack2Up"));
+	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	m_vvTextureCom[P_ATTACK2][PD_UP] = pTextureCom;
+
+	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_Player_Attack2Down"));
+	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	m_vvTextureCom[P_ATTACK2][PD_DOWN] = pTextureCom;
+
+	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_Player_Attack2Right"));
+	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	m_vvTextureCom[P_ATTACK2][PD_RIGHT] = pTextureCom;
+
+	//	Skill1 Texture
+	m_vvTextureCom[P_SKILL1][PD_UP]		= m_vvTextureCom[P_ATTACK2][PD_UP];
+	m_vvTextureCom[P_SKILL1][PD_UP]->AddRef();
+	m_vvTextureCom[P_SKILL1][PD_DOWN]	= m_vvTextureCom[P_ATTACK2][PD_DOWN];
+	m_vvTextureCom[P_SKILL1][PD_DOWN]->AddRef();
+	m_vvTextureCom[P_SKILL1][PD_RIGHT]	= m_vvTextureCom[P_ATTACK2][PD_RIGHT];
+	m_vvTextureCom[P_SKILL1][PD_RIGHT]->AddRef();
+
 	return S_OK;
 }
 
@@ -166,7 +218,15 @@ void CPlayer::Animation(const _float& fTimeDelta)
 {
 	m_tFrame.fCurFrame += fTimeDelta * m_tFrame.fFrameSpeed;
 	if (m_tFrame.fCurFrame > m_tFrame.fMaxFrame)
-		m_tFrame.fCurFrame = 0.f;
+	{
+		if (m_bAnimRepeat)
+			m_tFrame.fCurFrame = 0.f;
+		else
+		{
+			m_tFrame.fCurFrame = m_tFrame.fMaxFrame - 1.f;
+			m_bAnimFinish = true;
+		}
+	}
 }
 
 void CPlayer::Change_State()
@@ -184,6 +244,9 @@ void CPlayer::Change_State()
 		break;
 	case CPlayer::P_ATTACK:
 		Attack_State();
+		break;
+	case CPlayer::P_ATTACK2:
+		Attack2_State();
 		break;
 	case CPlayer::P_DASH:
 		Dash_State();
@@ -212,6 +275,7 @@ _int CPlayer::Update_State(const _float& fTimeDelta)
 		iExit = Run_Update(fTimeDelta);
 		break;
 	case CPlayer::P_ATTACK:
+	case CPlayer::P_ATTACK2:
 		iExit = Attack_Update(fTimeDelta);
 		break;
 	case CPlayer::P_DASH:
@@ -238,43 +302,104 @@ void CPlayer::Turn_To_Camera_Look()
 	m_pTransformCom->Update_Component(0.f);
 }
 
+void CPlayer::Fitting_Scale_With_Texture(CPlayer::PLAYER_STATE eState)
+{
+	const Engine::TEX_INFO* pTexInfo = m_vvTextureCom[eState][m_eCurDir]->Get_TexInfo();
+
+	_vec3 vScale = { pTexInfo->tImgInfo.Width * m_fScale, pTexInfo->tImgInfo.Height * m_fScale, 1.f };
+	if (!m_bDir)
+		vScale.x = -vScale.x;
+
+	m_pTransformCom->Set_Scale(vScale);
+}
+
+void CPlayer::Fitting_Scale_With_Texture(CPlayer::PLAYER_STATE eState, _ulong dwIndex)
+{
+	const Engine::TEX_INFO* pTexInfo = m_vvTextureCom[eState][m_eCurDir]->Get_TexInfo(dwIndex);
+
+	_vec3 vScale = { pTexInfo->tImgInfo.Width * m_fScale, pTexInfo->tImgInfo.Height * m_fScale, 1.f };
+	if (!m_bDir)
+		vScale.x = -vScale.x;
+
+	m_pTransformCom->Set_Scale(vScale);
+}
+
 void CPlayer::Key_Input(const _float & fTimeDelta)
+{
+	switch (m_eCurState)
+	{
+	case CPlayer::P_IDLE:
+	case CPlayer::P_RUN:
+		Key_Input_Move(fTimeDelta);
+		Key_Input_Attack(fTimeDelta);
+		Key_Input_Dash(fTimeDelta);
+		Key_Input_Skill1(fTimeDelta);
+		break;
+	case CPlayer::P_ATTACK:
+	case CPlayer::P_ATTACK2:
+		Key_Input_Attack(fTimeDelta);
+		break;
+	case CPlayer::P_DASH:
+		break;
+	case CPlayer::P_SKILL1:
+		break;
+	case CPlayer::P_SKILL2:
+		break;
+	}
+}
+
+void CPlayer::Key_Input_Attack(const _float & fTimeDelta)
 {
 	switch (Engine::Get_MainCamType())
 	{
 	case Engine::CCameraMgr::MAIN_CAM_1ST:
 	case Engine::CCameraMgr::MAIN_CAM_3RD:
-		Key_Input_For_Move(fTimeDelta);
-		Key_Input_For_Attack(fTimeDelta);
-
+		Key_Input_Attack_For_1stAnd3rdView(fTimeDelta);
 		break;
 	case Engine::CCameraMgr::MAIN_CAM_QUATER:
-		Key_Input_Move_For_QuaterView(fTimeDelta);
 		Key_Input_Attack_For_QuaterView(fTimeDelta);
 		break;
 	}
-
 }
 
-void CPlayer::Key_Input_For_Attack(const _float & fTimeDelta)
+void CPlayer::Key_Input_Attack_For_1stAnd3rdView(const _float & fTimeDelta)
 {
 	if (Engine::MouseDown(Engine::DIM_LB))
 	{
+		switch (m_dwAttackCnt)
+		{
+		case 0:
+			++m_dwAttackCnt;
+			m_eCurState = P_ATTACK;
+			break;
+		case 1:
+			if (m_tFrame.fCurFrame > 5.f)
+			{
+				++m_dwAttackCnt;
+				m_eCurState = P_ATTACK2;
+			}
+			else
+				return;
+			break;
+		case 2:
+			if (m_tFrame.fCurFrame > 5.f)
+			{
+				+m_dwAttackCnt;
+				m_eCurState = P_ATTACK;
+			}
+			else
+				return;
+			break;
+		default:
+			return;
+		}
+
+		m_eCurDir = PD_UP;
+		m_bDir = true;
 		m_vecEquipSkill[0]->Use_Skill(fTimeDelta);
 	}
 
-	if (Engine::MousePress(Engine::DIM_RB))
-	{
-		Turn_To_Camera_Look();
-		m_vecEquipSkill[1]->Use_Skill(fTimeDelta);
-	}
 
-	if (Engine::KeyDown(DIK_Q))
-	{
-		Turn_To_Camera_Look();
-		if (m_vecEquipSkill[2])
-			m_vecEquipSkill[2]->Use_Skill(fTimeDelta);
-	}
 
 }
 
@@ -282,6 +407,34 @@ void CPlayer::Key_Input_Attack_For_QuaterView(const _float & fTimeDelta)
 {
 	if (Engine::MouseDown(Engine::DIM_LB))
 	{
+		switch (m_dwAttackCnt)
+		{
+		case 0:
+			++m_dwAttackCnt;
+			m_eCurState = P_ATTACK;
+			break;
+		case 1:
+			if (m_tFrame.fCurFrame > 5.f)
+			{
+				++m_dwAttackCnt;
+				m_eCurState = P_ATTACK2;
+			}
+			else
+				return;
+			break;
+		case 2:
+			if (m_tFrame.fCurFrame > 5.f)
+			{
+				+m_dwAttackCnt;
+				m_eCurState = P_ATTACK;
+			}
+			else
+				return;
+			break;
+		default:
+			return;
+		}
+
 		D3DXPLANE Plane = { 0.f, 1.f, 0.f, 0.f };
 		_vec3	vPicking;
 		_vec2	vMouse;
@@ -299,53 +452,33 @@ void CPlayer::Key_Input_Attack_For_QuaterView(const _float & fTimeDelta)
 		D3DXVec3Normalize(&vDir, &vDir);
 
 		m_vecEquipSkill[0]->Use_Skill(fTimeDelta, &vCurPos, &vDir);
+
+		CPlayer::PLAYER_DIR eDir = vDir.z > 0.f ? PD_UP : PD_DOWN;
+		if (fabs(vDir.x) > fabs(vDir.z))
+			eDir = PD_RIGHT;
+		m_eCurDir = eDir;
+		m_bDir = vDir.x < 0.f ? false : true;
+
 	}
 
-	if (Engine::MousePress(Engine::DIM_RB))
+
+}
+
+void CPlayer::Key_Input_Move(const _float & fTimeDelta)
+{
+	switch (Engine::Get_MainCamType())
 	{
-		D3DXPLANE Plane = { 0.f, 1.f, 0.f, 0.f };
-		_vec3	vPicking;
-		_vec2	vMouse;
-
-		_matrix	matProj, matView;
-		Engine::Get_MainCamera()->Get_View(&matView);
-		Engine::Get_MainCamera()->Get_Projection(&matProj);
-		Engine::CMyMath::ClientMousePos(g_hWnd, &vMouse);
-
-		Engine::CMyMath::PickingOnPlane(&vPicking, &vMouse, WINCX, WINCY, &matProj, &matView, &Plane);
-
-		_vec3 vCurPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
-		_vec3 vDir = vPicking - vCurPos;
-		vDir.y = 0;
-		D3DXVec3Normalize(&vDir, &vDir);
-
-		m_vecEquipSkill[1]->Use_Skill(fTimeDelta, &vCurPos, &vDir);
-	}
-
-	if (Engine::KeyDown(DIK_Q))
-	{
-		D3DXPLANE Plane = { 0.f, 1.f, 0.f, 0.f };
-		_vec3	vPicking;
-		_vec2	vMouse;
-
-		_matrix	matProj, matView;
-		Engine::Get_MainCamera()->Get_View(&matView);
-		Engine::Get_MainCamera()->Get_Projection(&matProj);
-		Engine::CMyMath::ClientMousePos(g_hWnd, &vMouse);
-
-		Engine::CMyMath::PickingOnPlane(&vPicking, &vMouse, WINCX, WINCY, &matProj, &matView, &Plane);
-
-		_vec3 vCurPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
-		_vec3 vDir = vPicking - vCurPos;
-		vDir.y = 0;
-		D3DXVec3Normalize(&vDir, &vDir);
-
-		if (m_vecEquipSkill[2])
-			m_vecEquipSkill[1]->Use_Skill(fTimeDelta, &vCurPos, &vDir);
+	case Engine::CCameraMgr::MAIN_CAM_1ST:
+	case Engine::CCameraMgr::MAIN_CAM_3RD:
+		Key_Input_Move_For_1stAnd3rdView(fTimeDelta);
+		break;
+	case Engine::CCameraMgr::MAIN_CAM_QUATER:
+		Key_Input_Move_For_QuaterView(fTimeDelta);
+		break;
 	}
 }
 
-void CPlayer::Key_Input_For_Move(const _float & fTimeDelta)
+void CPlayer::Key_Input_Move_For_1stAnd3rdView(const _float & fTimeDelta)
 {
 	_vec3 vCamLook, vCamRight;
 	Engine::Get_MainCameraLook(&vCamLook);
@@ -392,6 +525,7 @@ void CPlayer::Key_Input_For_Move(const _float & fTimeDelta)
 
 	if (0.f != vMove.x || 0.f != vMove.y || 0.f != vMove.z)
 	{
+		D3DXVec3Normalize(&m_vDashDir, &vMove);
 		m_pTransformCom->Move_Pos(vMove);
 		m_eCurState = P_RUN;
 	}
@@ -436,7 +570,7 @@ void CPlayer::Key_Input_Move_For_QuaterView(const _float & fTimeDelta)
 		m_eCurDir = PD_RIGHT;
 		bDir = true;
 	}
-	
+
 	if (m_bDir != bDir)
 	{
 		_vec3 vScale = m_pTransformCom->GetScaleRef();
@@ -446,6 +580,7 @@ void CPlayer::Key_Input_Move_For_QuaterView(const _float & fTimeDelta)
 
 	if (0.f != vMove.x || 0.f != vMove.y || 0.f != vMove.z)
 	{
+		D3DXVec3Normalize(&m_vDashDir, &vMove);
 		m_pTransformCom->Move_Pos(vMove);
 		m_eCurState = P_RUN;
 	}
@@ -454,52 +589,150 @@ void CPlayer::Key_Input_Move_For_QuaterView(const _float & fTimeDelta)
 		
 }
 
-void CPlayer::Key_Input_For_1stAnd3rdView(const _float & fTimeDelta)
-{
-	_vec3 vCamLook, vCamRight;
-	Engine::Get_MainCameraLook(&vCamLook);
-	Engine::Get_MainCameraRight(&vCamRight);
-
-	vCamRight.y = 0;
-	vCamLook.y = 0;
-
-	D3DXVec3Normalize(&vCamLook, &vCamLook);
-	D3DXVec3Normalize(&vCamRight, &vCamRight);
-
-	_vec3 vAngle = { 0.f, 0.f, 0.f };
-	Engine::Get_MainCameraAngle(&vAngle);
-	vAngle.x = 0.f;
-	if (Engine::KeyPress(DIK_W))
-	{
-		m_pTransformCom->Move_Pos(&(vCamLook * m_fSpeed * fTimeDelta));
-		m_pTransformCom->Set_Angle(&vAngle);
-	}
-	if (Engine::KeyPress(DIK_S))
-	{
-		m_pTransformCom->Move_Pos(&(vCamLook * -m_fSpeed * fTimeDelta));
-		m_pTransformCom->Set_Angle(&vAngle);
-	}
-	if (Engine::KeyPress(DIK_A))
-	{
-		m_pTransformCom->Move_Pos(&(vCamRight * -m_fSpeed * fTimeDelta));
-		m_pTransformCom->Set_Angle(&vAngle);
-	}
-	if (Engine::KeyPress(DIK_D))
-	{
-		m_pTransformCom->Move_Pos(&(vCamRight * m_fSpeed * fTimeDelta));
-		m_pTransformCom->Set_Angle(&vAngle);
-	}
-}
-
 void CPlayer::Key_Input_Dash(const _float & fTimeDelta)
 {
+	switch (Engine::Get_MainCamType())
+	{
+	case Engine::CCameraMgr::MAIN_CAM_1ST:
+	case Engine::CCameraMgr::MAIN_CAM_3RD:
+		Key_Input_Dash_For_1stAnd3rdView(fTimeDelta);
+		break;
+	case Engine::CCameraMgr::MAIN_CAM_QUATER:
+		Key_Input_Dash_For_QuaterView(fTimeDelta);
+		break;
+	}
 }
 
-void CPlayer::Key_Input_Dash_For_1stAnd3RDView(const _float & fTimeDelta)
+void CPlayer::Key_Input_Dash_For_1stAnd3rdView(const _float & fTimeDelta)
 {
+	if (Engine::KeyDown(DIK_SPACE))
+	{
+		m_eCurState = CPlayer::P_DASH;
+	}
 }
 
 void CPlayer::Key_Input_Dash_For_QuaterView(const _float & fTimeDleta)
+{
+	if (Engine::KeyDown(DIK_SPACE))
+	{
+		m_eCurState = CPlayer::P_DASH;
+
+		//D3DXVec3Normalize(&m_vDashDir, &m_vDashDir);
+	}
+}
+
+void CPlayer::Key_Input_Skill1(const _float & fTimeDelta)
+{
+	switch (Engine::Get_MainCamType())
+	{
+	case Engine::CCameraMgr::MAIN_CAM_1ST:
+	case Engine::CCameraMgr::MAIN_CAM_3RD:
+		Key_Input_Skill1_For_1stAnd3rdView(fTimeDelta);
+		break;
+	case Engine::CCameraMgr::MAIN_CAM_QUATER:
+		Key_Input_Skill1_For_QuaterView(fTimeDelta);
+		break;
+	}
+}
+
+void CPlayer::Key_Input_Skill1_For_1stAnd3rdView(const _float & fTimeDelta)
+{
+	if (Engine::MousePress(Engine::DIM_RB))
+	{
+		Turn_To_Camera_Look();
+		_int iMotion = m_vecEquipSkill[1]->Use_Skill(fTimeDelta);
+		if (1 == iMotion)
+		{
+			m_eCurState = P_SKILL1;
+			m_eCurDir = PD_UP;
+			m_bDir = true;
+		}
+	}
+
+	if (Engine::KeyDown(DIK_Q))
+	{
+		Turn_To_Camera_Look();
+		if (m_vecEquipSkill[2])
+			m_vecEquipSkill[2]->Use_Skill(fTimeDelta);
+	}
+
+}
+
+void CPlayer::Key_Input_Skill1_For_QuaterView(const _float & fTimeDelta)
+{
+	if (Engine::MousePress(Engine::DIM_RB))
+	{
+		D3DXPLANE Plane = { 0.f, 1.f, 0.f, 0.f };
+		_vec3	vPicking;
+		_vec2	vMouse;
+
+		_matrix	matProj, matView;
+		Engine::Get_MainCamera()->Get_View(&matView);
+		Engine::Get_MainCamera()->Get_Projection(&matProj);
+		Engine::CMyMath::ClientMousePos(g_hWnd, &vMouse);
+
+		Engine::CMyMath::PickingOnPlane(&vPicking, &vMouse, WINCX, WINCY, &matProj, &matView, &Plane);
+
+		_vec3 vCurPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
+		_vec3 vDir = vPicking - vCurPos;
+		vDir.y = 0;
+		D3DXVec3Normalize(&vDir, &vDir);
+
+		_int iMotion = m_vecEquipSkill[1]->Use_Skill(fTimeDelta, &vCurPos, &vDir);
+		if (1 == iMotion)
+		{
+			m_eCurState = P_SKILL1;
+			CPlayer::PLAYER_DIR eDir = vDir.z > 0.f ? PD_UP : PD_DOWN;
+			if (fabs(vDir.x) > fabs(vDir.z))
+				eDir = PD_RIGHT;
+			m_eCurDir = eDir;
+			m_bDir = vDir.x < 0.f ? false : true;
+
+		}
+	}
+
+	if (Engine::KeyDown(DIK_Q))
+	{
+		D3DXPLANE Plane = { 0.f, 1.f, 0.f, 0.f };
+		_vec3	vPicking;
+		_vec2	vMouse;
+
+		_matrix	matProj, matView;
+		Engine::Get_MainCamera()->Get_View(&matView);
+		Engine::Get_MainCamera()->Get_Projection(&matProj);
+		Engine::CMyMath::ClientMousePos(g_hWnd, &vMouse);
+
+		Engine::CMyMath::PickingOnPlane(&vPicking, &vMouse, WINCX, WINCY, &matProj, &matView, &Plane);
+
+		_vec3 vCurPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
+		_vec3 vDir = vPicking - vCurPos;
+		vDir.y = 0;
+		D3DXVec3Normalize(&vDir, &vDir);
+
+		if (m_vecEquipSkill[2])
+			m_vecEquipSkill[1]->Use_Skill(fTimeDelta, &vCurPos, &vDir);
+	}
+}
+
+void CPlayer::Key_Input_Skill2(const _float & fTimeDelta)
+{
+	switch (Engine::Get_MainCamType())
+	{
+	case Engine::CCameraMgr::MAIN_CAM_1ST:
+	case Engine::CCameraMgr::MAIN_CAM_3RD:
+		Key_Input_Skill2_For_1stAnd3rdView(fTimeDelta);
+		break;
+	case Engine::CCameraMgr::MAIN_CAM_QUATER:
+		Key_Input_Skill2_For_QuaterView(fTimeDelta);
+		break;
+	}
+}
+
+void CPlayer::Key_Input_Skill2_For_1stAnd3rdView(const _float & fTimeDelta)
+{
+}
+
+void CPlayer::Key_Input_Skill2_For_QuaterView(const _float & fTimeDelta)
 {
 }
 
@@ -509,15 +742,10 @@ void CPlayer::Idle_State()
 	m_tFrame.fMaxFrame = 0.f;
 	m_tFrame.fFrameSpeed = 10.f;
 
-	const Engine::TEX_INFO* pTexInfo = m_vvTextureCom[P_IDLE][m_eCurDir]->Get_TexInfo();
+	m_bAnimFinish = false;
+	m_bAnimRepeat = true;
 
-	_vec3 vScale = { pTexInfo->tImgInfo.Width * m_fScale, pTexInfo->tImgInfo.Height * m_fScale, 1.f };
-	if (!m_bDir)
-		vScale.x = -vScale.x;
-
-	cout << "x : " << vScale.x << " y : " << vScale.y << endl;
-
-	m_pTransformCom->Set_Scale(vScale);
+	Fitting_Scale_With_Texture(P_IDLE);
 }
 
 void CPlayer::Run_State()
@@ -526,36 +754,56 @@ void CPlayer::Run_State()
 	m_tFrame.fMaxFrame = 10.f;
 	m_tFrame.fFrameSpeed = 20.f;
 
-	const Engine::TEX_INFO* pTexInfo = m_vvTextureCom[P_RUN][m_eCurDir]->Get_TexInfo();
+	m_bAnimFinish = false;
+	m_bAnimRepeat = true;
 
-	_vec3 vScale = { pTexInfo->tImgInfo.Width * m_fScale, pTexInfo->tImgInfo.Height * m_fScale, 1.f };
-	if (!m_bDir)
-		vScale.x = -vScale.x;
-
-	cout << "x : " << vScale.x << " y : " << vScale.y << endl;
-
-	m_pTransformCom->Set_Scale(vScale);
+	Fitting_Scale_With_Texture(P_RUN);
 }
 
 void CPlayer::Attack_State()
 {
 	m_tFrame.fCurFrame = 0.f;
-	m_tFrame.fMaxFrame = 0.f;
-	m_tFrame.fFrameSpeed = 10.f;
+	m_tFrame.fMaxFrame = 8.f;
+	m_tFrame.fFrameSpeed = 20.f;
+	m_bAnimFinish = false;
+	m_bAnimRepeat = false;
+
+	Fitting_Scale_With_Texture(P_ATTACK);
+}
+
+void CPlayer::Attack2_State()
+{
+	m_tFrame.fCurFrame = 0.f;
+	m_tFrame.fMaxFrame = 9.f;
+	m_tFrame.fFrameSpeed = 20.f;
+	m_bAnimFinish = false;
+	m_bAnimRepeat = false;
+
+	Fitting_Scale_With_Texture(P_ATTACK2);
 }
 
 void CPlayer::Dash_State()
 {
 	m_tFrame.fCurFrame = 0.f;
-	m_tFrame.fMaxFrame = 0.f;
-	m_tFrame.fFrameSpeed = 10.f;
+	m_tFrame.fMaxFrame = 9.f;
+	m_tFrame.fFrameSpeed = 20.f;
+
+	m_bAnimFinish = false;
+	m_bAnimRepeat = false;
+
+	Fitting_Scale_With_Texture(P_DASH);
 }
 
 void CPlayer::Skill1_State()
 {
 	m_tFrame.fCurFrame = 0.f;
-	m_tFrame.fMaxFrame = 0.f;
-	m_tFrame.fFrameSpeed = 10.f;
+	m_tFrame.fMaxFrame = 9.f;
+	m_tFrame.fFrameSpeed = 20.f;
+
+	m_bAnimFinish = false;
+	m_bAnimRepeat = false;
+
+	Fitting_Scale_With_Texture(P_SKILL1);
 }
 
 void CPlayer::Skill2_State()
@@ -563,32 +811,67 @@ void CPlayer::Skill2_State()
 	m_tFrame.fCurFrame = 0.f;
 	m_tFrame.fMaxFrame = 0.f;
 	m_tFrame.fFrameSpeed = 10.f;
+	m_bAnimFinish = false;
+	m_bAnimRepeat = false;
 }
 
 _int CPlayer::Idle_Update(const _float& fTimeDelta)
 {
+	Key_Input(fTimeDelta);
+
+
 	return 0;
 }
 
 _int CPlayer::Run_Update(const _float& fTimeDelta)
 {
+	Key_Input(fTimeDelta);
+
+
+
 	return 0;
 }
 
 _int CPlayer::Attack_Update(const _float& fTimeDelta)
 {
+	if (m_bAnimFinish)
+	{
+		m_eCurState = CPlayer::P_IDLE;
+		m_dwAttackCnt = 0;
+		return 0;
+	}
+
+	Key_Input(fTimeDelta);
+
 	return 0;
 }
 
 _int CPlayer::Dash_Update(const _float& fTimeDelta)
 {
+	if (m_bAnimFinish)
+	{
+		m_eCurState = CPlayer::P_IDLE;
+		return 0;
+	}
+
+	if (m_tFrame.fCurFrame <= 6.f)
+	{
+		m_pTransformCom->Move_Pos(m_vDashDir * fTimeDelta * m_fDashSpeed);
+	}
+
 	return 0;
 }
 
 _int CPlayer::Skill1_Update(const _float& fTimeDelta)
 {
-	m_vecEquipSkill[0]->Use_Skill(fTimeDelta);
-	
+	if (m_bAnimFinish)
+	{
+		m_eCurState = CPlayer::P_IDLE;
+		m_dwAttackCnt = 0;
+		return 0;
+	}
+
+	Key_Input(fTimeDelta);
 
 	return 0;
 }

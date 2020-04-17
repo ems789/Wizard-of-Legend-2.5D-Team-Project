@@ -18,6 +18,7 @@ public:
 
 private:
 	_float	m_fSpeed = 30.f;
+	_bool	m_bFirstShot = true;
 
 public:
 	static CFireBall* Create(LPDIRECT3DDEVICE9 pGraphicDev);
