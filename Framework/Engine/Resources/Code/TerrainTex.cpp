@@ -4,6 +4,8 @@ USING(Engine)
 
 Engine::CTerrainTex::CTerrainTex(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CVIBuffer(pGraphicDev)
+	, m_pPos(nullptr)
+	, m_bClone(false)
 {
 
 }
@@ -14,18 +16,18 @@ Engine::CTerrainTex::CTerrainTex(const CTerrainTex& rhs)
 	, m_bClone(true)
 	, m_dwCntX(rhs.m_dwCntX)
 	, m_dwCntZ(rhs.m_dwCntZ)
-	, m_fH(rhs.m_fH)
-	, m_iH(rhs.m_iH)
 {
 
 }
 
-Engine::CTerrainTex::~CTerrainTex()
+Engine::CTerrainTex::~CTerrainTex(void)
 {
 
 }
 
-HRESULT Engine::CTerrainTex::Ready_Buffer(const _tchar* pPath, const _ulong& dwCntX, const _ulong& dwCntZ, const _ulong& dwVtxItv /*= 1*/)
+HRESULT Engine::CTerrainTex::Ready_Buffer(const _ulong& dwCntX,
+											const _ulong& dwCntZ,
+											const _ulong dwVtxItv)
 {
 	m_dwVtxSize = sizeof(VTXTEX);
 	m_dwCntX = dwCntX;
@@ -41,49 +43,36 @@ HRESULT Engine::CTerrainTex::Ready_Buffer(const _tchar* pPath, const _ulong& dwC
 
 	FAILED_CHECK_RETURN(CVIBuffer::Ready_Buffer(), E_FAIL);
 
-	_ulong*		pPixel = nullptr;
+	_ulong			dwIndex = 0;
+	VTXTEX*			pVertex = nullptr;
 
-	if (wcscmp(pPath, L"") != 0)
-	{
-		_ulong	dwByte = 0;
-
-		m_hFile = CreateFile(pPath, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
-
-		ReadFile(m_hFile, &m_fH, sizeof(BITMAPFILEHEADER), &dwByte, NULL);
-		ReadFile(m_hFile, &m_iH, sizeof(BITMAPINFOHEADER), &dwByte, NULL);
-
-		pPixel = new _ulong[m_iH.biHeight * m_iH.biWidth];
-
-		ReadFile(m_hFile, pPixel, sizeof(_ulong) * m_iH.biHeight * m_iH.biWidth, &dwByte, NULL);
-
-		CloseHandle(m_hFile);
-	}
-	
-
-	_ulong		dwIndex = 0;
-	VTXTEX*		pVertex = nullptr;
-
-	m_pVB->Lock(0, 0, (void**)&pVertex, 0);
-
+	m_pVB->Lock(0, 0, (void**)&pVertex, 0);		// 1. 메모리 잠그는 역할, 2. 3인자를 통해서 저장된 버텍스 접근 권한을 얻음
+													// 오른쪽 위 
 	for (_ulong z = 0; z < dwCntZ; ++z)
 	{
-		for (_ulong x = 0; x < dwCntZ; ++x)
+		for (_ulong x = 0; x < dwCntX; ++x)
 		{
 			dwIndex = z * dwCntX + x;
 
-			_float fHeight = nullptr != pPixel ? (pPixel[dwIndex] & 0x000000ff) / 20.f : 0.f;
+			pVertex[dwIndex].vPos = _vec3(_float(x * dwVtxItv),
+											0/*(pPixel[dwIndex] & 0x000000ff) / 20.f*/,
+											_float(z * dwVtxItv));
 
-			pVertex[dwIndex].vPos = _vec3(_float(x * dwVtxItv), fHeight, _float(z * dwVtxItv));
+			m_pPos[dwIndex] = pVertex[dwIndex].vPos;
+
+			// 텍스쳐를 하단부터 읽어오도록 uv값 변경
+			//pVertex[dwIndex].vTexUV = _vec2(_float(x) / (dwCntX - 1) /** 20.f*/,
+			//								_float(dwCntZ - z - 1) / (dwCntZ - 1) /** 20.f*/);
 			pVertex[dwIndex].vTexUV = _vec2(_float(x) / (dwCntX - 1) * 20.f, _float(z) / (dwCntZ - 1) * 20.f);
 		}
+
 	}
 
 	m_pVB->Unlock();
-	Safe_Delete_Array(pPixel);
 
 	_ulong	dwTriCnt = 0;
 
-	INDEX32*	pIndex = nullptr;
+	INDEX32*		pIndex = nullptr;
 
 	m_pIB->Lock(0, 0, (void**)&pIndex, 0);
 
@@ -93,17 +82,17 @@ HRESULT Engine::CTerrainTex::Ready_Buffer(const _tchar* pPath, const _ulong& dwC
 		{
 			dwIndex = z * dwCntX + x;
 
-			//	Upper right triangle
+			// 오른쪽 위
 			pIndex[dwTriCnt]._0 = dwIndex + dwCntX;
 			pIndex[dwTriCnt]._1 = dwIndex + dwCntX + 1;
-			pIndex[dwTriCnt]._2= dwIndex + 1;
-			++dwTriCnt;
-
-			//	Lower left triangle
+			pIndex[dwTriCnt]._2 = dwIndex + 1;
+			dwTriCnt++;
+			
+			// 왼쪽 아래
 			pIndex[dwTriCnt]._0 = dwIndex + dwCntX;
 			pIndex[dwTriCnt]._1 = dwIndex + 1;
 			pIndex[dwTriCnt]._2 = dwIndex;
-			++dwTriCnt;
+			dwTriCnt++;
 		}
 	}
 
@@ -112,22 +101,25 @@ HRESULT Engine::CTerrainTex::Ready_Buffer(const _tchar* pPath, const _ulong& dwC
 	return S_OK;
 }
 
-Engine::CTerrainTex* Engine::CTerrainTex::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _tchar* pPath, const _ulong& dwCntX, const _ulong& dwCntZ, const _ulong& dwVtxItv /*= 1*/)
+Engine::CResources* Engine::CTerrainTex::Clone(void)
 {
-	CTerrainTex* pInstance = new CTerrainTex(pGraphicDev);
+	return new CTerrainTex(*this);
+}
 
-	if (FAILED(pInstance->Ready_Buffer(pPath, dwCntX, dwCntZ, dwVtxItv)))
+Engine::CTerrainTex* Engine::CTerrainTex::Create(LPDIRECT3DDEVICE9 pGraphicDev,
+												const _ulong& dwCntX,
+												const _ulong& dwCntZ,
+												const _ulong& dwVtxItv)
+{
+	CTerrainTex*	pInstance = new CTerrainTex(pGraphicDev);
+
+	if (FAILED(pInstance->Ready_Buffer(dwCntX, dwCntZ, dwVtxItv)))
 		Safe_Release(pInstance);
 
 	return pInstance;
 }
 
-Engine::CResources* Engine::CTerrainTex::Clone()
-{
-	return new CTerrainTex(*this);
-}
-
-void Engine::CTerrainTex::Free()
+void Engine::CTerrainTex::Free(void)
 {
 	CVIBuffer::Free();
 
