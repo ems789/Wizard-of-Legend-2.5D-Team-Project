@@ -46,7 +46,7 @@ HRESULT Engine::CResourcesMgr::Ready_Buffer(LPDIRECT3DDEVICE9 pGraphicDev, const
 		pResources = CRcTex::Create(pGraphicDev);
 		break;
 	case Engine::BUFFER_TERRAINTEX:
-		pResources = CTerrainTex::Create(pGraphicDev, pPath, dwCntX, dwCntZ, dwVtxItv);
+		pResources = CTerrainTex::Create(pGraphicDev, dwCntX, dwCntZ, dwVtxItv);
 		break;
 	case Engine::BUFFER_CUBETEX:
 		pResources = CCubeTex::Create(pGraphicDev);
