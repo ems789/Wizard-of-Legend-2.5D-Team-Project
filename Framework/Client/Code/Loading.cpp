@@ -56,35 +56,40 @@ _uint CLoading::Loading_ForState()
 	//lstrcpy(m_szLoading, L"");
 
 	//	Buffer
-	FAILED_CHECK_RETURN(Engine::Ready_Buffer(m_pGraphicDev, RESOURCE_STATIC, L"Buffer_TerrainTex",		Engine::BUFFER_TERRAINTEX, L"", VTXCNTX, VTXCNTZ, VTXITV), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Buffer(m_pGraphicDev, RESOURCE_STATIC, L"Buffer_TerrainTex", Engine::BUFFER_TERRAINTEX, L"", VTXCNTX, VTXCNTZ, VTXITV), E_FAIL);
 
 	//	Texture
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STAGE, L"Texture_Terrain",		Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Terrain/TileSet/Grass/TutorialCourseFloorRoom2_9.png"), E_FAIL);
-	
-	//	Player Texture
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_IdleUp",		Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardIdleUp.png"), E_FAIL);
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_IdleDown",	Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardIdleDown.png"), E_FAIL);
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_IdleRight",	Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardIdleRight.png"), E_FAIL);
-	
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_RunUp",		Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardRunUp/WizardRunUp%d.png", 10), E_FAIL);
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_RunDown",	Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardRunDown/WizardRunDown%d.png", 10), E_FAIL);
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_RunRight",	Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardRunRight/WizardRunRight%d.png", 10), E_FAIL);
-	
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_DashUp",		Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardPBAoEUp/WizardPBAoEUp%d.png", 9), E_FAIL);
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_DashDown",	Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardPBAoEDown/WizardPBAoEDown%d.png", 9), E_FAIL);
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_DashRight",	Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardPBAoERight/WizardPBAoERight%d.png", 9), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STAGE, L"Texture_Terrain", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Terrain/TileSet/Grass/TutorialCourseFloorRoom2_9.png"), E_FAIL);
 
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_AttackUp",	Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardForehand/Up/WizardForehandUp%d.png", 8), E_FAIL);
+	//	Player Texture
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_IdleUp", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardIdleUp.png"), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_IdleDown", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardIdleDown.png"), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_IdleRight", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardIdleRight.png"), E_FAIL);
+
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_RunUp", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardRunUp/WizardRunUp%d.png", 10), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_RunDown", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardRunDown/WizardRunDown%d.png", 10), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_RunRight", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardRunRight/WizardRunRight%d.png", 10), E_FAIL);
+
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_DashUp", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardPBAoEUp/WizardPBAoEUp%d.png", 9), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_DashDown", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardPBAoEDown/WizardPBAoEDown%d.png", 9), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_DashRight", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardPBAoERight/WizardPBAoERight%d.png", 9), E_FAIL);
+
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_AttackUp", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardForehand/Up/WizardForehandUp%d.png", 8), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_AttackDown", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardForehand/Down/WizardForehandDown%d.png", 8), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_AttackRight", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardForehand/Right/WizardForehandRight%d.png", 8), E_FAIL);
 
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_Attack2Up",	Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardBackhand/Up/WizardBackhandUp%d.png", 9), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_Attack2Up", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardBackhand/Up/WizardBackhandUp%d.png", 9), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_Attack2Down", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardBackhand/Down/WizardBackhandDown%d.png", 9), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_Attack2Right", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardBackhand/Right/WizardBackhandRight%d.png", 9), E_FAIL);
 
 
-	// BossHPUI ≥÷¿ª∞Õ
 
+
+
+	//	HP Texture
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_HPBarBG", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/UI/HP/HPBarBG.png"), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_HPBarFill", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/UI/HP/HPBarFill.png"), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_HPBarHurtFill", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/UI/HP/HPBarHurtFill.png"), E_FAIL);
 
 	//	FireBall Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Fire", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Skill/FireBall/IgnitionOrb_%d.png", 4), E_FAIL);
@@ -94,6 +99,15 @@ _uint CLoading::Loading_ForState()
 
 	//	FireBoss Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STAGE, L"Texture_FireBoss_Idle", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/FireBoss/FireBossIdle.png"), E_FAIL);
+
+	//	Explosion Texture
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FireExplosion", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/FireExplosion/FireExplosion%d.png", 7), E_FAIL);
+
+	//	SlashHitSpark Texture
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_SlashHitSpark", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/SlashHitSpark/SlashHitSpark_%d.png", 7), E_FAIL);
+
+	//	Monster
+
 
 	m_bFinish = true;
 

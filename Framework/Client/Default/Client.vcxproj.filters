@@ -127,6 +127,9 @@
     <Filter Include="02.GameObject\03.Town\01.TestMonster">
       <UniqueIdentifier>{f64d61ae-4f8a-42b2-8539-97c0eef3e42b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.Effect\01.BasicEffect">
+      <UniqueIdentifier>{00236add-c3ea-4813-beeb-ebf773ca8467}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -228,6 +231,9 @@
     <ClInclude Include="..\Code\UI.h">
       <Filter>02.GameObject\99.public\01.UI</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\BasicEffect.h">
+      <Filter>03.Effect\01.BasicEffect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -304,6 +310,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\UI.cpp">
       <Filter>02.GameObject\99.public\01.UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\BasicEffect.cpp">
+      <Filter>03.Effect\01.BasicEffect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

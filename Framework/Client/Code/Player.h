@@ -18,8 +18,8 @@ END
 class CPlayer : public Engine::CGameObject
 {
 public:
-	enum PLAYER_STATE	{ P_IDLE, P_RUN, P_ATTACK, P_ATTACK2, P_DASH, P_SKILL1, P_SKILL2, P_END };
-	enum PLAYER_DIR		{ PD_UP, PD_DOWN, PD_RIGHT, PD_END };
+	enum PLAYER_STATE { P_IDLE, P_RUN, P_ATTACK, P_ATTACK2, P_DASH, P_SKILL1, P_SKILL2, P_END };
+	enum PLAYER_DIR { PD_UP, PD_DOWN, PD_RIGHT, PD_END };
 
 private:
 	explicit CPlayer(LPDIRECT3DDEVICE9 pGraphicDev);
@@ -49,7 +49,7 @@ private:	//	Key_Input Functions
 	void	Key_Input_Attack(const _float& fTimeDelta);
 	void	Key_Input_Attack_For_1stAnd3rdView(const _float& fTimeDelta);
 	void	Key_Input_Attack_For_QuaterView(const _float& fTimeDelta);
-	
+
 	void	Key_Input_Move(const _float& fTimeDelta);
 	void	Key_Input_Move_For_QuaterView(const _float& fTimeDelta);
 	void	Key_Input_Move_For_1stAnd3rdView(const _float& fTimeDelta);
@@ -96,17 +96,17 @@ public:		//	Get Functions
 
 public:		//	About Collision
 	virtual void	Hit(const _int& iAtk, const _vec3* pAtkPos) {}
-	
+
 public:		//	About HP
 	virtual _int	Get_HP()	const { return m_iHP; }
 	virtual _int	Get_HPMax() const { return m_iHPMax; }
 
 
 private:	//	Components
-	Engine::CRcTex*		m_pBufferCom	= nullptr;
-//	Engine::CTexture*	m_pTextureCom	= nullptr;
+	Engine::CRcTex*		m_pBufferCom = nullptr;
+	//	Engine::CTexture*	m_pTextureCom	= nullptr;
 	Engine::CTransform* m_pTransformCom = nullptr;
-	Engine::CRenderer*	m_pRendererCom	= nullptr;
+	Engine::CRenderer*	m_pRendererCom = nullptr;
 
 	vector<vector<Engine::CTexture*>>	m_vvTextureCom;
 
@@ -115,11 +115,11 @@ private:
 	_bool	m_bAnimFinish = false;
 	_bool	m_bAnimRepeat = true;
 
-	CPlayer::PLAYER_STATE m_ePreState	= CPlayer::P_END;
-	CPlayer::PLAYER_STATE m_eCurState	= CPlayer::P_END;
-	CPlayer::PLAYER_DIR	  m_eCurDir		= CPlayer::PD_END;
+	CPlayer::PLAYER_STATE m_ePreState = CPlayer::P_END;
+	CPlayer::PLAYER_STATE m_eCurState = CPlayer::P_END;
+	CPlayer::PLAYER_DIR	  m_eCurDir = CPlayer::PD_END;
 	_uint	m_iPreCamState = 0;
-	
+
 	_bool		m_bDir = true;	//	true : right, false : left
 
 	_float	m_fSpeed = 10.f;
@@ -128,16 +128,17 @@ private:
 
 	vector<Engine::CSkill*>		m_vecEquipSkill;
 
-	_int	m_iHP		= 500;
-	_int	m_iHPMax	= 500;
+	_int	m_iHP = 500;
+	_int	m_iHPMax = 500;
 
 	_float	m_fScale = 0.2f;
 
 	//	Variable about dash
 	_float	m_fDashSpeed = 20.f;
-	_vec3	m_vDashDir = {0.f, 0.f, 0.f};
+	_vec3	m_vDashDir = { 0.f, 0.f, 0.f };
 
 	_ulong	m_dwAttackCnt = 0;
+	_vec3	m_vAttackDir = { 0.f, 0.f, 0.f };
 
 public:
 	static CPlayer* Create(LPDIRECT3DDEVICE9 pGraphicDev);

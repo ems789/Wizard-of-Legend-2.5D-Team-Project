@@ -16,7 +16,7 @@ CCollisionFunctions::~CCollisionFunctions()
 HRESULT CCollisionFunctions::Ready_Functions()
 {
 	Engine::CCollisionMgr::GetInstance()->Add_CollisionFunction(L"Player_Bullet", L"Monster", CCollisionFunctions::CollisionBulletToObject);
-	
+
 	return S_OK;
 }
 
@@ -40,6 +40,7 @@ void CCollisionFunctions::CollisionBulletToObject(const _tchar * pSrcTag, const 
 			if (Engine::CCollisionMgr::CollisionSphereToSphere(tSrcSph, tDestSph))
 			{
 				pSrc->Die();
+				pSrc->Add_Effect(&tDestSph.vPos);
 				pDest->Hit(pSrc->Get_Attack(), pSrc->Get_Pos());
 			}
 		}

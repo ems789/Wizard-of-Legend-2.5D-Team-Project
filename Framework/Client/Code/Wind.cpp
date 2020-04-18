@@ -2,9 +2,10 @@
 #include "Wind.h"
 
 #include "Export_Function.h"
+#include "BasicEffect.h"
 
 CWind::CWind(LPDIRECT3DDEVICE9 pGraphicDev)
-	:	Engine::CGameObject(pGraphicDev)
+	: Engine::CGameObject(pGraphicDev)
 {
 	ZeroMemory(&m_tFrame, sizeof(FRAME));
 }
@@ -17,7 +18,7 @@ CWind::~CWind()
 HRESULT CWind::Ready_GameObject()
 {
 	FAILED_CHECK_RETURN(Add_Component(), E_FAIL);
-	
+
 	m_fScale = 0.05f;
 
 	const Engine::TEX_INFO*	pTexInfo = m_pTextureCom->Get_TexInfo();
@@ -53,6 +54,16 @@ void CWind::Render_GameObject()
 
 	m_pTextureCom->Render_Texture(static_cast<_uint>(m_tFrame.fCurFrame));
 	m_pBufferCom->Render_Buffer();
+}
+
+void CWind::Add_Effect(const _vec3* pPos)
+{
+	_vec3 vPos = (*m_pTransformCom->GetInfo(Engine::INFO_POS) + *pPos) / 2;
+	vPos.y += 0.5f;
+
+	CBasicEffect* pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_SlashHitSpark", 7.f, 20.f, 0.05f, &vPos, false, 0.f);
+
+	Engine::Add_GameObject(L"GameLogic", L"SlashHitSpark", pEffect);
 }
 
 HRESULT CWind::Add_Component()

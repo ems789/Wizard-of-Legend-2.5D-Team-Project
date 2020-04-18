@@ -39,7 +39,7 @@ _int CFireBall::Use_Skill(const _float& fTimeDelta)
 		Engine::Set_TimeDelta(L"FireBall_CoolTime");
 
 	const Engine::CTransform* pTransform = dynamic_cast<const Engine::CTransform*>(Engine::Get_Component_of_Player(L"Com_Transform", Engine::ID_DYNAMIC));
-	
+
 	_vec3 vStartPos = pTransform->GetInfoRef(Engine::INFO_POS);
 	_vec3 vLook = pTransform->GetInfoRef(Engine::INFO_LOOK);
 	D3DXVec3Normalize(&vLook, &vLook);
@@ -60,7 +60,7 @@ _int CFireBall::Use_Skill(const _float & fTimeDelta, const _vec3 * pPos, const _
 		return 0;
 	else
 		Engine::Set_TimeDelta(L"FireBall_CoolTime");
-	
+
 	_vec3 vStartPos = *pPos;
 	vStartPos += *pDir;
 

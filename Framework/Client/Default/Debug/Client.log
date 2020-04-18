@@ -1,8 +1,8 @@
-﻿  MainApp.cpp
-c:\users\user\onedrive\desktop\framework1.5\teamproject\framework\reference\header\engine_macro.h(28): warning C4005: 'NULL_CHECK_MSG': 매크로 재정의
-  c:\users\user\onedrive\desktop\framework1.5\teamproject\framework\client\header\macro.h(28): note: 'NULL_CHECK_MSG'의 이전 정의를 참조하십시오.
-c:\users\user\onedrive\desktop\framework1.5\teamproject\framework\reference\header\engine_macro.h(41): warning C4005: 'FAILED_CHECK_MSG': 매크로 재정의
-  c:\users\user\onedrive\desktop\framework1.5\teamproject\framework\client\header\macro.h(41): note: 'FAILED_CHECK_MSG'의 이전 정의를 참조하십시오.
-     ../Bin/Client_DBG.lib 라이브러리 및 ../Bin/Client_DBG.exp 개체를 생성하고 있습니다.
-  Client.vcxproj -> C:\Users\user\OneDrive\Desktop\FrameWork1.5\TeamProject\Framework\Client\Default\../Bin/Client_DBG.exe
+﻿  Loading.cpp
+d:\teamproject\framework\reference\header\engine_macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\engine_macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+     Creating library ../Bin/Client_DBG.lib and object ../Bin/Client_DBG.exp
+  Client.vcxproj -> D:\TeamProject\Framework\Client\Default\../Bin/Client_DBG.exe
   Client.vcxproj -> ../Bin/Client_DBG.pdb (Full PDB)

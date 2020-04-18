@@ -162,6 +162,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\Engine\Utility\Code\UIImage.h" />
     <ClInclude Include="..\Code\BackGround.h" />
+    <ClInclude Include="..\Code\BasicEffect.h" />
     <ClInclude Include="..\Code\CastingCircle.h" />
     <ClInclude Include="..\Code\CollisionFunctions.h" />
     <ClInclude Include="..\Code\Fire.h" />
@@ -197,6 +198,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\Engine\Utility\Code\UIImage.cpp" />
     <ClCompile Include="..\Code\BackGround.cpp" />
+    <ClCompile Include="..\Code\BasicEffect.cpp" />
     <ClCompile Include="..\Code\CastingCircle.cpp" />
     <ClCompile Include="..\Code\CollisionFunctions.cpp" />
     <ClCompile Include="..\Code\Fire.cpp" />

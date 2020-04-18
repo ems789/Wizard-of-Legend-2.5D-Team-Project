@@ -130,7 +130,7 @@ HRESULT CPlayer::Add_Component()
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
 	m_mapComponent[Engine::ID_STATIC].emplace(L"Com_Renderer", pComponent);
 	m_pRendererCom->AddRef();
-	
+
 	Engine::CTexture* pTextureCom = nullptr;
 
 	m_vvTextureCom.resize(CPlayer::P_END, vector<Engine::CTexture*>(CPlayer::PD_END));
@@ -204,11 +204,11 @@ HRESULT CPlayer::Add_Component()
 	m_vvTextureCom[P_ATTACK2][PD_RIGHT] = pTextureCom;
 
 	//	Skill1 Texture
-	m_vvTextureCom[P_SKILL1][PD_UP]		= m_vvTextureCom[P_ATTACK2][PD_UP];
+	m_vvTextureCom[P_SKILL1][PD_UP] = m_vvTextureCom[P_ATTACK2][PD_UP];
 	m_vvTextureCom[P_SKILL1][PD_UP]->AddRef();
-	m_vvTextureCom[P_SKILL1][PD_DOWN]	= m_vvTextureCom[P_ATTACK2][PD_DOWN];
+	m_vvTextureCom[P_SKILL1][PD_DOWN] = m_vvTextureCom[P_ATTACK2][PD_DOWN];
 	m_vvTextureCom[P_SKILL1][PD_DOWN]->AddRef();
-	m_vvTextureCom[P_SKILL1][PD_RIGHT]	= m_vvTextureCom[P_ATTACK2][PD_RIGHT];
+	m_vvTextureCom[P_SKILL1][PD_RIGHT] = m_vvTextureCom[P_ATTACK2][PD_RIGHT];
 	m_vvTextureCom[P_SKILL1][PD_RIGHT]->AddRef();
 
 	return S_OK;
@@ -397,6 +397,7 @@ void CPlayer::Key_Input_Attack_For_1stAnd3rdView(const _float & fTimeDelta)
 		m_eCurDir = PD_UP;
 		m_bDir = true;
 		m_vecEquipSkill[0]->Use_Skill(fTimeDelta);
+		m_vAttackDir = *m_pTransformCom->GetInfo(Engine::INFO_LOOK);
 	}
 
 
@@ -459,6 +460,7 @@ void CPlayer::Key_Input_Attack_For_QuaterView(const _float & fTimeDelta)
 		m_eCurDir = eDir;
 		m_bDir = vDir.x < 0.f ? false : true;
 
+		m_vAttackDir = vDir;
 	}
 
 
@@ -586,7 +588,7 @@ void CPlayer::Key_Input_Move_For_QuaterView(const _float & fTimeDelta)
 	}
 	else
 		m_eCurState = P_IDLE;
-		
+
 }
 
 void CPlayer::Key_Input_Dash(const _float & fTimeDelta)
@@ -841,7 +843,13 @@ _int CPlayer::Attack_Update(const _float& fTimeDelta)
 		return 0;
 	}
 
+	if (m_tFrame.fCurFrame < 5.f)
+	{
+		m_pTransformCom->Move_Pos(m_vAttackDir * fTimeDelta);
+	}
+
 	Key_Input(fTimeDelta);
+
 
 	return 0;
 }
@@ -892,7 +900,7 @@ void CPlayer::Set_Pos(const _vec3 & vPos)
 }
 
 const _vec3 * CPlayer::Get_Pos() const
-{ 
+{
 	return m_pTransformCom->GetInfo(Engine::INFO_POS);
 }
 

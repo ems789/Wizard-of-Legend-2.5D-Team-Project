@@ -2,9 +2,10 @@
 #include "Fire.h"
 
 #include "Export_Function.h"
+#include "BasicEffect.h"
 
 CFire::CFire(LPDIRECT3DDEVICE9 pGraphicDev)
-	:	Engine::CGameObject(pGraphicDev)
+	: Engine::CGameObject(pGraphicDev)
 {
 	ZeroMemory(&m_tFrame, sizeof(FRAME));
 }
@@ -62,6 +63,17 @@ void CFire::Render_GameObject()
 const _vec3 * CFire::Get_Pos() const
 {
 	return m_pTransformCom->GetInfo(Engine::INFO_POS);
+}
+
+void CFire::Add_Effect(const _vec3* pPos)
+{
+	_vec3 vPos = (*m_pTransformCom->GetInfo(Engine::INFO_POS) + *pPos) / 2;
+	vPos.y += 0.5f;
+
+	CBasicEffect* pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_FireExplosion", 7.f, 20.f, 0.05f, &vPos, false, 0.f);
+
+	Engine::Add_GameObject(L"GameLogic", L"FireExplosion", pEffect);
+
 }
 
 HRESULT CFire::Add_Component()

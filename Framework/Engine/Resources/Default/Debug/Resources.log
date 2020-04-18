@@ -1,5 +1,5 @@
-﻿     ../Bin/Resources.lib 라이브러리 및 ../Bin/Resources.exp 개체를 생성하고 있습니다.
-  Resources.vcxproj -> C:\Users\user\OneDrive\Desktop\FrameWork1.5\TeamProject\Framework\Engine\Resources\Default\../Bin/Resources.dll
+﻿     Creating library ../Bin/Resources.lib and object ../Bin/Resources.exp
+  Resources.vcxproj -> D:\TeamProject\Framework\Engine\Resources\Default\../Bin/Resources.dll
   Resources.vcxproj -> ../Bin/Resources.pdb (Full PDB)
   .\Engine\Resources\Code\CubeTex.h
   .\Engine\Resources\Code\RcCol.h

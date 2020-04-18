@@ -30,6 +30,8 @@ public:		//	Get Functions
 public:	//	About Collision
 	virtual void	Hit(const _int& iAtk, const _vec3* pAtkPos) {}
 	virtual int		Get_Attack() { return 0; }
+	virtual void	Add_Effect() {}
+	virtual void	Add_Effect(const _vec3* pPos) {}
 
 public:
 	virtual _int	Get_HP() const { return 0; }
