@@ -17,7 +17,7 @@ class CGolem : public Engine::CGameObject
 {
 private:
 	enum GOLEM_STATE	{ GS_IDLE, GS_RUN, GS_ATTACK, GS_ATTACK_FT, GS_DEATH, GS_END };
-	enum GOLEM_DIR		{ GD_UP, GD_DOWN, GD_RIGHT, GD_END };
+	enum GOLEM_DIR		{ GD_UP, GD_DOWN, GD_LEFT, GD_RIGHT, GD_END };
 
 private:
 	explicit CGolem(LPDIRECT3DDEVICE9 pGraphicDev);
