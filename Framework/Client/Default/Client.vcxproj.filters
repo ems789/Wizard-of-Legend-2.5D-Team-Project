@@ -79,9 +79,6 @@
     <Filter Include="02.GameObject\99.public\01.UI">
       <UniqueIdentifier>{4748d5fd-57ff-4fae-b36e-0a7377353a74}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.GameObject\99.public\01.UI\00.PlayerHP">
-      <UniqueIdentifier>{9fb6dd0a-9e6a-4721-bd3b-502422c6d242}</UniqueIdentifier>
-    </Filter>
     <Filter Include="02.GameObject\03.Town">
       <UniqueIdentifier>{1c0ded6a-92e6-405a-8032-9cae12ca1024}</UniqueIdentifier>
     </Filter>
@@ -198,9 +195,6 @@
     <ClInclude Include="..\Code\Player.h">
       <Filter>02.GameObject\99.public\00.Player</Filter>
     </ClInclude>
-    <ClInclude Include="..\Code\PlayerHP.h">
-      <Filter>02.GameObject\99.public\01.UI\00.PlayerHP</Filter>
-    </ClInclude>
     <ClInclude Include="..\Code\TestTerrain.h">
       <Filter>02.GameObject\03.Town\00.TestTerrain</Filter>
     </ClInclude>
@@ -230,6 +224,9 @@
     </ClInclude>
     <ClInclude Include="..\Code\Wind.h">
       <Filter>05.Skill\03.Wind\00.WindSlash\00.Wind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\UI.h">
+      <Filter>02.GameObject\99.public\01.UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -275,9 +272,6 @@
     <ClCompile Include="..\Code\Player.cpp">
       <Filter>02.GameObject\99.public\00.Player</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\PlayerHP.cpp">
-      <Filter>02.GameObject\99.public\01.UI\00.PlayerHP</Filter>
-    </ClCompile>
     <ClCompile Include="..\Code\TestTerrain.cpp">
       <Filter>02.GameObject\03.Town\00.TestTerrain</Filter>
     </ClCompile>
@@ -307,6 +301,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\Wind.cpp">
       <Filter>05.Skill\03.Wind\00.WindSlash\00.Wind</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\UI.cpp">
+      <Filter>02.GameObject\99.public\01.UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

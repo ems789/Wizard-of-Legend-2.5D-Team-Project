@@ -1,0 +1,31 @@
+﻿  Transform.cpp
+c:\users\user\onedrive\desktop\teamproject\teamproject\framework\engine\utility\code\component.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Base.h': No such file or directory
+  Skill.cpp
+c:\users\user\onedrive\desktop\teamproject\teamproject\framework\engine\utility\code\skill.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Engine_Defines.h': No such file or directory
+  Scene.cpp
+c:\users\user\onedrive\desktop\teamproject\teamproject\framework\engine\utility\code\component.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Base.h': No such file or directory
+  Renderer.cpp
+c:\users\user\onedrive\desktop\teamproject\teamproject\framework\engine\utility\code\component.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Base.h': No such file or directory
+  MyMath.cpp
+c:\users\user\onedrive\desktop\teamproject\teamproject\framework\engine\utility\code\mymath.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Engine_Defines.h': No such file or directory
+  MoveObject.cpp
+c:\users\user\onedrive\desktop\teamproject\teamproject\framework\engine\utility\code\moveobject.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Engine_Defines.h': No such file or directory
+  Management.cpp
+c:\users\user\onedrive\desktop\teamproject\teamproject\framework\engine\utility\code\component.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Base.h': No such file or directory
+  Layer.cpp
+c:\users\user\onedrive\desktop\teamproject\teamproject\framework\engine\utility\code\component.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Base.h': No such file or directory
+  GameObject.cpp
+c:\users\user\onedrive\desktop\teamproject\teamproject\framework\engine\utility\code\component.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Base.h': No such file or directory
+  Effect.cpp
+c:\users\user\onedrive\desktop\teamproject\teamproject\framework\engine\utility\code\component.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Base.h': No such file or directory
+  Component.cpp
+c:\users\user\onedrive\desktop\teamproject\teamproject\framework\engine\utility\code\component.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Base.h': No such file or directory
+  CollisionMgr.cpp
+c:\users\user\onedrive\desktop\teamproject\teamproject\framework\engine\utility\code\collisionmgr.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Engine_Defines.h': No such file or directory
+  Collider.cpp
+c:\users\user\onedrive\desktop\teamproject\teamproject\framework\engine\utility\code\collider.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Engine_Defines.h': No such file or directory
+  CameraMgr.cpp
+c:\users\user\onedrive\desktop\teamproject\teamproject\framework\engine\utility\code\camera.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Engine_Defines.h': No such file or directory
+  Camera.cpp
+c:\users\user\onedrive\desktop\teamproject\teamproject\framework\engine\utility\code\camera.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Engine_Defines.h': No such file or directory
+  코드를 생성하고 있습니다...

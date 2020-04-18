@@ -1,8 +1,5 @@
-﻿  TerrainTex.cpp
-  ResourcesMgr.cpp
-  Generating Code...
-     Creating library ../Bin/Resources.lib and object ../Bin/Resources.exp
-  Resources.vcxproj -> D:\TeamProject\Framework\Engine\Resources\Default\../Bin/Resources.dll
+﻿  Texture.cpp
+  Resources.vcxproj -> C:\Users\user\OneDrive\Desktop\TeamProject\TeamProject\Framework\Engine\Resources\Default\../Bin/Resources.dll
   Resources.vcxproj -> ../Bin/Resources.pdb (Full PDB)
   .\Engine\Resources\Code\CubeTex.h
   .\Engine\Resources\Code\RcCol.h
@@ -17,8 +14,7 @@
          10개 파일이 복사되었습니다.
           1개 파일이 복사되었습니다.
           1개 파일이 복사되었습니다.
-  다른 프로세스가 파일을 사용 중이기 때문에 프로세스가 액세스 할 수 없습니다.
-          0개 파일이 복사되었습니다.
+          1개 파일이 복사되었습니다.
   .\Engine\Header\Engine_Defines.h
   .\Engine\Header\Engine_Enum.h
   .\Engine\Header\Engine_Function.h
