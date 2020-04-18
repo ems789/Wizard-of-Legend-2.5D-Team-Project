@@ -130,6 +130,12 @@
     <Filter Include="03.Effect\01.BasicEffect">
       <UniqueIdentifier>{00236add-c3ea-4813-beeb-ebf773ca8467}</UniqueIdentifier>
     </Filter>
+    <Filter Include="07.Monster">
+      <UniqueIdentifier>{1b06851a-8f3e-4cf6-9b34-27f58a3ef788}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Monster\00.Golem">
+      <UniqueIdentifier>{03419a3a-2b10-40de-843c-87082f40930a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -234,6 +240,9 @@
     <ClInclude Include="..\Code\BasicEffect.h">
       <Filter>03.Effect\01.BasicEffect</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\Golem.h">
+      <Filter>07.Monster\00.Golem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -313,6 +322,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\BasicEffect.cpp">
       <Filter>03.Effect\01.BasicEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Golem.cpp">
+      <Filter>07.Monster\00.Golem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
