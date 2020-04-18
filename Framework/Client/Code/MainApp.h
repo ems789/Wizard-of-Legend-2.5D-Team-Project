@@ -16,6 +16,7 @@ END
 
 class CMouse;
 class CInven;
+class CUI;
 
 class CMainApp : public CBase
 {
@@ -33,6 +34,7 @@ private:
 	HRESULT	Ready_Scene(LPDIRECT3DDEVICE9& pGraphicDev, Engine::CManagement** ppManagement);
 	HRESULT	Mouse_Setting();
 	HRESULT	Inven_Setting();
+	HRESULT	UI_Setting();
 
 private:
 	Engine::CGraphicDev*	m_pDeviceClass = nullptr;
@@ -41,6 +43,7 @@ private:
 
 	CMouse*					m_pMouse = nullptr;
 	CInven*					m_pInven = nullptr;
+	CUI*					m_pUI = nullptr;
 
 	_int					m_iExit = 0;
 

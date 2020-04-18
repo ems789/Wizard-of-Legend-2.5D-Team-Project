@@ -6,6 +6,7 @@
 #include "Mouse.h"
 #include "Inven.h"
 #include "CollisionFunctions.h"
+#include "UI.h"
 
 CMainApp::CMainApp(void)
 {
@@ -26,6 +27,8 @@ HRESULT CMainApp::Ready_MainApp(void)
 	FAILED_CHECK_RETURN(Engine::Ready_CameraMgr(m_pGraphicDev, WINCX, WINCY), E_FAIL);
 	FAILED_CHECK_RETURN(Mouse_Setting(), E_FAIL);
 	FAILED_CHECK_RETURN(Inven_Setting(), E_FAIL);
+	FAILED_CHECK_RETURN(UI_Setting(), E_FAIL);
+
 
 	FAILED_CHECK_RETURN(CCollisionFunctions::Ready_Functions(), E_FAIL);
 	
@@ -54,6 +57,7 @@ _int CMainApp::Update_MainApp(const _float& fTimeDelta)
 		m_iExit = m_pManagement->Update_Scene(fTimeDelta);
 
 	Engine::Update_MainCamera(fTimeDelta);
+	m_pUI->Update_PlayerUI(fTimeDelta);
 	m_pMouse->Update_Mouse(fTimeDelta);
 	m_pInven->Update_Inven(fTimeDelta);
 
@@ -74,6 +78,7 @@ void CMainApp::Render_MainApp(void)
 	m_pGraphicDev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
 	m_pGraphicDev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 
+	m_pUI->Render_PlayerUI();
 	m_pInven->Render_Inven();
 	m_pMouse->Render_Mouse();
 
@@ -136,6 +141,15 @@ HRESULT CMainApp::Inven_Setting()
 	return S_OK;
 }
 
+HRESULT CMainApp::UI_Setting()
+{
+	m_pUI = CUI::GetInstance();
+
+	m_pUI->Ready_PlayerUI(m_pGraphicDev);
+
+	return S_OK;
+}
+
 CMainApp* CMainApp::Create(void)
 {
 	CMainApp* pInst = new CMainApp;
@@ -149,6 +163,7 @@ CMainApp* CMainApp::Create(void)
 void CMainApp::Free(void)
 {
 	::ShowCursor(TRUE);
+	m_pUI->DestroyInstance();
 	m_pInven->DestroyInstance();
 	m_pMouse->DestroyInstance();
 	_ulong dwRef = Engine::Safe_Release(m_pGraphicDev);

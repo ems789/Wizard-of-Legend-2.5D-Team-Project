@@ -14,7 +14,7 @@ class CRenderer;
 
 END
 class CUIImage;
-
+class CPlayer;
 class CUI : public CBase
 {
 	DECLARE_SINGLETON(CUI)
@@ -26,6 +26,9 @@ public:
 	HRESULT Ready_PlayerUI(LPDIRECT3DDEVICE9 pGraphicDev);
 	_int	Update_PlayerUI(const _float& fTimeDelta);
 	void	Render_PlayerUI();
+
+	void	ShowOnUI() { m_bShowUI = true; }
+	void	ShowOffUI() { m_bShowUI = false; }
 
 private:
 	HRESULT Add_Component();
@@ -50,10 +53,14 @@ private:
 	CUIImage*	m_pUISkillSlot;
 	CUIImage*	m_pUICoin;
 	
+	CPlayer*	m_pPlayer;
 
 	_matrix		m_matWorld;
 	_vec3		m_vPos = { 100.f, 100.f, 0.f };
 	_vec3		m_vScale = { 100.f, 100.f, 0.f };
+
+	_bool		m_bShowUI = false;
+
 
 private:
 	virtual void Free();

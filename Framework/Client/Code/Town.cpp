@@ -30,6 +30,8 @@ HRESULT CTown::Ready_Scene()
 	FAILED_CHECK_RETURN(Ready_UI_Layer(L"UI"), E_FAIL);
 	FAILED_CHECK_RETURN(Ready_Camera(), E_FAIL);
 	//	FAILED_CHECK_RETURN(UI_Setting(), E_FAIL);
+	CUI::GetInstance()->ShowOnUI();
+
 	return S_OK;
 }
 
@@ -45,7 +47,6 @@ _int CTown::Update_Scene(const _float& fTimeDelta)
 
 	}
 
-	m_pUI->Update_PlayerUI(fTimeDelta);
 
 	_int iExit = CScene::Update_Scene(fTimeDelta);
 
@@ -54,11 +55,7 @@ _int CTown::Update_Scene(const _float& fTimeDelta)
 
 void CTown::Render_Scene()
 {
-	m_pGraphicDev->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
-	m_pGraphicDev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
-	m_pGraphicDev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
-	m_pUI->Render_PlayerUI();
-	m_pGraphicDev->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
+
 }
 
 HRESULT CTown::Ready_GameLogic_Layer(const _tchar * pLayerTag)
@@ -152,9 +149,6 @@ HRESULT CTown::Ready_Camera()
 HRESULT CTown::UI_Setting()
 {
 
-	m_pUI = CUI::GetInstance();
-
-	m_pUI->Ready_PlayerUI(m_pGraphicDev);
 
 	return S_OK;
 }
@@ -179,7 +173,6 @@ CTown* CTown::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CTown::Free()
 {
-	m_pUI->DestroyInstance();
 	CScene::Free();
 }
 

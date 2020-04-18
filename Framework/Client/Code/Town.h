@@ -27,9 +27,6 @@ private:
 private:
 	HRESULT		Loading_Data(const _tchar* pPath);
 
-private:
-	CUI*	m_pUI = nullptr;
-
 public:
 	static CTown* Create(LPDIRECT3DDEVICE9 pGraphicDev);
 

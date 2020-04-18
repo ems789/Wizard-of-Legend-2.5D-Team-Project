@@ -40,11 +40,16 @@ HRESULT CUI::Ready_PlayerUI(LPDIRECT3DDEVICE9 pGraphicDev)
 
 _int CUI::Update_PlayerUI(const _float & fTimeDelta)
 {
+	if (false == m_bShowUI)
+		return 0;
+
 	return 0;
 }
 
 void CUI::Render_PlayerUI()
 {
+	if (false == m_bShowUI)
+		return;
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, &m_matWorld);
 
 	//m_pTextureCom->Render_Texture();
@@ -62,7 +67,7 @@ void CUI::Render_PlayerUI()
 
 HRESULT CUI::Add_Component()
 {
-	//Engine::CComponent*	pComponent = nullptr;
+	Engine::CComponent*	pComponent = nullptr;
 
 //	pComponent = m_pBufferCom = dynamic_cast<Engine::CRcTex*>(Engine::Clone(RESOURCE_STATIC, L"Buffer_RcTex"));
 	///NULL_CHECK_RETURN(pComponent, E_FAIL);
@@ -130,6 +135,10 @@ HRESULT CUI::Setting_PlayerState()
 	m_pUIPlayer = pPlayerUI;
 	m_pUIHpBar = pHpBarUI;
 	m_pUIManaBar = pManaBarUI;
+
+///////////////////////////////////////////////////////////////\
+	
+	
 
 	return S_OK;
 }
