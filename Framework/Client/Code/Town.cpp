@@ -7,6 +7,7 @@
 #include "QuaterViewCamera.h"
 #include "UI.h"
 #include "Export_Function.h"
+#include "Terrain.h"
 #include "TestTerrain.h"
 #include "TestMonster.h"
 #include "Mouse.h"
@@ -76,10 +77,13 @@ HRESULT CTown::Ready_GameLogic_Layer(const _tchar * pLayerTag)
 	Engine::CGameObject* pGameObject = nullptr;
 
 	//	Terrain
-	pGameObject = CTestTerrain::Create(m_pGraphicDev);
+	/*pGameObject = CTestTerrain::Create(m_pGraphicDev);
 	NULL_CHECK_RETURN(pGameObject, E_FAIL);
-	pLayer->Add_GameObject(L"TestTerrain", pGameObject);
+	pLayer->Add_GameObject(L"TestTerrain", pGameObject);*/
 
+	pGameObject = CTerrain::Create(m_pGraphicDev, 1, 1, 1);
+	NULL_CHECK_RETURN(pGameObject, E_FAIL);
+	pLayer->Add_GameObject(L"Terrain", pGameObject);
 
 	//	TestMonster
 	pGameObject = CTestMonster::Create(m_pGraphicDev, &_vec3(20.f, 1.f, 20.f));

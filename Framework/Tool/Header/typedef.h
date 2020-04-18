@@ -35,6 +35,20 @@ typedef struct tagPathInfo
 	int iImgCount;
 }PATH_INFO;
 
+typedef struct tagTerrainInfo
+{
+	_ulong dwTileX;
+	_ulong dwTileZ;
+	_ulong dwItv;
+}TERRAIN_INFO;
+
+typedef struct tagTileInfo
+{
+	_vec3	vPos;
+	_ulong	dwItv;
+	bool	bRender;
+}TILE_INFO;
+
 //typedef	 struct tagMyVector3 : public D3DXVECTOR3
 //{
 //public:

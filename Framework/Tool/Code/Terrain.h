@@ -30,6 +30,8 @@ public:
 
 public:
 	void		TileChange(const _vec3& vPos, const _tchar* tileTag, bool bIsRender);
+	void		SaveTile(const _tchar* pFilePath);
+	void		LoadTile(const _tchar* pFilePath);
 
 private:
 	HRESULT		Add_Component(void);

@@ -25,8 +25,11 @@ public:
 	virtual void	Render_GameObject(void) override;
 
 public:
-	void			Set_Pos(_float fX, _float fY, _float fZ);
-	void			Set_Render(bool bIsRender);
+	const _vec3*	Get_Pos(); 
+	const bool		Get_Render(); 
+	void			Set_Pos(const _float& fX, const _float& fY, const _float& fZ);
+	void			Set_Pos(const _vec3& vPos);
+	void			Set_Render(const bool& bIsRender);
 
 private:
 	HRESULT			Add_Component(void);

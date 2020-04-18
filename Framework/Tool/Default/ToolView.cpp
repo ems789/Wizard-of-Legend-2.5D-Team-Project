@@ -48,7 +48,7 @@ HINSTANCE g_hInst;
 // CToolView 생성/소멸
 
 CToolView::CToolView() :
-	m_pGraphicDev(Engine::CGraphicDev::GetInstance()),
+	m_pDeviceClass(Engine::CGraphicDev::GetInstance()),
 	m_pTerrainGuidLine(nullptr),
 	m_pDynamicCamera(nullptr)
 {
@@ -58,14 +58,14 @@ CToolView::CToolView() :
 
 CToolView::~CToolView()
 {
-	Engine::Safe_Release(m_pGraphicDev);
-	Engine::Release_Resources();
-	Engine::CInputDev::GetInstance()->DestroyInstance();
-	Engine::CGraphicDev::GetInstance()->DestroyInstance();
 	m_pTerrain->Release();
 	m_pTerrainGuidLine->Release();
 	m_pDynamicCamera->Release();
-	//CGraphicDev::GetInstance()->DestroyInstance();
+	Engine::Release_Resources();
+
+	Engine::CInputDev::GetInstance()->DestroyInstance();
+	Engine::Safe_Release(m_pDeviceClass);
+	Engine::CGraphicDev::GetInstance()->DestroyInstance();
 }
 
 BOOL CToolView::PreCreateWindow(CREATESTRUCT& cs)
@@ -87,13 +87,13 @@ void CToolView::OnDraw(CDC* /*pDC*/)
 
 	// TODO: 여기에 원시 데이터에 대한 그리기 코드를 추가합니다.
 
-	m_pGraphicDev->Render_Begin(D3DCOLOR_ARGB(255, 153, 217, 234));
+	m_pDeviceClass->Render_Begin(D3DCOLOR_ARGB(255, 153, 217, 234));
 
 	m_pTerrainGuidLine->Render_GameObject();
 	m_pTerrain->Update_GameObject(1.f);
 	m_pTerrain->Render_GameObject();
 
-	m_pGraphicDev->Render_End();
+	m_pDeviceClass->Render_End();
 }
 
 
@@ -177,14 +177,14 @@ void CToolView::OnInitialUpdate()
 		Engine::MODE_WIN,
 		WINCX,
 		WINCY,
-		&m_pGraphicDev));
+		&m_pDeviceClass));
+	m_pDeviceClass->AddRef();
+
+	m_pGraphicDev = m_pDeviceClass->GetDevice();
 	m_pGraphicDev->AddRef();
+	FAILED_CHECK_VOID(m_pGraphicDev);
 
-	LPDIRECT3DDEVICE9 pGraphicDev = m_pGraphicDev->GetDevice();
-	pGraphicDev->AddRef();
-	FAILED_CHECK_VOID(pGraphicDev);
-
-	pGraphicDev->SetRenderState(D3DRS_LIGHTING, FALSE);
+	m_pGraphicDev->SetRenderState(D3DRS_LIGHTING, FALSE);
 
 	// 메모리 예약
 	Engine::Reserve_ContainerSize(::RESOURCE_END);
@@ -192,7 +192,7 @@ void CToolView::OnInitialUpdate()
 	CPropertyFormView* pPropertyFormView = dynamic_cast<CPropertyFormView*>(GetParentSplitter(this, FALSE)->GetPane(0, 0));
 
 	// 버퍼 초기화
-	FAILED_CHECK_RETURN_VOID(Engine::Ready_Buffer(pGraphicDev,
+	FAILED_CHECK_RETURN_VOID(Engine::Ready_Buffer(m_pGraphicDev,
 		::RESOURCE_STATIC,
 		L"Buffer_TerrainTex",
 		Engine::BUFFER_TERRAINTEX,
@@ -202,7 +202,7 @@ void CToolView::OnInitialUpdate()
 		pPropertyFormView->m_iTerrainItv),
 		E_FAIL);
 
-	FAILED_CHECK_RETURN_VOID(Engine::Ready_Buffer(pGraphicDev,
+	FAILED_CHECK_RETURN_VOID(Engine::Ready_Buffer(m_pGraphicDev,
 		::RESOURCE_STATIC,
 		L"Buffer_TileTex",
 		Engine::BUFFER_TILETEX,
@@ -210,7 +210,7 @@ void CToolView::OnInitialUpdate()
 		E_FAIL);
 
 	// 텍스쳐 로드
-	/*FAILED_CHECK_RETURN_VOID(Engine::Ready_Texture(pGraphicDev,
+	/*FAILED_CHECK_RETURN_VOID(Engine::Ready_Texture(m_pGraphicDev,
 		::RESOURCE_STAGE,
 		L"Texture_Terrain",
 		Engine::TEX_NORMAL,
@@ -218,7 +218,7 @@ void CToolView::OnInitialUpdate()
 		E_FAIL);*/
 
 	// 타일
-	FAILED_CHECK_RETURN_VOID(Engine::Ready_Texture(pGraphicDev,
+	FAILED_CHECK_RETURN_VOID(Engine::Ready_Texture(m_pGraphicDev,
 		::RESOURCE_STAGE,
 		L"Texture_Tile",
 		Engine::TEX_NORMAL,
@@ -227,18 +227,18 @@ void CToolView::OnInitialUpdate()
 
 
 
-	m_pTerrainGuidLine = CTerrainGuidLine::Create(pGraphicDev);
+	m_pTerrainGuidLine = CTerrainGuidLine::Create(m_pGraphicDev);
 	NULL_CHECK_MSG(m_pTerrainGuidLine, L"TerrainGuidLine Create Failed");
 
 	// 터레인 만들기(현재 지정되어 있는 x * y 크기만큼)
-	m_pTerrain = CTerrain::Create(pGraphicDev, pPropertyFormView->m_iTerrainX, 
+	m_pTerrain = CTerrain::Create(m_pGraphicDev, pPropertyFormView->m_iTerrainX, 
 												pPropertyFormView->m_iTerrainZ,
 												pPropertyFormView->m_iTerrainItv);
 	NULL_CHECK_MSG(m_pTerrain, L"Terrain Create Failed");
 
 
 	// dynamicCamera
-	m_pDynamicCamera = CDynamicCamera::Create(pGraphicDev,
+	m_pDynamicCamera = CDynamicCamera::Create(m_pGraphicDev,
 		&::_vec3(0.f, 5.f, -5.f),
 		&::_vec3(0.f, 0.f, 0.f),
 		&::_vec3(0.f, 1.f, 0.f),
@@ -250,8 +250,6 @@ void CToolView::OnInitialUpdate()
 
 	// INPUTDEV
 	FAILED_CHECK_RETURN_VOID(Engine::Ready_InputDev(g_hInst, g_hWnd), E_FAIL);
-
-	pGraphicDev->Release();
 }
 
 void CToolView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -348,7 +346,7 @@ void CToolView::OnRButtonDown(UINT nFlags, CPoint point)
 	// 뷰 포트에서 투영으로
 	D3DVIEWPORT9			ViewPort;
 	ZeroMemory(&ViewPort, sizeof(D3DVIEWPORT9));
-	m_pGraphicDev->GetDevice()->GetViewport(&ViewPort);
+	m_pDeviceClass->GetDevice()->GetViewport(&ViewPort);
 
 	::_vec3	vMousePos;
 
@@ -359,7 +357,7 @@ void CToolView::OnRButtonDown(UINT nFlags, CPoint point)
 	// 투영에서 뷰 스페이스로
 	::_matrix		matProj;
 
-	m_pGraphicDev->GetDevice()->GetTransform(D3DTS_PROJECTION, &matProj); /// TODO:: GetDevice를 매번 호출하지 말고 한번만 얻어오게 변경
+	m_pDeviceClass->GetDevice()->GetTransform(D3DTS_PROJECTION, &matProj); /// TODO:: GetDevice를 매번 호출하지 말고 한번만 얻어오게 변경
 	D3DXMatrixInverse(&matProj, NULL, &matProj);
 	D3DXVec3TransformCoord(&vMousePos, &vMousePos, &matProj);
 
@@ -371,7 +369,7 @@ void CToolView::OnRButtonDown(UINT nFlags, CPoint point)
 	// 뷰 스페이스에서 월드 스페이스로
 	::_matrix		matView;
 
-	m_pGraphicDev->GetDevice()->GetTransform(D3DTS_VIEW, &matView);
+	m_pDeviceClass->GetDevice()->GetTransform(D3DTS_VIEW, &matView);
 	D3DXMatrixInverse(&matView, NULL, &matView);
 	D3DXVec3TransformCoord(&vRayPos, &vRayPos, &matView);
 	D3DXVec3TransformNormal(&vRayDir, &vRayDir, &matView);
@@ -385,6 +383,7 @@ void CToolView::OnRButtonDown(UINT nFlags, CPoint point)
 
 	::_ulong	dwVtxCntX = pTerrainBufferCom->Get_VtxCntX();
 	::_ulong	dwVtxCntZ = pTerrainBufferCom->Get_VtxCntZ();
+	::_ulong	dwItv = pTerrainBufferCom->Get_Itv();
 
 	const ::_vec3*	pTerrainVtx = pTerrainBufferCom->Get_VtxPos();
 
@@ -398,9 +397,12 @@ void CToolView::OnRButtonDown(UINT nFlags, CPoint point)
 			::_ulong	dwIndex = i * dwVtxCntX + j;
 
 			// 오른쪽 위
-			dwVtxIdx[0] = dwIndex + dwVtxCntX;
+			/*dwVtxIdx[0] = dwIndex + dwVtxCntX;
 			dwVtxIdx[1] = dwIndex + dwVtxCntX + 1;
-			dwVtxIdx[2] = dwIndex + 1;
+			dwVtxIdx[2] = dwIndex + 1;*/
+			dwVtxIdx[0] = dwIndex + (dwVtxCntX * dwItv);
+			dwVtxIdx[1] = dwIndex + (dwVtxCntX * dwItv)+ dwItv;
+			dwVtxIdx[2] = dwIndex + dwItv; 
 
 			if (D3DXIntersectTri(&pTerrainVtx[dwVtxIdx[1]],
 				&pTerrainVtx[dwVtxIdx[2]],
@@ -415,9 +417,12 @@ void CToolView::OnRButtonDown(UINT nFlags, CPoint point)
 
 
 			// 왼쪽 아래
-			dwVtxIdx[0] = dwIndex + dwVtxCntX;
+			/*dwVtxIdx[0] = dwIndex + dwVtxCntX;
 			dwVtxIdx[1] = dwIndex + 1;
-			dwVtxIdx[2] = dwIndex;
+			dwVtxIdx[2] = dwIndex;*/
+			dwVtxIdx[0] = dwIndex + (dwVtxCntX * dwItv);
+			dwVtxIdx[1] = dwIndex + dwItv;
+			dwVtxIdx[2] = dwIndex; 
 
 			if (D3DXIntersectTri(&pTerrainVtx[dwVtxIdx[2]],
 				&pTerrainVtx[dwVtxIdx[0]],

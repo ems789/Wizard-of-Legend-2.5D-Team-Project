@@ -105,7 +105,7 @@ void CMainFrame::Dump(CDumpContext& dc) const
 
 BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext)
 {
-	//_CrtSetBreakAlloc(279);
+	//_CrtSetBreakAlloc(805);
 	// TODO: 여기에 특수화된 코드를 추가 및/또는 기본 클래스를 호출합니다.
 	m_MainSplitter.CreateStatic(this, 1, 2);
 

@@ -136,6 +136,12 @@
     <Filter Include="07.Monster\00.Golem">
       <UniqueIdentifier>{03419a3a-2b10-40de-843c-87082f40930a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObject\03.Town\03.Terrain">
+      <UniqueIdentifier>{07a3df15-5a02-47a9-a14c-724e3c417532}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\03.Town\02.Tile">
+      <UniqueIdentifier>{9d90e5f5-001e-40db-9c24-a6f1a57a120c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -243,6 +249,12 @@
     <ClInclude Include="..\Code\Golem.h">
       <Filter>07.Monster\00.Golem</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\Tile.h">
+      <Filter>02.GameObject\03.Town\02.Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Terrain.h">
+      <Filter>02.GameObject\03.Town\03.Terrain</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -325,6 +337,12 @@
     </ClCompile>
     <ClCompile Include="..\Code\Golem.cpp">
       <Filter>07.Monster\00.Golem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Tile.cpp">
+      <Filter>02.GameObject\03.Town\02.Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Terrain.cpp">
+      <Filter>02.GameObject\03.Town\03.Terrain</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

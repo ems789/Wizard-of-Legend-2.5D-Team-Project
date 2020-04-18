@@ -108,19 +108,21 @@ void CPropertyFormView::OnBnClickedRefresh()
 
 	// 지형을 재생성
 	LPDIRECT3DDEVICE9 pGraphicDev = Engine::CGraphicDev::GetInstance()->GetDevice();
+	pGraphicDev->AddRef();
 	FAILED_CHECK_VOID(pGraphicDev);
 
 	Engine::CResourcesMgr::GetInstance()->Remove_Resource(::RESOURCE_STATIC, L"Buffer_TerrainTex");
 	Engine::CResourcesMgr::GetInstance()->Remove_Resource(::RESOURCE_STATIC, L"Buffer_TileTex");
-	pToolView->m_pTerrain->Release_GameObject();
+	pToolView->m_pTerrain->Release();
+	pToolView->m_pTerrainGuidLine->Release();
 
 	FAILED_CHECK_RETURN_VOID(Engine::Ready_Buffer(pGraphicDev,
 		::RESOURCE_STATIC,
 		L"Buffer_TerrainTex",
 		Engine::BUFFER_TERRAINTEX,
 		L"",
-		m_iTerrainX,
-		m_iTerrainZ,
+		m_iTerrainX + 1,
+		m_iTerrainZ + 1,
 		m_iTerrainItv),
 		E_FAIL);
 
@@ -129,14 +131,16 @@ void CPropertyFormView::OnBnClickedRefresh()
 		L"Buffer_TileTex",
 		Engine::BUFFER_TILETEX,
 		L"",
-		m_iTerrainX,
-		m_iTerrainZ,
+		0,
+		0,
 		m_iTerrainItv),
 		E_FAIL);
 
 	pToolView->m_pTerrainGuidLine = CTerrainGuidLine::Create(pGraphicDev);
 	pToolView->m_pTerrain = CTerrain::Create(pGraphicDev, m_iTerrainX, m_iTerrainZ, m_iTerrainItv);
 	NULL_CHECK_MSG(pToolView->m_pTerrainGuidLine, L"Terrain Create Failed");
+
+	pGraphicDev->Release();
 
 	pToolView->Invalidate(FALSE);
 }

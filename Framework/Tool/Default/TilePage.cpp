@@ -8,7 +8,10 @@
 #include "TilePage.h"
 #include "afxdialogex.h"
 
+#include "Terrain.h"
+
 #include "Export_Function.h"
+
 USING(Engine)
 
 // CTilePage 대화 상자입니다.
@@ -152,8 +155,8 @@ void CTilePage::OnBnClickedSave()
 		CToolView* pView = dynamic_cast<CToolView*>(pFrameWnd->m_MainSplitter.GetPane(0, 1));
 		NULL_CHECK(pView);
 
-		//NULL_CHECK(pView->m_pTerrain);
-		//pView->m_pTerrain->SaveTile(Dlg.GetPathName());
+		NULL_CHECK(pView->m_pTerrain);
+		pView->m_pTerrain->SaveTile(Dlg.GetPathName());
 	}
 }
 
@@ -167,6 +170,7 @@ void CTilePage::OnBnClickedLoad()
 
 	::GetCurrentDirectory(MAX_STR, szCurrentDir);
 	::PathRemoveFileSpec(szCurrentDir);
+	::PathRemoveFileSpec(szCurrentDir);
 	::PathCombine(szCurrentDir, szCurrentDir, L"Data");
 
 	Dlg.m_ofn.lpstrInitialDir = szCurrentDir;
@@ -179,9 +183,10 @@ void CTilePage::OnBnClickedLoad()
 		CToolView* pView = dynamic_cast<CToolView*>(pFrameWnd->m_MainSplitter.GetPane(0, 1));
 		NULL_CHECK(pView);
 
-		/*NULL_CHECK(pView->m_pTerrain);
+		NULL_CHECK(pView->m_pTerrain);
 		pView->m_pTerrain->LoadTile(Dlg.GetPathName());
-		pView->Invalidate(FALSE);*/
+
+		pView->Invalidate(FALSE);
 	}
 }
 

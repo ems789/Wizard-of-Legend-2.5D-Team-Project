@@ -1,25 +1,37 @@
-d:\direct3d project\framework\engine\utility\default\debug\vc140.pdb
-d:\direct3d project\framework\engine\utility\default\debug\vc140.idb
-d:\direct3d project\framework\engine\utility\default\debug\component.obj
-d:\direct3d project\framework\engine\utility\default\debug\gameobject.obj
-d:\direct3d project\framework\engine\utility\default\debug\layer.obj
-d:\direct3d project\framework\engine\utility\default\debug\management.obj
-d:\direct3d project\framework\engine\utility\default\debug\renderer.obj
-d:\direct3d project\framework\engine\utility\default\debug\scene.obj
-d:\direct3d project\framework\engine\utility\default\debug\transform.obj
-d:\direct3d project\framework\engine\utility\default\debug\effect.obj
-d:\direct3d project\framework\engine\utility\default\debug\camera.obj
-d:\direct3d project\framework\engine\utility\default\debug\cameramgr.obj
-d:\direct3d project\framework\engine\utility\bin\utility.ilk
-d:\direct3d project\framework\engine\utility\bin\utility.dll
-d:\direct3d project\framework\engine\utility\bin\utility.pdb
-d:\direct3d project\framework\engine\utility\bin\utility.lib
-d:\direct3d project\framework\engine\utility\bin\utility.exp
-d:\direct3d project\framework\engine\utility\default\../bin/utility.dll
-d:\direct3d project\framework\engine\utility\default\debug\utility.tlog\cl.command.1.tlog
-d:\direct3d project\framework\engine\utility\default\debug\utility.tlog\cl.read.1.tlog
-d:\direct3d project\framework\engine\utility\default\debug\utility.tlog\cl.write.1.tlog
-d:\direct3d project\framework\engine\utility\default\debug\utility.tlog\link.command.1.tlog
-d:\direct3d project\framework\engine\utility\default\debug\utility.tlog\link.read.1.tlog
-d:\direct3d project\framework\engine\utility\default\debug\utility.tlog\link.write.1.tlog
-d:\direct3d project\framework\engine\utility\default\debug\utility.tlog\utility.write.1u.tlog
+d:\teamproject\framework\engine\utility\default\debug\vc140.pdb
+c:\users\ems78\documents\github\teamp\teamproject\framework\engine\utility\default\debug\vc140.pdb
+c:\users\ems78\documents\github\teamp\teamproject\framework\engine\utility\default\debug\vc140.idb
+c:\users\ems78\documents\github\teamp\teamproject\framework\engine\utility\default\debug\camera.obj
+c:\users\ems78\documents\github\teamp\teamproject\framework\engine\utility\default\debug\cameramgr.obj
+c:\users\ems78\documents\github\teamp\teamproject\framework\engine\utility\default\debug\collider.obj
+c:\users\ems78\documents\github\teamp\teamproject\framework\engine\utility\default\debug\collisionmgr.obj
+c:\users\ems78\documents\github\teamp\teamproject\framework\engine\utility\default\debug\component.obj
+c:\users\ems78\documents\github\teamp\teamproject\framework\engine\utility\default\debug\effect.obj
+c:\users\ems78\documents\github\teamp\teamproject\framework\engine\utility\default\debug\gameobject.obj
+c:\users\ems78\documents\github\teamp\teamproject\framework\engine\utility\default\debug\layer.obj
+c:\users\ems78\documents\github\teamp\teamproject\framework\engine\utility\default\debug\management.obj
+c:\users\ems78\documents\github\teamp\teamproject\framework\engine\utility\default\debug\moveobject.obj
+c:\users\ems78\documents\github\teamp\teamproject\framework\engine\utility\default\debug\mymath.obj
+c:\users\ems78\documents\github\teamp\teamproject\framework\engine\utility\default\debug\renderer.obj
+c:\users\ems78\documents\github\teamp\teamproject\framework\engine\utility\default\debug\scene.obj
+c:\users\ems78\documents\github\teamp\teamproject\framework\engine\utility\default\debug\skill.obj
+c:\users\ems78\documents\github\teamp\teamproject\framework\engine\utility\default\debug\transform.obj
+d:\teamproject\framework\engine\utility\bin\utility.ilk
+d:\teamproject\framework\engine\utility\bin\utility.dll
+d:\teamproject\framework\engine\utility\bin\utility.pdb
+c:\users\ems78\documents\github\teamp\teamproject\framework\engine\utility\bin\utility.ilk
+c:\users\ems78\documents\github\teamp\teamproject\framework\engine\utility\bin\utility.dll
+c:\users\ems78\documents\github\teamp\teamproject\framework\engine\utility\bin\utility.pdb
+d:\teamproject\framework\engine\utility\bin\utility.lib
+d:\teamproject\framework\engine\utility\bin\utility.exp
+c:\users\ems78\documents\github\teamp\teamproject\framework\engine\utility\bin\utility.lib
+c:\users\ems78\documents\github\teamp\teamproject\framework\engine\utility\bin\utility.exp
+c:\users\ems78\documents\github\teamp\teamproject\framework\engine\utility\default\debug\ui.obj
+c:\users\ems78\documents\github\teamp\teamproject\framework\engine\utility\default\../bin/utility.dll
+c:\users\ems78\documents\github\teamp\teamproject\framework\engine\utility\default\debug\utility.tlog\cl.command.1.tlog
+c:\users\ems78\documents\github\teamp\teamproject\framework\engine\utility\default\debug\utility.tlog\cl.read.1.tlog
+c:\users\ems78\documents\github\teamp\teamproject\framework\engine\utility\default\debug\utility.tlog\cl.write.1.tlog
+c:\users\ems78\documents\github\teamp\teamproject\framework\engine\utility\default\debug\utility.tlog\link.command.1.tlog
+c:\users\ems78\documents\github\teamp\teamproject\framework\engine\utility\default\debug\utility.tlog\link.read.1.tlog
+c:\users\ems78\documents\github\teamp\teamproject\framework\engine\utility\default\debug\utility.tlog\link.write.1.tlog
+c:\users\ems78\documents\github\teamp\teamproject\framework\engine\utility\default\debug\utility.tlog\utility.write.1u.tlog

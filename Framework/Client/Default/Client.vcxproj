@@ -178,9 +178,11 @@
     <ClInclude Include="..\Code\Player.h" />
     <ClInclude Include="..\Code\QuaterViewCamera.h" />
     <ClInclude Include="..\Code\Stage.h" />
+    <ClInclude Include="..\Code\Terrain.h" />
     <ClInclude Include="..\Code\TestMonster.h" />
     <ClInclude Include="..\Code\TestTerrain.h" />
     <ClInclude Include="..\Code\ThirdViewCamera.h" />
+    <ClInclude Include="..\Code\Tile.h" />
     <ClInclude Include="..\Code\Town.h" />
     <ClInclude Include="..\Code\UI.h" />
     <ClInclude Include="..\Code\Wind.h" />
@@ -215,9 +217,11 @@
     <ClCompile Include="..\Code\Player.cpp" />
     <ClCompile Include="..\Code\QuaterViewCamera.cpp" />
     <ClCompile Include="..\Code\Stage.cpp" />
+    <ClCompile Include="..\Code\Terrain.cpp" />
     <ClCompile Include="..\Code\TestMonster.cpp" />
     <ClCompile Include="..\Code\TestTerrain.cpp" />
     <ClCompile Include="..\Code\ThirdViewCamera.cpp" />
+    <ClCompile Include="..\Code\Tile.cpp" />
     <ClCompile Include="..\Code\Town.cpp" />
     <ClCompile Include="..\Code\UI.cpp" />
     <ClCompile Include="..\Code\Wind.cpp" />

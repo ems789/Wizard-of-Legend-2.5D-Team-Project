@@ -57,14 +57,14 @@
     <ClCompile Include="..\Code\Texture.cpp">
       <Filter>00.Resources\01.Texture</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\TerrainTex.cpp">
-      <Filter>00.Resources\00.VIBuffer\03.TerrainTex</Filter>
-    </ClCompile>
     <ClCompile Include="..\Code\CubeTex.cpp">
       <Filter>00.Resources\00.VIBuffer\04.CubeTex</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\TileTex.cpp">
       <Filter>00.Resources\00.VIBuffer\05.TileTex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\TerrainTex.cpp">
+      <Filter>00.Resources\00.VIBuffer\03.TerrainTex</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -92,14 +92,14 @@
     <ClInclude Include="..\Code\Texture.h">
       <Filter>00.Resources\01.Texture</Filter>
     </ClInclude>
-    <ClInclude Include="..\Code\TerrainTex.h">
-      <Filter>00.Resources\00.VIBuffer\03.TerrainTex</Filter>
-    </ClInclude>
     <ClInclude Include="..\Code\CubeTex.h">
       <Filter>00.Resources\00.VIBuffer\04.CubeTex</Filter>
     </ClInclude>
     <ClInclude Include="..\Code\TileTex.h">
       <Filter>00.Resources\00.VIBuffer\05.TileTex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\TerrainTex.h">
+      <Filter>00.Resources\00.VIBuffer\03.TerrainTex</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -69,7 +69,8 @@ private:
 		const Engine::CTransform*	pTerrainTransformCom);
 
 public:
-	Engine::CGraphicDev* m_pGraphicDev = nullptr;
+	Engine::CGraphicDev* m_pDeviceClass = nullptr;
+	LPDIRECT3DDEVICE9	 m_pGraphicDev = nullptr;;
 	CTerrain*			 m_pTerrain;
 	CTerrainGuidLine*	 m_pTerrainGuidLine;
 	CDynamicCamera*		 m_pDynamicCamera;

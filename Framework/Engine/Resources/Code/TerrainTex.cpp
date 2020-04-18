@@ -16,6 +16,7 @@ Engine::CTerrainTex::CTerrainTex(const CTerrainTex& rhs)
 	, m_bClone(true)
 	, m_dwCntX(rhs.m_dwCntX)
 	, m_dwCntZ(rhs.m_dwCntZ)
+	, m_dwItv(rhs.m_dwItv)
 {
 
 }
@@ -32,6 +33,7 @@ HRESULT Engine::CTerrainTex::Ready_Buffer(const _ulong& dwCntX,
 	m_dwVtxSize = sizeof(VTXTEX);
 	m_dwCntX = dwCntX;
 	m_dwCntZ = dwCntZ;
+	m_dwItv = dwVtxItv;
 	m_dwVtxCnt = dwCntX * dwCntZ;
 	m_dwVtxFVF = FVF_TEX;
 	m_dwTriCnt = (dwCntX - 1) * (dwCntZ - 1) * 2;

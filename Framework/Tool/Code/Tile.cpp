@@ -47,15 +47,31 @@ void CTile::Render_GameObject(void)
 	}
 }
 
-void CTile::Set_Pos(_float fX, _float fY, _float fZ)
+const _vec3* CTile::Get_Pos()
+{
+	return m_pTransformCom->GetInfo(Engine::INFO_POS);
+}
+
+const bool CTile::Get_Render()
+{
+	return m_bIsRender;
+}
+
+void CTile::Set_Pos(const _float& fX, const _float& fY, const _float& fZ)
 {
 	m_pTransformCom->Set_Pos(fX, fY, fZ);
 }
 
-void CTile::Set_Render(bool bIsRender)
+void CTile::Set_Pos(const _vec3& vPos)
+{
+	m_pTransformCom->Set_Pos(vPos);
+}
+
+void CTile::Set_Render(const bool& bIsRender)
 {
 	m_bIsRender = bIsRender;
 }
+
 
 HRESULT CTile::Add_Component(void)
 {
@@ -92,4 +108,5 @@ void CTile::Free(void)
 {
 	Engine::CGameObject::Free();
 }
+
 
