@@ -144,6 +144,10 @@ void	Add_GameObject_To_CollisionList(const _tchar* pCollisionListTag, CGameObjec
 	CCollisionMgr::GetInstance()->Add_GameObject(pCollisionListTag, pObj);
 }
 
+void Add_CollisionFunction(const _tchar* pSrcTag, const _tchar* pDestTag, void(pFunc)(const _tchar*, const _tchar*))
+{
+	CCollisionMgr::GetInstance()->Add_CollisionFunction(pSrcTag, pDestTag, pFunc);
+}
 
 //	Utility Release
 void Release_Utility(void)

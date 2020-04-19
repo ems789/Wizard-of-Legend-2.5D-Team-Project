@@ -70,7 +70,7 @@ void CFire::Add_Effect(const _vec3* pPos)
 	_vec3 vPos = (*m_pTransformCom->GetInfo(Engine::INFO_POS) + *pPos) / 2;
 	vPos.y += 0.5f;
 
-	CBasicEffect* pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_FireExplosion", 7.f, 20.f, 0.05f, &vPos, false, 0.f);
+	CBasicEffect* pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_FireExplosion", L"FireExplosion", 7.f, 20.f, 0.05f, &vPos, false, 0.f);
 
 	Engine::Add_GameObject(L"GameLogic", L"FireExplosion", pEffect);
 

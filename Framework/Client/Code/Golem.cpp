@@ -3,6 +3,8 @@
 
 #include "Export_Function.h"
 #include "LaidEffect.h"
+#include "SphereCollider.h"
+#include "BasicEffect.h"
 
 CGolem::CGolem(LPDIRECT3DDEVICE9 pGraphicDev)
 	:Engine::CGameObject(pGraphicDev)
@@ -369,8 +371,13 @@ _int CGolem::Attack_Update(const _float & fTimeDelta)
 		if (vDir.z < 0.f)
 			fAngleY += D3DXToRadian(180.f);
 
-		CLaidEffect* pEffect = CLaidEffect::Create(m_pGraphicDev, L"Texture_WindSlash", 7.f, 20.f, 0.1f, &vPos, fAngleY, false, 0.f);
+		CLaidEffect* pEffect = CLaidEffect::Create(m_pGraphicDev, L"Texture_WindSlash", L"GolemSlash", 7.f, 20.f, 0.1f, &vPos, fAngleY, false, 0.f);
 		Engine::Add_GameObject(L"GameLogic", L"GolemSlash", pEffect);
+
+		CBasicEffect* pHitEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_SlashHitSpark", L"SlashHitSpark", 7.f, 20.f, 0.05f, &vPos, false, 0.f);
+		NULL_CHECK_RETURN(pHitEffect, -1);
+		CSphereCollider* pCollider = CSphereCollider::Create(m_pGraphicDev, this, pHitEffect, 2.f, L"MonsterAttack", 20);
+		Engine::Add_GameObject(L"GameLogic", L"MonsterCollider", pCollider);
 
 	}
 	return 0;
@@ -390,7 +397,12 @@ void CGolem::Hit(const _int & iAtk, const _vec3 * pAtkPos)
 {
 	m_iHP -= iAtk;
 	if (m_iHP <= 0)
+	{
 		m_bIsDead = true;
+		_vec3 vPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
+		CBasicEffect* pDieEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_Golem_Death", L"GelemDieEffect", 6, 10.f, m_fScale, &vPos, false, 0.f);
+		Engine::Add_GameObject(L"GameLogic", L"GelemDieEffect", pDieEffect);
+	}
 
 }
 

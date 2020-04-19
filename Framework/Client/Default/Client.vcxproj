@@ -178,6 +178,7 @@
     <ClInclude Include="..\Code\Mouse.h" />
     <ClInclude Include="..\Code\Player.h" />
     <ClInclude Include="..\Code\QuaterViewCamera.h" />
+    <ClInclude Include="..\Code\SphereCollider.h" />
     <ClInclude Include="..\Code\Stage.h" />
     <ClInclude Include="..\Code\Terrain.h" />
     <ClInclude Include="..\Code\TestMonster.h" />
@@ -218,6 +219,7 @@
     <ClCompile Include="..\Code\Mouse.cpp" />
     <ClCompile Include="..\Code\Player.cpp" />
     <ClCompile Include="..\Code\QuaterViewCamera.cpp" />
+    <ClCompile Include="..\Code\SphereCollider.cpp" />
     <ClCompile Include="..\Code\Stage.cpp" />
     <ClCompile Include="..\Code\Terrain.cpp" />
     <ClCompile Include="..\Code\TestMonster.cpp" />

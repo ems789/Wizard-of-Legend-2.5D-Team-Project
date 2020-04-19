@@ -14,11 +14,6 @@ CBasicEffect::~CBasicEffect()
 
 }
 
-HRESULT CBasicEffect::Ready_GameObject()
-{
-	return S_OK;
-}
-
 _int CBasicEffect::Update_GameObject(const _float& fTimeDelta)
 {
 	Turn_To_Camera_Look();
@@ -49,33 +44,7 @@ void CBasicEffect::Render_GameObject()
 
 HRESULT CBasicEffect::Ready_GameObject(const _tchar * pTextureTag)
 {
-	FAILED_CHECK_RETURN(Add_Component(pTextureTag), E_FAIL);
-
-	return S_OK;
-}
-
-HRESULT CBasicEffect::Add_Component(const _tchar* pTextureTag)
-{
-	Engine::CComponent*	pComponent = nullptr;
-
-	pComponent = m_pBufferCom = dynamic_cast<Engine::CRcTex*>(Engine::Clone(RESOURCE_STATIC, L"Buffer_RcTex"));
-	NULL_CHECK_RETURN(pComponent, E_FAIL);
-	m_mapComponent[Engine::ID_STATIC].emplace(L"Com_Buffer", pComponent);
-
-	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, pTextureTag));
-	NULL_CHECK_RETURN(pComponent, E_FAIL);
-	m_mapComponent[Engine::ID_STATIC].emplace(L"Com_Texture", pComponent);
-
-	pComponent = m_pTransformCom = Engine::CTransform::Create();
-	NULL_CHECK_RETURN(pComponent, E_FAIL);
-	m_mapComponent[Engine::ID_DYNAMIC].emplace(L"Com_Transform", pComponent);
-
-	pComponent = m_pRendererCom = Engine::Get_Renderer();
-	NULL_CHECK_RETURN(pComponent, E_FAIL);
-	m_mapComponent[Engine::ID_STATIC].emplace(L"Com_Renderer", pComponent);
-	m_pRendererCom->AddRef();
-
-
+	FAILED_CHECK_RETURN(Ready_Effect(pTextureTag), E_FAIL);
 
 	return S_OK;
 }
@@ -127,7 +96,7 @@ void CBasicEffect::Turn_To_Camera_Look()
 	m_pTransformCom->Update_Component(0.f);
 }
 
-CBasicEffect* CBasicEffect::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _tchar* pTextureTag, const _float& fMaxFrame, const _float& fFrameSpeed,
+CBasicEffect* CBasicEffect::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _tchar* pTextureTag, const _tchar* pEffectTag, const _float& fMaxFrame, const _float& fFrameSpeed,
 	const _float& fScale, const _vec3* pPos, _bool bAnimRepeat, _float fLifeTime)
 {
 	CBasicEffect* pInstance = new CBasicEffect(pGraphicDev);
@@ -135,6 +104,7 @@ CBasicEffect* CBasicEffect::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _tchar* 
 	if (FAILED(pInstance->Ready_GameObject(pTextureTag)))
 		Engine::Safe_Release(pInstance);
 	
+	pInstance->m_pEffectTag = pEffectTag;
 	pInstance->m_tFrame.fCurFrame = 0.f;
 	pInstance->m_tFrame.fMaxFrame = fMaxFrame;
 	pInstance->m_tFrame.fFrameSpeed = fFrameSpeed;

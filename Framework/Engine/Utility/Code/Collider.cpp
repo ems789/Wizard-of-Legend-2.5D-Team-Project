@@ -3,13 +3,12 @@
 USING(Engine)
 
 CCollider::CCollider(LPDIRECT3DDEVICE9 pGraphicDev)
+	: CGameObject(pGraphicDev)
 {
-	m_pGraphicDev = pGraphicDev;
-	m_pGraphicDev->AddRef();
 }
 
 Engine::CCollider::CCollider(const CCollider& rhs)
-	: CComponent(rhs)
+	: CGameObject(rhs)
 {
 
 }
@@ -19,13 +18,42 @@ CCollider::~CCollider()
 
 }
 
-Engine::CComponent* CCollider::Clone(void)
+
+HRESULT CCollider::Ready_Collider(CGameObject * pParent)
 {
-	return new CCollider(*this);
+	NULL_CHECK_RETURN(pParent, E_FAIL);
+	m_pParent = pParent;
+	m_pParent->AddRef();
+	return S_OK;
+}
+
+HRESULT Engine::CCollider::Ready_GameObject()
+{
+	
+
+	return S_OK;
+}
+
+_int Engine::CCollider::Update_GameObject(const _float& fTimeDelta)
+{
+	const _vec3* vPos = m_pParent->Get_Pos();
+
+
+
+	_int iExit = CGameObject::Update_GameObject(fTimeDelta);
+
+	return iExit;
+}
+
+void Engine::CCollider::Render_GameObject()
+{
+
 }
 
 
 void CCollider::Free()
 {
-	Safe_Release(m_pGraphicDev);
+	Safe_Release(m_pParent);
+	CGameObject::Free();
 }
+

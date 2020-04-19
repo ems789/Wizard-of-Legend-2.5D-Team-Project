@@ -27,6 +27,7 @@ public:
 public:
 	virtual Engine::SPHERE*		Get_Sphere() override { return &m_tSphere; }
 	virtual int					Get_Attack() override { return m_iAttack; }
+	virtual const _vec3*		Get_Pos() const { return &m_tSphere.vPos; }
 	virtual void				Add_Effect(const _vec3* pPos) override;
 
 private:

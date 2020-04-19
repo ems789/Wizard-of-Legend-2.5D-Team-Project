@@ -15,11 +15,6 @@ void	Render_End(void)
 	CGraphicDev::GetInstance()->Render_End();
 }
 
-void	Render_End(HWND hWnd)
-{
-	CGraphicDev::GetInstance()->Render_End(hWnd);
-}
-
 //	TimerMgr
 //	Get
 //	Set

@@ -1,17 +1,4 @@
-﻿  Collider.cpp
-  Generating Code...
-  Compiling...
-  Skill.cpp
-  Scene.cpp
-  Renderer.cpp
-  MoveObject.cpp
-  Management.cpp
-  Layer.cpp
-  GameObject.cpp
-  Effect.cpp
-  CollisionMgr.cpp
-  Generating Code...
-     Creating library ../Bin/Utility.lib and object ../Bin/Utility.exp
+﻿     Creating library ../Bin/Utility.lib and object ../Bin/Utility.exp
   Utility.vcxproj -> D:\TeamProject\Framework\Engine\Utility\Default\../Bin/Utility.dll
   Utility.vcxproj -> ../Bin/Utility.pdb (Full PDB)
   .\Engine\Utility\Code\Camera.h

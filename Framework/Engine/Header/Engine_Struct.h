@@ -112,7 +112,7 @@ namespace Engine
 		union 
 		{
 			_vec3	vPos;
-			_float	x, y, z;
+			struct { _float	x, y, z; };
 		};
 		_float	fRadius;
 	}SPHERE, *PSPHERE;

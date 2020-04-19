@@ -1,17 +1,17 @@
 ﻿  TimerMgr.cpp
-c:\users\user\onedrive\desktop\teamproject\teamproject\framework\engine\system\code\timer.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Engine_Defines.h': No such file or directory
+d:\teamproject\framework\engine\system\code\timer.h(4): fatal error C1083: Cannot open include file: 'Engine_Defines.h': No such file or directory
   Timer.cpp
-c:\users\user\onedrive\desktop\teamproject\teamproject\framework\engine\system\code\timer.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Engine_Defines.h': No such file or directory
+d:\teamproject\framework\engine\system\code\timer.h(4): fatal error C1083: Cannot open include file: 'Engine_Defines.h': No such file or directory
   InputDev.cpp
-c:\users\user\onedrive\desktop\teamproject\teamproject\framework\engine\system\code\inputdev.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Engine_Defines.h': No such file or directory
+d:\teamproject\framework\engine\system\code\inputdev.h(4): fatal error C1083: Cannot open include file: 'Engine_Defines.h': No such file or directory
   GraphicDev.cpp
-c:\users\user\onedrive\desktop\teamproject\teamproject\framework\engine\system\code\graphicdev.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Base.h': No such file or directory
+d:\teamproject\framework\engine\system\code\graphicdev.h(4): fatal error C1083: Cannot open include file: 'Base.h': No such file or directory
   FrameMgr.cpp
-c:\users\user\onedrive\desktop\teamproject\teamproject\framework\engine\system\code\frame.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Engine_Defines.h': No such file or directory
+d:\teamproject\framework\engine\system\code\frame.h(4): fatal error C1083: Cannot open include file: 'Engine_Defines.h': No such file or directory
   Frame.cpp
-c:\users\user\onedrive\desktop\teamproject\teamproject\framework\engine\system\code\frame.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Engine_Defines.h': No such file or directory
+d:\teamproject\framework\engine\system\code\frame.h(4): fatal error C1083: Cannot open include file: 'Engine_Defines.h': No such file or directory
   FontMgr.cpp
-c:\users\user\onedrive\desktop\teamproject\teamproject\framework\engine\system\code\font.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Engine_Defines.h': No such file or directory
+d:\teamproject\framework\engine\system\code\font.h(4): fatal error C1083: Cannot open include file: 'Engine_Defines.h': No such file or directory
   Font.cpp
-c:\users\user\onedrive\desktop\teamproject\teamproject\framework\engine\system\code\font.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Engine_Defines.h': No such file or directory
-  코드를 생성하고 있습니다...
+d:\teamproject\framework\engine\system\code\font.h(4): fatal error C1083: Cannot open include file: 'Engine_Defines.h': No such file or directory
+  Generating Code...

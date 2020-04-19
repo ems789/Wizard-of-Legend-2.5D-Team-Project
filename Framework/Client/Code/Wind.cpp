@@ -42,7 +42,7 @@ _int CWind::Update_GameObject(const _float& fTimeDelta)
 
 	m_pRendererCom->Add_RenderGroup(Engine::RENDER_ALPHA, this);
 
-	Engine::Add_GameObject_To_CollisionList(L"Player_Bullet", this);
+	//Engine::Add_GameObject_To_CollisionList(L"Player_Bullet", this);
 	m_tSphere.vPos = m_pTransformCom->GetInfoRef(Engine::INFO_POS);
 
 	return 0;
@@ -61,7 +61,7 @@ void CWind::Add_Effect(const _vec3* pPos)
 	_vec3 vPos = (*m_pTransformCom->GetInfo(Engine::INFO_POS) + *pPos) / 2;
 	vPos.y += 0.5f;
 
-	CBasicEffect* pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_SlashHitSpark", 7.f, 20.f, 0.05f, &vPos, false, 0.f);
+	CBasicEffect* pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_SlashHitSpark", L"SlashHitSpark", 7.f, 20.f, 0.05f, &vPos, false, 0.f);
 
 	Engine::Add_GameObject(L"GameLogic", L"SlashHitSpark", pEffect);
 }

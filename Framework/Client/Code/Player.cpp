@@ -35,6 +35,7 @@ HRESULT CPlayer::Ready_GameObject()
 	m_iPreCamState = Engine::Get_MainCamType();
 	m_fScale = 0.04f;
 
+	m_tSphere.fRadius = 1.f;
 	m_pTransformCom->Move_Pos(Engine::INFO_UP, 0.5f);
 
 	CFireBall*	pFireBall = CFireBall::Create(m_pGraphicDev);
@@ -62,6 +63,8 @@ _int CPlayer::Update_GameObject(const _float& fTimeDelta)
 	Animation(fTimeDelta);
 
 	_int iExit = CGameObject::Update_GameObject(fTimeDelta);
+
+	m_tSphere.vPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
 
 	m_pRendererCom->Add_RenderGroup(Engine::RENDER_ALPHA, this);
 

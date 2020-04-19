@@ -1,21 +1,21 @@
 ﻿  VIBuffer.cpp
-c:\users\user\onedrive\desktop\teamproject\teamproject\framework\engine\resources\code\resources.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Engine_Defines.h': No such file or directory
+d:\teamproject\framework\engine\resources\code\resources.h(4): fatal error C1083: Cannot open include file: 'Engine_Defines.h': No such file or directory
   TriCol.cpp
-c:\users\user\onedrive\desktop\teamproject\teamproject\framework\engine\resources\code\resources.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Engine_Defines.h': No such file or directory
+d:\teamproject\framework\engine\resources\code\resources.h(4): fatal error C1083: Cannot open include file: 'Engine_Defines.h': No such file or directory
   TileTex.cpp
-c:\users\user\onedrive\desktop\teamproject\teamproject\framework\engine\resources\code\resources.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Engine_Defines.h': No such file or directory
+d:\teamproject\framework\engine\resources\code\resources.h(4): fatal error C1083: Cannot open include file: 'Engine_Defines.h': No such file or directory
   Texture.cpp
-c:\users\user\onedrive\desktop\teamproject\teamproject\framework\engine\resources\code\resources.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Engine_Defines.h': No such file or directory
+d:\teamproject\framework\engine\resources\code\resources.h(4): fatal error C1083: Cannot open include file: 'Engine_Defines.h': No such file or directory
   TerrainTex.cpp
-c:\users\user\onedrive\desktop\teamproject\teamproject\framework\engine\resources\code\resources.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Engine_Defines.h': No such file or directory
+d:\teamproject\framework\engine\resources\code\resources.h(4): fatal error C1083: Cannot open include file: 'Engine_Defines.h': No such file or directory
   ResourcesMgr.cpp
-c:\users\user\onedrive\desktop\teamproject\teamproject\framework\engine\resources\code\resources.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Engine_Defines.h': No such file or directory
+d:\teamproject\framework\engine\resources\code\resources.h(4): fatal error C1083: Cannot open include file: 'Engine_Defines.h': No such file or directory
   Resources.cpp
-c:\users\user\onedrive\desktop\teamproject\teamproject\framework\engine\resources\code\resources.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Engine_Defines.h': No such file or directory
+d:\teamproject\framework\engine\resources\code\resources.h(4): fatal error C1083: Cannot open include file: 'Engine_Defines.h': No such file or directory
   RcTex.cpp
-c:\users\user\onedrive\desktop\teamproject\teamproject\framework\engine\resources\code\resources.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Engine_Defines.h': No such file or directory
+d:\teamproject\framework\engine\resources\code\resources.h(4): fatal error C1083: Cannot open include file: 'Engine_Defines.h': No such file or directory
   RcCol.cpp
-c:\users\user\onedrive\desktop\teamproject\teamproject\framework\engine\resources\code\resources.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Engine_Defines.h': No such file or directory
+d:\teamproject\framework\engine\resources\code\resources.h(4): fatal error C1083: Cannot open include file: 'Engine_Defines.h': No such file or directory
   CubeTex.cpp
-c:\users\user\onedrive\desktop\teamproject\teamproject\framework\engine\resources\code\resources.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Engine_Defines.h': No such file or directory
-  코드를 생성하고 있습니다...
+d:\teamproject\framework\engine\resources\code\resources.h(4): fatal error C1083: Cannot open include file: 'Engine_Defines.h': No such file or directory
+  Generating Code...

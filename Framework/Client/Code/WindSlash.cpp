@@ -4,6 +4,8 @@
 
 #include "Export_Function.h"
 #include "Wind.h"
+#include "SphereCollider.h"
+#include "BasicEffect.h"
 
 CWindSlash::CWindSlash(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CSkill(pGraphicDev)
@@ -47,6 +49,12 @@ _int CWindSlash::Use_Skill(const _float& fTimeDelta)
 	CWind* pWind = CWind::Create(m_pGraphicDev, vStartPos, vAngle, m_fSpeed, 7, 30.f, 1.f);
 	FAILED_CHECK_RETURN(Engine::Add_GameObject(L"GameLogic", L"Wind", pWind), -1);
 
+
+	CBasicEffect* pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_SlashHitSpark", L"SlashHitSpark", 7.f, 20.f, 0.05f, &vStartPos, false, 0.f);
+	NULL_CHECK_RETURN(pEffect, -1);
+	CSphereCollider* pCollider = CSphereCollider::Create(m_pGraphicDev, pWind, pEffect, 1.f, L"Player_Bullet", 10);
+	Engine::Add_GameObject(L"GameLogic", L"PlayerCollider", pCollider);
+
 	m_fCurTime = m_fCoolTime;
 
 	return 0;
@@ -73,6 +81,11 @@ _int CWindSlash::Use_Skill(const _float & fTimeDelta, const _vec3 * pPos, const 
 
 	CWind* pWind = CWind::Create(m_pGraphicDev, vStartPos, vAngle, m_fSpeed, 7, 30.f, fDir);
 	FAILED_CHECK_RETURN(Engine::Add_GameObject(L"GameLogic", L"Wind", pWind), -1);
+
+	CBasicEffect* pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_SlashHitSpark", L"SlashHitSpark", 7.f, 20.f, 0.05f, &vStartPos, false, 0.f);
+	NULL_CHECK_RETURN(pEffect, -1);
+	CSphereCollider* pCollider = CSphereCollider::Create(m_pGraphicDev, pWind, pEffect, 1.f, L"Player_Bullet", 10);
+	Engine::Add_GameObject(L"GameLogic", L"PlayerCollider", pCollider);
 
 	m_fCurTime = m_fCoolTime;
 

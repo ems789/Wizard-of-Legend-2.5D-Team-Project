@@ -11,7 +11,9 @@ private:
 
 public:
 	static HRESULT	Ready_Functions();
-	static void		CollisionBulletToObject(const _tchar* pSrcDest, const _tchar* pDest);
+	static void		CollisionExample(const _tchar* pSrcTag, const _tchar* pDestTag);
+	static void		CollisionBulletToObject(const _tchar* pSrcTag, const _tchar* pDestTag);
+	static void		CollisionObjAttackToObject(const _tchar* pSrcTag, const _tchar* pDestTag);
 };
 
 #endif // CollisionFunctions_h__

@@ -7,6 +7,7 @@
 #include "CameraMgr.h"
 #include "CollisionMgr.h"
 #include "MyMath.h"
+#include "Effect.h"
 
 //#include "Camera.h"
 
@@ -63,6 +64,7 @@ inline list<CGameObject*>*	Get_CollisionObjectList(const _tchar* pCollisionListT
 //	Set
 //	General
 inline void					Add_GameObject_To_CollisionList(const _tchar* pCollisionListTag, CGameObject* pObj);
+inline void					Add_CollisionFunction(const _tchar* pSrcTag, const _tchar* pDestTag, void(pFunc)(const _tchar*, const _tchar*));
 
 
 //	Utility Release
