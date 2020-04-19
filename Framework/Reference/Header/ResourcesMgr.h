@@ -21,6 +21,9 @@ private:
 	explicit CResourcesMgr();
 	virtual ~CResourcesMgr();
 
+public: //Get
+	const TEX_INFO*	Get_TexInfo(const _ushort& wContainerIdx, const _tchar* pTextureTag, const _uint& iIndex = 0, D3DXIMAGE_INFO* pOut = nullptr);
+
 public:
 	HRESULT		Reserve_ContainerSize(const _ushort& wSize);
 	HRESULT		Ready_Buffer(LPDIRECT3DDEVICE9 pGraphicDev, const _ushort& wContainerIdx, const _tchar* pBufferTag, BUFFERID eID, const _tchar* pPath, const _ulong& dwCntX, const _ulong& dwCntZ, const _ulong& dwVtxItv);

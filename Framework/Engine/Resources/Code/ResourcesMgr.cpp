@@ -13,6 +13,12 @@ Engine::CResourcesMgr::~CResourcesMgr()
 	Free();
 }
 
+const TEX_INFO* CResourcesMgr::Get_TexInfo(const _ushort& wContainerIdx, const _tchar* pTextureTag, const _uint & iIndex, D3DXIMAGE_INFO * pOut)
+{
+	CResources* pResources = Find_Resources(wContainerIdx, pTextureTag);
+	return dynamic_cast<CTexture*>(pResources)->Get_TexInfo(iIndex, pOut);
+} 
+
 HRESULT Engine::CResourcesMgr::Reserve_ContainerSize(const _ushort& wSize)
 {
 	if (nullptr != m_pMapResources)

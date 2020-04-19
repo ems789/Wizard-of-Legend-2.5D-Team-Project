@@ -16,10 +16,11 @@ CTerrain::~CTerrain(void)
 {
 }
 
-HRESULT CTerrain::Ready_GameObject(::_ulong dwTileX, ::_ulong dwTileZ, ::_ulong dwItv)
+/// TODO : 경로 추가해서 로드하는 걸로
+HRESULT CTerrain::Ready_GameObject(const ::_tchar* path)
 {
 	FAILED_CHECK_RETURN(CGameObject::Ready_GameObject(), E_FAIL);
-	FAILED_CHECK_RETURN(LoadTile(L"../../Data/MapData.dat"), E_FAIL);
+	FAILED_CHECK_RETURN(LoadTile(path), E_FAIL);
 	FAILED_CHECK_RETURN(Add_Component(), E_FAIL);
 
 	return S_OK;
@@ -146,11 +147,11 @@ HRESULT CTerrain::Add_Component(void)
 
 
 
-CTerrain* CTerrain::Create(LPDIRECT3DDEVICE9 pGraphicDev, ::_ulong dwTileX, ::_ulong dwTileZ, ::_ulong dwItv)
+CTerrain* CTerrain::Create(LPDIRECT3DDEVICE9 pGraphicDev, const ::_tchar* path)
 {
 	CTerrain*	pInstance = new CTerrain(pGraphicDev);
 
-	if (FAILED(pInstance->Ready_GameObject(dwTileX, dwTileZ, dwItv)))
+	if (FAILED(pInstance->Ready_GameObject(path)))
 		Engine::Safe_Release(pInstance);
 
 	return pInstance;

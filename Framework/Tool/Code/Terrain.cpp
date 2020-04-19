@@ -93,6 +93,7 @@ void CTerrain::Release_GameObject(void)
 
 void CTerrain::TileChange(const ::_vec3& vPos, const ::_tchar* tileTag, bool bIsRender)
 {
+	//m_vecTile[(int)vPos.z * m_dwTileX + (int)vPos.x]->TextureChange();
 	m_vecTile[(int)vPos.z * m_dwTileX + (int)vPos.x]->Set_Render(bIsRender);
 }
 

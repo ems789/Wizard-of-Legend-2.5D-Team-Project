@@ -72,6 +72,10 @@ void CTile::Set_Render(const bool& bIsRender)
 	m_bIsRender = bIsRender;
 }
 
+void CTile::TextureChange()
+{
+	for_each(m_mapComponent[Engine::ID_STATIC].begin(), m_mapComponent[Engine::ID_STATIC].end(), Engine::CDeleteMap());
+}
 
 HRESULT CTile::Add_Component(void)
 {

@@ -1,3 +1,9 @@
+#include "Export_Resources.h"
+
+const TEX_INFO* Get_TexInfo(const _ushort & wContainerIdx, const _tchar * pTextureTag, const _uint & iIndex, D3DXIMAGE_INFO* pOut)
+{
+	return CResourcesMgr::GetInstance()->Get_TexInfo(wContainerIdx, pTextureTag, iIndex, pOut);
+}
 //	ResourcesMgr
 //	Get
 //	Set

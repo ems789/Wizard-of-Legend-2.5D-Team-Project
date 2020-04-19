@@ -17,6 +17,7 @@ BEGIN(Engine)
 inline HRESULT	Ready_GraphicDev(HWND hWnd, WINMODE eMode, const _uint& iSizeX, const _uint& iSizeY, Engine::CGraphicDev** ppGraphicDev);
 inline void		Render_Begin(D3DXCOLOR Color);
 inline void		Render_End(void);
+inline void		Render_End(HWND hWnd);
 
 //	TimerMgr
 //	Get

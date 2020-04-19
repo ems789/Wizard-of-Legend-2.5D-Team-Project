@@ -31,6 +31,9 @@ public:
 	void			Set_Pos(const _vec3& vPos);
 	void			Set_Render(const bool& bIsRender);
 
+public:
+	void			TextureChange();
+
 private:
 	HRESULT			Add_Component(void);
 

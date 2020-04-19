@@ -21,7 +21,7 @@ private:
 	virtual ~CTerrain(void);
 
 public:
-	HRESULT		 Ready_GameObject(_ulong dwTileX, _ulong dwTileZ, _ulong dwItv);
+	HRESULT		 Ready_GameObject(const _tchar* path);
 	virtual _int Update_GameObject(const _float& fTimeDelta) override;
 	virtual void Render_GameObject(void) override;
 	void		 Release_GameObject(void);
@@ -40,7 +40,7 @@ private:
 	_ulong					m_dwItv;
 
 public:
-	static CTerrain*		Create(LPDIRECT3DDEVICE9 pGraphicDev, _ulong dwTileX, _ulong dwTileZ, _ulong dwItv);
+	static CTerrain*		Create(LPDIRECT3DDEVICE9 pGraphicDev, const _tchar* path);
 
 private:
 	virtual void Free(void) override;

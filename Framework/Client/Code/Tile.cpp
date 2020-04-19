@@ -24,7 +24,7 @@ HRESULT CTile::Ready_GameObject(void)
 _int CTile::Update_GameObject(const _float& fTimeDelta)
 {
 	Engine::CGameObject::Update_GameObject(fTimeDelta);
-
+	
 	_matrix			matWorld, matView;
 
 	m_pTransformCom->GetWorldMatrix(&matWorld);
@@ -72,6 +72,11 @@ void CTile::Set_Render(const bool& bIsRender)
 	m_bIsRender = bIsRender;
 }
 
+void CTile::TextureChange()
+{
+	for_each(m_mapComponent[Engine::ID_STATIC].begin(), m_mapComponent[Engine::ID_STATIC].end(), Engine::CDeleteMap());
+}
+
 
 HRESULT CTile::Add_Component(void)
 {
@@ -88,7 +93,7 @@ HRESULT CTile::Add_Component(void)
 	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STAGE, L"Texture_Tile"));
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
 	m_mapComponent[Engine::ID_STATIC].emplace(L"Com_Texture", pComponent);
-	
+
 	return S_OK;
 }
 

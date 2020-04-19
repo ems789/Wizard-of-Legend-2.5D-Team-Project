@@ -7,6 +7,7 @@ BEGIN(Engine)
 
 //	ResourcesMgr
 //	Get
+inline const TEX_INFO*	Get_TexInfo(const _ushort& wContainerIdx, const _tchar* pTextureTag, const _uint& iIndex = 0, D3DXIMAGE_INFO* pOut = nullptr);
 //	Set
 //	General
 inline HRESULT	Reserve_ContainerSize(const _ushort& wSize);
