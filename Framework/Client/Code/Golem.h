@@ -74,7 +74,7 @@ private:
 	_int	m_iHPMax	= 200;
 
 	_float	m_fScale = 0.05f;
-	_float	m_fHeight = 1.f;
+	_float	m_fHeight = 0.5f;
 
 	_int	m_iAttack = 20;
 
@@ -85,8 +85,6 @@ private:
 	CGolem::GOLEM_STATE		m_ePreState = CGolem::GS_END;
 	CGolem::GOLEM_STATE		m_eCurState = CGolem::GS_END;
 	CGolem::GOLEM_DIR		m_eCurDir	= CGolem::GD_END;
-
-	_float	m_fSpeed = 2.f;
 
 public:
 	static CGolem* Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3* pPos);

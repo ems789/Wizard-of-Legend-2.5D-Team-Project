@@ -114,10 +114,8 @@ _uint CLoading::Loading_ForState()
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Golem_Death", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/Golem/Death/GolemDeath%d.png", 6), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Golem_AttackDown", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/Golem/GolemAttackDown0.png"), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Golem_AttackRight", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/Golem/GolemAttackRight0.png"), E_FAIL);
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Golem_AttackLeft", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/Golem/GolemAttackLeft0.png"), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Golem_AttackUp", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/Golem/GolemAttackUp0.png"), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Golem_AttackFollowThrough", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/Golem/GolemAttackFollowThrough.png"), E_FAIL);
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Golem_AttackFollowThrough_Alt", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/Golem/GolemAttackFollowThrough_Alt.png"), E_FAIL);
 
 
 

@@ -1,3 +1,14 @@
-﻿     Creating library ../Bin\Tool.lib and object ../Bin\Tool.exp
+﻿  DynamicCamera.cpp
+  Generating Code...
+  Compiling...
+  ToolView.cpp
+  PropertyFormView.cpp
+  Tile.cpp
+  TerrainGuidLine.cpp
+  Terrain.cpp
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  TilePage.cpp
+     Creating library ../Bin\Tool.lib and object ../Bin\Tool.exp
   Tool.vcxproj -> D:\TeamProject\Framework\Tool\Default\../Bin\Tool.exe
   Tool.vcxproj -> ../Bin\Tool.pdb (Partial PDB)
