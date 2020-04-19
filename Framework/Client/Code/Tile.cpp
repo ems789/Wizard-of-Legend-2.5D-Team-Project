@@ -40,7 +40,7 @@ void CTile::Render_GameObject(void)
 		m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->GetWorldMatrix());
 		//m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
 
-		m_pTextureCom->Render_Texture();
+		m_pTextureCom->Render_Texture(m_iDrawID);
 		m_pBufferCom->Render_Buffer();
 
 		//m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
@@ -55,6 +55,11 @@ const _vec3* CTile::Get_Pos()
 const bool CTile::Get_Render()
 {
 	return m_bIsRender;
+}
+
+const int CTile::Get_DrawID()
+{
+	return m_iDrawID;
 }
 
 void CTile::Set_Pos(const _float& fX, const _float& fY, const _float& fZ)
@@ -72,11 +77,10 @@ void CTile::Set_Render(const bool& bIsRender)
 	m_bIsRender = bIsRender;
 }
 
-void CTile::TextureChange()
+void CTile::Set_DrawID(const int iDrawID)
 {
-	for_each(m_mapComponent[Engine::ID_STATIC].begin(), m_mapComponent[Engine::ID_STATIC].end(), Engine::CDeleteMap());
+	m_iDrawID = iDrawID;
 }
-
 
 HRESULT CTile::Add_Component(void)
 {

@@ -27,12 +27,11 @@ public:
 public:
 	const _vec3*	Get_Pos(); 
 	const bool		Get_Render(); 
+	const int		Get_DrawID();
 	void			Set_Pos(const _float& fX, const _float& fY, const _float& fZ);
 	void			Set_Pos(const _vec3& vPos);
 	void			Set_Render(const bool& bIsRender);
-
-public:
-	void			TextureChange();
+	void			Set_DrawID(const int iDrawID);
 
 private:
 	HRESULT			Add_Component(void);
@@ -42,6 +41,7 @@ private:
 	Engine::CTexture*		m_pTextureCom = nullptr;
 	Engine::CTransform*		m_pTransformCom = nullptr;
 	bool					m_bIsRender = false;
+	int						m_iDrawID = 0;
 
 public:
 	static CTile*		Create(LPDIRECT3DDEVICE9 pGraphicDev);

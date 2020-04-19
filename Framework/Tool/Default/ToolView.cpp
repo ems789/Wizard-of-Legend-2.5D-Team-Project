@@ -61,8 +61,8 @@ CToolView::~CToolView()
 	m_pTerrain->Release();
 	m_pTerrainGuidLine->Release();
 	m_pDynamicCamera->Release();
-	Engine::Release_Resources();
 
+	Engine::Release_Resources();
 	Engine::CInputDev::GetInstance()->DestroyInstance();
 	Engine::Safe_Release(m_pDeviceClass);
 	Engine::CGraphicDev::GetInstance()->DestroyInstance();
@@ -267,6 +267,15 @@ void CToolView::OnMouseMove(UINT nFlags, CPoint point)
 {
 	CView::OnMouseMove(nFlags, point);
 
+	// 타일의 Draw ID 설정
+	CMainFrame* pFrameWnd = dynamic_cast<CMainFrame*>(::AfxGetApp()->GetMainWnd());
+	NULL_CHECK(pFrameWnd);
+
+	CPropertyFormView* pPropertyFormView = dynamic_cast<CPropertyFormView*>(pFrameWnd->m_MainSplitter.GetPane(0, 0));
+	NULL_CHECK(pPropertyFormView);
+
+	int iDrawID = pPropertyFormView->m_MySheet->m_TilePage.m_iDrawID;
+
 	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 	if (Engine::Get_DIMouseState(Engine::DIM_LB))
 	{
@@ -277,8 +286,7 @@ void CToolView::OnMouseMove(UINT nFlags, CPoint point)
 		NULL_CHECK_RETURN_VOID(pTerrainTransformCom);
 
 		::_vec3 vPickedTile = Picking_OnTerrain(g_hWnd, pTerrainBufferCom, pTerrainTransformCom);
-		/// TODO :: 바꿀 텍스쳐의 태그를 넣어야함
-		m_pTerrain->TileChange(vPickedTile, L"Texture_Tile", true);
+		m_pTerrain->TileChange(vPickedTile, L"Texture_Tile", iDrawID, true);
 	}
 	else if (Engine::Get_DIMouseState(Engine::DIM_RB))
 	{
@@ -289,8 +297,7 @@ void CToolView::OnMouseMove(UINT nFlags, CPoint point)
 		NULL_CHECK_RETURN_VOID(pTerrainTransformCom);
 
 		::_vec3 vPickedTile = Picking_OnTerrain(g_hWnd, pTerrainBufferCom, pTerrainTransformCom);
-		/// TODO :: 바꿀 텍스쳐의 태그를 넣어야함
-		m_pTerrain->TileChange(vPickedTile, L"Texture_Tile", false);
+		m_pTerrain->TileChange(vPickedTile, L"Texture_Tile", iDrawID, false);
 	}
 
 	Engine::Set_InputDev();
@@ -304,6 +311,15 @@ void CToolView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	CView::OnLButtonDown(nFlags, point);
 
+	// 타일의 Draw ID 설정
+	CMainFrame* pFrameWnd = dynamic_cast<CMainFrame*>(::AfxGetApp()->GetMainWnd());
+	NULL_CHECK(pFrameWnd);
+
+	CPropertyFormView* pPropertyFormView = dynamic_cast<CPropertyFormView*>(pFrameWnd->m_MainSplitter.GetPane(0, 0));
+	NULL_CHECK(pPropertyFormView);
+
+	int iDrawID = pPropertyFormView->m_MySheet->m_TilePage.m_iDrawID;
+
 	const Engine::CTerrainTex* pTerrainBufferCom = dynamic_cast<const Engine::CTerrainTex*>(m_pTerrainGuidLine->Get_Component(L"Com_Buffer", Engine::ID_STATIC));
 	NULL_CHECK_RETURN_VOID(pTerrainBufferCom);
 
@@ -311,8 +327,7 @@ void CToolView::OnLButtonDown(UINT nFlags, CPoint point)
 	NULL_CHECK_RETURN_VOID(pTerrainTransformCom);
 
 	::_vec3 vPickedTile = Picking_OnTerrain(g_hWnd, pTerrainBufferCom, pTerrainTransformCom);
-	/// TODO :: 바꿀 텍스쳐의 태그를 넣어야함
-	m_pTerrain->TileChange(vPickedTile, L"Test", true);
+	m_pTerrain->TileChange(vPickedTile, L"Test", iDrawID, true);
 
 	Invalidate(FALSE);
 }
@@ -321,6 +336,15 @@ void CToolView::OnRButtonDown(UINT nFlags, CPoint point)
 {
 	CView::OnRButtonDown(nFlags, point);
 
+	// 타일의 Draw ID 설정
+	CMainFrame* pFrameWnd = dynamic_cast<CMainFrame*>(::AfxGetApp()->GetMainWnd());
+	NULL_CHECK(pFrameWnd);
+
+	CPropertyFormView* pPropertyFormView = dynamic_cast<CPropertyFormView*>(pFrameWnd->m_MainSplitter.GetPane(0, 0));
+	NULL_CHECK(pPropertyFormView);
+
+	int iDrawID = pPropertyFormView->m_MySheet->m_TilePage.m_iDrawID;
+
 	const Engine::CTerrainTex* pTerrainBufferCom = dynamic_cast<const Engine::CTerrainTex*>(m_pTerrainGuidLine->Get_Component(L"Com_Buffer", Engine::ID_STATIC));
 	NULL_CHECK_RETURN_VOID(pTerrainBufferCom);
 
@@ -328,8 +352,7 @@ void CToolView::OnRButtonDown(UINT nFlags, CPoint point)
 	NULL_CHECK_RETURN_VOID(pTerrainTransformCom);
 
 	::_vec3 vPickedTilePos = Picking_OnTerrain(g_hWnd, pTerrainBufferCom, pTerrainTransformCom);
-	/// TODO :: 바꿀 텍스쳐의 태그를 넣어야함
-	m_pTerrain->TileChange(vPickedTilePos, L"Test", false);
+	m_pTerrain->TileChange(vPickedTilePos, L"Test", iDrawID, false);
 
 	Invalidate(FALSE);
 }

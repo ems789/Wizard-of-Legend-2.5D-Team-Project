@@ -44,7 +44,7 @@ protected:
 public:
 	// 분할 윈도우
 	CSplitterWnd	m_MainSplitter;
-	CSplitterWnd	m_SecondSplitter;
+	//CSplitterWnd	m_SecondSplitter;
 	//CMySheet		m_MySheet;
 
 	virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);

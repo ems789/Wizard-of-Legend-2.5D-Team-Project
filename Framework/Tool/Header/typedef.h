@@ -46,8 +46,10 @@ typedef struct tagTileInfo
 {
 	_vec3	vPos;
 	_ulong	dwItv;
+	_ulong	dwDrawID;
 	bool	bRender;
 }TILE_INFO;
+
 
 //typedef	 struct tagMyVector3 : public D3DXVECTOR3
 //{

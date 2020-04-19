@@ -121,6 +121,7 @@ HRESULT CTerrain::LoadTile(const ::_tchar* pFilePath)
 		pTile = CTile::Create(m_pGraphicDev);
 		pTile->Set_Pos(tTempTileInfo.vPos.x, tTempTileInfo.vPos.y, tTempTileInfo.vPos.z);
 		pTile->Set_Render(tTempTileInfo.bRender);
+		pTile->Set_DrawID(tTempTileInfo.dwDrawID);
 
 		m_vecTile.push_back(pTile);
 	}

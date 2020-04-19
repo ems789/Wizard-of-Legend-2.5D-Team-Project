@@ -91,9 +91,9 @@ void CTerrain::Release_GameObject(void)
 	m_vecTile.clear();
 }
 
-void CTerrain::TileChange(const ::_vec3& vPos, const ::_tchar* tileTag, bool bIsRender)
+void CTerrain::TileChange(const ::_vec3& vPos, const ::_tchar* tileTag, const int iDrawID, bool bIsRender)
 {
-	//m_vecTile[(int)vPos.z * m_dwTileX + (int)vPos.x]->TextureChange();
+	m_vecTile[(int)vPos.z * m_dwTileX + (int)vPos.x]->Set_DrawID(iDrawID);
 	m_vecTile[(int)vPos.z * m_dwTileX + (int)vPos.x]->Set_Render(bIsRender);
 }
 
@@ -118,6 +118,7 @@ void CTerrain::SaveTile(const ::_tchar* pFilePath)
 		tTempTileInfo.vPos = *m_vecTile[i]->Get_Pos();
 		tTempTileInfo.bRender = m_vecTile[i]->Get_Render();
 		tTempTileInfo.dwItv = m_dwItv;
+		tTempTileInfo.dwDrawID = m_vecTile[i]->Get_DrawID();
 		WriteFile(hFile, &tTempTileInfo, sizeof(TILE_INFO), &dwBytes, nullptr);
 	}
 
@@ -197,6 +198,7 @@ void CTerrain::LoadTile(const ::_tchar* pFilePath)
 		pTile = CTile::Create(m_pGraphicDev);
 		pTile->Set_Pos(tTempTileInfo.vPos.x, tTempTileInfo.vPos.y, tTempTileInfo.vPos.z);
 		pTile->Set_Render(tTempTileInfo.bRender);
+		pTile->Set_DrawID(tTempTileInfo.dwDrawID);
 
 		m_vecTile.push_back(pTile);
 	}

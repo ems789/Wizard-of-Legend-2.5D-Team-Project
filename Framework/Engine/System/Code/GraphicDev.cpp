@@ -93,7 +93,7 @@ void Engine::CGraphicDev::Free(void)
 	_ulong dwRefCnt = 0;
 
 	if (dwRefCnt = Engine::Safe_Release(m_pSprite))
-		MSG_BOX("m_pGraphicDev Release Failed");
+		MSG_BOX("m_pSprite Release Failed");
 
 	if (dwRefCnt = Engine::Safe_Release(m_pGraphicDev))
 		MSG_BOX("m_pGraphicDev Release Failed");

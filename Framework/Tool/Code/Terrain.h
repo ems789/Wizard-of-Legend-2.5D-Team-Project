@@ -29,7 +29,7 @@ public:
 	
 
 public:
-	void		TileChange(const _vec3& vPos, const _tchar* tileTag, bool bIsRender);
+	void		TileChange(const _vec3& vPos, const _tchar* tileTag, const int iDrawID ,bool bIsRender);
 	void		SaveTile(const _tchar* pFilePath);
 	void		LoadTile(const _tchar* pFilePath);
 
