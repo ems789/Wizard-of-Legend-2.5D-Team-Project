@@ -100,6 +100,8 @@ public:		//	About Collision
 public:		//	About HP
 	virtual _int	Get_HP()	const { return m_iHP; }
 	virtual _int	Get_HPMax() const { return m_iHPMax; }
+	virtual _int	Get_MP()	const { return m_iMP; }
+	virtual _int	Get_MPMax() const { return m_iMPMax; }
 
 
 private:	//	Components
@@ -130,6 +132,8 @@ private:
 
 	_int	m_iHP = 500;
 	_int	m_iHPMax = 500;
+	_int	m_iMP = 0;
+	_int	m_iMPMax = 100;
 
 	_float	m_fScale = 0.2f;
 

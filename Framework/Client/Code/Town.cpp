@@ -11,6 +11,7 @@
 #include "TestTerrain.h"
 #include "TestMonster.h"
 #include "Mouse.h"
+#include "Golem.h"
 
 CTown::CTown(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CScene(pGraphicDev)
@@ -89,6 +90,11 @@ HRESULT CTown::Ready_GameLogic_Layer(const _tchar * pLayerTag)
 	pGameObject = CTestMonster::Create(m_pGraphicDev, &_vec3(20.f, 1.f, 20.f));
 	NULL_CHECK_RETURN(pGameObject, E_FAIL);
 	pLayer->Add_GameObject(L"Monster", pGameObject);
+
+	pGameObject = CGolem::Create(m_pGraphicDev, &_vec3(20.f, 1.f, 25.f));
+	NULL_CHECK_RETURN(pGameObject, E_FAIL);
+	pLayer->Add_GameObject(L"Monster", pGameObject);
+
 
 
 
