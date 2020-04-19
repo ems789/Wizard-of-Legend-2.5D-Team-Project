@@ -109,26 +109,28 @@ void CTilePage::OnLbnSelchangeList()
 	m_iDrawID = _ttoi(strName);
 
 	// 픽처 컨트롤에 타일 미리보기 출력.
-	/*const TEX_INFO* pTexInfo = m_pTextureMgr->GetTexInfo(L"Terrain", L"Tile", m_iDrawID);
+	const TEX_INFO* pTexInfo = Engine::Get_TexInfo(::RESOURCE_STAGE, L"Texture_Tile", m_iDrawID);
 	NULL_CHECK(pTexInfo);
 
 	float fCenterX = pTexInfo->tImgInfo.Width * 0.5f;
 	float fCenterY = pTexInfo->tImgInfo.Height * 0.5f;
 
 	D3DXMATRIX matScale, matTrans, matWorld;
-	D3DXMatrixScaling(&matScale, (float)WINCX / TILECX, (float)WINCY / TILECY, 0.f);
+	D3DXMatrixScaling(&matScale, (float)WINCX / pTexInfo->tImgInfo.Width / 2, (float)WINCY / pTexInfo->tImgInfo.Height / 2, 0.f);
 	D3DXMatrixTranslation(&matTrans, 400.f, 300.f, 0.f);
 
 	matWorld = matScale * matTrans;
 
-	m_pDeviceMgr->GetSprite()->SetTransform(&matWorld);
+	m_pGraphicDev->GetSprite()->SetTransform(&matWorld);
 
-	m_pDeviceMgr->Render_Begin();
+	m_pGraphicDev->Render_Begin(D3DCOLOR_ARGB(255, 153, 217, 234));
+	m_pGraphicDev->GetSprite()->Begin(D3DXSPRITE_ALPHABLEND);
 
-	m_pDeviceMgr->GetSprite()->Draw(pTexInfo->pTexture, nullptr, &D3DXVECTOR3(fCenterX, fCenterY, 0.f),
+	m_pGraphicDev->GetSprite()->Draw((LPDIRECT3DTEXTURE9)(pTexInfo->pTexture), nullptr, &D3DXVECTOR3(fCenterX, fCenterY, 0.f),
 		nullptr, D3DCOLOR_ARGB(255, 255, 255, 255));
 
-	m_pDeviceMgr->Render_End(m_Picture.m_hWnd);*/
+	m_pGraphicDev->GetSprite()->End();
+	m_pGraphicDev->Render_End(m_Picture.m_hWnd);
 
 }
 
