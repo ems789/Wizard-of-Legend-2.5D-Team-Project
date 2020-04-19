@@ -142,6 +142,12 @@
     <Filter Include="02.GameObject\03.Town\02.Tile">
       <UniqueIdentifier>{9d90e5f5-001e-40db-9c24-a6f1a57a120c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.Effect\02.LaidEffect">
+      <UniqueIdentifier>{dec6037f-062d-4562-b9e9-6a9f4c0b865c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08.Collider">
+      <UniqueIdentifier>{7fb304f0-05db-4f48-91ca-927c82300047}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -255,6 +261,9 @@
     <ClInclude Include="..\Code\Terrain.h">
       <Filter>02.GameObject\03.Town\03.Terrain</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\LaidEffect.h">
+      <Filter>03.Effect\02.LaidEffect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -343,6 +352,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\Terrain.cpp">
       <Filter>02.GameObject\03.Town\03.Terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\LaidEffect.cpp">
+      <Filter>03.Effect\02.LaidEffect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -36,7 +36,8 @@ public:	//	About Collision
 public:
 	virtual _int	Get_HP() const { return 0; }
 	virtual _int	Get_HPMax() const { return 0; }
-
+	virtual _int	Get_MP() const { return 0; }
+	virtual _int	Get_MPMax() const { return 0; }
 public:
 	const _bool& IsDead() const { return m_bIsDead; }
 	void	Set_IsDead(const _bool& bIsDead) { m_bIsDead = bIsDead; }

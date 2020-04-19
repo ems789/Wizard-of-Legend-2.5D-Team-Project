@@ -170,6 +170,7 @@
     <ClInclude Include="..\Code\FirstViewCamera.h" />
     <ClInclude Include="..\Code\Golem.h" />
     <ClInclude Include="..\Code\Inven.h" />
+    <ClInclude Include="..\Code\LaidEffect.h" />
     <ClInclude Include="..\Code\Loading.h" />
     <ClInclude Include="..\Code\LoadingScene.h" />
     <ClInclude Include="..\Code\Logo.h" />
@@ -209,6 +210,7 @@
     <ClCompile Include="..\Code\FirstViewCamera.cpp" />
     <ClCompile Include="..\Code\Golem.cpp" />
     <ClCompile Include="..\Code\Inven.cpp" />
+    <ClCompile Include="..\Code\LaidEffect.cpp" />
     <ClCompile Include="..\Code\Loading.cpp" />
     <ClCompile Include="..\Code\LoadingScene.cpp" />
     <ClCompile Include="..\Code\Logo.cpp" />
