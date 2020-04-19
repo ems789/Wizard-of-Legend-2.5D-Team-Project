@@ -83,19 +83,51 @@ void CCollisionFunctions::CollisionObjAttackToObject(const _tchar * pSrcTag, con
 
 	for (auto& pSrc : *pSrcList)
 	{
-		Engine::SPHERE tSrcSph = *pSrc->Get_Sphere();
+		Engine::COLLIDERTYPE eType = pSrc->Get_CollType();
 
-		_bool	bSrcDie = false;
-		for (auto& pDest : *pDestList)
+		switch (eType)
 		{
-			Engine::SPHERE tDestSph = *pDest->Get_Sphere();
+		case Engine::CT_LINE:
+		{
+			Engine::LINE tSrcLine = *pSrc->Get_Line();
 
-			if (Engine::CCollisionMgr::CollisionSphereToSphere(tSrcSph, tDestSph))
+			for (auto& pDest : *pDestList)
 			{
-				pSrc->Die();
-				pSrc->Add_Effect(&tDestSph.vPos);
-				pDest->Hit(pSrc->Get_Attack(), &tSrcSph.vPos);
+				Engine::SPHERE tDestSph = *pDest->Get_Sphere();
+
+				if (Engine::CCollisionMgr::CollisionLineToSphere(tSrcLine, tDestSph))
+				{
+					pSrc->Die();
+					pSrc->Add_Effect(&tDestSph.vPos);
+					pDest->Hit(pSrc->Get_Attack(), &tSrcLine.vPos1);
+				}
 			}
 		}
+			break;
+		case Engine::CT_PLANE:
+			break;
+		case Engine::CT_SPHERE:
+		{
+			Engine::SPHERE tSrcSph = *pSrc->Get_Sphere();
+
+			for (auto& pDest : *pDestList)
+			{
+				Engine::SPHERE tDestSph = *pDest->Get_Sphere();
+
+				if (Engine::CCollisionMgr::CollisionSphereToSphere(tSrcSph, tDestSph))
+				{
+					pSrc->Die();
+					pSrc->Add_Effect(&tDestSph.vPos);
+					pDest->Hit(pSrc->Get_Attack(), &tSrcSph.vPos);
+				}
+			}
+		}
+			break;
+		case Engine::CT_CUBE:
+			break;
+		}
+
+
+	
 	}
 }

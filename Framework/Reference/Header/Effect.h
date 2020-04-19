@@ -23,7 +23,9 @@ public:
 	virtual void Render_GameObject() override;
 
 public:
-	virtual void	Set_Pos(const _vec3* pPos) override;
+	virtual void			Set_Pos(const _vec3* pPos) override;
+	virtual const _vec3*	Get_Pos() const override;
+
 
 protected:
 	HRESULT			Add_Component(const _tchar* pTextureTag);

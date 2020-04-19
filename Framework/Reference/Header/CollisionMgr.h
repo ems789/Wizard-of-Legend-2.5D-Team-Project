@@ -34,6 +34,7 @@ private:
 
 public:
 	static _bool CollisionSphereToSphere(const SPHERE& SrcSph, const SPHERE& DestSph);
+	static _bool CollisionLineToSphere(const LINE& SrcLine, const SPHERE& DestSph);
 
 private:
 	virtual void Free()	override;

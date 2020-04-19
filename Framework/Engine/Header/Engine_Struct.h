@@ -60,12 +60,27 @@ namespace Engine
 	typedef struct tagLine
 	{
 		tagLine()
-			: a(0.f), b(0.f), c(0.f)
+			: x1(0.f), y1(0.f), z1(0.f)
+			, x2(0.f), y2(0.f), z2(0.f)
 		{
 
 		}
-		//	ax + by + c = 0
-		_float a, b, c;
+		union 
+		{
+			struct  
+			{
+				_float x1, y1, z1;
+			};
+			_vec3 vPos1;
+		};
+		union 
+		{
+			struct 
+			{
+				_float x2, y2, z2;
+			};
+			_vec3 vPos2;
+		};
 	}LINE, *PLINE;
 
 	typedef struct tagLine3D

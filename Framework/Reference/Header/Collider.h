@@ -20,6 +20,7 @@ public:
 
 public:
 	virtual const CGameObject* Get_Parent() const { return m_pParent; }
+	virtual const COLLIDERTYPE Get_CollType() const { return m_eType; }
 
 protected:
 	CGameObject*		m_pParent = nullptr;

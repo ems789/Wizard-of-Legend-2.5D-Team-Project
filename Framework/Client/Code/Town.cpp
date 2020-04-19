@@ -12,6 +12,7 @@
 #include "TestMonster.h"
 #include "Mouse.h"
 #include "Golem.h"
+#include "Cyclops.h"
 
 CTown::CTown(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CScene(pGraphicDev)
@@ -48,6 +49,17 @@ _int CTown::Update_Scene(const _float& fTimeDelta)
 		Add_GameObject(L"GameLogic", L"Monster", pGameObject);
 
 	}
+
+	if (Engine::KeyDown(DIK_F6))
+	{
+		//	Cyclops
+		Engine::CGameObject* pGameObject = CCyclops::Create(m_pGraphicDev, &_vec3(rand() % 20 + 10.f, 1.f, rand() % 20 + 10.f));
+		NULL_CHECK_RETURN(pGameObject, E_FAIL);
+
+		Add_GameObject(L"GameLogic", L"Monster", pGameObject);
+
+	}
+
 
 
 	_int iExit = CScene::Update_Scene(fTimeDelta);

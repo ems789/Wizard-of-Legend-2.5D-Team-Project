@@ -151,6 +151,15 @@
     <Filter Include="08.Collider\00.SphereCollider">
       <UniqueIdentifier>{8ada2595-e182-429d-a831-369b3e7be8f7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="07.Monster\01.Cyclops">
+      <UniqueIdentifier>{902e429b-6c1d-41cc-a81c-a1a34aeaea1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08.Collider\01.LineCollider">
+      <UniqueIdentifier>{a83c2ec1-589c-4b0d-b85c-069c41be2f96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Effect\03.BeamEffect">
+      <UniqueIdentifier>{3e9f4b58-030e-4908-ae96-5a87ea6bdc8f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -270,6 +279,15 @@
     <ClInclude Include="..\Code\SphereCollider.h">
       <Filter>08.Collider\00.SphereCollider</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\Cyclops.h">
+      <Filter>07.Monster\01.Cyclops</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\LineCollider.h">
+      <Filter>08.Collider\01.LineCollider</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\BeamEffect.h">
+      <Filter>03.Effect\03.BeamEffect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -364,6 +382,15 @@
     </ClCompile>
     <ClCompile Include="..\Code\SphereCollider.cpp">
       <Filter>08.Collider\00.SphereCollider</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Cyclops.cpp">
+      <Filter>07.Monster\01.Cyclops</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\LineCollider.cpp">
+      <Filter>08.Collider\01.LineCollider</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\BeamEffect.cpp">
+      <Filter>03.Effect\03.BeamEffect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

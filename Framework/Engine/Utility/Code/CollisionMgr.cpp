@@ -77,6 +77,40 @@ _bool CCollisionMgr::CollisionSphereToSphere(const SPHERE & SrcSph, const SPHERE
 		return false;
 }
 
+_bool CCollisionMgr::CollisionLineToSphere(const LINE & SrcLine, const SPHERE & DestSph)
+{
+	_vec3 SphCenter_To_LinePos1= SrcLine.vPos1 - DestSph.vPos;
+
+	_float fC = D3DXVec3Dot(&SphCenter_To_LinePos1,	&SphCenter_To_LinePos1) - DestSph.fRadius * DestSph.fRadius;
+
+	if (fC <= 0.0f)
+		return true;
+
+	_vec3 vLineDir = SrcLine.vPos2 - SrcLine.vPos1;
+	_float fLineLength = D3DXVec3Length(&vLineDir);
+	if (0.f == fLineLength)
+		return false;
+
+	_vec3 vLineDirNorm = vLineDir / fLineLength;
+
+	_float fB_Prime = D3DXVec3Dot(&SphCenter_To_LinePos1, &vLineDirNorm);
+
+	if (fB_Prime > 0.0f)
+		return false;
+
+	_float fSqrtDiscriminant = sqrt(fB_Prime * fB_Prime - fC);
+
+	_float fT1 = -fB_Prime + fSqrtDiscriminant;
+	if (fT1 >= 0.0f && fT1 <= fLineLength)
+		return true;
+
+	_float fT2 = -fB_Prime - fSqrtDiscriminant;
+	if (fT2 >= 0.0f && fT2 <= fLineLength)
+		return true;
+
+	return false;
+}
+
 void Engine::CCollisionMgr::Free()
 {
 	for (auto& iter : m_mapObjList)

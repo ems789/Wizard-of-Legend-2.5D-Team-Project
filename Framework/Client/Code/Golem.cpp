@@ -376,7 +376,7 @@ _int CGolem::Attack_Update(const _float & fTimeDelta)
 
 		CBasicEffect* pHitEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_SlashHitSpark", L"SlashHitSpark", 7.f, 20.f, 0.05f, &vPos, false, 0.f);
 		NULL_CHECK_RETURN(pHitEffect, -1);
-		CSphereCollider* pCollider = CSphereCollider::Create(m_pGraphicDev, this, pHitEffect, 2.f, L"MonsterAttack", 20);
+		CSphereCollider* pCollider = CSphereCollider::Create(m_pGraphicDev, pEffect, pHitEffect, 2.f, L"MonsterAttack", 20);
 		Engine::Add_GameObject(L"GameLogic", L"MonsterCollider", pCollider);
 
 	}

@@ -23,9 +23,11 @@ public:
 	virtual void		Collision(const _float& fTimeDelta) {}
 
 public:		//	Get Functions
-	virtual CCollider*	Get_Collider() { return nullptr; }
-	virtual SPHERE*		Get_Sphere() { return nullptr; }
+	virtual CCollider*		Get_Collider() { return nullptr; }
+	virtual LINE*			Get_Line()  { return nullptr; }
+	virtual SPHERE*			Get_Sphere() { return nullptr; }
 	virtual const _vec3*	Get_Pos() const { return nullptr; }
+	virtual const COLLIDERTYPE Get_CollType() const { return CT_SPHERE; }
 
 public:		//	Set Functions
 	virtual void	Set_Pos(const _vec3* pPos) { }

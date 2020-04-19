@@ -49,6 +49,11 @@ void CEffect::Set_Pos(const _vec3 * pPos)
 	m_pTransformCom->Set_Pos(pPos);
 }
 
+const _vec3 * CEffect::Get_Pos() const
+{
+	return m_pTransformCom->GetInfo(Engine::INFO_POS);
+}
+
 HRESULT CEffect::Add_Component(const _tchar * pTextureTag)
 {
 	Engine::CComponent*	pComponent = nullptr;

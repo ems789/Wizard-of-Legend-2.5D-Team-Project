@@ -19,7 +19,7 @@ class CPlayer : public Engine::CGameObject
 {
 public:
 	enum PLAYER_STATE { P_IDLE, P_RUN, P_ATTACK, P_ATTACK2, P_DASH, P_SKILL1, P_SKILL2, P_END };
-	enum PLAYER_DIR { PD_UP, PD_DOWN, PD_RIGHT, PD_END };
+	enum PLAYER_DIR { PD_UP, PD_DOWN, PD_RIGHT, PD_LEFT, PD_END };
 
 private:
 	explicit CPlayer(LPDIRECT3DDEVICE9 pGraphicDev);
@@ -95,7 +95,7 @@ public:		//	Get Functions
 	virtual const _vec3*		Get_Pos()	const override;
 
 public:		//	About Collision
-	virtual void	Hit(const _int& iAtk, const _vec3* pAtkPos) {}
+	virtual void	Hit(const _int& iAtk, const _vec3* pAtkPos) override;
 
 public:		//	About HP
 	virtual _int	Get_HP()	const { return m_iHP; }
@@ -122,7 +122,7 @@ private:
 	CPlayer::PLAYER_DIR	  m_eCurDir = CPlayer::PD_END;
 	_uint	m_iPreCamState = 0;
 
-	_bool		m_bDir = true;	//	true : right, false : left
+	//_bool		m_bDir = true;	//	true : right, false : left
 
 	_float	m_fSpeed = 10.f;
 
