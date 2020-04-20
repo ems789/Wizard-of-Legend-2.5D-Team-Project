@@ -87,12 +87,11 @@ HRESULT CTerrain::LoadTile(const ::_tchar* pFilePath)
 	LPDIRECT3DDEVICE9 pGraphicDev = Engine::CGraphicDev::GetInstance()->GetDevice();
 	FAILED_CHECK_RETURN(pGraphicDev, E_FAIL);
 
-	Engine::CResourcesMgr::GetInstance()->Remove_Resource(::RESOURCE_STATIC, L"Buffer_TerrainTex");
-
 	FAILED_CHECK_RETURN(Engine::Ready_Buffer(pGraphicDev,
 		::RESOURCE_STATIC,
 		L"Buffer_TerrainTex",
 		Engine::BUFFER_TERRAINTEX,
+		D3DXCOLOR(1.f,1.f,1.f,1.f),
 		L"",
 		tTempTerrainInfo.dwTileX + 1,
 		tTempTerrainInfo.dwTileZ + 1,
@@ -103,6 +102,7 @@ HRESULT CTerrain::LoadTile(const ::_tchar* pFilePath)
 		::RESOURCE_STATIC,
 		L"Buffer_TileTex",
 		Engine::BUFFER_TILETEX,
+		D3DXCOLOR(1.f, 1.f, 1.f, 1.f),
 		L"",
 		0,
 		0,

@@ -6,6 +6,7 @@
 #include "TriCol.h"
 #include "RcCol.h"
 #include "RcTex.h"
+#include "RcAlphaTex.h"
 #include "TerrainTex.h"
 #include "TileTex.h"
 #include "LeftWallTex.h"
@@ -30,7 +31,7 @@ public: //Get
 
 public:
 	HRESULT		Reserve_ContainerSize(const _ushort& wSize);
-	HRESULT		Ready_Buffer(LPDIRECT3DDEVICE9 pGraphicDev, const _ushort& wContainerIdx, const _tchar* pBufferTag, BUFFERID eID, const _tchar* pPath, const _ulong& dwCntX, const _ulong& dwCntZ, const _ulong& dwVtxItv);
+	HRESULT		Ready_Buffer(LPDIRECT3DDEVICE9 pGraphicDev, const _ushort& wContainerIdx, const _tchar* pBufferTag, BUFFERID eID, const D3DXCOLOR& d3dColor, const _tchar* pPath, const _ulong& dwCntX, const _ulong& dwCntZ, const _ulong& dwVtxItv);
 	HRESULT		Ready_Texture(LPDIRECT3DDEVICE9 pGraphicDev, const _ushort& wContainerIdx, const _tchar* pTextureTag, TEXTURETYPE eType, const _tchar* pPath, const _uint& iCnt = 1);
 
 	void		Render_Buffer(const _ushort& wContainerIdx, const _tchar* pBufferTag);

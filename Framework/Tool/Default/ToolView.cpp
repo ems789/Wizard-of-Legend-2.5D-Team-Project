@@ -195,7 +195,8 @@ void CToolView::OnInitialUpdate()
 	FAILED_CHECK_RETURN_VOID(Engine::Ready_Buffer(m_pGraphicDev,
 		::RESOURCE_STATIC,
 		L"Buffer_TerrainTex",
-		Engine::BUFFER_TERRAINTEX,
+		Engine::BUFFER_TERRAINTEX, 
+		D3DXCOLOR(1.f, 1.f, 1.f, 1.f),
 		L"",
 		pPropertyFormView->m_iTerrainX + 1, // 정점의 개수이므로 1을 더함
 		pPropertyFormView->m_iTerrainZ + 1,
@@ -205,36 +206,31 @@ void CToolView::OnInitialUpdate()
 	FAILED_CHECK_RETURN_VOID(Engine::Ready_Buffer(m_pGraphicDev,
 		::RESOURCE_STATIC,
 		L"Buffer_TileTex",
-		Engine::BUFFER_TILETEX,
-		L""),
+		Engine::BUFFER_TILETEX),
 		E_FAIL);
 
 	FAILED_CHECK_RETURN_VOID(Engine::Ready_Buffer(m_pGraphicDev,
 		::RESOURCE_STATIC,
 		L"Buffer_LeftWallTex",
-		Engine::BUFFER_LEFTWALLTEX,
-		L""),
+		Engine::BUFFER_LEFTWALLTEX),
 		E_FAIL);
 
 	FAILED_CHECK_RETURN_VOID(Engine::Ready_Buffer(m_pGraphicDev,
 		::RESOURCE_STATIC,
 		L"Buffer_TopWallTex",
-		Engine::BUFFER_TOPWALLTEX,
-		L""),
+		Engine::BUFFER_TOPWALLTEX),
 		E_FAIL);
 
 	FAILED_CHECK_RETURN_VOID(Engine::Ready_Buffer(m_pGraphicDev,
 		::RESOURCE_STATIC,
 		L"Buffer_RightWallTex",
-		Engine::BUFFER_RIGHTWALLTEX,
-		L""),
+		Engine::BUFFER_RIGHTWALLTEX),
 		E_FAIL);
 
 	FAILED_CHECK_RETURN_VOID(Engine::Ready_Buffer(m_pGraphicDev,
 		::RESOURCE_STATIC,
 		L"Buffer_BottomWallTex",
-		Engine::BUFFER_BOTTOMWALLTEX,
-		L""),
+		Engine::BUFFER_BOTTOMWALLTEX),
 		E_FAIL);
 
 	// 타일 텍스쳐 로드

@@ -169,6 +169,7 @@
     <ClInclude Include="..\Code\Cyclops.h" />
     <ClInclude Include="..\Code\Fire.h" />
     <ClInclude Include="..\Code\FireBall.h" />
+    <ClInclude Include="..\Code\FireEffect.h" />
     <ClInclude Include="..\Code\FirstViewCamera.h" />
     <ClInclude Include="..\Code\Golem.h" />
     <ClInclude Include="..\Code\Inven.h" />
@@ -213,6 +214,7 @@
     <ClCompile Include="..\Code\Cyclops.cpp" />
     <ClCompile Include="..\Code\Fire.cpp" />
     <ClCompile Include="..\Code\FireBall.cpp" />
+    <ClCompile Include="..\Code\FireEffect.cpp" />
     <ClCompile Include="..\Code\FirstViewCamera.cpp" />
     <ClCompile Include="..\Code\Golem.cpp" />
     <ClCompile Include="..\Code\Inven.cpp" />

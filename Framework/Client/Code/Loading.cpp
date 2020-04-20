@@ -56,7 +56,7 @@ _uint CLoading::Loading_ForState()
 	//lstrcpy(m_szLoading, L"");
 
 	//	Buffer
-	FAILED_CHECK_RETURN(Engine::Ready_Buffer(m_pGraphicDev, RESOURCE_STATIC, L"Buffer_TerrainTex", Engine::BUFFER_TERRAINTEX, L"", VTXCNTX, VTXCNTZ, VTXITV), E_FAIL);
+	//FAILED_CHECK_RETURN(Engine::Ready_Buffer(m_pGraphicDev, RESOURCE_STATIC, L"Buffer_TerrainTex", Engine::BUFFER_TERRAINTEX, D3DXCOLOR(1.f,1.f,1.f,1.f), L"", VTXCNTX, VTXCNTZ, VTXITV), E_FAIL);
 
 	//	Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STAGE, L"Texture_Terrain", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Terrain/TileSet/Grass/TutorialCourseFloorRoom2_9.png"), E_FAIL);
@@ -104,13 +104,19 @@ _uint CLoading::Loading_ForState()
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WindSlash", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Skill/WindSlash/WindSlashLarge%d.png", 7), E_FAIL);
 
 	//	FireBoss Texture
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STAGE, L"Texture_FireBoss_Idle", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/FireBoss/FireBossIdle.png"), E_FAIL);
+	//FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STAGE, L"Texture_FireBoss_Idle", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/FireBoss/FireBossIdle.png"), E_FAIL);
 
 	//	Explosion Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FireExplosion", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/FireExplosion/FireExplosion%d.png", 7), E_FAIL);
 
 	//	SlashHitSpark Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_SlashHitSpark", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/SlashHitSpark/SlashHitSpark_%d.png", 7), E_FAIL);
+
+	//	FireParticle Texture
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FireParticle1", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/FireParticle/Particle1/FireParticle1_%d.png", 6), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FireParticle2", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/FireParticle/Particle2/FireParticle2_%d.png", 6), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FireParticle3", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/FireParticle/Particle3/FireParticle3_%d.png", 6), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FireParticle4", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/FireParticle/Particle4/FireParticle4_%d.png", 6), E_FAIL);
 
 	//	Monster
 	//	Golem

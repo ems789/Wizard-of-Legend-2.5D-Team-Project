@@ -5,6 +5,7 @@
 #include "Skill.h"
 #include "FireBall.h"
 #include "WindSlash.h"
+#include "FireEffect.h"
 
 CPlayer::CPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev)
@@ -667,6 +668,8 @@ void CPlayer::Key_Input_Skill1_For_1stAnd3rdView(const _float & fTimeDelta)
 	if (Engine::MousePress(Engine::DIM_RB))
 	{
 		Turn_To_Camera_Look();
+
+
 		_int iMotion = m_vecEquipSkill[1]->Use_Skill(fTimeDelta);
 		if (1 == iMotion)
 		{
@@ -679,6 +682,43 @@ void CPlayer::Key_Input_Skill1_For_1stAnd3rdView(const _float & fTimeDelta)
 	if (Engine::KeyDown(DIK_Q))
 	{
 		Turn_To_Camera_Look();
+
+
+		_vec3 vPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
+		for (_uint i = 0; i < 10; ++i)
+		{
+			const _tchar* pTextureTag = nullptr;
+			switch (rand() % 4)
+			{
+			case 0:
+				pTextureTag = L"Texture_FireParticle1";
+				break;
+			case 1:
+				pTextureTag = L"Texture_FireParticle2";
+				break;
+			case 2:
+				pTextureTag = L"Texture_FireParticle3";
+				break;
+			case 3:
+				pTextureTag = L"Texture_FireParticle4";
+				break;
+			default:
+				break;
+			}
+
+
+
+			_vec3 vDir = { (rand() % 100 - 50.f) / 800.f, (rand() % 100) / 200.f, (rand() % 100 - 50.f) / 800.f };
+			_vec3 vCreatePos = vPos + vDir;
+			D3DXVec3Normalize(&vDir, &vDir);
+
+			CFireEffect* pEffect = CFireEffect::Create(m_pGraphicDev, pTextureTag, L"FireParticle", 6.f, 15.f, 0.05f, &vCreatePos, &vDir, 1.f,
+				false, 0.f, D3DXCOLOR(1.f, 0.7f, 0.5f, 1.f), D3DXCOLOR(0.f, 1.f, 2.0f, 0.f));
+
+			Engine::Add_GameObject(L"GameLogic", L"FireExplosion", pEffect);
+		}
+
+
 		if (m_vecEquipSkill[2])
 			m_vecEquipSkill[2]->Use_Skill(fTimeDelta);
 	}

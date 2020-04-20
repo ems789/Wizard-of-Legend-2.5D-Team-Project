@@ -160,6 +160,15 @@
     <Filter Include="03.Effect\03.BeamEffect">
       <UniqueIdentifier>{3e9f4b58-030e-4908-ae96-5a87ea6bdc8f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="07.Monster\99.Boss">
+      <UniqueIdentifier>{6edea2dd-a7cd-406d-b8b1-ae3c45ae137d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Monster\99.Boss\00.FireBoss">
+      <UniqueIdentifier>{c279e1cc-1312-480c-b798-b99a169513f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Effect\04.FireEffect">
+      <UniqueIdentifier>{c3520c82-a3dd-4e88-b6e4-4794a457e571}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -288,6 +297,9 @@
     <ClInclude Include="..\Code\BeamEffect.h">
       <Filter>03.Effect\03.BeamEffect</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\FireEffect.h">
+      <Filter>03.Effect\04.FireEffect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -391,6 +403,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\BeamEffect.cpp">
       <Filter>03.Effect\03.BeamEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\FireEffect.cpp">
+      <Filter>03.Effect\04.FireEffect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

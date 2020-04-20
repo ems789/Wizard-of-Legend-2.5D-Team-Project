@@ -34,6 +34,24 @@
     <Filter Include="00.Resources\00.VIBuffer\05.TileTex">
       <UniqueIdentifier>{924da431-0238-4e75-9bdd-c59bd3285627}</UniqueIdentifier>
     </Filter>
+    <Filter Include="00.Resources\00.VIBuffer\07.RcAlphaTex">
+      <UniqueIdentifier>{7178dce3-68b1-42b0-9690-710d695ca0c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00.Resources\00.VIBuffer\06.WallTex">
+      <UniqueIdentifier>{e8344f6e-884e-456d-aefc-23de6a9da850}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00.Resources\00.VIBuffer\06.WallTex\00.LeftWallTex">
+      <UniqueIdentifier>{38909cdf-5d2e-4a3c-a535-80a97fbf56a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00.Resources\00.VIBuffer\06.WallTex\01.TopWallTex">
+      <UniqueIdentifier>{1508eb95-9194-4e02-82f7-c24bf56d5976}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00.Resources\00.VIBuffer\06.WallTex\02.RightWallTex">
+      <UniqueIdentifier>{f878cc59-b9f3-4cd3-acc9-2d1bcfce9127}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00.Resources\00.VIBuffer\06.WallTex\03.BottomWallTex">
+      <UniqueIdentifier>{65cee3e8-7d70-4744-9ee3-b30334b8229b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Code\Resources.cpp">
@@ -65,6 +83,21 @@
     </ClCompile>
     <ClCompile Include="..\Code\TerrainTex.cpp">
       <Filter>00.Resources\00.VIBuffer\03.TerrainTex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\RcAlphaTex.cpp">
+      <Filter>00.Resources\00.VIBuffer\07.RcAlphaTex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\LeftWallTex.cpp">
+      <Filter>00.Resources\00.VIBuffer\06.WallTex\00.LeftWallTex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\BottomWallTex.cpp">
+      <Filter>00.Resources\00.VIBuffer\06.WallTex\03.BottomWallTex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\RightWallTex.cpp">
+      <Filter>00.Resources\00.VIBuffer\06.WallTex\02.RightWallTex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\TopWallTex.cpp">
+      <Filter>00.Resources\00.VIBuffer\06.WallTex\01.TopWallTex</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -100,6 +133,21 @@
     </ClInclude>
     <ClInclude Include="..\Code\TerrainTex.h">
       <Filter>00.Resources\00.VIBuffer\03.TerrainTex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\RcAlphaTex.h">
+      <Filter>00.Resources\00.VIBuffer\07.RcAlphaTex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\LeftWallTex.h">
+      <Filter>00.Resources\00.VIBuffer\06.WallTex\00.LeftWallTex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\BottomWallTex.h">
+      <Filter>00.Resources\00.VIBuffer\06.WallTex\03.BottomWallTex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\RightWallTex.h">
+      <Filter>00.Resources\00.VIBuffer\06.WallTex\02.RightWallTex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\TopWallTex.h">
+      <Filter>00.Resources\00.VIBuffer\06.WallTex\01.TopWallTex</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

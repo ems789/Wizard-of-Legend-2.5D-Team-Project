@@ -322,7 +322,10 @@ _int CCyclops::Idle_Update(const _float & fTimeDelta)
 	_float fDist = D3DXVec3Length(&vDist);
 
 	if (fDist < 5.f)
+	{
 		m_eCurState = CYS_ATTACK_READY;
+		m_vAttackTarget = vTargetPos;
+	}
 	else if (fDist < 20.f)
 		m_eCurState = CYS_RUN;
 
@@ -344,7 +347,10 @@ _int CCyclops::Run_Update(const _float & fTimeDelta)
 	D3DXVec3Normalize(&vDir, &vDir);
 
 	if (fDist < 5.f)
+	{
 		m_eCurState = CYS_ATTACK_READY;
+		m_vAttackTarget = vTargetPos;
+	}
 	else if (fDist > 20.f)
 		m_eCurState = CYS_IDLE;
 
@@ -392,13 +398,14 @@ _int CCyclops::Attack_Ready_Update(const _float & fTimeDelta)
 	{
 		m_eCurState = CYS_ATTACK;
 
-		const Engine::CTransform* pTargetTransform = dynamic_cast<const Engine::CTransform*>(Engine::Get_Component_of_Player(L"Com_Transform", Engine::ID_DYNAMIC));
-		NULL_CHECK_RETURN(pTargetTransform, -1);
+		//const Engine::CTransform* pTargetTransform = dynamic_cast<const Engine::CTransform*>(Engine::Get_Component_of_Player(L"Com_Transform", Engine::ID_DYNAMIC));
+		//NULL_CHECK_RETURN(pTargetTransform, -1);
 
-		_vec3 vTargetPos = *pTargetTransform->GetInfo(Engine::INFO_POS);
+		//_vec3 vTargetPos = *pTargetTransform->GetInfo(Engine::INFO_POS);
+
 		_vec3 vPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
 
-		_vec3 vDir = vTargetPos - vPos;
+		_vec3 vDir = m_vAttackTarget - vPos;
 		_float fDist = D3DXVec3Length(&vDir);
 
 		vDir.y = 0.f;
@@ -439,6 +446,20 @@ _int CCyclops::Attack_Ready_Update(const _float & fTimeDelta)
 		_float fAngleY = Engine::CMyMath::YAngleTransformFromVec(&vDir);
 		if (vDir.z < 0.f)
 			fAngleY += D3DXToRadian(180.f);
+
+		_vec3 vRight;
+		m_pTransformCom->GetInfo(Engine::INFO_RIGHT, &vRight);
+		//D3DXVec3Nor
+
+		switch (m_eCurDir)
+		{
+		case CCyclops::CYD_LEFT:
+			vPos -= vRight * 0.45f;
+			break;
+		case CCyclops::CYD_RIGHT:
+			vPos += vRight * 0.45f;
+			break;
+		}
 
 		CBeamEffect* pBeam = CBeamEffect::Create(m_pGraphicDev, L"Texture_RedBeam", L"CyclopsBeam", 1.f, 0.f, &vPos, 0.2f, 20.f, fAngleY, true, 0.5f);
 		Engine::Add_GameObject(L"GameLogic", L"CyclopsBeam", pBeam);

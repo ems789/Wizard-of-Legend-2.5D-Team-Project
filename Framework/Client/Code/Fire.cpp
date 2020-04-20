@@ -3,6 +3,7 @@
 
 #include "Export_Function.h"
 #include "BasicEffect.h"
+#include "FireEffect.h"
 
 CFire::CFire(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev)
@@ -71,9 +72,38 @@ void CFire::Add_Effect(const _vec3* pPos)
 	vPos.y += 0.5f;
 
 	CBasicEffect* pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_FireExplosion", L"FireExplosion", 7.f, 20.f, 0.05f, &vPos, false, 0.f);
-
 	Engine::Add_GameObject(L"GameLogic", L"FireExplosion", pEffect);
 
+	//for (_uint i = 0; i < 20; ++i)
+	//{
+	//	const _tchar* pTextureTag = nullptr;
+	//	switch (rand() % 4)
+	//	{
+	//	case 0:
+	//		pTextureTag = L"Texture_FireParticle1";
+	//		break;
+	//	case 1:
+	//		pTextureTag = L"Texture_FireParticle2";
+	//		break;
+	//	case 2:
+	//		pTextureTag = L"Texture_FireParticle3";
+	//		break;
+	//	case 3:
+	//		pTextureTag = L"Texture_FireParticle4";
+	//		break;
+	//	default:
+	//		break;
+	//	}
+
+	//	_vec3 vDir = { (rand() % 100 - 50.f) / 50.f, (rand() % 100 - 50.f) / 50.f, (rand() % 100 - 50.f) / 50.f };
+	//	_vec3 vCreatePos = vPos + vDir;
+	//	D3DXVec3Normalize(&vDir, &vDir);
+
+	//	CFireEffect* pEffect = CFireEffect::Create(m_pGraphicDev, pTextureTag, L"FireParticle", 6.f, 15.f, 0.05f, &vCreatePos, &vDir, 1.f,
+	//		false, 0.f, D3DXCOLOR(1.f, 0.7f, 0.5f, 1.f), D3DXCOLOR(0.f, 1.f, 2.0f, 0.f));
+
+	//	Engine::Add_GameObject(L"GameLogic", L"FireExplosion", pEffect);
+	//}
 }
 
 HRESULT CFire::Add_Component()
