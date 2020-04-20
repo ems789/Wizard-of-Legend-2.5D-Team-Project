@@ -76,4 +76,6 @@ public:
 	CTerrainGuidLine*	 m_pTerrainGuidLine;
 	CDynamicCamera*		 m_pDynamicCamera;
 	_matrix				 m_matView, m_matProj;
+	_vec3				 m_vLastPickTile;
+	bool				 m_bRender = false;
 };

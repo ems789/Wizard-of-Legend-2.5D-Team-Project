@@ -26,7 +26,8 @@ public:
 	HRESULT		 Ready_GameObject(_ulong dwTileX, _ulong dwTileZ, _ulong dwItv);
 	virtual _int Update_GameObject(const _float& fTimeDelta) override;
 	virtual void Render_GameObject(void) override;
-	void		 Release_GameObject(void);
+	void		 Release_TileList(void);
+	void		 Release_WallList(void);
 	
 
 public:
@@ -34,6 +35,8 @@ public:
 	void		WallChange(const _vec3& vPos, const _tchar* wallTag, const int iDrawID, bool bIsRender, bool bHasLeftWall, bool bHasTopWall, bool bHasRightWall, bool bHasBottomWall);
 	void		SaveTile(const _tchar* pFilePath);
 	void		LoadTile(const _tchar* pFilePath);
+	void		SaveWall(const _tchar* pFilePath);
+	void		LoadWall(const _tchar* pFilePath);
 
 private:
 	HRESULT		Add_Component(void);

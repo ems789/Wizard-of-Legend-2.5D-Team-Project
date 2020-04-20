@@ -59,13 +59,13 @@ HRESULT Engine::CRightWallTex::Ready_Buffer(const _ulong dwVtxItv)
 
 	// 0
 	pIndex[0]._0 = 0;
-	pIndex[0]._1 = 1;
-	pIndex[0]._2 = 2;
+	pIndex[0]._1 = 2;
+	pIndex[0]._2 = 1;
 
 	// 1
 	pIndex[1]._0 = 0;
-	pIndex[1]._1 = 2;
-	pIndex[1]._2 = 3;
+	pIndex[1]._1 = 3;
+	pIndex[1]._2 = 2;
 
 	m_pIB->Unlock();
 

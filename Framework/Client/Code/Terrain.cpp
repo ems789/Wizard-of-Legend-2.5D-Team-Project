@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Terrain.h"
 #include "Tile.h"
+#include "Wall.h"
 
 #include "Export_Function.h"
 
@@ -17,10 +18,11 @@ CTerrain::~CTerrain(void)
 }
 
 /// TODO : 경로 추가해서 로드하는 걸로
-HRESULT CTerrain::Ready_GameObject(const ::_tchar* path)
+HRESULT CTerrain::Ready_GameObject(const ::_tchar* pTilePath, const ::_tchar* pWallPath)
 {
 	FAILED_CHECK_RETURN(CGameObject::Ready_GameObject(), E_FAIL);
-	FAILED_CHECK_RETURN(LoadTile(path), E_FAIL);
+	FAILED_CHECK_RETURN(LoadTile(pTilePath), E_FAIL);
+	FAILED_CHECK_RETURN(LoadWall(pWallPath), E_FAIL);
 	FAILED_CHECK_RETURN(Add_Component(), E_FAIL);
 
 	return S_OK;
@@ -34,6 +36,12 @@ HRESULT CTerrain::Ready_GameObject(const ::_tchar* path)
 	{
 		for (::_ulong j = 0; j < m_dwTileX; ++j)
 			m_vecTile[i * m_dwTileX + j]->Update_GameObject(fTimeDelta);
+
+		for (::_ulong j = 0; j < m_dwTileX; ++j)
+		{
+			for (::_ulong k = 0; k < m_vecWallList[i * m_dwTileX + j].size(); ++k)
+				m_vecWallList[i * m_dwTileX + j][k]->Update_GameObject(fTimeDelta);
+		}
 	}
 
 	m_pRendererCom->Add_RenderGroup(Engine::RENDER_NONALPHA, this);
@@ -49,14 +57,27 @@ void CTerrain::Render_GameObject(void)
 	{
 		for (::_ulong j = 0; j < m_dwTileX; ++j)
 			m_vecTile[i * m_dwTileX + j]->Render_GameObject();
+
+		for (::_ulong j = 0; j < m_dwTileX; ++j)
+		{
+			for (::_ulong k = 0; k < m_vecWallList[i * m_dwTileX + j].size(); ++k)
+				m_vecWallList[i * m_dwTileX + j][k]->Render_GameObject();
+		}
 	}
 
 }
 
-void CTerrain::Release_GameObject(void)
+void CTerrain::Release_TileList(void)
 {
 	for_each(m_vecTile.begin(), m_vecTile.end(), CDeleteObj());
 	m_vecTile.clear();
+}
+
+void CTerrain::Release_WallList(void)
+{
+	for (::_ulong i = 0; i < m_vecWallList.size(); ++i)
+		for_each(m_vecWallList[i].begin(), m_vecWallList[i].end(), CDeleteObj());
+	m_vecWallList.clear();
 }
 
 HRESULT CTerrain::LoadTile(const ::_tchar* pFilePath)
@@ -79,9 +100,11 @@ HRESULT CTerrain::LoadTile(const ::_tchar* pFilePath)
 
 	// 터레인 정보를 불러옴
 	ReadFile(hFile, &tTempTerrainInfo, sizeof(TERRAIN_INFO), &dwBytes, nullptr);
-	m_vecTile.reserve(tTempTerrainInfo.dwTileX * tTempTerrainInfo.dwTileZ);
 	m_dwTileX = tTempTerrainInfo.dwTileX;
 	m_dwTileZ = tTempTerrainInfo.dwTileZ;
+	m_vecTile.reserve(m_dwTileX * m_dwTileZ);
+	m_vecWallList.reserve(m_dwTileX * m_dwTileZ);
+	m_vecWallList.resize(m_dwTileX * m_dwTileZ);
 	m_dwItv = tTempTerrainInfo.dwItv;
 
 	LPDIRECT3DDEVICE9 pGraphicDev = Engine::CGraphicDev::GetInstance()->GetDevice();
@@ -130,6 +153,71 @@ HRESULT CTerrain::LoadTile(const ::_tchar* pFilePath)
 	return S_OK;
 }
 
+HRESULT	CTerrain::LoadWall(const ::_tchar* pFilePath)
+{
+	HANDLE hFile = ::CreateFile(pFilePath, GENERIC_READ, 0, nullptr,
+		OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
+
+	if (INVALID_HANDLE_VALUE == hFile)
+		return E_FAIL;
+
+	if (!m_vecWallList.empty())
+	{
+		for (::_ulong i = 0; i < m_vecWallList.size(); ++i)
+			for_each(m_vecWallList[i].begin(), m_vecWallList[i].end(), CDeleteObj());
+		m_vecWallList.clear();
+	}
+
+	DWORD dwBytes = 0;
+	WALL_INFO tTempWallInfo;
+	TERRAIN_INFO tTempTerrainInfo;
+
+
+	LPDIRECT3DDEVICE9 pGraphicDev = Engine::CGraphicDev::GetInstance()->GetDevice();
+	FAILED_CHECK_RETURN(pGraphicDev, E_FAIL);
+
+	Engine::CResourcesMgr::GetInstance()->Remove_Resource(::RESOURCE_STATIC, L"Buffer_TerrainTex");
+	//Engine::CResourcesMgr::GetInstance()->Remove_Resource(::RESOURCE_STATIC, L"Buffer_TileTex");
+
+	// 터레인 정보를 불러옴
+	ReadFile(hFile, &tTempTerrainInfo, sizeof(TERRAIN_INFO), &dwBytes, nullptr);
+	m_vecWallList.reserve(tTempTerrainInfo.dwTileX * tTempTerrainInfo.dwTileZ);
+	m_vecWallList.resize(tTempTerrainInfo.dwTileX * tTempTerrainInfo.dwTileZ);
+	m_dwTileX = tTempTerrainInfo.dwTileX;
+	m_dwTileZ = tTempTerrainInfo.dwTileZ; 
+	m_dwItv = tTempTerrainInfo.dwItv;
+
+	FAILED_CHECK_RETURN(Engine::Ready_Buffer(pGraphicDev,
+		::RESOURCE_STATIC,
+		L"Buffer_TerrainTex",
+		Engine::BUFFER_TERRAINTEX,
+		L"",
+		tTempTerrainInfo.dwTileX + 1,
+		tTempTerrainInfo.dwTileZ + 1,
+		tTempTerrainInfo.dwItv),
+		E_FAIL);
+
+	// 타일 정보를 불러옴
+	CWall* pWall = nullptr;
+	while (true)
+	{
+		ReadFile(hFile, &tTempWallInfo, sizeof(WALL_INFO), &dwBytes, nullptr);
+
+		if (0 == dwBytes)
+			break;
+
+		pWall = CWall::Create(m_pGraphicDev, tTempWallInfo.bHasWall[WALL_LEFT], tTempWallInfo.bHasWall[WALL_TOP], tTempWallInfo.bHasWall[WALL_RIGHT], tTempWallInfo.bHasWall[WALL_BOTTOM]);
+		pWall->Set_Pos(tTempWallInfo.vPos.x, tTempWallInfo.vPos.y, tTempWallInfo.vPos.z);
+		pWall->Set_Render(tTempWallInfo.bRender);
+		pWall->Set_DrawID(tTempWallInfo.dwDrawID);
+
+		m_vecWallList[tTempWallInfo.dwIndex].push_back(pWall);
+	}
+
+	CloseHandle(hFile);
+	return S_OK;
+}
+
 
 HRESULT CTerrain::Add_Component(void)
 {
@@ -148,11 +236,11 @@ HRESULT CTerrain::Add_Component(void)
 
 
 
-CTerrain* CTerrain::Create(LPDIRECT3DDEVICE9 pGraphicDev, const ::_tchar* path)
+CTerrain* CTerrain::Create(LPDIRECT3DDEVICE9 pGraphicDev, const ::_tchar* pTilePath, const ::_tchar* pWallPath)
 {
 	CTerrain*	pInstance = new CTerrain(pGraphicDev);
 
-	if (FAILED(pInstance->Ready_GameObject(path)))
+	if (FAILED(pInstance->Ready_GameObject(pTilePath, pWallPath)))
 		Engine::Safe_Release(pInstance);
 
 	return pInstance;
@@ -164,5 +252,9 @@ void CTerrain::Free(void)
 
 	for_each(m_vecTile.begin(), m_vecTile.end(), CDeleteObj());
 	m_vecTile.clear();
+
+	for (::_ulong i = 0; i < m_vecWallList.size(); ++i)
+		for_each(m_vecWallList[i].begin(), m_vecWallList[i].end(), CDeleteObj());
+	m_vecWallList.clear();
 }
 

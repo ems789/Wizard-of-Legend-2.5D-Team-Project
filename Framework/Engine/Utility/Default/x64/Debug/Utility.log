@@ -1,31 +1,31 @@
 ﻿  Transform.cpp
-d:\teamproject\framework\engine\utility\code\component.h(4): fatal error C1083: Cannot open include file: 'Base.h': No such file or directory
+c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\utility\code\component.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Base.h': No such file or directory
   Skill.cpp
-d:\teamproject\framework\engine\utility\code\skill.h(4): fatal error C1083: Cannot open include file: 'Engine_Defines.h': No such file or directory
+c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\utility\code\skill.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Engine_Defines.h': No such file or directory
   Scene.cpp
-d:\teamproject\framework\engine\utility\code\component.h(4): fatal error C1083: Cannot open include file: 'Base.h': No such file or directory
+c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\utility\code\component.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Base.h': No such file or directory
   Renderer.cpp
-d:\teamproject\framework\engine\utility\code\component.h(4): fatal error C1083: Cannot open include file: 'Base.h': No such file or directory
+c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\utility\code\component.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Base.h': No such file or directory
   MyMath.cpp
-d:\teamproject\framework\engine\utility\code\mymath.h(4): fatal error C1083: Cannot open include file: 'Engine_Defines.h': No such file or directory
+c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\utility\code\mymath.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Engine_Defines.h': No such file or directory
   MoveObject.cpp
-d:\teamproject\framework\engine\utility\code\moveobject.h(4): fatal error C1083: Cannot open include file: 'Engine_Defines.h': No such file or directory
+c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\utility\code\moveobject.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Engine_Defines.h': No such file or directory
   Management.cpp
-d:\teamproject\framework\engine\utility\code\component.h(4): fatal error C1083: Cannot open include file: 'Base.h': No such file or directory
+c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\utility\code\component.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Base.h': No such file or directory
   Layer.cpp
-d:\teamproject\framework\engine\utility\code\component.h(4): fatal error C1083: Cannot open include file: 'Base.h': No such file or directory
+c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\utility\code\component.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Base.h': No such file or directory
   GameObject.cpp
-d:\teamproject\framework\engine\utility\code\component.h(4): fatal error C1083: Cannot open include file: 'Base.h': No such file or directory
+c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\utility\code\component.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Base.h': No such file or directory
   Effect.cpp
-d:\teamproject\framework\engine\utility\code\component.h(4): fatal error C1083: Cannot open include file: 'Base.h': No such file or directory
+c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\utility\code\component.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Base.h': No such file or directory
   Component.cpp
-d:\teamproject\framework\engine\utility\code\component.h(4): fatal error C1083: Cannot open include file: 'Base.h': No such file or directory
+c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\utility\code\component.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Base.h': No such file or directory
   CollisionMgr.cpp
-d:\teamproject\framework\engine\utility\code\collisionmgr.h(4): fatal error C1083: Cannot open include file: 'Engine_Defines.h': No such file or directory
+c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\utility\code\collisionmgr.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Engine_Defines.h': No such file or directory
   Collider.cpp
-d:\teamproject\framework\engine\utility\code\collider.h(4): fatal error C1083: Cannot open include file: 'Engine_Defines.h': No such file or directory
+c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\utility\code\collider.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Engine_Defines.h': No such file or directory
   CameraMgr.cpp
-d:\teamproject\framework\engine\utility\code\camera.h(4): fatal error C1083: Cannot open include file: 'Engine_Defines.h': No such file or directory
+c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\utility\code\camera.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Engine_Defines.h': No such file or directory
   Camera.cpp
-d:\teamproject\framework\engine\utility\code\camera.h(4): fatal error C1083: Cannot open include file: 'Engine_Defines.h': No such file or directory
-  Generating Code...
+c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\utility\code\camera.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'Engine_Defines.h': No such file or directory
+  코드를 생성하고 있습니다...

@@ -167,7 +167,7 @@ void CWallPage::OnBnClickedSave()
 		NULL_CHECK(pView);
 
 		NULL_CHECK(pView->m_pTerrain);
-		pView->m_pTerrain->SaveTile(Dlg.GetPathName());
+		pView->m_pTerrain->SaveWall(Dlg.GetPathName());
 	}
 }
 
@@ -195,7 +195,7 @@ void CWallPage::OnBnClickedLoad()
 		NULL_CHECK(pView);
 
 		NULL_CHECK(pView->m_pTerrain);
-		pView->m_pTerrain->LoadTile(Dlg.GetPathName());
+		pView->m_pTerrain->LoadWall(Dlg.GetPathName());
 
 		pView->Invalidate(FALSE);
 	}

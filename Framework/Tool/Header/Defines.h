@@ -3,10 +3,10 @@
 
 using namespace std;
 
-#include "Typedef.h"
 #include "Macro.h"
 #include "Function.h"
 #include "Enum.h"
+#include "Typedef.h"
 
 extern HWND			g_hWnd;
 extern HINSTANCE	g_hInst;

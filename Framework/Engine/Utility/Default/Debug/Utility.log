@@ -1,5 +1,5 @@
-﻿     Creating library ../Bin/Utility.lib and object ../Bin/Utility.exp
-  Utility.vcxproj -> D:\TeamProject\Framework\Engine\Utility\Default\../Bin/Utility.dll
+﻿     ../Bin/Utility.lib 라이브러리 및 ../Bin/Utility.exp 개체를 생성하고 있습니다.
+  Utility.vcxproj -> C:\Users\NHKim\Desktop\GitClone\TeamProject\Framework\Engine\Utility\Default\../Bin/Utility.dll
   Utility.vcxproj -> ../Bin/Utility.pdb (Full PDB)
   .\Engine\Utility\Code\Camera.h
   .\Engine\Utility\Code\CameraMgr.h

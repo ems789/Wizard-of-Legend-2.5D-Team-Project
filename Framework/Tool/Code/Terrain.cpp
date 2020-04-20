@@ -114,11 +114,14 @@ void CTerrain::Render_GameObject(void)
 	}
 }
 
-void CTerrain::Release_GameObject(void)
+void CTerrain::Release_TileList(void)
 {
 	for_each(m_vecTile.begin(), m_vecTile.end(), CDeleteObj());
 	m_vecTile.clear();
+}
 
+void CTerrain::Release_WallList(void)
+{
 	for (::_ulong i = 0; i < m_vecWallList.size(); ++i)
 		for_each(m_vecWallList[i].begin(), m_vecWallList[i].end(), CDeleteObj());
 	m_vecWallList.clear();
@@ -202,12 +205,7 @@ void CTerrain::LoadTile(const ::_tchar* pFilePath)
 	TILE_INFO tTempTileInfo;
 	TERRAIN_INFO tTempTerrainInfo;
 	
-	// 터레인 정보를 불러옴
 	ReadFile(hFile, &tTempTerrainInfo, sizeof(TERRAIN_INFO), &dwBytes, nullptr);
-	m_vecTile.reserve(tTempTerrainInfo.dwTileX * tTempTerrainInfo.dwTileZ);
-	m_dwTileX = tTempTerrainInfo.dwTileX;
-	m_dwTileZ = tTempTerrainInfo.dwTileZ;
-	m_dwItv = tTempTerrainInfo.dwItv;
 
 	// 불러온 지형에 맞춰 버퍼 재구성
 	CMainFrame* pFrameWnd = dynamic_cast<CMainFrame*>(::AfxGetApp()->GetMainWnd());
@@ -222,8 +220,17 @@ void CTerrain::LoadTile(const ::_tchar* pFilePath)
 
 	Engine::CResourcesMgr::GetInstance()->Remove_Resource(::RESOURCE_STATIC, L"Buffer_TerrainTex");
 	Engine::CResourcesMgr::GetInstance()->Remove_Resource(::RESOURCE_STATIC, L"Buffer_TileTex");
-	pToolView->m_pTerrain->Release_GameObject();
+	pToolView->m_pTerrain->Release_TileList();
+	pToolView->m_pTerrain->Release_WallList(); 
 	pToolView->m_pTerrainGuidLine->Release();
+
+	// 터레인 정보를 불러옴
+	m_dwTileX = tTempTerrainInfo.dwTileX;
+	m_dwTileZ = tTempTerrainInfo.dwTileZ;
+	m_vecTile.reserve(m_dwTileX * m_dwTileZ);
+	m_vecWallList.reserve(m_dwTileX * m_dwTileZ);
+	m_vecWallList.resize(m_dwTileX * m_dwTileZ);
+	m_dwItv = tTempTerrainInfo.dwItv;
 
 	FAILED_CHECK_RETURN_VOID(Engine::Ready_Buffer(pGraphicDev,
 		::RESOURCE_STATIC,
@@ -260,6 +267,119 @@ void CTerrain::LoadTile(const ::_tchar* pFilePath)
 		pTile->Set_DrawID(tTempTileInfo.dwDrawID);
 
 		m_vecTile.push_back(pTile);
+	}
+
+
+	pToolView->m_pTerrainGuidLine = CTerrainGuidLine::Create(pGraphicDev);
+	NULL_CHECK_MSG(pToolView->m_pTerrainGuidLine, L"Terrain Create Failed");
+
+	pGraphicDev->Release();
+
+	CloseHandle(hFile);
+}
+
+void CTerrain::SaveWall(const ::_tchar * pFilePath)
+{
+	HANDLE hFile = ::CreateFile(pFilePath, GENERIC_WRITE, 0, nullptr,
+		CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
+
+	if (INVALID_HANDLE_VALUE == hFile)
+		return;
+
+	DWORD dwBytes = 0;
+	WALL_INFO tTempWallInfo;
+	TERRAIN_INFO tTempTerrainInfo{ m_dwTileX, m_dwTileZ, m_dwItv };
+
+	// 터레인 정보를 저장
+	WriteFile(hFile, &tTempTerrainInfo, sizeof(TERRAIN_INFO), &dwBytes, nullptr);
+
+	// 벽 정보를 저장
+	for (::_ulong i = 0; i < m_vecWallList.size(); ++i)
+	{
+		for (::_ulong j = 0; j < m_vecWallList[i].size(); ++j)
+		{
+			tTempWallInfo.vPos = *m_vecWallList[i][j]->Get_Pos();
+			tTempWallInfo.bRender = m_vecWallList[i][j]->Get_Render();
+			tTempWallInfo.dwItv = m_dwItv;
+			tTempWallInfo.dwIndex = i;
+			tTempWallInfo.dwDrawID = m_vecWallList[i][j]->Get_DrawID();
+			for (::_ulong k = 0; k < WALL_END; ++k)
+				tTempWallInfo.bHasWall[k] = m_vecWallList[i][j]->Get_HasWall((WALLPOSITION)k);
+			WriteFile(hFile, &tTempWallInfo, sizeof(WALL_INFO), &dwBytes, nullptr);
+		}
+	}
+
+	CloseHandle(hFile);
+}
+
+void CTerrain::LoadWall(const ::_tchar * pFilePath)
+{
+	HANDLE hFile = ::CreateFile(pFilePath, GENERIC_READ, 0, nullptr,
+		OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
+
+	if (INVALID_HANDLE_VALUE == hFile)
+		return;
+
+	if (!m_vecWallList.empty())
+	{
+		for (::_ulong i = 0; i < m_vecWallList.size(); ++i)
+			for_each(m_vecWallList[i].begin(), m_vecWallList[i].end(), CDeleteObj());
+		m_vecWallList.clear();
+	}
+
+	DWORD dwBytes = 0;
+	WALL_INFO tTempWallInfo;
+	TERRAIN_INFO tTempTerrainInfo;
+
+	// 불러온 지형에 맞춰 버퍼 재구성
+	CMainFrame* pFrameWnd = dynamic_cast<CMainFrame*>(::AfxGetApp()->GetMainWnd());
+	NULL_CHECK(pFrameWnd);
+
+	CToolView* pToolView = dynamic_cast<CToolView*>(pFrameWnd->m_MainSplitter.GetPane(0, 1));
+	NULL_CHECK(pToolView);
+
+	LPDIRECT3DDEVICE9 pGraphicDev = Engine::CGraphicDev::GetInstance()->GetDevice();
+	pGraphicDev->AddRef();
+	FAILED_CHECK_VOID(pGraphicDev);
+
+	Engine::CResourcesMgr::GetInstance()->Remove_Resource(::RESOURCE_STATIC, L"Buffer_TerrainTex");
+	//Engine::CResourcesMgr::GetInstance()->Remove_Resource(::RESOURCE_STATIC, L"Buffer_TileTex");
+	pToolView->m_pTerrain->Release_WallList();
+	pToolView->m_pTerrainGuidLine->Release();
+
+	// 터레인 정보를 불러옴
+	ReadFile(hFile, &tTempTerrainInfo, sizeof(TERRAIN_INFO), &dwBytes, nullptr);
+	m_vecWallList.reserve(tTempTerrainInfo.dwTileX * tTempTerrainInfo.dwTileZ);
+	m_vecWallList.resize(tTempTerrainInfo.dwTileX * tTempTerrainInfo.dwTileZ);
+	m_dwTileX = tTempTerrainInfo.dwTileX;
+	m_dwTileZ = tTempTerrainInfo.dwTileZ; 
+	m_dwItv = tTempTerrainInfo.dwItv;
+
+	FAILED_CHECK_RETURN_VOID(Engine::Ready_Buffer(pGraphicDev,
+		::RESOURCE_STATIC,
+		L"Buffer_TerrainTex",
+		Engine::BUFFER_TERRAINTEX,
+		L"",
+		tTempTerrainInfo.dwTileX + 1,
+		tTempTerrainInfo.dwTileZ + 1,
+		tTempTerrainInfo.dwItv),
+		E_FAIL);
+
+	// 타일 정보를 불러옴
+	CWall* pWall = nullptr;
+	while (true)
+	{
+		ReadFile(hFile, &tTempWallInfo, sizeof(WALL_INFO), &dwBytes, nullptr);
+
+		if (0 == dwBytes)
+			break;
+
+		pWall = CWall::Create(m_pGraphicDev, tTempWallInfo.bHasWall[WALL_LEFT], tTempWallInfo.bHasWall[WALL_TOP], tTempWallInfo.bHasWall[WALL_RIGHT], tTempWallInfo.bHasWall[WALL_BOTTOM]);
+		pWall->Set_Pos(tTempWallInfo.vPos.x, tTempWallInfo.vPos.y, tTempWallInfo.vPos.z);
+		pWall->Set_Render(tTempWallInfo.bRender);
+		pWall->Set_DrawID(tTempWallInfo.dwDrawID);
+
+		m_vecWallList[tTempWallInfo.dwIndex].push_back(pWall);
 	}
 
 

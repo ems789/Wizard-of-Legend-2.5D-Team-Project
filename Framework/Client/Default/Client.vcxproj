@@ -190,6 +190,7 @@
     <ClInclude Include="..\Code\Tile.h" />
     <ClInclude Include="..\Code\Town.h" />
     <ClInclude Include="..\Code\UI.h" />
+    <ClInclude Include="..\Code\Wall.h" />
     <ClInclude Include="..\Code\Wind.h" />
     <ClInclude Include="..\Code\WindSlash.h" />
     <ClInclude Include="..\Header\Defines.h" />
@@ -234,6 +235,7 @@
     <ClCompile Include="..\Code\Tile.cpp" />
     <ClCompile Include="..\Code\Town.cpp" />
     <ClCompile Include="..\Code\UI.cpp" />
+    <ClCompile Include="..\Code\Wall.cpp" />
     <ClCompile Include="..\Code\Wind.cpp" />
     <ClCompile Include="..\Code\WindSlash.cpp" />
     <ClCompile Include="Client.cpp" />

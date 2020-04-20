@@ -160,6 +160,9 @@
     <Filter Include="03.Effect\03.BeamEffect">
       <UniqueIdentifier>{3e9f4b58-030e-4908-ae96-5a87ea6bdc8f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObject\03.Town\04. Wall">
+      <UniqueIdentifier>{5b0f7ce5-1256-4a4d-8657-d0ca99183b48}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -288,6 +291,9 @@
     <ClInclude Include="..\Code\BeamEffect.h">
       <Filter>03.Effect\03.BeamEffect</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\Wall.h">
+      <Filter>02.GameObject\03.Town\04. Wall</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -391,6 +397,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\BeamEffect.cpp">
       <Filter>03.Effect\03.BeamEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Wall.cpp">
+      <Filter>02.GameObject\03.Town\04. Wall</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
