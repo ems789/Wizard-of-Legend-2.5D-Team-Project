@@ -300,6 +300,9 @@
     <ClInclude Include="..\Code\FireEffect.h">
       <Filter>03.Effect\04.FireEffect</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\FireBoss.h">
+      <Filter>07.Monster\99.Boss\00.FireBoss</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -406,6 +409,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\FireEffect.cpp">
       <Filter>03.Effect\04.FireEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\FireBoss.cpp">
+      <Filter>07.Monster\99.Boss\00.FireBoss</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

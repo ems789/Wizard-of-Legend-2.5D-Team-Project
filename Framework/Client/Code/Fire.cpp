@@ -43,6 +43,13 @@ _int CFire::Update_GameObject(const _float& fTimeDelta)
 		return 0;
 	}
 
+	m_fTailDelay += fTimeDelta;
+	if (m_fTailDelay > 0.05f)
+	{
+		m_fTailDelay -= 0.05f;
+		FireTail();
+	}
+
 	_int	iExit = CGameObject::Update_GameObject(fTimeDelta);
 
 	m_pRendererCom->Add_RenderGroup(Engine::RENDER_ALPHA, this);
@@ -71,39 +78,39 @@ void CFire::Add_Effect(const _vec3* pPos)
 	_vec3 vPos = (*m_pTransformCom->GetInfo(Engine::INFO_POS) + *pPos) / 2;
 	vPos.y += 0.5f;
 
-	CBasicEffect* pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_FireExplosion", L"FireExplosion", 7.f, 20.f, 0.05f, &vPos, false, 0.f);
-	Engine::Add_GameObject(L"GameLogic", L"FireExplosion", pEffect);
+	//CBasicEffect* pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_FireExplosion", L"FireExplosion", 7.f, 20.f, 0.05f, &vPos, false, 0.f);
+	//Engine::Add_GameObject(L"GameLogic", L"FireExplosion", pEffect);
 
-	//for (_uint i = 0; i < 20; ++i)
-	//{
-	//	const _tchar* pTextureTag = nullptr;
-	//	switch (rand() % 4)
-	//	{
-	//	case 0:
-	//		pTextureTag = L"Texture_FireParticle1";
-	//		break;
-	//	case 1:
-	//		pTextureTag = L"Texture_FireParticle2";
-	//		break;
-	//	case 2:
-	//		pTextureTag = L"Texture_FireParticle3";
-	//		break;
-	//	case 3:
-	//		pTextureTag = L"Texture_FireParticle4";
-	//		break;
-	//	default:
-	//		break;
-	//	}
+	for (_uint i = 0; i < 10; ++i)
+	{
+		const _tchar* pTextureTag = nullptr;
+		switch (rand() % 4)
+		{
+		case 0:
+			pTextureTag = L"Texture_FireParticle1";
+			break;
+		case 1:
+			pTextureTag = L"Texture_FireParticle2";
+			break;
+		case 2:
+			pTextureTag = L"Texture_FireParticle3";
+			break;
+		case 3:
+			pTextureTag = L"Texture_FireParticle4";
+			break;
+		default:
+			break;
+		}
 
-	//	_vec3 vDir = { (rand() % 100 - 50.f) / 50.f, (rand() % 100 - 50.f) / 50.f, (rand() % 100 - 50.f) / 50.f };
-	//	_vec3 vCreatePos = vPos + vDir;
-	//	D3DXVec3Normalize(&vDir, &vDir);
+		_vec3 vDir = { (rand() % 100 - 50.f) / 100.f, (rand() % 100 - 50.f) / 100.f, (rand() % 100 - 50.f) / 100.f };
+		_vec3 vCreatePos = vPos + vDir;
+		D3DXVec3Normalize(&vDir, &vDir);
 
-	//	CFireEffect* pEffect = CFireEffect::Create(m_pGraphicDev, pTextureTag, L"FireParticle", 6.f, 15.f, 0.05f, &vCreatePos, &vDir, 1.f,
-	//		false, 0.f, D3DXCOLOR(1.f, 0.7f, 0.5f, 1.f), D3DXCOLOR(0.f, 1.f, 2.0f, 0.f));
+		CFireEffect* pEffect = CFireEffect::Create(m_pGraphicDev, pTextureTag, L"FireParticle", 6.f, 15.f, 0.2f, &vCreatePos, &vDir, 1.f,
+			false, 0.f, D3DXCOLOR(1.f, 0.7f, 0.5f, 1.f), D3DXCOLOR(0.f, 1.f, 2.0f, 0.f));
 
-	//	Engine::Add_GameObject(L"GameLogic", L"FireExplosion", pEffect);
-	//}
+		Engine::Add_GameObject(L"GameLogic", L"FireExplosion", pEffect);
+	}
 }
 
 HRESULT CFire::Add_Component()
@@ -135,6 +142,42 @@ void CFire::Animation(const _float & fTimeDelta)
 	m_tFrame.fCurFrame += fTimeDelta * m_tFrame.fFrameSpeed;
 	if (m_tFrame.fCurFrame > m_tFrame.fMaxFrame)
 		m_tFrame.fCurFrame = 0.f;
+}
+
+void CFire::FireTail()
+{
+	_vec3 vPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
+
+	for (_uint i = 0; i < 2; ++i)
+	{
+		const _tchar* pTextureTag = nullptr;
+		switch (rand() % 4)
+		{
+		case 0:
+			pTextureTag = L"Texture_FireParticle1";
+			break;
+		case 1:
+			pTextureTag = L"Texture_FireParticle2";
+			break;
+		case 2:
+			pTextureTag = L"Texture_FireParticle3";
+			break;
+		case 3:
+			pTextureTag = L"Texture_FireParticle4";
+			break;
+		default:
+			break;
+		}
+
+		_vec3 vDir = { (rand() % 100 - 50.f) / 100.f, (rand() % 100 - 50.f) / 100.f, (rand() % 100 - 50.f) / 100.f };
+		_vec3 vCreatePos = vPos + vDir;
+		D3DXVec3Normalize(&vDir, &vDir);
+
+		CFireEffect* pEffect = CFireEffect::Create(m_pGraphicDev, pTextureTag, L"FireParticle", 6.f, 15.f, 0.08f, &vCreatePos, &vDir, 1.f,
+			false, 0.f, D3DXCOLOR(1.f, 0.7f, 0.5f, 1.f), D3DXCOLOR(0.f, 1.f, 2.0f, 0.f));
+
+		Engine::Add_GameObject(L"GameLogic", L"FireExplosion", pEffect);
+	}
 }
 
 void CFire::Turn_To_Camera_Look()
