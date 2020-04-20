@@ -191,6 +191,7 @@ HRESULT	CTerrain::LoadWall(const ::_tchar* pFilePath)
 		::RESOURCE_STATIC,
 		L"Buffer_TerrainTex",
 		Engine::BUFFER_TERRAINTEX,
+		D3DXCOLOR(1.f, 1.f, 1.f, 1.f),
 		L"",
 		tTempTerrainInfo.dwTileX + 1,
 		tTempTerrainInfo.dwTileZ + 1,
