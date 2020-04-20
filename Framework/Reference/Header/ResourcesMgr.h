@@ -8,6 +8,10 @@
 #include "RcTex.h"
 #include "TerrainTex.h"
 #include "TileTex.h"
+#include "LeftWallTex.h"
+#include "TopWallTex.h"
+#include "RightWallTex.h"
+#include "BottomWallTex.h"
 #include "Texture.h"
 #include "CubeTex.h"
 

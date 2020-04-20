@@ -60,6 +60,18 @@ HRESULT Engine::CResourcesMgr::Ready_Buffer(LPDIRECT3DDEVICE9 pGraphicDev, const
 	case Engine::BUFFER_TILETEX:
 		pResources = CTileTex::Create(pGraphicDev, dwVtxItv);
 		break;
+	case Engine::BUFFER_LEFTWALLTEX:
+		pResources = CLeftWallTex::Create(pGraphicDev, dwVtxItv);
+		break;
+	case Engine::BUFFER_TOPWALLTEX:
+		pResources = CTopWallTex::Create(pGraphicDev, dwVtxItv);
+		break;
+	case Engine::BUFFER_RIGHTWALLTEX:
+		pResources = CRightWallTex::Create(pGraphicDev, dwVtxItv);
+		break;
+	case Engine::BUFFER_BOTTOMWALLTEX:
+		pResources = CBottomWallTex::Create(pGraphicDev, dwVtxItv);
+		break;
 	}
 	NULL_CHECK_RETURN(pResources, E_FAIL);
 
