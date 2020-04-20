@@ -32,9 +32,6 @@ CMySheet::~CMySheet()
 {
 }
 
-
 BEGIN_MESSAGE_MAP(CMySheet, CPropertySheet)
+	ON_WM_CHILDACTIVATE()
 END_MESSAGE_MAP()
-
-
-// CMySheet 메시지 처리기입니다.

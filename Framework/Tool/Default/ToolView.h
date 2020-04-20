@@ -64,6 +64,7 @@ public:
 	afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
 
 private:
+	void		 CreateObject(bool bIsRender);
 	_vec3		 Picking_OnTerrain(HWND hWnd,
 		const Engine::CTerrainTex* pTerrainBufferCom,
 		const Engine::CTransform*	pTerrainTransformCom);

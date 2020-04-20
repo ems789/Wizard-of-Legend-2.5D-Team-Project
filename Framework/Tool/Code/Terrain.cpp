@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Terrain.h"
 #include "Tile.h"
+#include "Wall.h"
 
 #include "MainFrm.h"
 #include "ToolView.h"
@@ -36,8 +37,27 @@ HRESULT CTerrain::Ready_GameObject(::_ulong dwTileX, ::_ulong dwTileZ, ::_ulong 
 	m_dwTileX = dwTileX;
 	m_dwTileZ = dwTileZ;
 	m_dwItv = dwItv;
-	m_vecTile.reserve(m_dwTileX * m_dwTileZ);
 
+	m_vecWallList.reserve(m_dwTileX * m_dwTileZ);
+	m_vecWallList.resize(m_dwTileX * m_dwTileZ);
+	//CWall* pWall1 = nullptr;
+	//for (::_ulong i = 0; i < m_dwTileZ; ++i)
+	//{
+	//	for (::_ulong j = 0; j < m_dwTileX; ++j)
+	//	{
+	//		fX = (j * m_dwItv) + (m_dwItv * 0.5f);
+	//		fZ = (i * m_dwItv) + (m_dwItv * 0.5f);
+	//		fY = 0.f;
+
+	//		pWall1 = CWall::Create(m_pGraphicDev);
+	//		pWall1->Set_Pos(fX, fY, fZ);
+	//		pWall1->Set_Render(false);
+
+	//		//m_vecWallList[i * m_dwTileX + j].push_back(pWall1);
+	//	}
+	//}
+
+	m_vecTile.reserve(m_dwTileX * m_dwTileZ);
 	CTile* pTile = nullptr;
 	for (::_ulong i = 0; i < m_dwTileZ; ++i)
 	{
@@ -66,6 +86,12 @@ HRESULT CTerrain::Ready_GameObject(::_ulong dwTileX, ::_ulong dwTileZ, ::_ulong 
 	{
 		for (::_ulong j = 0; j < m_dwTileX; ++j)
 			m_vecTile[i * m_dwTileX + j]->Update_GameObject(fTimeDelta);
+
+		for (::_ulong j = 0; j < m_dwTileX; ++j)
+		{
+			for (::_ulong k = 0; k < m_vecWallList[i * m_dwTileX + j].size(); ++k)
+				m_vecWallList[i * m_dwTileX + j][k]->Update_GameObject(fTimeDelta);
+		}
 	}
 
 	return 0;
@@ -74,27 +100,60 @@ HRESULT CTerrain::Ready_GameObject(::_ulong dwTileX, ::_ulong dwTileZ, ::_ulong 
 void CTerrain::Render_GameObject(void)
 {
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->GetWorldMatrix());
-	//m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
-	
+
 	for (::_ulong i = 0; i < m_dwTileZ; ++i)
 	{
 		for (::_ulong j = 0; j < m_dwTileX; ++j)
 			m_vecTile[i * m_dwTileX + j]->Render_GameObject();
-	}
 
-	//m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
+		for (::_ulong j = 0; j < m_dwTileX; ++j)
+		{
+			for (::_ulong k = 0; k < m_vecWallList[i * m_dwTileX + j].size(); ++k)
+				m_vecWallList[i * m_dwTileX + j][k]->Render_GameObject();
+		}
+	}
 }
 
 void CTerrain::Release_GameObject(void)
 {
 	for_each(m_vecTile.begin(), m_vecTile.end(), CDeleteObj());
 	m_vecTile.clear();
+
+	for (::_ulong i = 0; i < m_vecWallList.size(); ++i)
+		for_each(m_vecWallList[i].begin(), m_vecWallList[i].end(), CDeleteObj());
+	m_vecWallList.clear();
 }
 
 void CTerrain::TileChange(const ::_vec3& vPos, const ::_tchar* tileTag, const int iDrawID, bool bIsRender)
 {
 	m_vecTile[(int)vPos.z * m_dwTileX + (int)vPos.x]->Set_DrawID(iDrawID);
 	m_vecTile[(int)vPos.z * m_dwTileX + (int)vPos.x]->Set_Render(bIsRender);
+}
+
+void CTerrain::WallChange(const ::_vec3& vPos, const ::_tchar* wallTag, const int iDrawID, bool bIsRender, bool bHasLeftWall, bool bHasTopWall, bool bHasRightWall, bool bHasBottomWall)
+{
+	// 왼클릭 - 벽 추가
+	if (bIsRender)
+	{
+		CWall* pWall = CWall::Create(m_pGraphicDev, bHasLeftWall, bHasTopWall, bHasRightWall, bHasBottomWall);
+		pWall->Set_DrawID(iDrawID);
+		pWall->Set_Render(bIsRender);
+		pWall->Set_Pos((int)vPos.x + m_dwItv * 0.5f,
+			m_vecWallList[(int)vPos.z * m_dwTileX + (int)vPos.x].size(),
+			(int)vPos.z + m_dwItv * 0.5f);
+
+		m_vecWallList[(int)vPos.z * m_dwTileX + (int)vPos.x].push_back(pWall);
+	}
+	// 우클릭 - 벽 제거
+	else
+	{
+		if (m_vecWallList[(int)vPos.z * m_dwTileX + (int)vPos.x].size() > 0)
+		{
+			CWall* pWall = m_vecWallList[(int)vPos.z * m_dwTileX + (int)vPos.x].back();
+			Engine::Safe_Release(pWall);
+			m_vecWallList[(int)vPos.z * m_dwTileX + (int)vPos.x].pop_back();
+		}
+	}
 }
 
 void CTerrain::SaveTile(const ::_tchar* pFilePath)
@@ -223,8 +282,6 @@ HRESULT CTerrain::Add_Component(void)
 	return S_OK;
 }
 
-
-
 CTerrain* CTerrain::Create(LPDIRECT3DDEVICE9 pGraphicDev, ::_ulong dwTileX, ::_ulong dwTileZ, ::_ulong dwItv)
 {
 	CTerrain*	pInstance = new CTerrain(pGraphicDev);
@@ -241,5 +298,9 @@ void CTerrain::Free(void)
 
 	for_each(m_vecTile.begin(), m_vecTile.end(), CDeleteObj());
 	m_vecTile.clear();
+
+	for (::_ulong i = 0; i < m_vecWallList.size(); ++i)
+		for_each(m_vecWallList[i].begin(), m_vecWallList[i].end(), CDeleteObj());
+	m_vecWallList.clear();
 }
 

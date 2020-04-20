@@ -201,6 +201,7 @@
     <ClInclude Include="..\Code\Terrain.h" />
     <ClInclude Include="..\Code\TerrainGuidLine.h" />
     <ClInclude Include="..\Code\Tile.h" />
+    <ClInclude Include="..\Code\Wall.h" />
     <ClInclude Include="..\Header\Defines.h" />
     <ClInclude Include="..\Header\Enum.h" />
     <ClInclude Include="..\Header\Function.h" />
@@ -225,6 +226,7 @@
     <ClCompile Include="..\Code\Terrain.cpp" />
     <ClCompile Include="..\Code\TerrainGuidLine.cpp" />
     <ClCompile Include="..\Code\Tile.cpp" />
+    <ClCompile Include="..\Code\Wall.cpp" />
     <ClCompile Include="DirectoryMgr.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="MySheet.cpp" />

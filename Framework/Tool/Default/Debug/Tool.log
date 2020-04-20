@@ -1,2 +1,7 @@
-﻿  Tool.vcxproj -> D:\TeamProject\Framework\Tool\Default\../Bin\Tool.exe
+﻿  ToolView.cpp
+c:\users\nhkim\desktop\학원\5개월차(sr)\시연회\200420 teamproject\framework\tool\default\toolview.cpp(301): warning C4800: 'int': 'true' 또는 'false'로 bool 값을 강제하고 있습니다(성능 경고).
+c:\users\nhkim\desktop\학원\5개월차(sr)\시연회\200420 teamproject\framework\tool\default\toolview.cpp(306): warning C4800: 'int': 'true' 또는 'false'로 bool 값을 강제하고 있습니다(성능 경고).
+c:\users\nhkim\desktop\학원\5개월차(sr)\시연회\200420 teamproject\framework\tool\default\toolview.cpp(311): warning C4800: 'int': 'true' 또는 'false'로 bool 값을 강제하고 있습니다(성능 경고).
+c:\users\nhkim\desktop\학원\5개월차(sr)\시연회\200420 teamproject\framework\tool\default\toolview.cpp(317): warning C4800: 'int': 'true' 또는 'false'로 bool 값을 강제하고 있습니다(성능 경고).
+  Tool.vcxproj -> C:\Users\NHKim\Desktop\학원\5개월차(SR)\시연회\200420 TeamProject\Framework\Tool\Default\../Bin\Tool.exe
   Tool.vcxproj -> ../Bin\Tool.pdb (Partial PDB)

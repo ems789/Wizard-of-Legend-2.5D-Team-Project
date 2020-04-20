@@ -44,4 +44,5 @@ public:
 	int m_iDrawID;
 
 	Engine::CGraphicDev* m_pGraphicDev;
+	virtual BOOL OnSetActive();
 };

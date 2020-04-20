@@ -39,6 +39,7 @@ void CPropertyFormView::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CPropertyFormView, CFormView)
 	ON_BN_CLICKED(IDC_BUTTON1, &CPropertyFormView::OnBnClickedRefresh)
 	ON_BN_CLICKED(IDC_BUTTON2, &CPropertyFormView::OnBnClickedPathTool)
+	ON_WM_ACTIVATE()
 END_MESSAGE_MAP()
 
 
@@ -96,8 +97,6 @@ void CPropertyFormView::OnInitialUpdate()
 	m_MySheet->ModifyStyleEx(0, WS_EX_CONTROLPARENT);
 	m_MySheet->ModifyStyle(0, WS_TABSTOP);
 	m_MySheet->SetActivePage(0); // Force the right & bottom borders to appear
-
-
 }
 
 void CPropertyFormView::OnBnClickedRefresh()

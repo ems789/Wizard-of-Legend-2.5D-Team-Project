@@ -52,9 +52,6 @@
     <Filter Include="06. GameObject\01. TerrainGuidLine">
       <UniqueIdentifier>{5c5296fb-99c5-4aa1-9891-872faf2a7af5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="06. GameObject\03. Public">
-      <UniqueIdentifier>{bbdf1e05-5c84-424f-8510-7070276279cc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="06. GameObject\02. Tile">
       <UniqueIdentifier>{2d540e87-a31d-4805-94ff-36333d27d213}</UniqueIdentifier>
     </Filter>
@@ -63,6 +60,12 @@
     </Filter>
     <Filter Include="98. Managers">
       <UniqueIdentifier>{db256776-51e0-4a2a-8456-4cae9a9e0ace}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. GameObject\04. Public">
+      <UniqueIdentifier>{bbdf1e05-5c84-424f-8510-7070276279cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. GameObject\03. Wall">
+      <UniqueIdentifier>{23f41532-9b90-4c7c-8be1-ab702eb2a7a0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -111,14 +114,11 @@
     <ClInclude Include="PropertyFormView.h">
       <Filter>03. View\00. PropertyFormView</Filter>
     </ClInclude>
-    <ClInclude Include="WallPage.h">
-      <Filter>05. PropertySheet\01. WallPage</Filter>
-    </ClInclude>
     <ClInclude Include="..\Code\Terrain.h">
       <Filter>06. GameObject\00. Terrain</Filter>
     </ClInclude>
     <ClInclude Include="..\Code\DynamicCamera.h">
-      <Filter>06. GameObject\03. Public</Filter>
+      <Filter>06. GameObject\04. Public</Filter>
     </ClInclude>
     <ClInclude Include="..\Code\TerrainGuidLine.h">
       <Filter>06. GameObject\01. TerrainGuidLine</Filter>
@@ -131,6 +131,12 @@
     </ClInclude>
     <ClInclude Include="DirectoryMgr.h">
       <Filter>98. Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="WallPage.h">
+      <Filter>05. PropertySheet\01. WallPage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Wall.h">
+      <Filter>06. GameObject\03. Wall</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -158,14 +164,11 @@
     <ClCompile Include="PropertyFormView.cpp">
       <Filter>03. View\00. PropertyFormView</Filter>
     </ClCompile>
-    <ClCompile Include="WallPage.cpp">
-      <Filter>05. PropertySheet\01. WallPage</Filter>
-    </ClCompile>
     <ClCompile Include="..\Code\Terrain.cpp">
       <Filter>06. GameObject\00. Terrain</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\DynamicCamera.cpp">
-      <Filter>06. GameObject\03. Public</Filter>
+      <Filter>06. GameObject\04. Public</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\TerrainGuidLine.cpp">
       <Filter>06. GameObject\01. TerrainGuidLine</Filter>
@@ -178,6 +181,12 @@
     </ClCompile>
     <ClCompile Include="DirectoryMgr.cpp">
       <Filter>98. Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="WallPage.cpp">
+      <Filter>05. PropertySheet\01. WallPage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Wall.cpp">
+      <Filter>06. GameObject\03. Wall</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

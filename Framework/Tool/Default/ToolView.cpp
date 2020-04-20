@@ -209,15 +209,35 @@ void CToolView::OnInitialUpdate()
 		L""),
 		E_FAIL);
 
-	// 텍스쳐 로드
-	/*FAILED_CHECK_RETURN_VOID(Engine::Ready_Texture(m_pGraphicDev,
-		::RESOURCE_STAGE,
-		L"Texture_Terrain",
-		Engine::TEX_NORMAL,
-		L"../../Client/Bin/Resource/Texture/Terrain/Grass_%d.tga", 2),
-		E_FAIL);*/
+	FAILED_CHECK_RETURN_VOID(Engine::Ready_Buffer(m_pGraphicDev,
+		::RESOURCE_STATIC,
+		L"Buffer_LeftWallTex",
+		Engine::BUFFER_LEFTWALLTEX,
+		L""),
+		E_FAIL);
 
-	// 타일
+	FAILED_CHECK_RETURN_VOID(Engine::Ready_Buffer(m_pGraphicDev,
+		::RESOURCE_STATIC,
+		L"Buffer_TopWallTex",
+		Engine::BUFFER_TOPWALLTEX,
+		L""),
+		E_FAIL);
+
+	FAILED_CHECK_RETURN_VOID(Engine::Ready_Buffer(m_pGraphicDev,
+		::RESOURCE_STATIC,
+		L"Buffer_RightWallTex",
+		Engine::BUFFER_RIGHTWALLTEX,
+		L""),
+		E_FAIL);
+
+	FAILED_CHECK_RETURN_VOID(Engine::Ready_Buffer(m_pGraphicDev,
+		::RESOURCE_STATIC,
+		L"Buffer_BottomWallTex",
+		Engine::BUFFER_BOTTOMWALLTEX,
+		L""),
+		E_FAIL);
+
+	// 타일 텍스쳐 로드
 	FAILED_CHECK_RETURN_VOID(Engine::Ready_Texture(m_pGraphicDev,
 		::RESOURCE_STAGE,
 		L"Texture_Tile",
@@ -225,7 +245,13 @@ void CToolView::OnInitialUpdate()
 		L"../../Client/Bin/Resource/Texture/Tile/ForestTile/ForestTile%d.png", 321),
 		E_FAIL);
 
-
+	// 벽 텍스쳐 로드
+	FAILED_CHECK_RETURN_VOID(Engine::Ready_Texture(m_pGraphicDev,
+		::RESOURCE_STAGE,
+		L"Texture_Wall",
+		Engine::TEX_NORMAL,
+		L"../../Client/Bin/Resource/Texture/Wall/Wall%d.png", 75),
+		E_FAIL);
 
 	m_pTerrainGuidLine = CTerrainGuidLine::Create(m_pGraphicDev);
 	NULL_CHECK_MSG(m_pTerrainGuidLine, L"TerrainGuidLine Create Failed");
@@ -250,6 +276,9 @@ void CToolView::OnInitialUpdate()
 
 	// INPUTDEV
 	FAILED_CHECK_RETURN_VOID(Engine::Ready_InputDev(g_hInst, g_hWnd), E_FAIL);
+
+	// 맵툴에서는 후면추려내기 적용 X
+	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
 }
 
 void CToolView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -257,6 +286,36 @@ void CToolView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	CView::OnKeyDown(nChar, nRepCnt, nFlags);
 
 	Engine::Set_InputDev();
+
+
+	CMainFrame* pFrameWnd = dynamic_cast<CMainFrame*>(::AfxGetApp()->GetMainWnd());
+	NULL_CHECK(pFrameWnd);
+
+	CPropertyFormView* pPropertyFormView = dynamic_cast<CPropertyFormView*>(pFrameWnd->m_MainSplitter.GetPane(0, 0));
+	NULL_CHECK(pPropertyFormView);
+
+	// 키보드 입력으로 체크 박스 체크
+	if (Engine::Get_DIKeyState(DIK_Z) & 0x80)
+	{
+		pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_LEFT].SetCheck(!pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_LEFT].GetCheck());
+		pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_LEFT] = pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_LEFT].GetCheck();		
+	}
+	else if (Engine::Get_DIKeyState(DIK_X) & 0x80)
+	{
+		pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_TOP].SetCheck(!pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_TOP].GetCheck());
+		pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_TOP] = pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_TOP].GetCheck();
+	}
+	else if (Engine::Get_DIKeyState(DIK_C) & 0x80)
+	{
+		pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_RIGHT].SetCheck(!pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_RIGHT].GetCheck());
+		pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_RIGHT] = pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_RIGHT].GetCheck();
+
+	}
+	else if (Engine::Get_DIKeyState(DIK_V) & 0x80)
+	{
+		pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_BOTTOM].SetCheck(!pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_BOTTOM].GetCheck());
+		pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_BOTTOM] = pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_BOTTOM].GetCheck();
+	}
 
 	m_pDynamicCamera->Update_KeyInput(0.25f);
 
@@ -267,37 +326,21 @@ void CToolView::OnMouseMove(UINT nFlags, CPoint point)
 {
 	CView::OnMouseMove(nFlags, point);
 
-	// 타일의 Draw ID 설정
 	CMainFrame* pFrameWnd = dynamic_cast<CMainFrame*>(::AfxGetApp()->GetMainWnd());
 	NULL_CHECK(pFrameWnd);
 
 	CPropertyFormView* pPropertyFormView = dynamic_cast<CPropertyFormView*>(pFrameWnd->m_MainSplitter.GetPane(0, 0));
 	NULL_CHECK(pPropertyFormView);
 
-	int iDrawID = pPropertyFormView->m_MySheet->m_TilePage.m_iDrawID;
-
-	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
-	if (Engine::Get_DIMouseState(Engine::DIM_LB))
+	// GetActive가 0이면 TilePage가 활성화 된 것 이걸로 페이지를 구분
+	const int iTilePage = 0;
+	if (pPropertyFormView->m_MySheet->GetActiveIndex() == iTilePage)
 	{
-		const Engine::CTerrainTex* pTerrainBufferCom = dynamic_cast<const Engine::CTerrainTex*>(m_pTerrainGuidLine->Get_Component(L"Com_Buffer", Engine::ID_STATIC));
-		NULL_CHECK_RETURN_VOID(pTerrainBufferCom);
-
-		const Engine::CTransform*	pTerrainTransformCom = dynamic_cast<const Engine::CTransform*>(m_pTerrainGuidLine->Get_Component(L"Com_Transform", Engine::ID_DYNAMIC));
-		NULL_CHECK_RETURN_VOID(pTerrainTransformCom);
-
-		::_vec3 vPickedTile = Picking_OnTerrain(g_hWnd, pTerrainBufferCom, pTerrainTransformCom);
-		m_pTerrain->TileChange(vPickedTile, L"Texture_Tile", iDrawID, true);
-	}
-	else if (Engine::Get_DIMouseState(Engine::DIM_RB))
-	{
-		const Engine::CTerrainTex* pTerrainBufferCom = dynamic_cast<const Engine::CTerrainTex*>(m_pTerrainGuidLine->Get_Component(L"Com_Buffer", Engine::ID_STATIC));
-		NULL_CHECK_RETURN_VOID(pTerrainBufferCom);
-
-		const Engine::CTransform*	pTerrainTransformCom = dynamic_cast<const Engine::CTransform*>(m_pTerrainGuidLine->Get_Component(L"Com_Transform", Engine::ID_DYNAMIC));
-		NULL_CHECK_RETURN_VOID(pTerrainTransformCom);
-
-		::_vec3 vPickedTile = Picking_OnTerrain(g_hWnd, pTerrainBufferCom, pTerrainTransformCom);
-		m_pTerrain->TileChange(vPickedTile, L"Texture_Tile", iDrawID, false);
+		// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+		if (Engine::Get_DIMouseState(Engine::DIM_LB))
+			CreateObject(true);
+		else if (Engine::Get_DIMouseState(Engine::DIM_RB))
+			CreateObject(false);
 	}
 
 	Engine::Set_InputDev();
@@ -311,23 +354,7 @@ void CToolView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	CView::OnLButtonDown(nFlags, point);
 
-	// 타일의 Draw ID 설정
-	CMainFrame* pFrameWnd = dynamic_cast<CMainFrame*>(::AfxGetApp()->GetMainWnd());
-	NULL_CHECK(pFrameWnd);
-
-	CPropertyFormView* pPropertyFormView = dynamic_cast<CPropertyFormView*>(pFrameWnd->m_MainSplitter.GetPane(0, 0));
-	NULL_CHECK(pPropertyFormView);
-
-	int iDrawID = pPropertyFormView->m_MySheet->m_TilePage.m_iDrawID;
-
-	const Engine::CTerrainTex* pTerrainBufferCom = dynamic_cast<const Engine::CTerrainTex*>(m_pTerrainGuidLine->Get_Component(L"Com_Buffer", Engine::ID_STATIC));
-	NULL_CHECK_RETURN_VOID(pTerrainBufferCom);
-
-	const Engine::CTransform*	pTerrainTransformCom = dynamic_cast<const Engine::CTransform*>(m_pTerrainGuidLine->Get_Component(L"Com_Transform", Engine::ID_DYNAMIC));
-	NULL_CHECK_RETURN_VOID(pTerrainTransformCom);
-
-	::_vec3 vPickedTile = Picking_OnTerrain(g_hWnd, pTerrainBufferCom, pTerrainTransformCom);
-	m_pTerrain->TileChange(vPickedTile, L"Test", iDrawID, true);
+	CreateObject(true);
 
 	Invalidate(FALSE);
 }
@@ -336,6 +363,14 @@ void CToolView::OnRButtonDown(UINT nFlags, CPoint point)
 {
 	CView::OnRButtonDown(nFlags, point);
 
+	CreateObject(false);
+
+	Invalidate(FALSE);
+}
+
+
+void CToolView::CreateObject(bool bIsRender)
+{
 	// 타일의 Draw ID 설정
 	CMainFrame* pFrameWnd = dynamic_cast<CMainFrame*>(::AfxGetApp()->GetMainWnd());
 	NULL_CHECK(pFrameWnd);
@@ -343,20 +378,46 @@ void CToolView::OnRButtonDown(UINT nFlags, CPoint point)
 	CPropertyFormView* pPropertyFormView = dynamic_cast<CPropertyFormView*>(pFrameWnd->m_MainSplitter.GetPane(0, 0));
 	NULL_CHECK(pPropertyFormView);
 
-	int iDrawID = pPropertyFormView->m_MySheet->m_TilePage.m_iDrawID;
-
 	const Engine::CTerrainTex* pTerrainBufferCom = dynamic_cast<const Engine::CTerrainTex*>(m_pTerrainGuidLine->Get_Component(L"Com_Buffer", Engine::ID_STATIC));
 	NULL_CHECK_RETURN_VOID(pTerrainBufferCom);
 
 	const Engine::CTransform*	pTerrainTransformCom = dynamic_cast<const Engine::CTransform*>(m_pTerrainGuidLine->Get_Component(L"Com_Transform", Engine::ID_DYNAMIC));
 	NULL_CHECK_RETURN_VOID(pTerrainTransformCom);
 
-	::_vec3 vPickedTilePos = Picking_OnTerrain(g_hWnd, pTerrainBufferCom, pTerrainTransformCom);
-	m_pTerrain->TileChange(vPickedTilePos, L"Test", iDrawID, false);
+	// 설치할 오브젝트 종류와, 어떤 텍스쳐가 선택되었는지
+	int iDrawID = 0;
+	::_vec3 vPickedTile = { 0, 0, 0 };
+	switch (pPropertyFormView->m_MySheet->GetActiveIndex())
+	{
+	case 0:
+		iDrawID = pPropertyFormView->m_MySheet->m_TilePage.m_iDrawID;
+		vPickedTile = Picking_OnTerrain(g_hWnd, pTerrainBufferCom, pTerrainTransformCom);
+		m_pTerrain->TileChange(vPickedTile, L"Texture_Tile", iDrawID, bIsRender);
+		break;
+	case 1:
+	{
+		bool bHasleftWall = pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_LEFT];
+		bool bHasTopWall = pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_TOP];
+		bool bHasRighttWall = pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_RIGHT];
+		bool bHasBottomWall = pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_BOTTOM];
 
-	Invalidate(FALSE);
+		if (bHasleftWall || bHasTopWall || bHasRighttWall || bHasBottomWall)
+		{
+			iDrawID = pPropertyFormView->m_MySheet->m_WallPage.m_iDrawID;
+			vPickedTile = Picking_OnTerrain(g_hWnd, pTerrainBufferCom, pTerrainTransformCom);
+			m_pTerrain->WallChange(vPickedTile, L"Texture_Wall", iDrawID, bIsRender, bHasleftWall, bHasTopWall, bHasRighttWall, bHasBottomWall);
+
+		}
+		// 벽 옵션이 전부 꺼져 있으면 벽을 생성하지 않고 리턴
+		else
+			break;
+
+		break;
+	}
+	default:
+		break;
+	}
 }
-
 
 ::_vec3 CToolView::Picking_OnTerrain(HWND hWnd, const CTerrainTex* pTerrainBufferCom, const CTransform* pTerrainTransformCom)
 {

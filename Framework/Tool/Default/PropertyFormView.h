@@ -41,7 +41,6 @@ public:
 	int	 m_iTerrainX;
 	int	 m_iTerrainZ;
 	int	 m_iTerrainItv;
-
 };
 
 

@@ -14,6 +14,7 @@ class CRenderer;
 END
 
 class CTile;
+class CWall;
 class CTerrain : public Engine::CGameObject
 {
 private:
@@ -30,6 +31,7 @@ public:
 
 public:
 	void		TileChange(const _vec3& vPos, const _tchar* tileTag, const int iDrawID ,bool bIsRender);
+	void		WallChange(const _vec3& vPos, const _tchar* wallTag, const int iDrawID, bool bIsRender, bool bHasLeftWall, bool bHasTopWall, bool bHasRightWall, bool bHasBottomWall);
 	void		SaveTile(const _tchar* pFilePath);
 	void		LoadTile(const _tchar* pFilePath);
 
@@ -39,6 +41,7 @@ private:
 private:
 	Engine::CTransform*		m_pTransformCom = nullptr;
 	vector<CTile*>			m_vecTile;
+	vector<vector<CWall*>>	m_vecWallList;
 	_ulong					m_dwTileX = 0, m_dwTileZ = 0;
 	_ulong					m_dwItv;
 
