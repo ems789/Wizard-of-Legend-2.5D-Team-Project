@@ -21,6 +21,8 @@ HRESULT CFireBall::Ready_Skill()
 
 	Engine::Ready_Timer(L"FireBall_CoolTime");
 	Engine::Set_TimeDelta(L"FireBall_CoolTime");
+	
+	m_fSpeed = 20.f;
 
 	return S_OK;
 }

@@ -33,6 +33,7 @@ public:
 private:
 	HRESULT		Add_Component();
 	void		Animation(const _float& fTimeDelta);
+	void		FireTail();
 
 private:
 	void Turn_To_Camera_Look();
@@ -49,6 +50,8 @@ private:
 	_float	m_fSpeed = 10.f;
 	_float	m_fLimitDistance = 50.f;
 	_int	m_iAttack = 50;
+
+	_float	m_fTailDelay = 0.f;
 
 	FRAME	m_tFrame;
 	Engine::SPHERE m_tSphere;

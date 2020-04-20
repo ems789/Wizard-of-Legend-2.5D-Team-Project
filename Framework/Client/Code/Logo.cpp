@@ -83,6 +83,7 @@ HRESULT CLogo::Ready_Resource(LPDIRECT3DDEVICE9 & pGraphicDev, RESOURCEID eMax)
 	//	Buffer
 	FAILED_CHECK_RETURN(Engine::Ready_Buffer(pGraphicDev, RESOURCE_STATIC, L"Buffer_RcCol", Engine::BUFFER_RCCOL), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Buffer(pGraphicDev, RESOURCE_STATIC, L"Buffer_RcTex", Engine::BUFFER_RCTEX), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Buffer(pGraphicDev, RESOURCE_STATIC, L"Buffer_RcColTex", Engine::BUFFER_RCCOLTEX), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Buffer(pGraphicDev, RESOURCE_STATIC, L"Buffer_TriCol", Engine::BUFFER_TRICOL), E_FAIL);
 
 	//	Texture
