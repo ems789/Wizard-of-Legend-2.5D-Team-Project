@@ -282,7 +282,7 @@ void CToolView::OnInitialUpdate()
 	FAILED_CHECK_RETURN_VOID(Engine::Ready_Texture(m_pGraphicDev, ::RESOURCE_STAGE, L"Texture_Tile", Engine::TEX_NORMAL, L"../../Client/Bin/Resource/Texture/Tile/Tile%d.png", 608), E_FAIL);
 
 	// 벽 텍스쳐 로드
-	FAILED_CHECK_RETURN_VOID(Engine::Ready_Texture(m_pGraphicDev, ::RESOURCE_STAGE, L"Texture_Wall", Engine::TEX_NORMAL, L"../../Client/Bin/Resource/Texture/Wall/Wall%d.png", 134), E_FAIL);
+	FAILED_CHECK_RETURN_VOID(Engine::Ready_Texture(m_pGraphicDev, ::RESOURCE_STAGE, L"Texture_Wall", Engine::TEX_NORMAL, L"../../Client/Bin/Resource/Texture/Wall/Wall%d.png", 146), E_FAIL);
 
 	m_pTerrainGuidLine = CTerrainGuidLine::Create(m_pGraphicDev);
 	NULL_CHECK_MSG(m_pTerrainGuidLine, L"TerrainGuidLine Create Failed");
@@ -324,31 +324,34 @@ void CToolView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	NULL_CHECK(pPropertyFormView);
 
 	// 키보드 입력으로 체크 박스 체크
-	if (Engine::Get_DIKeyState(DIK_Z) & 0x80)
+	if (pPropertyFormView->m_MySheet->GetActiveIndex() == 1) // 툴 일때만 작동
 	{
-		pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_CEILING].SetCheck(!pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_CEILING].GetCheck());
-		pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_CEILING] = pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_CEILING].GetCheck();
-	}
-	else if (Engine::Get_DIKeyState(DIK_X) & 0x80)
-	{
-		pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_LEFT].SetCheck(!pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_LEFT].GetCheck());
-		pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_LEFT] = pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_LEFT].GetCheck();		
-	}
-	else if (Engine::Get_DIKeyState(DIK_C) & 0x80)
-	{
-		pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_TOP].SetCheck(!pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_TOP].GetCheck());
-		pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_TOP] = pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_TOP].GetCheck();
-	}
-	else if (Engine::Get_DIKeyState(DIK_V) & 0x80)
-	{
-		pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_RIGHT].SetCheck(!pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_RIGHT].GetCheck());
-		pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_RIGHT] = pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_RIGHT].GetCheck();
+		if (Engine::Get_DIKeyState(DIK_Z) & 0x80)
+		{
+			pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_CEILING].SetCheck(!pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_CEILING].GetCheck());
+			pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_CEILING] = pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_CEILING].GetCheck();
+		}
+		else if (Engine::Get_DIKeyState(DIK_X) & 0x80)
+		{
+			pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_LEFT].SetCheck(!pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_LEFT].GetCheck());
+			pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_LEFT] = pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_LEFT].GetCheck();
+		}
+		else if (Engine::Get_DIKeyState(DIK_C) & 0x80)
+		{
+			pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_TOP].SetCheck(!pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_TOP].GetCheck());
+			pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_TOP] = pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_TOP].GetCheck();
+		}
+		else if (Engine::Get_DIKeyState(DIK_V) & 0x80)
+		{
+			pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_RIGHT].SetCheck(!pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_RIGHT].GetCheck());
+			pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_RIGHT] = pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_RIGHT].GetCheck();
 
-	}
-	else if (Engine::Get_DIKeyState(DIK_B) & 0x80)
-	{
-		pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_BOTTOM].SetCheck(!pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_BOTTOM].GetCheck());
-		pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_BOTTOM] = pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_BOTTOM].GetCheck();
+		}
+		else if (Engine::Get_DIKeyState(DIK_B) & 0x80)
+		{
+			pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_BOTTOM].SetCheck(!pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_BOTTOM].GetCheck());
+			pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_BOTTOM] = pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_BOTTOM].GetCheck();
+		}
 	}
 
 

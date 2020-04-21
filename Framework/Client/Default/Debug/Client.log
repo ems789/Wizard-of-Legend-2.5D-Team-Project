@@ -1,0 +1,8 @@
+﻿  Terrain.cpp
+c:\users\nhkim\desktop\gitclone\teamproject\framework\reference\header\engine_macro.h(28): warning C4005: 'NULL_CHECK_MSG': 매크로 재정의
+  c:\users\nhkim\desktop\gitclone\teamproject\framework\client\header\macro.h(28): note: 'NULL_CHECK_MSG'의 이전 정의를 참조하십시오.
+c:\users\nhkim\desktop\gitclone\teamproject\framework\reference\header\engine_macro.h(41): warning C4005: 'FAILED_CHECK_MSG': 매크로 재정의
+  c:\users\nhkim\desktop\gitclone\teamproject\framework\client\header\macro.h(41): note: 'FAILED_CHECK_MSG'의 이전 정의를 참조하십시오.
+     ../Bin/Client_DBG.lib 라이브러리 및 ../Bin/Client_DBG.exp 개체를 생성하고 있습니다.
+  Client.vcxproj -> C:\Users\NHKim\Desktop\GitClone\TeamProject\Framework\Client\Default\../Bin/Client_DBG.exe
+  Client.vcxproj -> ../Bin/Client_DBG.pdb (Full PDB)
