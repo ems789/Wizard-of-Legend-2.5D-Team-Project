@@ -80,10 +80,12 @@ BOOL CToolView::PreCreateWindow(CREATESTRUCT& cs)
 
 void CToolView::OnDraw(CDC* /*pDC*/)
 {
+#ifdef _DEBUG
 	CToolDoc* pDoc = GetDocument();
 	ASSERT_VALID(pDoc);
 	if (!pDoc)
 		return;
+#endif // _DEBUG
 
 	// TODO: 여기에 원시 데이터에 대한 그리기 코드를 추가합니다.
 

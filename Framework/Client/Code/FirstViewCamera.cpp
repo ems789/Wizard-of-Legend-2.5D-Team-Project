@@ -24,6 +24,9 @@ HRESULT CFirstViewCamera::Ready_Camera()
 
 	m_fNear = 0.1f;
 	m_fAspect = static_cast<_float>(WINCX) / WINCY;
+
+	m_fShakingDir = 0.2f;
+
 	return S_OK;
 }
 
@@ -53,6 +56,19 @@ void CFirstViewCamera::Update_EyeAtUp(const _float & fTimeDelta)
 	m_vEye.y += 0.5f;
 
 	Mouse_Move(fTimeDelta);
+
+
+	if (m_bShaking)
+	{
+		m_fShakingTime += fTimeDelta;
+		m_vEye.y += m_fShakingDir;
+		m_fShakingDir *= -1.f;
+		if (m_fShakingTime >= 0.5f)
+		{
+			m_bShaking = false;
+			m_fShakingTime = 0.f;
+		}
+	}
 
 	_matrix matRotX, matRotY, matRotZ, matRotAll;
 
@@ -101,6 +117,24 @@ void CFirstViewCamera::Key_Input()
 			//CMouse::GetInstance()->CursorRenderOn();
 			CMouse::GetInstance()->AnimingPointOff();
 		}
+	}
+}
+
+void CFirstViewCamera::CameraShake()
+{
+	m_bShaking = true;
+}
+
+_vec2 CFirstViewCamera::Get_MousePos()
+{
+	if (m_bFixCursor)
+		return _vec2(WINCX * 0.5f, WINCY * 0.5f);
+	else
+	{
+		POINT pt;
+		GetCursorPos(&pt);
+		ScreenToClient(g_hWnd, &pt);
+		return _vec2(static_cast<_float>(pt.x), static_cast<_float>(pt.y));
 	}
 }
 

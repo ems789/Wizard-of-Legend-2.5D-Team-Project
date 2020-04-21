@@ -28,8 +28,9 @@ public:	//	Get Functions
 	void			Get_Right(_vec3* pRight) const;
 	void			Get_Look(_vec3* pLook) const;
 
-	virtual	const _vec3* Get_Angle(_vec3* pAngle);
-	virtual void	CameraShake() {}
+	virtual	const _vec3*	Get_Angle(_vec3* pAngle);
+	virtual void			CameraShake() {}
+	virtual _vec2			Get_MousePos() { return _vec2(); }
 
 	const _float Get_Fovy()		const { return m_fFovY; }
 	const _float Get_Aspect()	const { return m_fAspect; }

@@ -129,6 +129,19 @@ void CThirdViewCamera::CameraShake()
 	m_bShaking = true;
 }
 
+_vec2 CThirdViewCamera::Get_MousePos()
+{
+	if (m_bFixCursor)
+		return _vec2(WINCX * 0.5f, WINCY * 0.5f);
+	else
+	{
+		POINT pt;
+		GetCursorPos(&pt);
+		ScreenToClient(g_hWnd, &pt);
+		return _vec2(static_cast<_float>(pt.x), static_cast<_float>(pt.y));
+	}
+}
+
 CThirdViewCamera * CThirdViewCamera::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 {
 	CThirdViewCamera* pInstance = new CThirdViewCamera(pGraphicDev);

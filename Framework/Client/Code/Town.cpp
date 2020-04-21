@@ -104,9 +104,9 @@ HRESULT CTown::Ready_GameLogic_Layer(const _tchar * pLayerTag)
 	//NULL_CHECK_RETURN(pGameObject, E_FAIL);
 	//pLayer->Add_GameObject(L"Monster", pGameObject);
 
-	pGameObject = CGolem::Create(m_pGraphicDev, &_vec3(20.f, 1.f, 25.f));
-	NULL_CHECK_RETURN(pGameObject, E_FAIL);
-	pLayer->Add_GameObject(L"Monster", pGameObject);
+	//pGameObject = CGolem::Create(m_pGraphicDev, &_vec3(20.f, 1.f, 25.f));
+	//NULL_CHECK_RETURN(pGameObject, E_FAIL);
+	//pLayer->Add_GameObject(L"Monster", pGameObject);
 
 	pGameObject = CFireBoss::Create(m_pGraphicDev, &_vec3(10.f, 1.f, 10.f));
 	NULL_CHECK_RETURN(pGameObject, E_FAIL);

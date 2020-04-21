@@ -57,6 +57,7 @@ private:
 	void Hurt_State();
 	void Squat_State();
 	void Taunt_State();
+	void Dead_State();
 
 
 public:
@@ -73,6 +74,7 @@ public:
 	void Hurt_Update(const _float& fTimeDelta);
 	void Squat_Update(const _float& fTimeDelta);
 	void Taunt_Update(const _float& fTimeDelta);
+	void Dead_Update(const _float& fTimeDelta);
 
 
 public:
@@ -137,6 +139,8 @@ private:
 	_bool	m_bFirePoint = false;
 
 	_float	m_fHurtTime = 0.f;
+
+	_float	m_fDeadTime = 0.f;
 
 public:
 	static CFireBoss* Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3* pPos);

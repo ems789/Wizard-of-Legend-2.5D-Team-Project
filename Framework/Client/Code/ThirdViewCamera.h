@@ -30,6 +30,7 @@ private:
 public:
 	virtual const _vec3*	Get_Angle(_vec3* pAngle) { if (pAngle) memcpy(pAngle, &m_vAngle, sizeof(_vec3)); return &m_vAngle; }
 	virtual void			CameraShake();
+	virtual _vec2			Get_MousePos();
 
 private:
 	const Engine::CTransform*	m_pTargetInfo	= nullptr;

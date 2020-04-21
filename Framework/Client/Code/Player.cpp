@@ -6,6 +6,9 @@
 #include "FireBall.h"
 #include "WindSlash.h"
 #include "FireEffect.h"
+#include "MeteorStrike.h"
+#include "LaidEffect.h"
+#include "BasicEffect.h"
 
 CPlayer::CPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev)
@@ -39,6 +42,10 @@ HRESULT CPlayer::Ready_GameObject()
 	m_tSphere.fRadius = 1.f;
 	m_pTransformCom->Move_Pos(Engine::INFO_UP, 0.5f);
 
+	CMeteorStrike* pMeteorStrike = CMeteorStrike::Create(m_pGraphicDev);
+	NULL_CHECK_RETURN(pMeteorStrike, E_FAIL);
+	m_vecEquipSkill[2] = pMeteorStrike;
+
 	CFireBall*	pFireBall = CFireBall::Create(m_pGraphicDev);
 	NULL_CHECK_RETURN(pFireBall, E_FAIL);
 	//Change_Normal_Skill(pFireBall);
@@ -46,7 +53,6 @@ HRESULT CPlayer::Ready_GameObject()
 
 	CWindSlash* pWindSlash = CWindSlash::Create(m_pGraphicDev);
 	NULL_CHECK_RETURN(pWindSlash, E_FAIL);
-
 	m_vecEquipSkill[0] = pWindSlash;
 
 	m_fDashSpeed = 30.f;
@@ -635,6 +641,25 @@ void CPlayer::Key_Input_Dash_For_1stAnd3rdView(const _float & fTimeDelta)
 {
 	if (Engine::KeyDown(DIK_SPACE))
 	{
+		const _tchar* pTextureTag = nullptr;
+		switch (m_eCurDir)
+		{
+		case CPlayer::PD_UP:
+			pTextureTag = L"Texture_AirRingUp";
+			break;
+		case CPlayer::PD_DOWN:
+			pTextureTag = L"Texture_AirRingDown";
+			break;
+		case CPlayer::PD_RIGHT:
+			pTextureTag = L"Texture_AirRingRight";
+			break;
+		case CPlayer::PD_LEFT:
+			pTextureTag = L"Texture_AirRingLeft";
+			break;
+		}
+		CBasicEffect* pAirRing = CBasicEffect::Create(m_pGraphicDev, pTextureTag, L"PlayerDash", 4, 10.f, 0.1f,
+			m_pTransformCom->GetInfo(Engine::INFO_POS), false, 0.f);
+		Engine::Add_GameObject(L"GameLogic", L"PlayerDash", pAirRing);
 		m_eCurState = CPlayer::P_DASH;
 	}
 }
@@ -643,9 +668,26 @@ void CPlayer::Key_Input_Dash_For_QuaterView(const _float & fTimeDleta)
 {
 	if (Engine::KeyDown(DIK_SPACE))
 	{
+		const _tchar* pTextureTag = nullptr;
+		switch (m_eCurDir)
+		{
+		case CPlayer::PD_UP:
+			pTextureTag = L"Texture_AirRingUp";
+			break;
+		case CPlayer::PD_DOWN:
+			pTextureTag = L"Texture_AirRingDown";
+			break;
+		case CPlayer::PD_RIGHT:
+			pTextureTag = L"Texture_AirRingRight";
+			break;
+		case CPlayer::PD_LEFT:
+			pTextureTag = L"Texture_AirRingLeft";
+			break;
+		}
+		CBasicEffect* pAirRing = CBasicEffect::Create(m_pGraphicDev, pTextureTag, L"PlayerDash", 4, 10.f, 0.1f,
+			m_pTransformCom->GetInfo(Engine::INFO_POS), false, 0.f);
+		Engine::Add_GameObject(L"GameLogic", L"PlayerDash", pAirRing);
 		m_eCurState = CPlayer::P_DASH;
-
-		//D3DXVec3Normalize(&m_vDashDir, &m_vDashDir);
 	}
 }
 
@@ -667,60 +709,28 @@ void CPlayer::Key_Input_Skill1_For_1stAnd3rdView(const _float & fTimeDelta)
 {
 	if (Engine::MousePress(Engine::DIM_RB))
 	{
-		Turn_To_Camera_Look();
-
-
-		_int iMotion = m_vecEquipSkill[1]->Use_Skill(fTimeDelta);
-		if (1 == iMotion)
+		if (m_vecEquipSkill[1])
 		{
-			m_eCurState = P_SKILL1;
-			m_eCurDir = PD_UP;
-			//m_bDir = true;
+			_int iMotion = m_vecEquipSkill[1]->Use_Skill(fTimeDelta);
+			if (1 == iMotion)
+			{
+				m_eCurState = P_SKILL1;
+				m_eCurDir = PD_UP;
+			}
 		}
 	}
 
 	if (Engine::KeyDown(DIK_Q))
 	{
-		Turn_To_Camera_Look();
-
-
-		_vec3 vPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
-		for (_uint i = 0; i < 10; ++i)
-		{
-			const _tchar* pTextureTag = nullptr;
-			switch (rand() % 4)
-			{
-			case 0:
-				pTextureTag = L"Texture_FireParticle1";
-				break;
-			case 1:
-				pTextureTag = L"Texture_FireParticle2";
-				break;
-			case 2:
-				pTextureTag = L"Texture_FireParticle3";
-				break;
-			case 3:
-				pTextureTag = L"Texture_FireParticle4";
-				break;
-			default:
-				break;
-			}
-
-
-
-			_vec3 vDir = { (rand() % 100 - 50.f) / 800.f, (rand() % 100) / 200.f, (rand() % 100 - 50.f) / 800.f };
-			_vec3 vCreatePos = vPos + vDir;
-			D3DXVec3Normalize(&vDir, &vDir);
-
-			CFireEffect* pEffect = CFireEffect::Create(m_pGraphicDev, pTextureTag, L"FireParticle", 6.f, 15.f, 0.05f, &vCreatePos, &vDir, 1.f,
-				false, 0.f, D3DXCOLOR(1.f, 0.7f, 0.5f, 1.f), D3DXCOLOR(0.f, 1.f, 2.0f, 0.f));
-
-			Engine::Add_GameObject(L"GameLogic", L"FireExplosion", pEffect);
-		}
-
-
 		if (m_vecEquipSkill[2])
-			m_vecEquipSkill[2]->Use_Skill(fTimeDelta);
+		{
+			_int iMotion = m_vecEquipSkill[2]->Use_Skill(fTimeDelta);
+			if (1 == iMotion)
+			{
+				m_eCurState = P_SKILL1;
+				m_eCurDir = PD_UP;
+			}
+		}
 	}
 
 }
@@ -745,16 +755,19 @@ void CPlayer::Key_Input_Skill1_For_QuaterView(const _float & fTimeDelta)
 		vDir.y = 0;
 		D3DXVec3Normalize(&vDir, &vDir);
 
-		_int iMotion = m_vecEquipSkill[1]->Use_Skill(fTimeDelta, &vCurPos, &vDir);
-		if (1 == iMotion)
+		if (m_vecEquipSkill[1])
 		{
-			m_eCurState = P_SKILL1;
+			_int iMotion = m_vecEquipSkill[1]->Use_Skill(fTimeDelta, &vCurPos, &vDir);
+			if (1 == iMotion)
+			{
+				m_eCurState = P_SKILL1;
 
-			CPlayer::PLAYER_DIR eUpDown = vDir.z > 0.f ? PD_UP : PD_DOWN;
-			CPlayer::PLAYER_DIR eLeftRight = vDir.x > 0.f ? PD_RIGHT : PD_LEFT;
+				CPlayer::PLAYER_DIR eUpDown = vDir.z > 0.f ? PD_UP : PD_DOWN;
+				CPlayer::PLAYER_DIR eLeftRight = vDir.x > 0.f ? PD_RIGHT : PD_LEFT;
 
-			m_eCurDir = fabs(vDir.x) > fabs(vDir.z) ? eLeftRight : eUpDown;
+				m_eCurDir = fabs(vDir.x) > fabs(vDir.z) ? eLeftRight : eUpDown;
 
+			}
 		}
 		//else if (1 == iMotion)
 		//{
@@ -782,7 +795,20 @@ void CPlayer::Key_Input_Skill1_For_QuaterView(const _float & fTimeDelta)
 		D3DXVec3Normalize(&vDir, &vDir);
 
 		if (m_vecEquipSkill[2])
-			m_vecEquipSkill[1]->Use_Skill(fTimeDelta, &vCurPos, &vDir);
+		{
+			_int iMotion = m_vecEquipSkill[2]->Use_Skill(fTimeDelta, &vCurPos, &vDir);
+
+			if (1 == iMotion)
+			{
+				m_eCurState = P_SKILL1;
+
+				CPlayer::PLAYER_DIR eUpDown = vDir.z > 0.f ? PD_UP : PD_DOWN;
+				CPlayer::PLAYER_DIR eLeftRight = vDir.x > 0.f ? PD_RIGHT : PD_LEFT;
+
+				m_eCurDir = fabs(vDir.x) > fabs(vDir.z) ? eLeftRight : eUpDown;
+
+			}
+		}
 	}
 }
 

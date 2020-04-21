@@ -52,7 +52,7 @@ _int CFireKick::Update_GameObject(const _float& fTimeDelta)
 
 	//m_pRendererCom->Add_RenderGroup(Engine::RENDER_ALPHA, this);
 
-	Engine::Add_GameObject_To_CollisionList(L"MonsterAttack", this);
+	Engine::Add_GameObject_To_CollisionList(m_pCollisionTag, this);
 	m_tSphere.vPos = m_pTransformCom->GetInfoRef(Engine::INFO_POS);
 
 	return 0;
@@ -185,7 +185,7 @@ void CFireKick::Turn_To_Camera_Look()
 	m_pTransformCom->Update_Component(0.f);
 }
 
-CFireKick* CFireKick::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3& vInitialPos, const _float& fLifeTime, const _uint& uiFireCnt, const _int& iAttack, const _float& fSize)
+CFireKick* CFireKick::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3& vInitialPos, const _float& fLifeTime, const _uint& uiFireCnt, const _int& iAttack, const _float& fSize, const _tchar* pCollisionTag /*= L"MonsterAttack"*/, const _float& fRadius/* = 1.f*/)
 {
 	CFireKick*	pInstance = new CFireKick(pGraphicDev);
 
@@ -199,6 +199,8 @@ CFireKick* CFireKick::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3& vInitia
 	pInstance->m_uiFireCnt = uiFireCnt;
 	pInstance->m_iAttack = iAttack;
 	pInstance->m_fSize = fSize;
+	pInstance->m_pCollisionTag = pCollisionTag;
+	pInstance->m_tSphere.fRadius = fRadius;
 
 	return pInstance;
 }
