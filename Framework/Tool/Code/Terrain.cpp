@@ -50,7 +50,7 @@ HRESULT CTerrain::Ready_GameObject(::_ulong dwTileX, ::_ulong dwTileZ, ::_ulong 
 	//		fY = 0.f;
 
 	//		pWall1 = CWall::Create(m_pGraphicDev);
-	//		pWall1->Set_Pos(fX, fY, fZ);
+                                                          	//		pWall1->Set_Pos(fX, fY, fZ);
 	//		pWall1->Set_Render(false);
 
 	//		//m_vecWallList[i * m_dwTileX + j].push_back(pWall1);

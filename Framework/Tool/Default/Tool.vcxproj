@@ -217,7 +217,9 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TilePage.h" />
     <ClInclude Include="Tool.h" />
-    <ClInclude Include="ToolDoc.h" />
+    <ClInclude Include="ToolDoc.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="ToolView.h" />
     <ClInclude Include="WallPage.h" />
   </ItemGroup>
@@ -240,7 +242,9 @@
     </ClCompile>
     <ClCompile Include="TilePage.cpp" />
     <ClCompile Include="Tool.cpp" />
-    <ClCompile Include="ToolDoc.cpp" />
+    <ClCompile Include="ToolDoc.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="ToolView.cpp" />
     <ClCompile Include="WallPage.cpp" />
   </ItemGroup>

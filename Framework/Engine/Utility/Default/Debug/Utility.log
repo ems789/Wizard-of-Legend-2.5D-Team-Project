@@ -1,5 +1,5 @@
-﻿     Creating library ../Bin/Utility.lib and object ../Bin/Utility.exp
-  Utility.vcxproj -> D:\TeamProject\Framework\Engine\Utility\Default\../Bin/Utility.dll
+﻿     ../Bin/Utility.lib 라이브러리 및 ../Bin/Utility.exp 개체를 생성하고 있습니다.
+  Utility.vcxproj -> C:\Users\NHKim\Desktop\GitClone\TeamProject\Framework\Engine\Utility\Default\../Bin/Utility.dll
   Utility.vcxproj -> ../Bin/Utility.pdb (Full PDB)
   .\Engine\Utility\Code\Camera.h
   .\Engine\Utility\Code\CameraMgr.h
@@ -20,12 +20,11 @@
   .\Engine\Utility\Code\UIImage.h
          17개 파일이 복사되었습니다.
   .\Engine\Utility\Code\*.hpp 
+          0개 파일이 복사되었습니다.
   지정된 파일을 찾을 수 없습니다.
-          0개 파일이 복사되었습니다.
           1개 파일이 복사되었습니다.
           1개 파일이 복사되었습니다.
-  다른 프로세스가 파일을 사용 중이기 때문에 프로세스가 액세스 할 수 없습니다.
-          0개 파일이 복사되었습니다.
+          1개 파일이 복사되었습니다.
   .\Engine\Header\Engine_Defines.h
   .\Engine\Header\Engine_Enum.h
   .\Engine\Header\Engine_Function.h

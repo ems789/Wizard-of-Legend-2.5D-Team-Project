@@ -25,24 +25,24 @@ HRESULT CTerrain::Ready_GameObject(const ::_tchar* pTilePath, const ::_tchar* pW
 	FAILED_CHECK_RETURN(LoadWall(pWallPath), E_FAIL);
 	FAILED_CHECK_RETURN(Add_Component(), E_FAIL);
 
+	for (::_ulong i = 0; i < m_dwTileZ; ++i)
+	{
+		for (::_ulong j = 0; j < m_dwTileX; ++j)
+			m_vecTile[i * m_dwTileX + j]->Update_GameObject(0);
+
+		for (::_ulong j = 0; j < m_dwTileX; ++j)
+		{
+			for (::_ulong k = 0; k < m_vecWallList[i * m_dwTileX + j].size(); ++k)
+				m_vecWallList[i * m_dwTileX + j][k]->Update_GameObject(0);
+		}
+	}
+
 	return S_OK;
 }
 
 ::_int CTerrain::Update_GameObject(const ::_float& fTimeDelta)
 {
 	Engine::CGameObject::Update_GameObject(fTimeDelta);
-
-	for (::_ulong i = 0; i < m_dwTileZ; ++i)
-	{
-		for (::_ulong j = 0; j < m_dwTileX; ++j)
-			m_vecTile[i * m_dwTileX + j]->Update_GameObject(fTimeDelta);
-
-		for (::_ulong j = 0; j < m_dwTileX; ++j)
-		{
-			for (::_ulong k = 0; k < m_vecWallList[i * m_dwTileX + j].size(); ++k)
-				m_vecWallList[i * m_dwTileX + j][k]->Update_GameObject(fTimeDelta);
-		}
-	}
 
 	m_pRendererCom->Add_RenderGroup(Engine::RENDER_NONALPHA, this);
 

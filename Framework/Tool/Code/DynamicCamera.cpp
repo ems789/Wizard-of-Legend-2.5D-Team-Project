@@ -94,12 +94,10 @@ void CDynamicCamera::Key_Input(const _float& fTimeDelta)
 	_matrix	matCamWorld;
 	D3DXMatrixInverse(&matCamWorld, NULL, &m_matView);
 	
+	// ªÛ«œ¡¬øÏ ¿Ãµø
 	if (Engine::Get_DIKeyState(DIK_W) & 0x80)
 	{
-		_vec3	vLook;
-		memcpy(&vLook, &matCamWorld.m[2][0], sizeof(_vec3));
-
-		_vec3 vLength = *D3DXVec3Normalize(&vLook, &vLook) * m_fSpeed * fTimeDelta;
+		_vec3 vLength = _vec3(0.f, 0.f, 1.f) * m_fSpeed * fTimeDelta;
 
 		m_vEye += vLength;
 		m_vAt += vLength;
@@ -107,10 +105,11 @@ void CDynamicCamera::Key_Input(const _float& fTimeDelta)
 
 	if (Engine::Get_DIKeyState(DIK_S) & 0x80)
 	{
-		_vec3	vLook;
-		memcpy(&vLook, &matCamWorld.m[2][0], sizeof(_vec3));
+		_vec3	vUp;
+		memcpy(&vUp, &matCamWorld.m[1][0], sizeof(_vec3));
 
-		_vec3 vLength = *D3DXVec3Normalize(&vLook, &vLook) * m_fSpeed * fTimeDelta;
+		
+		_vec3 vLength = _vec3(0.f, 0.f, 1.f) * m_fSpeed * fTimeDelta;
 
 		m_vEye -= vLength;
 		m_vAt  -= vLength;
@@ -136,6 +135,88 @@ void CDynamicCamera::Key_Input(const _float& fTimeDelta)
 
 		m_vEye += vLength;
 		m_vAt += vLength;
+	}
+
+	// ¡‹ ¿Œ ¡‹ æ∆øÙ
+	if (Engine::Get_DIKeyState(DIK_I) & 0x80)
+	{
+		_vec3	vLook;
+		memcpy(&vLook, &matCamWorld.m[2][0], sizeof(_vec3));
+
+		_vec3 vLength = *D3DXVec3Normalize(&vLook, &vLook) * m_fSpeed * fTimeDelta;
+
+		m_vEye += vLength;
+		m_vAt += vLength;
+	}
+
+	if (Engine::Get_DIKeyState(DIK_O) & 0x80)
+	{
+		_vec3	vLook;
+		memcpy(&vLook, &matCamWorld.m[2][0], sizeof(_vec3));
+
+		_vec3 vLength = *D3DXVec3Normalize(&vLook, &vLook) * m_fSpeed * fTimeDelta;
+
+		m_vEye -= vLength;
+		m_vAt -= vLength;
+	}
+
+	// ªÛ«œ¡¬øÏ »∏¿¸
+	if (Engine::Get_DIKeyState(DIK_UP) & 0x80)
+	{
+		_vec3	vRight;
+		memcpy(&vRight, &matCamWorld.m[0][0], sizeof(_vec3));
+
+		_vec3	vLook = m_vAt - m_vEye;
+
+		_matrix		matRotAxis;
+		D3DXMatrixRotationAxis(&matRotAxis, &vRight, D3DXToRadian(-90 / 10.f));
+
+		D3DXVec3TransformNormal(&vLook, &vLook, &matRotAxis);
+
+		m_vAt = m_vEye + vLook;
+	}
+
+	if (Engine::Get_DIKeyState(DIK_DOWN) & 0x80)
+	{
+		_vec3	vRight;
+		memcpy(&vRight, &matCamWorld.m[0][0], sizeof(_vec3));
+
+		_vec3	vLook = m_vAt - m_vEye;
+
+		_matrix		matRotAxis;
+		D3DXMatrixRotationAxis(&matRotAxis, &vRight, D3DXToRadian(90 / 10.f));
+
+		D3DXVec3TransformNormal(&vLook, &vLook, &matRotAxis);
+
+		m_vAt = m_vEye + vLook;
+	}
+
+	if (Engine::Get_DIKeyState(DIK_LEFT) & 0x80)
+	{
+		_vec3	vUp = _vec3(0.f, 1.f, 0.f);
+
+		_vec3	vLook = m_vAt - m_vEye;
+
+		_matrix		matRotAxis;
+		D3DXMatrixRotationAxis(&matRotAxis, &vUp, D3DXToRadian(-90 / 10.f));
+
+		D3DXVec3TransformNormal(&vLook, &vLook, &matRotAxis);
+
+		m_vAt = m_vEye + vLook;
+	}
+
+	if (Engine::Get_DIKeyState(DIK_RIGHT) & 0x80)
+	{
+		_vec3	vUp = _vec3(0.f, 1.f, 0.f);
+
+		_vec3	vLook = m_vAt - m_vEye;
+
+		_matrix		matRotAxis;
+		D3DXMatrixRotationAxis(&matRotAxis, &vUp, D3DXToRadian(90 / 10.f));
+
+		D3DXVec3TransformNormal(&vLook, &vLook, &matRotAxis);
+
+		m_vAt = m_vEye + vLook;
 	}
 
 	if (Engine::Get_DIKeyState(DIK_TAB) & 0x80)
