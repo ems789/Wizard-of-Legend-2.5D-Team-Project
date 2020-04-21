@@ -163,6 +163,36 @@
     <Filter Include="02.GameObject\03.Town\04. Wall">
       <UniqueIdentifier>{5b0f7ce5-1256-4a4d-8657-d0ca99183b48}</UniqueIdentifier>
     </Filter>
+    <Filter Include="07.Monster\99.Boss">
+      <UniqueIdentifier>{40a0c242-8823-4f99-9ac6-dbf161d60b82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Monster\99.Boss\00.FireBoss">
+      <UniqueIdentifier>{fdef0d60-9521-4e2d-ae97-49cb90d26dae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Monster\99.Boss\00.FireBoss\00.FireThrow">
+      <UniqueIdentifier>{8a6ad6dc-7e9e-49f1-a449-5aeba5dc599f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Monster\99.Boss\00.FireBoss\01.FireRoad">
+      <UniqueIdentifier>{370eeb34-fe84-49f2-b865-79cbfb5764ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Monster\99.Boss\00.FireBoss\02.FireKick">
+      <UniqueIdentifier>{861ea9cc-6467-494a-be22-066994eb7722}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Monster\99.Boss\00.FireBoss\03.FireHeel">
+      <UniqueIdentifier>{19245537-b9a9-4403-a58c-4000c6939695}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Monster\99.Boss\00.FireBoss\04.FireStomp">
+      <UniqueIdentifier>{53f480b1-044e-4c38-9e0f-1bafef63e15c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Monster\99.Boss\00.FireBoss\05.FirePoint">
+      <UniqueIdentifier>{c8afdeb0-26b6-4460-a40a-cfd94ffac26b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Effect\04.FireEffect">
+      <UniqueIdentifier>{c4147ffa-c805-4d89-b6f0-e1362b601f8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Effect\05.AlphaLaidEffect">
+      <UniqueIdentifier>{9b7768a9-c5c6-4c8f-b629-21dbedeff4ab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -294,6 +324,33 @@
     <ClInclude Include="..\Code\Wall.h">
       <Filter>02.GameObject\03.Town\04. Wall</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\FireBoss.h">
+      <Filter>07.Monster\99.Boss\00.FireBoss</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\FireThrow.h">
+      <Filter>07.Monster\99.Boss\00.FireBoss\00.FireThrow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\FireStomp.h">
+      <Filter>07.Monster\99.Boss\00.FireBoss\04.FireStomp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\FireRoad.h">
+      <Filter>07.Monster\99.Boss\00.FireBoss\01.FireRoad</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\FirePoint.h">
+      <Filter>07.Monster\99.Boss\00.FireBoss\05.FirePoint</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\FireHeel.h">
+      <Filter>07.Monster\99.Boss\00.FireBoss\03.FireHeel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\FireKick.h">
+      <Filter>07.Monster\99.Boss\00.FireBoss\02.FireKick</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\AlphaLaidEffect.h">
+      <Filter>03.Effect\05.AlphaLaidEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\FireEffect.h">
+      <Filter>03.Effect\04.FireEffect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -400,6 +457,33 @@
     </ClCompile>
     <ClCompile Include="..\Code\Wall.cpp">
       <Filter>02.GameObject\03.Town\04. Wall</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\FireBoss.cpp">
+      <Filter>07.Monster\99.Boss\00.FireBoss</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\FireThrow.cpp">
+      <Filter>07.Monster\99.Boss\00.FireBoss\00.FireThrow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\FireStomp.cpp">
+      <Filter>07.Monster\99.Boss\00.FireBoss\04.FireStomp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\FireRoad.cpp">
+      <Filter>07.Monster\99.Boss\00.FireBoss\01.FireRoad</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\FirePoint.cpp">
+      <Filter>07.Monster\99.Boss\00.FireBoss\05.FirePoint</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\FireHeel.cpp">
+      <Filter>07.Monster\99.Boss\00.FireBoss\03.FireHeel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\FireKick.cpp">
+      <Filter>07.Monster\99.Boss\00.FireBoss\02.FireKick</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\AlphaLaidEffect.cpp">
+      <Filter>03.Effect\05.AlphaLaidEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\FireEffect.cpp">
+      <Filter>03.Effect\04.FireEffect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

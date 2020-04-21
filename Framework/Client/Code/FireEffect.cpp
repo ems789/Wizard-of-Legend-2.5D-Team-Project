@@ -41,6 +41,7 @@ void CFireEffect::Render_GameObject()
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->GetWorldMatrix());
 
 	m_pTextureCom->Render_Texture(static_cast<_uint>(m_tFrame.fCurFrame));
+	m_pBufferColCom->Set_Color(m_d3dColor);
 	m_pBufferColCom->Render_Buffer();
 }
 
@@ -119,7 +120,6 @@ void CFireEffect::ColorChange_And_Move(const _float & fTimeDelta)
 	m_d3dColor.g -= m_fdGreen * fTimeDelta;
 	m_d3dColor.b -= m_fdBlue * fTimeDelta;
 
-	m_pBufferColCom->Set_Color(m_d3dColor);
 
 	m_pTransformCom->Move_Pos(m_vMoveDir * fTimeDelta * m_fSpeed);
 }

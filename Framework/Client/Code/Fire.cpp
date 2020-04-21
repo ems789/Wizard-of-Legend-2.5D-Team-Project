@@ -34,7 +34,9 @@ _int CFire::Update_GameObject(const _float& fTimeDelta)
 
 	Animation(fTimeDelta);
 
-	m_pTransformCom->Move_Pos(m_vDir * m_fSpeed * fTimeDelta);
+	if (m_bGo)
+		m_pTransformCom->Move_Pos(m_vDir * m_fSpeed * fTimeDelta);
+
 	_vec3 vDistance = m_pTransformCom->GetInfoRef(Engine::INFO_POS) - m_vInitialPos;
 	_float fDist = D3DXVec3Length(&vDistance);
 	if (fDist > 50.f)
@@ -54,7 +56,8 @@ _int CFire::Update_GameObject(const _float& fTimeDelta)
 
 	m_pRendererCom->Add_RenderGroup(Engine::RENDER_ALPHA, this);
 
-	Engine::Add_GameObject_To_CollisionList(L"Player_Bullet", this);
+	if (m_bGo)
+		Engine::Add_GameObject_To_CollisionList(m_pCollisionTag, this);
 	m_tSphere.vPos = m_pTransformCom->GetInfoRef(Engine::INFO_POS);
 
 	return 0;
@@ -111,6 +114,11 @@ void CFire::Add_Effect(const _vec3* pPos)
 
 		Engine::Add_GameObject(L"GameLogic", L"FireExplosion", pEffect);
 	}
+}
+
+void CFire::Go()
+{
+	m_bGo = true;
 }
 
 HRESULT CFire::Add_Component()
@@ -190,7 +198,7 @@ void CFire::Turn_To_Camera_Look()
 	m_pTransformCom->Update_Component(0.f);
 }
 
-CFire* CFire::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3& vInitialPos, const _vec3& vDir, const _float& fSpeed, const _float& fMaxFrame, const _float& fFrameSpeed)
+CFire* CFire::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3& vInitialPos, const _vec3& vDir, const _float& fSpeed, const _float& fMaxFrame, const _float& fFrameSpeed, const _tchar* pCollisionTag /*= L"Player_Bullet"*/, _bool bGo/* = true*/)
 {
 	CFire*	pInstance = new CFire(pGraphicDev);
 
@@ -205,6 +213,8 @@ CFire* CFire::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3& vInitialPos, co
 	pInstance->m_tFrame.fCurFrame = 0;
 	pInstance->m_tFrame.fMaxFrame = fMaxFrame;
 	pInstance->m_tFrame.fFrameSpeed = fFrameSpeed;
+	pInstance->m_pCollisionTag = pCollisionTag;
+	pInstance->m_bGo = bGo;
 
 	return pInstance;
 }

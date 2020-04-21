@@ -161,6 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Engine\Utility\Code\UIImage.h" />
+    <ClInclude Include="..\Code\AlphaLaidEffect.h" />
     <ClInclude Include="..\Code\BackGround.h" />
     <ClInclude Include="..\Code\BasicEffect.h" />
     <ClInclude Include="..\Code\BeamEffect.h" />
@@ -171,6 +172,12 @@
     <ClInclude Include="..\Code\FireBall.h" />
     <ClInclude Include="..\Code\FireBoss.h" />
     <ClInclude Include="..\Code\FireEffect.h" />
+    <ClInclude Include="..\Code\FireHeel.h" />
+    <ClInclude Include="..\Code\FireKick.h" />
+    <ClInclude Include="..\Code\FirePoint.h" />
+    <ClInclude Include="..\Code\FireRoad.h" />
+    <ClInclude Include="..\Code\FireStomp.h" />
+    <ClInclude Include="..\Code\FireThrow.h" />
     <ClInclude Include="..\Code\FirstViewCamera.h" />
     <ClInclude Include="..\Code\Golem.h" />
     <ClInclude Include="..\Code\Inven.h" />
@@ -208,6 +215,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Engine\Utility\Code\UIImage.cpp" />
+    <ClCompile Include="..\Code\AlphaLaidEffect.cpp" />
     <ClCompile Include="..\Code\BackGround.cpp" />
     <ClCompile Include="..\Code\BasicEffect.cpp" />
     <ClCompile Include="..\Code\BeamEffect.cpp" />
@@ -218,6 +226,12 @@
     <ClCompile Include="..\Code\FireBall.cpp" />
     <ClCompile Include="..\Code\FireBoss.cpp" />
     <ClCompile Include="..\Code\FireEffect.cpp" />
+    <ClCompile Include="..\Code\FireHeel.cpp" />
+    <ClCompile Include="..\Code\FireKick.cpp" />
+    <ClCompile Include="..\Code\FirePoint.cpp" />
+    <ClCompile Include="..\Code\FireRoad.cpp" />
+    <ClCompile Include="..\Code\FireStomp.cpp" />
+    <ClCompile Include="..\Code\FireThrow.cpp" />
     <ClCompile Include="..\Code\FirstViewCamera.cpp" />
     <ClCompile Include="..\Code\Golem.cpp" />
     <ClCompile Include="..\Code\Inven.cpp" />

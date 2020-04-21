@@ -13,6 +13,7 @@
 #include "Mouse.h"
 #include "Golem.h"
 #include "Cyclops.h"
+#include "FireBoss.h"
 
 CTown::CTown(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CScene(pGraphicDev)
@@ -107,7 +108,9 @@ HRESULT CTown::Ready_GameLogic_Layer(const _tchar * pLayerTag)
 	NULL_CHECK_RETURN(pGameObject, E_FAIL);
 	pLayer->Add_GameObject(L"Monster", pGameObject);
 
-
+	pGameObject = CFireBoss::Create(m_pGraphicDev, &_vec3(10.f, 1.f, 10.f));
+	NULL_CHECK_RETURN(pGameObject, E_FAIL);
+	pLayer->Add_GameObject(L"Monster", pGameObject);
 
 
 	m_mapLayer.emplace(pLayerTag, pLayer);

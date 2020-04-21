@@ -24,6 +24,11 @@ HRESULT Engine::CCamera::Ready_Camera()
 	m_vAt	= { 0.f, 0.f, 1.f };
 	m_vUp	= { 0.f, 1.f, 0.f };
 
+	m_fFovY = D3DXToRadian(60.f);
+	m_fAspect = 1.f;
+	m_fNear = 1.f;
+	m_fFar = 1000.f;
+
 	D3DXMatrixLookAtLH(&m_matView, &m_vEye, &m_vAt, &m_vUp);
 	m_pGraphicDev->SetTransform(D3DTS_VIEW,	&m_matView);
 

@@ -23,7 +23,7 @@ HRESULT CFirstViewCamera::Ready_Camera()
 	NULL_CHECK_RETURN(m_pTargetInfo, E_FAIL);
 
 	m_fNear = 0.1f;
-
+	m_fAspect = static_cast<_float>(WINCX) / WINCY;
 	return S_OK;
 }
 

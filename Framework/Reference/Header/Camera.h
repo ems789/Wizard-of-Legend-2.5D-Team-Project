@@ -29,11 +29,15 @@ public:	//	Get Functions
 	void			Get_Look(_vec3* pLook) const;
 
 	virtual	const _vec3* Get_Angle(_vec3* pAngle);
+	virtual void	CameraShake() {}
 
 	const _float Get_Fovy()		const { return m_fFovY; }
 	const _float Get_Aspect()	const { return m_fAspect; }
 	const _float Get_Near()		const { return m_fNear; }
 	const _float Get_Far()		const { return m_fFar; }
+
+public:	//	Set Functios
+	void	Set_Aspect(const _float& fAspect) { m_fAspect = fAspect; }
 
 protected:
 	LPDIRECT3DDEVICE9	m_pGraphicDev = nullptr;
