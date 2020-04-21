@@ -278,20 +278,11 @@ void CToolView::OnInitialUpdate()
 		E_FAIL);
 
 	// 타일 텍스쳐 로드
-	FAILED_CHECK_RETURN_VOID(Engine::Ready_Texture(m_pGraphicDev,
-		::RESOURCE_STAGE,
-		L"Texture_Tile",
-		Engine::TEX_NORMAL,
-		L"../../Client/Bin/Resource/Texture/Tile/ForestTile/ForestTile%d.png", 321),
-		E_FAIL);
+	//FAILED_CHECK_RETURN_VOID(Engine::Ready_Texture(m_pGraphicDev, ::RESOURCE_STAGE, L"Texture_Tile", Engine::TEX_NORMAL, L"../../Client/Bin/Resource/Texture/ForestStage/ForestStageTile/ForestTile%d.png", 321), E_FAIL);
+	FAILED_CHECK_RETURN_VOID(Engine::Ready_Texture(m_pGraphicDev, ::RESOURCE_STAGE, L"Texture_Tile", Engine::TEX_NORMAL, L"../../Client/Bin/Resource/Texture/Tile/Tile%d.png", 608), E_FAIL);
 
 	// 벽 텍스쳐 로드
-	FAILED_CHECK_RETURN_VOID(Engine::Ready_Texture(m_pGraphicDev,
-		::RESOURCE_STAGE,
-		L"Texture_Wall",
-		Engine::TEX_NORMAL,
-		L"../../Client/Bin/Resource/Texture/Wall/Wall%d.png", 75),
-		E_FAIL);
+	FAILED_CHECK_RETURN_VOID(Engine::Ready_Texture(m_pGraphicDev, ::RESOURCE_STAGE, L"Texture_Wall", Engine::TEX_NORMAL, L"../../Client/Bin/Resource/Texture/Wall/Wall%d.png", 134), E_FAIL);
 
 	m_pTerrainGuidLine = CTerrainGuidLine::Create(m_pGraphicDev);
 	NULL_CHECK_MSG(m_pTerrainGuidLine, L"TerrainGuidLine Create Failed");
@@ -411,7 +402,9 @@ void CToolView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 				if (iSrcZ < iDestZ)
 				{
 					for (iSrcZ; iSrcZ <= iDestZ; ++iSrcZ)
+					{
 						m_pTerrain->WallChange(::_vec3(m_vLastPickTile.x, m_vLastPickTile.y, (float)iSrcZ), L"Texture_Wall", iDrawID, m_bRender, bHasleftWall, bHasTopWall, bHasRighttWall, bHasBottomWall, bHasCeilingWall, eWallType);
+					}
 				}
 				else if (iSrcZ > iDestZ)
 				{
