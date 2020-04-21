@@ -199,6 +199,9 @@
     <Filter Include="05.Skill\00.Fire\01.MeteorStrike\00.Meteor">
       <UniqueIdentifier>{e756fcb1-70f8-41d9-bb10-afc14b985bee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="05.Skill\00.Fire\02.GuidedFire">
+      <UniqueIdentifier>{acea56f2-6b61-43bc-82bb-2edb9b0727e6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -363,6 +366,9 @@
     <ClInclude Include="..\Code\Meteor.h">
       <Filter>05.Skill\00.Fire\01.MeteorStrike\00.Meteor</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\GuidedFire.h">
+      <Filter>05.Skill\00.Fire\02.GuidedFire</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -502,6 +508,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\Meteor.cpp">
       <Filter>05.Skill\00.Fire\01.MeteorStrike\00.Meteor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\GuidedFire.cpp">
+      <Filter>05.Skill\00.Fire\02.GuidedFire</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
