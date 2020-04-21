@@ -81,9 +81,6 @@ void CFire::Add_Effect(const _vec3* pPos)
 	_vec3 vPos = (*m_pTransformCom->GetInfo(Engine::INFO_POS) + *pPos) / 2;
 	vPos.y += 0.5f;
 
-	//CBasicEffect* pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_FireExplosion", L"FireExplosion", 7.f, 20.f, 0.05f, &vPos, false, 0.f);
-	//Engine::Add_GameObject(L"GameLogic", L"FireExplosion", pEffect);
-
 	for (_uint i = 0; i < 10; ++i)
 	{
 		const _tchar* pTextureTag = nullptr;
@@ -112,7 +109,7 @@ void CFire::Add_Effect(const _vec3* pPos)
 		CFireEffect* pEffect = CFireEffect::Create(m_pGraphicDev, pTextureTag, L"FireParticle", 6.f, 15.f, 0.2f, &vCreatePos, &vDir, 1.f,
 			false, 0.f, D3DXCOLOR(1.f, 0.7f, 0.5f, 1.f), D3DXCOLOR(0.f, 1.f, 2.0f, 0.f));
 
-		Engine::Add_GameObject(L"GameLogic", L"FireExplosion", pEffect);
+		Engine::Add_GameObject(L"Effect", L"FireExplosion", pEffect);
 	}
 }
 
@@ -184,7 +181,7 @@ void CFire::FireTail()
 		CFireEffect* pEffect = CFireEffect::Create(m_pGraphicDev, pTextureTag, L"FireParticle", 6.f, 15.f, 0.08f, &vCreatePos, &vDir, 1.f,
 			false, 0.f, D3DXCOLOR(1.f, 0.7f, 0.5f, 1.f), D3DXCOLOR(0.f, 1.f, 2.0f, 0.f));
 
-		Engine::Add_GameObject(L"GameLogic", L"FireExplosion", pEffect);
+		Engine::Add_GameObject(L"Effect", L"FireExplosion", pEffect);
 	}
 }
 

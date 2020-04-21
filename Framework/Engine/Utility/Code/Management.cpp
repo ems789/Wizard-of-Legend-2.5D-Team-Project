@@ -109,6 +109,13 @@ const CGameObject * CManagement::Get_GameObjcet(const _tchar * pLayerTag, const 
 	return m_pScene->Get_GameObjcet(pLayerTag, pObjTag);
 }
 
+const CLayer * CManagement::Get_Layer(const _tchar * pLayerTag) const
+{
+	if (nullptr == m_pScene)
+		return nullptr;
+	return m_pScene->Get_Layer(pLayerTag);
+}
+
 const CComponent * CManagement::Get_Component_From_StaticLayer(const _tchar * pObjTag, const _tchar * pComponentTag, COMPONENTID eID) const
 {
 	return m_pStaticLayer->Get_Component(pObjTag, pComponentTag, eID);

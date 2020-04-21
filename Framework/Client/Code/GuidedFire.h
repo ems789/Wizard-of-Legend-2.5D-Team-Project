@@ -16,6 +16,9 @@ END
 class CGuidedFire : public Engine::CGameObject
 {
 private:
+	enum STATE { GFS_ORBIT, GFS_FIRE, GFS_END };
+
+private:
 	explicit CGuidedFire(LPDIRECT3DDEVICE9 pGraphicDev);
 	virtual ~CGuidedFire();
 
@@ -33,7 +36,10 @@ public:
 private:
 	HRESULT		Add_Component();
 	void		LifeTimer(const _float& fTimeDelta);
+	void		Orbit_Target(const _float& fTimeDelta);
+	void		SearchTarget();
 	void		GuidedFireTail();
+	void		Setting_InitialPos(const _float& fTiltAngle);
 
 private:
 	void Turn_To_Camera_Look();
@@ -58,12 +64,23 @@ private:
 	_float	m_fSize = 50.f;
 
 	Engine::SPHERE m_tSphere;
-	const Engine::CTransform* m_pRevTarget = nullptr;
 	const _tchar* m_pCollisionTag = L"";
+	
+	const Engine::CTransform* m_pRevTarget = nullptr;
+
+	_float	m_fSpeed = 0.f;
+
+	CGuidedFire::STATE m_eCurState = GFS_END;
+
+	_float	m_fAngle;
+	_float	m_fOrbitSpeed = 10.f;
+	_vec3	m_vAxis;
+	_float	m_fRevRadius = 1.f;
+	_float	m_fDetectDist = 10.f;
 
 public:
-	static CGuidedFire* Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3& vInitialPos, const _float& fLifeTime, const Engine::CTransform* pRevTarget,
-		const _uint& uiFireCnt = 4, const _int& iAttack = 10, const _float& fSize = 0.01f, const _tchar* pCollisionTag = L"MonsterAttack", 
+	static CGuidedFire* Create(LPDIRECT3DDEVICE9 pGraphicDev, const _float& fTiltAngle, const _float& fLifeTime, const Engine::CTransform* pRevTarget, const _float& fRevRadius,
+		const _float fDetectDist,	const _uint& uiFireCnt = 4, const _int& iAttack = 10, const _float& fSize = 0.01f, const _tchar* pCollisionTag = L"MonsterAttack", 
 		const _float& fRadius = 1.f);
 
 private:

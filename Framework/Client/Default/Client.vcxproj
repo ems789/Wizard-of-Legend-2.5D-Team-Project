@@ -181,6 +181,8 @@
     <ClInclude Include="..\Code\FirstViewCamera.h" />
     <ClInclude Include="..\Code\Golem.h" />
     <ClInclude Include="..\Code\GuidedFire.h" />
+    <ClInclude Include="..\Code\GuidedFireBall.h" />
+    <ClInclude Include="..\Code\GuidedFireGen.h" />
     <ClInclude Include="..\Code\Inven.h" />
     <ClInclude Include="..\Code\LaidEffect.h" />
     <ClInclude Include="..\Code\LineCollider.h" />
@@ -238,6 +240,8 @@
     <ClCompile Include="..\Code\FirstViewCamera.cpp" />
     <ClCompile Include="..\Code\Golem.cpp" />
     <ClCompile Include="..\Code\GuidedFire.cpp" />
+    <ClCompile Include="..\Code\GuidedFireBall.cpp" />
+    <ClCompile Include="..\Code\GuidedFireGen.cpp" />
     <ClCompile Include="..\Code\Inven.cpp" />
     <ClCompile Include="..\Code\LaidEffect.cpp" />
     <ClCompile Include="..\Code\LineCollider.cpp" />

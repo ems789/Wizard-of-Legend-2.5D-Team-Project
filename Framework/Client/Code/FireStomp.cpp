@@ -59,7 +59,7 @@ _int CFireStomp::Update_GameObject(const _float& fTimeDelta)
 		vPos.y = 0.1f;
 
 		CAlphaLaidEffect* pCastingCircle = CAlphaLaidEffect::Create(m_pGraphicDev, L"Texture_CastingCircle", L"StompCastingCircle", 27.f, 30.f, 0.03f, &vPos, 0.f, false, 1.f, D3DXCOLOR(1.f, 0.f, 0.f, 1.f));
-		Engine::Add_GameObject(L"GameLogic", L"StompCastingCircle", pCastingCircle);
+		Engine::Add_GameObject(L"Effect", L"StompCastingCircle", pCastingCircle);
 		m_eCurState = FSS_CASTING_CICLE;
 	}
 		break;
@@ -121,7 +121,7 @@ void CFireStomp::FireStompTail()
 	_vec3 vPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
 	vPos.y = 0.1f;
 	CLaidEffect* pCrack = CLaidEffect::Create(m_pGraphicDev, L"Texture_FloorCrack", L"FloorCrack", 1.f, 0.f, 0.05f, &vPos, 0.f, true, 0.05f);
-	Engine::Add_GameObject(L"GameLogic", L"FloorCrack", pCrack);
+	Engine::Add_GameObject(L"Effect", L"FloorCrack", pCrack);
 
 	CFireKick* pFireKick = CFireKick::Create(m_pGraphicDev, vPos, 0.1f);
 	Engine::Add_GameObject(L"GameLogic", L"FireKick", pFireKick);

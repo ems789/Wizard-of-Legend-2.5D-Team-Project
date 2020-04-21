@@ -108,7 +108,7 @@ void CFireThrow::Add_Effect(const _vec3* pPos)
 		CFireEffect* pEffect = CFireEffect::Create(m_pGraphicDev, pTextureTag, L"FireThrowParticle", 6.f, 15.f, 0.2f, &vCreatePos, &vDir, 1.f,
 			false, 0.f, D3DXCOLOR(1.f, 0.7f, 0.5f, 1.f), D3DXCOLOR(0.f, 1.f, 2.0f, 0.f));
 
-		Engine::Add_GameObject(L"GameLogic", L"FireThrowExplosion", pEffect);
+		Engine::Add_GameObject(L"Effect", L"FireThrowExplosion", pEffect);
 
 
 	}
@@ -194,7 +194,7 @@ void CFireThrow::FireThrowTail()
 		CFireEffect* pEffect = CFireEffect::Create(m_pGraphicDev, pTextureTag, L"FireParticle", 6.f, 15.f, 0.08f, &vCreatePos, &vDir, 1.f,
 			false, 0.f, D3DXCOLOR(1.f, 0.7f, 0.5f, 1.f), D3DXCOLOR(0.f, 1.f, 2.0f, 0.f));
 
-		Engine::Add_GameObject(L"GameLogic", L"FireExplosion", pEffect);
+		Engine::Add_GameObject(L"Effect", L"FireExplosion", pEffect);
 	}
 }
 

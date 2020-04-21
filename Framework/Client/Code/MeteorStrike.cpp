@@ -98,7 +98,7 @@ _int CMeteorStrike::Use_Skill(const _float & fTimeDelta, const _vec3 * pPos, con
 	vPos.y = 0.1f;
 
 	CAlphaLaidEffect* pCastingCircle = CAlphaLaidEffect::Create(m_pGraphicDev, L"Texture_CastingCircle", L"MeteorCastingCircle", 27, 20.f, 0.05f, &vPos, 0.f, false, 1.f, D3DXCOLOR(1.f, 0.5f, 0.2f, 1.f));
-	Engine::Add_GameObject(L"GameLogic", L"MeteorCastingCircle", pCastingCircle);
+	Engine::Add_GameObject(L"Effect", L"MeteorCastingCircle", pCastingCircle);
 
 
 	vPos.y = 30.f;

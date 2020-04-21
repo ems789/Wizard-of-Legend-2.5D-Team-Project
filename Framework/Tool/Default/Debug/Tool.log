@@ -1,3 +1,9 @@
-﻿     Creating library ../Bin\Tool.lib and object ../Bin\Tool.exp
+﻿  Skipping... (no relevant changes detected)
+  Tool.cpp
+  PathTool.cpp
+  MySheet.cpp
+  MainFrm.cpp
+  DirectoryMgr.cpp
+     Creating library ../Bin\Tool.lib and object ../Bin\Tool.exp
   Tool.vcxproj -> D:\TeamProject\Framework\Tool\Default\../Bin\Tool.exe
   Tool.vcxproj -> ../Bin\Tool.pdb (Partial PDB)

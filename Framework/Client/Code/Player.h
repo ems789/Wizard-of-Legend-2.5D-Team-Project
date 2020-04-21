@@ -42,6 +42,7 @@ private:
 	void	Turn_To_Camera_Look();
 	void	Fitting_Scale_With_Texture(CPlayer::PLAYER_STATE eState);
 	void	Fitting_Scale_With_Texture(CPlayer::PLAYER_STATE eState, _ulong dwIndex);
+	void	PickingPlane(_vec3* pOut);
 
 private:	//	Key_Input Functions
 	void	Key_Input(const _float& fTimeDelta);
@@ -65,9 +66,6 @@ private:	//	Key_Input Functions
 	void	Key_Input_Skill2(const _float& fTimeDelta);
 	void	Key_Input_Skill2_For_1stAnd3rdView(const _float& fTimeDelta);
 	void	Key_Input_Skill2_For_QuaterView(const _float& fTimeDelta);
-
-
-
 
 private:	//	State Setting
 	void	Idle_State();

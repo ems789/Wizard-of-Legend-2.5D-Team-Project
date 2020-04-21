@@ -31,6 +31,8 @@ HRESULT CTown::Ready_Scene()
 	FAILED_CHECK_RETURN(CScene::Ready_Scene(), E_FAIL);
 	FAILED_CHECK_RETURN(Ready_StaticLayer(), E_FAIL);
 	FAILED_CHECK_RETURN(Ready_GameLogic_Layer(L"GameLogic"), E_FAIL);
+	FAILED_CHECK_RETURN(Ready_Effect_Layer(L"Effect"), E_FAIL);
+	FAILED_CHECK_RETURN(Ready_Monster_Layer(L"Monster"), E_FAIL);
 	FAILED_CHECK_RETURN(Ready_UI_Layer(L"UI"), E_FAIL);
 	FAILED_CHECK_RETURN(Ready_Camera(), E_FAIL);
 	//	FAILED_CHECK_RETURN(UI_Setting(), E_FAIL);
@@ -41,15 +43,14 @@ HRESULT CTown::Ready_Scene()
 
 _int CTown::Update_Scene(const _float& fTimeDelta)
 {
-	//if (Engine::KeyDown(DIK_F7))
-	//{
-	//	//	TestMonster
-	//	Engine::CGameObject* pGameObject = CTestMonster::Create(m_pGraphicDev, &_vec3(rand() % 20 + 10.f, 1.f, rand() % 20 + 10.f));
-	//	NULL_CHECK_RETURN(pGameObject, E_FAIL);
+	if (Engine::KeyDown(DIK_F7))
+	{
+		//	FireBoss
+		Engine::CGameObject* pGameObject = CFireBoss::Create(m_pGraphicDev, &_vec3(rand() % 20 + 10.f, 1.f, rand() % 20 + 10.f));
+		NULL_CHECK_RETURN(pGameObject, E_FAIL);
 
-	//	Add_GameObject(L"GameLogic", L"Monster", pGameObject);
-
-	//}
+		Add_GameObject(L"Monster", L"Monster", pGameObject);
+	}
 
 	if (Engine::KeyDown(DIK_F6))
 	{
@@ -57,10 +58,17 @@ _int CTown::Update_Scene(const _float& fTimeDelta)
 		Engine::CGameObject* pGameObject = CCyclops::Create(m_pGraphicDev, &_vec3(rand() % 20 + 10.f, 1.f, rand() % 20 + 10.f));
 		NULL_CHECK_RETURN(pGameObject, E_FAIL);
 
-		Add_GameObject(L"GameLogic", L"Monster", pGameObject);
-
+		Add_GameObject(L"Monster", L"Monster", pGameObject);
 	}
 
+	if (Engine::KeyDown(DIK_F8))
+	{
+		//	FireBoss
+		Engine::CGameObject* pGameObject = CGolem::Create(m_pGraphicDev, &_vec3(rand() % 20 + 10.f, 1.f, rand() % 20 + 10.f));
+		NULL_CHECK_RETURN(pGameObject, E_FAIL);
+
+		Add_GameObject(L"Monster", L"Monster", pGameObject);
+	}
 
 
 	_int iExit = CScene::Update_Scene(fTimeDelta);
@@ -108,10 +116,36 @@ HRESULT CTown::Ready_GameLogic_Layer(const _tchar * pLayerTag)
 	//NULL_CHECK_RETURN(pGameObject, E_FAIL);
 	//pLayer->Add_GameObject(L"Monster", pGameObject);
 
-	pGameObject = CFireBoss::Create(m_pGraphicDev, &_vec3(10.f, 1.f, 10.f));
-	NULL_CHECK_RETURN(pGameObject, E_FAIL);
-	pLayer->Add_GameObject(L"Monster", pGameObject);
+	//pGameObject = CFireBoss::Create(m_pGraphicDev, &_vec3(10.f, 1.f, 10.f));
+	//NULL_CHECK_RETURN(pGameObject, E_FAIL);
+	//pLayer->Add_GameObject(L"Monster", pGameObject);
 
+
+	m_mapLayer.emplace(pLayerTag, pLayer);
+
+	return S_OK;
+}
+
+HRESULT CTown::Ready_Monster_Layer(const _tchar * pLayerTag)
+{
+	Engine::CLayer* pLayer = Engine::CLayer::Create();
+	NULL_CHECK_RETURN(pLayer, E_FAIL);
+
+	Engine::CGameObject* pGameObject = nullptr;
+	//pGameObject = CFireBoss::Create(m_pGraphicDev, &_vec3(10.f, 1.f, 10.f));
+	//NULL_CHECK_RETURN(pGameObject, E_FAIL);
+	//pLayer->Add_GameObject(L"Monster", pGameObject);
+
+
+	m_mapLayer.emplace(pLayerTag, pLayer);
+
+	return S_OK;
+}
+
+HRESULT CTown::Ready_Effect_Layer(const _tchar * pLayerTag)
+{
+	Engine::CLayer* pLayer = Engine::CLayer::Create();
+	NULL_CHECK_RETURN(pLayer, E_FAIL);
 
 	m_mapLayer.emplace(pLayerTag, pLayer);
 
@@ -165,8 +199,8 @@ HRESULT CTown::Ready_Camera()
 	NULL_CHECK_RETURN(pCamera, E_FAIL);
 	Engine::Add_BasicCamera(2, L"Quater_View_Camera", pCamera);
 
-	Engine::SetUp_MainCamera(Engine::CAM_STATIC, L"Third_View_Camera");
-	CMouse::GetInstance()->AnimingPointOn();
+	Engine::SetUp_MainCamera(Engine::CAM_STATIC, L"Quater_View_Camera");
+	//CMouse::GetInstance()->AnimingPointOff();
 
 	return S_OK;
 }
