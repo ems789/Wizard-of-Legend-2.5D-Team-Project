@@ -1,10 +1,12 @@
-﻿  BottomWallTex.cpp
+﻿  LeftWallTex.cpp
      ../Bin/Resources.lib 라이브러리 및 ../Bin/Resources.exp 개체를 생성하고 있습니다.
   Resources.vcxproj -> C:\Users\NHKim\Desktop\GitClone\TeamProject\Framework\Engine\Resources\Default\../Bin/Resources.dll
   Resources.vcxproj -> ../Bin/Resources.pdb (Full PDB)
   .\Engine\Resources\Code\BottomWallTex.h
+  .\Engine\Resources\Code\CeilingWallTex.h
   .\Engine\Resources\Code\CubeTex.h
   .\Engine\Resources\Code\LeftWallTex.h
+  .\Engine\Resources\Code\RcAlphaTex.h
   .\Engine\Resources\Code\RcCol.h
   .\Engine\Resources\Code\RcTex.h
   .\Engine\Resources\Code\Resources.h
@@ -16,9 +18,10 @@
   .\Engine\Resources\Code\TopWallTex.h
   .\Engine\Resources\Code\TriCol.h
   .\Engine\Resources\Code\VIBuffer.h
-         14개 파일이 복사되었습니다.
+         16개 파일이 복사되었습니다.
           1개 파일이 복사되었습니다.
-          1개 파일이 복사되었습니다.
+  다른 프로세스가 파일을 사용 중이기 때문에 프로세스가 액세스 할 수 없습니다.
+          0개 파일이 복사되었습니다.
           1개 파일이 복사되었습니다.
   .\Engine\Header\Engine_Defines.h
   .\Engine\Header\Engine_Enum.h

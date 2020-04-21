@@ -39,6 +39,7 @@ void CWallPage::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_CHECK3, m_Check[1]);
 	DDX_Control(pDX, IDC_CHECK4, m_Check[2]);
 	DDX_Control(pDX, IDC_CHECK5, m_Check[3]);
+	DDX_Control(pDX, IDC_CHECK6, m_Check[4]);
 }
 
 BEGIN_MESSAGE_MAP(CWallPage, CDialog)
@@ -51,6 +52,9 @@ BEGIN_MESSAGE_MAP(CWallPage, CDialog)
 	ON_BN_CLICKED(IDC_CHECK3, &CWallPage::OnBnClickedCheck3)
 	ON_BN_CLICKED(IDC_CHECK4, &CWallPage::OnBnClickedCheck4)
 	ON_BN_CLICKED(IDC_CHECK5, &CWallPage::OnBnClickedCheck5)
+	ON_BN_CLICKED(IDC_CHECK6, &CWallPage::OnBnClickedCheck6)
+	ON_BN_CLICKED(IDC_RADIO1, &CWallPage::OnBnClickedRadio1)
+	ON_BN_CLICKED(IDC_RADIO2, &CWallPage::OnBnClickedRadio2)
 END_MESSAGE_MAP()
 
 //BEGIN_MESSAGE_MAP(CWallPage, CPropertyPage)
@@ -251,4 +255,22 @@ void CWallPage::OnBnClickedCheck4()
 void CWallPage::OnBnClickedCheck5()
 {
 	m_bIsCheck[WALL_BOTTOM] = m_Check[WALL_BOTTOM].GetCheck();
+}
+
+
+void CWallPage::OnBnClickedCheck6()
+{
+	m_bIsCheck[WALL_CEILING] = m_Check[WALL_CEILING].GetCheck();
+}
+
+
+void CWallPage::OnBnClickedRadio1()
+{
+	m_eWallType = WALL_INNER;
+}
+
+
+void CWallPage::OnBnClickedRadio2()
+{
+	m_eWallType = WALL_OUTER;
 }

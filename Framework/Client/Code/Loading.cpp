@@ -58,10 +58,19 @@ _uint CLoading::Loading_ForState()
 	//	Buffer
 	//FAILED_CHECK_RETURN(Engine::Ready_Buffer(m_pGraphicDev, RESOURCE_STATIC, L"Buffer_TerrainTex", Engine::BUFFER_TERRAINTEX, D3DXCOLOR(1.f,1.f,1.f,1.f), L"", VTXCNTX, VTXCNTZ, VTXITV), E_FAIL);
 
-	FAILED_CHECK_RETURN(Engine::Ready_Buffer(m_pGraphicDev, RESOURCE_STATIC, L"Buffer_LeftWallTex", Engine::BUFFER_LEFTWALLTEX), E_FAIL);
-	FAILED_CHECK_RETURN(Engine::Ready_Buffer(m_pGraphicDev, RESOURCE_STATIC, L"Buffer_TopWallTex", Engine::BUFFER_TOPWALLTEX), E_FAIL);
-	FAILED_CHECK_RETURN(Engine::Ready_Buffer(m_pGraphicDev, RESOURCE_STATIC, L"Buffer_RightWallTex", Engine::BUFFER_RIGHTWALLTEX), E_FAIL);
-	FAILED_CHECK_RETURN(Engine::Ready_Buffer(m_pGraphicDev, RESOURCE_STATIC, L"Buffer_BottomWallTex", Engine::BUFFER_BOTTOMWALLTEX), E_FAIL);
+	// 외벽
+	FAILED_CHECK_RETURN(Engine::Ready_Buffer(m_pGraphicDev, RESOURCE_STATIC, L"Buffer_LeftWallTex_Outer", Engine::BUFFER_LEFTWALLTEX, Engine::WALL_OUTER), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Buffer(m_pGraphicDev, RESOURCE_STATIC, L"Buffer_TopWallTex_Outer", Engine::BUFFER_TOPWALLTEX, Engine::WALL_OUTER), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Buffer(m_pGraphicDev, RESOURCE_STATIC, L"Buffer_RightWallTex_Outer", Engine::BUFFER_RIGHTWALLTEX, Engine::WALL_OUTER), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Buffer(m_pGraphicDev, RESOURCE_STATIC, L"Buffer_BottomWallTex_Outer", Engine::BUFFER_BOTTOMWALLTEX, Engine::WALL_OUTER), E_FAIL);
+
+	// 내벽
+	FAILED_CHECK_RETURN(Engine::Ready_Buffer(m_pGraphicDev, RESOURCE_STATIC, L"Buffer_LeftWallTex_Inner", Engine::BUFFER_LEFTWALLTEX, Engine::WALL_INNER), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Buffer(m_pGraphicDev, RESOURCE_STATIC, L"Buffer_TopWallTex_Inner", Engine::BUFFER_TOPWALLTEX, Engine::WALL_INNER), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Buffer(m_pGraphicDev, RESOURCE_STATIC, L"Buffer_RightWallTex_Inner", Engine::BUFFER_RIGHTWALLTEX, Engine::WALL_INNER), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Buffer(m_pGraphicDev, RESOURCE_STATIC, L"Buffer_BottomWallTex_Inner", Engine::BUFFER_BOTTOMWALLTEX, Engine::WALL_INNER), E_FAIL);
+
+	FAILED_CHECK_RETURN(Engine::Ready_Buffer(m_pGraphicDev, RESOURCE_STATIC, L"Buffer_CeilingWallTex", Engine::BUFFER_CEILINGWALLTEX), E_FAIL);
 
 	//	Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STAGE, L"Texture_Terrain", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Terrain/TileSet/Grass/TutorialCourseFloorRoom2_9.png"), E_FAIL);

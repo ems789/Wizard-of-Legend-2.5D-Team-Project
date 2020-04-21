@@ -114,6 +114,7 @@ HRESULT CTerrain::LoadTile(const ::_tchar* pFilePath)
 		::RESOURCE_STATIC,
 		L"Buffer_TerrainTex",
 		Engine::BUFFER_TERRAINTEX,
+		Engine::WALL_OUTER,
 		D3DXCOLOR(1.f,1.f,1.f,1.f),
 		L"",
 		tTempTerrainInfo.dwTileX + 1,
@@ -125,6 +126,7 @@ HRESULT CTerrain::LoadTile(const ::_tchar* pFilePath)
 		::RESOURCE_STATIC,
 		L"Buffer_TileTex",
 		Engine::BUFFER_TILETEX,
+		Engine::WALL_OUTER,
 		D3DXCOLOR(1.f, 1.f, 1.f, 1.f),
 		L"",
 		0,
@@ -191,6 +193,7 @@ HRESULT	CTerrain::LoadWall(const ::_tchar* pFilePath)
 		::RESOURCE_STATIC,
 		L"Buffer_TerrainTex",
 		Engine::BUFFER_TERRAINTEX,
+		Engine::WALL_OUTER,
 		D3DXCOLOR(1.f, 1.f, 1.f, 1.f),
 		L"",
 		tTempTerrainInfo.dwTileX + 1,
@@ -207,7 +210,7 @@ HRESULT	CTerrain::LoadWall(const ::_tchar* pFilePath)
 		if (0 == dwBytes)
 			break;
 
-		pWall = CWall::Create(m_pGraphicDev, tTempWallInfo.bHasWall[WALL_LEFT], tTempWallInfo.bHasWall[WALL_TOP], tTempWallInfo.bHasWall[WALL_RIGHT], tTempWallInfo.bHasWall[WALL_BOTTOM]);
+		pWall = CWall::Create(m_pGraphicDev, tTempWallInfo.bHasWall[WALL_LEFT], tTempWallInfo.bHasWall[WALL_TOP], tTempWallInfo.bHasWall[WALL_RIGHT], tTempWallInfo.bHasWall[WALL_BOTTOM], tTempWallInfo.bHasWall[WALL_CEILING], tTempWallInfo.eWallType);
 		pWall->Set_Pos(tTempWallInfo.vPos.x, tTempWallInfo.vPos.y, tTempWallInfo.vPos.z);
 		pWall->Set_Render(tTempWallInfo.bRender);
 		pWall->Set_DrawID(tTempWallInfo.dwDrawID);

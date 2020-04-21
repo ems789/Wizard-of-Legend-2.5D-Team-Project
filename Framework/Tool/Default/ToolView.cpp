@@ -196,6 +196,7 @@ void CToolView::OnInitialUpdate()
 		::RESOURCE_STATIC,
 		L"Buffer_TerrainTex",
 		Engine::BUFFER_TERRAINTEX, 
+		Engine::WALL_OUTER,
 		D3DXCOLOR(1.f, 1.f, 1.f, 1.f),
 		L"",
 		pPropertyFormView->m_iTerrainX + 1, // 정점의 개수이므로 1을 더함
@@ -209,28 +210,69 @@ void CToolView::OnInitialUpdate()
 		Engine::BUFFER_TILETEX),
 		E_FAIL);
 
+	// 시계 방향 벽 텍스쳐
 	FAILED_CHECK_RETURN_VOID(Engine::Ready_Buffer(m_pGraphicDev,
 		::RESOURCE_STATIC,
-		L"Buffer_LeftWallTex",
-		Engine::BUFFER_LEFTWALLTEX),
+		L"Buffer_LeftWallTex_Outer",
+		Engine::BUFFER_LEFTWALLTEX,
+		WALL_OUTER),
 		E_FAIL);
 
 	FAILED_CHECK_RETURN_VOID(Engine::Ready_Buffer(m_pGraphicDev,
 		::RESOURCE_STATIC,
-		L"Buffer_TopWallTex",
-		Engine::BUFFER_TOPWALLTEX),
+		L"Buffer_TopWallTex_Outer",
+		Engine::BUFFER_TOPWALLTEX,
+		WALL_OUTER),
 		E_FAIL);
 
 	FAILED_CHECK_RETURN_VOID(Engine::Ready_Buffer(m_pGraphicDev,
 		::RESOURCE_STATIC,
-		L"Buffer_RightWallTex",
-		Engine::BUFFER_RIGHTWALLTEX),
+		L"Buffer_RightWallTex_Outer",
+		Engine::BUFFER_RIGHTWALLTEX,
+		WALL_OUTER),
 		E_FAIL);
 
 	FAILED_CHECK_RETURN_VOID(Engine::Ready_Buffer(m_pGraphicDev,
 		::RESOURCE_STATIC,
-		L"Buffer_BottomWallTex",
-		Engine::BUFFER_BOTTOMWALLTEX),
+		L"Buffer_BottomWallTex_Outer",
+		Engine::BUFFER_BOTTOMWALLTEX,
+		Engine::WALL_OUTER),
+		E_FAIL);
+
+
+	FAILED_CHECK_RETURN_VOID(Engine::Ready_Buffer(m_pGraphicDev,
+		::RESOURCE_STATIC,
+		L"Buffer_CeilingWallTex",
+		Engine::BUFFER_CEILINGWALLTEX),
+		E_FAIL);
+
+	// 반시계 방향 벽 텍스쳐
+	FAILED_CHECK_RETURN_VOID(Engine::Ready_Buffer(m_pGraphicDev,
+		::RESOURCE_STATIC,
+		L"Buffer_LeftWallTex_Inner",
+		Engine::BUFFER_LEFTWALLTEX,
+		Engine::WALL_INNER),
+		E_FAIL);
+
+	FAILED_CHECK_RETURN_VOID(Engine::Ready_Buffer(m_pGraphicDev,
+		::RESOURCE_STATIC,
+		L"Buffer_TopWallTex_Inner",
+		Engine::BUFFER_TOPWALLTEX,
+		Engine::WALL_INNER),
+		E_FAIL);
+
+	FAILED_CHECK_RETURN_VOID(Engine::Ready_Buffer(m_pGraphicDev,
+		::RESOURCE_STATIC,
+		L"Buffer_RightWallTex_Inner",
+		Engine::BUFFER_RIGHTWALLTEX,
+		Engine::WALL_INNER),
+		E_FAIL);
+
+	FAILED_CHECK_RETURN_VOID(Engine::Ready_Buffer(m_pGraphicDev,
+		::RESOURCE_STATIC,
+		L"Buffer_BottomWallTex_Inner",
+		Engine::BUFFER_BOTTOMWALLTEX,
+		Engine::WALL_INNER),
 		E_FAIL);
 
 	// 타일 텍스쳐 로드
@@ -273,8 +315,6 @@ void CToolView::OnInitialUpdate()
 	// INPUTDEV
 	FAILED_CHECK_RETURN_VOID(Engine::Ready_InputDev(g_hInst, g_hWnd), E_FAIL);
 
-	// 맵툴에서는 후면추려내기 적용 X
-	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
 }
 
 void CToolView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -293,21 +333,26 @@ void CToolView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	// 키보드 입력으로 체크 박스 체크
 	if (Engine::Get_DIKeyState(DIK_Z) & 0x80)
 	{
+		pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_CEILING].SetCheck(!pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_CEILING].GetCheck());
+		pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_CEILING] = pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_CEILING].GetCheck();
+	}
+	else if (Engine::Get_DIKeyState(DIK_X) & 0x80)
+	{
 		pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_LEFT].SetCheck(!pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_LEFT].GetCheck());
 		pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_LEFT] = pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_LEFT].GetCheck();		
 	}
-	else if (Engine::Get_DIKeyState(DIK_X) & 0x80)
+	else if (Engine::Get_DIKeyState(DIK_C) & 0x80)
 	{
 		pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_TOP].SetCheck(!pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_TOP].GetCheck());
 		pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_TOP] = pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_TOP].GetCheck();
 	}
-	else if (Engine::Get_DIKeyState(DIK_C) & 0x80)
+	else if (Engine::Get_DIKeyState(DIK_V) & 0x80)
 	{
 		pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_RIGHT].SetCheck(!pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_RIGHT].GetCheck());
 		pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_RIGHT] = pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_RIGHT].GetCheck();
 
 	}
-	else if (Engine::Get_DIKeyState(DIK_V) & 0x80)
+	else if (Engine::Get_DIKeyState(DIK_B) & 0x80)
 	{
 		pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_BOTTOM].SetCheck(!pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_BOTTOM].GetCheck());
 		pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_BOTTOM] = pPropertyFormView->m_MySheet->m_WallPage.m_Check[WALL_BOTTOM].GetCheck();
@@ -329,7 +374,6 @@ void CToolView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		vPickedTile = Picking_OnTerrain(g_hWnd, pTerrainBufferCom, pTerrainTransformCom);
 		int iSrcZ = (int)m_vLastPickTile.z;
 		int iDestZ = (int)vPickedTile.z;
-
 		
 		switch (pPropertyFormView->m_MySheet->GetActiveIndex())
 		{
@@ -356,6 +400,8 @@ void CToolView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			bool bHasTopWall = pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_TOP];
 			bool bHasRighttWall = pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_RIGHT];
 			bool bHasBottomWall = pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_BOTTOM];
+			bool bHasCeilingWall = pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_CEILING];
+			Engine::WALLTYPE eWallType = pPropertyFormView->m_MySheet->m_WallPage.m_eWallType;
 
 			if (bHasleftWall || bHasTopWall || bHasRighttWall || bHasBottomWall)
 			{
@@ -363,12 +409,12 @@ void CToolView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 				if (iSrcZ < iDestZ)
 				{
 					for (iSrcZ; iSrcZ <= iDestZ; ++iSrcZ)
-						m_pTerrain->WallChange(::_vec3(m_vLastPickTile.x, m_vLastPickTile.y, (float)iSrcZ), L"Texture_Wall", iDrawID, m_bRender, bHasleftWall, bHasTopWall, bHasRighttWall, bHasBottomWall);
+						m_pTerrain->WallChange(::_vec3(m_vLastPickTile.x, m_vLastPickTile.y, (float)iSrcZ), L"Texture_Wall", iDrawID, m_bRender, bHasleftWall, bHasTopWall, bHasRighttWall, bHasBottomWall, bHasCeilingWall, eWallType);
 				}
 				else if (iSrcZ > iDestZ)
 				{
 					for (iSrcZ; iSrcZ >= iDestZ; --iSrcZ)
-						m_pTerrain->WallChange(::_vec3(m_vLastPickTile.x, m_vLastPickTile.y, (float)iSrcZ), L"Texture_Wall", iDrawID, m_bRender, bHasleftWall, bHasTopWall, bHasRighttWall, bHasBottomWall);
+						m_pTerrain->WallChange(::_vec3(m_vLastPickTile.x, m_vLastPickTile.y, (float)iSrcZ), L"Texture_Wall", iDrawID, m_bRender, bHasleftWall, bHasTopWall, bHasRighttWall, bHasBottomWall, bHasCeilingWall, eWallType);
 				}			
 			}
 			// 벽 옵션이 전부 꺼져 있으면 벽을 생성하지 않고 리턴
@@ -402,12 +448,15 @@ void CToolView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 					m_pTerrain->TileChange(::_vec3((float)iSrcX, m_vLastPickTile.y, m_vLastPickTile.z), L"Texture_Tile", iDrawID, m_bRender);
 			}
 		}
+		// 벽
 		case 1:
 		{
 			bool bHasleftWall = pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_LEFT];
 			bool bHasTopWall = pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_TOP];
 			bool bHasRighttWall = pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_RIGHT];
 			bool bHasBottomWall = pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_BOTTOM];
+			bool bHasCeilingWall = pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_CEILING];
+			Engine::WALLTYPE eWallType = pPropertyFormView->m_MySheet->m_WallPage.m_eWallType;
 
 			if (bHasleftWall || bHasTopWall || bHasRighttWall || bHasBottomWall)
 			{
@@ -415,12 +464,12 @@ void CToolView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 				if (iSrcX < iDestX)
 				{
 					for (iSrcX; iSrcX <= iDestX; ++iSrcX)
-						m_pTerrain->WallChange(::_vec3((float)iSrcX, m_vLastPickTile.y, m_vLastPickTile.z), L"Texture_Wall", iDrawID, m_bRender, bHasleftWall, bHasTopWall, bHasRighttWall, bHasBottomWall);
+						m_pTerrain->WallChange(::_vec3((float)iSrcX, m_vLastPickTile.y, m_vLastPickTile.z), L"Texture_Wall", iDrawID, m_bRender, bHasleftWall, bHasTopWall, bHasRighttWall, bHasBottomWall, bHasCeilingWall, eWallType);
 				}
 				else if (iSrcX > iDestX)
 				{
 					for (iSrcX; iSrcX >= iDestX; --iSrcX)
-						m_pTerrain->WallChange(::_vec3((float)iSrcX, m_vLastPickTile.y, m_vLastPickTile.z), L"Texture_Wall", iDrawID, m_bRender, bHasleftWall, bHasTopWall, bHasRighttWall, bHasBottomWall);
+						m_pTerrain->WallChange(::_vec3((float)iSrcX, m_vLastPickTile.y, m_vLastPickTile.z), L"Texture_Wall", iDrawID, m_bRender, bHasleftWall, bHasTopWall, bHasRighttWall, bHasBottomWall, bHasCeilingWall, eWallType);
 				}
 			}
 			// 벽 옵션이 전부 꺼져 있으면 벽을 생성하지 않고 리턴
@@ -517,13 +566,15 @@ void CToolView::CreateObject(bool bIsRender)
 		bool bHasTopWall = pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_TOP];
 		bool bHasRighttWall = pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_RIGHT];
 		bool bHasBottomWall = pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_BOTTOM];
+		bool bHasCeilingWall = pPropertyFormView->m_MySheet->m_WallPage.m_bIsCheck[WALL_CEILING];
+		Engine::WALLTYPE eWallType = pPropertyFormView->m_MySheet->m_WallPage.m_eWallType;
 
-		if (bHasleftWall || bHasTopWall || bHasRighttWall || bHasBottomWall)
+		if (bHasleftWall || bHasTopWall || bHasRighttWall || bHasBottomWall || bHasCeilingWall)
 		{
 			iDrawID = pPropertyFormView->m_MySheet->m_WallPage.m_iDrawID;
 			vPickedTile = Picking_OnTerrain(g_hWnd, pTerrainBufferCom, pTerrainTransformCom);
 			m_vLastPickTile = vPickedTile;
-			m_pTerrain->WallChange(vPickedTile, L"Texture_Wall", iDrawID, m_bRender, bHasleftWall, bHasTopWall, bHasRighttWall, bHasBottomWall);
+			m_pTerrain->WallChange(vPickedTile, L"Texture_Wall", iDrawID, m_bRender, bHasleftWall, bHasTopWall, bHasRighttWall, bHasBottomWall, bHasCeilingWall, eWallType);
 
 		}
 		// 벽 옵션이 전부 꺼져 있으면 벽을 생성하지 않고 리턴

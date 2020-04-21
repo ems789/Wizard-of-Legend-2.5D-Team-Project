@@ -2,10 +2,8 @@ c:\users\nhkim\desktop\gitclone\teamproject\framework\tool\default\debug\tool.pc
 c:\users\nhkim\desktop\gitclone\teamproject\framework\tool\default\debug\vc140.pdb
 c:\users\nhkim\desktop\gitclone\teamproject\framework\tool\default\debug\vc140.idb
 c:\users\nhkim\desktop\gitclone\teamproject\framework\tool\default\debug\dynamiccamera.obj
-c:\users\nhkim\desktop\gitclone\teamproject\framework\tool\default\debug\terrain.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\tool\default\debug\terrainguidline.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\tool\default\debug\tile.obj
-c:\users\nhkim\desktop\gitclone\teamproject\framework\tool\default\debug\wall.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\tool\default\debug\directorymgr.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\tool\default\debug\mainfrm.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\tool\default\debug\mysheet.obj
@@ -16,6 +14,8 @@ c:\users\nhkim\desktop\gitclone\teamproject\framework\tool\default\debug\tool.ob
 c:\users\nhkim\desktop\gitclone\teamproject\framework\tool\default\debug\tooldoc.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\tool\default\debug\toolview.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\tool\default\debug\wallpage.obj
+c:\users\nhkim\desktop\gitclone\teamproject\framework\tool\default\debug\wall.obj
+c:\users\nhkim\desktop\gitclone\teamproject\framework\tool\default\debug\terrain.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\tool\bin\tool.ilk
 c:\users\nhkim\desktop\gitclone\teamproject\framework\tool\bin\tool.exe
 c:\users\nhkim\desktop\gitclone\teamproject\framework\tool\bin\tool.pdb

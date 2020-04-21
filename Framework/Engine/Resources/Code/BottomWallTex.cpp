@@ -23,7 +23,7 @@ Engine::CBottomWallTex::~CBottomWallTex(void)
 
 }
 
-HRESULT Engine::CBottomWallTex::Ready_Buffer(const _ulong dwVtxItv)
+HRESULT Engine::CBottomWallTex::Ready_Buffer(const _ulong dwVtxItv, WALLTYPE eWallType)
 {
 	m_dwVtxSize = sizeof(VTXTEX);
 	m_dwVtxCnt = 4;
@@ -57,15 +57,30 @@ HRESULT Engine::CBottomWallTex::Ready_Buffer(const _ulong dwVtxItv)
 
 	m_pIB->Lock(0, 0, (void**)&pIndex, 0);
 
-	// 0
-	pIndex[0]._0 = 0;
-	pIndex[0]._1 = 2;
-	pIndex[0]._2 = 1;
+	if (eWallType == WALL_OUTER)
+	{
+		// 0
+		pIndex[0]._0 = 0;
+		pIndex[0]._1 = 2;
+		pIndex[0]._2 = 1;
 
-	// 1
-	pIndex[1]._0 = 0;
-	pIndex[1]._1 = 3;
-	pIndex[1]._2 = 2;
+		// 1
+		pIndex[1]._0 = 0;
+		pIndex[1]._1 = 3;
+		pIndex[1]._2 = 2;
+	}
+	else if (eWallType == WALL_INNER)
+	{
+		// 0
+		pIndex[0]._0 = 0;
+		pIndex[0]._1 = 1;
+		pIndex[0]._2 = 2;
+
+		// 1
+		pIndex[1]._0 = 0;
+		pIndex[1]._1 = 2;
+		pIndex[1]._2 = 3;
+	}
 
 	m_pIB->Unlock();
 
@@ -78,11 +93,12 @@ Engine::CResources* Engine::CBottomWallTex::Clone(void)
 }
 
 Engine::CBottomWallTex* Engine::CBottomWallTex::Create(LPDIRECT3DDEVICE9 pGraphicDev,
-												const _ulong& dwVtxItv)
+													const _ulong& dwVtxItv, 
+													WALLTYPE eWallType)
 {
 	CBottomWallTex*	pInstance = new CBottomWallTex(pGraphicDev);
 
-	if (FAILED(pInstance->Ready_Buffer(dwVtxItv)))
+	if (FAILED(pInstance->Ready_Buffer(dwVtxItv, eWallType)))
 		Safe_Release(pInstance);
 
 	return pInstance;

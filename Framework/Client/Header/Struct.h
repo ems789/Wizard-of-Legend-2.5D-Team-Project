@@ -1,6 +1,8 @@
 #ifndef Struct_h__
 #define Struct_h__
 
+#include "Engine_Enum.h"
+
 typedef struct tagAnimationFrame
 {
 	_float	fCurFrame;
@@ -25,13 +27,13 @@ typedef struct tagTileInfo
 
 typedef struct tagWallInfo
 {
-	_vec3	vPos;
-	_ulong	dwItv;
-	_ulong	dwDrawID;
-	_ulong	dwIndex;
-	bool	bRender;
-	bool	bHasWall[WALL_END];
-
+	_vec3				vPos;
+	_ulong				dwItv;
+	_ulong				dwDrawID;
+	_ulong				dwIndex;
+	bool				bRender;
+	bool				bHasWall[WALL_END];
+	Engine::WALLTYPE	eWallType;
 } WALL_INFO;
 
 #endif // Struct_h__

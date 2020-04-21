@@ -133,12 +133,12 @@ void CTerrain::TileChange(const ::_vec3& vPos, const ::_tchar* tileTag, const in
 	m_vecTile[(int)vPos.z * m_dwTileX + (int)vPos.x]->Set_Render(bIsRender);
 }
 
-void CTerrain::WallChange(const ::_vec3& vPos, const ::_tchar* wallTag, const int iDrawID, bool bIsRender, bool bHasLeftWall, bool bHasTopWall, bool bHasRightWall, bool bHasBottomWall)
+void CTerrain::WallChange(const ::_vec3& vPos, const ::_tchar* wallTag, const int iDrawID, bool bIsRender, bool bHasLeftWall, bool bHasTopWall, bool bHasRightWall, bool bHasBottomWall, bool bHasCeilingWall, Engine::WALLTYPE eWallType)
 {
 	// 왼클릭 - 벽 추가
 	if (bIsRender)
 	{
-		CWall* pWall = CWall::Create(m_pGraphicDev, bHasLeftWall, bHasTopWall, bHasRightWall, bHasBottomWall);
+		CWall* pWall = CWall::Create(m_pGraphicDev, bHasLeftWall, bHasTopWall, bHasRightWall, bHasBottomWall, bHasCeilingWall, eWallType);
 		pWall->Set_DrawID(iDrawID);
 		pWall->Set_Render(bIsRender);
 		pWall->Set_Pos((int)vPos.x + m_dwItv * 0.5f,
@@ -236,6 +236,7 @@ void CTerrain::LoadTile(const ::_tchar* pFilePath)
 		::RESOURCE_STATIC,
 		L"Buffer_TerrainTex",
 		Engine::BUFFER_TERRAINTEX,
+		Engine::WALL_OUTER,
 		D3DXCOLOR(1.f, 1.f, 1.f, 1.f),
 		L"",
 		tTempTerrainInfo.dwTileX + 1,
@@ -247,6 +248,7 @@ void CTerrain::LoadTile(const ::_tchar* pFilePath)
 		::RESOURCE_STATIC,
 		L"Buffer_TileTex",
 		Engine::BUFFER_TILETEX,
+		Engine::WALL_OUTER,
 		D3DXCOLOR(1.f, 1.f, 1.f, 1.f),
 		L"",
 		0,
@@ -305,6 +307,7 @@ void CTerrain::SaveWall(const ::_tchar * pFilePath)
 			tTempWallInfo.dwItv = m_dwItv;
 			tTempWallInfo.dwIndex = i;
 			tTempWallInfo.dwDrawID = m_vecWallList[i][j]->Get_DrawID();
+			tTempWallInfo.eWallType = m_vecWallList[i][j]->Get_WallType();
 			for (::_ulong k = 0; k < WALL_END; ++k)
 				tTempWallInfo.bHasWall[k] = m_vecWallList[i][j]->Get_HasWall((WALLPOSITION)k);
 			WriteFile(hFile, &tTempWallInfo, sizeof(WALL_INFO), &dwBytes, nullptr);
@@ -361,6 +364,7 @@ void CTerrain::LoadWall(const ::_tchar * pFilePath)
 		::RESOURCE_STATIC,
 		L"Buffer_TerrainTex",
 		Engine::BUFFER_TERRAINTEX,
+		Engine::WALL_OUTER,
 		D3DXCOLOR(1.f, 1.f, 1.f, 1.f),
 		L"",
 		tTempTerrainInfo.dwTileX + 1,
@@ -377,10 +381,11 @@ void CTerrain::LoadWall(const ::_tchar * pFilePath)
 		if (0 == dwBytes)
 			break;
 
-		pWall = CWall::Create(m_pGraphicDev, tTempWallInfo.bHasWall[WALL_LEFT], tTempWallInfo.bHasWall[WALL_TOP], tTempWallInfo.bHasWall[WALL_RIGHT], tTempWallInfo.bHasWall[WALL_BOTTOM]);
+		pWall = CWall::Create(m_pGraphicDev, tTempWallInfo.bHasWall[WALL_LEFT], tTempWallInfo.bHasWall[WALL_TOP], tTempWallInfo.bHasWall[WALL_RIGHT], tTempWallInfo.bHasWall[WALL_BOTTOM], tTempWallInfo.bHasWall[WALL_CEILING], tTempWallInfo.eWallType);
 		pWall->Set_Pos(tTempWallInfo.vPos.x, tTempWallInfo.vPos.y, tTempWallInfo.vPos.z);
 		pWall->Set_Render(tTempWallInfo.bRender);
 		pWall->Set_DrawID(tTempWallInfo.dwDrawID);
+		pWall->Set_WallType(tTempWallInfo.eWallType);
 
 		m_vecWallList[tTempWallInfo.dwIndex].push_back(pWall);
 	}

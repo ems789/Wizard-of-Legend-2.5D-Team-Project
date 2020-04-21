@@ -2,7 +2,6 @@ c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\clien
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\vc140.pdb
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\vc140.idb
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\stdafx.obj
-c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\linecollider.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\loading.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\loadingscene.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\logo.obj
@@ -12,7 +11,6 @@ c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\playe
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\quaterviewcamera.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\spherecollider.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\stage.obj
-c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\terrain.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\testmonster.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\testterrain.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\thirdviewcamera.obj
@@ -31,10 +29,14 @@ c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\colli
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\cyclops.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\fire.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\fireball.obj
+c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\fireboss.obj
+c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\fireeffect.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\firstviewcamera.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\golem.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\inven.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\laideffect.obj
+c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\linecollider.obj
+c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\wall.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\bin\client_dbg.lib
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\bin\client_dbg.exp
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\bin\client_dbg.ilk

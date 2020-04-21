@@ -15,7 +15,7 @@ private:
 public:
 	const _vec3*		Get_VtxPos(void) const { return m_pPos; }
 public:
-	HRESULT Ready_Buffer(const _ulong dwVtxItv = 1);
+	HRESULT Ready_Buffer(const _ulong dwVtxItv = 1, WALLTYPE eWallType = WALL_OUTER);
 
 private:
 	HANDLE				m_hFile;
@@ -26,7 +26,8 @@ private:
 
 public:
 	static CTopWallTex*		Create(LPDIRECT3DDEVICE9 pGraphicDev, 
-							const _ulong& dwVtxItv);
+							const _ulong& dwVtxItv,
+							WALLTYPE eWallType);
 
 	virtual CResources* Clone(void) override;
 

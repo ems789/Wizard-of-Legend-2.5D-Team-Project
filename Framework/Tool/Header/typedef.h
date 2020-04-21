@@ -1,6 +1,8 @@
 #ifndef Typedef_h__
 #define Typedef_h__
 
+#include "Engine_Enum.h"
+
 typedef		bool					_bool;
 
 typedef		signed char				_char;
@@ -52,13 +54,13 @@ typedef struct tagTileInfo
 
 typedef struct tagWallInfo
 {
-	_vec3	vPos;
-	_ulong	dwItv;
-	_ulong	dwDrawID;
-	_ulong	dwIndex;
-	bool	bRender;
-	bool	bHasWall[WALL_END];
-	
+	_vec3				vPos;
+	_ulong				dwItv;
+	_ulong				dwDrawID;
+	_ulong				dwIndex;
+	bool				bRender;
+	bool				bHasWall[WALL_END];
+	Engine::WALLTYPE	eWallType;
 } WALL_INFO;
 
 //typedef	 struct tagMyVector3 : public D3DXVECTOR3

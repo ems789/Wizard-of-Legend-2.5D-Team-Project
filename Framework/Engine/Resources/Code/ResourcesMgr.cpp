@@ -31,7 +31,7 @@ HRESULT Engine::CResourcesMgr::Reserve_ContainerSize(const _ushort& wSize)
 	return S_OK;
 }
 
-HRESULT Engine::CResourcesMgr::Ready_Buffer(LPDIRECT3DDEVICE9 pGraphicDev, const _ushort& wContainerIdx, const _tchar* pBufferTag, BUFFERID eID, const D3DXCOLOR& d3dColor, const _tchar* pPath, const _ulong& dwCntX, const _ulong& dwCntZ, const _ulong& dwVtxItv)
+HRESULT Engine::CResourcesMgr::Ready_Buffer(LPDIRECT3DDEVICE9 pGraphicDev, const _ushort& wContainerIdx, const _tchar* pBufferTag, BUFFERID eID, WALLTYPE eVertexDir, const D3DXCOLOR& d3dColor, const _tchar* pPath, const _ulong& dwCntX, const _ulong& dwCntZ, const _ulong& dwVtxItv)
 {
 	NULL_CHECK_RETURN(m_pMapResources, E_FAIL);
 
@@ -64,16 +64,19 @@ HRESULT Engine::CResourcesMgr::Ready_Buffer(LPDIRECT3DDEVICE9 pGraphicDev, const
 		pResources = CTileTex::Create(pGraphicDev, dwVtxItv);
 		break;
 	case Engine::BUFFER_LEFTWALLTEX:
-		pResources = CLeftWallTex::Create(pGraphicDev, dwVtxItv);
+		pResources = CLeftWallTex::Create(pGraphicDev, dwVtxItv, eVertexDir);
 		break;
 	case Engine::BUFFER_TOPWALLTEX:
-		pResources = CTopWallTex::Create(pGraphicDev, dwVtxItv);
+		pResources = CTopWallTex::Create(pGraphicDev, dwVtxItv, eVertexDir);
 		break;
 	case Engine::BUFFER_RIGHTWALLTEX:
-		pResources = CRightWallTex::Create(pGraphicDev, dwVtxItv);
+		pResources = CRightWallTex::Create(pGraphicDev, dwVtxItv, eVertexDir);
 		break;
 	case Engine::BUFFER_BOTTOMWALLTEX:
-		pResources = CBottomWallTex::Create(pGraphicDev, dwVtxItv);
+		pResources = CBottomWallTex::Create(pGraphicDev, dwVtxItv, eVertexDir);
+		break;
+	case Engine::BUFFER_CEILINGWALLTEX:
+		pResources = CCeilingWallTex::Create(pGraphicDev, dwVtxItv);
 		break;
 	}
 	NULL_CHECK_RETURN(pResources, E_FAIL);

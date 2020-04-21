@@ -171,8 +171,10 @@ call CopyResources.bat
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Code\BottomWallTex.cpp" />
+    <ClCompile Include="..\Code\CeilingWallTex.cpp" />
     <ClCompile Include="..\Code\CubeTex.cpp" />
     <ClCompile Include="..\Code\LeftWallTex.cpp" />
+    <ClCompile Include="..\Code\RcAlphaTex.cpp" />
     <ClCompile Include="..\Code\RcCol.cpp" />
     <ClCompile Include="..\Code\RcTex.cpp" />
     <ClCompile Include="..\Code\Resources.cpp" />
@@ -188,8 +190,10 @@ call CopyResources.bat
   <ItemGroup>
     <ClInclude Include="..\..\Header\Export_Resources.h" />
     <ClInclude Include="..\Code\BottomWallTex.h" />
+    <ClInclude Include="..\Code\CeilingWallTex.h" />
     <ClInclude Include="..\Code\CubeTex.h" />
     <ClInclude Include="..\Code\LeftWallTex.h" />
+    <ClInclude Include="..\Code\RcAlphaTex.h" />
     <ClInclude Include="..\Code\RcCol.h" />
     <ClInclude Include="..\Code\RcTex.h" />
     <ClInclude Include="..\Code\Resources.h" />

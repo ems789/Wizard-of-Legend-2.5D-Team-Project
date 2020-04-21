@@ -37,6 +37,7 @@ public: // Message Functions
 	afx_msg void OnBnClickedCheck3();
 	afx_msg void OnBnClickedCheck4();
 	afx_msg void OnBnClickedCheck5();
+	afx_msg void OnBnClickedCheck6();
 
 public: // User Functions
 	void SettingHorizontalScrollSize();
@@ -48,7 +49,10 @@ public:	// Control Variables
 public:
 	Engine::CGraphicDev* m_pGraphicDev;
 
-	int m_iDrawID;
-	CButton m_Check[WALL_END];
-	bool	m_bIsCheck[WALL_END];
+	int					m_iDrawID;
+	CButton				m_Check[WALL_END];
+	bool				m_bIsCheck[WALL_END];
+	Engine::WALLTYPE	m_eWallType;
+	afx_msg void		OnBnClickedRadio1();
+	afx_msg void		OnBnClickedRadio2();
 };

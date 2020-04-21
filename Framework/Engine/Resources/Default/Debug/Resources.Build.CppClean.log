@@ -1,12 +1,13 @@
 c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\resources\default\debug\vc140.pdb
 c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\resources\default\debug\vc140.idb
 c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\resources\default\debug\bottomwalltex.obj
+c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\resources\default\debug\ceilingwalltex.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\resources\default\debug\cubetex.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\resources\default\debug\leftwalltex.obj
+c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\resources\default\debug\rcalphatex.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\resources\default\debug\rccol.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\resources\default\debug\rctex.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\resources\default\debug\resources.obj
-c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\resources\default\debug\resourcesmgr.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\resources\default\debug\rightwalltex.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\resources\default\debug\terraintex.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\resources\default\debug\texture.obj
@@ -14,6 +15,7 @@ c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\resources\default\d
 c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\resources\default\debug\topwalltex.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\resources\default\debug\tricol.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\resources\default\debug\vibuffer.obj
+c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\resources\default\debug\resourcesmgr.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\resources\bin\resources.ilk
 c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\resources\bin\resources.dll
 c:\users\nhkim\desktop\gitclone\teamproject\framework\engine\resources\bin\resources.pdb

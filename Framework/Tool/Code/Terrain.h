@@ -32,7 +32,7 @@ public:
 
 public:
 	void		TileChange(const _vec3& vPos, const _tchar* tileTag, const int iDrawID ,bool bIsRender);
-	void		WallChange(const _vec3& vPos, const _tchar* wallTag, const int iDrawID, bool bIsRender, bool bHasLeftWall, bool bHasTopWall, bool bHasRightWall, bool bHasBottomWall);
+	void		WallChange(const _vec3& vPos, const _tchar* wallTag, const int iDrawID, bool bIsRender, bool bHasLeftWall, bool bHasTopWall, bool bHasRightWall, bool bHasBottomWall, bool bHasCeilingWall, Engine::WALLTYPE eWallType);
 	void		SaveTile(const _tchar* pFilePath);
 	void		LoadTile(const _tchar* pFilePath);
 	void		SaveWall(const _tchar* pFilePath);

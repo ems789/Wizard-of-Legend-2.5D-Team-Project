@@ -9,8 +9,9 @@ BEGIN(Engine)
 class CLeftWallTex;
 class CTopWallTex;
 class CRightWallTex;
-class CTexture;
 class CBottomWallTex;
+class CCeilingWallTex;
+class CTexture;
 class CTransform;
 class CRenderer;
 
@@ -28,15 +29,17 @@ public:
 	virtual void	Render_GameObject(void) override;
 
 public:
-	const _vec3*	Get_Pos(); 
-	const bool		Get_Render(); 
-	const int		Get_DrawID();
-	bool			Get_HasWall(WALLPOSITION eWallPos);
-	void			Set_Pos(const _float& fX, const _float& fY, const _float& fZ);
-	void			Set_Pos(const _vec3& vPos);
-	void			Set_Render(const bool& bIsRender);
-	void			Set_HasWall(bool bHasLeftWall, bool bHasTopWall, bool bHasRightWall, bool bHasBottomWall);
-	void			Set_DrawID(const int iDrawID);
+	const _vec3*			Get_Pos();
+	const bool				Get_Render();
+	const int				Get_DrawID();
+	bool					Get_HasWall(WALLPOSITION eWallPos);
+	const Engine::WALLTYPE	Get_WallType();
+	void					Set_Pos(const _float& fX, const _float& fY, const _float& fZ);
+	void					Set_Pos(const _vec3& vPos);
+	void					Set_Render(const bool& bIsRender);
+	void					Set_HasWall(bool bHasLeftWall, bool bHasTopWall, bool bHasRightWall, bool bHasBottomWall, bool bHasCeilingWall, Engine::WALLTYPE eWallType);
+	void					Set_DrawID(const int iDrawID);
+	void					Set_WallType(Engine::WALLTYPE eWallType);
 
 private:
 	HRESULT			Add_Component(void);
@@ -47,15 +50,17 @@ private:
 	Engine::CTopWallTex*	m_pTopWallBufferCom = nullptr;
 	Engine::CRightWallTex*	m_pRightWallBufferCom = nullptr;
 	Engine::CBottomWallTex*	m_pBottomWallBufferCom = nullptr;
+	Engine::CCeilingWallTex* m_pCeilingWallBufferCom = nullptr;
 
 	Engine::CTexture*		m_pTextureCom = nullptr;
 	Engine::CTransform*		m_pTransformCom = nullptr;
 	bool					m_bIsRender = false;
 	bool					m_bHasWall[WALL_END]{ false, };
 	int						m_iDrawID = 0;
+	Engine::WALLTYPE		m_eWallType = Engine::WALL_OUTER;
 
 public:
-	static CWall*		Create(LPDIRECT3DDEVICE9 pGraphicDev, bool bHasLeftWall, bool bHasTopWall, bool bHasRightWall, bool bHasBottomWall);
+	static CWall*		Create(LPDIRECT3DDEVICE9 pGraphicDev, bool bHasLeftWall, bool bHasTopWall, bool bHasRightWall, bool bHasBottomWall, bool bHasCeilingWall, Engine::WALLTYPE eWallType);
 
 private:
 	virtual void Free(void) override;
