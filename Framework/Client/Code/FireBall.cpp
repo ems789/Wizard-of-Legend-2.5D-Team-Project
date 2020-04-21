@@ -58,6 +58,11 @@ _int CFireBall::Use_Skill(const _float& fTimeDelta)
 _int CFireBall::Use_Skill(const _float & fTimeDelta, const _vec3 * pPos, const _vec3 * pDir)
 {
 	_float fCumulativeTime = Engine::Get_CummulativeTime(L"FireBall_CoolTime");
+	if (m_bFirstShot)
+	{
+		fCumulativeTime = 10000.f;
+		m_bFirstShot = false;
+	}
 	if (fCumulativeTime < m_fCoolTime)
 		return 0;
 	else

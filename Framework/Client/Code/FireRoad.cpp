@@ -146,7 +146,7 @@ void CFireRoad::FireRoadTail()
 {
 	_vec3 vPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
 
-	for (_uint i = 0; i < 4; ++i)
+	for (_uint i = 0; i < 2; ++i)
 	{
 		const _tchar* pTextureTag = nullptr;
 		switch (rand() % 4)
@@ -172,7 +172,7 @@ void CFireRoad::FireRoadTail()
 		vCreatePos.y = 0.f;
 		D3DXVec3Normalize(&vDir, &vDir);
 
-		CFireEffect* pEffect = CFireEffect::Create(m_pGraphicDev, pTextureTag, L"FireParticle", 6.f, 15.f, 0.1f, &vCreatePos, &vDir, 1.f,
+		CFireEffect* pEffect = CFireEffect::Create(m_pGraphicDev, pTextureTag, L"FireParticle", 6.f, 15.f, 0.2f, &vCreatePos, &vDir, 1.f,
 			false, 0.f, D3DXCOLOR(1.f, 0.7f, 0.5f, 1.f), D3DXCOLOR(0.f, 1.f, 2.0f, 0.f));
 
 		Engine::Add_GameObject(L"GameLogic", L"FireRoad", pEffect);

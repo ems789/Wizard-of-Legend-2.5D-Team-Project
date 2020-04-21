@@ -109,12 +109,20 @@ _uint CLoading::Loading_ForState()
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_HPBarFill", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/UI/HP/HPBarFill.png"), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_HPBarHurtFill", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/UI/HP/HPBarHurtFill.png"), E_FAIL);
 
+	//	AirRing
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_AirRingUp", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/AirRing/Up/AirRing%d.png", 4), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_AirRingDown", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/AirRing/Down/AirRing%d.png", 4), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_AirRingRight", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/AirRing/Right/AirRing%d.png", 4), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_AirRingLeft", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/AirRing/Left/AirRing%d.png", 4), E_FAIL);
+
 	//	FireBall Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Fire", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Skill/FireBall/IgnitionOrb_%d.png", 4), E_FAIL);
 
 	//	WindSlash Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WindSlash", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Skill/WindSlash/WindSlashLarge%d.png", 7), E_FAIL);
 
+	//	Meteor	Texture
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Meteor", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Skill/MeteorStrike/MeteorStrike%d.png", 4), E_FAIL);
 	//	Explosion Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FireExplosion", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/FireExplosion/FireExplosion%d.png", 7), E_FAIL);
 
@@ -191,8 +199,9 @@ _uint CLoading::Loading_ForState()
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FireBoss_RoundhouseKickRight", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/FireBoss/RoundhouseKick/Right/FireBossRoundhouseKick%d.png", 5), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FireBoss_RoundhouseKickLeft", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/FireBoss/RoundhouseKick/Left/FireBossRoundhouseKick%d.png", 5), E_FAIL);
 
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FireBoss_Taunt", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/FireBoss/Taunt/FireBossTaunt%d.png", 6), E_FAIL);
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FireBoss_Squat", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/FireBoss/Squat/FireBossSquat%d.png", 4), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FireBoss_Taunt", Engine::TEX_NORMAL,	L"../Bin/Resource/Texture/Monster/FireBoss/Taunt/FireBossTaunt%d.png", 6), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FireBoss_Squat", Engine::TEX_NORMAL,	L"../Bin/Resource/Texture/Monster/FireBoss/Squat/FireBossSquat%d.png", 4), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FireBoss_Dead", Engine::TEX_NORMAL,		L"../Bin/Resource/Texture/Monster/FireBoss/Dead/FireBossDead%d.png", 2), E_FAIL);
 
 	//	Shuriken Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FireBoss_Shuriken", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Skill/Shuriken.png"), E_FAIL);

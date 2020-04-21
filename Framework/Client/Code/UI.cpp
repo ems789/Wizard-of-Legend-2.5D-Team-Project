@@ -99,7 +99,7 @@ HRESULT CUI::Setting_SkillSlot()
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"UI_SKILLBAR", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/UI/Slot/UI_SKILLBAR.png"), E_FAIL);
 	CUIImage* pSlotUI = CUIImage::Create(m_pGraphicDev, _vec3(468.f, 160.f, 0.f), _vec3(650.f, 450.f, 0.f), L"UI_SKILLBAR");
 
-	NULL_CHECK_RETURN(m_pUISkillSlot, E_FAIL);
+	NULL_CHECK_RETURN(pSlotUI, E_FAIL);
 
 	m_pUISkillSlot = pSlotUI;
 

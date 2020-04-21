@@ -30,12 +30,17 @@ private:
 
 public:
 	virtual const _vec3* Get_Angle(_vec3* pAngle) { if (pAngle) memcpy(pAngle, &m_vAngle, sizeof(_vec3)); return &m_vAngle; }
-
+	virtual void			CameraShake();
+	virtual _vec2			Get_MousePos();
 private:
 	const Engine::CTransform*	m_pTargetInfo = nullptr;
 	_float						m_fDistance = 10.f;
 	_float						m_fSpeed = 10.f;
 	_vec3						m_vAngle = INITIAL_ANGLE;
+
+	_bool						m_bShaking = false;
+	_float						m_fShakingTime = 0.f;
+	_float						m_fShakingDir = 0.1f;
 
 public:
 	static CQuaterViewCamera* Create(LPDIRECT3DDEVICE9 pGraphicDev);

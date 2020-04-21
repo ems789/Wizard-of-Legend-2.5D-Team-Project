@@ -1,0 +1,58 @@
+﻿  BottomWallTex.cpp
+  CeilingWallTex.cpp
+  CubeTex.cpp
+  LeftWallTex.cpp
+  RcAlphaTex.cpp
+  RcCol.cpp
+  RcTex.cpp
+  Resources.cpp
+  ResourcesMgr.cpp
+  RightWallTex.cpp
+  TerrainTex.cpp
+  Texture.cpp
+  TileTex.cpp
+  TopWallTex.cpp
+  TriCol.cpp
+  VIBuffer.cpp
+     Creating library ../Bin/Resources.lib and object ../Bin/Resources.exp
+  Generating code
+d:\teamproject\framework\engine\resources\code\cubetex.cpp(125): warning C4715: 'Engine::CCubeTex::Ready_Buffer': not all control paths return a value
+  All 460 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Resources.vcxproj -> D:\TeamProject\Framework\Engine\Resources\Default\../Bin/Resources.dll
+  Resources.vcxproj -> ../Bin/Resources.pdb (Full PDB)
+  .\Engine\Resources\Code\BottomWallTex.h
+  .\Engine\Resources\Code\CeilingWallTex.h
+  .\Engine\Resources\Code\CubeTex.h
+  .\Engine\Resources\Code\LeftWallTex.h
+  .\Engine\Resources\Code\RcAlphaTex.h
+  .\Engine\Resources\Code\RcCol.h
+  .\Engine\Resources\Code\RcTex.h
+  .\Engine\Resources\Code\Resources.h
+  .\Engine\Resources\Code\ResourcesMgr.h
+  .\Engine\Resources\Code\RightWallTex.h
+  .\Engine\Resources\Code\TerrainTex.h
+  .\Engine\Resources\Code\Texture.h
+  .\Engine\Resources\Code\TileTex.h
+  .\Engine\Resources\Code\TopWallTex.h
+  .\Engine\Resources\Code\TriCol.h
+  .\Engine\Resources\Code\VIBuffer.h
+         16개 파일이 복사되었습니다.
+          1개 파일이 복사되었습니다.
+          1개 파일이 복사되었습니다.
+          1개 파일이 복사되었습니다.
+  .\Engine\Header\Engine_Defines.h
+  .\Engine\Header\Engine_Enum.h
+  .\Engine\Header\Engine_Function.h
+  .\Engine\Header\Engine_Macro.h
+  .\Engine\Header\Engine_Struct.h
+  .\Engine\Header\Engine_Typedef.h
+  .\Engine\Header\Export_Function.h
+  .\Engine\Header\Export_Resources.h
+  .\Engine\Header\Export_System.h
+  .\Engine\Header\Export_Utility.h
+         10개 파일이 복사되었습니다.
+  .\Engine\Header\Export_Resources.inl
+  .\Engine\Header\Export_System.inl
+  .\Engine\Header\Export_Utility.inl
+          3개 파일이 복사되었습니다.

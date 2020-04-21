@@ -266,6 +266,15 @@ HRESULT CFireBoss::Add_Component()
 	m_vvTextureCom[FBS_ROUNDHOUSEKICK][FBD_DOWN] = pTextureCom;
 	pTextureCom->AddRef();
 
+	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_FireBoss_Dead"));
+	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	m_vvTextureCom[FBS_DEAD][FBD_UP] = pTextureCom;
+	m_vvTextureCom[FBS_DEAD][FBD_DOWN] = pTextureCom;
+	pTextureCom->AddRef();
+	m_vvTextureCom[FBS_DEAD][FBD_RIGHT] = pTextureCom;
+	pTextureCom->AddRef();
+	m_vvTextureCom[FBS_DEAD][FBD_LEFT] = pTextureCom;
+	pTextureCom->AddRef();
 
 	return S_OK;
 }
@@ -332,6 +341,7 @@ void CFireBoss::Change_State()
 		Taunt_State();
 		break;
 	case CFireBoss::FBS_DEAD:
+		Dead_State();
 		break;
 	}
 
@@ -382,7 +392,7 @@ void CFireBoss::Update_State(const _float & fTimeDelta)
 		Taunt_Update(fTimeDelta);
 		break;
 	case CFireBoss::FBS_DEAD:
-
+		Dead_Update(fTimeDelta);
 		break;
 	}
 }
@@ -622,6 +632,18 @@ void CFireBoss::Taunt_State()
 	m_bAnimRepeat = false;
 
 	Fitting_Scale_With_Texture(FBS_TAUNT);
+}
+
+void CFireBoss::Dead_State()
+{
+	m_tFrame.fCurFrame = 0.f;
+	m_tFrame.fMaxFrame = 2.f;
+	m_tFrame.fFrameSpeed = 2.f;
+
+	m_bAnimFinish = false;
+	m_bAnimRepeat = false;
+
+	Fitting_Scale_With_Texture(FBS_DEAD);
 }
 
 _int CFireBoss::Idle_Update(const _float & fTimeDelta)
@@ -1053,15 +1075,37 @@ void CFireBoss::Taunt_Update(const _float & fTimeDelta)
 	}
 }
 
+void CFireBoss::Dead_Update(const _float & fTimeDelta)
+{
+	m_fDeadTime += fTimeDelta;
+
+	if (m_fDeadTime >= 3.f)
+	{
+		m_bIsDead = true;
+
+		const _tchar* pTextureTag = nullptr;
+		switch (rand() % 4)
+		{
+		case 0:
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		}
+
+	}
+}
+
 void CFireBoss::Hit(const _int & iAtk, const _vec3 * pAtkPos)
 {
 	m_iHP -= iAtk;
 	if (m_iHP <= 0)
 	{
-		m_bIsDead = true;
-		//_vec3 vPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
-		//CBasicEffect* pDieEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_FireBoss_Death", L"FireBossDieEffect", 6, 10.f, m_fScale, &vPos, false, 0.f);
-		//Engine::Add_GameObject(L"GameLogic", L"FireBossDieEffect", pDieEffect);
+		m_eCurState = FBS_DEAD;
+		m_iHP = 0;
 	}
 
 }

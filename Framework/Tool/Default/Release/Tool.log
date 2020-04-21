@@ -1,0 +1,12 @@
+﻿  ToolView.cpp
+ToolView.cpp(339): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+ToolView.cpp(344): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+ToolView.cpp(349): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+ToolView.cpp(354): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+ToolView.cpp(360): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+     Creating library ../Bin\Tool.lib and object ../Bin\Tool.exp
+  Generating code
+  All 1213 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Tool.vcxproj -> D:\TeamProject\Framework\Tool\Default\../Bin\Tool.exe
+  Tool.vcxproj -> ../Bin\Tool.pdb (Full PDB)

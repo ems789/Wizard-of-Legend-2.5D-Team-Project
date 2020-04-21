@@ -1,3 +1,18 @@
-﻿     Creating library ../Bin\Tool.lib and object ../Bin\Tool.exp
+﻿  ToolView.cpp
+d:\teamproject\framework\tool\default\toolview.cpp(339): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+d:\teamproject\framework\tool\default\toolview.cpp(344): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+d:\teamproject\framework\tool\default\toolview.cpp(349): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+d:\teamproject\framework\tool\default\toolview.cpp(354): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+d:\teamproject\framework\tool\default\toolview.cpp(360): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+  ToolDoc.cpp
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  WallPage.cpp
+  Tool.cpp
+  TilePage.cpp
+  PropertyFormView.cpp
+  MainFrm.cpp
+  Terrain.cpp
+     Creating library ../Bin\Tool.lib and object ../Bin\Tool.exp
   Tool.vcxproj -> D:\TeamProject\Framework\Tool\Default\../Bin\Tool.exe
   Tool.vcxproj -> ../Bin\Tool.pdb (Partial PDB)

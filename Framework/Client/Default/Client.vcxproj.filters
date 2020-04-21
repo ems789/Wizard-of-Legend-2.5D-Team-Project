@@ -193,6 +193,12 @@
     <Filter Include="03.Effect\05.AlphaLaidEffect">
       <UniqueIdentifier>{9b7768a9-c5c6-4c8f-b629-21dbedeff4ab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="05.Skill\00.Fire\01.MeteorStrike">
+      <UniqueIdentifier>{0f4daa14-59fc-43cc-8ddb-19f09f18801b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Skill\00.Fire\01.MeteorStrike\00.Meteor">
+      <UniqueIdentifier>{e756fcb1-70f8-41d9-bb10-afc14b985bee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -351,6 +357,12 @@
     <ClInclude Include="..\Code\FireEffect.h">
       <Filter>03.Effect\04.FireEffect</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\MeteorStrike.h">
+      <Filter>05.Skill\00.Fire\01.MeteorStrike</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Meteor.h">
+      <Filter>05.Skill\00.Fire\01.MeteorStrike\00.Meteor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -484,6 +496,12 @@
     </ClCompile>
     <ClCompile Include="..\Code\FireEffect.cpp">
       <Filter>03.Effect\04.FireEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\MeteorStrike.cpp">
+      <Filter>05.Skill\00.Fire\01.MeteorStrike</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Meteor.cpp">
+      <Filter>05.Skill\00.Fire\01.MeteorStrike\00.Meteor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -187,6 +187,8 @@
     <ClInclude Include="..\Code\LoadingScene.h" />
     <ClInclude Include="..\Code\Logo.h" />
     <ClInclude Include="..\Code\MainApp.h" />
+    <ClInclude Include="..\Code\Meteor.h" />
+    <ClInclude Include="..\Code\MeteorStrike.h" />
     <ClInclude Include="..\Code\Mouse.h" />
     <ClInclude Include="..\Code\Player.h" />
     <ClInclude Include="..\Code\QuaterViewCamera.h" />
@@ -241,6 +243,8 @@
     <ClCompile Include="..\Code\LoadingScene.cpp" />
     <ClCompile Include="..\Code\Logo.cpp" />
     <ClCompile Include="..\Code\MainApp.cpp" />
+    <ClCompile Include="..\Code\Meteor.cpp" />
+    <ClCompile Include="..\Code\MeteorStrike.cpp" />
     <ClCompile Include="..\Code\Mouse.cpp" />
     <ClCompile Include="..\Code\Player.cpp" />
     <ClCompile Include="..\Code\QuaterViewCamera.cpp" />
