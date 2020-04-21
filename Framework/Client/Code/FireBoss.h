@@ -16,7 +16,8 @@ END
 class CFireBoss : public Engine::CGameObject
 {
 private:
-	enum FireBoss_STATE	{ FBS_IDLE, FBS_RUN, FBS_ATTACK, FBS_DASH, FBS_KICK, FBS_HEEL, FBS_BOOM, FBS_POINT, FBS_HURT, FBS_END };
+	enum FireBoss_STATE	{	FBS_IDLE, FBS_ATTACK, FBS_DASH_READY, FBS_DASH, FBS_DASH_FINISH, FBS_SPINKICK, FBS_ROUNDHOUSEKICK, 
+							FBS_HEEL, FBS_STOMP, FBS_POINT, FBS_HURT, FBS_SQUAT, FBS_TAUNT, FBS_DEAD, FBS_END };
 	enum FireBoss_DIR	{ FBD_UP, FBD_DOWN, FBD_LEFT, FBD_RIGHT, FBD_END };
 
 private:
@@ -40,17 +41,38 @@ private:
 	void	Turn_To_Camera_Look();
 	void	Fitting_Scale_With_Texture(CFireBoss::FireBoss_STATE eState);
 	void	Fitting_Scale_With_Texture(CFireBoss::FireBoss_STATE eState, _ulong dwIndex);
+	void	FireEffect(const _float& fTimeDelta);
 
 private:
 	void Idle_State();
-	void Run_State();
 	void Attack_State();
-	void Attack_FT_State();
+	void DashReady_State();
+	void Dash_State();
+	void DashFinish_State();
+	void RoundKick_State();
+	void SpinKick_State();
+	void Heel_State();
+	void Stomp_State();
+	void Point_State();
+	void Hurt_State();
+	void Squat_State();
+	void Taunt_State();
+
 
 public:
 	_int Idle_Update(const _float& fTimeDelta);
-	_int Run_Update(const _float& fTimeDelta);
 	_int Attack_Update(const _float& fTimeDelta);
+	void DashReady_Update(const _float& fTimeDelta);
+	void Dash_Update(const _float& fTimeDelta);
+	void DashFinish_Update(const _float& fTimeDelta);
+	void RoundKick_Update(const _float& fTimeDelta);
+	void SpinKick_Update(const _float& fTimeDelta);
+	void Heel_Update(const _float& fTimeDelta);
+	void Stomp_Update(const _float& fTimeDelta);
+	void Point_Update(const _float& fTimeDelta);
+	void Hurt_Update(const _float& fTimeDelta);
+	void Squat_Update(const _float& fTimeDelta);
+	void Taunt_Update(const _float& fTimeDelta);
 
 
 public:
@@ -69,8 +91,8 @@ private:	//	Components
 
 private:
 	Engine::SPHERE	m_tSphere;
-	_int	m_iHP		= 200;
-	_int	m_iHPMax	= 200;
+	_int	m_iHP		= 1000;
+	_int	m_iHPMax	= 1000;
 
 	_float	m_fScale = 0.05f;
 	_float	m_fHeight = 1.f;
@@ -85,7 +107,36 @@ private:
 	CFireBoss::FireBoss_STATE		m_eCurState = CFireBoss::FBS_END;
 	CFireBoss::FireBoss_DIR			m_eCurDir	= CFireBoss::FBD_END;
 
-	_float	m_fSpeed = 2.f;
+	_float	m_fSpeed = 40.f;
+
+	_float	m_fFireEffectTime = 0.f;
+
+	_float	m_fIdleTime = 0.f;
+	_uint	m_uiPattern = 0;
+
+	_bool	m_bAttack = false;
+	_uint	m_uiDashCount = 0;
+	_vec3	m_vDashDir = {};
+	_float	m_fFireRoadItv = 0.f;
+	
+	_uint	m_uiKickCount = 0;
+	_vec3	m_vKickDir = {};
+	_float	m_fKickFireTime = 0.f;
+	_float	m_fKickAngle = 0.f;
+
+	_bool	m_bHeelInit = false;
+	_vec3	m_vHeelTarget	= {};
+	_vec3	m_vHeelDir		= {};
+	_float	m_fHeelSpeed = 0.f;
+	_float	m_fJumpPower	= 0.f;
+	_float	m_fFallSpeed	= 5.f;
+	_bool	m_bHeelFire = false;
+
+	_bool	m_bFireStomp = false;
+	
+	_bool	m_bFirePoint = false;
+
+	_float	m_fHurtTime = 0.f;
 
 public:
 	static CFireBoss* Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3* pPos);

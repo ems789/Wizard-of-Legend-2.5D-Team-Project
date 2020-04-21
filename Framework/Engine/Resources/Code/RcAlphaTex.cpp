@@ -9,9 +9,9 @@ Engine::CRcAlphaTex::CRcAlphaTex(LPDIRECT3DDEVICE9 pGraphicDev)
 }
 
 Engine::CRcAlphaTex::CRcAlphaTex(const CRcAlphaTex& rhs)
-	: CVIBuffer(rhs.m_pGraphicDev)
+	: CVIBuffer(rhs)
 {
-	Ready_Buffer(rhs.m_d3dColor);
+	
 }
 
 Engine::CRcAlphaTex::~CRcAlphaTex()

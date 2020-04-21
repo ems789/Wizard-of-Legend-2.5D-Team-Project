@@ -29,7 +29,7 @@ HRESULT CQuaterViewCamera::Ready_Camera()
 
 	m_pTargetInfo = dynamic_cast<const Engine::CTransform*>(Engine::Get_Component_of_Player(L"Com_Transform", Engine::ID_DYNAMIC));
 	NULL_CHECK_RETURN(m_pTargetInfo, E_FAIL);
-
+	m_fAspect = static_cast<_float>(WINCX) / WINCY;
 	return S_OK;
 }
 

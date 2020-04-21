@@ -24,6 +24,9 @@ public:	//	Set Functions
 	void			Set_Pos(const _vec3& vPos)										{ m_vInfo[INFO_POS] = vPos; }
 	void			Set_Pos(const _vec3* pPos)										{ memcpy(&m_vInfo[INFO_POS], pPos, sizeof(_vec3)); }
 	void			Set_Pos(const _float& fx, const _float& fy, const _float& fz)	{ m_vInfo[INFO_POS] = _vec3(fx, fy, fz); }
+	void			Set_PosX(const _float& fx)										{ m_vInfo[INFO_POS].x = fx; }
+	void			Set_PosY(const _float& fy)										{ m_vInfo[INFO_POS].y = fy; }
+	void			Set_PosZ(const _float& fz)										{ m_vInfo[INFO_POS].z = fz; }
 
 	void			Set_Angle(const _vec3& vAngle)									{ m_vAngle = vAngle; }
 	void			Set_Angle(const _vec3* pAngle)									{ memcpy(&m_vAngle, pAngle, sizeof(_vec3)); }

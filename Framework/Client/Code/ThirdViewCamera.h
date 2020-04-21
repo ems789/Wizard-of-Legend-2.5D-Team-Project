@@ -28,7 +28,8 @@ private:
 	void	Key_Input();
 
 public:
-	virtual const _vec3* Get_Angle(_vec3* pAngle) { if (pAngle) memcpy(pAngle, &m_vAngle, sizeof(_vec3)); return &m_vAngle; }
+	virtual const _vec3*	Get_Angle(_vec3* pAngle) { if (pAngle) memcpy(pAngle, &m_vAngle, sizeof(_vec3)); return &m_vAngle; }
+	virtual void			CameraShake();
 
 private:
 	const Engine::CTransform*	m_pTargetInfo	= nullptr;
@@ -36,6 +37,10 @@ private:
 	_float						m_fSpeed		= 10.f;
 	_vec3						m_vAngle		= { 0.f, 0.f, 0.f };
 	_bool						m_bFixCursor	= true;
+
+	_bool						m_bShaking		= false;
+	_float						m_fShakingTime	= 0.f;
+	_float						m_fShakingDir	= 0.1f;
 
 public:
 	static CThirdViewCamera* Create(LPDIRECT3DDEVICE9 pGraphicDev);

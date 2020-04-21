@@ -84,7 +84,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 			fCumulativeTime += fTimer_Immediate;
 
-			//if (Engine::IsPermit_Call(L"Frame60", fTimer_Immediate))
+			if (Engine::IsPermit_Call(L"Frame60", fTimer_Immediate))
 			{
 				Engine::Set_TimeDelta(L"Timer_FPS : 60");
 				

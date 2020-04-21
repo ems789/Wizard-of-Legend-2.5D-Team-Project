@@ -22,8 +22,11 @@ HRESULT CThirdViewCamera::Ready_Camera()
 	m_pTargetInfo = dynamic_cast<const Engine::CTransform*>(Engine::Get_Component_of_Player(L"Com_Transform", Engine::ID_DYNAMIC));
 	NULL_CHECK_RETURN(m_pTargetInfo, E_FAIL);
 
+	m_fAspect = static_cast<_float>(WINCX) / WINCY;
 	m_fNear = 0.1f;
 	m_fDistance = 3.f;
+
+	m_fShakingDir = 0.2f;
 
 	return S_OK;
 }
@@ -56,6 +59,18 @@ void CThirdViewCamera::Update_EyeAtUp(const _float& fTimeDelta)
 
 	m_vAt = *m_pTargetInfo->GetInfo(Engine::INFO_POS);
 	m_vAt.y += 1.f;
+
+	if (m_bShaking)
+	{
+		m_fShakingTime += fTimeDelta;
+		m_vAt.y += m_fShakingDir;
+		m_fShakingDir *= -1.f;
+		if (m_fShakingTime >= 0.5f)
+		{
+			m_bShaking = false;
+			m_fShakingTime = 0.f;
+		}
+	}
 	_matrix matRotX, matRotY, matRotZ, matRotAll;
 
 	D3DXMatrixRotationX(&matRotX, m_vAngle.x);
@@ -107,6 +122,11 @@ void CThirdViewCamera::Key_Input()
 			CMouse::GetInstance()->AnimingPointOff();
 		
 	}
+}
+
+void CThirdViewCamera::CameraShake()
+{
+	m_bShaking = true;
 }
 
 CThirdViewCamera * CThirdViewCamera::Create(LPDIRECT3DDEVICE9 pGraphicDev)

@@ -30,6 +30,9 @@ public:
 	virtual const _vec3*		Get_Pos()	const override;
 	virtual void				Add_Effect(const _vec3* pPos) override;
 
+public:
+	void	Go();
+
 private:
 	HRESULT		Add_Component();
 	void		Animation(const _float& fTimeDelta);
@@ -56,8 +59,11 @@ private:
 	FRAME	m_tFrame;
 	Engine::SPHERE m_tSphere;
 
+	_bool	m_bGo = false;
+	const _tchar*	m_pCollisionTag = nullptr;
+
 public:
-	static CFire* Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3& vInitialPos, const _vec3& vAngle, const _float& fSpeed, const _float& fMaxFrame, const _float& fFrameSpeed);
+	static CFire* Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3& vInitialPos, const _vec3& vDir, const _float& fSpeed, const _float& fMaxFrame, const _float& fFrameSpeed, const _tchar* pCollisionTag = L"Player_Bullet" , _bool bGo = true);
 
 private:
 	virtual void Free() override;
