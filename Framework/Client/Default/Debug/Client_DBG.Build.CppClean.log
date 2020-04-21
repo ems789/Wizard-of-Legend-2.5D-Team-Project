@@ -11,12 +11,14 @@ c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\playe
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\quaterviewcamera.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\spherecollider.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\stage.obj
+c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\terrain.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\testmonster.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\testterrain.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\thirdviewcamera.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\tile.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\town.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\ui.obj
+c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\wall.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\wind.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\windslash.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\client.obj
@@ -36,7 +38,6 @@ c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\golem
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\inven.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\laideffect.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\linecollider.obj
-c:\users\nhkim\desktop\gitclone\teamproject\framework\client\default\debug\wall.obj
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\bin\client_dbg.lib
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\bin\client_dbg.exp
 c:\users\nhkim\desktop\gitclone\teamproject\framework\client\bin\client_dbg.ilk

@@ -58,13 +58,13 @@ _uint CLoading::Loading_ForState()
 	//	Buffer
 	//FAILED_CHECK_RETURN(Engine::Ready_Buffer(m_pGraphicDev, RESOURCE_STATIC, L"Buffer_TerrainTex", Engine::BUFFER_TERRAINTEX, D3DXCOLOR(1.f,1.f,1.f,1.f), L"", VTXCNTX, VTXCNTZ, VTXITV), E_FAIL);
 
-	// 외벽
+	//  Outer Wall Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Buffer(m_pGraphicDev, RESOURCE_STATIC, L"Buffer_LeftWallTex_Outer", Engine::BUFFER_LEFTWALLTEX, Engine::WALL_OUTER), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Buffer(m_pGraphicDev, RESOURCE_STATIC, L"Buffer_TopWallTex_Outer", Engine::BUFFER_TOPWALLTEX, Engine::WALL_OUTER), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Buffer(m_pGraphicDev, RESOURCE_STATIC, L"Buffer_RightWallTex_Outer", Engine::BUFFER_RIGHTWALLTEX, Engine::WALL_OUTER), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Buffer(m_pGraphicDev, RESOURCE_STATIC, L"Buffer_BottomWallTex_Outer", Engine::BUFFER_BOTTOMWALLTEX, Engine::WALL_OUTER), E_FAIL);
 
-	// 내벽
+	//  Inner Wall Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Buffer(m_pGraphicDev, RESOURCE_STATIC, L"Buffer_LeftWallTex_Inner", Engine::BUFFER_LEFTWALLTEX, Engine::WALL_INNER), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Buffer(m_pGraphicDev, RESOURCE_STATIC, L"Buffer_TopWallTex_Inner", Engine::BUFFER_TOPWALLTEX, Engine::WALL_INNER), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Buffer(m_pGraphicDev, RESOURCE_STATIC, L"Buffer_RightWallTex_Inner", Engine::BUFFER_RIGHTWALLTEX, Engine::WALL_INNER), E_FAIL);
@@ -74,8 +74,13 @@ _uint CLoading::Loading_ForState()
 
 	//	Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STAGE, L"Texture_Terrain", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Terrain/TileSet/Grass/TutorialCourseFloorRoom2_9.png"), E_FAIL);
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STAGE, L"Texture_Tile", Engine::TEX_NORMAL, L"../../Client/Bin/Resource/Texture/Tile/ForestTile/ForestTile%d.png", 321), E_FAIL);
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STAGE, L"Texture_Wall", Engine::TEX_NORMAL, L"../../Client/Bin/Resource/Texture/Wall/Wall%d.png", 75), E_FAIL);
+
+	//  Tile Texture
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STAGE, L"Texture_Tile", Engine::TEX_NORMAL, L"../../Client/Bin/Resource/Texture/Tile/Tile%d.png", 608), E_FAIL);
+
+	//  Wall Texture
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STAGE, L"Texture_Wall", Engine::TEX_NORMAL, L"../../Client/Bin/Resource/Texture/Wall/Wall%d.png", 134), E_FAIL);
+
 
 	//	Player Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_IdleUp", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardIdleUp.png"), E_FAIL);

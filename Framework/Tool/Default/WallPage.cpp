@@ -142,6 +142,10 @@ void CWallPage::OnLbnSelchangeList()
 	m_pGraphicDev->GetSprite()->Draw((LPDIRECT3DTEXTURE9)(pTexInfo->pTexture), nullptr, &D3DXVECTOR3(fCenterX, fCenterY, 0.f),
 		nullptr, D3DCOLOR_ARGB(255, 255, 255, 255));
 
+	// TODO: 타일 개수만큼 이미지 출력해서 피킹
+	/*m_pGraphicDev->GetSprite()->Draw((LPDIRECT3DTEXTURE9)(pTexInfo->pTexture), nullptr, &D3DXVECTOR3(fCenterX + 10, fCenterY + 10, 0.f),
+		nullptr, D3DCOLOR_ARGB(255, 255, 255, 255));*/
+
 	m_pGraphicDev->GetSprite()->End();
 	m_pGraphicDev->Render_End(m_Picture.m_hWnd);
 
