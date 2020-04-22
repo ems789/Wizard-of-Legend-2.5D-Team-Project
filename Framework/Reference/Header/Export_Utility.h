@@ -17,6 +17,7 @@ BEGIN(Engine)
 //	Get
 inline const	CComponent*		Get_Component(const _tchar* pLayerTag, const _tchar* pObjTag, const _tchar* pComponentTag, COMPONENTID eID);
 inline const	CGameObject*	Get_GameObjcet(const _tchar* pLayerTag, const _tchar* pObjTag);
+inline const	CLayer*			Get_Layer(const _tchar* pLayerTag);
 inline			CLayer*			Get_StaticLayer();
 
 inline const	CComponent*		Get_Component_From_StaticLayer(const _tchar* pObjTag, const _tchar* pComponentTag, COMPONENTID eID);

@@ -14,6 +14,7 @@ private:
 public:	//Get Functions
 	const CComponent*	Get_Component(const _tchar* pObjTag, const _tchar* pComponentTag, COMPONENTID eID) const;
 	const CGameObject*	Get_GameObjcet(const _tchar* pObjTag) const;
+	const multimap<const _tchar*, CGameObject*>* Get_LayerMap() const { return &m_mapObject; }
 
 public:
 	HRESULT		Ready_Layer();

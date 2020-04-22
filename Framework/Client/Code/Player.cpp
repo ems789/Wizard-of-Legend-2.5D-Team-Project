@@ -7,6 +7,7 @@
 #include "WindSlash.h"
 #include "FireEffect.h"
 #include "MeteorStrike.h"
+#include "GuidedFireBall.h"
 #include "LaidEffect.h"
 #include "BasicEffect.h"
 
@@ -29,6 +30,7 @@ HRESULT CPlayer::Ready_GameObject()
 	m_vecEquipSkill.push_back(nullptr);
 	m_vecEquipSkill.push_back(nullptr);
 	m_vecEquipSkill.push_back(nullptr);
+	m_vecEquipSkill.push_back(nullptr);
 
 	m_tFrame.fCurFrame = 0.f;
 	m_tFrame.fMaxFrame = 1.f;
@@ -41,6 +43,10 @@ HRESULT CPlayer::Ready_GameObject()
 
 	m_tSphere.fRadius = 1.f;
 	m_pTransformCom->Move_Pos(Engine::INFO_UP, 0.5f);
+
+	CGuidedFireBall* pGuidedFireBall = CGuidedFireBall::Create(m_pGraphicDev);
+	NULL_CHECK_RETURN(pGuidedFireBall, E_FAIL);
+	m_vecEquipSkill[3] = pGuidedFireBall;
 
 	CMeteorStrike* pMeteorStrike = CMeteorStrike::Create(m_pGraphicDev);
 	NULL_CHECK_RETURN(pMeteorStrike, E_FAIL);
@@ -358,6 +364,19 @@ void CPlayer::Fitting_Scale_With_Texture(CPlayer::PLAYER_STATE eState, _ulong dw
 	m_pTransformCom->Set_Scale(vScale);
 }
 
+void CPlayer::PickingPlane(_vec3 * pOut)
+{
+	D3DXPLANE Plane = { 0.f, 1.f, 0.f, 0.f };
+	_vec2	vMouse;
+
+	_matrix	matProj, matView;
+	Engine::Get_MainCamera()->Get_View(&matView);
+	Engine::Get_MainCamera()->Get_Projection(&matProj);
+	Engine::CMyMath::ClientMousePos(g_hWnd, &vMouse);
+
+	Engine::CMyMath::PickingOnPlane(pOut, &vMouse, WINCX, WINCY, &matProj, &matView, &Plane);
+}
+
 void CPlayer::Key_Input(const _float & fTimeDelta)
 {
 	switch (m_eCurState)
@@ -531,22 +550,22 @@ void CPlayer::Key_Input_Move_For_1stAnd3rdView(const _float & fTimeDelta)
 	//_bool bDir = m_bDir;
 	if (Engine::KeyPress(DIK_W))
 	{
-		vMove += vCamLook * m_fSpeed * fTimeDelta;
+		vMove += vCamLook;
 		m_eCurDir = PD_UP;
 	}
 	if (Engine::KeyPress(DIK_S))
 	{
-		vMove -= vCamLook * m_fSpeed * fTimeDelta;
+		vMove -= vCamLook;
 		m_eCurDir = PD_DOWN;
 	}
 	if (Engine::KeyPress(DIK_A))
 	{
-		vMove -= vCamRight * m_fSpeed * fTimeDelta;
+		vMove -= vCamRight;
 		m_eCurDir = PD_LEFT;
 	}
 	if (Engine::KeyPress(DIK_D))
 	{
-		vMove += vCamRight * m_fSpeed * fTimeDelta;
+		vMove += vCamRight;
 		m_eCurDir = PD_RIGHT;
 	}
 
@@ -559,8 +578,9 @@ void CPlayer::Key_Input_Move_For_1stAnd3rdView(const _float & fTimeDelta)
 
 	if (0.f != vMove.x || 0.f != vMove.y || 0.f != vMove.z)
 	{
-		D3DXVec3Normalize(&m_vDashDir, &vMove);
-		m_pTransformCom->Move_Pos(vMove);
+		D3DXVec3Normalize(&vMove, &vMove);
+		m_vDashDir = vMove;
+		m_pTransformCom->Move_Pos(vMove * m_fSpeed * fTimeDelta);
 		m_eCurState = P_RUN;
 	}
 	else
@@ -584,23 +604,23 @@ void CPlayer::Key_Input_Move_For_QuaterView(const _float & fTimeDelta)
 	//_bool bDir = m_bDir;
 	if (Engine::KeyPress(DIK_W))
 	{
-		vMove += vCamLook * m_fSpeed * fTimeDelta;
+		vMove += vCamLook;
 		m_eCurDir = PD_UP;
 	}
 	if (Engine::KeyPress(DIK_S))
 	{
-		vMove -= vCamLook * m_fSpeed * fTimeDelta;
+		vMove -= vCamLook;
 		m_eCurDir = PD_DOWN;
 	}
 	if (Engine::KeyPress(DIK_A))
 	{
-		vMove -= vCamRight * m_fSpeed * fTimeDelta;
+		vMove -= vCamRight;
 		m_eCurDir = PD_LEFT;
 		//bDir = false;
 	}
 	if (Engine::KeyPress(DIK_D))
 	{
-		vMove += vCamRight * m_fSpeed * fTimeDelta;
+		vMove += vCamRight;
 		m_eCurDir = PD_RIGHT;
 		//bDir = true;
 	}
@@ -614,8 +634,9 @@ void CPlayer::Key_Input_Move_For_QuaterView(const _float & fTimeDelta)
 
 	if (0.f != vMove.x || 0.f != vMove.y || 0.f != vMove.z)
 	{
-		D3DXVec3Normalize(&m_vDashDir, &vMove);
-		m_pTransformCom->Move_Pos(vMove);
+		D3DXVec3Normalize(&vMove, &vMove);
+		m_vDashDir = vMove;
+		m_pTransformCom->Move_Pos(vMove * m_fSpeed * fTimeDelta);
 		m_eCurState = P_RUN;
 	}
 	else
@@ -659,7 +680,7 @@ void CPlayer::Key_Input_Dash_For_1stAnd3rdView(const _float & fTimeDelta)
 		}
 		CBasicEffect* pAirRing = CBasicEffect::Create(m_pGraphicDev, pTextureTag, L"PlayerDash", 4, 10.f, 0.1f,
 			m_pTransformCom->GetInfo(Engine::INFO_POS), false, 0.f);
-		Engine::Add_GameObject(L"GameLogic", L"PlayerDash", pAirRing);
+		Engine::Add_GameObject(L"Effect", L"PlayerDash", pAirRing);
 		m_eCurState = CPlayer::P_DASH;
 	}
 }
@@ -686,7 +707,7 @@ void CPlayer::Key_Input_Dash_For_QuaterView(const _float & fTimeDleta)
 		}
 		CBasicEffect* pAirRing = CBasicEffect::Create(m_pGraphicDev, pTextureTag, L"PlayerDash", 4, 10.f, 0.1f,
 			m_pTransformCom->GetInfo(Engine::INFO_POS), false, 0.f);
-		Engine::Add_GameObject(L"GameLogic", L"PlayerDash", pAirRing);
+		Engine::Add_GameObject(L"Effect", L"PlayerDash", pAirRing);
 		m_eCurState = CPlayer::P_DASH;
 	}
 }
@@ -733,22 +754,27 @@ void CPlayer::Key_Input_Skill1_For_1stAnd3rdView(const _float & fTimeDelta)
 		}
 	}
 
+	if (Engine::KeyDown(DIK_E))
+	{
+		if (m_vecEquipSkill[3])
+		{
+			_int iMotion = m_vecEquipSkill[3]->Use_Skill(fTimeDelta);
+			if (1 == iMotion)
+			{
+				m_eCurState = P_SKILL1;
+				m_eCurDir = PD_UP;
+			}
+		}
+	}
+
 }
 
 void CPlayer::Key_Input_Skill1_For_QuaterView(const _float & fTimeDelta)
 {
 	if (Engine::MousePress(Engine::DIM_RB))
 	{
-		D3DXPLANE Plane = { 0.f, 1.f, 0.f, 0.f };
 		_vec3	vPicking;
-		_vec2	vMouse;
-
-		_matrix	matProj, matView;
-		Engine::Get_MainCamera()->Get_View(&matView);
-		Engine::Get_MainCamera()->Get_Projection(&matProj);
-		Engine::CMyMath::ClientMousePos(g_hWnd, &vMouse);
-
-		Engine::CMyMath::PickingOnPlane(&vPicking, &vMouse, WINCX, WINCY, &matProj, &matView, &Plane);
+		PickingPlane(&vPicking);
 
 		_vec3 vCurPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
 		_vec3 vDir = vPicking - vCurPos;
@@ -762,8 +788,8 @@ void CPlayer::Key_Input_Skill1_For_QuaterView(const _float & fTimeDelta)
 			{
 				m_eCurState = P_SKILL1;
 
-				CPlayer::PLAYER_DIR eUpDown = vDir.z > 0.f ? PD_UP : PD_DOWN;
-				CPlayer::PLAYER_DIR eLeftRight = vDir.x > 0.f ? PD_RIGHT : PD_LEFT;
+				CPlayer::PLAYER_DIR eUpDown		= vDir.z > 0.f ? PD_UP : PD_DOWN;
+				CPlayer::PLAYER_DIR eLeftRight	= vDir.x > 0.f ? PD_RIGHT : PD_LEFT;
 
 				m_eCurDir = fabs(vDir.x) > fabs(vDir.z) ? eLeftRight : eUpDown;
 
@@ -778,16 +804,8 @@ void CPlayer::Key_Input_Skill1_For_QuaterView(const _float & fTimeDelta)
 
 	if (Engine::KeyDown(DIK_Q))
 	{
-		D3DXPLANE Plane = { 0.f, 1.f, 0.f, 0.f };
 		_vec3	vPicking;
-		_vec2	vMouse;
-
-		_matrix	matProj, matView;
-		Engine::Get_MainCamera()->Get_View(&matView);
-		Engine::Get_MainCamera()->Get_Projection(&matProj);
-		Engine::CMyMath::ClientMousePos(g_hWnd, &vMouse);
-
-		Engine::CMyMath::PickingOnPlane(&vPicking, &vMouse, WINCX, WINCY, &matProj, &matView, &Plane);
+		PickingPlane(&vPicking);
 
 		_vec3 vCurPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
 		_vec3 vDir = vPicking - vCurPos;
@@ -797,6 +815,33 @@ void CPlayer::Key_Input_Skill1_For_QuaterView(const _float & fTimeDelta)
 		if (m_vecEquipSkill[2])
 		{
 			_int iMotion = m_vecEquipSkill[2]->Use_Skill(fTimeDelta, &vCurPos, &vDir);
+
+			if (1 == iMotion)
+			{
+				m_eCurState = P_SKILL1;
+
+				CPlayer::PLAYER_DIR eUpDown = vDir.z > 0.f ? PD_UP : PD_DOWN;
+				CPlayer::PLAYER_DIR eLeftRight = vDir.x > 0.f ? PD_RIGHT : PD_LEFT;
+
+				m_eCurDir = fabs(vDir.x) > fabs(vDir.z) ? eLeftRight : eUpDown;
+
+			}
+		}
+	}
+
+	if (Engine::KeyDown(DIK_E))
+	{
+		_vec3	vPicking;
+		PickingPlane(&vPicking);
+
+		_vec3 vCurPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
+		_vec3 vDir = vPicking - vCurPos;
+		vDir.y = 0;
+		D3DXVec3Normalize(&vDir, &vDir);
+
+		if (m_vecEquipSkill[3])
+		{
+			_int iMotion = m_vecEquipSkill[3]->Use_Skill(fTimeDelta, &vCurPos, &vDir);
 
 			if (1 == iMotion)
 			{
@@ -884,7 +929,7 @@ void CPlayer::Dash_State()
 {
 	m_tFrame.fCurFrame = 0.f;
 	m_tFrame.fMaxFrame = 9.f;
-	m_tFrame.fFrameSpeed = 20.f;
+	m_tFrame.fFrameSpeed = 30.f;
 
 	m_bAnimFinish = false;
 	m_bAnimRepeat = false;

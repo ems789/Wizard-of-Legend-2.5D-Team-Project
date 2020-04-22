@@ -56,7 +56,7 @@ private:
 	LPDIRECT3DDEVICE9				m_pGraphicDev = nullptr;
 	map<const _tchar*, CCamera*>	m_mapCamera[CAM_END];
 
-	CCameraMgr::MAIN_CAM			m_eMainCam = MAIN_CAM_3RD;
+	CCameraMgr::MAIN_CAM			m_eMainCam = MAIN_CAM_QUATER;
 	const _tchar*					m_szBasicCamTag[MAIN_CAM_END];
 	CCamera*						m_pMainCamera = nullptr;
 	_float							m_fWinCX = 1.f;

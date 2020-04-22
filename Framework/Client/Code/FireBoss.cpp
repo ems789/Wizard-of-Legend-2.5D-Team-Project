@@ -59,6 +59,9 @@ _int CFireBoss::Update_GameObject(const _float& fTimeDelta)
 	Animation(fTimeDelta);
 	FireEffect(fTimeDelta);
 
+	if (m_bIsDead)
+		return 0;
+
 	_int iExit = CGameObject::Update_GameObject(fTimeDelta);
 
 	m_pRendererCom->Add_RenderGroup(Engine::RENDER_ALPHA, this);
@@ -470,7 +473,7 @@ void CFireBoss::FireEffect(const _float & fTimeDelta)
 			CFireEffect* pEffect = CFireEffect::Create(m_pGraphicDev, pTextureTag, L"FireParticle", 6.f, 15.f, 0.05f, &vCreatePos, &vDir, 3.f,
 				false, 0.f, D3DXCOLOR(1.f, 0.7f, 0.5f, 1.f), D3DXCOLOR(0.f, 1.f, 2.0f, 0.f));
 
-			Engine::Add_GameObject(L"GameLogic", L"FireBossBackEffect", pEffect);
+			Engine::Add_GameObject(L"Effect", L"FireBossBackEffect", pEffect);
 		}
 
 
@@ -838,11 +841,11 @@ void CFireBoss::RoundKick_Update(const _float & fTimeDelta)
 	}
 
 	if (m_tFrame.fCurFrame < 1.f)
-	 m_pTransformCom->Move_Pos(m_vKickDir * fTimeDelta * m_fSpeed);
+		 m_pTransformCom->Move_Pos(m_vKickDir * fTimeDelta * m_fSpeed);
 
 	_vec3 vPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
-	_vec3 vRight = *m_pTransformCom->GetInfo(Engine::INFO_RIGHT);
-	_vec3 vUp = *m_pTransformCom->GetInfo(Engine::INFO_UP);
+	_vec3 vRight;
+	D3DXVec3Cross(&vRight, &m_vKickDir, &AXIS_Y);
 
 	_vec3 vFirePos;
 	_matrix matRotAxix;
@@ -855,9 +858,9 @@ void CFireBoss::RoundKick_Update(const _float & fTimeDelta)
 	if (m_fKickFireTime > 0.05f)
 	{
 		m_fKickFireTime -= 0.05f;
-		D3DXMatrixRotationAxis(&matRotAxix, &(-vUp), m_fKickAngle);
+		D3DXMatrixRotationAxis(&matRotAxix, &(-AXIS_Y), m_fKickAngle);
 		D3DXVec3TransformNormal(&vFirePos, &(-vRight), &matRotAxix);
-		vFirePos *= 2.f;
+		vFirePos *= 4.f;
 		vFirePos += vPos;
 
 		CFireKick* pFireKick = CFireKick::Create(m_pGraphicDev, vFirePos, 0.1f);
@@ -890,8 +893,8 @@ void CFireBoss::SpinKick_Update(const _float & fTimeDelta)
 		m_pTransformCom->Move_Pos(m_vKickDir * fTimeDelta * m_fSpeed);
 
 	_vec3 vPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
-	_vec3 vRight = *m_pTransformCom->GetInfo(Engine::INFO_RIGHT);
-	_vec3 vUp = *m_pTransformCom->GetInfo(Engine::INFO_UP);
+	_vec3 vRight;
+	D3DXVec3Cross(&vRight, &m_vKickDir, &AXIS_Y);
 	
 	_vec3 vFirePos;
 	_matrix matRotAxix;
@@ -904,9 +907,9 @@ void CFireBoss::SpinKick_Update(const _float & fTimeDelta)
 	if (m_fKickFireTime > 0.05f)
 	{
 		m_fKickFireTime -= 0.05f;
-		D3DXMatrixRotationAxis(&matRotAxix, &vUp, m_fKickAngle);
+		D3DXMatrixRotationAxis(&matRotAxix, &AXIS_Y, m_fKickAngle);
 		D3DXVec3TransformNormal(&vFirePos, &vRight, &matRotAxix);
-		vFirePos *= 2.f;
+		vFirePos *= 4.f;
 		vFirePos += vPos;
 
 		CFireKick* pFireKick = CFireKick::Create(m_pGraphicDev, vFirePos, 0.1f);
@@ -960,20 +963,21 @@ void CFireBoss::Heel_Update(const _float & fTimeDelta)
 		{
 			m_bHeelFire = true;
 			_vec3 vPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
-			_vec3 vLook = *m_pTransformCom->GetInfo(Engine::INFO_LOOK);
-			_vec3 vRight = *m_pTransformCom->GetInfo(Engine::INFO_RIGHT);
+			_vec3 vLook = m_vHeelDir;
+			_vec3 vRight;
+			D3DXVec3Cross(&vRight, &vLook, &AXIS_Y);
 
-			_vec3 vDir1 = -vLook;
+			_vec3 vDir1 = vLook;
 			D3DXVec3Normalize(&vDir1, &vDir1);
 			CFireHeel* pFireHeel = CFireHeel::Create(m_pGraphicDev, vPos, vDir1, 20.f, 1.f);
 			Engine::Add_GameObject(L"GameLogic", L"FireHeel", pFireHeel);
 
-			_vec3 vDir2 = -vLook * 2.f + vRight;
+			_vec3 vDir2 = vLook * 2.f + vRight;
 			D3DXVec3Normalize(&vDir2, &vDir2);
 			pFireHeel = CFireHeel::Create(m_pGraphicDev, vPos, vDir2, 20.f, 1.f);
 			Engine::Add_GameObject(L"GameLogic", L"FireHeel", pFireHeel);
 
-			_vec3 vDir3 = -vLook * 2.f - vRight;
+			_vec3 vDir3 = vLook * 2.f - vRight;
 			D3DXVec3Normalize(&vDir3, &vDir3);
 			pFireHeel = CFireHeel::Create(m_pGraphicDev, vPos, vDir3, 20.f, 1.f);
 			Engine::Add_GameObject(L"GameLogic", L"FireHeel", pFireHeel);

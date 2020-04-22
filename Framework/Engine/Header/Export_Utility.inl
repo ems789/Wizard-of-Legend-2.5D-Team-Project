@@ -8,6 +8,10 @@ const CGameObject*	Get_GameObjcet(const _tchar* pLayerTag, const _tchar* pObjTag
 {
 	return CManagement::GetInstance()->Get_GameObjcet(pLayerTag, pObjTag);
 }
+const	CLayer*			Get_Layer(const _tchar* pLayerTag)
+{
+	return CManagement::GetInstance()->Get_Layer(pLayerTag);
+}
 CLayer*			Get_StaticLayer()
 {
 	return CManagement::GetInstance()->Get_StaticLayer();

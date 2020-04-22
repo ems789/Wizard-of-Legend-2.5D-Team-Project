@@ -17,6 +17,7 @@ public:	//	Get Functions
 	const CComponent*	Get_Component(const _tchar* pLayerTag, const _tchar* pObjTag, const _tchar* pComponentTag, COMPONENTID eID) const;
 	const CGameObject*	Get_GameObjcet(const _tchar* pLayerTag, const _tchar* pObjTag) const;
 
+	const CLayer*		Get_Layer(const _tchar* pLayerTag) const;
 	CLayer*	Get_StaticLayer() const { return m_pStaticLayer; }
 	
 	const CComponent*	Get_Component_From_StaticLayer(const _tchar* pObjTag, const _tchar* pComponentTag, COMPONENTID eID) const;

@@ -106,7 +106,7 @@ void CFireKick::Add_Effect(const _vec3* pPos)
 		CFireEffect* pEffect = CFireEffect::Create(m_pGraphicDev, pTextureTag, L"FireKickParticle", 6.f, 15.f, 20.f * m_fSize, &vCreatePos, &vDir, 1.f,
 			false, 0.f, D3DXCOLOR(1.f, 0.7f, 0.5f, 1.f), D3DXCOLOR(0.f, 1.f, 2.0f, 0.f));
 
-		Engine::Add_GameObject(L"GameLogic", L"FireKickExplosion", pEffect);
+		Engine::Add_GameObject(L"Effect", L"FireKickExplosion", pEffect);
 	}
 }
 
@@ -165,13 +165,13 @@ void CFireKick::FireKickTail()
 
 		_vec3 vDir = { (rand() % 100 - 50.f) * m_fSize, (rand() % 100 - 50.f) * m_fSize, (rand() % 100 - 50.f) * m_fSize };
 		_vec3 vCreatePos = vPos + vDir;
-		vCreatePos.y = 0.f;
+		//vCreatePos.y = 0.f;
 		D3DXVec3Normalize(&vDir, &vDir);
 
 		CFireEffect* pEffect = CFireEffect::Create(m_pGraphicDev, pTextureTag, L"FireParticle", 6.f, 15.f, 10.f * m_fSize, &vCreatePos, &vDir, 1.f,
 			false, 0.f, D3DXCOLOR(1.f, 0.7f, 0.5f, 1.f), D3DXCOLOR(0.f, 1.f, 2.0f, 0.f));
 
-		Engine::Add_GameObject(L"GameLogic", L"FireKick", pEffect);
+		Engine::Add_GameObject(L"Effect", L"FireKick", pEffect);
 	}
 }
 

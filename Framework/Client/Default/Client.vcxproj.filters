@@ -199,6 +199,15 @@
     <Filter Include="05.Skill\00.Fire\01.MeteorStrike\00.Meteor">
       <UniqueIdentifier>{e756fcb1-70f8-41d9-bb10-afc14b985bee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="05.Skill\00.Fire\02.GuidedFireBall">
+      <UniqueIdentifier>{acea56f2-6b61-43bc-82bb-2edb9b0727e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Skill\00.Fire\02.GuidedFireBall\00.GuidedFire">
+      <UniqueIdentifier>{3337c899-eace-4be5-93d5-a8de739609a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Skill\00.Fire\02.GuidedFireBall\01.GuidedFireGen">
+      <UniqueIdentifier>{0b92b6f5-fd69-4dd4-8de7-520beb8805f0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -363,6 +372,15 @@
     <ClInclude Include="..\Code\Meteor.h">
       <Filter>05.Skill\00.Fire\01.MeteorStrike\00.Meteor</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\GuidedFire.h">
+      <Filter>05.Skill\00.Fire\02.GuidedFireBall\00.GuidedFire</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\GuidedFireBall.h">
+      <Filter>05.Skill\00.Fire\02.GuidedFireBall</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\GuidedFireGen.h">
+      <Filter>05.Skill\00.Fire\02.GuidedFireBall\01.GuidedFireGen</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -502,6 +520,15 @@
     </ClCompile>
     <ClCompile Include="..\Code\Meteor.cpp">
       <Filter>05.Skill\00.Fire\01.MeteorStrike\00.Meteor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\GuidedFire.cpp">
+      <Filter>05.Skill\00.Fire\02.GuidedFireBall\00.GuidedFire</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\GuidedFireBall.cpp">
+      <Filter>05.Skill\00.Fire\02.GuidedFireBall</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\GuidedFireGen.cpp">
+      <Filter>05.Skill\00.Fire\02.GuidedFireBall\01.GuidedFireGen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

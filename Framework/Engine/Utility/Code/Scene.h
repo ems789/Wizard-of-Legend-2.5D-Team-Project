@@ -15,6 +15,7 @@ protected:
 public:
 	const CComponent*	Get_Component(const _tchar* pLayerTag, const _tchar* pObjTag, const _tchar* pComponentTag, COMPONENTID eID) const;
 	const CGameObject*	Get_GameObjcet(const _tchar* pLayerTag, const _tchar* pObjTag) const;
+	const CLayer*		Get_Layer(const _tchar* pLayerTag) const;
 
 public:
 	virtual HRESULT Ready_Scene();
