@@ -365,7 +365,7 @@ void CToolView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	::_vec3 vPickedTile = { 0, 0, 0 };
 	int iDrawID = 0;
 	// z 방향
-	if ((Engine::Get_DIKeyState(DIK_LSHIFT) & 0x80))
+	if ((Engine::Get_DIKeyState(DIK_N) & 0x80))
 	{		
 		vPickedTile = Picking_OnTerrain(g_hWnd, pTerrainBufferCom, pTerrainTransformCom);
 		int iSrcZ = (int)m_vLastPickTile.z;
@@ -423,7 +423,7 @@ void CToolView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	}
 
 	// x 방향
-	if ((Engine::Get_DIKeyState(DIK_RSHIFT) & 0x80))
+	if ((Engine::Get_DIKeyState(DIK_M) & 0x80))
 	{
 		vPickedTile = Picking_OnTerrain(g_hWnd, pTerrainBufferCom, pTerrainTransformCom);	
 		int iSrcX = (int)m_vLastPickTile.x;
