@@ -1,9 +1,4 @@
 ﻿     ../Bin/Resources.lib 라이브러리 및 ../Bin/Resources.exp 개체를 생성하고 있습니다.
-TopWallTex.obj : warning LNK4099: 'vc140.pdb' PDB를 'TopWallTex.obj' 또는 'C:\Users\NHKim\Desktop\GitClone\TeamProject\Framework\Engine\Resources\Bin\vc140.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
-RightWallTex.obj : warning LNK4099: 'vc140.pdb' PDB를 'RightWallTex.obj' 또는 'C:\Users\NHKim\Desktop\GitClone\TeamProject\Framework\Engine\Resources\Bin\vc140.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
-LeftWallTex.obj : warning LNK4099: 'vc140.pdb' PDB를 'LeftWallTex.obj' 또는 'C:\Users\NHKim\Desktop\GitClone\TeamProject\Framework\Engine\Resources\Bin\vc140.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
-CeilingWallTex.obj : warning LNK4099: 'vc140.pdb' PDB를 'CeilingWallTex.obj' 또는 'C:\Users\NHKim\Desktop\GitClone\TeamProject\Framework\Engine\Resources\Bin\vc140.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
-BottomWallTex.obj : warning LNK4099: 'vc140.pdb' PDB를 'BottomWallTex.obj' 또는 'C:\Users\NHKim\Desktop\GitClone\TeamProject\Framework\Engine\Resources\Bin\vc140.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
   Resources.vcxproj -> C:\Users\NHKim\Desktop\GitClone\TeamProject\Framework\Engine\Resources\Default\../Bin/Resources.dll
   Resources.vcxproj -> ../Bin/Resources.pdb (Full PDB)
   .\Engine\Resources\Code\BottomWallTex.h
