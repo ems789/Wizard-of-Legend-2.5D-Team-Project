@@ -208,6 +208,9 @@
     <Filter Include="05.Skill\00.Fire\02.GuidedFireBall\01.GuidedFireGen">
       <UniqueIdentifier>{0b92b6f5-fd69-4dd4-8de7-520beb8805f0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="07.Monster\99.Boss\01.LightningBoss">
+      <UniqueIdentifier>{2de97c4a-38bb-48d8-83b2-ebc4dda438bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -381,6 +384,9 @@
     <ClInclude Include="..\Code\GuidedFireGen.h">
       <Filter>05.Skill\00.Fire\02.GuidedFireBall\01.GuidedFireGen</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\LightningBoss.h">
+      <Filter>07.Monster\99.Boss\01.LightningBoss</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -529,6 +535,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\GuidedFireGen.cpp">
       <Filter>05.Skill\00.Fire\02.GuidedFireBall\01.GuidedFireGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\LightningBoss.cpp">
+      <Filter>07.Monster\99.Boss\01.LightningBoss</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

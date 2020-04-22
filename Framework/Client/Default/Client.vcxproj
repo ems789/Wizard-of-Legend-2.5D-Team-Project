@@ -185,6 +185,7 @@
     <ClInclude Include="..\Code\GuidedFireGen.h" />
     <ClInclude Include="..\Code\Inven.h" />
     <ClInclude Include="..\Code\LaidEffect.h" />
+    <ClInclude Include="..\Code\LightningBoss.h" />
     <ClInclude Include="..\Code\LineCollider.h" />
     <ClInclude Include="..\Code\Loading.h" />
     <ClInclude Include="..\Code\LoadingScene.h" />
@@ -244,6 +245,7 @@
     <ClCompile Include="..\Code\GuidedFireGen.cpp" />
     <ClCompile Include="..\Code\Inven.cpp" />
     <ClCompile Include="..\Code\LaidEffect.cpp" />
+    <ClCompile Include="..\Code\LightningBoss.cpp" />
     <ClCompile Include="..\Code\LineCollider.cpp" />
     <ClCompile Include="..\Code\Loading.cpp" />
     <ClCompile Include="..\Code\LoadingScene.cpp" />

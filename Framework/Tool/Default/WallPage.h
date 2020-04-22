@@ -38,6 +38,9 @@ public: // Message Functions
 	afx_msg void OnBnClickedCheck4();
 	afx_msg void OnBnClickedCheck5();
 	afx_msg void OnBnClickedCheck6();
+	afx_msg void OnBnClickedRadio1();
+	afx_msg void OnBnClickedRadio2();
+	afx_msg void OnEnChangeEdit1();
 
 public: // User Functions
 	void SettingHorizontalScrollSize();
@@ -53,6 +56,6 @@ public:
 	CButton				m_Check[WALL_END];
 	bool				m_bIsCheck[WALL_END];
 	Engine::WALLTYPE	m_eWallType;
-	afx_msg void		OnBnClickedRadio1();
-	afx_msg void		OnBnClickedRadio2();
+		
+	int m_iWallY;
 };

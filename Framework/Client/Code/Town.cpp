@@ -14,6 +14,7 @@
 #include "Golem.h"
 #include "Cyclops.h"
 #include "FireBoss.h"
+#include "LightningBoss.h"
 
 CTown::CTown(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CScene(pGraphicDev)
@@ -70,6 +71,14 @@ _int CTown::Update_Scene(const _float& fTimeDelta)
 		Add_GameObject(L"Monster", L"Monster", pGameObject);
 	}
 
+	if (Engine::KeyDown(DIK_F9))
+	{
+		// LightningBoss
+		Engine::CGameObject* pGameObject = CLightningBoss::Create(m_pGraphicDev, &_vec3(rand() % 20 + 10.f, 1.f, rand() % 20 + 10.f));
+		NULL_CHECK_RETURN(pGameObject, E_FAIL);
+
+		Add_GameObject(L"Monster", L"Monster", pGameObject);
+	}
 
 	_int iExit = CScene::Update_Scene(fTimeDelta);
 
@@ -104,6 +113,8 @@ HRESULT CTown::Ready_GameLogic_Layer(const _tchar * pLayerTag)
 	pLayer->Add_GameObject(L"TestTerrain", pGameObject);*/
 
 	pGameObject = CTerrain::Create(m_pGraphicDev, L"../../Data/TileData.dat", L"../../Data/WallData.dat");
+	//	테스트용 
+	//pGameObject = CTerrain::Create(m_pGraphicDev, L"../../Data/TestTileData.dat", L"../../Data/TestWallData.dat");
 	NULL_CHECK_RETURN(pGameObject, E_FAIL);
 	pLayer->Add_GameObject(L"Terrain", pGameObject);
 

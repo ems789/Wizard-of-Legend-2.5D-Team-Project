@@ -133,7 +133,7 @@ void CTerrain::TileChange(const ::_vec3& vPos, const ::_tchar* tileTag, const in
 	m_vecTile[(int)vPos.z * m_dwTileX + (int)vPos.x]->Set_Render(bIsRender);
 }
 
-void CTerrain::WallChange(const ::_vec3& vPos, const ::_tchar* wallTag, const int iDrawID, bool bIsRender, bool bHasLeftWall, bool bHasTopWall, bool bHasRightWall, bool bHasBottomWall, bool bHasCeilingWall, Engine::WALLTYPE eWallType)
+void CTerrain::WallChange(const ::_vec3& vPos, const ::_tchar* wallTag, const int iDrawID, bool bIsRender, bool bHasLeftWall, bool bHasTopWall, bool bHasRightWall, bool bHasBottomWall, bool bHasCeilingWall, Engine::WALLTYPE eWallType, int iWallY)
 {
 	// 왼클릭 - 벽 추가
 	if (bIsRender)
@@ -142,7 +142,7 @@ void CTerrain::WallChange(const ::_vec3& vPos, const ::_tchar* wallTag, const in
 		pWall->Set_DrawID(iDrawID);
 		pWall->Set_Render(bIsRender);
 		pWall->Set_Pos((int)vPos.x + m_dwItv * 0.5f,
-			m_vecWallList[(int)vPos.z * m_dwTileX + (int)vPos.x].size(),
+			m_vecWallList[(int)vPos.z * m_dwTileX + (int)vPos.x].size() + iWallY,
 			(int)vPos.z + m_dwItv * 0.5f);
 
 		m_vecWallList[(int)vPos.z * m_dwTileX + (int)vPos.x].push_back(pWall);
