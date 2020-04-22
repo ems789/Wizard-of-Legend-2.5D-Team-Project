@@ -478,6 +478,16 @@ void CToolView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	}
 	m_pDynamicCamera->Update_KeyInput(0.25f);
 
+	if (Engine::Get_DIKeyState(DIK_9) & 0x80)
+	{
+		m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
+	}
+
+	if (Engine::Get_DIKeyState(DIK_0) & 0x80)
+	{
+		m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
+	}
+
 	Invalidate(FALSE);
 }
 

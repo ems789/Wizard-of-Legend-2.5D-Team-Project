@@ -1,8 +1,14 @@
-﻿     Creating library ../Bin\Tool.lib and object ../Bin\Tool.exp
+﻿  ToolView.cpp
+ToolView.cpp(332): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+ToolView.cpp(337): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+ToolView.cpp(342): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+ToolView.cpp(347): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+ToolView.cpp(353): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+     Creating library ../Bin\Tool.lib and object ../Bin\Tool.exp
   Generating code
-  0 of 1213 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+  1 of 1213 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    62 functions had inline decision re-evaluated but remain unchanged
+    38 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Tool.vcxproj -> D:\TeamProject\Framework\Tool\Default\../Bin\Tool.exe
   Tool.vcxproj -> ../Bin\Tool.pdb (Full PDB)
