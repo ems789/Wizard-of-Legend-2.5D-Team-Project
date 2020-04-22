@@ -103,7 +103,7 @@ HRESULT CTown::Ready_GameLogic_Layer(const _tchar * pLayerTag)
 	NULL_CHECK_RETURN(pGameObject, E_FAIL);
 	pLayer->Add_GameObject(L"TestTerrain", pGameObject);*/
 
-	pGameObject = CTerrain::Create(m_pGraphicDev, L"../../Data/FireStageTile.dat", L"../../Data/FireStageWall.dat");
+	pGameObject = CTerrain::Create(m_pGraphicDev, L"../../Data/TileData.dat", L"../../Data/WallData.dat");
 	NULL_CHECK_RETURN(pGameObject, E_FAIL);
 	pLayer->Add_GameObject(L"Terrain", pGameObject);
 
