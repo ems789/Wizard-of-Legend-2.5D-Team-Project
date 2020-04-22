@@ -52,6 +52,7 @@ _int CWindSlash::Use_Skill(const _float& fTimeDelta)
 
 	CBasicEffect* pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_SlashHitSpark", L"SlashHitSpark", 7.f, 20.f, 0.05f, &vStartPos, false, 0.f);
 	NULL_CHECK_RETURN(pEffect, -1);
+
 	CSphereCollider* pCollider = CSphereCollider::Create(m_pGraphicDev, pWind, pEffect, 1.f, L"Player_Bullet", 10);
 	Engine::Add_GameObject(L"GameLogic", L"PlayerCollider", pCollider);
 

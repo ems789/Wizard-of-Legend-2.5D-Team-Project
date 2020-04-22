@@ -21,6 +21,7 @@ IMPLEMENT_DYNAMIC(CWallPage, CPropertyPage)
 CWallPage::CWallPage()
 	: CPropertyPage(IDD_WALLPAGE),
 	m_iDrawID(0),
+	m_iWallY(0),
 	m_pGraphicDev(Engine::CGraphicDev::GetInstance())
 {
 
@@ -40,6 +41,7 @@ void CWallPage::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_CHECK4, m_Check[2]);
 	DDX_Control(pDX, IDC_CHECK5, m_Check[3]);
 	DDX_Control(pDX, IDC_CHECK6, m_Check[4]);
+	DDX_Text(pDX, IDC_EDIT1, m_iWallY);
 }
 
 BEGIN_MESSAGE_MAP(CWallPage, CDialog)
@@ -55,6 +57,7 @@ BEGIN_MESSAGE_MAP(CWallPage, CDialog)
 	ON_BN_CLICKED(IDC_CHECK6, &CWallPage::OnBnClickedCheck6)
 	ON_BN_CLICKED(IDC_RADIO1, &CWallPage::OnBnClickedRadio1)
 	ON_BN_CLICKED(IDC_RADIO2, &CWallPage::OnBnClickedRadio2)
+	ON_EN_CHANGE(IDC_EDIT1, &CWallPage::OnEnChangeEdit1)
 END_MESSAGE_MAP()
 
 //BEGIN_MESSAGE_MAP(CWallPage, CPropertyPage)
@@ -277,4 +280,10 @@ void CWallPage::OnBnClickedRadio1()
 void CWallPage::OnBnClickedRadio2()
 {
 	m_eWallType = WALL_OUTER;
+}
+
+
+void CWallPage::OnEnChangeEdit1()
+{
+	UpdateData(TRUE);
 }

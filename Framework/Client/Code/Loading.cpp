@@ -206,6 +206,23 @@ _uint CLoading::Loading_ForState()
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FireBoss_Squat", Engine::TEX_NORMAL,	L"../Bin/Resource/Texture/Monster/FireBoss/Squat/FireBossSquat%d.png", 4), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FireBoss_Dead", Engine::TEX_NORMAL,		L"../Bin/Resource/Texture/Monster/FireBoss/Dead/FireBossDead%d.png", 2), E_FAIL);
 
+	//	LightningBoss Texture
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_LightningBoss_Idle", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/LightningBoss/Idle/LightningGirlIdle.png"), E_FAIL);
+
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_LightningBoss_Jump", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/LightningBoss/Jump/LightningGirlJump%d.png", 2), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_LightningBoss_Float", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/LightningBoss/Float/LightningGirlFloat.png"), E_FAIL);
+
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_LightningBoss_JavelinSpawn", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/LightningBoss/JavelinSpawn/LightningGirlJavelinSpawn%d.png", 3), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_LightningBoss_JavelinThrow", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/LightningBoss/JavelinThrow/LightningGirlJavelinThrow%d.png", 4), E_FAIL);
+
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_LightningBoss_Dead", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/LightningBoss/Dead/LightningGirlDead%d.png", 2), E_FAIL);
+
+	//  ThunderJavelin Texture
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_LightningBossTar", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/ThunderJavelin/LightningBossTar%d.png", 4), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_ThunderJavelinSpawn", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/ThunderJavelin/ThunderJavelinSpawn%d.png", 4), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_ThunderJavelin", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/ThunderJavelin/ThunderJavelin.png"), E_FAIL);
+
+
 	//	Shuriken Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FireBoss_Shuriken", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Skill/Shuriken.png"), E_FAIL);
 
