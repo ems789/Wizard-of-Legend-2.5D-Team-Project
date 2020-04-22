@@ -46,6 +46,7 @@ void Engine::CGameObject::Free()
 	for (_int i = 0; i < ID_END; ++i)
 	{
 		for_each(m_mapComponent[i].begin(), m_mapComponent[i].end(), CDeleteMap());
+
 		m_mapComponent[i].clear();
 	}
 

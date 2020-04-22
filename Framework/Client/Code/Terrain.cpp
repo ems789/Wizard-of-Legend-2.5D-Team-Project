@@ -234,6 +234,7 @@ HRESULT CTerrain::Add_Component(void)
 	pComponent = m_pRendererCom = Engine::Get_Renderer();
 	NULL_CHECK_RETURN_MSG(pComponent, E_FAIL, L"Terrain Add_Component failed. m_pRenderer is nullptr");
 	m_mapComponent[Engine::ID_STATIC].emplace(L"Com_Renderer", pComponent);
+	m_pRendererCom->AddRef();
 
 	return S_OK;
 }

@@ -88,8 +88,8 @@ private:
 
 	_float	m_fSpeed = 2.f;
 
-	_vec3	m_vHurtDir;
-	_vec3	m_vAttackTarget;
+	_vec3	m_vHurtDir = {0.f, 0.f, 0.f};
+	_vec3	m_vAttackTarget = {0.f, 0.f, 0.f};
 
 public:
 	static CCyclops* Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3* pPos);
