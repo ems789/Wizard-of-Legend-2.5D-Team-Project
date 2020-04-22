@@ -94,10 +94,22 @@ void CDynamicCamera::Key_Input(const _float& fTimeDelta)
 	_matrix	matCamWorld;
 	D3DXMatrixInverse(&matCamWorld, NULL, &m_matView);
 	
+	if (Engine::Get_DIKeyState(DIK_Q) & 0x80)
+	{
+		m_vEye = _vec3(0.f, 5.f, -5.f);
+		m_vAt = _vec3(0.f, 0.f, 0.f);
+	}
+
 	// 상하좌우 이동
 	if (Engine::Get_DIKeyState(DIK_W) & 0x80)
 	{
-		_vec3 vLength = _vec3(0.f, 0.f, 1.f) * m_fSpeed * fTimeDelta;
+		_vec3 vLook;
+		memcpy(&vLook, &matCamWorld.m[2][0], sizeof(_vec3));
+
+		vLook.y = 0.f;
+		D3DXVec3Normalize(&vLook, &vLook);
+
+		_vec3 vLength = vLook * m_fSpeed * fTimeDelta;
 
 		m_vEye += vLength;
 		m_vAt += vLength;
@@ -105,14 +117,16 @@ void CDynamicCamera::Key_Input(const _float& fTimeDelta)
 
 	if (Engine::Get_DIKeyState(DIK_S) & 0x80)
 	{
-		_vec3	vUp;
-		memcpy(&vUp, &matCamWorld.m[1][0], sizeof(_vec3));
+		_vec3 vLook;
+		memcpy(&vLook, &matCamWorld.m[2][0], sizeof(_vec3));
 
-		
-		_vec3 vLength = _vec3(0.f, 0.f, 1.f) * m_fSpeed * fTimeDelta;
+		vLook.y = 0.f;
+		D3DXVec3Normalize(&vLook, &vLook);
+
+		_vec3 vLength = vLook * m_fSpeed * fTimeDelta;
 
 		m_vEye -= vLength;
-		m_vAt  -= vLength;
+		m_vAt -= vLength;
 	}
 
 	if (Engine::Get_DIKeyState(DIK_A) & 0x80)
