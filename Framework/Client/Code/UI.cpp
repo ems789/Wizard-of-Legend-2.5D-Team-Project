@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "UI.h"
 #include "UIImage.h"
-
+#include "Inven.h"
 #include "Export_Function.h"
 
 IMPLEMENT_SINGLETON(CUI)
@@ -28,13 +28,19 @@ HRESULT CUI::Ready_PlayerUI(LPDIRECT3DDEVICE9 pGraphicDev)
 	FAILED_CHECK_RETURN(Setting_PlayerState(), E_FAIL);
 	FAILED_CHECK_RETURN(Setting_SkillSlot(), E_FAIL);
 	FAILED_CHECK_RETURN(Setting_Coin(), E_FAIL);
+	//FAILED_CHECK_RETURN(Setting_SlotImage(), E_FAIL);
+
 
 	_matrix matScale, matTrans;
 	D3DXMatrixScaling(&matScale, m_vScale.x, m_vScale.y, m_vScale.z);
 	D3DXMatrixTranslation(&matTrans, m_vPos.x, m_vPos.y, m_vPos.z);
 
-
+	m_fUISpeed = 0.5f;
 	m_matWorld = matScale * matTrans;
+
+	m_vecSlotImage.resize(4, nullptr);
+
+
 	return S_OK;
 }
 
@@ -42,6 +48,43 @@ _int CUI::Update_PlayerUI(const _float & fTimeDelta)
 {
 	if (false == m_bShowUI)
 		return 0;
+	m_pUIManaBar->Set_Scale(m_vManaScale);
+	m_pUIManaBar->Set_Pos(m_vManaPos);
+
+	m_vManaPos.x -= 0.5f * m_fUISpeed;
+	m_vManaScale.x -= 0.5f * m_fUISpeed;
+
+	_int PlayerHp = 0;
+	PlayerHp = Engine::Get_Player()->Get_HP();
+	if (Engine::KeyDown(DIK_J))
+	{
+		PlayerHp -= 10.f;
+		m_pUIHpBar->Set_Scale(m_vHpScale);
+		m_pUIHpBar->Set_Pos(m_vHpPos);
+		m_vHpScale.x -= 10.f;
+		m_vHpPos.x -= 10.f;
+	}
+	if (Engine::MouseUp(Engine::DIM_LB))
+	{
+		//마나채우는 평타
+		m_vManaScale.x += 19.2f;
+		m_vManaPos.x += 10.f;
+	}
+	if (m_vManaScale.x < 0.f)
+	{
+		m_vManaScale.x = 0.f;
+	}
+	if (m_vManaPos.x < -896.f)
+	{
+		m_vManaPos.x = -896.f;
+	}
+	if (m_vManaScale.x > 192.f)
+	{
+		m_vManaScale.x = 192.f;
+	}
+	if (m_vManaPos.x > -795.f)
+		m_vManaPos.x = -795.f;
+
 
 	return 0;
 }
@@ -55,21 +98,43 @@ void CUI::Render_PlayerUI()
 	//m_pTextureCom->Render_Texture();
 	//m_pBufferCom->Render_Buffer();
 
-	m_pUIPlayer->Render_UIImage();
+	m_pUIHurtBar->Render_UIImage();
 	m_pUIHpBar->Render_UIImage();
 	m_pUIManaBar->Render_UIImage();
+	m_pUIPlayer->Render_UIImage();
+
 	m_pUICoin->Render_UIImage();
 
-	//////
 	m_pUISkillSlot->Render_UIImage();
+
+	for (_uint i = 0; i < 4; ++i)
+	{
+		//어느 슬롯에 넣을거냐 
+		if (nullptr != m_vecSlotImage[i])
+			m_vecSlotImage[i]->Render_UIImage();
+	}
+
 }
 
+
+void CUI::SlotSkillOn(_uint uiSlot, const _vec3 & vImagePos, const _tchar * pTextureTag)
+{
+	if (nullptr != m_vecSlotImage[uiSlot])
+		Engine::Safe_Release(m_vecSlotImage[uiSlot]);
+
+	CUIImage* pSkillImage = CUIImage::Create(m_pGraphicDev, _vec3{ 50.f, 50.f, 0.f }, vImagePos, pTextureTag);
+
+
+	m_vecSlotImage[uiSlot] = pSkillImage;
+
+
+}
 
 HRESULT CUI::Add_Component()
 {
 	Engine::CComponent*	pComponent = nullptr;
 
-//	pComponent = m_pBufferCom = dynamic_cast<Engine::CRcTex*>(Engine::Clone(RESOURCE_STATIC, L"Buffer_RcTex"));
+	//	pComponent = m_pBufferCom = dynamic_cast<Engine::CRcTex*>(Engine::Clone(RESOURCE_STATIC, L"Buffer_RcTex"));
 	///NULL_CHECK_RETURN(pComponent, E_FAIL);
 	//m_mapComponent[Engine::ID_STATIC].emplace(L"Com_Buffer", pComponent);
 	//pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_UI"));
@@ -99,7 +164,7 @@ HRESULT CUI::Setting_SkillSlot()
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"UI_SKILLBAR", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/UI/Slot/UI_SKILLBAR.png"), E_FAIL);
 	CUIImage* pSlotUI = CUIImage::Create(m_pGraphicDev, _vec3(468.f, 160.f, 0.f), _vec3(650.f, 450.f, 0.f), L"UI_SKILLBAR");
 
-	NULL_CHECK_RETURN(pSlotUI, E_FAIL);
+	NULL_CHECK_RETURN(m_pUISkillSlot, E_FAIL);
 
 	m_pUISkillSlot = pSlotUI;
 
@@ -123,35 +188,44 @@ HRESULT CUI::Setting_PlayerState()
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"UIPLAYERBAR", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/UI/HP/UI_PLAYERBAR.png"), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"UIHPBAR", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/UI/HP/UI_HPBAR.png"), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"UIMANABAR", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/UI/HP/UI_MANABAR.png"), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"UIHURTBAR", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/UI/HP/UI_HURTBAR.png"), E_FAIL);
 
 	CUIImage* pPlayerUI = CUIImage::Create(m_pGraphicDev, _vec3(328.f, 80.f, 0.f), _vec3(-800.f, 500.f, 0.f), L"UIPLAYERBAR");
-	CUIImage* pHpBarUI = CUIImage::Create(m_pGraphicDev, _vec3(244.f, 32.f, 0.f), _vec3(-765.f, 510.f, 0.f), L"UIHPBAR");
-	CUIImage* pManaBarUI = CUIImage::Create(m_pGraphicDev, _vec3(192.f, 16.f, 0.f), _vec3(-790.f, 480.f, 0.f), L"UIMANABAR");
+	CUIImage* pHpBarUI = CUIImage::Create(m_pGraphicDev, m_vHpScale, m_vHpPos, L"UIHPBAR");
+	CUIImage* pManaBarUI = CUIImage::Create(m_pGraphicDev, m_vManaScale, m_vManaPos, L"UIMANABAR");
+	CUIImage* pHurtBarUI = CUIImage::Create(m_pGraphicDev, m_vHurtScale, m_vHurtPos, L"UIHURTBAR");
 
 	NULL_CHECK_RETURN(pPlayerUI, E_FAIL);
 	NULL_CHECK_RETURN(pHpBarUI, E_FAIL);
 	NULL_CHECK_RETURN(pManaBarUI, E_FAIL);
+	NULL_CHECK_RETURN(pHurtBarUI, E_FAIL);
 
 	m_pUIPlayer = pPlayerUI;
 	m_pUIHpBar = pHpBarUI;
 	m_pUIManaBar = pManaBarUI;
-
-///////////////////////////////////////////////////////////////\
-	
-	
+	m_pUIHurtBar = pHurtBarUI;
 
 	return S_OK;
 }
 
 void CUI::Free()
 {
+	for (auto& pUIImage : m_vecSlotImage)
+	{
+		if (pUIImage)
+			Engine::Safe_Release(pUIImage);
+	}
+	m_vecSlotImage.clear();
+
+
+	Engine::Safe_Release(m_pUIHurtBar);
 	Engine::Safe_Release(m_pUICoin);
 	Engine::Safe_Release(m_pUISkillSlot);
 	Engine::Safe_Release(m_pUIHpBar);
 	Engine::Safe_Release(m_pUIManaBar);
 	Engine::Safe_Release(m_pUIPlayer);
-//	Engine::Safe_Release(m_pTextureCom);
-//	Engine::Safe_Release(m_pBufferCom);
+	//	Engine::Safe_Release(m_pTextureCom);
+	//	Engine::Safe_Release(m_pBufferCom);
 	Engine::Safe_Release(m_pGraphicDev);
 }
 
