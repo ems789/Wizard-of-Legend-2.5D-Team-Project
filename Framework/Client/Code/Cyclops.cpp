@@ -55,6 +55,7 @@ _int CCyclops::Update_GameObject(const _float& fTimeDelta)
 
 void CCyclops::Render_GameObject()
 {
+	m_vPrePos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->GetWorldMatrix());
 
 	m_vvTextureCom[m_eCurState][m_eCurDir]->Render_Texture(static_cast<_uint>(m_tFrame.fCurFrame));
@@ -64,6 +65,32 @@ void CCyclops::Render_GameObject()
 const _vec3 * CCyclops::Get_Pos() const
 {
 	return m_pTransformCom->GetInfo(Engine::INFO_POS);
+}
+
+
+void CCyclops::Set_Pos(const _vec3 * pPos)
+{
+	m_pTransformCom->Set_Pos(pPos);
+}
+
+void CCyclops::Set_Pos(const _vec3 & vPos)
+{
+	m_pTransformCom->Set_Pos(vPos);
+}
+
+void CCyclops::Set_PosX(const _float & fx)
+{
+	m_pTransformCom->Set_PosX(fx);
+}
+
+void CCyclops::Set_PosY(const _float & fy)
+{
+	m_pTransformCom->Set_PosY(fy);
+}
+
+void CCyclops::Set_PosZ(const _float & fz)
+{
+	m_pTransformCom->Set_PosZ(fz);
 }
 
 HRESULT CCyclops::Add_Component()

@@ -28,14 +28,14 @@ HRESULT CFireBoss::Ready_GameObject()
 {
 	FAILED_CHECK_RETURN(Add_Component(), E_FAIL);
 
-	m_tSphere.fRadius = 1.f;
+	m_tSphere.fRadius = 0.3f;
 
 	m_fHeight = 1.f;
 
 	m_eCurDir = FBD_DOWN;
 	m_eCurState = FBS_IDLE;
 
-	m_fSpeed = 80.f;
+	m_fSpeed = 30.f;
 
 	m_fJumpPower = 0.f;
 
@@ -75,6 +75,7 @@ _int CFireBoss::Update_GameObject(const _float& fTimeDelta)
 
 void CFireBoss::Render_GameObject()
 {
+	m_vPrePos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->GetWorldMatrix());
 
 	m_vvTextureCom[m_eCurState][m_eCurDir]->Render_Texture(static_cast<_uint>(m_tFrame.fCurFrame));
@@ -84,6 +85,31 @@ void CFireBoss::Render_GameObject()
 const _vec3 * CFireBoss::Get_Pos() const
 {
 	return m_pTransformCom->GetInfo(Engine::INFO_POS);
+}
+
+void CFireBoss::Set_Pos(const _vec3 * pPos)
+{
+	m_pTransformCom->Set_Pos(pPos);
+}
+
+void CFireBoss::Set_Pos(const _vec3 & vPos)
+{
+	m_pTransformCom->Set_Pos(vPos);
+}
+
+void CFireBoss::Set_PosX(const _float & fx)
+{
+	m_pTransformCom->Set_PosX(fx);
+}
+
+void CFireBoss::Set_PosY(const _float & fy)
+{
+	m_pTransformCom->Set_PosY(fy);
+}
+
+void CFireBoss::Set_PosZ(const _float & fz)
+{
+	m_pTransformCom->Set_PosZ(fz);
 }
 
 HRESULT CFireBoss::Add_Component()

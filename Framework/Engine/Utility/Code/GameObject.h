@@ -27,10 +27,15 @@ public:		//	Get Functions
 	virtual LINE*			Get_Line()  { return nullptr; }
 	virtual SPHERE*			Get_Sphere() { return nullptr; }
 	virtual const _vec3*	Get_Pos() const { return nullptr; }
+	virtual	const _vec3*	Get_PrePos() const { return nullptr; }
 	virtual const COLLIDERTYPE Get_CollType() const { return CT_SPHERE; }
+	virtual	const _vec3*	Get_Move()	const { return nullptr; }
 
 public:		//	Set Functions
-	virtual void	Set_Pos(const _vec3* pPos) { }
+	virtual void	Set_Pos(const _vec3* pPos) {}
+	virtual void	Set_PosX(const _float& fx) {}
+	virtual void	Set_PosY(const _float& fy) {}
+	virtual void	Set_PosZ(const _float& fz) {}
 	
 public:	//	About Collision
 	virtual void	Hit(const _int& iAtk, const _vec3* pAtkPos) {}

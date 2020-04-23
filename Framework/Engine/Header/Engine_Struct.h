@@ -92,6 +92,16 @@ namespace Engine
 		};
 	}LINE, *PLINE;
 
+	typedef struct tagRectangle
+	{
+		tagRectangle()
+			: vPos(0.f, 0.f, 0.f), fWidth(0.f), fHeight(0.f)
+		{
+		}
+		_vec3 vPos;
+		_float fWidth, fHeight;
+	}RECTANGLE;
+
 	typedef struct tagLine3D
 	{
 		tagLine3D()

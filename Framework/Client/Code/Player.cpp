@@ -32,6 +32,8 @@ HRESULT CPlayer::Ready_GameObject()
 	m_vecEquipSkill.push_back(nullptr);
 	m_vecEquipSkill.push_back(nullptr);
 
+	ZeroMemory(&m_vPrePos, sizeof(_vec3));
+
 	m_tFrame.fCurFrame = 0.f;
 	m_tFrame.fMaxFrame = 1.f;
 	m_tFrame.fFrameSpeed = 0.f;
@@ -41,7 +43,7 @@ HRESULT CPlayer::Ready_GameObject()
 	m_iPreCamState = Engine::Get_MainCamType();
 	m_fScale = 0.04f;
 
-	m_tSphere.fRadius = 1.f;
+	m_tSphere.fRadius = 0.3f;
 	m_pTransformCom->Move_Pos(Engine::INFO_UP, 0.5f);
 
 	CGuidedFireBall* pGuidedFireBall = CGuidedFireBall::Create(m_pGraphicDev);
@@ -88,6 +90,9 @@ _int CPlayer::Update_GameObject(const _float& fTimeDelta)
 
 void CPlayer::Render_GameObject()
 {
+	CGameObject::Update_GameObject(0.f);
+	m_vPrePos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
+
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->GetWorldMatrix());
 
 	//m_pGraphicDev->SetRenderState(D3DRS_ALPHATESTENABLE, TRUE);
@@ -545,27 +550,27 @@ void CPlayer::Key_Input_Move_For_1stAnd3rdView(const _float & fTimeDelta)
 	D3DXVec3Normalize(&vCamLook, &vCamLook);
 	D3DXVec3Normalize(&vCamRight, &vCamRight);
 
-	_vec3 vMove = { 0.f, 0.f, 0.f };
+	m_vMove = { 0.f, 0.f, 0.f };
 
 	//_bool bDir = m_bDir;
 	if (Engine::KeyPress(DIK_W))
 	{
-		vMove += vCamLook;
+		m_vMove += vCamLook;
 		m_eCurDir = PD_UP;
 	}
 	if (Engine::KeyPress(DIK_S))
 	{
-		vMove -= vCamLook;
+		m_vMove -= vCamLook;
 		m_eCurDir = PD_DOWN;
 	}
 	if (Engine::KeyPress(DIK_A))
 	{
-		vMove -= vCamRight;
+		m_vMove -= vCamRight;
 		m_eCurDir = PD_LEFT;
 	}
 	if (Engine::KeyPress(DIK_D))
 	{
-		vMove += vCamRight;
+		m_vMove += vCamRight;
 		m_eCurDir = PD_RIGHT;
 	}
 
@@ -576,11 +581,11 @@ void CPlayer::Key_Input_Move_For_1stAnd3rdView(const _float & fTimeDelta)
 	//	m_bDir = bDir;
 	//}
 
-	if (0.f != vMove.x || 0.f != vMove.y || 0.f != vMove.z)
+	if (0.f != m_vMove.x || 0.f != m_vMove.y || 0.f != m_vMove.z)
 	{
-		D3DXVec3Normalize(&vMove, &vMove);
-		m_vDashDir = vMove;
-		m_pTransformCom->Move_Pos(vMove * m_fSpeed * fTimeDelta);
+		D3DXVec3Normalize(&m_vMove, &m_vMove);
+		m_vDashDir = m_vMove;
+		m_pTransformCom->Move_Pos(m_vMove * m_fSpeed * fTimeDelta);
 		m_eCurState = P_RUN;
 	}
 	else
@@ -599,28 +604,28 @@ void CPlayer::Key_Input_Move_For_QuaterView(const _float & fTimeDelta)
 	D3DXVec3Normalize(&vCamLook, &vCamLook);
 	D3DXVec3Normalize(&vCamRight, &vCamRight);
 
-	_vec3 vMove = { 0.f, 0.f, 0.f };
+	m_vMove = { 0.f, 0.f, 0.f };
 
 	//_bool bDir = m_bDir;
 	if (Engine::KeyPress(DIK_W))
 	{
-		vMove += vCamLook;
+		m_vMove += vCamLook;
 		m_eCurDir = PD_UP;
 	}
 	if (Engine::KeyPress(DIK_S))
 	{
-		vMove -= vCamLook;
+		m_vMove -= vCamLook;
 		m_eCurDir = PD_DOWN;
 	}
 	if (Engine::KeyPress(DIK_A))
 	{
-		vMove -= vCamRight;
+		m_vMove -= vCamRight;
 		m_eCurDir = PD_LEFT;
 		//bDir = false;
 	}
 	if (Engine::KeyPress(DIK_D))
 	{
-		vMove += vCamRight;
+		m_vMove += vCamRight;
 		m_eCurDir = PD_RIGHT;
 		//bDir = true;
 	}
@@ -632,11 +637,11 @@ void CPlayer::Key_Input_Move_For_QuaterView(const _float & fTimeDelta)
 	//	m_bDir = bDir;
 	//}
 
-	if (0.f != vMove.x || 0.f != vMove.y || 0.f != vMove.z)
+	if (0.f != m_vMove.x || 0.f != m_vMove.y || 0.f != m_vMove.z)
 	{
-		D3DXVec3Normalize(&vMove, &vMove);
-		m_vDashDir = vMove;
-		m_pTransformCom->Move_Pos(vMove * m_fSpeed * fTimeDelta);
+		D3DXVec3Normalize(&m_vMove, &m_vMove);
+		m_vDashDir = m_vMove;
+		m_pTransformCom->Move_Pos(m_vMove * m_fSpeed * fTimeDelta);
 		m_eCurState = P_RUN;
 	}
 	else
@@ -1038,6 +1043,21 @@ void CPlayer::Set_Pos(const _vec3 * pPos)
 void CPlayer::Set_Pos(const _vec3 & vPos)
 {
 	m_pTransformCom->Set_Pos(vPos);
+}
+
+void CPlayer::Set_PosX(const _float & fx)
+{
+	m_pTransformCom->Set_PosX(fx);
+}
+
+void CPlayer::Set_PosY(const _float & fy)
+{
+	m_pTransformCom->Set_PosY(fy);
+}
+
+void CPlayer::Set_PosZ(const _float & fz)
+{
+	m_pTransformCom->Set_PosZ(fz);
 }
 
 const _vec3 * CPlayer::Get_Pos() const

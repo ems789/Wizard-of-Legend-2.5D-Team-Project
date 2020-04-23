@@ -400,11 +400,12 @@ void CToolView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			Engine::WALLTYPE eWallType = pPropertyFormView->m_MySheet->m_WallPage.m_eWallType;
 			int  iWallY = pPropertyFormView->m_MySheet->m_WallPage.m_iWallY;
 
-			if (bHasleftWall || bHasTopWall || bHasRighttWall || bHasBottomWall)
+			if (bHasleftWall || bHasTopWall || bHasRighttWall || bHasBottomWall || bHasCeilingWall)
 			{
 				iDrawID = pPropertyFormView->m_MySheet->m_WallPage.m_iDrawID;
 				if (iSrcZ < iDestZ)
 				{
+					++iSrcZ;
 					for (iSrcZ; iSrcZ <= iDestZ; ++iSrcZ)
 					{
 						m_pTerrain->WallChange(::_vec3(m_vLastPickTile.x, m_vLastPickTile.y, (float)iSrcZ), L"Texture_Wall", iDrawID, m_bRender, bHasleftWall, bHasTopWall, bHasRighttWall, bHasBottomWall, bHasCeilingWall, eWallType, iWallY);
@@ -412,6 +413,7 @@ void CToolView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 				}
 				else if (iSrcZ > iDestZ)
 				{
+					--iSrcZ;
 					for (iSrcZ; iSrcZ >= iDestZ; --iSrcZ)
 						m_pTerrain->WallChange(::_vec3(m_vLastPickTile.x, m_vLastPickTile.y, (float)iSrcZ), L"Texture_Wall", iDrawID, m_bRender, bHasleftWall, bHasTopWall, bHasRighttWall, bHasBottomWall, bHasCeilingWall, eWallType, iWallY);
 				}			
@@ -458,16 +460,18 @@ void CToolView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			Engine::WALLTYPE eWallType = pPropertyFormView->m_MySheet->m_WallPage.m_eWallType;
 			int  iWallY = pPropertyFormView->m_MySheet->m_WallPage.m_iWallY;
 
-			if (bHasleftWall || bHasTopWall || bHasRighttWall || bHasBottomWall)
+			if (bHasleftWall || bHasTopWall || bHasRighttWall || bHasBottomWall || bHasCeilingWall)
 			{
 				iDrawID = pPropertyFormView->m_MySheet->m_WallPage.m_iDrawID;
 				if (iSrcX < iDestX)
 				{
+					++iSrcX;
 					for (iSrcX; iSrcX <= iDestX; ++iSrcX)
 						m_pTerrain->WallChange(::_vec3((float)iSrcX, m_vLastPickTile.y, m_vLastPickTile.z), L"Texture_Wall", iDrawID, m_bRender, bHasleftWall, bHasTopWall, bHasRighttWall, bHasBottomWall, bHasCeilingWall, eWallType, iWallY);
 				}
 				else if (iSrcX > iDestX)
 				{
+					--iSrcX;
 					for (iSrcX; iSrcX >= iDestX; --iSrcX)
 						m_pTerrain->WallChange(::_vec3((float)iSrcX, m_vLastPickTile.y, m_vLastPickTile.z), L"Texture_Wall", iDrawID, m_bRender, bHasleftWall, bHasTopWall, bHasRighttWall, bHasBottomWall, bHasCeilingWall, eWallType, iWallY);
 				}

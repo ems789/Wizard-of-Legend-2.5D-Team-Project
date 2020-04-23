@@ -33,6 +33,7 @@ public:
 	const bool				Get_Render();
 	const int				Get_DrawID();
 	bool					Get_HasWall(WALLPOSITION eWallPos);
+	const bool*				Get_HasWall() { return m_bHasWall; }
 	const Engine::WALLTYPE	Get_WallType();
 	void					Set_Pos(const _float& fX, const _float& fY, const _float& fZ);
 	void					Set_Pos(const _vec3& vPos);

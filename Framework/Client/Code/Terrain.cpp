@@ -5,8 +5,6 @@
 
 #include "Export_Function.h"
 
-USING(Engine)
-
 CTerrain::CTerrain(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev)
 {
@@ -46,20 +44,53 @@ HRESULT CTerrain::Ready_GameObject(const ::_tchar* pTilePath, const ::_tchar* pW
 
 	m_pRendererCom->Add_RenderGroup(Engine::RENDER_NONALPHA, this);
 
+	Engine::Add_GameObject_To_CollisionList(L"Terrain", this);
+
 	return 0;
 }
 
 void CTerrain::Render_GameObject(void)
 {
+	const Engine::CTransform* pTransform = dynamic_cast<const Engine::CTransform*>(Engine::Get_Component_of_Player(L"Com_Transform", Engine::ID_DYNAMIC));
+
+	_vec3 vPlayerPos = *pTransform->GetInfo(Engine::INFO_POS);
+
+	_int iX = static_cast<_int>(vPlayerPos.x);
+	_int iZ = static_cast<_int>(vPlayerPos.z);
+
+	_int iStartX = iX - 25;
+	_int iEndX = iX + 25;
+	_int iStartZ = iZ - 25;
+	_int iEndZ = iZ + 25;
+
+	if (iStartX < 0)
+		iStartX = 0;
+	else if (iStartX >= m_dwTileX)
+		iStartX = m_dwTileX - 1;
+
+	if (iEndX < 1)
+		iEndX = 1;
+	else if (iEndX > m_dwTileX)
+		iEndX = m_dwTileX;
+
+	if (iStartZ < 0)
+		iStartZ = 0;
+	else if (iStartZ >= m_dwTileZ)
+		iStartZ = m_dwTileZ - 1;
+
+	if (iEndZ < 0)
+		iEndZ = 1;
+	else if (iEndZ > m_dwTileZ)
+		iEndZ = m_dwTileZ;
+
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->GetWorldMatrix());
 	
-	for (::_ulong i = 0; i < m_dwTileZ; ++i)
+	for (::_ulong i = iStartZ; i < iEndZ; ++i)
 	{
-		for (::_ulong j = 0; j < m_dwTileX; ++j)
+		for (::_ulong j = iStartX; j < iEndX; ++j)
+		{
 			m_vecTile[i * m_dwTileX + j]->Render_GameObject();
 
-		for (::_ulong j = 0; j < m_dwTileX; ++j)
-		{
 			for (::_ulong k = 0; k < m_vecWallList[i * m_dwTileX + j].size(); ++k)
 				m_vecWallList[i * m_dwTileX + j][k]->Render_GameObject();
 		}
@@ -69,14 +100,14 @@ void CTerrain::Render_GameObject(void)
 
 void CTerrain::Release_TileList(void)
 {
-	for_each(m_vecTile.begin(), m_vecTile.end(), CDeleteObj());
+	for_each(m_vecTile.begin(), m_vecTile.end(), Engine::CDeleteObj());
 	m_vecTile.clear();
 }
 
 void CTerrain::Release_WallList(void)
 {
 	for (::_ulong i = 0; i < m_vecWallList.size(); ++i)
-		for_each(m_vecWallList[i].begin(), m_vecWallList[i].end(), CDeleteObj());
+		for_each(m_vecWallList[i].begin(), m_vecWallList[i].end(), Engine::CDeleteObj());
 	m_vecWallList.clear();
 }
 
@@ -90,7 +121,7 @@ HRESULT CTerrain::LoadTile(const ::_tchar* pFilePath)
 
 	if (!m_vecTile.empty())
 	{
-		for_each(m_vecTile.begin(), m_vecTile.end(), CDeleteObj());
+		for_each(m_vecTile.begin(), m_vecTile.end(), Engine::CDeleteObj());
 		m_vecTile.clear();
 	}
 
@@ -166,7 +197,7 @@ HRESULT	CTerrain::LoadWall(const ::_tchar* pFilePath)
 	if (!m_vecWallList.empty())
 	{
 		for (::_ulong i = 0; i < m_vecWallList.size(); ++i)
-			for_each(m_vecWallList[i].begin(), m_vecWallList[i].end(), CDeleteObj());
+			for_each(m_vecWallList[i].begin(), m_vecWallList[i].end(), Engine::CDeleteObj());
 		m_vecWallList.clear();
 	}
 
@@ -223,6 +254,47 @@ HRESULT	CTerrain::LoadWall(const ::_tchar* pFilePath)
 }
 
 
+_bool CTerrain::Check_TileWall(const _ulong & dwIndexX, const _ulong & dwIndexZ)
+{
+	_int	iIndex = dwIndexZ * m_dwTileX + dwIndexX;
+	if (iIndex < 0)
+		return false;
+	if (m_vecTile.size() <= iIndex)
+		return false;
+
+	return !m_vecWallList[iIndex].empty();
+}
+
+WALLPOSITION CTerrain::Check_Wall(const _ulong & dwIndexX, const _ulong & dwIndexZ)
+{
+	_int	iIndex = dwIndexZ * m_dwTileX + dwIndexX;
+	if (iIndex < 0)
+		return WALL_END;
+	if (m_vecTile.size() <= iIndex)
+		return WALL_END;
+	if (m_vecWallList[iIndex].empty())
+		return WALL_END;
+
+	for (_int i = 0; i < WALL_END; ++i)
+		if (m_vecWallList[iIndex].front()->Get_HasWall((WALLPOSITION)i))
+			return (WALLPOSITION)i;
+
+	return WALL_END;
+}
+
+const _bool * CTerrain::Get_HasWall(const _ulong & dwIndexX, const _ulong & dwIndexZ)
+{
+	_int	iIndex = dwIndexZ * m_dwTileX + dwIndexX;
+	if (iIndex < 0)
+		return nullptr;
+	if (m_vecTile.size() <= iIndex)
+		return nullptr;
+	if (m_vecWallList[iIndex].empty())
+		return nullptr;
+
+	return m_vecWallList[iIndex].front()->Get_HasWall();
+}
+
 HRESULT CTerrain::Add_Component(void)
 {
 	Engine::CComponent*		pComponent = nullptr;
@@ -255,11 +327,11 @@ void CTerrain::Free(void)
 {
 	Engine::CGameObject::Free();
 
-	for_each(m_vecTile.begin(), m_vecTile.end(), CDeleteObj());
+	for_each(m_vecTile.begin(), m_vecTile.end(), Engine::CDeleteObj());
 	m_vecTile.clear();
 
 	for (::_ulong i = 0; i < m_vecWallList.size(); ++i)
-		for_each(m_vecWallList[i].begin(), m_vecWallList[i].end(), CDeleteObj());
+		for_each(m_vecWallList[i].begin(), m_vecWallList[i].end(), Engine::CDeleteObj());
 	m_vecWallList.clear();
 }
 

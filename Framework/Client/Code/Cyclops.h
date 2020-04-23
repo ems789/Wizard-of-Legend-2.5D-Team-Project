@@ -31,6 +31,15 @@ public:
 public:
 	virtual Engine::SPHERE*		Get_Sphere() override { return &m_tSphere; }
 	virtual const _vec3*		Get_Pos()	const override;
+	virtual const _vec3*		Get_PrePos() const override { return &m_vPrePos; }
+
+public:		//	Set_Functions
+	void	Set_Pos(const _vec3* pPos);
+	void	Set_Pos(const _vec3& vPos);
+	virtual void Set_PosX(const _float& fx);
+	virtual void Set_PosY(const _float& fy);
+	virtual void Set_PosZ(const _float& fz);
+
 private:
 	HRESULT Add_Component();
 	void	Animation(const _float& fTimeDelta);
@@ -70,6 +79,8 @@ private:	//	Components
 
 private:
 	Engine::SPHERE	m_tSphere;
+	_vec3			m_vPrePos;
+
 	_int	m_iHP		= 200;
 	_int	m_iHPMax	= 200;
 

@@ -87,10 +87,15 @@ private:	//	State Udate
 public:		//	Set_Functions
 	void	Set_Pos(const _vec3* pPos);
 	void	Set_Pos(const _vec3& vPos);
+	virtual void Set_PosX(const _float& fx);
+	virtual void Set_PosY(const _float& fy);
+	virtual void Set_PosZ(const _float& fz);
 
 public:		//	Get Functions
 	virtual Engine::SPHERE*		Get_Sphere() override { return &m_tSphere; }
 	virtual const _vec3*		Get_Pos()	const override;
+	virtual const _vec3*		Get_PrePos() const override { return &m_vPrePos; }
+	virtual	const _vec3*		Get_Move() const override { return &m_vMove; }
 
 public:		//	About Collision
 	virtual void	Hit(const _int& iAtk, const _vec3* pAtkPos) override;
@@ -125,6 +130,8 @@ private:
 	_float	m_fSpeed = 10.f;
 
 	Engine::SPHERE	m_tSphere;
+	_vec3			m_vPrePos;
+	_vec3			m_vMove;
 
 	vector<Engine::CSkill*>		m_vecEquipSkill;
 

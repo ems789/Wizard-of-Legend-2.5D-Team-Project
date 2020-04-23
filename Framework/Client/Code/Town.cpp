@@ -103,7 +103,7 @@ HRESULT CTown::Ready_GameLogic_Layer(const _tchar * pLayerTag)
 	NULL_CHECK_RETURN(pGameObject, E_FAIL);
 	pLayer->Add_GameObject(L"TestTerrain", pGameObject);*/
 
-	pGameObject = CTerrain::Create(m_pGraphicDev, L"../../Data/FireStageTile.dat", L"../../Data/FireStageWall.dat");
+	pGameObject = CTerrain::Create(m_pGraphicDev, L"../../Data/FireStageTile.dat", L"../../Data/FireStageWall_5.dat");
 	NULL_CHECK_RETURN(pGameObject, E_FAIL);
 	pLayer->Add_GameObject(L"Terrain", pGameObject);
 
@@ -178,6 +178,8 @@ HRESULT CTown::Ready_StaticLayer()
 {
 	CPlayer* pPlayer = CPlayer::Create(m_pGraphicDev);
 	NULL_CHECK_RETURN(pPlayer, E_FAIL);
+	pPlayer->Set_PosX(50.f);
+	pPlayer->Set_PosZ(50.f);
 	Engine::Add_GameObjectToStaticLayer(L"Player", pPlayer);
 	FAILED_CHECK_RETURN(UI_Setting(), E_FAIL);
 	return S_OK;

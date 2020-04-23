@@ -32,6 +32,16 @@ public:
 	HRESULT		LoadTile(const _tchar* pFilePath);
 	HRESULT		LoadWall(const _tchar* pFilePath);
 
+public:		//	Get Functions
+	const _ulong		Get_TileX()	const { return m_dwTileX; }
+	const _ulong		Get_TileZ()	const { return m_dwTileZ; }
+	const _ulong		Get_Interval() const { return m_dwItv; }
+
+public:
+	_bool			Check_TileWall(const _ulong& dwIndexX, const _ulong& dwIndexZ);
+	WALLPOSITION	Check_Wall(const _ulong& dwIndexX, const _ulong& dwIndexZ);
+	const _bool*	Get_HasWall(const _ulong& dwIndexX, const _ulong& dwIndexZ);
+
 private:
 	HRESULT		Add_Component(void);
 
