@@ -3,6 +3,7 @@
 
 #include "Export_Function.h"
 #include "Terrain.h"
+#include "RoomBlock.h"
 
 const _uint uiFlag_Wall_Right	= 0x00000001;
 const _uint uiFlag_Wall_Top		= 0x00000002;
@@ -26,6 +27,8 @@ HRESULT CCollisionFunctions::Ready_Functions()
 	Engine::Add_CollisionFunction(L"MonsterAttack", L"Player", CCollisionFunctions::CollisionObjAttackToObject);
 	Engine::Add_CollisionFunction(L"Player", L"Terrain", CCollisionFunctions::CollisionObjectToTerrain);
 	Engine::Add_CollisionFunction(L"Monster", L"Terrain", CCollisionFunctions::CollisionObjectToTerrain);
+	Engine::Add_CollisionFunction(L"Player", L"RoomBlock", CCollisionFunctions::CollisionObjectToRoomBlock);
+	Engine::Add_CollisionFunction(L"Monster", L"RoomBlock", CCollisionFunctions::CollisionObjectToRoomBlock);
 	//Engine::Add_CollisionFunction(L"Player", L"Terrain", CCollisionFunctions::CollisionObjectToTerrainPoint);
 	return S_OK;
 }
@@ -151,8 +154,8 @@ void CCollisionFunctions::CollisionObjectToTerrain(const _tchar * pSrcTag, const
 	for (auto& pSrc : *pSrcList)
 	{
 		_vec3 vSrcPos = *pSrc->Get_Pos();
-		_vec3 vSrcPrePos = *pSrc->Get_PrePos();
-		_vec3 vMoveDir = vSrcPos - vSrcPrePos;
+		//_vec3 vSrcPrePos = *pSrc->Get_PrePos();
+		//_vec3 vMoveDir = vSrcPos - vSrcPrePos;
 		for (auto& pDest : *pDestList)
 		{
 			CTerrain* pTerrain  = dynamic_cast<CTerrain*>(pDest);
@@ -240,30 +243,6 @@ void CCollisionFunctions::CollisionObjectToTerrain(const _tchar * pSrcTag, const
 							//		pSrc->Set_PosZ(tTileRect.vPos.z - (dwItv * 0.5f + pSrc->Get_Sphere()->fRadius));
 							//}
 
-							//WALLPOSITION eWall = pTerrain->Check_Wall(x, z);
-
-							//switch (eWall)
-							//{
-							//case WALL_LEFT:
-							//	pSrc->Set_PosX(tTileRect.vPos.x - (dwItv * 0.5f + pSrc->Get_Sphere()->fRadius));
-							//	break;
-							//case WALL_TOP:
-							//	pSrc->Set_PosZ(tTileRect.vPos.z + (dwItv * 0.5f + pSrc->Get_Sphere()->fRadius));
-							//	break;
-							//case WALL_RIGHT:
-							//	pSrc->Set_PosX(tTileRect.vPos.x + (dwItv * 0.5f + pSrc->Get_Sphere()->fRadius));
-							//	break;
-							//case WALL_BOTTOM:
-							//	pSrc->Set_PosZ(tTileRect.vPos.z - (dwItv * 0.5f + pSrc->Get_Sphere()->fRadius));
-							//	break;
-							//case WALL_CEILING:
-							//	break;
-							//case WALL_END:
-							//	continue;
-							//default:
-							//	break;
-							//}
-
 							const bool* bHasWall = pTerrain->Get_HasWall(x, z);
 
 							_uint	uiWallFlag = 0;
@@ -338,20 +317,6 @@ void CCollisionFunctions::CollisionObjectToTerrain(const _tchar * pSrcTag, const
 							}
 								break;
 							}
-
-							//if (pSrc->Get_Move()->z < 0.f)
-							//	pSrc->Set_PosZ(tTileRect.vPos.z + (dwItv * 0.5f + pSrc->Get_Sphere()->fRadius));
-							//
-							//if (pSrc->Get_Move()->z > 0.f)
-							//	pSrc->Set_PosZ(tTileRect.vPos.z - (dwItv * 0.5f + pSrc->Get_Sphere()->fRadius));
-
-							//if (pSrc->Get_Move()->x < 0.f)
-							//	pSrc->Set_PosX(tTileRect.vPos.x + (dwItv * 0.5f + pSrc->Get_Sphere()->fRadius));
-
-							//if (pSrc->Get_Move()->x > 0.f)
-							//	pSrc->Set_PosX(tTileRect.vPos.x - (dwItv * 0.5f + pSrc->Get_Sphere()->fRadius));
-
-
 
 						}
 					}
@@ -428,6 +393,50 @@ void CCollisionFunctions::CollisionOBjectToTerrainPoint(const _tchar * pSrcTag, 
 		}
 	}
 
+}
+
+void CCollisionFunctions::CollisionObjectToRoomBlock(const _tchar * pSrcTag, const _tchar * pDestTag)
+{
+	list<Engine::CGameObject*>* pSrcList = Engine::Get_CollisionObjectList(pSrcTag);
+	list<Engine::CGameObject*>* pDestList = Engine::Get_CollisionObjectList(pDestTag);
+
+	if (nullptr == pSrcList || nullptr == pDestList)
+		return;
+
+	for (auto& pSrc : *pSrcList)
+	{
+		Engine::SPHERE tSrcSph = *pSrc->Get_Sphere();
+
+		_bool	bSrcDie = false;
+		for (auto& pDest : *pDestList)
+		{
+			CRoomBlock* pRoom = dynamic_cast<CRoomBlock*>(pDest);
+			if (nullptr == pRoom)
+				continue;
+
+			CRoomBlock::BLOCK_DIR eDir = pRoom->Get_BlockDir();
+			switch (eDir)
+			{
+			case CRoomBlock::BLOCK_UP:
+				if (tSrcSph.vPos.z < pRoom->Get_Pos()->z)
+					pSrc->Set_PosZ(pRoom->Get_Pos()->z + tSrcSph.fRadius);
+				break;
+			case CRoomBlock::BLOCK_DOWN:
+				if (tSrcSph.vPos.z > pRoom->Get_Pos()->z)
+					pSrc->Set_PosZ(pRoom->Get_Pos()->z - tSrcSph.fRadius);
+				break;
+			case CRoomBlock::BLOCK_LEFT:
+				if (tSrcSph.vPos.x > pRoom->Get_Pos()->x)
+					pSrc->Set_PosX(pRoom->Get_Pos()->x - tSrcSph.fRadius);
+				break;
+			case CRoomBlock::BLOCK_RIGHT:
+				if (tSrcSph.vPos.x < pRoom->Get_Pos()->x)
+					pSrc->Set_PosX(pRoom->Get_Pos()->x + tSrcSph.fRadius);
+				break;
+			}
+			
+		}
+	}
 }
 
 bool CCollisionFunctions::CollisionRectToTile(const Engine::SPHERE * pSphere, const Engine::RECTANGLE* pRect)

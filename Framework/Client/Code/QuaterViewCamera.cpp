@@ -49,7 +49,7 @@ _int CQuaterViewCamera::Update_EyeAtUp(const _float & fTimeDelta)
 {
 	m_vAt = *m_pTargetInfo->GetInfo(Engine::INFO_POS);
 
-	Key_Input(fTimeDelta);
+	//Key_Input(fTimeDelta);
 
 	if (m_bShaking)
 	{

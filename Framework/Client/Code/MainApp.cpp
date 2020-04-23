@@ -41,8 +41,6 @@ HRESULT CMainApp::Ready_MainApp(void)
 
 	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 	
-	
-
 
 	return S_OK;
 }
@@ -102,6 +100,9 @@ HRESULT CMainApp::SetUp_DefaultSetting(LPDIRECT3DDEVICE9 * ppGraphicDev)
 
 	// INPUTDEV
 	FAILED_CHECK_RETURN(Engine::Ready_InputDev(g_hInst, g_hWnd), E_FAIL);
+
+	// SoundMgr
+	Engine::Ready_SoundMgr();
 
 	return S_OK;
 }

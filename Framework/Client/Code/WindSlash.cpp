@@ -58,6 +58,8 @@ _int CWindSlash::Use_Skill(const _float& fTimeDelta)
 
 	m_fCurTime = m_fCoolTime;
 
+	Engine::PlaySound_(L"QuickSwing.wav", CSoundMgr::EFFECT);
+
 	return 0;
 }
 
@@ -85,17 +87,25 @@ _int CWindSlash::Use_Skill(const _float & fTimeDelta, const _vec3 * pPos, const 
 
 	CBasicEffect* pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_SlashHitSpark", L"SlashHitSpark", 7.f, 20.f, 0.05f, &vStartPos, false, 0.f);
 	NULL_CHECK_RETURN(pEffect, -1);
+
 	CSphereCollider* pCollider = CSphereCollider::Create(m_pGraphicDev, pWind, pEffect, 1.f, L"Player_Bullet", 10);
 	Engine::Add_GameObject(L"GameLogic", L"PlayerCollider", pCollider);
+	pCollider->Add_Hit_Effect(WindSlash_Hit_Func);
 
 	m_fCurTime = m_fCoolTime;
 
+	Engine::PlaySound_(L"QuickSwing.wav", CSoundMgr::EFFECT);
 	return 1;
 }
 
 _int CWindSlash::Use_UpgradedSkill(const _float & fTimeDelta)
 {
 	return 0;
+}
+
+void CWindSlash::WindSlash_Hit_Func()
+{
+	Engine::PlaySound_(L"ImpactPhysicalLight.wav", CSoundMgr::EFFECT);
 }
 
 CWindSlash* CWindSlash::Create(LPDIRECT3DDEVICE9 pGraphicDev)

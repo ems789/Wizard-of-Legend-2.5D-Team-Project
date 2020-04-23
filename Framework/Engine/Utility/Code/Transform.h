@@ -30,6 +30,10 @@ public:	//	Set Functions
 
 	void			Set_Angle(const _vec3& vAngle)									{ m_vAngle = vAngle; }
 	void			Set_Angle(const _vec3* pAngle)									{ memcpy(&m_vAngle, pAngle, sizeof(_vec3)); }
+	void			Set_Angle(const _float& fx, const _float& fy, const _float& fz) { m_vAngle = { fx, fy, fz }; }
+	void			Set_AngleX(const _float& fx)									{ m_vAngle.x = fx; }
+	void			Set_AngleY(const _float& fy)									{ m_vAngle.x = fy; }
+	void			Set_AngleZ(const _float& fz)									{ m_vAngle.x = fz; }
 
 public:	//	Get Functions
 	const _vec3*	GetInfo(INFO eType, _vec3* pInfo = nullptr)		const { if (pInfo)		memcpy(pInfo, &m_matWorld.m[eType][0], sizeof(_vec3));	return &m_vInfo[eType]; }

@@ -104,6 +104,13 @@ void CThirdViewCamera::Mouse_Move(const _float& fTimeDelta)
 
 	if (m_fDistance < 1.f)
 		m_fDistance = 1.f;
+	else if (m_fDistance > 6.f)
+		m_fDistance = 6.f;
+
+	if (m_vAngle.x > D3DXToRadian(90.f))
+		m_vAngle.x = D3DXToRadian(90.f);
+	else if (m_vAngle.x < D3DXToRadian(-90.f))
+		m_vAngle.x = D3DXToRadian(-90.f);
 
 	POINT pt = {WINCX / 2, WINCY / 2};
 	ClientToScreen(g_hWnd, &pt);

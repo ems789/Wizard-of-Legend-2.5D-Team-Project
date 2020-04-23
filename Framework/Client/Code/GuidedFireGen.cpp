@@ -74,7 +74,7 @@ void CGuidedFireGen::Generate_GuidedFire(const _float & fTimeDelta)
 		NULL_CHECK_RETURN(pGuidedFire, );
 		Engine::Add_GameObject(L"GameLogic", L"GuidedFireGen", pGuidedFire);
 
-
+		Engine::PlaySound_(L"FlameLight.wav", CSoundMgr::EFFECT);
 	}
 }
 

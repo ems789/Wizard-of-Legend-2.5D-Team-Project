@@ -20,7 +20,7 @@ public:
 	static _uint	CALLBACK Thread_Main(void* pArg);
 
 public:
-	HRESULT		Ready_Loading(LOADINGID eLoading);
+	HRESULT		Ready_Loading(LOADINGID eLoading, const _tchar* pTilePath, const _tchar* pWallPath);
 	_uint		Loading_ForState();
 
 private:
@@ -32,8 +32,11 @@ private:
 	_bool				m_bFinish;
 	_tchar				m_szLoading[STR_MAX];
 
+	_tchar				m_szTilePath[STR_MAX] = L"";
+	_tchar				m_szWallPath[STR_MAX] = L"";
+
 public:
-	static CLoading*	Create(LPDIRECT3DDEVICE9 pGraphicDev, LOADINGID eLoading);
+	static CLoading*	Create(LPDIRECT3DDEVICE9 pGraphicDev, LOADINGID eLoading, const _tchar* pTilePath = L"", const _tchar* pWallPath = L"");
 
 private:
 	virtual void Free();

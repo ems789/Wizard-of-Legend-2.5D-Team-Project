@@ -49,6 +49,7 @@ _int CMeteor::Update_GameObject(const _float& fTimeDelta)
 		Engine::Add_GameObject(L"GameLogic", L"MeteorKick", pFireKick);
 
 		Engine::Get_MainCamera()->CameraShake();
+		Engine::PlaySound_(L"MeteorExplosion.wav", CSoundMgr::EFFECT);
 
 		return 0;
 	}
@@ -117,6 +118,7 @@ void CMeteor::Add_Effect(const _vec3* pPos)
 
 		Engine::Add_GameObject(L"Effect", L"FireExplosion", pEffect);
 	}
+
 }
 
 HRESULT CMeteor::Add_Component()

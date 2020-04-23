@@ -70,6 +70,9 @@ public:		//	About HP
 	virtual _int	Get_HP()	const { return m_iHP; }
 	virtual _int	Get_HPMax() const { return m_iHPMax; }
 
+public:
+	static void	Beam_Hit_Function();
+
 private:	//	Components
 	Engine::CRcTex*		m_pBufferCom = nullptr;
 	Engine::CTransform* m_pTransformCom = nullptr;

@@ -111,6 +111,8 @@ void CFire::Add_Effect(const _vec3* pPos)
 
 		Engine::Add_GameObject(L"Effect", L"FireExplosion", pEffect);
 	}
+
+	Engine::PlaySound_(L"FireballExplode.wav", CSoundMgr::EFFECT);
 }
 
 void CFire::Go()

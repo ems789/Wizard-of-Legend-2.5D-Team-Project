@@ -14,6 +14,7 @@
 #include "Golem.h"
 #include "Cyclops.h"
 #include "FireBoss.h"
+#include "CardSpawn.h"
 
 CTown::CTown(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CScene(pGraphicDev)
@@ -46,28 +47,34 @@ _int CTown::Update_Scene(const _float& fTimeDelta)
 	if (Engine::KeyDown(DIK_F7))
 	{
 		//	FireBoss
-		Engine::CGameObject* pGameObject = CFireBoss::Create(m_pGraphicDev, &_vec3(rand() % 20 + 10.f, 1.f, rand() % 20 + 10.f));
+		_vec3 vCardPos = { rand() % 20 + 10.f, 1.f, rand() % 20 + 10.f };
+		Engine::CGameObject* pGameObject = CFireBoss::Create(m_pGraphicDev, &vCardPos);
 		NULL_CHECK_RETURN(pGameObject, E_FAIL);
 
-		Add_GameObject(L"Monster", L"Monster", pGameObject);
+		CCardSpawn* pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
+		Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
 	}
 
 	if (Engine::KeyDown(DIK_F6))
 	{
 		//	Cyclops
-		Engine::CGameObject* pGameObject = CCyclops::Create(m_pGraphicDev, &_vec3(rand() % 20 + 10.f, 1.f, rand() % 20 + 10.f));
+		_vec3 vCardPos = { rand() % 20 + 10.f, 1.f, rand() % 20 + 10.f };
+		Engine::CGameObject* pGameObject = CCyclops::Create(m_pGraphicDev, &vCardPos);
 		NULL_CHECK_RETURN(pGameObject, E_FAIL);
 
-		Add_GameObject(L"Monster", L"Monster", pGameObject);
+		CCardSpawn* pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
+		Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
 	}
 
 	if (Engine::KeyDown(DIK_F8))
 	{
-		//	FireBoss
-		Engine::CGameObject* pGameObject = CGolem::Create(m_pGraphicDev, &_vec3(rand() % 20 + 10.f, 1.f, rand() % 20 + 10.f));
+		//	Golem
+		_vec3 vCardPos = { rand() % 20 + 10.f, 1.f, rand() % 20 + 10.f };
+		Engine::CGameObject* pGameObject = CGolem::Create(m_pGraphicDev, &vCardPos);
 		NULL_CHECK_RETURN(pGameObject, E_FAIL);
 
-		Add_GameObject(L"Monster", L"Monster", pGameObject);
+		CCardSpawn* pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
+		Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
 	}
 
 
@@ -78,7 +85,21 @@ _int CTown::Update_Scene(const _float& fTimeDelta)
 
 void CTown::Render_Scene()
 {
+#ifdef _DEBUG
+	const Engine::CTransform* pPlayerTransform = dynamic_cast<const Engine::CTransform*>(Engine::Get_Component_of_Player(L"Com_Transform", Engine::ID_DYNAMIC));
 
+	_vec3 vPlayerPos = *pPlayerTransform->GetInfo(Engine::INFO_POS);
+
+	wstring wstrPos = L"Player X : " + to_wstring(vPlayerPos.x);
+	Engine::Render_Font(L"Font_Default", wstrPos.c_str(), &_vec2(10.f, 100.f), D3DXCOLOR(1.f, 0.f, 0.f, 1.f));
+
+	wstrPos = L"Player Y : " + to_wstring(vPlayerPos.y);
+	Engine::Render_Font(L"Font_Default", wstrPos.c_str(), &_vec2(10.f, 120.f), D3DXCOLOR(1.f, 0.f, 0.f, 1.f));
+
+	wstrPos = L"Player Z : " + to_wstring(vPlayerPos.z);
+	Engine::Render_Font(L"Font_Default", wstrPos.c_str(), &_vec2(10.f, 140.f), D3DXCOLOR(1.f, 0.f, 0.f, 1.f));
+
+#endif // _DEBUG
 }
 
 HRESULT CTown::Ready_GameLogic_Layer(const _tchar * pLayerTag)
@@ -159,16 +180,6 @@ HRESULT CTown::Ready_UI_Layer(const _tchar * pLayerTag)
 
 	Engine::CGameObject* pGameObject = nullptr;
 
-	//FAILED_CHECK_RETURN(UI_Setting(), E_FAIL);
-
-	//pGameObject = CPlayerHP::Create(m_pGraphicDev, &_vec3(2.f, 2.f, 0.f));
-	//NULL_CHECK_RETURN(pGameObject, E_FAIL);
-	//pLayer->Add_GameObject(L"PlayerHP", pGameObject);
-
-	//pGameObject = CCastingCircle::Create(m_pGraphicDev, 200.f, &_vec3(0.f, 0.f, 0.f), Engine::RENDER_UI);
-	//NULL_CHECK_RETURN(pGameObject, E_FAIL);
-	//pLayer->Add_GameObject(L"CastingCircle", pGameObject);
-
 	m_mapLayer.emplace(pLayerTag, pLayer);
 
 	return S_OK;
@@ -179,7 +190,7 @@ HRESULT CTown::Ready_StaticLayer()
 	CPlayer* pPlayer = CPlayer::Create(m_pGraphicDev);
 	NULL_CHECK_RETURN(pPlayer, E_FAIL);
 	pPlayer->Set_PosX(50.f);
-	pPlayer->Set_PosZ(50.f);
+	pPlayer->Set_PosZ(37.5f);
 	Engine::Add_GameObjectToStaticLayer(L"Player", pPlayer);
 	FAILED_CHECK_RETURN(UI_Setting(), E_FAIL);
 	return S_OK;

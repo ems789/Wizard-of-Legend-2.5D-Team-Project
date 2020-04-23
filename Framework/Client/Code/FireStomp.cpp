@@ -48,6 +48,7 @@ _int CFireStomp::Update_GameObject(const _float& fTimeDelta)
 			CFireKick* pFireKick = CFireKick::Create(m_pGraphicDev, vPos, 0.5f, 4, m_iAttack, 0.05f);
 			Engine::Add_GameObject(L"GameLogic", L"StompBoom", pFireKick);
 			Engine::Get_MainCamera()->CameraShake();
+			Engine::PlaySound_(L"Explosion2.wav", CSoundMgr::EFFECT);
 		}
 	}
 		break;

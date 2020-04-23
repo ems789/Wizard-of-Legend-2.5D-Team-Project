@@ -70,6 +70,9 @@ void CSphereCollider::Add_Effect(const _vec3 * pPos)
 
 	Engine::Add_GameObject(L"GameLogic", m_pHitEffect->Get_EffectTag(), m_pHitEffect);
 
+	if (nullptr != m_pHitFunc)
+		m_pHitFunc();
+
 }
 
 CSphereCollider* CSphereCollider::Create(LPDIRECT3DDEVICE9 pGraphicDev, CGameObject* pParent, Engine::CEffect* pHitEffect, const _float& fRadius, const _tchar* pColliderTag, const _int& iAttack)

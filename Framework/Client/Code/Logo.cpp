@@ -23,6 +23,8 @@ HRESULT CLogo::Ready_Scene()
 	FAILED_CHECK_RETURN(Ready_StaticLayer(), E_FAIL);
 	//FAILED_CHECK_RETURN(Ready_UI_Layer(L"UI"), E_FAIL);
 	
+	Engine::PlayBGM(L"TitleScreen.wav");
+	Engine::SetVolume(CSoundMgr::BGM, 1.f);
 
 	return S_OK;
 }
@@ -113,6 +115,7 @@ CLogo * CLogo::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CLogo::Free()
 {
+	Engine::StopAll();
 	CScene::Free();
 }
 

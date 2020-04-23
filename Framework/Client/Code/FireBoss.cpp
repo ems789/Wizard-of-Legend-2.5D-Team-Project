@@ -718,6 +718,7 @@ _int CFireBoss::Idle_Update(const _float & fTimeDelta)
 		D3DXVec3Normalize(&vDist, &vDist);
 		D3DXVec3Normalize(&m_vKickDir, &vDist);
 		++m_uiKickCount;
+		Engine::PlaySound_(L"FlameLight.wav", CSoundMgr::EFFECT);
 		break;
 	case 3:
 		m_eCurState = FBS_HEEL;
@@ -783,6 +784,7 @@ _int CFireBoss::Attack_Update(const _float & fTimeDelta)
 		pFireThrow = CFireThrow::Create(m_pGraphicDev, vPos, vTargetPos, -vRight, fBentDecal, 20.f);
 		Engine::Add_GameObject(L"GameLogic", L"FireThrow", pFireThrow);
 
+		Engine::PlaySound_(L"FireSpinLoop.wav", CSoundMgr::EFFECT);
 	}
 
 	return 0;
@@ -814,6 +816,7 @@ void CFireBoss::DashReady_Update(const _float & fTimeDelta)
 		FireBoss_DIR eLeftRight = fDotR < 0.f ? FBD_LEFT : FBD_RIGHT;
 
 		m_eCurDir = fabs(fDotL) > fabs(fDotR) ? eUpDown : eLeftRight;
+		Engine::PlaySound_(L"FireBurn.wav", CSoundMgr::EFFECT);
 	}
 }
 
@@ -862,6 +865,7 @@ void CFireBoss::RoundKick_Update(const _float & fTimeDelta)
 			m_eCurState = FBS_SPINKICK;
 			m_fKickAngle = 0.f;
 			++m_uiKickCount;
+			Engine::PlaySound_(L"FlameLight.wav", CSoundMgr::EFFECT);
 		}
 		return;
 	}
@@ -912,6 +916,7 @@ void CFireBoss::SpinKick_Update(const _float & fTimeDelta)
 			m_eCurState = FBS_ROUNDHOUSEKICK;
 			m_fKickAngle = 0.f;
 			++m_uiKickCount;
+			Engine::PlaySound_(L"FlameLight.wav", CSoundMgr::EFFECT);
 		}
 		return;
 	}
@@ -1007,6 +1012,8 @@ void CFireBoss::Heel_Update(const _float & fTimeDelta)
 			D3DXVec3Normalize(&vDir3, &vDir3);
 			pFireHeel = CFireHeel::Create(m_pGraphicDev, vPos, vDir3, 20.f, 1.f);
 			Engine::Add_GameObject(L"GameLogic", L"FireHeel", pFireHeel);
+
+			Engine::PlaySound_(L"ImpactFire.wav", CSoundMgr::EFFECT);
 		}
 	}
 

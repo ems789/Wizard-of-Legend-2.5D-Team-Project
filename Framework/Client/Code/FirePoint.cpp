@@ -61,6 +61,8 @@ _int CFirePoint::Update_GameObject(const _float& fTimeDelta)
 				CFire* pFire = CFire::Create(m_pGraphicDev, vPos,  m_vDir, m_fSpeed, 4.f, 30.f, L"MonsterAttack", false);
 				m_FireList.push_back(pFire);
 				Engine::Add_GameObject(L"GameLogic", L"BossPointFire", pFire);
+
+				Engine::PlaySound_(L"FireChargeup.wav", CSoundMgr::EFFECT);
 			}
 		}
 	}

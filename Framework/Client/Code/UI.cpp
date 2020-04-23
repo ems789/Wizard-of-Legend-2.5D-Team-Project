@@ -48,42 +48,54 @@ _int CUI::Update_PlayerUI(const _float & fTimeDelta)
 {
 	if (false == m_bShowUI)
 		return 0;
-	m_pUIManaBar->Set_Scale(m_vManaScale);
-	m_pUIManaBar->Set_Pos(m_vManaPos);
+	//m_pUIManaBar->Set_Scale(m_vManaScale);
+	//m_pUIManaBar->Set_Pos(m_vManaPos);
 
-	m_vManaPos.x -= 0.5f * m_fUISpeed;
-	m_vManaScale.x -= 0.5f * m_fUISpeed;
+	//m_vManaPos.x -= 0.5f * m_fUISpeed;
+	//m_vManaScale.x -= 0.5f * m_fUISpeed;
 
-	_int PlayerHp = 0;
+	_int PlayerHp = 0, PlayerHpMax = 0;
 	PlayerHp = Engine::Get_Player()->Get_HP();
-	if (Engine::KeyDown(DIK_J))
-	{
-		PlayerHp -= 10.f;
-		m_pUIHpBar->Set_Scale(m_vHpScale);
-		m_pUIHpBar->Set_Pos(m_vHpPos);
-		m_vHpScale.x -= 10.f;
-		m_vHpPos.x -= 10.f;
-	}
-	if (Engine::MouseUp(Engine::DIM_LB))
-	{
-		//마나채우는 평타
-		m_vManaScale.x += 19.2f;
-		m_vManaPos.x += 10.f;
-	}
-	if (m_vManaScale.x < 0.f)
-	{
-		m_vManaScale.x = 0.f;
-	}
-	if (m_vManaPos.x < -896.f)
-	{
-		m_vManaPos.x = -896.f;
-	}
-	if (m_vManaScale.x > 192.f)
-	{
-		m_vManaScale.x = 192.f;
-	}
-	if (m_vManaPos.x > -795.f)
-		m_vManaPos.x = -795.f;
+	PlayerHpMax = Engine::Get_Player()->Get_HPMax();
+
+	_float	fHPRatio = PlayerHp / (_float)PlayerHpMax;
+	
+	_vec3 vHpScale = { m_vHpScale.x * fHPRatio, m_vHpScale.y, m_vHpScale.z };
+	_vec3 vHpPos = {m_vHpPos.x - (m_vHpScale.x - vHpScale.x) * 0.5f , m_vHpPos.y, m_vHpPos.z };
+	m_pUIHpBar->Set_Scale(vHpScale);
+	m_pUIHpBar->Set_Pos(vHpPos);
+	
+	_float fMp = Engine::Get_Player()->Get_MP();
+	_float fMpMax = Engine::Get_Player()->Get_MPMax();
+
+	_float fMpRatio = fMp / fMpMax;
+
+	_vec3 vMpScale	= { m_vManaScale.x * fMpRatio, m_vManaScale.y, m_vManaScale.z };
+	_vec3 vMpPos	= { m_vManaPos.x + (vMpScale.x) * 0.5f, m_vManaPos.y, m_vManaPos.z };
+
+	m_pUIManaBar->Set_Scale(vMpScale);
+	m_pUIManaBar->Set_Pos(vMpPos);
+
+	//if (Engine::MouseUp(Engine::DIM_LB))
+	//{
+	//	//마나채우는 평타
+	//	m_vManaScale.x += 19.2f;
+	//	m_vManaPos.x += 10.f;
+	//}
+	//if (m_vManaScale.x < 0.f)
+	//{
+	//	m_vManaScale.x = 0.f;
+	//}
+	//if (m_vManaPos.x < -896.f)
+	//{
+	//	m_vManaPos.x = -896.f;
+	//}
+	//if (m_vManaScale.x > 192.f)
+	//{
+	//	m_vManaScale.x = 192.f;
+	//}
+	//if (m_vManaPos.x > -795.f)
+	//	m_vManaPos.x = -795.f;
 
 
 	return 0;
@@ -164,7 +176,7 @@ HRESULT CUI::Setting_SkillSlot()
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"UI_SKILLBAR", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/UI/Slot/UI_SKILLBAR.png"), E_FAIL);
 	CUIImage* pSlotUI = CUIImage::Create(m_pGraphicDev, _vec3(468.f, 160.f, 0.f), _vec3(650.f, 450.f, 0.f), L"UI_SKILLBAR");
 
-	NULL_CHECK_RETURN(m_pUISkillSlot, E_FAIL);
+	NULL_CHECK_RETURN(pSlotUI, E_FAIL);
 
 	m_pUISkillSlot = pSlotUI;
 
@@ -185,6 +197,19 @@ HRESULT CUI::Setting_Coin()
 
 HRESULT CUI::Setting_PlayerState()
 {
+
+	m_vPos = { 100.f, 100.f, 0.f };
+	m_vScale = { 100.f, 100.f, 0.f };
+	m_vHpScale = { 244.f, 32.f, 0.f };
+	m_vManaScale = { 192.f, 16.f, 0.f };//꽉찰시192
+	m_vHurtScale = { 244.f, 32.f, 0.f };
+	m_vHurtPos = { -765.f, 510.f, 0.f };
+	m_vHpPos = { -765.f, 510.f, 0.f };
+	m_vManaPos = { -896.f, 480.f, 0.f };
+
+
+
+
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"UIPLAYERBAR", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/UI/HP/UI_PLAYERBAR.png"), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"UIHPBAR", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/UI/HP/UI_HPBAR.png"), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"UIMANABAR", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/UI/HP/UI_MANABAR.png"), E_FAIL);

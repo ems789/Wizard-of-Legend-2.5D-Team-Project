@@ -64,7 +64,7 @@ private:
 	_vec3		m_vPos = { 100.f, 100.f, 0.f };
 	_vec3		m_vScale = { 100.f, 100.f, 0.f };
 	_vec3		m_vHpScale = { 244.f, 32.f, 0.f };
-	_vec3		m_vManaScale = { 0.f, 16.f, 0.f };//²ËÂû½Ã192
+	_vec3		m_vManaScale = { 192.f, 16.f, 0.f };//²ËÂû½Ã192
 	_vec3		m_vHurtScale = { 244.f, 32.f, 0.f };
 	_vec3		m_vHurtPos = { -765.f, 510.f, 0.f };
 	_vec3		m_vHpPos = { -765.f, 510.f, 0.f };

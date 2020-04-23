@@ -424,6 +424,9 @@ void CPlayer::Key_Input_Attack_For_1stAnd3rdView(const _float & fTimeDelta)
 {
 	if (Engine::MouseDown(Engine::DIM_LB))
 	{
+		m_fMP += 5.f;
+		if (m_fMP > m_fMPMax)
+			m_fMP = m_fMPMax;
 		switch (m_dwAttackCnt)
 		{
 		case 0:
@@ -466,6 +469,9 @@ void CPlayer::Key_Input_Attack_For_QuaterView(const _float & fTimeDelta)
 {
 	if (Engine::MouseDown(Engine::DIM_LB))
 	{
+		m_fMP += 5.f;
+		if (m_fMP > m_fMPMax)
+			m_fMP = m_fMPMax;
 		switch (m_dwAttackCnt)
 		{
 		case 0:
@@ -687,6 +693,7 @@ void CPlayer::Key_Input_Dash_For_1stAnd3rdView(const _float & fTimeDelta)
 			m_pTransformCom->GetInfo(Engine::INFO_POS), false, 0.f);
 		Engine::Add_GameObject(L"Effect", L"PlayerDash", pAirRing);
 		m_eCurState = CPlayer::P_DASH;
+		Engine::PlaySound_(L"StandardDash.wav", CSoundMgr::EFFECT);
 	}
 }
 
@@ -714,6 +721,7 @@ void CPlayer::Key_Input_Dash_For_QuaterView(const _float & fTimeDleta)
 			m_pTransformCom->GetInfo(Engine::INFO_POS), false, 0.f);
 		Engine::Add_GameObject(L"Effect", L"PlayerDash", pAirRing);
 		m_eCurState = CPlayer::P_DASH;
+		Engine::PlaySound_(L"StandardDash.wav", CSoundMgr::EFFECT);
 	}
 }
 
@@ -738,6 +746,9 @@ void CPlayer::Key_Input_Skill1_For_1stAnd3rdView(const _float & fTimeDelta)
 		if (m_vecEquipSkill[1])
 		{
 			_int iMotion = m_vecEquipSkill[1]->Use_Skill(fTimeDelta);
+			m_fMP += 5.f;
+			if (m_fMP > m_fMPMax)
+				m_fMP = m_fMPMax;
 			if (1 == iMotion)
 			{
 				m_eCurState = P_SKILL1;
@@ -751,6 +762,9 @@ void CPlayer::Key_Input_Skill1_For_1stAnd3rdView(const _float & fTimeDelta)
 		if (m_vecEquipSkill[2])
 		{
 			_int iMotion = m_vecEquipSkill[2]->Use_Skill(fTimeDelta);
+			m_fMP += 5.f;
+			if (m_fMP > m_fMPMax)
+				m_fMP = m_fMPMax;
 			if (1 == iMotion)
 			{
 				m_eCurState = P_SKILL1;
@@ -764,6 +778,9 @@ void CPlayer::Key_Input_Skill1_For_1stAnd3rdView(const _float & fTimeDelta)
 		if (m_vecEquipSkill[3])
 		{
 			_int iMotion = m_vecEquipSkill[3]->Use_Skill(fTimeDelta);
+			m_fMP += 5.f;
+			if (m_fMP > m_fMPMax)
+				m_fMP = m_fMPMax;
 			if (1 == iMotion)
 			{
 				m_eCurState = P_SKILL1;
@@ -789,6 +806,9 @@ void CPlayer::Key_Input_Skill1_For_QuaterView(const _float & fTimeDelta)
 		if (m_vecEquipSkill[1])
 		{
 			_int iMotion = m_vecEquipSkill[1]->Use_Skill(fTimeDelta, &vCurPos, &vDir);
+			m_fMP += 5.f;
+			if (m_fMP > m_fMPMax)
+				m_fMP = m_fMPMax;
 			if (1 == iMotion)
 			{
 				m_eCurState = P_SKILL1;
@@ -820,6 +840,9 @@ void CPlayer::Key_Input_Skill1_For_QuaterView(const _float & fTimeDelta)
 		if (m_vecEquipSkill[2])
 		{
 			_int iMotion = m_vecEquipSkill[2]->Use_Skill(fTimeDelta, &vCurPos, &vDir);
+			m_fMP += 5.f;
+			if (m_fMP > m_fMPMax)
+				m_fMP = m_fMPMax;
 
 			if (1 == iMotion)
 			{
@@ -847,6 +870,9 @@ void CPlayer::Key_Input_Skill1_For_QuaterView(const _float & fTimeDelta)
 		if (m_vecEquipSkill[3])
 		{
 			_int iMotion = m_vecEquipSkill[3]->Use_Skill(fTimeDelta, &vCurPos, &vDir);
+			m_fMP += 5.f;
+			if (m_fMP > m_fMPMax)
+				m_fMP = m_fMPMax;
 
 			if (1 == iMotion)
 			{
@@ -975,7 +1001,16 @@ _int CPlayer::Run_Update(const _float& fTimeDelta)
 {
 	Key_Input(fTimeDelta);
 
-
+	m_fFootStepSound += fTimeDelta;
+	if (m_fFootStepSound > 0.2f)
+	{
+		m_fFootStepSound -= 0.2f;
+		if (m_bFootStepSound)
+			Engine::PlaySound_(L"PlayerFootstep.wav", CSoundMgr::EFFECT);
+		else
+			Engine::PlaySound_(L"PlayerFootstepAlt.wav", CSoundMgr::EFFECT);
+		m_bFootStepSound = !m_bFootStepSound;
+	}
 
 	return 0;
 }

@@ -40,9 +40,12 @@ _uint	CALLBACK CLoading::Thread_Main(void* pArg)
 	return iFlag;
 }
 
-HRESULT CLoading::Ready_Loading(LOADINGID eLoading)
+HRESULT CLoading::Ready_Loading(LOADINGID eLoading, const _tchar* pTilePath, const _tchar* pWallPath)
 {
 	InitializeCriticalSection(&m_Crt);
+
+	lstrcpy(m_szTilePath, pTilePath);
+	lstrcpy(m_szWallPath, pWallPath);
 
 	m_hThread = (HANDLE)_beginthreadex(NULL, 0, Thread_Main, this, 0, NULL);
 
@@ -229,17 +232,32 @@ _uint CLoading::Loading_ForState()
 	//	Floor Crack
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FloorCrack", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/FloorCrack/FloorCrack3.png"), E_FAIL);
 
+	//	CardSpawn
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_CardSpawn", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/CardSpawnUnindexed/CardSpawnUnindexed_%d.png", 28), E_FAIL);
+
+	//	TeleportEffect
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_TeleportEffect", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/TeleportEffect/TeleportEffect%d.png", 9), E_FAIL);
+
+	//	RoomBlock
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_RoomBlock", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/RoomBlock/RoomBlock%d.png", 18), E_FAIL);
+
+
+	//	Scene ¸¸µé±â.
+	if (0 != lstrcmp(m_szTilePath, L"") && 0 != lstrcmp(m_szWallPath, L""))
+	{
+
+	}
 
 	m_bFinish = true;
 
 	return 0;
 }
 
-CLoading* CLoading::Create(LPDIRECT3DDEVICE9 pGraphicDev, LOADINGID eLoading)
+CLoading* CLoading::Create(LPDIRECT3DDEVICE9 pGraphicDev, LOADINGID eLoading, const _tchar* pTilePath, const _tchar* pWallPath)
 {
 	CLoading* pInstance = new CLoading(pGraphicDev);
 
-	if (FAILED(pInstance->Ready_Loading(eLoading)))
+	if (FAILED(pInstance->Ready_Loading(eLoading, pTilePath, pWallPath)))
 		Safe_Release(pInstance);
 
 	return pInstance;

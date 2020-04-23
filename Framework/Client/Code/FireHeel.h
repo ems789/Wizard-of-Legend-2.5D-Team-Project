@@ -56,6 +56,8 @@ private:
 	_float	m_fLifeTime = 0.f;
 	_float	m_fLifeCount = 0.f;
 
+	_uint	m_uiSoundItv = 0;
+
 	Engine::SPHERE m_tSphere;
 
 public:

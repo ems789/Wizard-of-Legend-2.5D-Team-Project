@@ -50,6 +50,8 @@ _int CFireBall::Use_Skill(const _float& fTimeDelta)
 	CFire* pFire = CFire::Create(m_pGraphicDev, vStartPos, vLook, m_fSpeed, 4, 30.f);
 	FAILED_CHECK_RETURN(Engine::Add_GameObject(L"GameLogic", L"Fire", pFire), -1);
 
+	Engine::PlaySound_(L"FireballCast.wav", CSoundMgr::EFFECT);
+
 	m_fCurTime = m_fCoolTime;
 
 	return 1;
@@ -78,6 +80,7 @@ _int CFireBall::Use_Skill(const _float & fTimeDelta, const _vec3 * pPos, const _
 	CFire* pFire = CFire::Create(m_pGraphicDev, vStartPos, *pDir, m_fSpeed, 4, 30.f);
 	FAILED_CHECK_RETURN(Engine::Add_GameObject(L"GameLogic", L"Fire", pFire), -1);
 
+	Engine::PlaySound_(L"FireballCast.wav", CSoundMgr::EFFECT);
 	m_fCurTime = m_fCoolTime;
 
 	return 1;

@@ -211,6 +211,15 @@
     <Filter Include="07.Monster\99.Boss\01.LightningBoss">
       <UniqueIdentifier>{2de97c4a-38bb-48d8-83b2-ebc4dda438bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObject\99.public\02.CardSpawn">
+      <UniqueIdentifier>{c1c1f378-f125-49c7-b19b-e728c6b0556d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Scene\04.FireStage">
+      <UniqueIdentifier>{99b9a19c-8208-481a-8ad8-f3237c58717b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\99.public\03.RoomBlock">
+      <UniqueIdentifier>{e8a1f0eb-7a2f-49b6-814c-55f9e378124f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -387,6 +396,15 @@
     <ClInclude Include="..\Code\LightningBoss.h">
       <Filter>07.Monster\99.Boss\01.LightningBoss</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\CardSpawn.h">
+      <Filter>02.GameObject\99.public\02.CardSpawn</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\FireStage.h">
+      <Filter>01.Scene\04.FireStage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\RoomBlock.h">
+      <Filter>02.GameObject\99.public\03.RoomBlock</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -538,6 +556,15 @@
     </ClCompile>
     <ClCompile Include="..\Code\LightningBoss.cpp">
       <Filter>07.Monster\99.Boss\01.LightningBoss</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\CardSpawn.cpp">
+      <Filter>02.GameObject\99.public\02.CardSpawn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\FireStage.cpp">
+      <Filter>01.Scene\04.FireStage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\RoomBlock.cpp">
+      <Filter>02.GameObject\99.public\03.RoomBlock</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

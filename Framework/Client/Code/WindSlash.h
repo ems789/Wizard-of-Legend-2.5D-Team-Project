@@ -20,6 +20,9 @@ private:
 	_float	m_fSpeed = 0.1f;
 
 public:
+	static void WindSlash_Hit_Func();
+
+public:
 	static CWindSlash* Create(LPDIRECT3DDEVICE9 pGraphicDev);
 
 private:

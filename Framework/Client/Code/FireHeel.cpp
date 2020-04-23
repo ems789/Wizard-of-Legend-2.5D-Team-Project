@@ -48,6 +48,13 @@ _int CFireHeel::Update_GameObject(const _float& fTimeDelta)
 	{
 		m_fTailDelay -= 0.05f;
 		FireHeelTail();
+
+		++m_uiSoundItv;
+		//if (m_uiSoundItv > 3)
+		{
+			Engine::PlaySound_(L"ImpactFire.wav", CSoundMgr::EFFECT);
+			m_uiSoundItv = 0.f;
+		}
 	}
 
 	m_pTransformCom->Move_Pos(m_vDir * m_fSpeed * fTimeDelta);

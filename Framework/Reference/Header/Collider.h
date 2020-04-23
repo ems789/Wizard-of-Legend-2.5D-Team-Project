@@ -22,9 +22,17 @@ public:
 	virtual const CGameObject* Get_Parent() const { return m_pParent; }
 	virtual const COLLIDERTYPE Get_CollType() const { return m_eType; }
 
+	void Add_Hit_Effect(void (pHitFunc)()) { m_pHitFunc = pHitFunc; }
+
 protected:
 	CGameObject*		m_pParent = nullptr;
 	COLLIDERTYPE		m_eType = CT_END;
+
+	void(*m_pHitFunc)() = nullptr;
+
+	
+
+
 
 protected:
 	virtual void Free() override;

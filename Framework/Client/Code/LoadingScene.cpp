@@ -4,6 +4,7 @@
 #include "Export_Function.h"
 #include "CastingCircle.h"
 #include "Town.h"
+#include "FireStage.h"
 
 CLoadingScene::CLoadingScene(LPDIRECT3DDEVICE9 pGraphicDev)
 	:CScene(pGraphicDev)
@@ -34,9 +35,9 @@ _int CLoadingScene::Update_Scene(const _float& fTimeDelta)
 
 	if (true == m_pLoading->Get_Finish())
 	{
-		if (Engine::KeyDown(DIK_RETURN))
+		//if (Engine::KeyDown(DIK_RETURN))
 		{
-			CTown* pScene = CTown::Create(m_pGraphicDev);
+			CFireStage* pScene = CFireStage::Create(m_pGraphicDev);
 			NULL_CHECK_RETURN(pScene, -1);
 
 			Engine::SetUp_Scene(pScene);

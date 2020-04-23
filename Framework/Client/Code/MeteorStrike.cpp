@@ -64,6 +64,8 @@ _int CMeteorStrike::Use_Skill(const _float& fTimeDelta)
 	CMeteor* pMeteor = CMeteor::Create(m_pGraphicDev, vPos, -AXIS_Y, 20.f, 4.f, 20.f, 0.05f);
 	FAILED_CHECK_RETURN(Engine::Add_GameObject(L"GameLogic", L"MeteorSkill", pMeteor), -1);
 
+	Engine::PlaySound_(L"Meteor.wav", CSoundMgr::EFFECT);
+
 	m_fCurTime = m_fCoolTime;
 
 	return 1;
@@ -107,7 +109,7 @@ _int CMeteorStrike::Use_Skill(const _float & fTimeDelta, const _vec3 * pPos, con
 	FAILED_CHECK_RETURN(Engine::Add_GameObject(L"GameLogic", L"MeteorSkill", pMeteor), -1);
 
 	m_fCurTime = m_fCoolTime;
-
+	Engine::PlaySound_(L"Meteor.wav", CSoundMgr::EFFECT);
 	return 1;
 }
 

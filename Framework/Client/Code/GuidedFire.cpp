@@ -111,6 +111,7 @@ void CGuidedFire::Add_Effect(const _vec3* pPos)
 
 		Engine::Add_GameObject(L"Effect", L"GuidedFireExplosion", pEffect);
 	}
+	Engine::PlaySound_(L"ImpactFire.wav", CSoundMgr::EFFECT);
 }
 
 HRESULT CGuidedFire::Add_Component()

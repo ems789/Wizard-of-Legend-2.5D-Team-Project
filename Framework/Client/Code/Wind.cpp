@@ -64,6 +64,7 @@ void CWind::Add_Effect(const _vec3* pPos)
 	CBasicEffect* pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_SlashHitSpark", L"SlashHitSpark", 7.f, 20.f, 0.05f, &vPos, false, 0.f);
 
 	Engine::Add_GameObject(L"GameLogic", L"SlashHitSpark", pEffect);
+	
 }
 
 HRESULT CWind::Add_Component()

@@ -471,6 +471,7 @@ _int CCyclops::Attack_Ready_Update(const _float & fTimeDelta)
 		}
 
 		_float fAngleY = Engine::CMyMath::YAngleTransformFromVec(&vDir);
+		
 		if (vDir.z < 0.f)
 			fAngleY += D3DXToRadian(180.f);
 
@@ -496,6 +497,7 @@ _int CCyclops::Attack_Ready_Update(const _float & fTimeDelta)
 		
 		CLineCollider* pLineCollider = CLineCollider::Create(m_pGraphicDev, pBeam, pHitEffect, 10.f, &_vec3(0.f, fAngleY, 0.f), L"MonsterAttack", 30);
 		Engine::Add_GameObject(L"GameLogic", L"MonsterLineColl", pLineCollider);
+		pLineCollider->Add_Hit_Effect(CCyclops::Beam_Hit_Function);
 	}
 
 	return 0;
@@ -522,6 +524,11 @@ void CCyclops::Hit(const _int & iAtk, const _vec3 * pAtkPos)
 
 	}
 
+}
+
+void CCyclops::Beam_Hit_Function()
+{
+	Engine::PlaySound_(L"ImpactPhysicalLight.wav", CSoundMgr::EFFECT);
 }
 
 CCyclops* CCyclops::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3* pPos)

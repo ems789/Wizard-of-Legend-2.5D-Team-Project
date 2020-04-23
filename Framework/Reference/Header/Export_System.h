@@ -7,6 +7,7 @@
 #include "FrameMgr.h"
 #include "FontMgr.h"
 #include "InputDev.h"
+#include "SoundMgr.h"
 
 BEGIN(Engine)
 
@@ -59,6 +60,16 @@ inline _bool	KeyPress(_ubyte byKeyID);
 inline _bool	MouseDown(MOUSEKEYSTATE eMouse);
 inline _bool	MouseUp(MOUSEKEYSTATE eMouse);
 inline _bool	MousePress(MOUSEKEYSTATE eMouse);
+
+
+
+//	SoundMgr
+inline void Ready_SoundMgr();
+inline void PlaySound_(const wstring& wstrSoundKey, CSoundMgr::CHANNEL_ID eID);
+inline void PlayBGM(const wstring& wstrSoundKey);
+inline void StopSound(CSoundMgr::CHANNEL_ID eID);
+inline void StopAll();
+inline void SetVolume(CSoundMgr::CHANNEL_ID eID, float fVol);
 
 //	Release System
 inline void Release_System();

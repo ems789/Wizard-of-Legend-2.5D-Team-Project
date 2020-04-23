@@ -50,6 +50,7 @@ _int CLineCollider::Update_GameObject(const _float& fTimeDelta)
 		return 0;
 	}
 	m_tLine.vPos1 = *m_pParent->Get_Pos();
+	m_tLine.vPos1.y -= 0.5f;
 	m_tLine.vPos2 = m_tLine.vPos1 + m_vPos2;
 
 	_int iExit = CCollider::Update_GameObject(fTimeDelta);
@@ -80,6 +81,9 @@ void CLineCollider::Add_Effect(const _vec3 * pPos)
 
 	Engine::Add_GameObject(L"GameLogic", m_pHitEffect->Get_EffectTag(), m_pHitEffect);
 
+	if (nullptr != m_pHitFunc)
+		m_pHitFunc();
+	
 }
 
 CLineCollider* CLineCollider::Create(LPDIRECT3DDEVICE9 pGraphicDev, CGameObject* pParent, Engine::CEffect* pHitEffect, const _float& fLength, const _vec3* pAngle, const _tchar* pColliderTag, const _int& iAttack)

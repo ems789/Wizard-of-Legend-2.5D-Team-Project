@@ -100,7 +100,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3d9.lib;d3dx9.lib;dxguid.lib;System.lib;Utility.lib;Resources.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d9.lib;d3dx9.lib;dxguid.lib;System.lib;Utility.lib;Resources.lib;fmodex_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>../../Reference/Library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <LargeAddressAware>true</LargeAddressAware>
     </Link>
@@ -134,7 +134,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3d9.lib;d3dx9.lib;dxguid.lib;System.lib;Utility.lib;Resources.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d9.lib;d3dx9.lib;dxguid.lib;System.lib;Utility.lib;Resources.lib;fmodex_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>../../Reference/Library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <LargeAddressAware>true</LargeAddressAware>
     </Link>
@@ -165,6 +165,7 @@
     <ClInclude Include="..\Code\BackGround.h" />
     <ClInclude Include="..\Code\BasicEffect.h" />
     <ClInclude Include="..\Code\BeamEffect.h" />
+    <ClInclude Include="..\Code\CardSpawn.h" />
     <ClInclude Include="..\Code\CastingCircle.h" />
     <ClInclude Include="..\Code\CollisionFunctions.h" />
     <ClInclude Include="..\Code\Cyclops.h" />
@@ -176,6 +177,7 @@
     <ClInclude Include="..\Code\FireKick.h" />
     <ClInclude Include="..\Code\FirePoint.h" />
     <ClInclude Include="..\Code\FireRoad.h" />
+    <ClInclude Include="..\Code\FireStage.h" />
     <ClInclude Include="..\Code\FireStomp.h" />
     <ClInclude Include="..\Code\FireThrow.h" />
     <ClInclude Include="..\Code\FirstViewCamera.h" />
@@ -196,6 +198,7 @@
     <ClInclude Include="..\Code\Mouse.h" />
     <ClInclude Include="..\Code\Player.h" />
     <ClInclude Include="..\Code\QuaterViewCamera.h" />
+    <ClInclude Include="..\Code\RoomBlock.h" />
     <ClInclude Include="..\Code\SphereCollider.h" />
     <ClInclude Include="..\Code\Stage.h" />
     <ClInclude Include="..\Code\Terrain.h" />
@@ -225,6 +228,7 @@
     <ClCompile Include="..\Code\BackGround.cpp" />
     <ClCompile Include="..\Code\BasicEffect.cpp" />
     <ClCompile Include="..\Code\BeamEffect.cpp" />
+    <ClCompile Include="..\Code\CardSpawn.cpp" />
     <ClCompile Include="..\Code\CastingCircle.cpp" />
     <ClCompile Include="..\Code\CollisionFunctions.cpp" />
     <ClCompile Include="..\Code\Cyclops.cpp" />
@@ -236,6 +240,7 @@
     <ClCompile Include="..\Code\FireKick.cpp" />
     <ClCompile Include="..\Code\FirePoint.cpp" />
     <ClCompile Include="..\Code\FireRoad.cpp" />
+    <ClCompile Include="..\Code\FireStage.cpp" />
     <ClCompile Include="..\Code\FireStomp.cpp" />
     <ClCompile Include="..\Code\FireThrow.cpp" />
     <ClCompile Include="..\Code\FirstViewCamera.cpp" />
@@ -256,6 +261,7 @@
     <ClCompile Include="..\Code\Mouse.cpp" />
     <ClCompile Include="..\Code\Player.cpp" />
     <ClCompile Include="..\Code\QuaterViewCamera.cpp" />
+    <ClCompile Include="..\Code\RoomBlock.cpp" />
     <ClCompile Include="..\Code\SphereCollider.cpp" />
     <ClCompile Include="..\Code\Stage.cpp" />
     <ClCompile Include="..\Code\Terrain.cpp" />

@@ -103,13 +103,13 @@ public:		//	About Collision
 public:		//	About HP
 	virtual _int	Get_HP()	const { return m_iHP; }
 	virtual _int	Get_HPMax() const { return m_iHPMax; }
-	virtual _int	Get_MP()	const { return m_iMP; }
-	virtual _int	Get_MPMax() const { return m_iMPMax; }
+	virtual _float	Get_MP()	const { return m_fMP; }
+	virtual _float	Get_MPMax() const { return m_fMPMax; }
 
 
 private:	//	Components
 	Engine::CRcTex*		m_pBufferCom = nullptr;
-	//	Engine::CTexture*	m_pTextureCom	= nullptr;
+	Engine::CTexture*	m_pTextureCom	= nullptr;
 	Engine::CTransform* m_pTransformCom = nullptr;
 	Engine::CRenderer*	m_pRendererCom = nullptr;
 
@@ -137,8 +137,8 @@ private:
 
 	_int	m_iHP = 500;
 	_int	m_iHPMax = 500;
-	_int	m_iMP = 0;
-	_int	m_iMPMax = 100;
+	_float  m_fMP = 0.f;
+	_float	m_fMPMax = 100.f;
 
 	_float	m_fScale = 0.2f;
 
@@ -148,6 +148,9 @@ private:
 
 	_ulong	m_dwAttackCnt = 0;
 	_vec3	m_vAttackDir = { 0.f, 0.f, 0.f };
+
+	_float	m_fFootStepSound = 0.f;
+	_bool	m_bFootStepSound = false;
 
 public:
 	static CPlayer* Create(LPDIRECT3DDEVICE9 pGraphicDev);

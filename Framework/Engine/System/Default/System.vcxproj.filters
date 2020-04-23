@@ -28,6 +28,9 @@
     <Filter Include="03.Font\Manager">
       <UniqueIdentifier>{06967675-7175-4622-a4b3-09ba7fc6db5d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="05.SoundMgr">
+      <UniqueIdentifier>{c7016152-df86-4445-8bee-b6fad2d88345}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Code\GraphicDev.cpp">
@@ -53,6 +56,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\InputDev.cpp">
       <Filter>04.DInput</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\SoundMgr.cpp">
+      <Filter>05.SoundMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -82,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="..\Code\InputDev.h">
       <Filter>04.DInput</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\SoundMgr.h">
+      <Filter>05.SoundMgr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

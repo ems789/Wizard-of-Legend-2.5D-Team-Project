@@ -60,7 +60,7 @@ HRESULT	Ready_Font(LPDIRECT3DDEVICE9 pGraphicDev, const _tchar* pFontTag, const 
 }
 void	Render_Font(const _tchar* pFontTag, const _tchar* pString, const _vec2* pPos, D3DXCOLOR Color)
 {
-	Render_Font(pFontTag, pString, pPos, Color);
+	CFontMgr::GetInstance()->Render_Font(pFontTag, pString, pPos, Color);
 }
 
 //	InputDev
@@ -114,9 +114,39 @@ _bool	MousePress(MOUSEKEYSTATE eMouse)
 	return CInputDev::GetInstance()->MousePress(eMouse);
 }
 
+void Ready_SoundMgr()
+{
+	CSoundMgr::GetInstance()->Initialize();
+}
+
+void PlaySound_(const wstring& wstrSoundKey, CSoundMgr::CHANNEL_ID eID)
+{
+	CSoundMgr::GetInstance()->PlaySound_(wstrSoundKey, eID);
+}
+void PlayBGM(const wstring& wstrSoundKey)
+{
+	CSoundMgr::GetInstance()->PlayBGM(wstrSoundKey);
+}
+void StopSound(CSoundMgr::CHANNEL_ID eID)
+{
+	CSoundMgr::GetInstance()->StopSound(eID);
+}
+void StopAll()
+{
+	CSoundMgr::GetInstance()->StopAll();
+}
+void SetVolume(CSoundMgr::CHANNEL_ID eID, float fVol)
+{
+	CSoundMgr::GetInstance()->SetVolume(eID, fVol);
+}
+
+
+
+
 //	Release System
 void Release_System()
 {
+	CSoundMgr::GetInstance()->DestroyInstance();
 	CInputDev::GetInstance()->DestroyInstance();
 	CFontMgr::GetInstance()->DestroyInstance();
 	CFrameMgr::GetInstance()->DestroyInstance();

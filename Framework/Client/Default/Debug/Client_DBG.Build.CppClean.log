@@ -2,6 +2,8 @@ d:\teamproject\framework\client\default\debug\client_dbg.pch
 d:\teamproject\framework\client\default\debug\vc140.pdb
 d:\teamproject\framework\client\default\debug\vc140.idb
 d:\teamproject\framework\client\default\debug\stdafx.obj
+d:\teamproject\framework\client\default\debug\stage.obj
+d:\teamproject\framework\client\default\debug\loadingscene.obj
 d:\teamproject\framework\client\default\debug\logo.obj
 d:\teamproject\framework\client\default\debug\mainapp.obj
 d:\teamproject\framework\client\default\debug\meteor.obj
@@ -10,7 +12,6 @@ d:\teamproject\framework\client\default\debug\mouse.obj
 d:\teamproject\framework\client\default\debug\player.obj
 d:\teamproject\framework\client\default\debug\quaterviewcamera.obj
 d:\teamproject\framework\client\default\debug\spherecollider.obj
-d:\teamproject\framework\client\default\debug\stage.obj
 d:\teamproject\framework\client\default\debug\terrain.obj
 d:\teamproject\framework\client\default\debug\testmonster.obj
 d:\teamproject\framework\client\default\debug\testterrain.obj
@@ -22,7 +23,6 @@ d:\teamproject\framework\client\default\debug\wall.obj
 d:\teamproject\framework\client\default\debug\wind.obj
 d:\teamproject\framework\client\default\debug\windslash.obj
 d:\teamproject\framework\client\default\debug\client.obj
-d:\teamproject\framework\client\default\debug\fire.obj
 d:\teamproject\framework\client\default\debug\fireball.obj
 d:\teamproject\framework\client\default\debug\fireboss.obj
 d:\teamproject\framework\client\default\debug\fireeffect.obj
@@ -30,6 +30,7 @@ d:\teamproject\framework\client\default\debug\fireheel.obj
 d:\teamproject\framework\client\default\debug\firekick.obj
 d:\teamproject\framework\client\default\debug\firepoint.obj
 d:\teamproject\framework\client\default\debug\fireroad.obj
+d:\teamproject\framework\client\default\debug\firestage.obj
 d:\teamproject\framework\client\default\debug\firestomp.obj
 d:\teamproject\framework\client\default\debug\firethrow.obj
 d:\teamproject\framework\client\default\debug\firstviewcamera.obj
@@ -39,18 +40,19 @@ d:\teamproject\framework\client\default\debug\guidedfireball.obj
 d:\teamproject\framework\client\default\debug\guidedfiregen.obj
 d:\teamproject\framework\client\default\debug\inven.obj
 d:\teamproject\framework\client\default\debug\laideffect.obj
+d:\teamproject\framework\client\default\debug\lightningboss.obj
 d:\teamproject\framework\client\default\debug\linecollider.obj
 d:\teamproject\framework\client\default\debug\loading.obj
-d:\teamproject\framework\client\default\debug\loadingscene.obj
 d:\teamproject\framework\client\default\debug\uiimage.obj
 d:\teamproject\framework\client\default\debug\alphalaideffect.obj
 d:\teamproject\framework\client\default\debug\background.obj
 d:\teamproject\framework\client\default\debug\basiceffect.obj
 d:\teamproject\framework\client\default\debug\beameffect.obj
+d:\teamproject\framework\client\default\debug\cardspawn.obj
 d:\teamproject\framework\client\default\debug\castingcircle.obj
 d:\teamproject\framework\client\default\debug\collisionfunctions.obj
 d:\teamproject\framework\client\default\debug\cyclops.obj
-d:\teamproject\framework\client\default\debug\lightningboss.obj
+d:\teamproject\framework\client\default\debug\fire.obj
 d:\teamproject\framework\client\bin\client_dbg.lib
 d:\teamproject\framework\client\bin\client_dbg.exp
 d:\teamproject\framework\client\bin\client_dbg.ilk

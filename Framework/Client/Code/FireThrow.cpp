@@ -112,6 +112,8 @@ void CFireThrow::Add_Effect(const _vec3* pPos)
 
 
 	}
+
+	Engine::PlaySound_(L"FlameStrikeBasic.wav", CSoundMgr::EFFECT);
 }
 
 HRESULT CFireThrow::Add_Component()
