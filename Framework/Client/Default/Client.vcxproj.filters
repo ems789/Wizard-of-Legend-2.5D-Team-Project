@@ -220,6 +220,12 @@
     <Filter Include="02.GameObject\99.public\03.RoomBlock">
       <UniqueIdentifier>{e8a1f0eb-7a2f-49b6-814c-55f9e378124f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.Effect\06.FollowingEffect">
+      <UniqueIdentifier>{aed5b1ce-200e-4e9e-86bb-09f3e0d30780}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Monster\99.Boss\01.LightningBoss\00.LightningJavelingThrow">
+      <UniqueIdentifier>{2b73b547-131d-48e7-ab1c-7c6584a5653f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -405,6 +411,12 @@
     <ClInclude Include="..\Code\RoomBlock.h">
       <Filter>02.GameObject\99.public\03.RoomBlock</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\LightningJavelinThrow.h">
+      <Filter>07.Monster\99.Boss\01.LightningBoss\00.LightningJavelingThrow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\FollowingEffect.h">
+      <Filter>03.Effect\06.FollowingEffect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -565,6 +577,12 @@
     </ClCompile>
     <ClCompile Include="..\Code\RoomBlock.cpp">
       <Filter>02.GameObject\99.public\03.RoomBlock</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\LightningJavelinThrow.cpp">
+      <Filter>07.Monster\99.Boss\01.LightningBoss\00.LightningJavelingThrow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\FollowingEffect.cpp">
+      <Filter>03.Effect\06.FollowingEffect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

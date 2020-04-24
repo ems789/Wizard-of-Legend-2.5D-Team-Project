@@ -15,6 +15,7 @@
 #include "Cyclops.h"
 #include "FireBoss.h"
 #include "CardSpawn.h"
+#include "LightningBoss.h"
 
 CTown::CTown(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CScene(pGraphicDev)
@@ -76,7 +77,6 @@ _int CTown::Update_Scene(const _float& fTimeDelta)
 		CCardSpawn* pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
 		Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
 	}
-
 
 	_int iExit = CScene::Update_Scene(fTimeDelta);
 

@@ -16,7 +16,7 @@ END
 class CLightningBoss : public Engine::CGameObject
 {
 private:
-	enum LightningBoss_STATE	{	FBS_IDLE, FBS_JUMP, FBS_FLOAT, FBS_READY_JAVELIN, FBS_THROW_JAVELIN, FBS_DEAD, FBS_END };
+	enum LightningBoss_STATE	{	FBS_IDLE, FBS_JUMP, FBS_FLOAT, FBS_READY_JAVELIN, FBS_THROW_JAVELIN, FBS_DASH, FBS_DEAD, FBS_END };
 	enum LightningBoss_DIR	{ FBD_UP, FBD_DOWN, FBD_LEFT, FBD_RIGHT, FBD_END };
 
 private:
@@ -40,12 +40,15 @@ private:
 	void	Turn_To_Camera_Look();
 	void	Fitting_Scale_With_Texture(CLightningBoss::LightningBoss_STATE eState);
 	void	Fitting_Scale_With_Texture(CLightningBoss::LightningBoss_STATE eState, _ulong dwIndex);
-	void	FireEffect(const _float& fTimeDelta);
+	void	LightningEffect(const _float& fTimeDelta);
 
 private:
 	void Idle_State();
 	void Jump_State();
 	void Float_State();
+	void Ready_Javelin_State();
+	void Throw_Javelin_State();
+	void Dash_State();
 	void Dead_State();
 
 
@@ -53,8 +56,11 @@ public:
 	_int Idle_Update(const _float& fTimeDelta);
 	void Jump_Update(const _float& fTimeDelta);
 	void Float_Update(const _float& fTimeDelta);
+	void Ready_Javelin_Update(const _float& fTimeDelta);
+	void Throw_Javelin_Update(const _float& fTimeDelta);
+	void Dash_Update(const _float & fTimeDelta);
 	void Dead_Update(const _float& fTimeDelta);
-
+	
 public:
 	virtual void Hit(const _int& iAtk, const _vec3* pAtkPos) override;
 
@@ -79,42 +85,32 @@ private:
 
 	_int	m_iAttack = 20;
 
+	_uint	m_uiJavelinCount = 0;
+	_uint	m_uiDashCount = 0;
+
 	FRAME	m_tFrame;
 	_bool	m_bAnimRepeat = true;
 	_bool	m_bAnimFinish = false;
+
+	_bool	m_bLightningLand = false;
 
 	CLightningBoss::LightningBoss_STATE		m_ePreState = CLightningBoss::FBS_END;
 	CLightningBoss::LightningBoss_STATE		m_eCurState = CLightningBoss::FBS_END;
 	CLightningBoss::LightningBoss_DIR		m_eCurDir	= CLightningBoss::FBD_END;
 
+	_vec3	m_pHandPos;
+
+	_vec3	m_vTargetDir;
+
 	_float	m_fSpeed = 40.f;
 
-	_float	m_fFireEffectTime = 0.f;
+	_float	m_fLightningEffectYPos = 0.8f;
+	_float	m_fLightningEffectTime = 0.f;
 
 	_float	m_fIdleTime = 0.f;
 	_uint	m_uiPattern = 0;
 
-	_bool	m_bAttack = false;
-	_uint	m_uiDashCount = 0;
-	_vec3	m_vDashDir = {};
-	_float	m_fFireRoadItv = 0.f;
-	
-	_uint	m_uiKickCount = 0;
-	_vec3	m_vKickDir = {};
-	_float	m_fKickFireTime = 0.f;
-	_float	m_fKickAngle = 0.f;
-
-	_bool	m_bHeelInit = false;
-	_vec3	m_vHeelTarget	= {};
-	_vec3	m_vHeelDir		= {};
-	_float	m_fHeelSpeed = 0.f;
-	_float	m_fJumpPower	= 0.f;
-	_float	m_fFallSpeed	= 5.f;
-	_bool	m_bHeelFire = false;
-
-	_bool	m_bFireStomp = false;
-	
-	_bool	m_bFirePoint = false;
+	_float	m_fJumpSpeed = 10.f;
 
 	_float	m_fHurtTime = 0.f;
 

@@ -79,7 +79,7 @@ _uint CLoading::Loading_ForState()
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STAGE, L"Texture_Terrain", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Terrain/TileSet/Grass/TutorialCourseFloorRoom2_9.png"), E_FAIL);
 
 	//  Tile Texture
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STAGE, L"Texture_Tile", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Tile/Tile%d.png", 449), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STAGE, L"Texture_Tile", Engine::TEX_NORMAL, L"..//Bin/Resource/Texture/Tile/Tile%d.png", 449), E_FAIL);
 
 	//  Wall Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STAGE, L"Texture_Wall", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Wall/Wall%d.png", 267), E_FAIL);
@@ -218,12 +218,31 @@ _uint CLoading::Loading_ForState()
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_LightningBoss_JavelinSpawn", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/LightningBoss/JavelinSpawn/LightningGirlJavelinSpawn%d.png", 3), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_LightningBoss_JavelinThrow", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/LightningBoss/JavelinThrow/LightningGirlJavelinThrow%d.png", 4), E_FAIL);
 
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_LightningBoss_ChainDashUp", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/LightningBoss/LightningGirlChainDash/LightningGirlChainDashUp.png"), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_LightningBoss_ChainDashDown", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/LightningBoss/LightningGirlChainDash/LightningGirlChainDashDown.png"), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_LightningBoss_ChainDashLeft", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/LightningBoss/LightningGirlChainDash/LightningGirlChainDashLeft.png"), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_LightningBoss_ChainDashRight", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/LightningBoss/LightningGirlChainDash/LightningGirlChainDashRight.png"), E_FAIL);
+
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_LightningBoss_Dead", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/LightningBoss/Dead/LightningGirlDead%d.png", 2), E_FAIL);
 
+	//	LightningBoss Effect Texture
 	//  ThunderJavelin Texture
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_LightningBossTar", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/ThunderJavelin/LightningBossTar%d.png", 4), E_FAIL);
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_ThunderJavelinSpawn", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/ThunderJavelin/ThunderJavelinSpawn%d.png", 4), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_LightningBoss_Tar", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/ThunderJavelin/LightningBossTar%d.png", 4), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_ThunderJavelin_Spawn", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/ThunderJavelin/ThunderJavelinSpawn%d.png", 4), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_ThunderJavelin", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/ThunderJavelin/ThunderJavelin.png"), E_FAIL);
+
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_MiniLightning", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/MiniLightning/MiniLightning%d.png", 8), E_FAIL);
+
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_LightningBoss_Land", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/LightningGirlLand/LightningGirlLand%d.png", 7), E_FAIL);
+
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_LightningStageEffect", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/LightningStageEffect/LightningStageEffect%d.png", 16), E_FAIL);
+
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_LightningTip", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/LightningTip/LightningTip%d.png", 4), E_FAIL);
+
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_LightningFist", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/LightningFist/LightningFistBasic%d.png", 6), E_FAIL);
+	//  LightningGirl Teleport
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_LightningGirlTeleportAir", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/LightningGirlTeleport/LightningGirlTeleportAir%d.png", 3), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_LightningGirlTeleportFloor", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/LightningGirlTeleport/LightningGirlTeleportFloor%d.png", 6), E_FAIL);
 
 
 	//	Shuriken Texture

@@ -35,6 +35,8 @@ public:	//	Set Functions
 	void			Set_AngleY(const _float& fy)									{ m_vAngle.x = fy; }
 	void			Set_AngleZ(const _float& fz)									{ m_vAngle.x = fz; }
 
+	void			Set_WorldMatrix(const _matrix mat)								{ m_matWorld = mat; }
+
 public:	//	Get Functions
 	const _vec3*	GetInfo(INFO eType, _vec3* pInfo = nullptr)		const { if (pInfo)		memcpy(pInfo, &m_matWorld.m[eType][0], sizeof(_vec3));	return &m_vInfo[eType]; }
 	const _matrix*	GetWorldMatrix(_matrix* pMatrix = nullptr)		const { if (pMatrix)	memcpy(pMatrix, &m_matWorld, sizeof(_matrix));			return &m_matWorld; }
