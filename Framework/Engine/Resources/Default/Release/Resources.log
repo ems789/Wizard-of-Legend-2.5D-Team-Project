@@ -1,8 +1,25 @@
-﻿     Creating library ../Bin/Resources.lib and object ../Bin/Resources.exp
+﻿  BottomWallTex.cpp
+  CeilingWallTex.cpp
+  CubeTex.cpp
+  LeftWallTex.cpp
+  RcAlphaTex.cpp
+  RcCol.cpp
+  RcTex.cpp
+  Resources.cpp
+  ResourcesMgr.cpp
+  RightWallTex.cpp
+  TerrainTex.cpp
+  Texture.cpp
+  TileTex.cpp
+  TopWallTex.cpp
+  TriCol.cpp
+  VIBuffer.cpp
+     Creating library ../Bin/Resources.lib and object ../Bin/Resources.exp
   Generating code
-  0 of 460 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+d:\teamproject\framework\engine\resources\code\cubetex.cpp(125): warning C4715: 'Engine::CCubeTex::Ready_Buffer': not all control paths return a value
+  121 of 460 functions (26.3%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    17 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Resources.vcxproj -> D:\TeamProject\Framework\Engine\Resources\Default\../Bin/Resources.dll
   Resources.vcxproj -> ../Bin/Resources.pdb (Full PDB)

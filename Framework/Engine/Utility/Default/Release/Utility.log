@@ -1,8 +1,25 @@
-﻿     Creating library ../Bin/Utility.lib and object ../Bin/Utility.exp
+﻿  Camera.cpp
+  CameraMgr.cpp
+  Collider.cpp
+  CollisionMgr.cpp
+  Component.cpp
+  Effect.cpp
+  GameObject.cpp
+  Layer.cpp
+  Management.cpp
+  MoveObject.cpp
+  MyMath.cpp
+..\Code\MyMath.cpp(283): warning C4244: '=': conversion from 'LONG' to 'FLOAT', possible loss of data
+..\Code\MyMath.cpp(284): warning C4244: '=': conversion from 'LONG' to 'FLOAT', possible loss of data
+  Renderer.cpp
+  Scene.cpp
+  Skill.cpp
+  Transform.cpp
+     Creating library ../Bin/Utility.lib and object ../Bin/Utility.exp
   Generating code
-  0 of 1593 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+  107 of 1593 functions ( 6.7%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    19 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Utility.vcxproj -> D:\TeamProject\Framework\Engine\Utility\Default\../Bin/Utility.dll
   Utility.vcxproj -> ../Bin/Utility.pdb (Full PDB)
