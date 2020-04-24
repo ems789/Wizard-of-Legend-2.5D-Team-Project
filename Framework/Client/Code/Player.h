@@ -106,6 +106,10 @@ public:		//	About HP
 	virtual _float	Get_MP()	const { return m_fMP; }
 	virtual _float	Get_MPMax() const { return m_fMPMax; }
 
+private:
+	void	FullMP_Effect(const _float& fTimeDelta);
+	void	TimeSlowCounter(const _float& fTimeDelta);
+
 
 private:	//	Components
 	Engine::CRcTex*		m_pBufferCom = nullptr;
@@ -114,6 +118,7 @@ private:	//	Components
 	Engine::CRenderer*	m_pRendererCom = nullptr;
 
 	vector<vector<Engine::CTexture*>>	m_vvTextureCom;
+	vector<vector<const _tchar*>>		m_vvpTextureTag;
 
 private:
 	FRAME	m_tFrame;
@@ -151,6 +156,10 @@ private:
 
 	_float	m_fFootStepSound = 0.f;
 	_bool	m_bFootStepSound = false;
+
+	_float	m_fManaEffectTime = 0.f;
+	_float	m_fSlowCount = 0.f;
+	_float	m_fSlowTime = 0.f;
 
 public:
 	static CPlayer* Create(LPDIRECT3DDEVICE9 pGraphicDev);

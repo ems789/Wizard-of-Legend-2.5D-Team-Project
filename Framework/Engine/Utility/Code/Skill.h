@@ -23,6 +23,7 @@ public:
 	virtual	_int		Use_Skill(const _float& fTimeDelta) { return 0; };
 	virtual _int		Use_Skill(const _float& fTimeDelta, const _vec3* pPos, const _vec3* pDir)  { return 0; }
 	virtual	_int		Use_UpgradedSkill(const _float& fTimeDelta) { return 0; };
+	virtual _int		Use_UpgradedSkill(const _float& fTimeDelta, const _vec3* pPos, const _vec3* pDir) { return 0; }
 
 	virtual void		Render_SkillCard() {};
 

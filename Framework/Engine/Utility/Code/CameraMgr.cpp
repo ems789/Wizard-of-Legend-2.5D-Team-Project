@@ -31,9 +31,9 @@ _int Engine::CCameraMgr::Update_MainCamera(const _float& fTimeDelta)
 HRESULT CCameraMgr::SetUp_Alpha()
 {
 	m_pGraphicDev->SetRenderState(D3DRS_ALPHATESTENABLE, TRUE);
-	//m_pGraphicDev->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
-	//m_pGraphicDev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
-	//m_pGraphicDev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+	m_pGraphicDev->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
+	m_pGraphicDev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+	m_pGraphicDev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 
 	m_pGraphicDev->SetRenderState(D3DRS_ALPHAFUNC, D3DCMP_GREATER);
 	m_pGraphicDev->SetRenderState(D3DRS_ALPHAREF, 0x00000088);
@@ -46,7 +46,7 @@ HRESULT CCameraMgr::SetUp_Alpha()
 HRESULT CCameraMgr::Finish_Alpha()
 {
 	m_pGraphicDev->SetRenderState(D3DRS_ALPHATESTENABLE, FALSE);
-	//m_pGraphicDev->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
+	m_pGraphicDev->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
 
 	return S_OK;
 }

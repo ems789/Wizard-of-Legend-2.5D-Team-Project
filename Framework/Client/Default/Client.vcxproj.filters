@@ -220,6 +220,15 @@
     <Filter Include="02.GameObject\99.public\03.RoomBlock">
       <UniqueIdentifier>{e8a1f0eb-7a2f-49b6-814c-55f9e378124f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.Effect\06.AlphaBillEffect">
+      <UniqueIdentifier>{3e7ed582-2f39-4ee1-92f2-814d6cbd01c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Effect\07.SignitureEffect">
+      <UniqueIdentifier>{230fb97f-6f6d-41b2-804c-802e6850ace7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Skill\00.Fire\01.MeteorStrike\01.MeteorGen">
+      <UniqueIdentifier>{5454a286-57de-404b-86b7-6276128e545c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -405,6 +414,15 @@
     <ClInclude Include="..\Code\RoomBlock.h">
       <Filter>02.GameObject\99.public\03.RoomBlock</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\AlphaBillEffect.h">
+      <Filter>03.Effect\06.AlphaBillEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\SignitureEffect.h">
+      <Filter>03.Effect\07.SignitureEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\MeteorGen.h">
+      <Filter>05.Skill\00.Fire\01.MeteorStrike\01.MeteorGen</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -565,6 +583,15 @@
     </ClCompile>
     <ClCompile Include="..\Code\RoomBlock.cpp">
       <Filter>02.GameObject\99.public\03.RoomBlock</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\AlphaBillEffect.cpp">
+      <Filter>03.Effect\06.AlphaBillEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\SignitureEffect.cpp">
+      <Filter>03.Effect\07.SignitureEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\MeteorGen.cpp">
+      <Filter>05.Skill\00.Fire\01.MeteorStrike\01.MeteorGen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

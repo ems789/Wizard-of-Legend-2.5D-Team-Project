@@ -11,6 +11,7 @@ using namespace std;
 
 extern	HWND		g_hWnd;
 extern HINSTANCE	g_hInst;
+extern _float		g_fTime;
 
 
 #endif // Defines_h__

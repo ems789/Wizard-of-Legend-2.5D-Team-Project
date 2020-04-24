@@ -14,6 +14,7 @@ HINSTANCE g_hInst;                                // current instance
 WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
 WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
 HWND	g_hWnd;
+_float	g_fTime = 1.f;
 
 // Forward declarations of functions included in this code module:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -90,7 +91,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 				
 				_float fTimer_FPS60 = Engine::Get_TimeDelta(L"Timer_FPS : 60");
 
-				pMainApp->Update_MainApp(fTimer_FPS60);
+				pMainApp->Update_MainApp(fTimer_FPS60 * g_fTime);
 				pMainApp->Render_MainApp();
 
 				++iCount;

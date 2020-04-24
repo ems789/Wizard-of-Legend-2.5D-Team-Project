@@ -161,6 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Engine\Utility\Code\UIImage.h" />
+    <ClInclude Include="..\Code\AlphaBillEffect.h" />
     <ClInclude Include="..\Code\AlphaLaidEffect.h" />
     <ClInclude Include="..\Code\BackGround.h" />
     <ClInclude Include="..\Code\BasicEffect.h" />
@@ -194,11 +195,13 @@
     <ClInclude Include="..\Code\Logo.h" />
     <ClInclude Include="..\Code\MainApp.h" />
     <ClInclude Include="..\Code\Meteor.h" />
+    <ClInclude Include="..\Code\MeteorGen.h" />
     <ClInclude Include="..\Code\MeteorStrike.h" />
     <ClInclude Include="..\Code\Mouse.h" />
     <ClInclude Include="..\Code\Player.h" />
     <ClInclude Include="..\Code\QuaterViewCamera.h" />
     <ClInclude Include="..\Code\RoomBlock.h" />
+    <ClInclude Include="..\Code\SignitureEffect.h" />
     <ClInclude Include="..\Code\SphereCollider.h" />
     <ClInclude Include="..\Code\Stage.h" />
     <ClInclude Include="..\Code\Terrain.h" />
@@ -224,6 +227,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Engine\Utility\Code\UIImage.cpp" />
+    <ClCompile Include="..\Code\AlphaBillEffect.cpp" />
     <ClCompile Include="..\Code\AlphaLaidEffect.cpp" />
     <ClCompile Include="..\Code\BackGround.cpp" />
     <ClCompile Include="..\Code\BasicEffect.cpp" />
@@ -257,11 +261,13 @@
     <ClCompile Include="..\Code\Logo.cpp" />
     <ClCompile Include="..\Code\MainApp.cpp" />
     <ClCompile Include="..\Code\Meteor.cpp" />
+    <ClCompile Include="..\Code\MeteorGen.cpp" />
     <ClCompile Include="..\Code\MeteorStrike.cpp" />
     <ClCompile Include="..\Code\Mouse.cpp" />
     <ClCompile Include="..\Code\Player.cpp" />
     <ClCompile Include="..\Code\QuaterViewCamera.cpp" />
     <ClCompile Include="..\Code\RoomBlock.cpp" />
+    <ClCompile Include="..\Code\SignitureEffect.cpp" />
     <ClCompile Include="..\Code\SphereCollider.cpp" />
     <ClCompile Include="..\Code\Stage.cpp" />
     <ClCompile Include="..\Code\Terrain.cpp" />

@@ -5,6 +5,7 @@
 #include "Export_Function.h"
 #include "Meteor.h"
 #include "AlphaLaidEffect.h"
+#include "MeteorGen.h"
 
 CMeteorStrike::CMeteorStrike(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CSkill(pGraphicDev)
@@ -115,7 +116,69 @@ _int CMeteorStrike::Use_Skill(const _float & fTimeDelta, const _vec3 * pPos, con
 
 _int CMeteorStrike::Use_UpgradedSkill(const _float & fTimeDelta)
 {
-	return 0;
+	_float fCumulativeTime = Engine::Get_CummulativeTime(L"MeteorStrike_CoolTime");
+	if (m_bFirstShot)
+	{
+		fCumulativeTime = 10000.f;
+		m_bFirstShot = false;
+	}
+	if (fCumulativeTime < m_fCoolTime)
+		return 0;
+	else
+		Engine::Set_TimeDelta(L"MeteorStrike_CoolTime");
+
+	_vec3 vPos;
+
+	_vec2 vMousePos = Engine::Get_MainCamera()->Get_MousePos();
+
+	_matrix	matProj, matView;
+	Engine::Get_MainCamera()->Get_View(&matView);
+	Engine::Get_MainCamera()->Get_Projection(&matProj);
+
+	D3DXPLANE tPlane = { 0.f, 1.f, 0.f, 0.f };
+
+	Engine::CMyMath::PickingOnPlane(&vPos, &vMousePos, WINCX, WINCY, &matProj, &matView, &tPlane);
+
+	CMeteorGen* pMeteorGen = CMeteorGen::Create(m_pGraphicDev, &vPos, 0.1f, 5);
+	Engine::Add_GameObject(L"GameLogic", L"MeteorGen", pMeteorGen);
+
+	m_fCurTime = m_fCoolTime;
+
+	return 2;
+}
+
+_int CMeteorStrike::Use_UpgradedSkill(const _float & fTimeDelta, const _vec3 * pPos, const _vec3 * pDir)
+{
+	_float fCumulativeTime = Engine::Get_CummulativeTime(L"MeteorStrike_CoolTime");
+
+	if (m_bFirstShot)
+	{
+		fCumulativeTime = 10000.f;
+		m_bFirstShot = false;
+	}
+	if (fCumulativeTime < m_fCoolTime)
+		return 0;
+	else
+		Engine::Set_TimeDelta(L"MeteorStrike_CoolTime");
+
+	_vec3 vPos;
+
+	_vec2 vMousePos = Engine::Get_MainCamera()->Get_MousePos();
+
+	_matrix	matProj, matView;
+	Engine::Get_MainCamera()->Get_View(&matView);
+	Engine::Get_MainCamera()->Get_Projection(&matProj);
+
+	D3DXPLANE tPlane = { 0.f, 1.f, 0.f, 0.f };
+
+	Engine::CMyMath::PickingOnPlane(&vPos, &vMousePos, WINCX, WINCY, &matProj, &matView, &tPlane);
+
+	CMeteorGen* pMeteorGen = CMeteorGen::Create(m_pGraphicDev, &vPos, 0.1f, 5);
+	Engine::Add_GameObject(L"GameLogic", L"MeteorGen", pMeteorGen);
+
+	m_fCurTime = m_fCoolTime;
+
+	return 2;
 }
 
 CMeteorStrike* CMeteorStrike::Create(LPDIRECT3DDEVICE9 pGraphicDev)

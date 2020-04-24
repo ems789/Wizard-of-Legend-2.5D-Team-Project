@@ -135,6 +135,9 @@ _uint CLoading::Loading_ForState()
 	//	SlashHitSpark Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_SlashHitSpark", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/SlashHitSpark/SlashHitSpark_%d.png", 7), E_FAIL);
 
+	//	Beam Texture
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Beam", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/ForBeam.png"), E_FAIL);
+
 	//	FireParticle Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FireParticle1", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/FireParticle/Particle1/FireParticle1_%d.png", 6), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FireParticle2", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/FireParticle/Particle2/FireParticle2_%d.png", 6), E_FAIL);
@@ -240,7 +243,6 @@ _uint CLoading::Loading_ForState()
 
 	//	RoomBlock
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_RoomBlock", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/RoomBlock/RoomBlock%d.png", 18), E_FAIL);
-
 
 	//	Scene ¸¸µé±â.
 	if (0 != lstrcmp(m_szTilePath, L"") && 0 != lstrcmp(m_szWallPath, L""))

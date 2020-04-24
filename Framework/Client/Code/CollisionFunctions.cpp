@@ -23,12 +23,12 @@ CCollisionFunctions::~CCollisionFunctions()
 
 HRESULT CCollisionFunctions::Ready_Functions()
 {
-	Engine::Add_CollisionFunction(L"Player_Bullet", L"Monster", CCollisionFunctions::CollisionBulletToObject);
-	Engine::Add_CollisionFunction(L"MonsterAttack", L"Player", CCollisionFunctions::CollisionObjAttackToObject);
-	Engine::Add_CollisionFunction(L"Player", L"Terrain", CCollisionFunctions::CollisionObjectToTerrain);
-	Engine::Add_CollisionFunction(L"Monster", L"Terrain", CCollisionFunctions::CollisionObjectToTerrain);
-	Engine::Add_CollisionFunction(L"Player", L"RoomBlock", CCollisionFunctions::CollisionObjectToRoomBlock);
-	Engine::Add_CollisionFunction(L"Monster", L"RoomBlock", CCollisionFunctions::CollisionObjectToRoomBlock);
+	Engine::Add_CollisionFunction(L"Player_Bullet", L"Monster",		CCollisionFunctions::CollisionBulletToObject);
+	Engine::Add_CollisionFunction(L"MonsterAttack", L"Player",		CCollisionFunctions::CollisionObjAttackToObject);
+	Engine::Add_CollisionFunction(L"Player",		L"Terrain",		CCollisionFunctions::CollisionObjectToTerrain);
+	Engine::Add_CollisionFunction(L"Monster",		L"Terrain",		CCollisionFunctions::CollisionObjectToTerrain);
+	Engine::Add_CollisionFunction(L"Player",		L"RoomBlock",	CCollisionFunctions::CollisionObjectToRoomBlock);
+	Engine::Add_CollisionFunction(L"Monster",		L"RoomBlock",	CCollisionFunctions::CollisionObjectToRoomBlock);
 	//Engine::Add_CollisionFunction(L"Player", L"Terrain", CCollisionFunctions::CollisionObjectToTerrainPoint);
 	return S_OK;
 }
