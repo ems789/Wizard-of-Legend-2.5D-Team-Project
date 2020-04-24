@@ -5,11 +5,15 @@
 #include "Skill.h"
 #include "FireBall.h"
 #include "WindSlash.h"
+#include "AquaVortex.h"
+#include "WaterBall.h"
+#include "SharkPool.h"
 #include "FireEffect.h"
 #include "MeteorStrike.h"
 #include "GuidedFireBall.h"
 #include "LaidEffect.h"
 #include "BasicEffect.h"
+#include "Inven.h"
 
 CPlayer::CPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev)
@@ -54,14 +58,18 @@ HRESULT CPlayer::Ready_GameObject()
 	NULL_CHECK_RETURN(pMeteorStrike, E_FAIL);
 	m_vecEquipSkill[2] = pMeteorStrike;
 
-	CFireBall*	pFireBall = CFireBall::Create(m_pGraphicDev);
-	NULL_CHECK_RETURN(pFireBall, E_FAIL);
-	//Change_Normal_Skill(pFireBall);
-	m_vecEquipSkill[1] = pFireBall;
+	//CFireBall*	pFireBall = CFireBall::Create(m_pGraphicDev);
+	//NULL_CHECK_RETURN(pFireBall, E_FAIL);
+	////Change_Normal_Skill(pFireBall);
+	//m_vecEquipSkill[1] = pFireBall;
 
 	CWindSlash* pWindSlash = CWindSlash::Create(m_pGraphicDev);
 	NULL_CHECK_RETURN(pWindSlash, E_FAIL);
 	m_vecEquipSkill[0] = pWindSlash;
+
+	CSharkPool* pSharkPool = CSharkPool::Create(m_pGraphicDev);
+	NULL_CHECK_RETURN(pSharkPool, E_FAIL);
+	m_vecEquipSkill[1] = pSharkPool;
 
 	m_fDashSpeed = 30.f;
 

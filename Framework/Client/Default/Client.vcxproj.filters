@@ -94,12 +94,6 @@
     <Filter Include="05.Skill\00.Fire">
       <UniqueIdentifier>{612987a2-6bb3-459f-a711-073bf36f5726}</UniqueIdentifier>
     </Filter>
-    <Filter Include="05.Skill\01.Ice">
-      <UniqueIdentifier>{0d554a0f-4834-4a70-bd49-a9bed46016b0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="05.Skill\02.Earth">
-      <UniqueIdentifier>{58604baa-f0d3-4ecf-8131-3bf05ea8fc8c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="05.Skill\03.Wind">
       <UniqueIdentifier>{88ac741b-ae59-4662-abd4-a7dd9717148a}</UniqueIdentifier>
     </Filter>
@@ -225,6 +219,30 @@
     </Filter>
     <Filter Include="07.Monster\99.Boss\01.LightningBoss\00.LightningJavelingThrow">
       <UniqueIdentifier>{2b73b547-131d-48e7-ab1c-7c6584a5653f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Skill\01.Water">
+      <UniqueIdentifier>{0d554a0f-4834-4a70-bd49-a9bed46016b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Skill\02.Lightning">
+      <UniqueIdentifier>{cb5e14dc-5434-4a6c-8009-076178da066a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Skill\01.Water\00.WaterBall">
+      <UniqueIdentifier>{90f9dc1d-2631-4dbb-a86a-ab5e2baa1d26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Skill\01.Water\01.SharkPool">
+      <UniqueIdentifier>{fc746a58-cf7d-4689-9c6f-8f9a6c02c282}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Skill\01.Water\02.AquaVortex">
+      <UniqueIdentifier>{d7700de7-85e3-4f74-9136-e6161fb1f0eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Skill\01.Water\01.SharkPool\00.WaterThrow">
+      <UniqueIdentifier>{b246bd9a-9dd2-450f-9b6d-02d9c9aeb5ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Skill\01.Water\01.SharkPool\01.Shark">
+      <UniqueIdentifier>{5fb08081-e19e-47e5-a847-8bc4d993e1e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Skill\01.Water\02.AquaVortex\00.Aqua">
+      <UniqueIdentifier>{bfc4d9c2-ee49-4281-82b1-f9e384f837e1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -417,6 +435,27 @@
     <ClInclude Include="..\Code\FollowingEffect.h">
       <Filter>03.Effect\06.FollowingEffect</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\Water.h">
+      <Filter>05.Skill\01.Water</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\WaterBall.h">
+      <Filter>05.Skill\01.Water\00.WaterBall</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\WaterThrow.h">
+      <Filter>05.Skill\01.Water\01.SharkPool\00.WaterThrow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Shark.h">
+      <Filter>05.Skill\01.Water\01.SharkPool\01.Shark</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\SharkPool.h">
+      <Filter>05.Skill\01.Water\01.SharkPool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Aqua.h">
+      <Filter>05.Skill\01.Water\02.AquaVortex\00.Aqua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\AquaVortex.h">
+      <Filter>05.Skill\01.Water\02.AquaVortex</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -583,6 +622,27 @@
     </ClCompile>
     <ClCompile Include="..\Code\FollowingEffect.cpp">
       <Filter>03.Effect\06.FollowingEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Water.cpp">
+      <Filter>05.Skill\01.Water</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\WaterBall.cpp">
+      <Filter>05.Skill\01.Water\00.WaterBall</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\WaterThrow.cpp">
+      <Filter>05.Skill\01.Water\01.SharkPool\00.WaterThrow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Shark.cpp">
+      <Filter>05.Skill\01.Water\01.SharkPool\01.Shark</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\SharkPool.cpp">
+      <Filter>05.Skill\01.Water\01.SharkPool</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Aqua.cpp">
+      <Filter>05.Skill\01.Water\02.AquaVortex\00.Aqua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\AquaVortex.cpp">
+      <Filter>05.Skill\01.Water\02.AquaVortex</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

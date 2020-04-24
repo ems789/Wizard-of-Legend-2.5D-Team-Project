@@ -110,11 +110,6 @@ _uint CLoading::Loading_ForState()
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_Attack2Right", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardBackhand/Right/WizardBackhandRight%d.png", 9), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_Attack2Left", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardBackhand/Left/WizardBackhandLeft%d.png", 9), E_FAIL);
 
-	////	HP Texture
-	//FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_HPBarBG", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/UI/HP/HPBarBG.png"), E_FAIL);
-	//FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_HPBarFill", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/UI/HP/HPBarFill.png"), E_FAIL);
-	//FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_HPBarHurtFill", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/UI/HP/HPBarHurtFill.png"), E_FAIL);
-
 	//	AirRing
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_AirRingUp", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/AirRing/Up/AirRing%d.png", 4), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_AirRingDown", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/AirRing/Down/AirRing%d.png", 4), E_FAIL);
@@ -134,6 +129,23 @@ _uint CLoading::Loading_ForState()
 
 	//	SlashHitSpark Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_SlashHitSpark", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/SlashHitSpark/SlashHitSpark_%d.png", 7), E_FAIL);
+
+	// Water---------------
+	/////추가부분
+	// WaterThrow
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WaterThrow", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Skill/WaterThrow.png"), E_FAIL);
+	// Shark
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Shark", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/Shark/Shark%d.png", 9), E_FAIL);
+	// SharkPool
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_SharkPool", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Skill/SharkPool/SharkPool%d.png", 8), E_FAIL);
+	// WaterExplosion Texture
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WaterExplosion", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/WaterExplosion/WaterBombExplosion_%d.png", 7), E_FAIL);
+	//	WaterHitEffect Texture
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WaterHitEffect", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/WaterHitEffect/WaterHitEffect_%d.png", 5), E_FAIL);
+	//	WaterBall Texture
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WaterBall", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Skill/WaterBall/WaterBall_%d.png", 3), E_FAIL);
+	//	AquaVortex Texture
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_AquaVortex", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Skill/AquaVortex/VortexStrike_%d.png", 14), E_FAIL);
 
 	//	FireParticle Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FireParticle1", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/FireParticle/Particle1/FireParticle1_%d.png", 6), E_FAIL);

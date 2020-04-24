@@ -162,6 +162,8 @@
   <ItemGroup>
     <ClInclude Include="..\..\Engine\Utility\Code\UIImage.h" />
     <ClInclude Include="..\Code\AlphaLaidEffect.h" />
+    <ClInclude Include="..\Code\Aqua.h" />
+    <ClInclude Include="..\Code\AquaVortex.h" />
     <ClInclude Include="..\Code\BackGround.h" />
     <ClInclude Include="..\Code\BasicEffect.h" />
     <ClInclude Include="..\Code\BeamEffect.h" />
@@ -201,6 +203,8 @@
     <ClInclude Include="..\Code\Player.h" />
     <ClInclude Include="..\Code\QuaterViewCamera.h" />
     <ClInclude Include="..\Code\RoomBlock.h" />
+    <ClInclude Include="..\Code\Shark.h" />
+    <ClInclude Include="..\Code\SharkPool.h" />
     <ClInclude Include="..\Code\SphereCollider.h" />
     <ClInclude Include="..\Code\Stage.h" />
     <ClInclude Include="..\Code\Terrain.h" />
@@ -211,6 +215,9 @@
     <ClInclude Include="..\Code\Town.h" />
     <ClInclude Include="..\Code\UI.h" />
     <ClInclude Include="..\Code\Wall.h" />
+    <ClInclude Include="..\Code\Water.h" />
+    <ClInclude Include="..\Code\WaterBall.h" />
+    <ClInclude Include="..\Code\WaterThrow.h" />
     <ClInclude Include="..\Code\Wind.h" />
     <ClInclude Include="..\Code\WindSlash.h" />
     <ClInclude Include="..\Header\Defines.h" />
@@ -227,6 +234,8 @@
   <ItemGroup>
     <ClCompile Include="..\..\Engine\Utility\Code\UIImage.cpp" />
     <ClCompile Include="..\Code\AlphaLaidEffect.cpp" />
+    <ClCompile Include="..\Code\Aqua.cpp" />
+    <ClCompile Include="..\Code\AquaVortex.cpp" />
     <ClCompile Include="..\Code\BackGround.cpp" />
     <ClCompile Include="..\Code\BasicEffect.cpp" />
     <ClCompile Include="..\Code\BeamEffect.cpp" />
@@ -266,6 +275,8 @@
     <ClCompile Include="..\Code\Player.cpp" />
     <ClCompile Include="..\Code\QuaterViewCamera.cpp" />
     <ClCompile Include="..\Code\RoomBlock.cpp" />
+    <ClCompile Include="..\Code\Shark.cpp" />
+    <ClCompile Include="..\Code\SharkPool.cpp" />
     <ClCompile Include="..\Code\SphereCollider.cpp" />
     <ClCompile Include="..\Code\Stage.cpp" />
     <ClCompile Include="..\Code\Terrain.cpp" />
@@ -276,6 +287,9 @@
     <ClCompile Include="..\Code\Town.cpp" />
     <ClCompile Include="..\Code\UI.cpp" />
     <ClCompile Include="..\Code\Wall.cpp" />
+    <ClCompile Include="..\Code\Water.cpp" />
+    <ClCompile Include="..\Code\WaterBall.cpp" />
+    <ClCompile Include="..\Code\WaterThrow.cpp" />
     <ClCompile Include="..\Code\Wind.cpp" />
     <ClCompile Include="..\Code\WindSlash.cpp" />
     <ClCompile Include="Client.cpp" />
