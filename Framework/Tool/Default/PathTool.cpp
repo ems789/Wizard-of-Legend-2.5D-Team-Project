@@ -79,7 +79,7 @@ void CPathTool::OnBnClickedSave()
 		fout.close();
 
 		// 윈도우 기본 응용 프로그램 실행하는 시스템 함수.
-		WinExec("notepad.exe ../../Data/PathInfo.txt", SW_SHOW);
+		WinExec("notepad.exe ../Bin/Data/PathInfo.txt", SW_SHOW);
 	}
 }
 
