@@ -3,7 +3,7 @@
 
 #include "Export_Function.h"
 #include "BasicEffect.h"
-#include "FollowingEffect.h"
+#include "BasicFollowingEffect.h"
 
 CLightningJavelinThrow::CLightningJavelinThrow(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev)
@@ -70,8 +70,9 @@ const _vec3 * CLightningJavelinThrow::Get_Pos() const
 /// TODO : 바닥 충돌 시 파티클 터짐
 void CLightningJavelinThrow::Add_Effect(const _vec3 * pPos)
 {
-	CBasicEffect* pLightningBossTeleportAir = CBasicEffect::Create(m_pGraphicDev, L"Texture_LightningFist", L"", 6.f, 10.f, 0.02f, m_pTransformCom->GetInfo(Engine::INFO_POS), false, 0.f);
+	CBasicEffect* pLightningBossTeleportAir = CBasicEffect::Create(m_pGraphicDev, L"Texture_LightningFist", L"", 6.f, 10.f, 0.02f, pPos, false, 0.f);
 	Engine::Add_GameObject(L"Effect", L"Texture_LightningFist", pLightningBossTeleportAir);
+	Engine::PlaySound_(L"BallLightningLoop.wav", CSoundMgr::EFFECT);
 }
 
 HRESULT CLightningJavelinThrow::Add_Component()
@@ -82,7 +83,8 @@ HRESULT CLightningJavelinThrow::Add_Component()
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
 	m_mapComponent[Engine::ID_STATIC].emplace(L"Com_Buffer", pComponent);
 
-	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_ThunderJavelin"));
+	// 구체를 던지기 전에 손에 들고 있는 이펙트를 표현하기 위함
+	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_ThunderJavelin")); 
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
 	m_mapComponent[Engine::ID_STATIC].emplace(L"Com_Texture", pComponent);
 
@@ -139,7 +141,10 @@ CLightningJavelinThrow * CLightningJavelinThrow::Create(LPDIRECT3DDEVICE9 pGraph
 	_vec3 vPos = pInstance->m_vInitialPos;
 	D3DXVec3Normalize(&vPos, &vPos);
 
-	CFollowingEffect* pLightningStageEffect = CFollowingEffect::Create(pGraphicDev, L"Texture_LightningStageEffect", L"", 16.f, 40.f, 0.03f, &_vec3(0.f, 0.f, 0.f), pInstance->m_pTransformCom->GetInfo(Engine::INFO_POS), true, 2.7f);
+	CBasicFollowingEffect* pThunderJavelinSpawn = CBasicFollowingEffect::Create(pGraphicDev, L"Texture_ThunderJavelin_Spawn", L"", 4.f, 10.f, 0.035f, &_vec3(0.f, 0.f, 0.f), pInstance->m_pTransformCom->GetInfo(Engine::INFO_POS), false, 0.f);
+	Engine::Add_GameObject(L"Effect", L"Texture_ThunderJavelin_Spawn", pThunderJavelinSpawn);
+
+	CBasicFollowingEffect* pLightningStageEffect = CBasicFollowingEffect::Create(pGraphicDev, L"Texture_LightningStageEffect", L"", 16.f, 40.f, 0.035f, &_vec3(0.f, 0.f, 0.f), pInstance->m_pTransformCom->GetInfo(Engine::INFO_POS), true, 2.f);
 	Engine::Add_GameObject(L"Effect", L"Texture_LightningStageEffect2", pLightningStageEffect);
 
 	return pInstance;

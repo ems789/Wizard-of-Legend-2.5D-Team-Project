@@ -16,7 +16,7 @@ END
 class CLightningBoss : public Engine::CGameObject
 {
 private:
-	enum LightningBoss_STATE	{	FBS_IDLE, FBS_JUMP, FBS_FLOAT, FBS_READY_JAVELIN, FBS_THROW_JAVELIN, FBS_DASH, FBS_DEAD, FBS_END };
+	enum LightningBoss_STATE	{	FBS_IDLE, FBS_JUMP, FBS_FLOAT, FBS_READY_JAVELIN, FBS_THROW_JAVELIN, FBS_DASH, FBS_SLIDE, FBS_PBAOE_Ready, FBS_PBAOE, FBS_DEAD, FBS_END };
 	enum LightningBoss_DIR	{ FBD_UP, FBD_DOWN, FBD_LEFT, FBD_RIGHT, FBD_END };
 
 private:
@@ -32,6 +32,13 @@ public:
 	virtual Engine::SPHERE*		Get_Sphere() override { return &m_tSphere; }
 	virtual const _vec3*		Get_Pos()	const override;
 
+public:		//	Set_Functions
+	void	Set_Pos(const _vec3* pPos);
+	void	Set_Pos(const _vec3& vPos);
+	virtual void Set_PosX(const _float& fx);
+	virtual void Set_PosY(const _float& fy);
+	virtual void Set_PosZ(const _float& fz);
+
 private:
 	HRESULT Add_Component();
 	void	Animation(const _float& fTimeDelta);
@@ -46,11 +53,13 @@ private:
 	void Idle_State();
 	void Jump_State();
 	void Float_State();
-	void Ready_Javelin_State();
-	void Throw_Javelin_State();
+	void JavelinReady_State();
+	void JavelinThrow_State();
 	void Dash_State();
+	void Slide_State();
+	void PBAoEReady_State();
+	void PBAoE_State();
 	void Dead_State();
-
 
 public:
 	_int Idle_Update(const _float& fTimeDelta);
@@ -59,6 +68,9 @@ public:
 	void Ready_Javelin_Update(const _float& fTimeDelta);
 	void Throw_Javelin_Update(const _float& fTimeDelta);
 	void Dash_Update(const _float & fTimeDelta);
+	void Slide_Update(const _float & fTimeDelta);
+	void PBAoEReady_Update(const _float & fTimeDelta);
+	void PBAoE_Update(const _float & fTimeDelta);
 	void Dead_Update(const _float& fTimeDelta);
 	
 public:
@@ -87,12 +99,16 @@ private:
 
 	_uint	m_uiJavelinCount = 0;
 	_uint	m_uiDashCount = 0;
+	_uint	m_uiLightningCount = 0;
 
 	FRAME	m_tFrame;
 	_bool	m_bAnimRepeat = true;
 	_bool	m_bAnimFinish = false;
 
 	_bool	m_bLightningLand = false;
+	_bool	m_bIsDash = false;
+
+	_int	m_iDashDir = FBD_LEFT;
 
 	CLightningBoss::LightningBoss_STATE		m_ePreState = CLightningBoss::FBS_END;
 	CLightningBoss::LightningBoss_STATE		m_eCurState = CLightningBoss::FBS_END;
@@ -106,6 +122,8 @@ private:
 
 	_float	m_fLightningEffectYPos = 0.8f;
 	_float	m_fLightningEffectTime = 0.f;
+	_float	m_fLightningBaseEffectTime = 0.f;
+	_float	m_fLightningTipTime = 0.f;
 
 	_float	m_fIdleTime = 0.f;
 	_uint	m_uiPattern = 0;

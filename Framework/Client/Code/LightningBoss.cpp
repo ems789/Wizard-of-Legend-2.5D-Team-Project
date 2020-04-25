@@ -3,11 +3,15 @@
 
 #include "Export_Function.h"
 #include "LaidEffect.h"
+#include "LaidFollowingEffect.h"
 #include "SphereCollider.h"
 #include "BasicEffect.h"
-#include "FollowingEffect.h"
+#include "BeamEffect.h"
+#include "BasicFollowingEffect.h"
 #include "FireEffect.h"
 #include "LightningJavelinThrow.h"
+#include "LightningFalling.h"
+#include "LightningChainDash.h"
 
 CLightningBoss::CLightningBoss(LPDIRECT3DDEVICE9 pGraphicDev)
 	:Engine::CGameObject(pGraphicDev)
@@ -78,6 +82,31 @@ void CLightningBoss::Render_GameObject()
 const _vec3 * CLightningBoss::Get_Pos() const
 {
 	return m_pTransformCom->GetInfo(Engine::INFO_POS);
+}
+
+void CLightningBoss::Set_Pos(const _vec3 * pPos)
+{
+	m_pTransformCom->Set_Pos(pPos);
+}
+
+void CLightningBoss::Set_Pos(const _vec3 & vPos)
+{
+	m_pTransformCom->Set_Pos(vPos);
+}
+
+void CLightningBoss::Set_PosX(const _float & fx)
+{
+	m_pTransformCom->Set_PosX(fx);
+}
+
+void CLightningBoss::Set_PosY(const _float & fy)
+{
+	m_pTransformCom->Set_PosY(fy);
+}
+
+void CLightningBoss::Set_PosZ(const _float & fz)
+{
+	m_pTransformCom->Set_PosZ(fz);
 }
 
 HRESULT CLightningBoss::Add_Component()
@@ -170,6 +199,49 @@ HRESULT CLightningBoss::Add_Component()
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
 	m_vvTextureCom[FBS_DASH][FBD_LEFT] = pTextureCom;
 
+
+	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_LightningGirlSlideLeft"));
+	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	m_vvTextureCom[FBS_SLIDE][FBD_LEFT] = pTextureCom;
+
+	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_LightningGirlSlideRight"));
+	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	m_vvTextureCom[FBS_SLIDE][FBD_RIGHT] = pTextureCom;
+
+	
+	// AoE Ready
+	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_LightningGirlPBAoEReady"));
+	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	m_vvTextureCom[FBS_PBAOE_Ready][FBD_UP] = pTextureCom;
+	m_vvTextureCom[FBS_PBAOE_Ready][FBD_DOWN] = pTextureCom;
+	pTextureCom->AddRef();
+	m_vvTextureCom[FBS_PBAOE_Ready][FBD_RIGHT] = pTextureCom;
+	pTextureCom->AddRef();
+	m_vvTextureCom[FBS_PBAOE_Ready][FBD_LEFT] = pTextureCom;
+	pTextureCom->AddRef();
+
+	// AoE
+	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_LightningGirlPBAoE"));
+	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	m_vvTextureCom[FBS_PBAOE][FBD_UP] = pTextureCom;
+	m_vvTextureCom[FBS_PBAOE][FBD_DOWN] = pTextureCom;
+	pTextureCom->AddRef();
+	m_vvTextureCom[FBS_PBAOE][FBD_RIGHT] = pTextureCom;
+	pTextureCom->AddRef();
+	m_vvTextureCom[FBS_PBAOE][FBD_LEFT] = pTextureCom;
+	pTextureCom->AddRef();
+
+	// Dead
+	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_LightningBoss_Dead"));
+	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	m_vvTextureCom[FBS_DEAD][FBD_UP] = pTextureCom;
+	m_vvTextureCom[FBS_DEAD][FBD_DOWN] = pTextureCom;
+	pTextureCom->AddRef();
+	m_vvTextureCom[FBS_DEAD][FBD_RIGHT] = pTextureCom;
+	pTextureCom->AddRef();
+	m_vvTextureCom[FBS_DEAD][FBD_LEFT] = pTextureCom;
+	pTextureCom->AddRef();
+	
 	return S_OK;
 }
 
@@ -205,13 +277,22 @@ void CLightningBoss::Change_State()
 		Float_State();
 		break;
 	case CLightningBoss::FBS_READY_JAVELIN:
-		Ready_Javelin_State();
+		JavelinReady_State();
 		break;
 	case CLightningBoss::FBS_THROW_JAVELIN:
-		Throw_Javelin_State();
+		JavelinThrow_State();
 		break;
 	case CLightningBoss::FBS_DASH:
 		Dash_State();
+		break;
+	case CLightningBoss::FBS_SLIDE:
+		Slide_State();
+		break;
+	case CLightningBoss::FBS_PBAOE_Ready:
+		PBAoEReady_State();
+		break;
+	case CLightningBoss::FBS_PBAOE:
+		PBAoE_State();
 		break;
 	}
 
@@ -241,6 +322,15 @@ void CLightningBoss::Update_State(const _float & fTimeDelta)
 		break;
 	case CLightningBoss::FBS_DASH:
 		Dash_Update(fTimeDelta);
+		break;
+	case CLightningBoss::FBS_SLIDE:
+		Slide_Update(fTimeDelta);
+		break;
+	case CLightningBoss::FBS_PBAOE_Ready:
+		PBAoEReady_Update(fTimeDelta);
+		break;
+	case CLightningBoss::FBS_PBAOE:
+		PBAoE_Update(fTimeDelta);
 		break;
 	}
 }
@@ -297,7 +387,7 @@ void CLightningBoss::LightningEffect(const _float & fTimeDelta)
 		_vec3 vCreatePos = vPos + vLook * 0.1f + vUp * 0.6f + vDir;
 		D3DXVec3Normalize(&vDir, &vDir);
 
-		CFireEffect* pEffect = CFireEffect::Create(m_pGraphicDev, pTextureTag, L"LightningParticle", 8.f, 15.f, 0.05f, &vCreatePos, &vDir, 3.f,
+		CFireEffect* pEffect = CFireEffect::Create(m_pGraphicDev, pTextureTag, L"MiniLightning", 8.f, 15.f, 0.05f, &vCreatePos, &vDir, 3.f,
 			false, 0.f, D3DXCOLOR(1.f, 1.f, 0.f, 1.f), D3DXCOLOR(0.f, 0.f, 0.0f, 0.f));
 
 		Engine::Add_GameObject(L"Effect", L"LightningBossBackEffect", pEffect);
@@ -341,7 +431,7 @@ void CLightningBoss::Float_State()
 	Fitting_Scale_With_Texture(FBS_FLOAT);
 }
 
-void CLightningBoss::Ready_Javelin_State()
+void CLightningBoss::JavelinReady_State()
 {
 	m_tFrame.fCurFrame = 0.f;
 	m_tFrame.fMaxFrame = 3.f;
@@ -353,7 +443,7 @@ void CLightningBoss::Ready_Javelin_State()
 	Fitting_Scale_With_Texture(FBS_READY_JAVELIN);
 }
 
-void CLightningBoss::Throw_Javelin_State()
+void CLightningBoss::JavelinThrow_State()
 {
 	m_tFrame.fCurFrame = 0.f;
 	m_tFrame.fMaxFrame = 4.f;
@@ -369,12 +459,48 @@ void CLightningBoss::Dash_State()
 {
 	m_tFrame.fCurFrame = 0.f;
 	m_tFrame.fMaxFrame = 1.f;
-	m_tFrame.fFrameSpeed = 2.f;
+	m_tFrame.fFrameSpeed = 3.f;
 
 	m_bAnimFinish = false;
 	m_bAnimRepeat = false;
 
 	Fitting_Scale_With_Texture(FBS_DASH);
+}
+
+void CLightningBoss::Slide_State()
+{
+	m_tFrame.fCurFrame = 0.f;
+	m_tFrame.fMaxFrame = 4.f;
+	m_tFrame.fFrameSpeed = 15.f;
+
+	m_bAnimFinish = false;
+	m_bAnimRepeat = false;
+
+	Fitting_Scale_With_Texture(FBS_SLIDE);
+}
+
+void CLightningBoss::PBAoEReady_State()
+{
+	m_tFrame.fCurFrame = 0.f;
+	m_tFrame.fMaxFrame = 2.f;
+	m_tFrame.fFrameSpeed = 2.f;
+
+	m_bAnimFinish = false;
+	m_bAnimRepeat = false;
+
+	Fitting_Scale_With_Texture(FBS_PBAOE_Ready);
+}
+
+void CLightningBoss::PBAoE_State()
+{
+	m_tFrame.fCurFrame = 0.f;
+	m_tFrame.fMaxFrame = 2.f;
+	m_tFrame.fFrameSpeed = 10.f;
+
+	m_bAnimFinish = false;
+	m_bAnimRepeat = true;
+
+	Fitting_Scale_With_Texture(FBS_PBAOE);
 }
 
 void CLightningBoss::Dead_State()
@@ -435,9 +561,15 @@ _int CLightningBoss::Idle_Update(const _float & fTimeDelta)
 	case 4:
 		m_eCurState = FBS_DASH;
 		break;
+	case 5:
+		m_eCurState = FBS_PBAOE_Ready;
+		break;
+	case 6:
+		m_eCurState = FBS_PBAOE;
+		break;
 	}
 	++m_uiPattern;
-	if (m_uiPattern > 4)
+	if (m_uiPattern > 6)
 		m_uiPattern = 0;
 
 	return 0;
@@ -467,7 +599,7 @@ void CLightningBoss::Float_Update(const _float & fTimeDelta)
 {
 	if (m_bAnimFinish)
 	{
-		m_eCurState = m_uiJavelinCount < 4 ? FBS_READY_JAVELIN : FBS_IDLE;
+		m_eCurState = m_uiJavelinCount < 1 ? FBS_READY_JAVELIN : FBS_IDLE;
 		if (m_eCurState == FBS_IDLE)
 		{
 			CBasicEffect* pLightningBossTeleportAir = CBasicEffect::Create(m_pGraphicDev, L"Texture_LightningGirlTeleportAir", L"", 3.f, 10.f, 0.06f, m_pTransformCom->GetInfo(Engine::INFO_POS), false, 0.f);
@@ -480,7 +612,7 @@ void CLightningBoss::Float_Update(const _float & fTimeDelta)
 			CBasicEffect* pLightningBossTeleportFloor = CBasicEffect::Create(m_pGraphicDev, L"Texture_LightningGirlTeleportFloor", L"", 6.f, 10.f, 0.06f, m_pTransformCom->GetInfo(Engine::INFO_POS), false, 0.f);
 			Engine::Add_GameObject(L"Effect", L"Texture_LightningGirlTeleportFloor", pLightningBossTeleportFloor);
 
-			m_uiPattern = 4; // 바로 대쉬로 넘어감
+			m_uiPattern = FBS_DASH - 1; // 바로 대쉬로 넘어감
 			m_uiJavelinCount = 0;
 			return;
 		}
@@ -506,10 +638,10 @@ void CLightningBoss::Float_Update(const _float & fTimeDelta)
 		m_pHandPos = vRight * -0.5f + vUp * 0.5f;
 		_vec3 vHandPos = vRight * -0.5f + vUp * 0.5f;
 
-		CFollowingEffect* pThunderJavelinSpawn = CFollowingEffect::Create(m_pGraphicDev, L"Texture_ThunderJavelin_Spawn", L"", 4.f, 10.f, 0.03f, &vHandPos, m_pTransformCom->GetInfo(Engine::INFO_POS), false, 0.f);
+		CBasicFollowingEffect* pThunderJavelinSpawn = CBasicFollowingEffect::Create(m_pGraphicDev, L"Texture_ThunderJavelin_Spawn", L"", 4.f, 10.f, 0.035f, &vHandPos, m_pTransformCom->GetInfo(Engine::INFO_POS), false, 0.f);
 		Engine::Add_GameObject(L"Effect", L"Texture_ThunderJavelin_Spawn", pThunderJavelinSpawn);
 
-		CFollowingEffect* pLightningStageEffect = CFollowingEffect::Create(m_pGraphicDev, L"Texture_LightningStageEffect", L"", 16.f, 40.f, 0.03f, &vHandPos, m_pTransformCom->GetInfo(Engine::INFO_POS), false, 0.f);
+		CBasicFollowingEffect* pLightningStageEffect = CBasicFollowingEffect::Create(m_pGraphicDev, L"Texture_LightningStageEffect", L"", 16.f, 40.f, 0.035f, &vHandPos, m_pTransformCom->GetInfo(Engine::INFO_POS), false, 0.f);
 		Engine::Add_GameObject(L"Effect", L"Texture_LightningStageEffect", pLightningStageEffect);
 	}
 }
@@ -549,14 +681,16 @@ void CLightningBoss::Throw_Javelin_Update(const _float & fTimeDelta)
 
 void CLightningBoss::Dash_Update(const _float & fTimeDelta)
 {
-	if (m_bAnimFinish)
-	{
+	if (!m_bIsDash)
+	{				
+		// 날아갈 방향 설정 (자벨린을 다 던지고 대쉬 방향을 지정)
 		const Engine::CTransform* pTransform = dynamic_cast<const Engine::CTransform*>(Engine::Get_Component_of_Player(L"Com_Transform", Engine::ID_DYNAMIC));
 		_vec3 vTargetPos = *pTransform->GetInfo(Engine::INFO_POS);
 
 		_vec3 vPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
 		_vec3 vLook = *m_pTransformCom->GetInfo(Engine::INFO_LOOK);
 		_vec3 vRight = *m_pTransformCom->GetInfo(Engine::INFO_RIGHT);
+		
 
 		_vec3 vDir = vTargetPos - vPos;
 		vDir.y = 0.f;
@@ -569,12 +703,84 @@ void CLightningBoss::Dash_Update(const _float & fTimeDelta)
 		LightningBoss_DIR eUpDown = fDotL < 0.f ? FBD_DOWN : FBD_UP;
 		LightningBoss_DIR eLeftRight = fDotR < 0.f ? FBD_LEFT : FBD_RIGHT;
 
-		m_eCurDir = fabs(fDotL) > fabs(fDotR) ? eUpDown : eLeftRight;
+		m_eCurDir = (vTargetPos.x > vPos.x) ? FBD_RIGHT : FBD_LEFT;
 
-		m_eCurState = FBS_IDLE;
+		_float fAngleY = Engine::CMyMath::YAngleTransformFromVec(&vDir);
+		if (vDir.z < 0.f)
+			fAngleY += D3DXToRadian(180.f);
+
+		// 대쉬 이펙트
+		CLaidFollowingEffect* pLightningChainDash = CLaidFollowingEffect::Create(m_pGraphicDev, L"Texture_LightningChainDash", L"", 1.f, 10.f, 0.05f, &_vec3(0.f, 0.f, 0.f), m_pTransformCom->GetInfo(Engine::INFO_POS), fAngleY, true, 0.3f);
+		Engine::Add_GameObject(L"Effect", L"Texture_LightningChainDash", pLightningChainDash);
+		Engine::PlaySound_(L"ThunderKnock.wav", CSoundMgr::EFFECT);
+
+		++m_uiDashCount;
+		m_bIsDash = true;
 	}
 
-	m_pTransformCom->Move_Pos(m_vTargetDir * fTimeDelta * 30.f);
+	if (m_bAnimFinish)
+	{		
+		m_eCurState = FBS_SLIDE;
+		m_bIsDash = false;
+	}
+
+	m_fLightningTipTime += fTimeDelta;
+	if (m_fLightningTipTime > 0.02f)
+	{
+		m_fLightningTipTime = 0.f;
+		_float fAngleY = Engine::CMyMath::YAngleTransformFromVec(&m_vTargetDir) + D3DXToRadian(90.f);
+
+		CLightningChainDash* pLightningJavelin = CLightningChainDash::Create(m_pGraphicDev, *m_pTransformCom->GetInfo(Engine::INFO_POS), fAngleY, 1.f);
+		Engine::Add_GameObject(L"Effect", L"Texture_LightningChainDash", pLightningJavelin);
+	}
+
+	m_pTransformCom->Move_Pos(m_vTargetDir * fTimeDelta * 20.f);
+}
+
+void CLightningBoss::Slide_Update(const _float & fTimeDelta)
+{	
+	if (m_bAnimFinish)
+	{
+		m_eCurState = m_uiDashCount < 3 ? FBS_DASH : FBS_PBAOE_Ready;
+
+		if (m_eCurState == FBS_PBAOE_Ready)
+		{
+			m_uiDashCount = 0;
+		}
+	}
+}
+
+void CLightningBoss::PBAoEReady_Update(const _float & fTimeDelta)
+{
+	if (m_bAnimFinish)
+		m_eCurState = FBS_PBAOE;
+}
+
+void CLightningBoss::PBAoE_Update(const _float & fTimeDelta)
+{
+	if (m_bAnimFinish)
+	{
+		m_eCurState = FBS_IDLE;
+		m_uiPattern = 0.f; // IDLE로 넘어가므로 패턴 초기화
+	}
+	else
+	{
+		m_fLightningBaseEffectTime += fTimeDelta;
+		if (m_fLightningBaseEffectTime >= 0.2f)
+		{
+			CLightningFalling* pLightningFalling = CLightningFalling::Create(m_pGraphicDev, *m_pTransformCom->GetInfo(Engine::INFO_POS), 0.5f);
+			Engine::Add_GameObject(L"Effect", L"Texture_LightningFalling", pLightningFalling);
+
+			++m_uiLightningCount;
+			m_fLightningBaseEffectTime = 0.f;
+		}
+
+		if (m_uiLightningCount >= 20)
+		{
+			m_bAnimFinish = true;
+			m_uiLightningCount = 0;
+		}
+	}
 }
 
 void CLightningBoss::Dead_Update(const _float & fTimeDelta)
