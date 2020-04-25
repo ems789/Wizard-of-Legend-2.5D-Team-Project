@@ -6,6 +6,7 @@
 #include "LaidEffect.h"
 #include "BeamEffect.h"
 #include "LineCollider.h"
+#include "Coin.h"
 
 CCyclops::CCyclops(LPDIRECT3DDEVICE9 pGraphicDev)
 	:Engine::CGameObject(pGraphicDev)
@@ -237,7 +238,7 @@ void CCyclops::Update_State(const _float & fTimeDelta)
 		Run_Update(fTimeDelta);
 		break;
 	case CCyclops::CYS_HURT:
-		Hurt_State();
+		Hurt_Update(fTimeDelta);
 		break;
 	case CCyclops::CYS_ATTACK_READY:
 		Attack_Ready_Update(fTimeDelta);
@@ -514,6 +515,13 @@ _int CCyclops::Attack_Update(const _float & fTimeDelta)
 void CCyclops::Hit(const _int & iAtk, const _vec3 * pAtkPos)
 {
 	m_iHP -= iAtk;
+
+	m_vHurtDir = *m_pTransformCom->GetInfo(Engine::INFO_POS) - *pAtkPos;
+	m_vHurtDir.y = 0.f;
+	D3DXVec3Normalize(&m_vHurtDir, &m_vHurtDir);
+	m_eCurState = CYS_HURT;
+	Hurt_State();
+
 	if (m_iHP <= 0)
 	{
 		m_bIsDead = true;
@@ -522,6 +530,17 @@ void CCyclops::Hit(const _int & iAtk, const _vec3 * pAtkPos)
 		CBasicEffect* pDieEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_Cyclops_Dead", L"CyclopsDieEffect", 6, 10.f, m_fScale, &vPos, false, 0.f);
 		Engine::Add_GameObject(L"GameLogic", L"CyclopsDieEffect", pDieEffect);
 
+		_uint iRepeat = rand() % 10;
+		for (_uint i = 0; i < iRepeat; ++i)
+		{
+			_vec3 vDir = { rand() % 100 / 50.f - 1.f, 0.f ,rand() % 100 / 50.f - 1.f };
+			D3DXVec3Normalize(&vDir, &vDir);
+			_float fUpForce = rand() % 100 / 10.f + 20.f;
+			_float	fSpeed = rand() % 100 / 50.f;
+			_int	iCoin = rand() % 20 + 1;
+			CCoin* pCoin = CCoin::Create(m_pGraphicDev, m_pTransformCom->GetInfo(Engine::INFO_POS), &vDir, fUpForce, fSpeed, iCoin);
+			Engine::Add_GameObject(L"GameLogic", L"Coin", pCoin);
+		}
 	}
 
 }

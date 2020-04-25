@@ -53,6 +53,7 @@ inline HRESULT	Ready_CameraMgr(LPDIRECT3DDEVICE9 pGraphicDev, _ulong dwWinCX, _u
 inline _int		Update_MainCamera(const _float& fTimeDelta);
 
 inline HRESULT	SetUp_MainCamera(const _ulong& dwContainerIdx, const _tchar* pCameraTag);
+inline HRESULT	Change_MainCamera(const _ubyte& byOrder);
 
 inline HRESULT	Add_Camera(const _ulong& dwContainerIdx, const _tchar* pCameraTag, CCamera* pCamera);
 inline HRESULT	Add_BasicCamera(const _ubyte& byOrder, const _tchar* pCameraTag, CCamera* pCamera);

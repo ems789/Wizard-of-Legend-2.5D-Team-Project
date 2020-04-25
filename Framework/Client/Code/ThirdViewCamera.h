@@ -32,6 +32,11 @@ public:
 	virtual void			CameraShake();
 	virtual _vec2			Get_MousePos();
 
+	virtual void Set_Angle(const _vec3* pAngle) override { memcpy(&m_vAngle, pAngle, sizeof(_vec3)); }
+	virtual void Set_AngleX(const _float& fx) override { m_vAngle.x = fx; }
+	virtual void Set_AngleY(const _float& fy) override { m_vAngle.y = fy; }
+	virtual void Set_AngleZ(const _float& fz) override { m_vAngle.z = fz; }
+
 private:
 	const Engine::CTransform*	m_pTargetInfo	= nullptr;
 	_float						m_fDistance		= 10.f;

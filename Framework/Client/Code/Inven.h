@@ -14,6 +14,7 @@ class CRenderer;
 END
 
 class CUIImage;
+class CNumberFont;
 
 class CInven : public CBase
 {
@@ -62,6 +63,10 @@ private:
 	HRESULT Setting_SkillImage();
 	HRESULT Setting_SlotImage();
 
+public:
+	void Add_Coin(const _uint& iCoin)	{ m_iCoin += iCoin; }
+	void Remove_Coin(const _uint& iCoin) { m_iCoin -= iCoin; }
+	const _int& Get_Coin() const { return m_iCoin; }
 
 private:
 	LPDIRECT3DDEVICE9 m_pGraphicDev = nullptr;
@@ -146,6 +151,9 @@ private:
 	CUIImage*	m_pEquipLightningSkill3;
 	CUIImage*	m_pEquipWindSkill2;
 	CUIImage*	m_pEquipAquaVortex;
+
+	/////////////////
+	_int			m_iCoin = 0;
 
 public:
 	virtual void Free() override;

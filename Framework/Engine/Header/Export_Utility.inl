@@ -120,6 +120,11 @@ HRESULT	SetUp_MainCamera(const _ulong& dwContainerIdx, const _tchar* pCameraTag)
 	return CCameraMgr::GetInstance()->SetUp_MainCamera(dwContainerIdx, pCameraTag);
 }
 
+HRESULT	Change_MainCamera(const _ubyte& byOrder)
+{
+	return CCameraMgr::GetInstance()->Change_MainCamera(byOrder);
+}
+
 HRESULT	Add_Camera(const _ulong& dwContainerIdx, const _tchar* pCameraTag, CCamera* pCamera)
 {
 	return CCameraMgr::GetInstance()->Add_Camera(dwContainerIdx, pCameraTag, pCamera);

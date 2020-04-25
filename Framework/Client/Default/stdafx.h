@@ -31,6 +31,8 @@
 #include <functional>
 #include <ctime>
 #include <iostream>
+#include <queue>
+#include <stack>
 
 //#include "vld.h"
 

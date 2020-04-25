@@ -4,6 +4,7 @@
 
 #include "Export_Function.h"
 #include "UI.h"
+#include "NumberFont.h"
 
 IMPLEMENT_SINGLETON(CInven)
 
@@ -44,6 +45,7 @@ HRESULT CInven::Ready_Inven(LPDIRECT3DDEVICE9 pGraphicDev)
 
 	m_eCurState = CInven::INVEN_OFF;
 	m_eCurSelect = CInven::SELECT_BASE;
+	
 
 	return S_OK;
 }
@@ -972,7 +974,6 @@ HRESULT CInven::Setting_SlotImage()
 
 void CInven::Free()
 {
-
 	//slot image
 	Engine::Safe_Release(m_pSlotFireSkill1);
 	Engine::Safe_Release(m_pSlotLightningSkill1);

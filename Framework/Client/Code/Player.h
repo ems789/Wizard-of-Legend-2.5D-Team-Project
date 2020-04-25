@@ -18,7 +18,7 @@ END
 class CPlayer : public Engine::CGameObject
 {
 public:
-	enum PLAYER_STATE { P_IDLE, P_RUN, P_ATTACK, P_ATTACK2, P_DASH, P_SKILL1, P_SKILL2, P_END };
+	enum PLAYER_STATE { P_IDLE, P_RUN, P_ATTACK, P_ATTACK2, P_DASH, P_SKILL1, P_SKILL2, P_HURT, P_END };
 	enum PLAYER_DIR { PD_UP, PD_DOWN, PD_RIGHT, PD_LEFT, PD_END };
 
 private:
@@ -75,6 +75,7 @@ private:	//	State Setting
 	void	Dash_State();
 	void	Skill1_State();
 	void	Skill2_State();
+	void	Hurt_State();
 
 private:	//	State Udate
 	_int	Idle_Update(const _float& fTimeDelta);
@@ -83,6 +84,7 @@ private:	//	State Udate
 	_int	Dash_Update(const _float& fTimeDelta);
 	_int	Skill1_Update(const _float& fTimeDelta);
 	_int	Skill2_Update(const _float& fTimeDelta);
+	_int	Hurt_Update(const _float& fTimeDelta);
 
 public:		//	Set_Functions
 	void	Set_Pos(const _vec3* pPos);
@@ -147,7 +149,6 @@ private:
 
 	_float	m_fScale = 0.2f;
 
-	//	Variable about dash
 	_float	m_fDashSpeed = 20.f;
 	_vec3	m_vDashDir = { 0.f, 0.f, 0.f };
 
@@ -160,6 +161,9 @@ private:
 	_float	m_fManaEffectTime = 0.f;
 	_float	m_fSlowCount = 0.f;
 	_float	m_fSlowTime = 0.f;
+
+	_bool	m_bHit = false;
+	_vec3	m_vHurtDir = {0.f, 0.f, 0.f};
 
 public:
 	static CPlayer* Create(LPDIRECT3DDEVICE9 pGraphicDev);

@@ -55,6 +55,7 @@ _int CWindSlash::Use_Skill(const _float& fTimeDelta)
 
 	CSphereCollider* pCollider = CSphereCollider::Create(m_pGraphicDev, pWind, pEffect, 1.f, L"Player_Bullet", 10);
 	Engine::Add_GameObject(L"GameLogic", L"PlayerCollider", pCollider);
+	pCollider->Add_Hit_Effect(WindSlash_Hit_Func);
 
 	m_fCurTime = m_fCoolTime;
 

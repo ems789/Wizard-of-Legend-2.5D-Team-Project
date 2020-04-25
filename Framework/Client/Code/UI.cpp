@@ -3,6 +3,7 @@
 #include "UIImage.h"
 #include "Inven.h"
 #include "Export_Function.h"
+#include "NumberFont.h"
 
 IMPLEMENT_SINGLETON(CUI)
 
@@ -40,6 +41,9 @@ HRESULT CUI::Ready_PlayerUI(LPDIRECT3DDEVICE9 pGraphicDev)
 
 	m_vecSlotImage.resize(4, nullptr);
 
+
+	m_pNumberFont = CNumberFont::GetInstance();
+	m_pNumberFont->AddRef();
 
 	return S_OK;
 }
@@ -116,6 +120,8 @@ void CUI::Render_PlayerUI()
 	m_pUIPlayer->Render_UIImage();
 
 	m_pUICoin->Render_UIImage();
+
+	m_pNumberFont->DrawNumber(CInven::GetInstance()->Get_Coin(), &_vec3(-50.f, 500.f, 0.f), 4.f, D3DXCOLOR(1.f, 1.f, 1.f, 1.f));
 
 	m_pUISkillSlot->Render_UIImage();
 
@@ -235,6 +241,9 @@ HRESULT CUI::Setting_PlayerState()
 
 void CUI::Free()
 {
+	Engine::Safe_Release(m_pNumberFont);
+
+
 	for (auto& pUIImage : m_vecSlotImage)
 	{
 		if (pUIImage)

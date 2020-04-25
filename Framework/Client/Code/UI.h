@@ -14,7 +14,7 @@ class CRenderer;
 
 END
 class CUIImage;
-
+class CNumberFont;
 class CUI : public CBase
 {
 	DECLARE_SINGLETON(CUI)
@@ -80,6 +80,8 @@ private:
 	CInven::SKILL_LIST	m_SkillList;
 
 	vector<CUIImage*>	m_vecSlotImage;
+
+	CNumberFont*	m_pNumberFont = nullptr;
 
 private:
 	virtual void Free();

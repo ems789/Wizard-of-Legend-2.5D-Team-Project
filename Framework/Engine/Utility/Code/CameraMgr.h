@@ -32,6 +32,7 @@ private:
 
 public:
 	HRESULT		SetUp_MainCamera(const _ulong& dwContainerIdx, const _tchar* pCameraTag);
+	HRESULT		Change_MainCamera(const _ubyte& byOrder);
 
 	HRESULT		Add_Camera(const _ulong& dwContainerIdx, const _tchar* pCameraTag, CCamera* pCamera);
 	HRESULT		Add_BasicCamera(const _ubyte& byOrder, const _tchar* pCameraTag, CCamera* pCamera);

@@ -12,6 +12,8 @@
 #include "BasicEffect.h"
 #include "AlphaBillEffect.h"
 #include "SignitureEffect.h"
+#include "Coin.h"
+#include "Inven.h"
 
 CPlayer::CPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev)
@@ -288,6 +290,46 @@ HRESULT CPlayer::Add_Component()
 	m_vvTextureCom[P_SKILL1][PD_LEFT]->AddRef();
 	m_vvpTextureTag[P_SKILL1][PD_LEFT] = m_vvpTextureTag[P_ATTACK2][PD_LEFT];
 
+	//	Skill2 Texture
+	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_Player_SlamUp"));
+	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	m_vvTextureCom[P_SKILL2][PD_UP] = pTextureCom;
+	m_vvpTextureTag[P_ATTACK2][PD_UP] = L"Texture_Player_SlamUp";
+	m_vvTextureCom[P_SKILL2][PD_RIGHT] = pTextureCom;
+	m_vvTextureCom[P_SKILL2][PD_RIGHT]->AddRef();
+	m_vvpTextureTag[P_ATTACK2][PD_RIGHT] = L"Texture_Player_SlamUp";
+
+	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_Player_SlamDown"));
+	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	m_vvTextureCom[P_SKILL2][PD_DOWN] = pTextureCom;
+	m_vvpTextureTag[P_ATTACK2][PD_DOWN] = L"Texture_Player_SlamDown";
+	m_vvTextureCom[P_SKILL2][PD_LEFT] = pTextureCom;
+	m_vvTextureCom[P_SKILL2][PD_LEFT]->AddRef();
+	m_vvpTextureTag[P_ATTACK2][PD_LEFT] = L"Texture_Player_SlamDown";
+
+	//	Hurt
+	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_Player_HurtUp"));
+	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	m_vvTextureCom[P_HURT][PD_UP] = pTextureCom;
+	m_vvpTextureTag[P_HURT][PD_UP] = L"Texture_Player_HurtUp";
+
+	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_Player_HurtDown"));
+	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	m_vvTextureCom[P_HURT][PD_DOWN] = pTextureCom;
+	m_vvpTextureTag[P_HURT][PD_DOWN] = L"Texture_Player_HurtDown";
+
+	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_Player_HurtRight"));
+	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	m_vvTextureCom[P_HURT][PD_RIGHT] = pTextureCom;
+	m_vvpTextureTag[P_HURT][PD_RIGHT] = L"Texture_Player_HurtRight";
+
+	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_Player_HurtLeft"));
+	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	m_vvTextureCom[P_HURT][PD_LEFT] = pTextureCom;
+	m_vvpTextureTag[P_HURT][PD_LEFT] = L"Texture_Player_HurtLeft";
+
+
+
 	return S_OK;
 }
 
@@ -333,6 +375,8 @@ void CPlayer::Change_State()
 		break;
 	case CPlayer::P_SKILL2:
 		Skill2_State();
+	case CPlayer::P_HURT:
+		Hurt_State();
 		break;
 	}
 
@@ -363,6 +407,9 @@ _int CPlayer::Update_State(const _float& fTimeDelta)
 		break;
 	case CPlayer::P_SKILL2:
 		iExit = Skill2_Update(fTimeDelta);
+		break;
+	case CPlayer::P_HURT:
+		iExit = Hurt_Update(fTimeDelta);
 		break;
 	}
 
@@ -434,6 +481,8 @@ void CPlayer::Key_Input(const _float & fTimeDelta)
 	case CPlayer::P_SKILL1:
 		break;
 	case CPlayer::P_SKILL2:
+		break;
+	case CPlayer::P_HURT:
 		break;
 	}
 }
@@ -822,7 +871,7 @@ void CPlayer::Key_Input_Skill1_For_1stAnd3rdView(const _float & fTimeDelta)
 		break;
 	case 2:
 		m_fMP = 0.f;
-		m_eCurState = P_SKILL1;
+		m_eCurState = P_SKILL2;
 		m_eCurDir = PD_UP;
 		{
 			_vec3	vAngle;
@@ -844,6 +893,7 @@ void CPlayer::Key_Input_Skill1_For_1stAnd3rdView(const _float & fTimeDelta)
 					m_pTransformCom->GetInfo(Engine::INFO_POS), 0.05f, fRandomLength, fRandomDieLength, 40.f, &vAngle);
 
 				Engine::Add_GameObject(L"Effect", L"SignitureEffect", pSignitureEffect);
+				Engine::PlaySound_(L"ItemActivate.wav", CSoundMgr::EFFECT);
 
 			}
 		}
@@ -950,7 +1000,7 @@ void CPlayer::Key_Input_Skill1_For_QuaterView(const _float & fTimeDelta)
 	{	
 		m_fMP = 0.f;
 
-		m_eCurState = P_SKILL1;
+		m_eCurState = P_SKILL2;
 
 		CPlayer::PLAYER_DIR eUpDown = vDir.z > 0.f ? PD_UP : PD_DOWN;
 		CPlayer::PLAYER_DIR eLeftRight = vDir.x > 0.f ? PD_RIGHT : PD_LEFT;
@@ -976,7 +1026,7 @@ void CPlayer::Key_Input_Skill1_For_QuaterView(const _float & fTimeDelta)
 				m_pTransformCom->GetInfo(Engine::INFO_POS), 0.05f, fRandomLength, fRandomDieLength, 40.f, &vAngle);
 
 			Engine::Add_GameObject(L"Effect", L"SignitureEffect", pSignitureEffect);
-
+			Engine::PlaySound_(L"ItemActivate.wav", CSoundMgr::EFFECT);
 		}
 	}
 
@@ -1085,10 +1135,21 @@ void CPlayer::Skill1_State()
 void CPlayer::Skill2_State()
 {
 	m_tFrame.fCurFrame = 0.f;
-	m_tFrame.fMaxFrame = 0.f;
-	m_tFrame.fFrameSpeed = 10.f;
+	m_tFrame.fMaxFrame = 10.f;
+	m_tFrame.fFrameSpeed = 20.f;
 	m_bAnimFinish = false;
 	m_bAnimRepeat = false;
+	Fitting_Scale_With_Texture(P_SKILL2);
+}
+
+void CPlayer::Hurt_State()
+{
+	m_tFrame.fCurFrame = 0.f;
+	m_tFrame.fMaxFrame = 1.f;
+	m_tFrame.fFrameSpeed = 2.f;
+	m_bAnimFinish = false;
+	m_bAnimRepeat = false;
+	Fitting_Scale_With_Texture(P_HURT);
 }
 
 _int CPlayer::Idle_Update(const _float& fTimeDelta)
@@ -1169,6 +1230,31 @@ _int CPlayer::Skill1_Update(const _float& fTimeDelta)
 
 _int CPlayer::Skill2_Update(const _float& fTimeDelta)
 {
+	if (m_bAnimFinish)
+	{
+		m_eCurState = CPlayer::P_IDLE;
+		m_dwAttackCnt = 0;
+		return 0;
+	}
+
+	Key_Input(fTimeDelta);
+
+	return 0;
+}
+
+_int CPlayer::Hurt_Update(const _float & fTimeDelta)
+{
+	if (m_bAnimFinish)
+	{
+		m_eCurState = CPlayer::P_IDLE;
+		m_dwAttackCnt = 0;
+		return 0;
+	}
+
+	m_pTransformCom->Move_Pos(m_vHurtDir * fTimeDelta);
+
+	Key_Input(fTimeDelta);
+
 	return 0;
 }
 
@@ -1204,9 +1290,27 @@ const _vec3 * CPlayer::Get_Pos() const
 
 void CPlayer::Hit(const _int & iAtk, const _vec3 * pAtkPos)
 {
+	if (m_eCurState == P_HURT)
+		return;
+
+	if (m_eCurState == P_DASH)
+	{
+		Engine::PlaySound_(L"ImpactEvade.wav", CSoundMgr::EFFECT);
+		return;
+	}
+
 	m_iHP -= iAtk;
 	if (m_iHP < 0)
 		m_iHP = 0;
+
+	if (pAtkPos)
+	{
+		m_vHurtDir = *m_pTransformCom->GetInfo(Engine::INFO_POS) - *pAtkPos;
+		m_vHurtDir.y = 0.f;
+		D3DXVec3Normalize(&m_vHurtDir, &m_vHurtDir);
+	}
+
+	m_eCurState = P_HURT;
 }
 
 void CPlayer::FullMP_Effect(const _float & fTimeDelta)

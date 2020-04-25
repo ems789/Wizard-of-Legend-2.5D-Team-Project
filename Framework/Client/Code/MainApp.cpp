@@ -7,6 +7,7 @@
 #include "Inven.h"
 #include "CollisionFunctions.h"
 #include "UI.h"
+#include "NumberFont.h"
 
 CMainApp::CMainApp(void)
 {
@@ -29,6 +30,7 @@ HRESULT CMainApp::Ready_MainApp(void)
 	FAILED_CHECK_RETURN(Inven_Setting(), E_FAIL);
 	FAILED_CHECK_RETURN(UI_Setting(), E_FAIL);
 
+	FAILED_CHECK_RETURN(CNumberFont::GetInstance()->Ready_NumberFont(m_pGraphicDev), E_FAIL);
 
 	FAILED_CHECK_RETURN(CCollisionFunctions::Ready_Functions(), E_FAIL);
 	
@@ -163,6 +165,7 @@ CMainApp* CMainApp::Create(void)
 
 void CMainApp::Free(void)
 {
+	CNumberFont::GetInstance()->DestroyInstance();
 	::ShowCursor(TRUE);
 	m_pUI->DestroyInstance();
 	m_pInven->DestroyInstance();

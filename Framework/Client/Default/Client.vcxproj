@@ -168,6 +168,7 @@
     <ClInclude Include="..\Code\BeamEffect.h" />
     <ClInclude Include="..\Code\CardSpawn.h" />
     <ClInclude Include="..\Code\CastingCircle.h" />
+    <ClInclude Include="..\Code\Coin.h" />
     <ClInclude Include="..\Code\CollisionFunctions.h" />
     <ClInclude Include="..\Code\Cyclops.h" />
     <ClInclude Include="..\Code\Fire.h" />
@@ -182,6 +183,7 @@
     <ClInclude Include="..\Code\FireStomp.h" />
     <ClInclude Include="..\Code\FireThrow.h" />
     <ClInclude Include="..\Code\FirstViewCamera.h" />
+    <ClInclude Include="..\Code\FollowingEffect.h" />
     <ClInclude Include="..\Code\Golem.h" />
     <ClInclude Include="..\Code\GuidedFire.h" />
     <ClInclude Include="..\Code\GuidedFireBall.h" />
@@ -189,6 +191,7 @@
     <ClInclude Include="..\Code\Inven.h" />
     <ClInclude Include="..\Code\LaidEffect.h" />
     <ClInclude Include="..\Code\LightningBoss.h" />
+    <ClInclude Include="..\Code\LightningJavelinThrow.h" />
     <ClInclude Include="..\Code\LineCollider.h" />
     <ClInclude Include="..\Code\Loading.h" />
     <ClInclude Include="..\Code\LoadingScene.h" />
@@ -198,6 +201,7 @@
     <ClInclude Include="..\Code\MeteorGen.h" />
     <ClInclude Include="..\Code\MeteorStrike.h" />
     <ClInclude Include="..\Code\Mouse.h" />
+    <ClInclude Include="..\Code\NumberFont.h" />
     <ClInclude Include="..\Code\Player.h" />
     <ClInclude Include="..\Code\QuaterViewCamera.h" />
     <ClInclude Include="..\Code\RoomBlock.h" />
@@ -234,6 +238,7 @@
     <ClCompile Include="..\Code\BeamEffect.cpp" />
     <ClCompile Include="..\Code\CardSpawn.cpp" />
     <ClCompile Include="..\Code\CastingCircle.cpp" />
+    <ClCompile Include="..\Code\Coin.cpp" />
     <ClCompile Include="..\Code\CollisionFunctions.cpp" />
     <ClCompile Include="..\Code\Cyclops.cpp" />
     <ClCompile Include="..\Code\Fire.cpp" />
@@ -248,6 +253,7 @@
     <ClCompile Include="..\Code\FireStomp.cpp" />
     <ClCompile Include="..\Code\FireThrow.cpp" />
     <ClCompile Include="..\Code\FirstViewCamera.cpp" />
+    <ClCompile Include="..\Code\FollowingEffect.cpp" />
     <ClCompile Include="..\Code\Golem.cpp" />
     <ClCompile Include="..\Code\GuidedFire.cpp" />
     <ClCompile Include="..\Code\GuidedFireBall.cpp" />
@@ -255,6 +261,7 @@
     <ClCompile Include="..\Code\Inven.cpp" />
     <ClCompile Include="..\Code\LaidEffect.cpp" />
     <ClCompile Include="..\Code\LightningBoss.cpp" />
+    <ClCompile Include="..\Code\LightningJavelinThrow.cpp" />
     <ClCompile Include="..\Code\LineCollider.cpp" />
     <ClCompile Include="..\Code\Loading.cpp" />
     <ClCompile Include="..\Code\LoadingScene.cpp" />
@@ -264,6 +271,7 @@
     <ClCompile Include="..\Code\MeteorGen.cpp" />
     <ClCompile Include="..\Code\MeteorStrike.cpp" />
     <ClCompile Include="..\Code\Mouse.cpp" />
+    <ClCompile Include="..\Code\NumberFont.cpp" />
     <ClCompile Include="..\Code\Player.cpp" />
     <ClCompile Include="..\Code\QuaterViewCamera.cpp" />
     <ClCompile Include="..\Code\RoomBlock.cpp" />

@@ -80,6 +80,9 @@ HRESULT Engine::CCameraMgr::Ready_CameraMgr(LPDIRECT3DDEVICE9 pGraphicDev, _ulon
 	m_fWinCX = static_cast<_float>(dwWinCX);
 	m_fWinCY = static_cast<_float>(dwWinCY);
 
+	for (_uint i = 0; i < MAIN_CAM_END; ++i)
+		m_szBasicCamTag[i] = nullptr;
+
 	return S_OK;
 }
 
@@ -121,6 +124,17 @@ HRESULT Engine::CCameraMgr::SetUp_MainCamera(const _ulong& dwContainerIdx, const
 	m_pMainCamera = pCamera;
 	m_pMainCamera->Reset_Camera();
 	m_pMainCamera->AddRef();
+
+	return S_OK;
+}
+
+HRESULT CCameraMgr::Change_MainCamera(const _ubyte & byOrder)
+{
+	if (!m_szBasicCamTag[byOrder])
+		return E_FAIL;
+
+	FAILED_CHECK_RETURN(SetUp_MainCamera(CAM_STATIC, m_szBasicCamTag[byOrder]), E_FAIL);
+	m_eMainCam = static_cast<MAIN_CAM>(byOrder);
 
 	return S_OK;
 }

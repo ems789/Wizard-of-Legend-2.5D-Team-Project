@@ -229,6 +229,18 @@
     <Filter Include="05.Skill\00.Fire\01.MeteorStrike\01.MeteorGen">
       <UniqueIdentifier>{5454a286-57de-404b-86b7-6276128e545c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.Effect\08.FollowingEffect">
+      <UniqueIdentifier>{d74e04c3-813b-405f-939a-1c0c95c125ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Monster\99.Boss\01.LightningBoss\00.LightningJavelinThrow">
+      <UniqueIdentifier>{548d6cd9-129e-4050-953f-6b9a2e1d800d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\99.public\04.Coin">
+      <UniqueIdentifier>{556ea6a2-3cd4-4526-981f-416f0051a851}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="94.NumberFont">
+      <UniqueIdentifier>{7d94fa79-2dd4-40a7-a90c-eb89ec20bf12}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -423,6 +435,18 @@
     <ClInclude Include="..\Code\MeteorGen.h">
       <Filter>05.Skill\00.Fire\01.MeteorStrike\01.MeteorGen</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\FollowingEffect.h">
+      <Filter>03.Effect\08.FollowingEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\LightningJavelinThrow.h">
+      <Filter>07.Monster\99.Boss\01.LightningBoss\00.LightningJavelinThrow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Coin.h">
+      <Filter>02.GameObject\99.public\04.Coin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\NumberFont.h">
+      <Filter>94.NumberFont</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -592,6 +616,18 @@
     </ClCompile>
     <ClCompile Include="..\Code\MeteorGen.cpp">
       <Filter>05.Skill\00.Fire\01.MeteorStrike\01.MeteorGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\FollowingEffect.cpp">
+      <Filter>03.Effect\08.FollowingEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\LightningJavelinThrow.cpp">
+      <Filter>07.Monster\99.Boss\01.LightningBoss\00.LightningJavelinThrow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Coin.cpp">
+      <Filter>02.GameObject\99.public\04.Coin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\NumberFont.cpp">
+      <Filter>94.NumberFont</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

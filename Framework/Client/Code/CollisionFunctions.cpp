@@ -4,6 +4,8 @@
 #include "Export_Function.h"
 #include "Terrain.h"
 #include "RoomBlock.h"
+#include "Inven.h"
+#include "Coin.h"
 
 const _uint uiFlag_Wall_Right	= 0x00000001;
 const _uint uiFlag_Wall_Top		= 0x00000002;
@@ -29,6 +31,7 @@ HRESULT CCollisionFunctions::Ready_Functions()
 	Engine::Add_CollisionFunction(L"Monster",		L"Terrain",		CCollisionFunctions::CollisionObjectToTerrain);
 	Engine::Add_CollisionFunction(L"Player",		L"RoomBlock",	CCollisionFunctions::CollisionObjectToRoomBlock);
 	Engine::Add_CollisionFunction(L"Monster",		L"RoomBlock",	CCollisionFunctions::CollisionObjectToRoomBlock);
+	Engine::Add_CollisionFunction(L"Player",		L"Coin",		CCollisionFunctions::CollisionPlayerToCoin);
 	//Engine::Add_CollisionFunction(L"Player", L"Terrain", CCollisionFunctions::CollisionObjectToTerrainPoint);
 	return S_OK;
 }
@@ -435,6 +438,35 @@ void CCollisionFunctions::CollisionObjectToRoomBlock(const _tchar * pSrcTag, con
 				break;
 			}
 			
+		}
+	}
+}
+
+void CCollisionFunctions::CollisionPlayerToCoin(const _tchar * pSrcTag, const _tchar * pDestTag)
+{
+	list<Engine::CGameObject*>* pSrcList = Engine::Get_CollisionObjectList(pSrcTag);
+	list<Engine::CGameObject*>* pDestList = Engine::Get_CollisionObjectList(pDestTag);
+
+	if (nullptr == pSrcList || nullptr == pDestList)
+		return;
+
+	for (auto& pSrc : *pSrcList)
+	{
+		Engine::SPHERE tSrcSph = *pSrc->Get_Sphere();
+
+		_bool	bSrcDie = false;
+		for (auto& pDest : *pDestList)
+		{
+			Engine::SPHERE tDestSph = *pDest->Get_Sphere();
+			CCoin* pCoin = dynamic_cast<CCoin*>(pDest);
+
+			if (Engine::CCollisionMgr::CollisionSphereToSphere(tSrcSph, tDestSph))
+			{
+				pDest->Die();
+				pDest->Hit(0, nullptr);
+				
+				CInven::GetInstance()->Add_Coin(pCoin->Get_Coin());
+			}
 		}
 	}
 }

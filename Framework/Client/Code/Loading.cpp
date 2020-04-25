@@ -110,6 +110,14 @@ _uint CLoading::Loading_ForState()
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_Attack2Right", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardBackhand/Right/WizardBackhandRight%d.png", 9), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_Attack2Left", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardBackhand/Left/WizardBackhandLeft%d.png", 9), E_FAIL);
 
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_SlamUp",		Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardGroundSlamUp/Up/WizardGroundSlamUp%d.png", 10), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_SlamDown",	Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardGroundSlamUp/Down/WizardGroundSlamDown%d.png", 10), E_FAIL);
+
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_HurtUp",		Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardHurt/WizardHurtUp.png"), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_HurtDown",	Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardHurt/WizardHurtDown.png"), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_HurtRight",	Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardHurt/WizardHurtRight.png"), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_HurtLeft",	Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardHurt/WizardHurtLeft.png"), E_FAIL);
+
 	////	HP Texture
 	//FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_HPBarBG", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/UI/HP/HPBarBG.png"), E_FAIL);
 	//FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_HPBarFill", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/UI/HP/HPBarFill.png"), E_FAIL);
@@ -243,6 +251,11 @@ _uint CLoading::Loading_ForState()
 
 	//	RoomBlock
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_RoomBlock", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/RoomBlock/RoomBlock%d.png", 18), E_FAIL);
+
+	//	Coin
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Coin", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Coin/Coin_%d.png", 4), E_FAIL);
+
+
 
 	//	Scene ¸¸µé±â.
 	if (0 != lstrcmp(m_szTilePath, L"") && 0 != lstrcmp(m_szWallPath, L""))

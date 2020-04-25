@@ -73,6 +73,23 @@ const _vec3 * CCamera::Get_Angle(_vec3 * pAngle)
 	return nullptr;
 }
 
+void CCamera::Set_Angle(const _vec3 * pAngle)
+{
+	 
+}
+
+void CCamera::Set_AngleX(const _float & fx)
+{
+}
+
+void CCamera::Set_AngleY(const _float & fy)
+{
+}
+
+void CCamera::Set_AngleZ(const _float & fz)
+{
+}
+
 void Engine::CCamera::Free(void)
 {
 	Safe_Release(m_pGraphicDev);

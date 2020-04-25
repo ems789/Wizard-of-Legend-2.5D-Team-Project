@@ -5,6 +5,7 @@
 #include "LaidEffect.h"
 #include "SphereCollider.h"
 #include "BasicEffect.h"
+#include "Coin.h"
 
 CGolem::CGolem(LPDIRECT3DDEVICE9 pGraphicDev)
 	:Engine::CGameObject(pGraphicDev)
@@ -429,6 +430,18 @@ void CGolem::Hit(const _int & iAtk, const _vec3 * pAtkPos)
 		_vec3 vPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
 		CBasicEffect* pDieEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_Golem_Death", L"GelemDieEffect", 6, 10.f, m_fScale, &vPos, false, 0.f);
 		Engine::Add_GameObject(L"GameLogic", L"GelemDieEffect", pDieEffect);
+
+		_uint iRepeat = rand() % 10;
+		for (_uint i = 0; i < iRepeat; ++i)
+		{
+			_vec3 vDir = { rand() % 100 / 50.f - 1.f, 0.f ,rand() % 100 / 50.f - 1.f };
+			D3DXVec3Normalize(&vDir, &vDir);
+			_float fUpForce = rand() % 100 / 10.f + 20.f;
+			_float	fSpeed = rand() % 100 / 50.f;
+			_int	iCoin = rand() % 20 + 1;
+			CCoin* pCoin = CCoin::Create(m_pGraphicDev, m_pTransformCom->GetInfo(Engine::INFO_POS), &vDir, fUpForce, fSpeed, iCoin);
+			Engine::Add_GameObject(L"GameLogic", L"Coin", pCoin);
+		}
 	}
 
 }

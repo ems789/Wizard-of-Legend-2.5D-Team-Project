@@ -39,6 +39,10 @@ public:	//	Get Functions
 
 public:	//	Set Functios
 	void	Set_Aspect(const _float& fAspect) { m_fAspect = fAspect; }
+	virtual void Set_Angle(const _vec3* pAngle);
+	virtual void Set_AngleX(const _float& fx);
+	virtual void Set_AngleY(const _float& fy);
+	virtual void Set_AngleZ(const _float& fz);
 
 protected:
 	LPDIRECT3DDEVICE9	m_pGraphicDev = nullptr;
