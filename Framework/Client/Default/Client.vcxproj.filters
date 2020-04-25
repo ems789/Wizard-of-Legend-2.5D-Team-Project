@@ -241,6 +241,18 @@
     <Filter Include="94.NumberFont">
       <UniqueIdentifier>{7d94fa79-2dd4-40a7-a90c-eb89ec20bf12}</UniqueIdentifier>
     </Filter>
+    <Filter Include="07.Monster\02.BlobSpitter">
+      <UniqueIdentifier>{f30f0e03-3bc3-457d-8e03-719be1c0d3d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\99.public\05.UIObject">
+      <UniqueIdentifier>{3092d9cd-299b-4b6d-bfeb-5110f9927071}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\99.public\06.UIButton">
+      <UniqueIdentifier>{0da6afae-143f-4e8d-8a10-2f36462e1edd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\99.public\07.UIBlink">
+      <UniqueIdentifier>{74d2bb2f-380e-4513-ae82-a599a785b50f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -447,6 +459,15 @@
     <ClInclude Include="..\Code\NumberFont.h">
       <Filter>94.NumberFont</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\UIObject.h">
+      <Filter>02.GameObject\99.public\05.UIObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\UIButton.h">
+      <Filter>02.GameObject\99.public\06.UIButton</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\UIBlink.h">
+      <Filter>02.GameObject\99.public\07.UIBlink</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -628,6 +649,15 @@
     </ClCompile>
     <ClCompile Include="..\Code\NumberFont.cpp">
       <Filter>94.NumberFont</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\UIObject.cpp">
+      <Filter>02.GameObject\99.public\05.UIObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\UIButton.cpp">
+      <Filter>02.GameObject\99.public\06.UIButton</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\UIBlink.cpp">
+      <Filter>02.GameObject\99.public\07.UIBlink</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
