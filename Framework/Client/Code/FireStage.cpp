@@ -83,16 +83,16 @@ _int CFireStage::Update_Scene(const _float& fTimeDelta)
 	//	Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
 	//}
 
-	//if (Engine::KeyDown(DIK_F9))
-	//{
-	//	// LightningBoss
-	//	_vec3 vCardPos = { rand() % 20 + 10.f, 1.f, rand() % 20 + 10.f };
-	//	Engine::CGameObject* pGameObject = CLightningBoss::Create(m_pGraphicDev, &_vec3(rand() % 20 + 10.f, 1.f, rand() % 20 + 10.f));
-	//	NULL_CHECK_RETURN(pGameObject, E_FAIL);
+	if (Engine::KeyDown(DIK_F9))
+	{
+		// LightningBoss
+		_vec3 vCardPos = { 50, 1.f, 37 };
+		Engine::CGameObject* pGameObject = CLightningBoss::Create(m_pGraphicDev, &_vec3(50, 1.f, 37));
+		NULL_CHECK_RETURN(pGameObject, E_FAIL);
 
-	//	CCardSpawn* pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
-	//	Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
-	//}
+		CCardSpawn* pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
+		Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
+	}
 
 	const Engine::CTransform* pPlayerTransform = dynamic_cast<const Engine::CTransform*>(Engine::Get_Component_of_Player(L"Com_Transform", Engine::ID_DYNAMIC));
 

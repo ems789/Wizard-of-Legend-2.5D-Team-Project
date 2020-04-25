@@ -241,6 +241,15 @@
     <Filter Include="94.NumberFont">
       <UniqueIdentifier>{7d94fa79-2dd4-40a7-a90c-eb89ec20bf12}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.Effect\09.LaidFollowingEffect">
+      <UniqueIdentifier>{e9d564a3-e057-4886-a85d-67a6fec55f60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Monster\99.Boss\01.LightningBoss\01.LightningFalling">
+      <UniqueIdentifier>{6fa304d0-4638-43ba-aac7-efcf7aec02eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Monster\99.Boss\01.LightningBoss\02.LightningChainDash">
+      <UniqueIdentifier>{a748a24d-bc21-46e6-88b0-05b0cd35b6e2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -435,9 +444,6 @@
     <ClInclude Include="..\Code\MeteorGen.h">
       <Filter>05.Skill\00.Fire\01.MeteorStrike\01.MeteorGen</Filter>
     </ClInclude>
-    <ClInclude Include="..\Code\FollowingEffect.h">
-      <Filter>03.Effect\08.FollowingEffect</Filter>
-    </ClInclude>
     <ClInclude Include="..\Code\LightningJavelinThrow.h">
       <Filter>07.Monster\99.Boss\01.LightningBoss\00.LightningJavelinThrow</Filter>
     </ClInclude>
@@ -446,6 +452,18 @@
     </ClInclude>
     <ClInclude Include="..\Code\NumberFont.h">
       <Filter>94.NumberFont</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\LaidFollowingEffect.h">
+      <Filter>03.Effect\09.LaidFollowingEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\BasicFollowingEffect.h">
+      <Filter>03.Effect\08.FollowingEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\LightningChainDash.h">
+      <Filter>07.Monster\99.Boss\01.LightningBoss\02.LightningChainDash</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\LightningFalling.h">
+      <Filter>07.Monster\99.Boss\01.LightningBoss\01.LightningFalling</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -617,9 +635,6 @@
     <ClCompile Include="..\Code\MeteorGen.cpp">
       <Filter>05.Skill\00.Fire\01.MeteorStrike\01.MeteorGen</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\FollowingEffect.cpp">
-      <Filter>03.Effect\08.FollowingEffect</Filter>
-    </ClCompile>
     <ClCompile Include="..\Code\LightningJavelinThrow.cpp">
       <Filter>07.Monster\99.Boss\01.LightningBoss\00.LightningJavelinThrow</Filter>
     </ClCompile>
@@ -628,6 +643,18 @@
     </ClCompile>
     <ClCompile Include="..\Code\NumberFont.cpp">
       <Filter>94.NumberFont</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\LaidFollowingEffect.cpp">
+      <Filter>03.Effect\09.LaidFollowingEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\BasicFollowingEffect.cpp">
+      <Filter>03.Effect\08.FollowingEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\LightningChainDash.cpp">
+      <Filter>07.Monster\99.Boss\01.LightningBoss\02.LightningChainDash</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\LightningFalling.cpp">
+      <Filter>07.Monster\99.Boss\01.LightningBoss\01.LightningFalling</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
