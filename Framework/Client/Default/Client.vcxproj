@@ -160,6 +160,17 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\TeamProject 0424\TeamProject\Framework\Client\Code\Aqua.h" />
+    <ClInclude Include="..\..\..\..\..\TeamProject 0424\TeamProject\Framework\Client\Code\AquaVortex.h" />
+    <ClInclude Include="..\..\..\..\..\TeamProject 0424\TeamProject\Framework\Client\Code\Shark.h" />
+    <ClInclude Include="..\..\..\..\..\TeamProject 0424\TeamProject\Framework\Client\Code\SharkPool.h" />
+    <ClInclude Include="..\..\..\..\..\TeamProject 0424\TeamProject\Framework\Client\Code\Water.h" />
+    <ClInclude Include="..\..\..\..\..\TeamProject 0424\TeamProject\Framework\Client\Code\WaterBall.h" />
+    <ClInclude Include="..\..\..\..\..\TeamProject 0424\TeamProject\Framework\Client\Code\WaterThrow.h" />
+    <ClInclude Include="..\..\..\..\..\TeamProject 0424\TeamProject\Framework\Client\Code\WindBall.h" />
+    <ClInclude Include="..\..\..\..\..\TeamProject 0424\TeamProject\Framework\Client\Code\WindBoss.h" />
+    <ClInclude Include="..\..\..\..\..\TeamProject 0424\TeamProject\Framework\Client\Code\WindSpin.h" />
+    <ClInclude Include="..\..\..\..\..\TeamProject 0424\TeamProject\Framework\Client\Code\WindTornado.h" />
     <ClInclude Include="..\..\Engine\Utility\Code\UIImage.h" />
     <ClInclude Include="..\Code\AlphaBillEffect.h" />
     <ClInclude Include="..\Code\AlphaLaidEffect.h" />
@@ -237,6 +248,17 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\TeamProject 0424\TeamProject\Framework\Client\Code\Aqua.cpp" />
+    <ClCompile Include="..\..\..\..\..\TeamProject 0424\TeamProject\Framework\Client\Code\AquaVortex.cpp" />
+    <ClCompile Include="..\..\..\..\..\TeamProject 0424\TeamProject\Framework\Client\Code\Shark.cpp" />
+    <ClCompile Include="..\..\..\..\..\TeamProject 0424\TeamProject\Framework\Client\Code\SharkPool.cpp" />
+    <ClCompile Include="..\..\..\..\..\TeamProject 0424\TeamProject\Framework\Client\Code\Water.cpp" />
+    <ClCompile Include="..\..\..\..\..\TeamProject 0424\TeamProject\Framework\Client\Code\WaterBall.cpp" />
+    <ClCompile Include="..\..\..\..\..\TeamProject 0424\TeamProject\Framework\Client\Code\WaterThrow.cpp" />
+    <ClCompile Include="..\..\..\..\..\TeamProject 0424\TeamProject\Framework\Client\Code\WindBall.cpp" />
+    <ClCompile Include="..\..\..\..\..\TeamProject 0424\TeamProject\Framework\Client\Code\WindBoss.cpp" />
+    <ClCompile Include="..\..\..\..\..\TeamProject 0424\TeamProject\Framework\Client\Code\WindSpin.cpp" />
+    <ClCompile Include="..\..\..\..\..\TeamProject 0424\TeamProject\Framework\Client\Code\WindTornado.cpp" />
     <ClCompile Include="..\..\Engine\Utility\Code\UIImage.cpp" />
     <ClCompile Include="..\Code\AlphaBillEffect.cpp" />
     <ClCompile Include="..\Code\AlphaLaidEffect.cpp" />

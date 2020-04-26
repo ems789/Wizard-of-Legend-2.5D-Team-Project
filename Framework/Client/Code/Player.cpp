@@ -51,26 +51,28 @@ HRESULT CPlayer::Ready_GameObject()
 	m_tSphere.fRadius = 0.3f;
 	m_pTransformCom->Move_Pos(Engine::INFO_UP, 0.5f);
 
-	CGuidedFireBall* pGuidedFireBall = CGuidedFireBall::Create(m_pGraphicDev);
-	NULL_CHECK_RETURN(pGuidedFireBall, E_FAIL);
-	m_vecEquipSkill[3] = pGuidedFireBall;
+	//CGuidedFireBall* pGuidedFireBall = CGuidedFireBall::Create(m_pGraphicDev);
+	//NULL_CHECK_RETURN(pGuidedFireBall, E_FAIL);
+	//m_vecEquipSkill[3] = pGuidedFireBall;
 
-	CMeteorStrike* pMeteorStrike = CMeteorStrike::Create(m_pGraphicDev);
-	NULL_CHECK_RETURN(pMeteorStrike, E_FAIL);
-	m_vecEquipSkill[2] = pMeteorStrike;
-	m_vecEquipSkill[4] = pMeteorStrike;
-	pMeteorStrike->AddRef();
+	//CMeteorStrike* pMeteorStrike = CMeteorStrike::Create(m_pGraphicDev);
+	//NULL_CHECK_RETURN(pMeteorStrike, E_FAIL);
+	//m_vecEquipSkill[2] = pMeteorStrike;
+	//m_vecEquipSkill[4] = pMeteorStrike;
+	//pMeteorStrike->AddRef();
 
-	CFireBall*	pFireBall = CFireBall::Create(m_pGraphicDev);
-	NULL_CHECK_RETURN(pFireBall, E_FAIL);
-	//Change_Normal_Skill(pFireBall);
-	m_vecEquipSkill[1] = pFireBall;
+	//CFireBall*	pFireBall = CFireBall::Create(m_pGraphicDev);
+	//NULL_CHECK_RETURN(pFireBall, E_FAIL);
+	////Change_Normal_Skill(pFireBall);
+	//m_vecEquipSkill[1] = pFireBall;
 
 	CWindSlash* pWindSlash = CWindSlash::Create(m_pGraphicDev);
 	NULL_CHECK_RETURN(pWindSlash, E_FAIL);
 	m_vecEquipSkill[0] = pWindSlash;
 
 	m_fDashSpeed = 30.f;
+
+	CInven::GetInstance()->Set_Player(this);
 
 	return S_OK;
 }
@@ -118,24 +120,13 @@ void CPlayer::Render_GameObject()
 	//m_pGraphicDev->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
 }
 
-_int CPlayer::Change_Normal_Skill(Engine::CSkill * pSkill)
+_int CPlayer::Change_Skill(_int SlotNumber, Engine::CSkill * pSkill)
 {
-	if (m_vecEquipSkill[1] != nullptr)
+	if (m_vecEquipSkill[SlotNumber] != nullptr)
 		Engine::Safe_Release(m_vecEquipSkill[1]);
 
-	m_vecEquipSkill[1] = pSkill;
-	m_vecEquipSkill[1]->AddRef();
-
-	return 0;
-}
-
-_int CPlayer::Change_Upgrade_Skill(Engine::CSkill * pSkill)
-{
-	if (m_vecEquipSkill[2] != nullptr)
-		Engine::Safe_Release(m_vecEquipSkill[2]);
-
-	m_vecEquipSkill[2] = pSkill;
-	m_vecEquipSkill[2]->AddRef();
+	m_vecEquipSkill[SlotNumber] = pSkill;
+	m_vecEquipSkill[SlotNumber]->AddRef();
 
 	return 0;
 }

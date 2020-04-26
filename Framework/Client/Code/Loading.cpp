@@ -118,11 +118,6 @@ _uint CLoading::Loading_ForState()
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_HurtRight",	Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardHurt/WizardHurtRight.png"), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_HurtLeft",	Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardHurt/WizardHurtLeft.png"), E_FAIL);
 
-	////	HP Texture
-	//FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_HPBarBG", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/UI/HP/HPBarBG.png"), E_FAIL);
-	//FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_HPBarFill", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/UI/HP/HPBarFill.png"), E_FAIL);
-	//FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_HPBarHurtFill", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/UI/HP/HPBarHurtFill.png"), E_FAIL);
-
 	//	AirRing
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_AirRingUp", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/AirRing/Up/AirRing%d.png", 4), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_AirRingDown", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/AirRing/Down/AirRing%d.png", 4), E_FAIL);
@@ -151,6 +146,23 @@ _uint CLoading::Loading_ForState()
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FireParticle2", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/FireParticle/Particle2/FireParticle2_%d.png", 6), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FireParticle3", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/FireParticle/Particle3/FireParticle3_%d.png", 6), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FireParticle4", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/FireParticle/Particle4/FireParticle4_%d.png", 6), E_FAIL);
+
+	// Water---------------
+	/////추가부분
+	// WaterThrow
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WaterThrow", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Skill/WaterThrow.png"), E_FAIL);
+	// Shark
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Shark", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/Shark/Shark%d.png", 9), E_FAIL);
+	// SharkPool
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_SharkPool", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Skill/SharkPool/SharkPool%d.png", 8), E_FAIL);
+	// WaterExplosion Texture
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WaterExplosion", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/WaterExplosion/WaterBombExplosion_%d.png", 7), E_FAIL);
+	//	WaterHitEffect Texture
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WaterHitEffect", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/WaterHitEffect/WaterHitEffect_%d.png", 5), E_FAIL);
+	//	WaterBall Texture
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WaterBall", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Skill/WaterBall/WaterBall_%d.png", 3), E_FAIL);
+	//	AquaVortex Texture
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_AquaVortex", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Skill/AquaVortex/VortexStrike_%d.png", 14), E_FAIL);
 
 	//	Monster
 	//	Golem
@@ -272,6 +284,31 @@ _uint CLoading::Loading_ForState()
 
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_LightningGirlTeleportAir", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/LightningGirlTeleport/LightningGirlTeleportAir%d.png", 3), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_LightningGirlTeleportFloor", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/LightningGirlTeleport/LightningGirlTeleportFloor%d.png", 6), E_FAIL);
+
+	// WindBossTexture
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WindBoss_Idle", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/WindBoss/Idle/AirBossIdle%d.png", 6), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WindBoss_ReadyCharge", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/WindBoss/ReadyCharge/AirBossReadyCharge%d.png", 11), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WindBoss_Spin", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/WindBoss/Spin/AirBossSpin%d.png", 8), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WindBoss_SpinEnd", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/WindBoss/SpinEnd/AirBossSpinEnd%d.png", 3), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WindBoss_Hurt", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/WindBoss/Hurt/AirBossHurt%d.png", 7), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WindBoss_Float", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/WindBoss/Float/AirBossFloat%d.png", 2), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WindBoss_Dead", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/WindBoss/Dead/AirBossDown%d.png", 5), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WindBoss_DashUp", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/WindBoss/Dash/Up/AirBossSlideUp.png"), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WindBoss_DashDown", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/WindBoss/Dash/Down/AirBossSlideDown.png"), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WindBoss_DashLeft", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/WindBoss/Dash/Left/AirBossSlideLeft.png"), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WindBoss_DashRight", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/WindBoss/Dash/Right/AirBossSlideRight.png"), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WindBoss_Attack", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/WindBoss/Forehand/AirBossFlyingForehand%d.png", 2), E_FAIL);
+
+	// Windboss Effectr
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Tornado", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/Tornado/Tornado_%d.png", 12), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WindSpin", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/WindSpin/AirSpinnerBurst_%d.png", 6), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WindReadyEffect", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/WindReadyEffect/AirBossReadyEffect%d.png", 11), E_FAIL);
+
+	// WindBoss Skill
+
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WindBall", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/WindBall/WindBall%d.png", 6), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WindPillar", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/WindPillar/WindPillar_%d.png", 10), E_FAIL);
+
 
 	//	Shuriken Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FireBoss_Shuriken", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Skill/Shuriken.png"), E_FAIL);
