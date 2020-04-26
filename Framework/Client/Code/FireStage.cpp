@@ -19,12 +19,10 @@
 #include "LightningBoss.h"
 #include "CardSpawn.h"
 #include "RoomBlock.h"
-<<<<<<< HEAD
 #include "WindBoss.h"
-=======
+
 #include "BlobSpitter.h"
 #include "GhoulLarge.h"
->>>>>>> 9d63fd57ff3d9222dab7a9fe1d9c9e7e644e3ca2
 
 CFireStage::CFireStage(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CScene(pGraphicDev)
