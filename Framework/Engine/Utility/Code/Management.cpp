@@ -135,3 +135,13 @@ const CGameObject * CManagement::Get_Player() const
 {
 	return m_pStaticLayer->Get_GameObjcet(L"Player");
 }
+
+void CManagement::Player_Move_Pos(const _vec3 * pMove)
+{
+	m_pStaticLayer->Get_GameObject_NC(L"Player")->Move_Pos(pMove);
+}
+
+void CManagement::Player_Set_Pos(const _vec3 * pPos)
+{
+	m_pStaticLayer->Get_GameObject_NC(L"Player")->Set_Pos(pPos);
+}

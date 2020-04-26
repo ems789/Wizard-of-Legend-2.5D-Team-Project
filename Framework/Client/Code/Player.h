@@ -93,6 +93,9 @@ public:		//	Set_Functions
 	virtual void Set_PosY(const _float& fy);
 	virtual void Set_PosZ(const _float& fz);
 
+public:
+	virtual void	Move_Pos(const _vec3* pMove);
+
 public:		//	Get Functions
 	virtual Engine::SPHERE*		Get_Sphere() override { return &m_tSphere; }
 	virtual const _vec3*		Get_Pos()	const override;

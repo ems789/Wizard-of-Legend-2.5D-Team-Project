@@ -167,6 +167,7 @@
     <ClInclude Include="..\Code\BasicEffect.h" />
     <ClInclude Include="..\Code\BasicFollowingEffect.h" />
     <ClInclude Include="..\Code\BeamEffect.h" />
+    <ClInclude Include="..\Code\BlobSpitter.h" />
     <ClInclude Include="..\Code\CardSpawn.h" />
     <ClInclude Include="..\Code\CastingCircle.h" />
     <ClInclude Include="..\Code\Coin.h" />
@@ -243,6 +244,7 @@
     <ClCompile Include="..\Code\BasicEffect.cpp" />
     <ClCompile Include="..\Code\BasicFollowingEffect.cpp" />
     <ClCompile Include="..\Code\BeamEffect.cpp" />
+    <ClCompile Include="..\Code\BlobSpitter.cpp" />
     <ClCompile Include="..\Code\CardSpawn.cpp" />
     <ClCompile Include="..\Code\CastingCircle.cpp" />
     <ClCompile Include="..\Code\Coin.cpp" />

@@ -26,6 +26,9 @@ public:	//	Get Functions
 	const CComponent*	Get_Component_of_Player(const _tchar* pComponentTag, COMPONENTID eID) const;
 	const CGameObject*	Get_Player() const;
 
+	void				Player_Move_Pos(const _vec3* pMove);
+	void				Player_Set_Pos(const _vec3* pPos);
+
 public:
 	HRESULT		SetUp_Scene(CScene* pScene);
 	_int		Update_Scene(const _float& fTimeDelta);

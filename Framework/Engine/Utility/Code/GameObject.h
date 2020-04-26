@@ -37,6 +37,8 @@ public:		//	Set Functions
 	virtual void	Set_PosX(const _float& fx) {}
 	virtual void	Set_PosY(const _float& fy) {}
 	virtual void	Set_PosZ(const _float& fz) {}
+
+	virtual void	Move_Pos(const _vec3* pMove) {};
 	
 public:	//	About Collision
 	virtual void	Hit(const _int& iAtk, const _vec3* pAtkPos) {}

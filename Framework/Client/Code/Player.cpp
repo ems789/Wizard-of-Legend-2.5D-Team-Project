@@ -1286,6 +1286,11 @@ void CPlayer::Set_PosZ(const _float & fz)
 	m_pTransformCom->Set_PosZ(fz);
 }
 
+void CPlayer::Move_Pos(const _vec3 * pMove)
+{
+	m_pTransformCom->Move_Pos(pMove);
+}
+
 const _vec3 * CPlayer::Get_Pos() const
 {
 	return m_pTransformCom->GetInfo(Engine::INFO_POS);

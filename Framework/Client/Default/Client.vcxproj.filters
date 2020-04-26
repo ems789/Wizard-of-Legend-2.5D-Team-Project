@@ -447,9 +447,6 @@
     <ClInclude Include="..\Code\MeteorGen.h">
       <Filter>05.Skill\00.Fire\01.MeteorStrike\01.MeteorGen</Filter>
     </ClInclude>
-    <ClInclude Include="..\Code\FollowingEffect.h">
-      <Filter>03.Effect\08.FollowingEffect</Filter>
-    </ClInclude>
     <ClInclude Include="..\Code\LightningJavelinThrow.h">
       <Filter>07.Monster\99.Boss\01.LightningBoss\00.LightningJavelinThrow</Filter>
     </ClInclude>
@@ -467,6 +464,13 @@
     </ClInclude>
     <ClInclude Include="..\Code\UIBlink.h">
       <Filter>02.GameObject\99.public\07.UIBlink</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\BasicFollowingEffect.h" />
+    <ClInclude Include="..\Code\LaidFollowingEffect.h" />
+    <ClInclude Include="..\Code\LightningChainDash.h" />
+    <ClInclude Include="..\Code\LightningFalling.h" />
+    <ClInclude Include="..\Code\BlobSpitter.h">
+      <Filter>07.Monster\02.BlobSpitter</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -638,9 +642,6 @@
     <ClCompile Include="..\Code\MeteorGen.cpp">
       <Filter>05.Skill\00.Fire\01.MeteorStrike\01.MeteorGen</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\FollowingEffect.cpp">
-      <Filter>03.Effect\08.FollowingEffect</Filter>
-    </ClCompile>
     <ClCompile Include="..\Code\LightningJavelinThrow.cpp">
       <Filter>07.Monster\99.Boss\01.LightningBoss\00.LightningJavelinThrow</Filter>
     </ClCompile>
@@ -658,6 +659,13 @@
     </ClCompile>
     <ClCompile Include="..\Code\UIBlink.cpp">
       <Filter>02.GameObject\99.public\07.UIBlink</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\BasicFollowingEffect.cpp" />
+    <ClCompile Include="..\Code\LaidFollowingEffect.cpp" />
+    <ClCompile Include="..\Code\LightningChainDash.cpp" />
+    <ClCompile Include="..\Code\LightningFalling.cpp" />
+    <ClCompile Include="..\Code\BlobSpitter.cpp">
+      <Filter>07.Monster\02.BlobSpitter</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

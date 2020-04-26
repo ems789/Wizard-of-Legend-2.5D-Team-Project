@@ -18,6 +18,9 @@ public:	//Get Functions
 	_uint				Get_ObjectMapSize() const { return m_mapObject.size(); }
 
 public:
+	CGameObject*	Get_GameObject_NC(const _tchar* pObjTag);
+
+public:
 	HRESULT		Ready_Layer();
 	_int		Update_Layer(const _float& fTimeDelta);
 	void		Render_Layer();
