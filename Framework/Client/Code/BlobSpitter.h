@@ -16,8 +16,8 @@ END
 class CBlobSpitter : public Engine::CGameObject
 {
 private:
-	enum BLOB_SPITTER_STATE	{ BSS_IDLE, BSS_RUN, BSS_ATTACK, BSS_END };
-	enum BLOB_SPITTER_DIR	{ BSD_UP, BSD_DOWN, BSD_LEFT, BSD_RIGHT, BSD_END };
+	enum BLOB_SPITTER_STATE	{ BSS_IDLE, BSS_RUN, BSS_ATTACK, BSS_HURT, BSS_END };
+	enum BLOB_SPITTER_DIR	{ BSD_LEFT, BSD_RIGHT, BSD_END };
 
 private:
 	explicit CBlobSpitter(LPDIRECT3DDEVICE9 pGraphicDev);
@@ -53,14 +53,13 @@ private:
 	void Idle_State();
 	void Run_State();
 	void Attack_State();
-	void Attack_FT_State();
+	void Hurt_State();
 
 public:
 	_int Idle_Update(const _float& fTimeDelta);
 	_int Run_Update(const _float& fTimeDelta);
 	_int Attack_Update(const _float& fTimeDelta);
-	_int Attack_FT_Update(const _float& fTimeDelta);
-
+	_int Hurt_Update(const _float& fTimeDelta);
 
 public:
 	virtual void Hit(const _int& iAtk, const _vec3* pAtkPos) override;
@@ -86,7 +85,7 @@ private:
 	_int	m_iHP		= 200;
 	_int	m_iHPMax	= 200;
 
-	_float	m_fScale = 0.05f;
+	_float	m_fScale = 0.08f;
 	_float	m_fHeight = 1.f;
 
 	_int	m_iAttack = 20;
@@ -100,6 +99,15 @@ private:
 	CBlobSpitter::BLOB_SPITTER_DIR			m_eCurDir	= CBlobSpitter::BSD_END;
 
 	_float	m_fSpeed = 2.f;
+
+	_bool	m_bFire = false;
+	_uint	m_uiFireCnt = 0;
+	_uint	m_uiFireMax = 5;
+
+	_bool	m_bFireCool = false;
+	_float	m_fFireCool = 0.f;
+
+	_vec3	m_vHurtDir = { 0.f, 0.f, 0.f };
 
 public:
 	static CBlobSpitter* Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3* pPos);

@@ -253,6 +253,21 @@
     <Filter Include="02.GameObject\99.public\07.UIBlink">
       <UniqueIdentifier>{74d2bb2f-380e-4513-ae82-a599a785b50f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="07.Monster\99.Boss\01.LightningBoss\01.LightningChainDash">
+      <UniqueIdentifier>{2f04d420-3818-4f2a-a557-ab62d29aa0fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Monster\99.Boss\01.LightningBoss\02.LightningFalling">
+      <UniqueIdentifier>{469d6515-6d57-43dd-87f1-1f4d67f89716}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Monster\02.BlobSpitter\00.BlobBullet">
+      <UniqueIdentifier>{55fbbe9a-8627-4f70-a8ea-13d244c966e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Effect\09.RotatedBillEffect">
+      <UniqueIdentifier>{37f3c13d-8d31-4dde-a900-33c6f04d6ff5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Monster\03.GhoulLarge">
+      <UniqueIdentifier>{f586a011-0428-4c0c-8d3a-87a574dd8aca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -465,12 +480,29 @@
     <ClInclude Include="..\Code\UIBlink.h">
       <Filter>02.GameObject\99.public\07.UIBlink</Filter>
     </ClInclude>
-    <ClInclude Include="..\Code\BasicFollowingEffect.h" />
-    <ClInclude Include="..\Code\LaidFollowingEffect.h" />
-    <ClInclude Include="..\Code\LightningChainDash.h" />
-    <ClInclude Include="..\Code\LightningFalling.h" />
     <ClInclude Include="..\Code\BlobSpitter.h">
       <Filter>07.Monster\02.BlobSpitter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\LaidFollowingEffect.h">
+      <Filter>03.Effect\08.FollowingEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\BasicFollowingEffect.h">
+      <Filter>03.Effect\08.FollowingEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\LightningChainDash.h">
+      <Filter>07.Monster\99.Boss\01.LightningBoss\01.LightningChainDash</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\LightningFalling.h">
+      <Filter>07.Monster\99.Boss\01.LightningBoss\02.LightningFalling</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\BlobBullet.h">
+      <Filter>07.Monster\02.BlobSpitter\00.BlobBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\RotatedBillEffect.h">
+      <Filter>03.Effect\09.RotatedBillEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\GhoulLarge.h">
+      <Filter>07.Monster\03.GhoulLarge</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -660,12 +692,29 @@
     <ClCompile Include="..\Code\UIBlink.cpp">
       <Filter>02.GameObject\99.public\07.UIBlink</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\BasicFollowingEffect.cpp" />
-    <ClCompile Include="..\Code\LaidFollowingEffect.cpp" />
-    <ClCompile Include="..\Code\LightningChainDash.cpp" />
-    <ClCompile Include="..\Code\LightningFalling.cpp" />
     <ClCompile Include="..\Code\BlobSpitter.cpp">
       <Filter>07.Monster\02.BlobSpitter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\BasicFollowingEffect.cpp">
+      <Filter>03.Effect\08.FollowingEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\LaidFollowingEffect.cpp">
+      <Filter>03.Effect\08.FollowingEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\LightningChainDash.cpp">
+      <Filter>07.Monster\99.Boss\01.LightningBoss\01.LightningChainDash</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\LightningFalling.cpp">
+      <Filter>07.Monster\99.Boss\01.LightningBoss\02.LightningFalling</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\BlobBullet.cpp">
+      <Filter>07.Monster\02.BlobSpitter\00.BlobBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\RotatedBillEffect.cpp">
+      <Filter>03.Effect\09.RotatedBillEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\GhoulLarge.cpp">
+      <Filter>07.Monster\03.GhoulLarge</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

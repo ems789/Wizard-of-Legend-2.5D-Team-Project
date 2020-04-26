@@ -167,6 +167,7 @@
     <ClInclude Include="..\Code\BasicEffect.h" />
     <ClInclude Include="..\Code\BasicFollowingEffect.h" />
     <ClInclude Include="..\Code\BeamEffect.h" />
+    <ClInclude Include="..\Code\BlobBullet.h" />
     <ClInclude Include="..\Code\BlobSpitter.h" />
     <ClInclude Include="..\Code\CardSpawn.h" />
     <ClInclude Include="..\Code\CastingCircle.h" />
@@ -185,6 +186,7 @@
     <ClInclude Include="..\Code\FireStomp.h" />
     <ClInclude Include="..\Code\FireThrow.h" />
     <ClInclude Include="..\Code\FirstViewCamera.h" />
+    <ClInclude Include="..\Code\GhoulLarge.h" />
     <ClInclude Include="..\Code\Golem.h" />
     <ClInclude Include="..\Code\GuidedFire.h" />
     <ClInclude Include="..\Code\GuidedFireBall.h" />
@@ -209,6 +211,7 @@
     <ClInclude Include="..\Code\Player.h" />
     <ClInclude Include="..\Code\QuaterViewCamera.h" />
     <ClInclude Include="..\Code\RoomBlock.h" />
+    <ClInclude Include="..\Code\RotatedBillEffect.h" />
     <ClInclude Include="..\Code\SignitureEffect.h" />
     <ClInclude Include="..\Code\SphereCollider.h" />
     <ClInclude Include="..\Code\Stage.h" />
@@ -244,6 +247,7 @@
     <ClCompile Include="..\Code\BasicEffect.cpp" />
     <ClCompile Include="..\Code\BasicFollowingEffect.cpp" />
     <ClCompile Include="..\Code\BeamEffect.cpp" />
+    <ClCompile Include="..\Code\BlobBullet.cpp" />
     <ClCompile Include="..\Code\BlobSpitter.cpp" />
     <ClCompile Include="..\Code\CardSpawn.cpp" />
     <ClCompile Include="..\Code\CastingCircle.cpp" />
@@ -262,6 +266,7 @@
     <ClCompile Include="..\Code\FireStomp.cpp" />
     <ClCompile Include="..\Code\FireThrow.cpp" />
     <ClCompile Include="..\Code\FirstViewCamera.cpp" />
+    <ClCompile Include="..\Code\GhoulLarge.cpp" />
     <ClCompile Include="..\Code\Golem.cpp" />
     <ClCompile Include="..\Code\GuidedFire.cpp" />
     <ClCompile Include="..\Code\GuidedFireBall.cpp" />
@@ -286,6 +291,7 @@
     <ClCompile Include="..\Code\Player.cpp" />
     <ClCompile Include="..\Code\QuaterViewCamera.cpp" />
     <ClCompile Include="..\Code\RoomBlock.cpp" />
+    <ClCompile Include="..\Code\RotatedBillEffect.cpp" />
     <ClCompile Include="..\Code\SignitureEffect.cpp" />
     <ClCompile Include="..\Code\SphereCollider.cpp" />
     <ClCompile Include="..\Code\Stage.cpp" />

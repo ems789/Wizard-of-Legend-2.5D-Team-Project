@@ -6,6 +6,7 @@
 #include "SphereCollider.h"
 #include "BasicEffect.h"
 #include "Coin.h"
+#include "BlobBullet.h"
 
 CBlobSpitter::CBlobSpitter(LPDIRECT3DDEVICE9 pGraphicDev)
 	:Engine::CGameObject(pGraphicDev)
@@ -26,7 +27,7 @@ HRESULT CBlobSpitter::Ready_GameObject()
 
 	m_fHeight = 1.5f;
 
-	m_eCurDir = BSD_DOWN;
+	m_eCurDir = BSD_RIGHT;
 	m_eCurState = BSS_IDLE;
 
 	m_fSpeed = 5.f;
@@ -121,39 +122,29 @@ HRESULT CBlobSpitter::Add_Component()
 	//	Texture Component Setting;
 	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_BlobSpitter_Idle"));
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
-	m_vvTextureCom[BSS_IDLE][BSD_UP]		= pTextureCom;
-	m_vvTextureCom[BSS_IDLE][BSD_DOWN]	= pTextureCom;
-	pTextureCom->AddRef();
 	m_vvTextureCom[BSS_IDLE][BSD_LEFT]	= pTextureCom;
-	pTextureCom->AddRef();
 	m_vvTextureCom[BSS_IDLE][BSD_RIGHT]	= pTextureCom;
 	pTextureCom->AddRef();
 
-	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_BlobSpitter_Run"));
+	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_BlobSpitter_Run_Left"));
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
-	m_vvTextureCom[BSS_RUN][BSD_UP] = pTextureCom;
-	m_vvTextureCom[BSS_RUN][BSD_DOWN] = pTextureCom;
-	pTextureCom->AddRef();
 	m_vvTextureCom[BSS_RUN][BSD_LEFT] = pTextureCom;
-	pTextureCom->AddRef();
+	
+	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_BlobSpitter_Run_Right"));
+	NULL_CHECK_RETURN(pComponent, E_FAIL);
 	m_vvTextureCom[BSS_RUN][BSD_RIGHT] = pTextureCom;
-	pTextureCom->AddRef();
 
-	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_BlobSpitter_AttackUp"));
-	NULL_CHECK_RETURN(pComponent, E_FAIL);
-	m_vvTextureCom[BSS_ATTACK][BSD_UP] = pTextureCom;
-
-	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_BlobSpitter_AttackDown"));
-	NULL_CHECK_RETURN(pComponent, E_FAIL);
-	m_vvTextureCom[BSS_ATTACK][BSD_DOWN] = pTextureCom;
-
-	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_BlobSpitter_AttackLeft"));
+	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_BlobSpitter_Attack"));
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
 	m_vvTextureCom[BSS_ATTACK][BSD_LEFT] = pTextureCom;
-
-	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_BlobSpitter_AttackRight"));
-	NULL_CHECK_RETURN(pComponent, E_FAIL);
 	m_vvTextureCom[BSS_ATTACK][BSD_RIGHT] = pTextureCom;
+	pTextureCom->AddRef();
+
+	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_BlobSpitter_Hurt"));
+	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	m_vvTextureCom[BSS_HURT][BSD_LEFT] = pTextureCom;
+	m_vvTextureCom[BSS_HURT][BSD_RIGHT] = pTextureCom;
+	pTextureCom->AddRef();
 
 
 	return S_OK;
@@ -190,6 +181,9 @@ void CBlobSpitter::Change_State()
 	case CBlobSpitter::BSS_ATTACK:
 		Attack_State();
 		break;
+	case CBlobSpitter::BSS_HURT:
+		Hurt_State();
+		break;
 	}
 
 	m_ePreState = m_eCurState;
@@ -207,6 +201,9 @@ void CBlobSpitter::Update_State(const _float & fTimeDelta)
 		break;
 	case CBlobSpitter::BSS_ATTACK:
 		Attack_Update(fTimeDelta);
+		break;
+	case CBlobSpitter::BSS_HURT:
+		Hurt_Update(fTimeDelta);
 		break;
 	}
 }
@@ -254,8 +251,8 @@ void CBlobSpitter::Idle_State()
 void CBlobSpitter::Run_State()
 {
 	m_tFrame.fCurFrame = 0.f;
-	m_tFrame.fMaxFrame = 6.f;
-	m_tFrame.fFrameSpeed = 5.f;
+	m_tFrame.fMaxFrame = 4.f;
+	m_tFrame.fFrameSpeed = 10.f;
 
 	m_bAnimFinish = false;
 	m_bAnimRepeat = true;
@@ -266,8 +263,8 @@ void CBlobSpitter::Run_State()
 void CBlobSpitter::Attack_State()
 {
 	m_tFrame.fCurFrame = 0.f;
-	m_tFrame.fMaxFrame = 1.f;
-	m_tFrame.fFrameSpeed = 2.f;
+	m_tFrame.fMaxFrame = 3.f;
+	m_tFrame.fFrameSpeed = 10.f;
 
 	m_bAnimFinish = false;
 	m_bAnimRepeat = false;
@@ -275,8 +272,32 @@ void CBlobSpitter::Attack_State()
 	Fitting_Scale_With_Texture(BSS_ATTACK);
 }
 
+void CBlobSpitter::Hurt_State()
+{
+	m_tFrame.fCurFrame = 0.f;
+	m_tFrame.fMaxFrame = 1.f;
+	m_tFrame.fFrameSpeed = 0.5f;
+
+	m_bAnimFinish = false;
+	m_bAnimRepeat = false;
+
+	Fitting_Scale_With_Texture(BSS_HURT);
+}
+
 _int CBlobSpitter::Idle_Update(const _float & fTimeDelta)
 {
+	if (m_bFireCool)
+	{
+		m_fFireCool += fTimeDelta;
+		if (m_fFireCool < 1.f)
+			return 0;
+		else
+		{
+			m_fFireCool = 0.f;
+			m_bFireCool = false;
+		}
+	}
+
 	const Engine::CTransform* pTargetTransform = dynamic_cast<const Engine::CTransform*>(Engine::Get_Component_of_Player(L"Com_Transform", Engine::ID_DYNAMIC));
 	NULL_CHECK_RETURN(pTargetTransform, -1);
 
@@ -285,7 +306,7 @@ _int CBlobSpitter::Idle_Update(const _float & fTimeDelta)
 
 	_vec3 vDist		= vTargetPos - vMyPos;
 	_float fDist	= D3DXVec3Length(&vDist);
-	if (fDist < 1.f)
+	if (fDist < 5.f)
 	{
 		m_eCurState = BSS_ATTACK;
 	}
@@ -310,7 +331,7 @@ _int CBlobSpitter::Run_Update(const _float & fTimeDelta)
 
 	vDir.y = 0.f;
 	D3DXVec3Normalize(&vDir, &vDir);
-	if (fDist < 2.f)
+	if (fDist < 5.f)
 		m_eCurState = BSS_ATTACK;
 	else if (fDist > 20.f)
 		m_eCurState = BSS_IDLE;
@@ -320,26 +341,19 @@ _int CBlobSpitter::Run_Update(const _float & fTimeDelta)
 	case Engine::CCameraMgr::MAIN_CAM_1ST:
 	case Engine::CCameraMgr::MAIN_CAM_3RD:
 	{
-		_vec3 vCamLook;
-		Engine::Get_MainCameraLook(&vCamLook);
-		vCamLook.y = 0.f;
-		D3DXVec3Normalize(&vCamLook, &vCamLook);
+		_vec3 vCamRight;
+		Engine::Get_MainCameraRight(&vCamRight);
+		vCamRight.y = 0.f;
+		D3DXVec3Normalize(&vCamRight, &vCamRight);
 
-		_float fDot = D3DXVec3Dot(&vDir, &vCamLook);
+		_float fDotR = D3DXVec3Dot(&vDir, &vCamRight);
 
-		if (fDot> 0.f)
-			m_eCurDir = BSD_UP;
-		else
-			m_eCurDir = BSD_DOWN;
+		m_eCurDir = fDotR > 0 ? BSD_RIGHT : BSD_LEFT;
+
 	}
 		break;
 	case Engine::CCameraMgr::MAIN_CAM_QUATER:
-	{
-		BLOB_SPITTER_DIR eUpDown	= vDir.z > 0.f ? BSD_UP		: BSD_DOWN;
-		BLOB_SPITTER_DIR eLeftRight	= vDir.x > 0.f ? BSD_RIGHT	: BSD_LEFT;
-
-		m_eCurDir = fabs(vDir.z) > fabs(vDir.x) ? eUpDown : eLeftRight;
-	}
+		m_eCurDir = vDir.x > 0.f ? BSD_RIGHT : BSD_LEFT;
 		break;
 	}
 
@@ -352,34 +366,64 @@ _int CBlobSpitter::Attack_Update(const _float & fTimeDelta)
 {
 	if (m_bAnimFinish)
 	{
-		m_eCurState = BSS_IDLE;
-		
+		m_bFire = false;
+		if (m_uiFireCnt >= m_uiFireMax)
+		{
+			m_eCurState = BSS_IDLE;
+			m_uiFireCnt = 0;
+			m_bFireCool = true;
+		}
+		else
+		{
+			Attack_State();
+		}
+	}
+
+	if (false == m_bFire)
+	{
+		m_bFire = true;
+		++m_uiFireCnt;
+
 		const Engine::CTransform* pTargetTransform = dynamic_cast<const Engine::CTransform*>(Engine::Get_Component_of_Player(L"Com_Transform", Engine::ID_DYNAMIC));
 		NULL_CHECK_RETURN(pTargetTransform, -1);
 
 		_vec3 vTargetPos = *pTargetTransform->GetInfo(Engine::INFO_POS);
 		_vec3 vPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
+		_vec3 vRight = *m_pTransformCom->GetInfo(Engine::INFO_RIGHT);
+		D3DXVec3Normalize(&vRight, &vRight);
+		vPos += vRight * 0.5f;
 
-		_vec3 vDir = vTargetPos - vPos;
-		D3DXVec3Normalize(&vDir, &vDir);
-
-		_float fAngleY = Engine::CMyMath::YAngleTransformFromVec(&vDir);
-		if (vDir.z < 0.f)
-			fAngleY += D3DXToRadian(180.f);
-
-
+		CBlobBullet* pBlobBullet = CBlobBullet::Create(m_pGraphicDev, vPos, vTargetPos, _vec3(0.f, 1.f, 0.f), 5.f, 5.f);
+		Engine::Add_GameObject(L"GameLogic", L"BlobBullet", pBlobBullet);
 	}
+
+
+	return 0;
+}
+
+_int CBlobSpitter::Hurt_Update(const _float & fTimeDelta)
+{
+	if (m_bAnimFinish)
+		m_eCurState = BSS_IDLE;
+	m_pTransformCom->Move_Pos(m_vHurtDir * fTimeDelta);
+
 	return 0;
 }
 
 void CBlobSpitter::Hit(const _int & iAtk, const _vec3 * pAtkPos)
 {
+	m_vHurtDir = *m_pTransformCom->GetInfo(Engine::INFO_POS) - *pAtkPos;
+	m_vHurtDir.y = 0.f;
+	D3DXVec3Normalize(&m_vHurtDir, &m_vHurtDir);
+	m_eCurState = BSS_HURT;
+
+	Change_State();
 	m_iHP -= iAtk;
 	if (m_iHP <= 0)
 	{
 		m_bIsDead = true;
 		_vec3 vPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
-		CBasicEffect* pDieEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_BlobSpitter_Death", L"GelemDieEffect", 6, 10.f, m_fScale, &vPos, false, 0.f);
+		CBasicEffect* pDieEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_BlobSpitter_Dead", L"GelemDieEffect", 7, 10.f, m_fScale, &vPos, false, 0.f);
 		Engine::Add_GameObject(L"GameLogic", L"GelemDieEffect", pDieEffect);
 
 		_uint iRepeat = rand() % 10;
