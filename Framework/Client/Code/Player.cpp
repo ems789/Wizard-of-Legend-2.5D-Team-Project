@@ -298,6 +298,22 @@ HRESULT CPlayer::Add_Component()
 	m_vvTextureCom[P_SKILL2][PD_LEFT]->AddRef();
 	m_vvpTextureTag[P_ATTACK2][PD_LEFT] = L"Texture_Player_SlamDown";
 
+	m_vvTextureCom[P_SKILL3][PD_UP] = m_vvTextureCom[P_ATTACK][PD_UP];
+	m_vvTextureCom[P_SKILL3][PD_UP]->AddRef();
+	m_vvpTextureTag[P_SKILL3][PD_UP] = m_vvpTextureTag[P_ATTACK][PD_UP];
+	m_vvTextureCom[P_SKILL3][PD_DOWN] = m_vvTextureCom[P_ATTACK][PD_DOWN];
+	m_vvTextureCom[P_SKILL3][PD_DOWN]->AddRef();
+	m_vvpTextureTag[P_SKILL3][PD_DOWN] = m_vvpTextureTag[P_ATTACK][PD_DOWN];
+	m_vvTextureCom[P_SKILL3][PD_RIGHT] = m_vvTextureCom[P_ATTACK][PD_RIGHT];
+	m_vvTextureCom[P_SKILL3][PD_RIGHT]->AddRef();
+	m_vvpTextureTag[P_SKILL3][PD_RIGHT] = m_vvpTextureTag[P_ATTACK][PD_RIGHT];
+	m_vvTextureCom[P_SKILL3][PD_LEFT] = m_vvTextureCom[P_ATTACK][PD_LEFT];
+	m_vvTextureCom[P_SKILL3][PD_LEFT]->AddRef();
+	m_vvpTextureTag[P_SKILL3][PD_LEFT] = m_vvpTextureTag[P_ATTACK][PD_LEFT];
+
+
+
+
 	//	Hurt
 	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_Player_HurtUp"));
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
@@ -366,6 +382,10 @@ void CPlayer::Change_State()
 		break;
 	case CPlayer::P_SKILL2:
 		Skill2_State();
+		break;
+	case CPlayer::P_SKILL3:
+		Skill3_State();
+		break;
 	case CPlayer::P_HURT:
 		Hurt_State();
 		break;
@@ -398,6 +418,9 @@ _int CPlayer::Update_State(const _float& fTimeDelta)
 		break;
 	case CPlayer::P_SKILL2:
 		iExit = Skill2_Update(fTimeDelta);
+		break;
+	case CPlayer::P_SKILL3:
+		iExit = Skill3_Update(fTimeDelta);
 		break;
 	case CPlayer::P_HURT:
 		iExit = Hurt_Update(fTimeDelta);
@@ -823,6 +846,13 @@ void CPlayer::Key_Input_Skill1_For_1stAnd3rdView(const _float & fTimeDelta)
 		if (m_vecEquipSkill[1])
 		{
 			iMotion = m_vecEquipSkill[1]->Use_Skill(fTimeDelta);
+			if (iMotion != 0)
+			{
+				m_fMP += 5.f;
+				if (m_fMP > m_fMPMax)
+					m_fMP = m_fMPMax;
+				m_eCurDir = PD_UP;
+			}
 		}
 	}
 
@@ -831,6 +861,13 @@ void CPlayer::Key_Input_Skill1_For_1stAnd3rdView(const _float & fTimeDelta)
 		if (m_vecEquipSkill[2])
 		{
 			iMotion = m_vecEquipSkill[2]->Use_Skill(fTimeDelta);
+			if (iMotion != 0)
+			{
+				m_fMP += 5.f;
+				if (m_fMP > m_fMPMax)
+					m_fMP = m_fMPMax;
+				m_eCurDir = PD_UP;
+			}
 		}
 	}
 
@@ -839,6 +876,13 @@ void CPlayer::Key_Input_Skill1_For_1stAnd3rdView(const _float & fTimeDelta)
 		if (m_vecEquipSkill[3])
 		{
 			iMotion = m_vecEquipSkill[3]->Use_Skill(fTimeDelta);
+			if (iMotion != 0)
+			{
+				m_fMP += 5.f;
+				if (m_fMP > m_fMPMax)
+					m_fMP = m_fMPMax;
+				m_eCurDir = PD_UP;
+			}
 		}
 	}
 
@@ -847,49 +891,62 @@ void CPlayer::Key_Input_Skill1_For_1stAnd3rdView(const _float & fTimeDelta)
 		if (m_vecEquipSkill[4])
 		{
 			if (m_fMP >= m_fMPMax)
+			{
 				iMotion = m_vecEquipSkill[4]->Use_UpgradedSkill(fTimeDelta);
+
+				if (0 != iMotion)
+				{
+					m_fMP = 0.f;
+
+					m_eCurDir = PD_UP;
+
+					_vec3	vAngle;
+					_float fRandomLength;
+					_float fRandomDieLength;
+
+					g_fTime = 0.05f;
+					m_fSlowTime = 1.f;
+					for (_uint i = 0; i < 40; ++i)
+					{
+						fRandomLength = (rand() % 10000) / 2000.f + 5.f;
+						fRandomDieLength = (rand() % 10000) / 2000.f + 5.f;
+						if (rand() % 2)
+							fRandomLength = 0.f;
+						else
+							fRandomDieLength = 0.f;
+						vAngle = { D3DXToRadian(rand() % 360), D3DXToRadian(rand() % 360), D3DXToRadian(rand() % 360) };
+						CSignitureEffect* pSignitureEffect = CSignitureEffect::Create(m_pGraphicDev, L"Texture_Beam", 1.f, 0.f,
+							m_pTransformCom->GetInfo(Engine::INFO_POS), 0.05f, fRandomLength, fRandomDieLength, 40.f, &vAngle);
+
+						Engine::Add_GameObject(L"Effect", L"SignitureEffect", pSignitureEffect);
+						Engine::PlaySound_(L"ItemActivate.wav", CSoundMgr::EFFECT);
+					}
+				}
+			}
 			else
+			{
 				iMotion = m_vecEquipSkill[4]->Use_Skill(fTimeDelta);
+				if (iMotion != 0)
+				{
+					m_fMP += 5.f;
+					if (m_fMP > m_fMPMax)
+						m_fMP = m_fMPMax;
+					m_eCurDir = PD_UP;
+				}
+			}
 		}
 	}
 
 	switch (iMotion)
 	{
 	case 1:
-		m_fMP += 5.f;
-		if (m_fMP > m_fMPMax)
-			m_fMP = m_fMPMax;
 		m_eCurState = P_SKILL1;
-		m_eCurDir = PD_UP;
 		break;
 	case 2:
-		m_fMP = 0.f;
 		m_eCurState = P_SKILL2;
-		m_eCurDir = PD_UP;
-		{
-			_vec3	vAngle;
-			_float fRandomLength;
-			_float fRandomDieLength;
-
-			g_fTime = 0.05f;
-			m_fSlowTime = 1.f;
-			for (_uint i = 0; i < 40; ++i)
-			{
-				fRandomLength	= (rand() % 10000) / 2000.f + 5.f;
-				fRandomDieLength = (rand() % 10000) / 2000.f + 5.f;
-				if (rand() % 2)
-					fRandomLength = 0.f;
-				else
-					fRandomDieLength = 0.f;
-				vAngle = { D3DXToRadian(rand() % 360), D3DXToRadian(rand() % 360), D3DXToRadian(rand() % 360) };
-				CSignitureEffect* pSignitureEffect = CSignitureEffect::Create(m_pGraphicDev, L"Texture_Beam", 1.f, 0.f,
-					m_pTransformCom->GetInfo(Engine::INFO_POS), 0.05f, fRandomLength, fRandomDieLength, 40.f, &vAngle);
-
-				Engine::Add_GameObject(L"Effect", L"SignitureEffect", pSignitureEffect);
-				Engine::PlaySound_(L"ItemActivate.wav", CSoundMgr::EFFECT);
-
-			}
-		}
+		break;
+	case 3:	
+		m_eCurState = P_SKILL3;
 		break;
 	default:
 		break;
@@ -918,6 +975,12 @@ void CPlayer::Key_Input_Skill1_For_QuaterView(const _float & fTimeDelta)
 		if (m_vecEquipSkill[1])
 		{
 			iMotion = m_vecEquipSkill[1]->Use_Skill(fTimeDelta, &vCurPos, &vDir);
+			if (iMotion != 0)
+			{
+				m_fMP += 5.f;
+				if (m_fMP > m_fMPMax)
+					m_fMP = m_fMPMax;
+			}
 		}
 	}
 
@@ -934,6 +997,12 @@ void CPlayer::Key_Input_Skill1_For_QuaterView(const _float & fTimeDelta)
 		if (m_vecEquipSkill[2])
 		{
 			iMotion = m_vecEquipSkill[2]->Use_Skill(fTimeDelta, &vCurPos, &vDir);
+			if (iMotion != 0)
+			{
+				m_fMP += 5.f;
+				if (m_fMP > m_fMPMax)
+					m_fMP = m_fMPMax;
+			}
 		}
 	}
 
@@ -950,6 +1019,12 @@ void CPlayer::Key_Input_Skill1_For_QuaterView(const _float & fTimeDelta)
 		if (m_vecEquipSkill[3])
 		{
 			iMotion = m_vecEquipSkill[3]->Use_Skill(fTimeDelta, &vCurPos, &vDir);
+			if (iMotion != 0)
+			{
+				m_fMP += 5.f;
+				if (m_fMP > m_fMPMax)
+					m_fMP = m_fMPMax;
+			}
 		}
 	}
 
@@ -966,9 +1041,48 @@ void CPlayer::Key_Input_Skill1_For_QuaterView(const _float & fTimeDelta)
 		if (m_vecEquipSkill[4])
 		{
 			if (m_fMP >= m_fMPMax)
+			{
 				iMotion = m_vecEquipSkill[4]->Use_UpgradedSkill(fTimeDelta, &vCurPos, &vDir);
+
+
+				if (0 != iMotion)
+				{
+					m_fMP = 0.f;
+
+					_vec3	vAngle;
+					_float fRandomLength;
+					_float fRandomDieLength;
+
+					g_fTime = 0.05f;
+					m_fSlowTime = 1.f;
+					for (_uint i = 0; i < 40; ++i)
+					{
+						fRandomLength = (rand() % 10000) / 2000.f + 5.f;
+						fRandomDieLength = (rand() % 10000) / 2000.f + 5.f;
+						if (rand() % 2)
+							fRandomLength = 0.f;
+						else
+							fRandomDieLength = 0.f;
+						vAngle = { D3DXToRadian(rand() % 360), D3DXToRadian(rand() % 360), D3DXToRadian(rand() % 360) };
+						CSignitureEffect* pSignitureEffect = CSignitureEffect::Create(m_pGraphicDev, L"Texture_Beam", 1.f, 0.f,
+							m_pTransformCom->GetInfo(Engine::INFO_POS), 0.05f, fRandomLength, fRandomDieLength, 40.f, &vAngle);
+
+						Engine::Add_GameObject(L"Effect", L"SignitureEffect", pSignitureEffect);
+						Engine::PlaySound_(L"ItemActivate.wav", CSoundMgr::EFFECT);
+					}
+				}
+
+			}
 			else
+			{
 				iMotion = m_vecEquipSkill[4]->Use_Skill(fTimeDelta, &vCurPos, &vDir);
+				if (iMotion != 0)
+				{
+					m_fMP += 5.f;
+					if (m_fMP > m_fMPMax)
+						m_fMP = m_fMPMax;
+				}
+			}
 		}
 	}
 
@@ -977,10 +1091,6 @@ void CPlayer::Key_Input_Skill1_For_QuaterView(const _float & fTimeDelta)
 	{
 	case 1:
 	{
-		m_fMP += 5.f;
-		if (m_fMP > m_fMPMax)
-			m_fMP = m_fMPMax;
-
 		m_eCurState = P_SKILL1;
 
 		CPlayer::PLAYER_DIR eUpDown = vDir.z > 0.f ? PD_UP : PD_DOWN;
@@ -991,40 +1101,25 @@ void CPlayer::Key_Input_Skill1_For_QuaterView(const _float & fTimeDelta)
 		break;
 	case 2:
 	{	
-		m_fMP = 0.f;
-
 		m_eCurState = P_SKILL2;
 
 		CPlayer::PLAYER_DIR eUpDown = vDir.z > 0.f ? PD_UP : PD_DOWN;
 		CPlayer::PLAYER_DIR eLeftRight = vDir.x > 0.f ? PD_RIGHT : PD_LEFT;
 
 		m_eCurDir = fabs(vDir.x) > fabs(vDir.z) ? eLeftRight : eUpDown;
-
-		_vec3	vAngle;
-		_float fRandomLength;
-		_float fRandomDieLength;
-
-		g_fTime = 0.05f;
-		m_fSlowTime = 1.f;
-		for (_uint i = 0; i < 40; ++i)
-		{
-			fRandomLength = (rand() % 10000) / 2000.f + 5.f;
-			fRandomDieLength = (rand() % 10000) / 2000.f + 5.f;
-			if (rand() % 2)
-				fRandomLength = 0.f;
-			else
-				fRandomDieLength = 0.f;
-			vAngle = { D3DXToRadian(rand() % 360), D3DXToRadian(rand() % 360), D3DXToRadian(rand() % 360) };
-			CSignitureEffect* pSignitureEffect = CSignitureEffect::Create(m_pGraphicDev, L"Texture_Beam", 1.f, 0.f,
-				m_pTransformCom->GetInfo(Engine::INFO_POS), 0.05f, fRandomLength, fRandomDieLength, 40.f, &vAngle);
-
-			Engine::Add_GameObject(L"Effect", L"SignitureEffect", pSignitureEffect);
-			Engine::PlaySound_(L"ItemActivate.wav", CSoundMgr::EFFECT);
-		}
 	}
 
 		break;
+	case 3:
+	{
+		m_eCurState = P_SKILL3;
 
+		CPlayer::PLAYER_DIR eUpDown = vDir.z > 0.f ? PD_UP : PD_DOWN;
+		CPlayer::PLAYER_DIR eLeftRight = vDir.x > 0.f ? PD_RIGHT : PD_LEFT;
+
+		m_eCurDir = fabs(vDir.x) > fabs(vDir.z) ? eLeftRight : eUpDown;
+	}
+	break;
 	default:
 		break;
 	}
@@ -1135,6 +1230,17 @@ void CPlayer::Skill2_State()
 	Fitting_Scale_With_Texture(P_SKILL2);
 }
 
+void CPlayer::Skill3_State()
+{
+	m_tFrame.fCurFrame = 0.f;
+	m_tFrame.fMaxFrame = 8.f;
+	m_tFrame.fFrameSpeed = 20.f;
+	m_bAnimFinish = false;
+	m_bAnimRepeat = false;
+
+	Fitting_Scale_With_Texture(P_SKILL3);
+}
+
 void CPlayer::Hurt_State()
 {
 	m_tFrame.fCurFrame = 0.f;
@@ -1223,6 +1329,20 @@ _int CPlayer::Skill1_Update(const _float& fTimeDelta)
 }
 
 _int CPlayer::Skill2_Update(const _float& fTimeDelta)
+{
+	if (m_bAnimFinish)
+	{
+		m_eCurState = CPlayer::P_IDLE;
+		m_dwAttackCnt = 0;
+		return 0;
+	}
+
+	Key_Input(fTimeDelta);
+
+	return 0;
+}
+
+_int CPlayer::Skill3_Update(const _float & fTimeDelta)
 {
 	if (m_bAnimFinish)
 	{

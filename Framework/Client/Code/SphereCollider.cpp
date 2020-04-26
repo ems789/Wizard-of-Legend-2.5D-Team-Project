@@ -15,7 +15,7 @@ CSphereCollider::~CSphereCollider()
 }
 
 
-HRESULT CSphereCollider::Ready_Collider(CGameObject * pParent, Engine::CEffect* pHitEffect, const _float & fRadius, const _tchar* pColliderTag, const _int& iAttack)
+HRESULT CSphereCollider::Ready_Collider(CGameObject * pParent, Engine::CEffect* pHitEffect, const _float & fRadius, const _tchar* pColliderTag, const _int& iAttack, const _float& fLifeTime)
 {
 	FAILED_CHECK_RETURN(CCollider::Ready_Collider(pParent), E_FAIL);
 
@@ -25,6 +25,7 @@ HRESULT CSphereCollider::Ready_Collider(CGameObject * pParent, Engine::CEffect* 
 	m_iAttack = iAttack;
 	m_pHitEffect = pHitEffect;
 	m_bAddEffect = false;
+	m_fLifeTime = fLifeTime;
 
 	return S_OK;
 }
@@ -32,6 +33,8 @@ HRESULT CSphereCollider::Ready_Collider(CGameObject * pParent, Engine::CEffect* 
 
 _int CSphereCollider::Update_GameObject(const _float& fTimeDelta)
 {
+	LifeTimer(fTimeDelta);
+
 	if (m_bIsDead)
 		return 0;
 
@@ -75,11 +78,25 @@ void CSphereCollider::Add_Effect(const _vec3 * pPos)
 
 }
 
-CSphereCollider* CSphereCollider::Create(LPDIRECT3DDEVICE9 pGraphicDev, CGameObject* pParent, Engine::CEffect* pHitEffect, const _float& fRadius, const _tchar* pColliderTag, const _int& iAttack)
+void CSphereCollider::LifeTimer(const _float & fTimeDelta)
+{
+	if (0.f == m_fLifeTime)
+		return;
+
+	m_fLifeCount += fTimeDelta;
+
+	if (m_fLifeCount >= m_fLifeTime)
+	{
+		m_bIsDead = true;
+	}
+}
+
+CSphereCollider* CSphereCollider::Create(LPDIRECT3DDEVICE9 pGraphicDev, CGameObject* pParent, Engine::CEffect* pHitEffect, const _float& fRadius, 
+	const _tchar* pColliderTag, const _int& iAttack, const _float& fLifeTime /*= 0.f*/)
 {
 	CSphereCollider* pInstance = new CSphereCollider(pGraphicDev);
 
-	if (FAILED(pInstance->Ready_Collider(pParent, pHitEffect, fRadius, pColliderTag, iAttack)))
+	if (FAILED(pInstance->Ready_Collider(pParent, pHitEffect, fRadius, pColliderTag, iAttack, fLifeTime)))
 		Engine::Safe_Release(pInstance);
 
 	return pInstance;

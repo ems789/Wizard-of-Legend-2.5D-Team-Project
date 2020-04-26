@@ -47,7 +47,7 @@ _int CGuidedFireBall::Use_Skill(const _float& fTimeDelta)
 
 	m_fCurTime = m_fCoolTime;
 
-	return 1;
+	return 3;
 }
 
 _int CGuidedFireBall::Use_Skill(const _float & fTimeDelta, const _vec3 * pPos, const _vec3 * pDir)
@@ -70,7 +70,7 @@ _int CGuidedFireBall::Use_Skill(const _float & fTimeDelta, const _vec3 * pPos, c
 
 	m_fCurTime = m_fCoolTime;
 
-	return 1;
+	return 3;
 }
 
 _int CGuidedFireBall::Use_UpgradedSkill(const _float & fTimeDelta)

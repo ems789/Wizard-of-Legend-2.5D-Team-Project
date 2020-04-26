@@ -1152,6 +1152,10 @@ void CFireBoss::Dead_Update(const _float & fTimeDelta)
 
 			Engine::Add_GameObject(L"Effect", L"FireBossBackEffect", pEffect);
 		}
+
+
+		Engine::PlaySound_(L"FireWallStart.wav", CSoundMgr::EFFECT);
+
 	}
 }
 

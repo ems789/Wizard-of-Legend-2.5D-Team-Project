@@ -12,12 +12,19 @@
 #include "TestMonster.h"
 #include "Mouse.h"
 #include "Golem.h"
+#include "Mage.h"
 #include "Cyclops.h"
+#include "Knight.h"
 #include "FireBoss.h"
 #include "LightningBoss.h"
 #include "CardSpawn.h"
 #include "RoomBlock.h"
+<<<<<<< HEAD
 #include "WindBoss.h"
+=======
+#include "BlobSpitter.h"
+#include "GhoulLarge.h"
+>>>>>>> 9d63fd57ff3d9222dab7a9fe1d9c9e7e644e3ca2
 
 CFireStage::CFireStage(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CScene(pGraphicDev)
@@ -51,28 +58,38 @@ HRESULT CFireStage::Ready_Scene()
 
 _int CFireStage::Update_Scene(const _float& fTimeDelta)
 {
-	if (Engine::KeyDown(DIK_F7))
-	{
-		//	FireBoss
-		_vec3 vCardPos = { rand() % 20 + 10.f, 1.f, rand() % 20 + 10.f };
-		Engine::CGameObject* pGameObject = CFireBoss::Create(m_pGraphicDev, &vCardPos);
-		NULL_CHECK_RETURN(pGameObject, E_FAIL);
-
-		CCardSpawn* pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
-		Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
-	}
-
-	//if (Engine::KeyDown(DIK_F6))
+	//if (Engine::KeyDown(DIK_F7))
 	//{
-	//	//	Cyclops
+	//	//	FireBoss
 	//	_vec3 vCardPos = { rand() % 20 + 10.f, 1.f, rand() % 20 + 10.f };
-	//	Engine::CGameObject* pGameObject = CCyclops::Create(m_pGraphicDev, &vCardPos);
+	//	Engine::CGameObject* pGameObject = CFireBoss::Create(m_pGraphicDev, &vCardPos);
 	//	NULL_CHECK_RETURN(pGameObject, E_FAIL);
 
 	//	CCardSpawn* pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
 	//	Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
 	//}
 
+	if (Engine::KeyDown(DIK_F6))
+	{
+		//	Blob
+		_vec3 vCardPos = { 50.f, 1.f, 37.f };
+		Engine::CGameObject* pGameObject = CBlobSpitter::Create(m_pGraphicDev, &vCardPos);
+		NULL_CHECK_RETURN(pGameObject, E_FAIL);
+
+		CCardSpawn* pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
+		Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
+	}
+
+	if (Engine::KeyDown(DIK_F7))
+	{
+		//	GhoulLarge
+		_vec3 vCardPos = { 50.f, 1.f, 37.f };
+		Engine::CGameObject* pGameObject = CGhoulLarge::Create(m_pGraphicDev, &vCardPos);
+		NULL_CHECK_RETURN(pGameObject, E_FAIL);
+
+		CCardSpawn* pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
+		Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
+	}
 	//if (Engine::KeyDown(DIK_F8))
 	//{
 	//	//	Golem
@@ -84,16 +101,27 @@ _int CFireStage::Update_Scene(const _float& fTimeDelta)
 	//	Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
 	//}
 
+		// 테스트용
 	if (Engine::KeyDown(DIK_F9))
 	{
-		// LightningBoss
-		_vec3 vCardPos = { 50, 1.f, 37 };
-		Engine::CGameObject* pGameObject = CLightningBoss::Create(m_pGraphicDev, &_vec3(50, 1.f, 37));
+		_vec3 vCardPos = { 50.f, 1.f, 50.f };
+		Engine::CGameObject* pGameObject = CKnight::Create(m_pGraphicDev, &vCardPos);
 		NULL_CHECK_RETURN(pGameObject, E_FAIL);
 
 		CCardSpawn* pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
 		Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
 	}
+
+	//if (Engine::KeyDown(DIK_F9))
+	//{
+	//	// LightningBoss
+	//	_vec3 vCardPos = { 50, 1.f, 37 };
+	//	Engine::CGameObject* pGameObject = CLightningBoss::Create(m_pGraphicDev, &_vec3(50, 1.f, 37));
+	//	NULL_CHECK_RETURN(pGameObject, E_FAIL);
+
+	//	CCardSpawn* pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
+	//	Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
+	//}
 
 	const Engine::CTransform* pPlayerTransform = dynamic_cast<const Engine::CTransform*>(Engine::Get_Component_of_Player(L"Com_Transform", Engine::ID_DYNAMIC));
 

@@ -178,6 +178,7 @@
     <ClInclude Include="..\Code\BasicEffect.h" />
     <ClInclude Include="..\Code\BasicFollowingEffect.h" />
     <ClInclude Include="..\Code\BeamEffect.h" />
+    <ClInclude Include="..\Code\BlobBullet.h" />
     <ClInclude Include="..\Code\BlobSpitter.h" />
     <ClInclude Include="..\Code\CardSpawn.h" />
     <ClInclude Include="..\Code\CastingCircle.h" />
@@ -196,11 +197,13 @@
     <ClInclude Include="..\Code\FireStomp.h" />
     <ClInclude Include="..\Code\FireThrow.h" />
     <ClInclude Include="..\Code\FirstViewCamera.h" />
+    <ClInclude Include="..\Code\GhoulLarge.h" />
     <ClInclude Include="..\Code\Golem.h" />
     <ClInclude Include="..\Code\GuidedFire.h" />
     <ClInclude Include="..\Code\GuidedFireBall.h" />
     <ClInclude Include="..\Code\GuidedFireGen.h" />
     <ClInclude Include="..\Code\Inven.h" />
+    <ClInclude Include="..\Code\Knight.h" />
     <ClInclude Include="..\Code\LaidEffect.h" />
     <ClInclude Include="..\Code\LaidFollowingEffect.h" />
     <ClInclude Include="..\Code\LightningBoss.h" />
@@ -220,7 +223,9 @@
     <ClInclude Include="..\Code\Player.h" />
     <ClInclude Include="..\Code\QuaterViewCamera.h" />
     <ClInclude Include="..\Code\RoomBlock.h" />
+    <ClInclude Include="..\Code\RotatedBillEffect.h" />
     <ClInclude Include="..\Code\SignitureEffect.h" />
+    <ClInclude Include="..\Code\Mage.h" />
     <ClInclude Include="..\Code\SphereCollider.h" />
     <ClInclude Include="..\Code\Stage.h" />
     <ClInclude Include="..\Code\Terrain.h" />
@@ -235,6 +240,7 @@
     <ClInclude Include="..\Code\UIObject.h" />
     <ClInclude Include="..\Code\Wall.h" />
     <ClInclude Include="..\Code\Wind.h" />
+    <ClInclude Include="..\Code\WindAgentSwirl.h" />
     <ClInclude Include="..\Code\WindSlash.h" />
     <ClInclude Include="..\Header\Defines.h" />
     <ClInclude Include="..\Header\Enum.h" />
@@ -266,6 +272,7 @@
     <ClCompile Include="..\Code\BasicEffect.cpp" />
     <ClCompile Include="..\Code\BasicFollowingEffect.cpp" />
     <ClCompile Include="..\Code\BeamEffect.cpp" />
+    <ClCompile Include="..\Code\BlobBullet.cpp" />
     <ClCompile Include="..\Code\BlobSpitter.cpp" />
     <ClCompile Include="..\Code\CardSpawn.cpp" />
     <ClCompile Include="..\Code\CastingCircle.cpp" />
@@ -284,11 +291,13 @@
     <ClCompile Include="..\Code\FireStomp.cpp" />
     <ClCompile Include="..\Code\FireThrow.cpp" />
     <ClCompile Include="..\Code\FirstViewCamera.cpp" />
+    <ClCompile Include="..\Code\GhoulLarge.cpp" />
     <ClCompile Include="..\Code\Golem.cpp" />
     <ClCompile Include="..\Code\GuidedFire.cpp" />
     <ClCompile Include="..\Code\GuidedFireBall.cpp" />
     <ClCompile Include="..\Code\GuidedFireGen.cpp" />
     <ClCompile Include="..\Code\Inven.cpp" />
+    <ClCompile Include="..\Code\Knight.cpp" />
     <ClCompile Include="..\Code\LaidEffect.cpp" />
     <ClCompile Include="..\Code\LaidFollowingEffect.cpp" />
     <ClCompile Include="..\Code\LightningBoss.cpp" />
@@ -308,7 +317,9 @@
     <ClCompile Include="..\Code\Player.cpp" />
     <ClCompile Include="..\Code\QuaterViewCamera.cpp" />
     <ClCompile Include="..\Code\RoomBlock.cpp" />
+    <ClCompile Include="..\Code\RotatedBillEffect.cpp" />
     <ClCompile Include="..\Code\SignitureEffect.cpp" />
+    <ClCompile Include="..\Code\Mage.cpp" />
     <ClCompile Include="..\Code\SphereCollider.cpp" />
     <ClCompile Include="..\Code\Stage.cpp" />
     <ClCompile Include="..\Code\Terrain.cpp" />
@@ -323,6 +334,7 @@
     <ClCompile Include="..\Code\UIObject.cpp" />
     <ClCompile Include="..\Code\Wall.cpp" />
     <ClCompile Include="..\Code\Wind.cpp" />
+    <ClCompile Include="..\Code\WindAgentSwirl.cpp" />
     <ClCompile Include="..\Code\WindSlash.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="stdafx.cpp">
