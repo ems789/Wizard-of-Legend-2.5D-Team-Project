@@ -250,6 +250,15 @@
     <Filter Include="07.Monster\99.Boss\01.LightningBoss\02.LightningChainDash">
       <UniqueIdentifier>{a748a24d-bc21-46e6-88b0-05b0cd35b6e2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="07.Monster\02.Mage">
+      <UniqueIdentifier>{22da219f-1238-46c1-9cf0-bd521555c5b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Monster\02.Mage\00.WindAgentSwirl">
+      <UniqueIdentifier>{d3352403-b43d-4b91-85f7-b63f6e9aaf9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Monster\03.Knight">
+      <UniqueIdentifier>{2a7fd35d-25ab-4b76-860a-c3e3b1f3898a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -465,6 +474,15 @@
     <ClInclude Include="..\Code\LightningFalling.h">
       <Filter>07.Monster\99.Boss\01.LightningBoss\01.LightningFalling</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\Mage.h">
+      <Filter>07.Monster\02.Mage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\WindAgentSwirl.h">
+      <Filter>07.Monster\02.Mage\00.WindAgentSwirl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Knight.h">
+      <Filter>07.Monster\03.Knight</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -655,6 +673,15 @@
     </ClCompile>
     <ClCompile Include="..\Code\LightningFalling.cpp">
       <Filter>07.Monster\99.Boss\01.LightningBoss\01.LightningFalling</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Mage.cpp">
+      <Filter>07.Monster\02.Mage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\WindAgentSwirl.cpp">
+      <Filter>07.Monster\02.Mage\00.WindAgentSwirl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Knight.cpp">
+      <Filter>07.Monster\03.Knight</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -113,16 +113,9 @@ CLaidEffect* CLaidEffect::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _tchar* pT
 	pInstance->m_pTransformCom->Set_Angle(_vec3(D3DXToRadian(90.f), fAngleY, 0.f));
 	pInstance->m_pTransformCom->Update_Component(0.f);
 
-	if (bAnimRepeat && 0.f <= fLifeTime)
-	{
-		pInstance->m_bAnimRepeat = false;
-		pInstance->m_fLifeTime = 1.f;
-	}
-	else
-	{
-		pInstance->m_bAnimRepeat = bAnimRepeat;
-		pInstance->m_fLifeTime = fLifeTime;
-	}
+
+	pInstance->m_bAnimRepeat = bAnimRepeat;
+	pInstance->m_fLifeTime = fLifeTime;
 
 	return pInstance;
 }

@@ -112,16 +112,14 @@ CBasicEffect* CBasicEffect::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _tchar* 
 	pInstance->m_pTransformCom->Set_Pos(pPos);
 	pInstance->m_pTransformCom->Update_Component(0.f);
 
-	if (bAnimRepeat && 0.f <= fLifeTime)
+	/*if (bAnimRepeat && 0.f <= fLifeTime)
 	{
 		pInstance->m_bAnimRepeat = false;
 		pInstance->m_fLifeTime = 1.f;
-	}
-	else
-	{
-		pInstance->m_bAnimRepeat = bAnimRepeat;
-		pInstance->m_fLifeTime = fLifeTime;
-	}
+	}*/
+
+	pInstance->m_bAnimRepeat = bAnimRepeat;
+	pInstance->m_fLifeTime = fLifeTime;
 
 	return pInstance;
 }
