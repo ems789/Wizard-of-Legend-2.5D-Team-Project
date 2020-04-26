@@ -30,12 +30,15 @@ public:		//	Get Functions
 	virtual	const _vec3*	Get_PrePos() const { return nullptr; }
 	virtual const COLLIDERTYPE Get_CollType() const { return CT_SPHERE; }
 	virtual	const _vec3*	Get_Move()	const { return nullptr; }
+	virtual	const _bool		Get_CanColl() const { return true; }
 
 public:		//	Set Functions
 	virtual void	Set_Pos(const _vec3* pPos) {}
 	virtual void	Set_PosX(const _float& fx) {}
 	virtual void	Set_PosY(const _float& fy) {}
 	virtual void	Set_PosZ(const _float& fz) {}
+
+	virtual void	Move_Pos(const _vec3* pMove) {};
 	
 public:	//	About Collision
 	virtual void	Hit(const _int& iAtk, const _vec3* pAtkPos) {}

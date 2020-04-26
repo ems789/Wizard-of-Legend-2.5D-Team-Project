@@ -36,6 +36,14 @@ const CGameObject*	Get_Player()
 }
 
 //	Set
+void Player_Move_Pos(const _vec3* pMove)
+{
+	CManagement::GetInstance()->Player_Move_Pos(pMove);
+}
+void Player_Set_Pos(const _vec3* pPos)
+{
+	CManagement::GetInstance()->Player_Set_Pos(pPos);
+}
 //	General
 HRESULT Create_Management(CManagement** ppManagemet)
 {

@@ -178,6 +178,13 @@ _uint CLoading::Loading_ForState()
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Cyclops_Attack_Right", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/Cyclops/Attack/Right/CyclopsAttackRight1.png"), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Cyclops_AttackReady_Left", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/Cyclops/Attack/Left/CyclopsAttackLeft0.png"), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Cyclops_Attack_Left", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/Cyclops/Attack/Left/CyclopsAttackLeft1.png"), E_FAIL);
+	
+	//	Blob Spitter
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_BlobSpitter_Idle", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/BlobSpitter/BlobSpitterIdle0.png"), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_BlobSpitter_Attack", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/BlobSpitter/Attack/BlobSpitterAttack%d.png", 3), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_BlobSpitter_Dead", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/BlobSpitter/Dead/BlobSpitterDead%d.png", 7), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_BlobSpitter_Hurt", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/BlobSpitter/Hurt/BlobSpitterHurt0.png"), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_BlobSpitter_Run", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/BlobSpitter/Hurt/BlobSpitterHurt0.png"), E_FAIL);
 
 	//	Mage
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Mage_Idle", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/Mage/MageIdle.png"), E_FAIL);

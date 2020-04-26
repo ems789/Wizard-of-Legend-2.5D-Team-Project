@@ -26,7 +26,10 @@ inline const	CGameObject*	Get_GameObject_From_StaticLayer(const _tchar* pObjTag)
 inline const	CComponent*		Get_Component_of_Player(const _tchar* pComponentTag, COMPONENTID eID);
 inline const	CGameObject*	Get_Player();
 
+
 //	Set
+inline void						Player_Move_Pos(const _vec3* pMove);
+inline void						Player_Set_Pos(const _vec3* pPos);
 //	General
 inline HRESULT	Create_Management(CManagement** ppManagemet);
 inline HRESULT	SetUp_Scene(CScene* pScene);

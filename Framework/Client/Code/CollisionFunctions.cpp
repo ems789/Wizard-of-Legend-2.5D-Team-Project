@@ -112,7 +112,8 @@ void CCollisionFunctions::CollisionObjAttackToObject(const _tchar * pSrcTag, con
 				if (Engine::CCollisionMgr::CollisionLineToSphere(tSrcLine, tDestSph))
 				{
 					pSrc->Die();
-					pSrc->Add_Effect(&tDestSph.vPos);
+					if (pDest->Get_CanColl())
+						pSrc->Add_Effect(&tDestSph.vPos);
 					pDest->Hit(pSrc->Get_Attack(), &tSrcLine.vPos1);
 				}
 			}

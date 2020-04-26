@@ -1121,18 +1121,37 @@ void CFireBoss::Dead_Update(const _float & fTimeDelta)
 		m_bIsDead = true;
 
 		const _tchar* pTextureTag = nullptr;
-		switch (rand() % 4)
-		{
-		case 0:
-			break;
-		case 1:
-			break;
-		case 2:
-			break;
-		case 3:
-			break;
-		}
+		_vec3 vPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
 
+		for (_uint i = 0; i < 10; ++i)
+		{
+			switch (rand() % 4)
+			{
+			case 0:
+				pTextureTag = L"Texture_FireParticle1";
+				break;
+			case 1:
+				pTextureTag = L"Texture_FireParticle2";
+				break;
+			case 2:
+				pTextureTag = L"Texture_FireParticle3";
+				break;
+			case 3:
+				pTextureTag = L"Texture_FireParticle4";
+				break;
+			default:
+				break;
+			}
+
+			_vec3 vDir = { (rand() % 100 - 50.f) / 100.f, (rand() % 100 - 50.f) / 100.f, (rand() % 100 - 50.f) / 100.f };
+			_vec3 vCreatePos = vPos;
+			//D3DXVec3Normalize(&vDir, &vDir);
+
+			CFireEffect* pEffect = CFireEffect::Create(m_pGraphicDev, pTextureTag, L"FireParticle", 6.f, 15.f, 0.2f, &vCreatePos, &vDir, 3.f,
+				false, 0.f, D3DXCOLOR(1.f, 0.7f, 0.5f, 1.f), D3DXCOLOR(0.f, 1.f, 2.0f, 0.f));
+
+			Engine::Add_GameObject(L"Effect", L"FireBossBackEffect", pEffect);
+		}
 	}
 }
 

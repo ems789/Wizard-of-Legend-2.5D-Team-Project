@@ -32,6 +32,16 @@ const CGameObject * CLayer::Get_GameObjcet(const _tchar * pObjTag) const
 	return iter->second;
 }
 
+CGameObject * CLayer::Get_GameObject_NC(const _tchar * pObjTag)
+{
+	auto iter = find_if(m_mapObject.begin(), m_mapObject.end(), CTag_Finder(pObjTag));
+
+	if (m_mapObject.end() == iter)
+		return nullptr;
+
+	return iter->second;
+}
+
 HRESULT Engine::CLayer::Ready_Layer()
 {
 	return S_OK;

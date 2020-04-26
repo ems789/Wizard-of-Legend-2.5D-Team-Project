@@ -167,6 +167,7 @@
     <ClInclude Include="..\Code\BasicEffect.h" />
     <ClInclude Include="..\Code\BasicFollowingEffect.h" />
     <ClInclude Include="..\Code\BeamEffect.h" />
+    <ClInclude Include="..\Code\BlobSpitter.h" />
     <ClInclude Include="..\Code\CardSpawn.h" />
     <ClInclude Include="..\Code\CastingCircle.h" />
     <ClInclude Include="..\Code\Coin.h" />
@@ -220,6 +221,9 @@
     <ClInclude Include="..\Code\Tile.h" />
     <ClInclude Include="..\Code\Town.h" />
     <ClInclude Include="..\Code\UI.h" />
+    <ClInclude Include="..\Code\UIBlink.h" />
+    <ClInclude Include="..\Code\UIButton.h" />
+    <ClInclude Include="..\Code\UIObject.h" />
     <ClInclude Include="..\Code\Wall.h" />
     <ClInclude Include="..\Code\Wind.h" />
     <ClInclude Include="..\Code\WindAgentSwirl.h" />
@@ -243,6 +247,7 @@
     <ClCompile Include="..\Code\BasicEffect.cpp" />
     <ClCompile Include="..\Code\BasicFollowingEffect.cpp" />
     <ClCompile Include="..\Code\BeamEffect.cpp" />
+    <ClCompile Include="..\Code\BlobSpitter.cpp" />
     <ClCompile Include="..\Code\CardSpawn.cpp" />
     <ClCompile Include="..\Code\CastingCircle.cpp" />
     <ClCompile Include="..\Code\Coin.cpp" />
@@ -296,6 +301,9 @@
     <ClCompile Include="..\Code\Tile.cpp" />
     <ClCompile Include="..\Code\Town.cpp" />
     <ClCompile Include="..\Code\UI.cpp" />
+    <ClCompile Include="..\Code\UIBlink.cpp" />
+    <ClCompile Include="..\Code\UIButton.cpp" />
+    <ClCompile Include="..\Code\UIObject.cpp" />
     <ClCompile Include="..\Code\Wall.cpp" />
     <ClCompile Include="..\Code\Wind.cpp" />
     <ClCompile Include="..\Code\WindAgentSwirl.cpp" />

@@ -1,3 +1,24 @@
-﻿     ../Bin\Tool.lib 라이브러리 및 ../Bin\Tool.exp 개체를 생성하고 있습니다.
-  Tool.vcxproj -> C:\Users\ems78\Documents\GitHub\TeamProject\Framework\Tool\Default\../Bin\Tool.exe
+﻿  WallPage.cpp
+d:\teamproject\framework\tool\default\wallpage.cpp(246): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+d:\teamproject\framework\tool\default\wallpage.cpp(252): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+d:\teamproject\framework\tool\default\wallpage.cpp(258): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+d:\teamproject\framework\tool\default\wallpage.cpp(264): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+d:\teamproject\framework\tool\default\wallpage.cpp(270): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+  ToolView.cpp
+d:\teamproject\framework\tool\default\toolview.cpp(332): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+d:\teamproject\framework\tool\default\toolview.cpp(337): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+d:\teamproject\framework\tool\default\toolview.cpp(342): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+d:\teamproject\framework\tool\default\toolview.cpp(347): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+d:\teamproject\framework\tool\default\toolview.cpp(353): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+  TilePage.cpp
+  PropertyFormView.cpp
+  Wall.cpp
+  Tile.cpp
+  TerrainGuidLine.cpp
+  Terrain.cpp
+d:\teamproject\framework\tool\code\terrain.cpp(146): warning C4244: 'argument': conversion from 'unsigned int' to 'const _float', possible loss of data
+  DynamicCamera.cpp
+  Generating Code...
+     Creating library ../Bin\Tool.lib and object ../Bin\Tool.exp
+  Tool.vcxproj -> D:\TeamProject\Framework\Tool\Default\../Bin\Tool.exe
   Tool.vcxproj -> ../Bin\Tool.pdb (Partial PDB)
