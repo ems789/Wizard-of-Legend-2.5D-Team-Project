@@ -30,6 +30,7 @@ public:		//	Get Functions
 	virtual	const _vec3*	Get_PrePos() const { return nullptr; }
 	virtual const COLLIDERTYPE Get_CollType() const { return CT_SPHERE; }
 	virtual	const _vec3*	Get_Move()	const { return nullptr; }
+	virtual	const _bool		Get_CanColl() const { return true; }
 
 public:		//	Set Functions
 	virtual void	Set_Pos(const _vec3* pPos) {}

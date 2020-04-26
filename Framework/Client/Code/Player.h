@@ -98,6 +98,7 @@ public:		//	Get Functions
 	virtual const _vec3*		Get_Pos()	const override;
 	virtual const _vec3*		Get_PrePos() const override { return &m_vPrePos; }
 	virtual	const _vec3*		Get_Move() const override { return &m_vMove; }
+	virtual	const _bool			Get_CanColl() const { return m_bCanColl; }
 
 public:		//	About Collision
 	virtual void	Hit(const _int& iAtk, const _vec3* pAtkPos) override;
@@ -162,7 +163,7 @@ private:
 	_float	m_fSlowCount = 0.f;
 	_float	m_fSlowTime = 0.f;
 
-	_bool	m_bHit = false;
+	_bool	m_bCanColl = true;
 	_vec3	m_vHurtDir = {0.f, 0.f, 0.f};
 
 public:

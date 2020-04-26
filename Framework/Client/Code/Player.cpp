@@ -775,6 +775,7 @@ void CPlayer::Key_Input_Dash_For_1stAnd3rdView(const _float & fTimeDelta)
 		Engine::Add_GameObject(L"Effect", L"PlayerDash", pAirRing);
 		m_eCurState = CPlayer::P_DASH;
 		Engine::PlaySound_(L"StandardDash.wav", CSoundMgr::EFFECT);
+		m_bCanColl = false;
 	}
 }
 
@@ -803,6 +804,7 @@ void CPlayer::Key_Input_Dash_For_QuaterView(const _float & fTimeDleta)
 		Engine::Add_GameObject(L"Effect", L"PlayerDash", pAirRing);
 		m_eCurState = CPlayer::P_DASH;
 		Engine::PlaySound_(L"StandardDash.wav", CSoundMgr::EFFECT);
+		m_bCanColl = false;
 	}
 }
 
@@ -1203,6 +1205,7 @@ _int CPlayer::Dash_Update(const _float& fTimeDelta)
 	if (m_bAnimFinish)
 	{
 		m_eCurState = CPlayer::P_IDLE;
+		m_bCanColl = true;
 		return 0;
 	}
 
