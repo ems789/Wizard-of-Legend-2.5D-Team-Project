@@ -12,7 +12,9 @@
 #include "TestMonster.h"
 #include "Mouse.h"
 #include "Golem.h"
+#include "Mage.h"
 #include "Cyclops.h"
+#include "Knight.h"
 #include "FireBoss.h"
 #include "LightningBoss.h"
 #include "CardSpawn.h"
@@ -95,16 +97,27 @@ _int CFireStage::Update_Scene(const _float& fTimeDelta)
 	//	Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
 	//}
 
+		// 테스트용
 	if (Engine::KeyDown(DIK_F9))
 	{
-		// LightningBoss
-		_vec3 vCardPos = { 50, 1.f, 37 };
-		Engine::CGameObject* pGameObject = CLightningBoss::Create(m_pGraphicDev, &_vec3(50, 1.f, 37));
+		_vec3 vCardPos = { 50.f, 1.f, 50.f };
+		Engine::CGameObject* pGameObject = CKnight::Create(m_pGraphicDev, &vCardPos);
 		NULL_CHECK_RETURN(pGameObject, E_FAIL);
 
 		CCardSpawn* pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
 		Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
 	}
+
+	//if (Engine::KeyDown(DIK_F9))
+	//{
+	//	// LightningBoss
+	//	_vec3 vCardPos = { 50, 1.f, 37 };
+	//	Engine::CGameObject* pGameObject = CLightningBoss::Create(m_pGraphicDev, &_vec3(50, 1.f, 37));
+	//	NULL_CHECK_RETURN(pGameObject, E_FAIL);
+
+	//	CCardSpawn* pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
+	//	Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
+	//}
 
 	const Engine::CTransform* pPlayerTransform = dynamic_cast<const Engine::CTransform*>(Engine::Get_Component_of_Player(L"Com_Transform", Engine::ID_DYNAMIC));
 

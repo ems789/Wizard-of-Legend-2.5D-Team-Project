@@ -192,6 +192,7 @@
     <ClInclude Include="..\Code\GuidedFireBall.h" />
     <ClInclude Include="..\Code\GuidedFireGen.h" />
     <ClInclude Include="..\Code\Inven.h" />
+    <ClInclude Include="..\Code\Knight.h" />
     <ClInclude Include="..\Code\LaidEffect.h" />
     <ClInclude Include="..\Code\LaidFollowingEffect.h" />
     <ClInclude Include="..\Code\LightningBoss.h" />
@@ -213,6 +214,7 @@
     <ClInclude Include="..\Code\RoomBlock.h" />
     <ClInclude Include="..\Code\RotatedBillEffect.h" />
     <ClInclude Include="..\Code\SignitureEffect.h" />
+    <ClInclude Include="..\Code\Mage.h" />
     <ClInclude Include="..\Code\SphereCollider.h" />
     <ClInclude Include="..\Code\Stage.h" />
     <ClInclude Include="..\Code\Terrain.h" />
@@ -227,6 +229,7 @@
     <ClInclude Include="..\Code\UIObject.h" />
     <ClInclude Include="..\Code\Wall.h" />
     <ClInclude Include="..\Code\Wind.h" />
+    <ClInclude Include="..\Code\WindAgentSwirl.h" />
     <ClInclude Include="..\Code\WindSlash.h" />
     <ClInclude Include="..\Header\Defines.h" />
     <ClInclude Include="..\Header\Enum.h" />
@@ -272,6 +275,7 @@
     <ClCompile Include="..\Code\GuidedFireBall.cpp" />
     <ClCompile Include="..\Code\GuidedFireGen.cpp" />
     <ClCompile Include="..\Code\Inven.cpp" />
+    <ClCompile Include="..\Code\Knight.cpp" />
     <ClCompile Include="..\Code\LaidEffect.cpp" />
     <ClCompile Include="..\Code\LaidFollowingEffect.cpp" />
     <ClCompile Include="..\Code\LightningBoss.cpp" />
@@ -293,6 +297,7 @@
     <ClCompile Include="..\Code\RoomBlock.cpp" />
     <ClCompile Include="..\Code\RotatedBillEffect.cpp" />
     <ClCompile Include="..\Code\SignitureEffect.cpp" />
+    <ClCompile Include="..\Code\Mage.cpp" />
     <ClCompile Include="..\Code\SphereCollider.cpp" />
     <ClCompile Include="..\Code\Stage.cpp" />
     <ClCompile Include="..\Code\Terrain.cpp" />
@@ -307,6 +312,7 @@
     <ClCompile Include="..\Code\UIObject.cpp" />
     <ClCompile Include="..\Code\Wall.cpp" />
     <ClCompile Include="..\Code\Wind.cpp" />
+    <ClCompile Include="..\Code\WindAgentSwirl.cpp" />
     <ClCompile Include="..\Code\WindSlash.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="stdafx.cpp">
