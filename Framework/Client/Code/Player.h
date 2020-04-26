@@ -18,7 +18,7 @@ END
 class CPlayer : public Engine::CGameObject
 {
 public:
-	enum PLAYER_STATE { P_IDLE, P_RUN, P_ATTACK, P_ATTACK2, P_DASH, P_SKILL1, P_SKILL2, P_HURT, P_END };
+	enum PLAYER_STATE { P_IDLE, P_RUN, P_ATTACK, P_ATTACK2, P_DASH, P_SKILL1, P_SKILL2, P_SKILL3, P_HURT, P_END };
 	enum PLAYER_DIR { PD_UP, PD_DOWN, PD_RIGHT, PD_LEFT, PD_END };
 
 private:
@@ -75,6 +75,7 @@ private:	//	State Setting
 	void	Dash_State();
 	void	Skill1_State();
 	void	Skill2_State();
+	void	Skill3_State();
 	void	Hurt_State();
 
 private:	//	State Udate
@@ -84,6 +85,7 @@ private:	//	State Udate
 	_int	Dash_Update(const _float& fTimeDelta);
 	_int	Skill1_Update(const _float& fTimeDelta);
 	_int	Skill2_Update(const _float& fTimeDelta);
+	_int	Skill3_Update(const _float& fTimeDelta);
 	_int	Hurt_Update(const _float& fTimeDelta);
 
 public:		//	Set_Functions

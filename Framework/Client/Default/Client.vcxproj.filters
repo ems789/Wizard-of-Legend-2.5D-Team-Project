@@ -268,6 +268,15 @@
     <Filter Include="07.Monster\03.GhoulLarge">
       <UniqueIdentifier>{f586a011-0428-4c0c-8d3a-87a574dd8aca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="07.Monster\04.Mage">
+      <UniqueIdentifier>{e7a6b59d-7055-4632-b712-360e0415172a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Monster\05.Knight">
+      <UniqueIdentifier>{1bbd5289-3758-4d0a-b844-5a77e90f0d03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Monster\04.Mage\00.WindAgentSwirl">
+      <UniqueIdentifier>{6327eb94-cb23-443f-9217-7139e2309634}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -504,6 +513,15 @@
     <ClInclude Include="..\Code\GhoulLarge.h">
       <Filter>07.Monster\03.GhoulLarge</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\Mage.h">
+      <Filter>07.Monster\04.Mage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Knight.h">
+      <Filter>07.Monster\05.Knight</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\WindAgentSwirl.h">
+      <Filter>07.Monster\04.Mage\00.WindAgentSwirl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -715,6 +733,15 @@
     </ClCompile>
     <ClCompile Include="..\Code\GhoulLarge.cpp">
       <Filter>07.Monster\03.GhoulLarge</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Mage.cpp">
+      <Filter>07.Monster\04.Mage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Knight.cpp">
+      <Filter>07.Monster\05.Knight</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\WindAgentSwirl.cpp">
+      <Filter>07.Monster\04.Mage\00.WindAgentSwirl</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
