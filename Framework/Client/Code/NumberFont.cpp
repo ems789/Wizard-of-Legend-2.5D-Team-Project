@@ -28,6 +28,8 @@ HRESULT CNumberFont::Ready_NumberFont(LPDIRECT3DDEVICE9 pGraphicDev)
 
 void CNumberFont::DrawNumber(const _int & iNum, const _vec3 * pPos, const _float & fScale, D3DXCOLOR d3dColor)
 {
+	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
+	
 	_int iTemp = iNum;
 	stack<_int> NumStack;
 	while (iTemp)
@@ -37,16 +39,25 @@ void CNumberFont::DrawNumber(const _int & iNum, const _vec3 * pPos, const _float
 	}
 
 	_int	iSize = NumStack.size();
-	_int	iWidth = iSize * 6 * fScale;
+	_float	fWidth = iSize * 6 * fScale;
 
 	_vec3 vPos = *pPos;
-	vPos.x -= iWidth * 0.5f;
+	vPos.x -= fWidth * 0.5f;
 
-	_matrix matWorld;
+	//_vec3 vCamAngle;
+	//Engine::Get_MainCameraAngle(&vCamAngle);
+	//vCamAngle.x = 0.f;
+
+	_matrix matWorld, matRotY, matRotZ;
 	D3DXMatrixIdentity(&matWorld);
+	//D3DXMatrixRotationY(&matRotY, vCamAngle.y);
+	//D3DXMatrixRotationZ(&matRotZ, vCamAngle.z);
 	matWorld._11 = 5.f * fScale;
 	matWorld._22 = 6.f * fScale;
-	memcpy(&matWorld.m[3][0], pPos, sizeof(_vec3));
+
+	//matWorld *= matRotY * matRotZ;
+
+	memcpy(&matWorld.m[3][0], &vPos, sizeof(_vec3));
 	
 
 	for (_int i = 0; i < iSize; ++i)
@@ -60,7 +71,7 @@ void CNumberFont::DrawNumber(const _int & iNum, const _vec3 * pPos, const _float
 		matWorld._41 += 6 * fScale;
 	}
 
-	if (0 == iWidth)
+	if (0 == iSize)
 	{
 		m_pGraphicDev->SetTransform(D3DTS_WORLD, &matWorld);
 
@@ -68,6 +79,8 @@ void CNumberFont::DrawNumber(const _int & iNum, const _vec3 * pPos, const _float
 		m_pBufferCom->Set_Color(d3dColor);
 		m_pBufferCom->Render_Buffer();
 	}
+
+	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 }
 
 HRESULT CNumberFont::Add_Component()

@@ -10,8 +10,8 @@ class CBlobRoller;
 class CFireStage : public Engine::CScene
 {
 	enum	ROOM_STATE	{ ROOM_IDLE, ROOM_CLOSE, ROOM_OPEN, ROOM_END };
-	enum	ROOM_NUMBER { ROOM_NUM_1, ROOM_NUM_2, ROOM_NUM_3, ROOM_NUM_4, ROOM_NUM_5, ROOM_NUM_6, ROOM_NUM_7, ROOM_NUM_8, ROOM_NUM_9, ROOM_NUM_10, ROOM_NUM_END };
-	enum	ROOM_PHASE	{ RP_1, RP_2, RP_3, RP_4, RP_5, RP_6, RP_7, RP_8, RP_9, RP_10, RP_END };
+	enum	ROOM_NUMBER { ROOM_NUM_1, ROOM_NUM_2, ROOM_NUM_3, ROOM_NUM_4, ROOM_NUM_5, ROOM_NUM_6, ROOM_NUM_7, ROOM_NUM_8, ROOM_NUM_9, ROOM_NUM_END };
+	enum	ROOM_PHASE	{ RP_1, RP_2, RP_3, RP_4, RP_5, RP_6, RP_7, RP_8, RP_9, RP_END };
 
 private:
 	explicit CFireStage(LPDIRECT3DDEVICE9 pGraphicDev);
@@ -38,38 +38,47 @@ private:
 	void		ThirdMonsterGen(const _vec3* pPlayerPos);
 	void		FourthMonsterGen(const _vec3* pPlayerPos);
 	void		FifthMonsterGen(const _vec3* pPlayerPos);
+	void		SixthRoomStart(const _vec3* pPlayerPos);
 
 private:
 	_int		Room_State_Update(const _float& fTimeDelta);
 	_int		Room_Idle_Update(const _float& fTimeDelta);
 	_int		Room_Close_Update(const _float& fTimeDelta);
-	_int		Room_Open_Update(const _float& fTimeDelta);
 
 private:
-	_int		Rooms_Update(const _float& fTimeDelta);
 	_int		FirstRoom_Update(const _float& fTimeDelta);
 	_int		SecondRoom_Update(const _float& fTimeDelta);
 	_int		ThirdRoom_Update(const _float& fTimeDelta);
 
 private:
+	//	폭탄 피하기		-> 완료
 	_int		FourthRoom_Update(const _float& fTimeDelta);
 	_int		FourthRoom_Gen(const _float& fTimeDelta);
 	_int		FourthRoom_Go(const _float& fTimeDelta);
 	_int		FourthRoom_Gen2(const _float& fTimeDelta);
 	_int		FourthRoom_Go2(const _float& fTimeDelta);
 
+	//	상자 찾기		-> 완료
 	_int		FifthRoom_Update(const _float& fTimeDelta);
+
+	//	두더지 잡기		-> 미완
 	_int		SixthRoom_Update(const _float& fTimeDelta);
+
+	//	
 	_int		SeventhRoom_Update(const _float& fTimeDelta);
+
+	//	보스방
 	_int		EighthRoom_Update(const _float& fTimeDelta);
+
+	//	 다음 방
 	_int		NinthRoom_Update(const _float& fTimeDelta);
-	_int		TenthRoom_Update(const _float& fTimeDelta);
+
 
 private:
-	_bool		Check_Player_Pos(const _vec3* pPos, const _float& fMinX, const _float& fMaxX, const _float& fMinZ, const _float& fMaxZ);
 	_bool		Check_Monster();
 	void		RoomBlock_Close();
 	void		RoomBlock_Open();
+	HRESULT		Store_Setting();
 
 private:
 	_bool		m_b1stMonsterGen = false;
@@ -77,6 +86,7 @@ private:
 	_bool		m_b3rdMonsterGen = false;
 	_bool		m_b4thMonsterGen = false;
 	_bool		m_b5thMonsterGen = false;
+	_bool		m_b6thRoomStart = false;
 
 	_bool		m_bMonsterGen = false;
 
@@ -100,7 +110,7 @@ private:
 	_uint		m_ui4RoomPattern = 0;
 
 	_bool				m_bR4Go = false;
-	list<CBlobRoller*> m_BlobRollerList;
+	list<CBlobRoller*>	m_BlobRollerList;
 
 
 	list<CRoomBlock*>			m_RoomBlockList;

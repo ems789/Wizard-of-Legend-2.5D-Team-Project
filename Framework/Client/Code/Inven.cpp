@@ -51,27 +51,29 @@ HRESULT CInven::Ready_Inven(LPDIRECT3DDEVICE9 pGraphicDev)
 
 	m_eCurState = CInven::INVEN_OFF;
 	m_eCurSelect = CInven::SELECT_BASE;
+
+	m_iCoin = 600;
 	
 	//스킬 추가 부분 추가된 부분
-	CMeteorStrike* pMeteorStrike = CMeteorStrike::Create(m_pGraphicDev);
-	NULL_CHECK_RETURN(pMeteorStrike, E_FAIL);
-	CFireBall* pFireBall = CFireBall::Create(m_pGraphicDev);
-	NULL_CHECK_RETURN(pFireBall, E_FAIL);
-	CGuidedFireBall* pGuidedFireBall = CGuidedFireBall::Create(m_pGraphicDev);
-	NULL_CHECK_RETURN(pGuidedFireBall, E_FAIL);
-	CAquaVortex* pAqua = CAquaVortex::Create(m_pGraphicDev);
-	NULL_CHECK_RETURN(pAqua, E_FAIL);
-	CWaterBall* pWaterBall = CWaterBall::Create(m_pGraphicDev);
-	NULL_CHECK_RETURN(pWaterBall, E_FAIL);
-	CSharkPool* pSharkPool = CSharkPool::Create(m_pGraphicDev);
-	NULL_CHECK_RETURN(pSharkPool, E_FAIL);
+	//CMeteorStrike* pMeteorStrike = CMeteorStrike::Create(m_pGraphicDev);
+	//NULL_CHECK_RETURN(pMeteorStrike, E_FAIL);
+	//CFireBall* pFireBall = CFireBall::Create(m_pGraphicDev);
+	//NULL_CHECK_RETURN(pFireBall, E_FAIL);
+	//CGuidedFireBall* pGuidedFireBall = CGuidedFireBall::Create(m_pGraphicDev);
+	//NULL_CHECK_RETURN(pGuidedFireBall, E_FAIL);
+	//CAquaVortex* pAqua = CAquaVortex::Create(m_pGraphicDev);
+	//NULL_CHECK_RETURN(pAqua, E_FAIL);
+	//CWaterBall* pWaterBall = CWaterBall::Create(m_pGraphicDev);
+	//NULL_CHECK_RETURN(pWaterBall, E_FAIL);
+	//CSharkPool* pSharkPool = CSharkPool::Create(m_pGraphicDev);
+	//NULL_CHECK_RETURN(pSharkPool, E_FAIL);
 
-	Add_Skill(L"Skill_AquaVortex", pAqua);
-	Add_Skill(L"Skill_WaterBall", pWaterBall);
-	Add_Skill(L"Skill_SharkPool", pSharkPool);
-	Add_Skill(L"Skill_MeteorStrike", pMeteorStrike);
-	Add_Skill(L"Skill_GuidedFire", pGuidedFireBall);
-	Add_Skill(L"Skill_FireBall", pFireBall);
+	//Add_Skill(L"Skill_AquaVortex", pAqua);
+	//Add_Skill(L"Skill_WaterBall", pWaterBall);
+	//Add_Skill(L"Skill_SharkPool", pSharkPool);
+	//Add_Skill(L"Skill_MeteorStrike", pMeteorStrike);
+	//Add_Skill(L"Skill_GuidedFire", pGuidedFireBall);
+	//Add_Skill(L"Skill_FireBall", pFireBall);
 
 	return S_OK;
 }

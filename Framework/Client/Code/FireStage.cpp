@@ -22,6 +22,15 @@
 #include "BlobSpitter.h"
 #include "GhoulLarge.h"
 #include "BlobRoller.h"
+#include "SkillCard.h"
+#include "FireBall.h"
+#include "MeteorStrike.h"
+#include "GuidedFireBall.h"
+#include "AquaVortex.h"
+#include "WaterBall.h"
+#include "SharkPool.h"
+#include "ImageObject.h"
+#include "Barrel.h"
 
 CFireStage::CFireStage(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CScene(pGraphicDev)
@@ -44,6 +53,7 @@ HRESULT CFireStage::Ready_Scene()
 	FAILED_CHECK_RETURN(Ready_UI_Layer(L"UI"), E_FAIL);
 	FAILED_CHECK_RETURN(Ready_Camera(), E_FAIL);
 	//FAILED_CHECK_RETURN(UI_Setting(), E_FAIL);
+	FAILED_CHECK_RETURN(Store_Setting(), E_FAIL);
 	CUI::GetInstance()->ShowOnUI();
 
 	Engine::StopAll();
@@ -112,6 +122,7 @@ HRESULT CFireStage::Ready_GameLogic_Layer(const _tchar * pLayerTag)
 	pLayer->Add_GameObject(L"Terrain", pGameObject);
 
 	m_mapLayer.emplace(pLayerTag, pLayer);
+
 
 	return S_OK;
 }
@@ -427,6 +438,71 @@ void CFireStage::FifthMonsterGen(const _vec3 * pPlayerPos)
 {
 	if (m_b5thMonsterGen)
 		return;
+
+	_float	fMinX = 71.f, fMaxX = 88.f;
+	_float	fMinZ = 5.f, fMaxZ = 17.f;
+
+	if (pPlayerPos->x >= fMinX && pPlayerPos->x <= fMaxX &&
+		pPlayerPos->z >= fMinZ && pPlayerPos->z <= fMaxZ)
+	{
+		_float	fMidX = (fMinX + fMaxX) / 2;
+		_float	fMidZ = (fMinZ + fMaxZ) / 2;
+
+		_float	fStartX = fMidX - 3.f;
+		_float	fStartZ = fMidZ - 3.f;
+
+		_bool	bBarrel[9] = { true, false, };
+		for (_int i = 0; i < 20; ++i)
+		{
+			_int iIndexA = rand() % 9;
+			_int iIndexB = rand() % 9;
+			swap(bBarrel[iIndexA], bBarrel[iIndexB]);
+		}
+
+		for (_int i = 0; i < 3; ++i)
+		{
+			for (_int j = 0; j < 3; ++j)
+			{
+				CBarrel* pBarrel = CBarrel::Create(m_pGraphicDev, L"Texture_Barrel", &_vec3(fStartX + j * 3.f, 1.f, fStartZ + i * 3.f), 0.05f, 1.f, 0.f, !bBarrel[i * 3 + j]);
+				if (bBarrel[i * 3 + j])
+					Engine::Add_GameObject(L"Monster", L"Barrel", pBarrel);
+				else
+					Engine::Add_GameObject(L"GameLogic", L"BoomBarrel", pBarrel);
+			}
+		}
+
+
+		CRoomBlock* pRoomBlock = CRoomBlock::Create(m_pGraphicDev, &_vec3(3.5f, 3.5f, 0.f), &_vec3(69.f, 2.f, 8.f), CRoomBlock::BLOCK_RIGHT);
+		Add_GameObject(L"GameLogic", L"RoomBlock", pRoomBlock);
+		m_RoomBlockList.push_back(pRoomBlock);
+
+		pRoomBlock = CRoomBlock::Create(m_pGraphicDev, &_vec3(3.5f, 3.5f, 0.f), &_vec3(90.f, 2.f, 8.5f), CRoomBlock::BLOCK_LEFT);
+		Add_GameObject(L"GameLogic", L"RoomBlock", pRoomBlock);
+		m_RoomBlockList.push_back(pRoomBlock);
+
+		m_eCurState = ROOM_CLOSE;
+		m_eRoomNumber = ROOM_NUM_5;
+		m_eRoomPhase = RP_1;
+		m_fTimer = 0.f;
+
+		m_fRoomMinX = fMinX;
+		m_fRoomMaxX = fMaxX;
+		m_fRoomMinZ = fMinZ;
+		m_fRoomMaxZ = fMaxZ;
+
+		RoomBlock_Close();
+
+		m_b5thMonsterGen = true;
+	}
+
+
+
+}
+
+void CFireStage::SixthRoomStart(const _vec3 * pPlayerPos)
+{
+
+
 }
 
 _int CFireStage::Room_State_Update(const _float & fTimeDelta)
@@ -438,9 +514,6 @@ _int CFireStage::Room_State_Update(const _float & fTimeDelta)
 		break;
 	case CFireStage::ROOM_CLOSE:
 		Room_Close_Update(fTimeDelta);
-		break;
-	case CFireStage::ROOM_OPEN:
-		Room_Open_Update(fTimeDelta);
 		break;
 	}
 
@@ -457,7 +530,7 @@ _int CFireStage::Room_Idle_Update(const _float & fTimeDelta)
 	SecondMonsterGen(pPlayerPos);
 	ThirdMonsterGen(pPlayerPos);
 	FourthMonsterGen(pPlayerPos);
-
+	FifthMonsterGen(pPlayerPos);
 
 	return _int();
 }
@@ -494,19 +567,10 @@ _int CFireStage::Room_Close_Update(const _float & fTimeDelta)
 	case CFireStage::ROOM_NUM_9:
 		NinthRoom_Update(fTimeDelta);
 		break;
-	case CFireStage::ROOM_NUM_10:
-		TenthRoom_Update(fTimeDelta);
-		break;
 	}
 
 	return 0;
 }
-
-_int CFireStage::Room_Open_Update(const _float & fTimeDelta)
-{
-	return _int();
-}
-
 
 CFireStage* CFireStage::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 {
@@ -720,6 +784,9 @@ _int CFireStage::FourthRoom_Go2(const _float & fTimeDelta)
 
 _int CFireStage::FifthRoom_Update(const _float & fTimeDelta)
 {
+	if (false == Check_Monster())
+		RoomBlock_Open();
+
 	return _int();
 }
 
@@ -739,11 +806,6 @@ _int CFireStage::EighthRoom_Update(const _float & fTimeDelta)
 }
 
 _int CFireStage::NinthRoom_Update(const _float & fTimeDelta)
-{
-	return _int();
-}
-
-_int CFireStage::TenthRoom_Update(const _float & fTimeDelta)
 {
 	return _int();
 }
@@ -796,4 +858,54 @@ void CFireStage::RoomBlock_Open()
 		pRoomBlock->Open();
 	m_RoomBlockList.clear();
 
+}
+
+HRESULT CFireStage::Store_Setting()
+{
+	_vec3 vPos = { 45.f, 1.f, 10.f };
+
+	_vec3 vMerchantPos = vPos;
+	vMerchantPos.x += 5.f;
+	vMerchantPos.z += 3.f;
+
+	CImageObject* pMerchant = CImageObject::Create(m_pGraphicDev, L"Texture_SkillMerchant", &vMerchantPos, 0.05f, 1.f, 0.f);
+	Add_GameObject(L"GameLogic", L"NPC_SkillMerchant", pMerchant);
+
+	Engine::CSkill* pSkill = nullptr;
+
+	pSkill = CFireBall::Create(m_pGraphicDev);
+	CSkillCard* pSkillCard = CSkillCard::Create(m_pGraphicDev, L"FireBall", &vPos, 0.025f, L"Skill_FireBall", pSkill, 100, 1.f);
+	Add_GameObject(L"GameLogic", L"FireBall_SkillCard", pSkillCard);
+
+
+	vPos.x += 2.f;
+	pSkill = CMeteorStrike::Create(m_pGraphicDev);
+	pSkillCard = CSkillCard::Create(m_pGraphicDev, L"Meteor", &vPos, 0.025f, L"Skill_MeteorStrike", pSkill, 100, 1.f);
+	Add_GameObject(L"GameLogic", L"FireBall_SkillCard", pSkillCard);
+
+	vPos.x += 2.f;
+	pSkill = CGuidedFireBall::Create(m_pGraphicDev);
+	pSkillCard = CSkillCard::Create(m_pGraphicDev, L"FireSkill1", &vPos, 0.025f, L"Skill_GuidedFire", pSkill, 100, 1.f);
+	Add_GameObject(L"GameLogic", L"FireBall_SkillCard", pSkillCard);
+
+	vPos.x += 2.f;
+	pSkill = CAquaVortex::Create(m_pGraphicDev);
+	pSkillCard = CSkillCard::Create(m_pGraphicDev, L"AquaVortex", &vPos, 0.025f, L"Skill_AquaVortex", pSkill, 100, 1.f);
+	Add_GameObject(L"GameLogic", L"FireBall_SkillCard", pSkillCard);
+
+	vPos.x += 2.f;
+	pSkill = CWaterBall::Create(m_pGraphicDev);
+	pSkillCard = CSkillCard::Create(m_pGraphicDev, L"WaterBall", &vPos, 0.025f, L"Skill_WaterBall", pSkill, 100, 1.f);
+	Add_GameObject(L"GameLogic", L"FireBall_SkillCard", pSkillCard);
+
+	vPos.x += 2.f;
+	pSkill = CSharkPool::Create(m_pGraphicDev);
+	pSkillCard = CSkillCard::Create(m_pGraphicDev, L"WaterArc", &vPos, 0.025f, L"Skill_SharkPool", pSkill, 100, 1.f);
+	Add_GameObject(L"GameLogic", L"FireBall_SkillCard", pSkillCard);
+
+
+
+
+
+	return S_OK;
 }

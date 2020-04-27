@@ -156,7 +156,7 @@ private:
 	CUIImage*	m_pEquipAquaVortex;
 
 	/////////////////
-	_int			m_iCoin = 0;
+	_int			m_iCoin = 100;
 
 	map<wstring, Engine::CSkill*>  m_MapSkill;
 	CPlayer*	m_pPlayer;

@@ -121,7 +121,7 @@ void CUI::Render_PlayerUI()
 
 	m_pUICoin->Render_UIImage();
 
-	m_pNumberFont->DrawNumber(CInven::GetInstance()->Get_Coin(), &_vec3(-50.f, 500.f, 0.f), 4.f, D3DXCOLOR(1.f, 1.f, 1.f, 1.f));
+	m_pNumberFont->DrawNumber(CInven::GetInstance()->Get_Coin(), &_vec3(0.f, 500.f, 0.f), 4.f, D3DXCOLOR(1.f, 1.f, 1.f, 1.f));
 
 	m_pUISkillSlot->Render_UIImage();
 
