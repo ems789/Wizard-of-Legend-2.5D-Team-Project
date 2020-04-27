@@ -17,7 +17,7 @@ END
 class CWindBoss : public Engine::CGameObject
 {
 private:
-	enum WindBoss_STATE { WBS_IDLE, WBS_ATTACK, WBS_READYCHARGE, WBS_DASH, WBS_SPIN, WBS_DASH_READY, WBS_SPINEND, WBS_FlOAT,
+	enum WindBoss_STATE { WBS_IDLE, WBS_ATTACK, WBS_ATTACK2, WBS_ATTACK3, WBS_READYCHARGE, WBS_DASH, WBS_SPIN, WBS_DASH_READY, WBS_SPINEND, WBS_FlOAT,
 						  WBS_HURT, WBS_TAUNT, WBS_DEAD, WBS_END};
 
 	enum WindBoss_DIR {WBD_UP, WBD_DOWN, WBD_LEFT, WBD_RIGHT, WBD_END};
@@ -56,6 +56,8 @@ private:
 private:
 	void Idle_State();
 	void Attack_State();
+	void Attack_State2();
+	void Attack_State3();
 	void DashReady_State();
 	void Dash_State();
 	void Spin_State();
@@ -69,6 +71,8 @@ private:
 public:
 	_int Idle_Update(const _float& fTimeDelta);
 	_int Attack_Update(const _float& fTimeDelta);
+	_int Attack_Update2(const _float& fTimeDelta);
+	_int Attack_Update3(const _float& fTimeDelta);
 	void DashReady_Update(const _float& fTimeDelta);
 	_int Dash_Update(const _float& fTimeDelta);
 	void Float_Update(const _float& fTimeDelta);

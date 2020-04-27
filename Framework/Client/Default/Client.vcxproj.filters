@@ -518,14 +518,29 @@
     <ClInclude Include="..\Code\LaidFollowingEffect.h">
       <Filter>03.Effect\08.FollowingEffect</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\BlobRoller.h">
+      <Filter>07.Monster\06.BlobRoller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Store.h">
+      <Filter>09.Store</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\ImageObject.h">
+      <Filter>09.Store\00.ImageObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\SkillCard.h">
+      <Filter>09.Store\01.SkillCard</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\BlobBullet.h" />
+    <ClInclude Include="..\Code\GhoulLarge.h" />
+    <ClInclude Include="..\Code\Knight.h" />
+    <ClInclude Include="..\Code\RotatedBillEffect.h" />
+    <ClInclude Include="..\Code\Mage.h" />
+    <ClInclude Include="..\Code\WindAgentSwirl.h" />
     <ClInclude Include="..\Code\Aqua.h">
       <Filter>05.Skill\01.Water\02.AquaVortex\00.Aqua</Filter>
     </ClInclude>
     <ClInclude Include="..\Code\AquaVortex.h">
       <Filter>05.Skill\01.Water\02.AquaVortex\00.Aqua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Code\WaterThrow.h">
-      <Filter>05.Skill\01.Water\01.SharkPool\01.Shark</Filter>
     </ClInclude>
     <ClInclude Include="..\Code\Shark.h">
       <Filter>05.Skill\01.Water\01.SharkPool\01.Shark</Filter>
@@ -534,10 +549,13 @@
       <Filter>05.Skill\01.Water\01.SharkPool\01.Shark</Filter>
     </ClInclude>
     <ClInclude Include="..\Code\Water.h">
-      <Filter>05.Skill\01.Water\00.WaterBall</Filter>
+      <Filter>05.Skill\01.Water\01.SharkPool\00.WaterThrow</Filter>
     </ClInclude>
     <ClInclude Include="..\Code\WaterBall.h">
-      <Filter>05.Skill\01.Water\00.WaterBall</Filter>
+      <Filter>05.Skill\01.Water\01.SharkPool\00.WaterThrow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\WaterThrow.h">
+      <Filter>05.Skill\01.Water\01.SharkPool\00.WaterThrow</Filter>
     </ClInclude>
     <ClInclude Include="..\Code\WindBall.h">
       <Filter>07.Monster\99.Boss\02.WindBoss</Filter>
@@ -550,18 +568,6 @@
     </ClInclude>
     <ClInclude Include="..\Code\WindTornado.h">
       <Filter>07.Monster\99.Boss\02.WindBoss</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Code\BlobRoller.h">
-      <Filter>07.Monster\06.BlobRoller</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Code\Store.h">
-      <Filter>09.Store</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Code\ImageObject.h">
-      <Filter>09.Store\00.ImageObject</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Code\SkillCard.h">
-      <Filter>09.Store\01.SkillCard</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -762,14 +768,29 @@
     <ClCompile Include="..\Code\LaidFollowingEffect.cpp">
       <Filter>03.Effect\08.FollowingEffect</Filter>
     </ClCompile>
+    <ClCompile Include="..\Code\BlobRoller.cpp">
+      <Filter>07.Monster\06.BlobRoller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Store.cpp">
+      <Filter>09.Store</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\ImageObject.cpp">
+      <Filter>09.Store\00.ImageObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\SkillCard.cpp">
+      <Filter>09.Store\01.SkillCard</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\BlobBullet.cpp" />
+    <ClCompile Include="..\Code\GhoulLarge.cpp" />
+    <ClCompile Include="..\Code\Knight.cpp" />
+    <ClCompile Include="..\Code\RotatedBillEffect.cpp" />
+    <ClCompile Include="..\Code\Mage.cpp" />
+    <ClCompile Include="..\Code\WindAgentSwirl.cpp" />
     <ClCompile Include="..\Code\Aqua.cpp">
       <Filter>05.Skill\01.Water\02.AquaVortex\00.Aqua</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\AquaVortex.cpp">
       <Filter>05.Skill\01.Water\02.AquaVortex\00.Aqua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Code\WaterThrow.cpp">
-      <Filter>05.Skill\01.Water\01.SharkPool\01.Shark</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\Shark.cpp">
       <Filter>05.Skill\01.Water\01.SharkPool\01.Shark</Filter>
@@ -778,10 +799,13 @@
       <Filter>05.Skill\01.Water\01.SharkPool\01.Shark</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\Water.cpp">
-      <Filter>05.Skill\01.Water\00.WaterBall</Filter>
+      <Filter>05.Skill\01.Water\01.SharkPool\00.WaterThrow</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\WaterBall.cpp">
-      <Filter>05.Skill\01.Water\00.WaterBall</Filter>
+      <Filter>05.Skill\01.Water\01.SharkPool\00.WaterThrow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\WaterThrow.cpp">
+      <Filter>05.Skill\01.Water\01.SharkPool\00.WaterThrow</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\WindBall.cpp">
       <Filter>07.Monster\99.Boss\02.WindBoss</Filter>
@@ -794,18 +818,6 @@
     </ClCompile>
     <ClCompile Include="..\Code\WindTornado.cpp">
       <Filter>07.Monster\99.Boss\02.WindBoss</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Code\BlobRoller.cpp">
-      <Filter>07.Monster\06.BlobRoller</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Code\Store.cpp">
-      <Filter>09.Store</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Code\ImageObject.cpp">
-      <Filter>09.Store\00.ImageObject</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Code\SkillCard.cpp">
-      <Filter>09.Store\01.SkillCard</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

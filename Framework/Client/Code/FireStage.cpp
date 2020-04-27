@@ -22,6 +22,7 @@
 #include "BlobSpitter.h"
 #include "GhoulLarge.h"
 #include "BlobRoller.h"
+#include "WindBoss.h"
 
 CFireStage::CFireStage(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CScene(pGraphicDev)
@@ -63,6 +64,13 @@ _int CFireStage::Update_Scene(const _float& fTimeDelta)
 	//SecondMonsterGen(pPlayerPos);
 	//ThirdMonsterGen(pPlayerPos);
 	//FourthMonsterGen(pPlayerPos);
+
+	if (Engine::KeyDown(DIK_O))
+	{
+		CWindBoss* pBoss = CWindBoss::Create(m_pGraphicDev, &_vec3(50.f, 1.f, 37.f));
+		Add_GameObject(L"Monster", L"WindBoss", pBoss);
+	}
+
 
 	Room_State_Update(fTimeDelta);
 
