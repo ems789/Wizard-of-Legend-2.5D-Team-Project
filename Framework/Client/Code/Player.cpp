@@ -123,7 +123,7 @@ void CPlayer::Render_GameObject()
 _int CPlayer::Change_Skill(_int SlotNumber, Engine::CSkill * pSkill)
 {
 	if (m_vecEquipSkill[SlotNumber] != nullptr)
-		Engine::Safe_Release(m_vecEquipSkill[1]);
+		Engine::Safe_Release(m_vecEquipSkill[SlotNumber]);
 
 	m_vecEquipSkill[SlotNumber] = pSkill;
 	m_vecEquipSkill[SlotNumber]->AddRef();

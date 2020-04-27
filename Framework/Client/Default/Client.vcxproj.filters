@@ -238,15 +238,6 @@
     <Filter Include="07.Monster\02.BlobSpitter">
       <UniqueIdentifier>{f30f0e03-3bc3-457d-8e03-719be1c0d3d7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.GameObject\99.public\05.UIObject">
-      <UniqueIdentifier>{3092d9cd-299b-4b6d-bfeb-5110f9927071}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.GameObject\99.public\06.UIButton">
-      <UniqueIdentifier>{0da6afae-143f-4e8d-8a10-2f36462e1edd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.GameObject\99.public\07.UIBlink">
-      <UniqueIdentifier>{74d2bb2f-380e-4513-ae82-a599a785b50f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="05.Skill\01.Water">
       <UniqueIdentifier>{0d554a0f-4834-4a70-bd49-a9bed46016b0}</UniqueIdentifier>
     </Filter>
@@ -294,6 +285,45 @@
     </Filter>
     <Filter Include="09.Store\01.SkillCard">
       <UniqueIdentifier>{d7f4476f-4e67-4dd6-80ee-8ddcf228b777}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Monster\02.BlobSpitter\00.BlobBullet">
+      <UniqueIdentifier>{88c7a175-d469-4995-9222-806337fd6871}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Monster\03.GhoulLarge">
+      <UniqueIdentifier>{222fc8d3-8d6e-4e80-98fc-3fdb6168b4a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Monster\04.Knight">
+      <UniqueIdentifier>{e9721464-633e-477f-a05b-9dc4364fbae1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Monster\05.Mage">
+      <UniqueIdentifier>{18b55cc4-f276-4f9a-99ee-97b950055527}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Effect\09.RotatedBillEffect">
+      <UniqueIdentifier>{3e14d9a3-7aa3-40c4-9027-001c4abf47e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Monster\99.Boss\01.LightningBoss\01.LightningChainDash">
+      <UniqueIdentifier>{a8b6063e-b4b9-4602-b3fb-72ab88a2bd43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Monster\99.Boss\01.LightningBoss\02.LightningFalling">
+      <UniqueIdentifier>{aaa3bb63-af85-475e-ac3e-970b1b04333c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Monster\05.Mage\00.WindAgentSwirl">
+      <UniqueIdentifier>{a3eb6d5f-345f-49f2-8d32-dec71a2c4480}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\00.Logo\01.UIObject">
+      <UniqueIdentifier>{3092d9cd-299b-4b6d-bfeb-5110f9927071}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\00.Logo\02.UIButton">
+      <UniqueIdentifier>{0da6afae-143f-4e8d-8a10-2f36462e1edd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\00.Logo\03.UIBlink">
+      <UniqueIdentifier>{74d2bb2f-380e-4513-ae82-a599a785b50f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\04.FireStage">
+      <UniqueIdentifier>{8d863138-59ba-4254-a923-f725038f50bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\04.FireStage\00.Barrel">
+      <UniqueIdentifier>{174d7d60-5a1f-4b7d-833e-316a06b99032}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -499,16 +529,14 @@
       <Filter>94.NumberFont</Filter>
     </ClInclude>
     <ClInclude Include="..\Code\UIObject.h">
-      <Filter>02.GameObject\99.public\05.UIObject</Filter>
+      <Filter>02.GameObject\00.Logo\01.UIObject</Filter>
     </ClInclude>
     <ClInclude Include="..\Code\UIButton.h">
-      <Filter>02.GameObject\99.public\06.UIButton</Filter>
+      <Filter>02.GameObject\00.Logo\02.UIButton</Filter>
     </ClInclude>
     <ClInclude Include="..\Code\UIBlink.h">
-      <Filter>02.GameObject\99.public\07.UIBlink</Filter>
+      <Filter>02.GameObject\00.Logo\03.UIBlink</Filter>
     </ClInclude>
-    <ClInclude Include="..\Code\LightningChainDash.h" />
-    <ClInclude Include="..\Code\LightningFalling.h" />
     <ClInclude Include="..\Code\BlobSpitter.h">
       <Filter>07.Monster\02.BlobSpitter</Filter>
     </ClInclude>
@@ -521,53 +549,59 @@
     <ClInclude Include="..\Code\BlobRoller.h">
       <Filter>07.Monster\06.BlobRoller</Filter>
     </ClInclude>
-    <ClInclude Include="..\Code\Store.h">
-      <Filter>09.Store</Filter>
-    </ClInclude>
     <ClInclude Include="..\Code\ImageObject.h">
       <Filter>09.Store\00.ImageObject</Filter>
     </ClInclude>
     <ClInclude Include="..\Code\SkillCard.h">
       <Filter>09.Store\01.SkillCard</Filter>
     </ClInclude>
-    <ClInclude Include="..\Code\BlobBullet.h" />
-    <ClInclude Include="..\Code\GhoulLarge.h" />
-    <ClInclude Include="..\Code\Knight.h" />
-    <ClInclude Include="..\Code\RotatedBillEffect.h" />
-    <ClInclude Include="..\Code\Mage.h" />
-    <ClInclude Include="..\Code\WindAgentSwirl.h" />
-    <ClInclude Include="..\Code\Aqua.h">
-      <Filter>05.Skill\01.Water\02.AquaVortex\00.Aqua</Filter>
+    <ClInclude Include="..\Code\BlobBullet.h">
+      <Filter>07.Monster\02.BlobSpitter\00.BlobBullet</Filter>
     </ClInclude>
-    <ClInclude Include="..\Code\AquaVortex.h">
-      <Filter>05.Skill\01.Water\02.AquaVortex\00.Aqua</Filter>
+    <ClInclude Include="..\Code\GhoulLarge.h">
+      <Filter>07.Monster\03.GhoulLarge</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Knight.h">
+      <Filter>07.Monster\04.Knight</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Mage.h">
+      <Filter>07.Monster\05.Mage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\RotatedBillEffect.h">
+      <Filter>03.Effect\09.RotatedBillEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\LightningChainDash.h">
+      <Filter>07.Monster\99.Boss\01.LightningBoss\01.LightningChainDash</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\LightningFalling.h">
+      <Filter>07.Monster\99.Boss\01.LightningBoss\02.LightningFalling</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\WindAgentSwirl.h">
+      <Filter>07.Monster\05.Mage\00.WindAgentSwirl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\WaterBall.h">
+      <Filter>05.Skill\01.Water\00.WaterBall</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\WaterThrow.h">
+      <Filter>05.Skill\01.Water\01.SharkPool\00.WaterThrow</Filter>
     </ClInclude>
     <ClInclude Include="..\Code\Shark.h">
       <Filter>05.Skill\01.Water\01.SharkPool\01.Shark</Filter>
     </ClInclude>
     <ClInclude Include="..\Code\SharkPool.h">
-      <Filter>05.Skill\01.Water\01.SharkPool\01.Shark</Filter>
+      <Filter>05.Skill\01.Water\01.SharkPool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Aqua.h">
+      <Filter>05.Skill\01.Water\02.AquaVortex\00.Aqua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\AquaVortex.h">
+      <Filter>05.Skill\01.Water\02.AquaVortex</Filter>
     </ClInclude>
     <ClInclude Include="..\Code\Water.h">
-      <Filter>05.Skill\01.Water\01.SharkPool\00.WaterThrow</Filter>
+      <Filter>05.Skill\01.Water</Filter>
     </ClInclude>
-    <ClInclude Include="..\Code\WaterBall.h">
-      <Filter>05.Skill\01.Water\01.SharkPool\00.WaterThrow</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Code\WaterThrow.h">
-      <Filter>05.Skill\01.Water\01.SharkPool\00.WaterThrow</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Code\WindBall.h">
-      <Filter>07.Monster\99.Boss\02.WindBoss</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Code\WindBoss.h">
-      <Filter>07.Monster\99.Boss\02.WindBoss</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Code\WindSpin.h">
-      <Filter>07.Monster\99.Boss\02.WindBoss</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Code\WindTornado.h">
-      <Filter>07.Monster\99.Boss\02.WindBoss</Filter>
+    <ClInclude Include="..\Code\Barrel.h">
+      <Filter>02.GameObject\04.FireStage\00.Barrel</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -749,16 +783,14 @@
       <Filter>94.NumberFont</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\UIObject.cpp">
-      <Filter>02.GameObject\99.public\05.UIObject</Filter>
+      <Filter>02.GameObject\00.Logo\01.UIObject</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\UIButton.cpp">
-      <Filter>02.GameObject\99.public\06.UIButton</Filter>
+      <Filter>02.GameObject\00.Logo\02.UIButton</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\UIBlink.cpp">
-      <Filter>02.GameObject\99.public\07.UIBlink</Filter>
+      <Filter>02.GameObject\00.Logo\03.UIBlink</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\LightningChainDash.cpp" />
-    <ClCompile Include="..\Code\LightningFalling.cpp" />
     <ClCompile Include="..\Code\BlobSpitter.cpp">
       <Filter>07.Monster\02.BlobSpitter</Filter>
     </ClCompile>
@@ -771,53 +803,59 @@
     <ClCompile Include="..\Code\BlobRoller.cpp">
       <Filter>07.Monster\06.BlobRoller</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\Store.cpp">
-      <Filter>09.Store</Filter>
-    </ClCompile>
     <ClCompile Include="..\Code\ImageObject.cpp">
       <Filter>09.Store\00.ImageObject</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\SkillCard.cpp">
       <Filter>09.Store\01.SkillCard</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\BlobBullet.cpp" />
-    <ClCompile Include="..\Code\GhoulLarge.cpp" />
-    <ClCompile Include="..\Code\Knight.cpp" />
-    <ClCompile Include="..\Code\RotatedBillEffect.cpp" />
-    <ClCompile Include="..\Code\Mage.cpp" />
-    <ClCompile Include="..\Code\WindAgentSwirl.cpp" />
-    <ClCompile Include="..\Code\Aqua.cpp">
-      <Filter>05.Skill\01.Water\02.AquaVortex\00.Aqua</Filter>
+    <ClCompile Include="..\Code\BlobBullet.cpp">
+      <Filter>07.Monster\02.BlobSpitter\00.BlobBullet</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\AquaVortex.cpp">
-      <Filter>05.Skill\01.Water\02.AquaVortex\00.Aqua</Filter>
+    <ClCompile Include="..\Code\GhoulLarge.cpp">
+      <Filter>07.Monster\03.GhoulLarge</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Knight.cpp">
+      <Filter>07.Monster\04.Knight</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Mage.cpp">
+      <Filter>07.Monster\05.Mage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\RotatedBillEffect.cpp">
+      <Filter>03.Effect\09.RotatedBillEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\LightningChainDash.cpp">
+      <Filter>07.Monster\99.Boss\01.LightningBoss\01.LightningChainDash</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\LightningFalling.cpp">
+      <Filter>07.Monster\99.Boss\01.LightningBoss\02.LightningFalling</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\WindAgentSwirl.cpp">
+      <Filter>07.Monster\05.Mage\00.WindAgentSwirl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\WaterBall.cpp">
+      <Filter>05.Skill\01.Water\00.WaterBall</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\WaterThrow.cpp">
+      <Filter>05.Skill\01.Water\01.SharkPool\00.WaterThrow</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\Shark.cpp">
       <Filter>05.Skill\01.Water\01.SharkPool\01.Shark</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\SharkPool.cpp">
-      <Filter>05.Skill\01.Water\01.SharkPool\01.Shark</Filter>
+      <Filter>05.Skill\01.Water\01.SharkPool</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Aqua.cpp">
+      <Filter>05.Skill\01.Water\02.AquaVortex\00.Aqua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\AquaVortex.cpp">
+      <Filter>05.Skill\01.Water\02.AquaVortex</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\Water.cpp">
-      <Filter>05.Skill\01.Water\01.SharkPool\00.WaterThrow</Filter>
+      <Filter>05.Skill\01.Water</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\WaterBall.cpp">
-      <Filter>05.Skill\01.Water\01.SharkPool\00.WaterThrow</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Code\WaterThrow.cpp">
-      <Filter>05.Skill\01.Water\01.SharkPool\00.WaterThrow</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Code\WindBall.cpp">
-      <Filter>07.Monster\99.Boss\02.WindBoss</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Code\WindBoss.cpp">
-      <Filter>07.Monster\99.Boss\02.WindBoss</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Code\WindSpin.cpp">
-      <Filter>07.Monster\99.Boss\02.WindBoss</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Code\WindTornado.cpp">
-      <Filter>07.Monster\99.Boss\02.WindBoss</Filter>
+    <ClCompile Include="..\Code\Barrel.cpp">
+      <Filter>02.GameObject\04.FireStage\00.Barrel</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -169,6 +169,7 @@ _uint CLoading::Loading_ForState()
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_SkeletonMinion_AttackLeft", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/SkeletonMinion/Attack/Left/SkeletonMinionAttackLeft%d.png", 3), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_SkeletonMinion_Attack", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/SkeletonMinion/Attack/Right/SkeletonMinionAttackRight%d.png", 3), E_FAIL);
 
+
 	//	Monster
 	//	Golem
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Golem_Idle", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/Golem/Idle/GolemIdle.png"), E_FAIL);
@@ -331,6 +332,7 @@ _uint CLoading::Loading_ForState()
 
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_LightningGirlTeleportAir", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/LightningGirlTeleport/LightningGirlTeleportAir%d.png", 3), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_LightningGirlTeleportFloor", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/LightningGirlTeleport/LightningGirlTeleportFloor%d.png", 6), E_FAIL);
+
 	// WindBossTexture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WindBoss_Idle", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/WindBoss/Idle/AirBossIdle%d.png", 6), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WindBoss_ReadyCharge", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/WindBoss/ReadyCharge/AirBossReadyCharge%d.png", 11), E_FAIL);
@@ -344,8 +346,6 @@ _uint CLoading::Loading_ForState()
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WindBoss_DashLeft", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/WindBoss/Dash/Left/AirBossSlideLeft.png"), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WindBoss_DashRight", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/WindBoss/Dash/Right/AirBossSlideRight.png"), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WindBoss_Attack", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/WindBoss/Forehand/AirBossFlyingForehand%d.png", 2), E_FAIL);
-	
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WindBoss_Attack2", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/WindBoss/Backhand/AirBossFlyingBackhandAlt%d.png", 2), E_FAIL);
 
 	// Windboss Effectr
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Tornado", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/Tornado/Tornado_%d.png", 12), E_FAIL);
@@ -356,6 +356,16 @@ _uint CLoading::Loading_ForState()
 
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WindBall", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/WindBall/WindBall%d.png", 6), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WindPillar", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/WindPillar/WindPillar_%d.png", 10), E_FAIL);
+
+
+	//	Merchant Texture
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_SkillMerchant", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/NPC/SkillMerchant.png"), E_FAIL);
+
+	//	Barrel Texture
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Barrel", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Object/Barrel/Barrel.png"), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_BarrelDestroyed", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Object/Barrel/Destroyed/BarrelDestroyed%d.png", 4), E_FAIL);
+
+
 
 	//	WindAgentSwirl Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WindAgentSwirl", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Skill/WindAgentSwirl/WindAgentSwirl%d.png", 5), E_FAIL);
