@@ -1,7 +1,13 @@
 #include "stdafx.h"
 #include "Inven.h"
 #include "UIImage.h"
-
+#include "Player.h"
+#include "AquaVortex.h"
+#include "WaterBall.h"
+#include "SharkPool.h"
+#include "MeteorStrike.h"
+#include "GuidedFireBall.h"
+#include "FireBall.h"
 #include "Export_Function.h"
 #include "UI.h"
 #include "NumberFont.h"
@@ -46,6 +52,26 @@ HRESULT CInven::Ready_Inven(LPDIRECT3DDEVICE9 pGraphicDev)
 	m_eCurState = CInven::INVEN_OFF;
 	m_eCurSelect = CInven::SELECT_BASE;
 	
+	//스킬 추가 부분 추가된 부분
+	CMeteorStrike* pMeteorStrike = CMeteorStrike::Create(m_pGraphicDev);
+	NULL_CHECK_RETURN(pMeteorStrike, E_FAIL);
+	CFireBall* pFireBall = CFireBall::Create(m_pGraphicDev);
+	NULL_CHECK_RETURN(pFireBall, E_FAIL);
+	CGuidedFireBall* pGuidedFireBall = CGuidedFireBall::Create(m_pGraphicDev);
+	NULL_CHECK_RETURN(pGuidedFireBall, E_FAIL);
+	CAquaVortex* pAqua = CAquaVortex::Create(m_pGraphicDev);
+	NULL_CHECK_RETURN(pAqua, E_FAIL);
+	CWaterBall* pWaterBall = CWaterBall::Create(m_pGraphicDev);
+	NULL_CHECK_RETURN(pWaterBall, E_FAIL);
+	CSharkPool* pSharkPool = CSharkPool::Create(m_pGraphicDev);
+	NULL_CHECK_RETURN(pSharkPool, E_FAIL);
+
+	Add_Skill(L"Skill_AquaVortex", pAqua);
+	Add_Skill(L"Skill_WaterBall", pWaterBall);
+	Add_Skill(L"Skill_SharkPool", pSharkPool);
+	Add_Skill(L"Skill_MeteorStrike", pMeteorStrike);
+	Add_Skill(L"Skill_GuidedFire", pGuidedFireBall);
+	Add_Skill(L"Skill_FireBall", pFireBall);
 
 	return S_OK;
 }
@@ -197,19 +223,19 @@ _int CInven::Update_Inven(const _float & fTImeDelta)
 	case CInven::BASIC_WATER:
 		if (Engine::KeyDown(DIK_LEFT))
 		{
-			if (m_eCurSkill == CInven::WATERARC)
+			if (m_eCurSkill == CInven::SHARKPOOL)
 				m_eCurSkill = CInven::WATERBALL;
 
 			else if (m_eCurSkill == CInven::WATERBALL)
-				m_eCurSkill = CInven::WATERARC;
+				m_eCurSkill = CInven::SHARKPOOL;
 
 		}
 		if (Engine::KeyDown(DIK_RIGHT))
 		{
 			if (m_eCurSkill == CInven::WATERBALL)
-				m_eCurSkill = CInven::WATERARC;
+				m_eCurSkill = CInven::SHARKPOOL;
 
-			else if (m_eCurSkill == CInven::WATERARC)
+			else if (m_eCurSkill == CInven::SHARKPOOL)
 				m_eCurSkill = CInven::WATERBALL;
 		}
 		if (Engine::KeyDown(DIK_UP))
@@ -369,6 +395,8 @@ _int CInven::Update_Inven(const _float & fTImeDelta)
 	//FIRE----------------------------------------------------------------
 	if (m_eCurSkill == CInven::FIREBALL && m_vSelect.x == -774.f && m_vSelect.y == 2 && Engine::KeyDown(DIK_RETURN))
 	{
+		Engine::CSkill* pSkill = Find_Skill(L"Skill_FireBall");
+		m_pPlayer->Change_Skill(1, pSkill);
 		m_eCurBaseEquip = CInven::EQUIP_FIREBALL;
 		CUI::GetInstance()->SlotSkillOn(0, m_vSlotPos1, L"UseFireBall");
 		m_vEquipCardPos = { -774.f, 2.f, 0.f };
@@ -376,6 +404,8 @@ _int CInven::Update_Inven(const _float & fTImeDelta)
 	}
 	if (m_eCurSkill == CInven::FIREBALL && m_vSelect.x == -624.f && m_vSelect.y == 2 && Engine::KeyDown(DIK_RETURN))
 	{
+		Engine::CSkill* pSkill = Find_Skill(L"Skill_FireBall");
+		m_pPlayer->Change_Skill(2, pSkill);
 		CUI::GetInstance()->SlotSkillOn(1, m_vSlotPos2, L"UseFireBall");
 		m_eCurDashEquip = CInven::EQUIP_FIREBALL;
 		m_vEquipCardPos = { -624.f, 0.f, 0.f };
@@ -383,6 +413,8 @@ _int CInven::Update_Inven(const _float & fTImeDelta)
 	}
 	if (m_eCurSkill == CInven::FIREBALL && m_vSelect.x == -475.f && m_vSelect.y == 2 && Engine::KeyDown(DIK_RETURN))
 	{
+		Engine::CSkill* pSkill = Find_Skill(L"Skill_FireBall");
+		m_pPlayer->Change_Skill(3, pSkill);
 		CUI::GetInstance()->SlotSkillOn(2, m_vSlotPos3, L"UseFireBall");
 		m_eCurStandardEquip = CInven::EQUIP_FIREBALL;
 		m_vEquipCardPos = { -475.f, 0.f, 0.f };
@@ -391,6 +423,8 @@ _int CInven::Update_Inven(const _float & fTImeDelta)
 
 	if (m_eCurSkill == CInven::FIRESKILL1 && m_vSelect.x == -774.f && m_vSelect.y == 2 && Engine::KeyDown(DIK_RETURN))
 	{
+		Engine::CSkill* pSkill = Find_Skill(L"Skill_GuidedFire");
+		m_pPlayer->Change_Skill(1, pSkill);
 		CUI::GetInstance()->SlotSkillOn(0, m_vSlotPos1, L"UseFireBlast");
 		m_eCurBaseEquip = CInven::EQUIP_FIRESKILL1;
 		m_vEquipCardPos = { -774.f, 0.f, 0.f };
@@ -398,6 +432,8 @@ _int CInven::Update_Inven(const _float & fTImeDelta)
 	}
 	if (m_eCurSkill == CInven::FIRESKILL1 && m_vSelect.x == -624.f && m_vSelect.y == 2 && Engine::KeyDown(DIK_RETURN))
 	{
+		Engine::CSkill* pSkill = Find_Skill(L"Skill_GuidedFire");
+		m_pPlayer->Change_Skill(2, pSkill);
 		CUI::GetInstance()->SlotSkillOn(1, m_vSlotPos2, L"UseFireBlast");
 		m_eCurDashEquip = CInven::EQUIP_FIRESKILL1;
 		m_vEquipCardPos = { -624.f, 0.f, 0.f };
@@ -405,6 +441,8 @@ _int CInven::Update_Inven(const _float & fTImeDelta)
 	}
 	if (m_eCurSkill == CInven::FIRESKILL1 && m_vSelect.x == -475.f && m_vSelect.y == 2 && Engine::KeyDown(DIK_RETURN))
 	{
+		Engine::CSkill* pSkill = Find_Skill(L"Skill_GuidedFire");
+		m_pPlayer->Change_Skill(3, pSkill);
 		CUI::GetInstance()->SlotSkillOn(2, m_vSlotPos3, L"UseFireBlast");
 		m_eCurStandardEquip = CInven::EQUIP_FIRESKILL1;
 		m_vEquipCardPos = { -475.f, 0.f, 0.f };
@@ -413,6 +451,8 @@ _int CInven::Update_Inven(const _float & fTImeDelta)
 	///////water------------------------------------------------------------
 	if (m_eCurSkill == CInven::WATERBALL && m_vSelect.x == -774.f && m_vSelect.y == 2 && Engine::KeyDown(DIK_RETURN))
 	{
+		Engine::CSkill* pSkill = Find_Skill(L"Skill_WaterBall");
+		m_pPlayer->Change_Skill(1, pSkill);
 		CUI::GetInstance()->SlotSkillOn(0, m_vSlotPos1, L"UseWaterBall");
 		m_eCurBaseEquip = CInven::EQUIP_WATERBALL;
 		m_vEquipCardPos = { -774.f, 0.f, 0.f };
@@ -420,6 +460,8 @@ _int CInven::Update_Inven(const _float & fTImeDelta)
 	}
 	if (m_eCurSkill == CInven::WATERBALL && m_vSelect.x == -624.f && m_vSelect.y == 2 && Engine::KeyDown(DIK_RETURN))
 	{
+		Engine::CSkill* pSkill = Find_Skill(L"Skill_WaterBall");
+		m_pPlayer->Change_Skill(2, pSkill);
 		CUI::GetInstance()->SlotSkillOn(1, m_vSlotPos2, L"UseWaterBall");
 		m_eCurDashEquip = CInven::EQUIP_WATERBALL;
 		m_vEquipCardPos = { -624.f, 0.f, 0.f };
@@ -427,29 +469,37 @@ _int CInven::Update_Inven(const _float & fTImeDelta)
 	}
 	if (m_eCurSkill == CInven::WATERBALL && m_vSelect.x == -475.f && m_vSelect.y == 2 && Engine::KeyDown(DIK_RETURN))
 	{
+		Engine::CSkill* pSkill = Find_Skill(L"Skill_WaterBall");
+		m_pPlayer->Change_Skill(3, pSkill);
 		CUI::GetInstance()->SlotSkillOn(2, m_vSlotPos3, L"UseWaterBall");
 		m_eCurStandardEquip = CInven::EQUIP_WATERBALL;
 		m_vEquipCardPos = { -475.f, 0.f, 0.f };
 		m_pEquipWaterBall->Set_Pos(m_vEquipCardPos);
 	}
 	/////////////////////////////
-	if (m_eCurSkill == CInven::WATERARC && m_vSelect.x == -774.f && m_vSelect.y == 2 && Engine::KeyDown(DIK_RETURN))
+	if (m_eCurSkill == CInven::SHARKPOOL && m_vSelect.x == -774.f && m_vSelect.y == 2 && Engine::KeyDown(DIK_RETURN))
 	{
+		Engine::CSkill* pSkill = Find_Skill(L"Skill_SharkPool");
+		m_pPlayer->Change_Skill(1, pSkill);
 		CUI::GetInstance()->SlotSkillOn(0, m_vSlotPos1, L"UseWaterArc");
 		//책 내려가고 판넬에 스킬 이미지 들어가도록
 		m_eCurBaseEquip = CInven::EQUIP_WATERARC;
 		m_vEquipCardPos = { -774.f, 0.f, 0.f };
 		m_pEquipWaterArc->Set_Pos(m_vEquipCardPos);
 	}
-	if (m_eCurSkill == CInven::WATERARC && m_vSelect.x == -624.f && m_vSelect.y == 2 && Engine::KeyDown(DIK_RETURN))
+	if (m_eCurSkill == CInven::SHARKPOOL && m_vSelect.x == -624.f && m_vSelect.y == 2 && Engine::KeyDown(DIK_RETURN))
 	{
+		Engine::CSkill* pSkill = Find_Skill(L"Skill_SharkPool");
+		m_pPlayer->Change_Skill(2, pSkill);
 		CUI::GetInstance()->SlotSkillOn(1, m_vSlotPos2, L"UseWaterArc");
 		m_eCurDashEquip = CInven::EQUIP_WATERARC;
 		m_vEquipCardPos = { -624.f, 0.f, 0.f };
 		m_pEquipWaterArc->Set_Pos(m_vEquipCardPos);
 	}
-	if (m_eCurSkill == CInven::WATERARC && m_vSelect.x == -475.f && m_vSelect.y == 2 && Engine::KeyDown(DIK_RETURN))
+	if (m_eCurSkill == CInven::SHARKPOOL && m_vSelect.x == -475.f && m_vSelect.y == 2 && Engine::KeyDown(DIK_RETURN))
 	{
+		Engine::CSkill* pSkill = Find_Skill(L"Skill_SharkPool");
+		m_pPlayer->Change_Skill(3, pSkill);
 		CUI::GetInstance()->SlotSkillOn(2, m_vSlotPos3, L"UseWaterArc");
 		m_eCurStandardEquip = CInven::EQUIP_WATERARC;
 		m_vEquipCardPos = { -475.f, 0.f, 0.f };
@@ -502,30 +552,32 @@ _int CInven::Update_Inven(const _float & fTImeDelta)
 		m_pEquipLightningSkill2->Set_Pos(m_vEquipCardPos);
 	}
 	/////////////////////////			WIND           ---------------------------------------------------------
-	if (m_eCurSkill == CInven::WINDSKILL1 && m_vSelect.x == -774.f && m_vSelect.y == 2 && Engine::KeyDown(DIK_RETURN))
-	{
-		CUI::GetInstance()->SlotSkillOn(0, m_vSlotPos1, L"UseAirWave");
-		m_eCurBaseEquip = CInven::EQUIP_WINDSKILL1;
-		m_vEquipCardPos = { -774.f, 0.f, 0.f };
-		m_pEquipWindSkill1->Set_Pos(m_vEquipCardPos);
-	}
-	if (m_eCurSkill == CInven::WINDSKILL1 && m_vSelect.x == -624.f && m_vSelect.y == 2 && Engine::KeyDown(DIK_RETURN))
-	{
-		CUI::GetInstance()->SlotSkillOn(1, m_vSlotPos2, L"UseAirWave");
-		m_eCurDashEquip = CInven::EQUIP_WINDSKILL1;
-		m_vEquipCardPos = { -624.f, 0.f, 0.f };
-		m_pEquipWindSkill1->Set_Pos(m_vEquipCardPos);
-	}
-	if (m_eCurSkill == CInven::WINDSKILL1 && m_vSelect.x == -475.f && m_vSelect.y == 2 && Engine::KeyDown(DIK_RETURN))
-	{
-		CUI::GetInstance()->SlotSkillOn(2, m_vSlotPos3, L"UseAirWave");
-		m_eCurStandardEquip = CInven::EQUIP_WINDSKILL1;
-		m_vEquipCardPos = { -475.f, 0.f, 0.f };
-		m_pEquipWindSkill1->Set_Pos(m_vEquipCardPos);
-	}
+	//if (m_eCurSkill == CInven::WINDSKILL1 && m_vSelect.x == -774.f && m_vSelect.y == 2 && Engine::KeyDown(DIK_RETURN))
+	//{
+	//	CUI::GetInstance()->SlotSkillOn(0, m_vSlotPos1, L"UseAirWave");
+	//	m_eCurBaseEquip = CInven::EQUIP_WINDSKILL1;
+	//	m_vEquipCardPos = { -774.f, 0.f, 0.f };
+	//	m_pEquipWindSkill1->Set_Pos(m_vEquipCardPos);
+	//}
+	//if (m_eCurSkill == CInven::WINDSKILL1 && m_vSelect.x == -624.f && m_vSelect.y == 2 && Engine::KeyDown(DIK_RETURN))
+	//{
+	//	CUI::GetInstance()->SlotSkillOn(1, m_vSlotPos2, L"UseAirWave");
+	//	m_eCurDashEquip = CInven::EQUIP_WINDSKILL1;
+	//	m_vEquipCardPos = { -624.f, 0.f, 0.f };
+	//	m_pEquipWindSkill1->Set_Pos(m_vEquipCardPos);
+	//}
+	//if (m_eCurSkill == CInven::WINDSKILL1 && m_vSelect.x == -475.f && m_vSelect.y == 2 && Engine::KeyDown(DIK_RETURN))
+	//{
+	//	CUI::GetInstance()->SlotSkillOn(2, m_vSlotPos3, L"UseAirWave");
+	//	m_eCurStandardEquip = CInven::EQUIP_WINDSKILL1;
+	//	m_vEquipCardPos = { -475.f, 0.f, 0.f };
+	//	m_pEquipWindSkill1->Set_Pos(m_vEquipCardPos);
+	//}
 	/////////////////////////////singautreeeeee///////////////////////////////////////
 	if (m_eCurSkill == CInven::METEOR && m_vSelect.x == -330.f && m_vSelect.y == 2 && Engine::KeyDown(DIK_RETURN))
 	{
+		Engine::CSkill* pSkill = Find_Skill(L"Skill_MeteorStrike");
+		m_pPlayer->Change_Skill(4, pSkill);
 		CUI::GetInstance()->SlotSkillOn(3, m_vSlotPos4, L"UseMeteor");
 		m_eCurSignatureEquip = CInven::EQUIP_METEOR;
 		m_vEquipCardPos = { -330.f, 0.f, 0.f };
@@ -533,6 +585,8 @@ _int CInven::Update_Inven(const _float & fTImeDelta)
 	}
 	if (m_eCurSkill == CInven::AQUAVORTEX && m_vSelect.x == -330.f && m_vSelect.y == 2 && Engine::KeyDown(DIK_RETURN))
 	{
+		Engine::CSkill* pSkill = Find_Skill(L"Skill_AquaVortex");
+		m_pPlayer->Change_Skill(4, pSkill);
 		CUI::GetInstance()->SlotSkillOn(3, m_vSlotPos4, L"UseAquaVortex");
 		m_eCurSignatureEquip = CInven::EQUIP_AQUAVORTEX;
 		m_vEquipCardPos = { -330.f, 0.f, 0.f };
@@ -544,13 +598,6 @@ _int CInven::Update_Inven(const _float & fTImeDelta)
 		m_eCurSignatureEquip = CInven::EQUIP_LIGHTSKILL3;
 		m_vEquipCardPos = { -330.f, 0.f, 0.f };
 		m_pEquipLightningSkill3->Set_Pos(m_vEquipCardPos);
-	}
-	if (m_eCurSkill == CInven::WINDSKILL2 && m_vSelect.x == -330.f && m_vSelect.y == 2 && Engine::KeyDown(DIK_RETURN))
-	{
-		CUI::GetInstance()->SlotSkillOn(3, m_vSlotPos4, L"UseVortexWave");
-		m_eCurSignatureEquip = CInven::EQUIP_WINDSKLL2;
-		m_vEquipCardPos = { -330.f, 0.f, 0.f };
-		m_pEquipWindSkill2->Set_Pos(m_vEquipCardPos);
 	}
 	return 0;
 }
@@ -690,7 +737,7 @@ void CInven::Render_Inven()
 	case WATERBALL:
 		m_pWaterBall->Render_UIImage();
 		break;
-	case WATERARC:
+	case SHARKPOOL:
 		m_pWaterArc->Render_UIImage();
 		break;
 	case AQUAVORTEX:
@@ -753,6 +800,12 @@ HRESULT CInven::Setting_SelectBox()
 	return S_OK;
 }
 
+
+void CInven::Set_Player(CPlayer * pPlayer)
+{
+	m_pPlayer = pPlayer;
+	m_pPlayer->AddRef();
+}
 
 HRESULT CInven::Setting_BasicSkill()
 {
@@ -972,8 +1025,46 @@ HRESULT CInven::Setting_SlotImage()
 	return S_OK;
 }
 
+Engine::CSkill * CInven::Find_Skill(const wstring & SkillTag)
+{
+	auto iter = m_MapSkill.find(SkillTag);
+
+	if (iter == m_MapSkill.end())
+		return nullptr;
+
+	return iter->second;
+}
+
+HRESULT CInven::Add_Skill(const wstring & SkillTag, Engine::CSkill * pSkill)
+{
+	NULL_CHECK_RETURN(pSkill, E_FAIL);
+	auto iterator = m_MapSkill.find(SkillTag);
+
+	if (iterator == m_MapSkill.end())
+	{
+		m_MapSkill.emplace(SkillTag, pSkill);
+	}
+	else
+	{
+		return E_FAIL;
+	}
+
+	return S_OK;
+}
+
 void CInven::Free()
 {
+
+	// Map Skill Release
+	for (auto& iter : m_MapSkill)
+	{
+		Engine::Safe_Release(iter.second);
+	}
+	m_MapSkill.clear();
+
+	Engine::Safe_Release(m_pPlayer);
+
+
 	//slot image
 	Engine::Safe_Release(m_pSlotFireSkill1);
 	Engine::Safe_Release(m_pSlotLightningSkill1);

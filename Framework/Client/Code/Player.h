@@ -31,8 +31,8 @@ public:
 	virtual void Render_GameObject() override;
 
 public:
-	_int	Change_Normal_Skill(Engine::CSkill* pSkill);
-	_int	Change_Upgrade_Skill(Engine::CSkill* pSkill);
+	_int	Change_Skill(_int SlotNumber, Engine::CSkill* pSkill);
+
 
 private:
 	HRESULT Add_Component();

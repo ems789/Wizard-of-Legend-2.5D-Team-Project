@@ -94,12 +94,6 @@
     <Filter Include="05.Skill\00.Fire">
       <UniqueIdentifier>{612987a2-6bb3-459f-a711-073bf36f5726}</UniqueIdentifier>
     </Filter>
-    <Filter Include="05.Skill\01.Ice">
-      <UniqueIdentifier>{0d554a0f-4834-4a70-bd49-a9bed46016b0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="05.Skill\02.Earth">
-      <UniqueIdentifier>{58604baa-f0d3-4ecf-8131-3bf05ea8fc8c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="05.Skill\03.Wind">
       <UniqueIdentifier>{88ac741b-ae59-4662-abd4-a7dd9717148a}</UniqueIdentifier>
     </Filter>
@@ -253,29 +247,41 @@
     <Filter Include="02.GameObject\99.public\07.UIBlink">
       <UniqueIdentifier>{74d2bb2f-380e-4513-ae82-a599a785b50f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="07.Monster\99.Boss\01.LightningBoss\01.LightningChainDash">
-      <UniqueIdentifier>{2f04d420-3818-4f2a-a557-ab62d29aa0fe}</UniqueIdentifier>
+    <Filter Include="05.Skill\01.Water">
+      <UniqueIdentifier>{0d554a0f-4834-4a70-bd49-a9bed46016b0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="07.Monster\99.Boss\01.LightningBoss\02.LightningFalling">
-      <UniqueIdentifier>{469d6515-6d57-43dd-87f1-1f4d67f89716}</UniqueIdentifier>
+    <Filter Include="05.Skill\02.Lightning">
+      <UniqueIdentifier>{58604baa-f0d3-4ecf-8131-3bf05ea8fc8c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="07.Monster\02.BlobSpitter\00.BlobBullet">
-      <UniqueIdentifier>{55fbbe9a-8627-4f70-a8ea-13d244c966e5}</UniqueIdentifier>
+    <Filter Include="05.Skill\01.Water\00.WaterBall">
+      <UniqueIdentifier>{2a2a25d6-aa1d-40bf-85c7-cd5960b27538}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Effect\09.RotatedBillEffect">
-      <UniqueIdentifier>{37f3c13d-8d31-4dde-a900-33c6f04d6ff5}</UniqueIdentifier>
+    <Filter Include="05.Skill\01.Water\01.SharkPool">
+      <UniqueIdentifier>{ff5bc1fb-73b8-4190-82c9-158216d05dbf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="07.Monster\03.GhoulLarge">
-      <UniqueIdentifier>{f586a011-0428-4c0c-8d3a-87a574dd8aca}</UniqueIdentifier>
+    <Filter Include="05.Skill\01.Water\02.AquaVortex">
+      <UniqueIdentifier>{edf7b0c9-9908-4db1-acc0-e3b735a1fbf6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="07.Monster\04.Mage">
-      <UniqueIdentifier>{e7a6b59d-7055-4632-b712-360e0415172a}</UniqueIdentifier>
+    <Filter Include="05.Skill\01.Water\01.SharkPool\00.WaterThrow">
+      <UniqueIdentifier>{e7a99ce4-b4cb-44e0-9e5c-9106d7ecc23c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="07.Monster\05.Knight">
-      <UniqueIdentifier>{1bbd5289-3758-4d0a-b844-5a77e90f0d03}</UniqueIdentifier>
+    <Filter Include="05.Skill\01.Water\01.SharkPool\01.Shark">
+      <UniqueIdentifier>{d5d64152-c2f6-4679-b26c-88da9b97dad5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="07.Monster\04.Mage\00.WindAgentSwirl">
-      <UniqueIdentifier>{6327eb94-cb23-443f-9217-7139e2309634}</UniqueIdentifier>
+    <Filter Include="05.Skill\01.Water\02.AquaVortex\00.Aqua">
+      <UniqueIdentifier>{d36c96c4-5bae-4d4c-b47f-abb48da0a537}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Monster\99.Boss\02.WindBoss">
+      <UniqueIdentifier>{12c61cb9-53aa-4a56-9532-6cb70d8f46c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Monster\99.Boss\02.WindBoss\00.WindSpin">
+      <UniqueIdentifier>{96717b06-135f-4dc3-a03a-70ba2b86002f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Monster\99.Boss\02.WindBoss\01.WindBall">
+      <UniqueIdentifier>{17384e3b-40e6-41ca-b80d-ae1a23887aa0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Monster\99.Boss\02.WindBoss\02.WindTornado">
+      <UniqueIdentifier>{828ddf29-1a95-4ac2-bb02-62bfd93f78b7}</UniqueIdentifier>
     </Filter>
     <Filter Include="07.Monster\06.BlobRoller">
       <UniqueIdentifier>{83ec3d50-2d88-4ddb-9f3e-46c40e404c2d}</UniqueIdentifier>
@@ -501,38 +507,49 @@
     <ClInclude Include="..\Code\UIBlink.h">
       <Filter>02.GameObject\99.public\07.UIBlink</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\LightningChainDash.h" />
+    <ClInclude Include="..\Code\LightningFalling.h" />
     <ClInclude Include="..\Code\BlobSpitter.h">
       <Filter>07.Monster\02.BlobSpitter</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Code\LaidFollowingEffect.h">
-      <Filter>03.Effect\08.FollowingEffect</Filter>
     </ClInclude>
     <ClInclude Include="..\Code\BasicFollowingEffect.h">
       <Filter>03.Effect\08.FollowingEffect</Filter>
     </ClInclude>
-    <ClInclude Include="..\Code\LightningChainDash.h">
-      <Filter>07.Monster\99.Boss\01.LightningBoss\01.LightningChainDash</Filter>
+    <ClInclude Include="..\Code\LaidFollowingEffect.h">
+      <Filter>03.Effect\08.FollowingEffect</Filter>
     </ClInclude>
-    <ClInclude Include="..\Code\LightningFalling.h">
-      <Filter>07.Monster\99.Boss\01.LightningBoss\02.LightningFalling</Filter>
+    <ClInclude Include="..\Code\Aqua.h">
+      <Filter>05.Skill\01.Water\02.AquaVortex\00.Aqua</Filter>
     </ClInclude>
-    <ClInclude Include="..\Code\BlobBullet.h">
-      <Filter>07.Monster\02.BlobSpitter\00.BlobBullet</Filter>
+    <ClInclude Include="..\Code\AquaVortex.h">
+      <Filter>05.Skill\01.Water\02.AquaVortex\00.Aqua</Filter>
     </ClInclude>
-    <ClInclude Include="..\Code\RotatedBillEffect.h">
-      <Filter>03.Effect\09.RotatedBillEffect</Filter>
+    <ClInclude Include="..\Code\WaterThrow.h">
+      <Filter>05.Skill\01.Water\01.SharkPool\01.Shark</Filter>
     </ClInclude>
-    <ClInclude Include="..\Code\GhoulLarge.h">
-      <Filter>07.Monster\03.GhoulLarge</Filter>
+    <ClInclude Include="..\Code\Shark.h">
+      <Filter>05.Skill\01.Water\01.SharkPool\01.Shark</Filter>
     </ClInclude>
-    <ClInclude Include="..\Code\Mage.h">
-      <Filter>07.Monster\04.Mage</Filter>
+    <ClInclude Include="..\Code\SharkPool.h">
+      <Filter>05.Skill\01.Water\01.SharkPool\01.Shark</Filter>
     </ClInclude>
-    <ClInclude Include="..\Code\Knight.h">
-      <Filter>07.Monster\05.Knight</Filter>
+    <ClInclude Include="..\Code\Water.h">
+      <Filter>05.Skill\01.Water\00.WaterBall</Filter>
     </ClInclude>
-    <ClInclude Include="..\Code\WindAgentSwirl.h">
-      <Filter>07.Monster\04.Mage\00.WindAgentSwirl</Filter>
+    <ClInclude Include="..\Code\WaterBall.h">
+      <Filter>05.Skill\01.Water\00.WaterBall</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\WindBall.h">
+      <Filter>07.Monster\99.Boss\02.WindBoss</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\WindBoss.h">
+      <Filter>07.Monster\99.Boss\02.WindBoss</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\WindSpin.h">
+      <Filter>07.Monster\99.Boss\02.WindBoss</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\WindTornado.h">
+      <Filter>07.Monster\99.Boss\02.WindBoss</Filter>
     </ClInclude>
     <ClInclude Include="..\Code\BlobRoller.h">
       <Filter>07.Monster\06.BlobRoller</Filter>
@@ -734,6 +751,8 @@
     <ClCompile Include="..\Code\UIBlink.cpp">
       <Filter>02.GameObject\99.public\07.UIBlink</Filter>
     </ClCompile>
+    <ClCompile Include="..\Code\LightningChainDash.cpp" />
+    <ClCompile Include="..\Code\LightningFalling.cpp" />
     <ClCompile Include="..\Code\BlobSpitter.cpp">
       <Filter>07.Monster\02.BlobSpitter</Filter>
     </ClCompile>
@@ -743,29 +762,38 @@
     <ClCompile Include="..\Code\LaidFollowingEffect.cpp">
       <Filter>03.Effect\08.FollowingEffect</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\LightningChainDash.cpp">
-      <Filter>07.Monster\99.Boss\01.LightningBoss\01.LightningChainDash</Filter>
+    <ClCompile Include="..\Code\Aqua.cpp">
+      <Filter>05.Skill\01.Water\02.AquaVortex\00.Aqua</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\LightningFalling.cpp">
-      <Filter>07.Monster\99.Boss\01.LightningBoss\02.LightningFalling</Filter>
+    <ClCompile Include="..\Code\AquaVortex.cpp">
+      <Filter>05.Skill\01.Water\02.AquaVortex\00.Aqua</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\BlobBullet.cpp">
-      <Filter>07.Monster\02.BlobSpitter\00.BlobBullet</Filter>
+    <ClCompile Include="..\Code\WaterThrow.cpp">
+      <Filter>05.Skill\01.Water\01.SharkPool\01.Shark</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\RotatedBillEffect.cpp">
-      <Filter>03.Effect\09.RotatedBillEffect</Filter>
+    <ClCompile Include="..\Code\Shark.cpp">
+      <Filter>05.Skill\01.Water\01.SharkPool\01.Shark</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\GhoulLarge.cpp">
-      <Filter>07.Monster\03.GhoulLarge</Filter>
+    <ClCompile Include="..\Code\SharkPool.cpp">
+      <Filter>05.Skill\01.Water\01.SharkPool\01.Shark</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\Mage.cpp">
-      <Filter>07.Monster\04.Mage</Filter>
+    <ClCompile Include="..\Code\Water.cpp">
+      <Filter>05.Skill\01.Water\00.WaterBall</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\Knight.cpp">
-      <Filter>07.Monster\05.Knight</Filter>
+    <ClCompile Include="..\Code\WaterBall.cpp">
+      <Filter>05.Skill\01.Water\00.WaterBall</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\WindAgentSwirl.cpp">
-      <Filter>07.Monster\04.Mage\00.WindAgentSwirl</Filter>
+    <ClCompile Include="..\Code\WindBall.cpp">
+      <Filter>07.Monster\99.Boss\02.WindBoss</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\WindBoss.cpp">
+      <Filter>07.Monster\99.Boss\02.WindBoss</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\WindSpin.cpp">
+      <Filter>07.Monster\99.Boss\02.WindBoss</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\WindTornado.cpp">
+      <Filter>07.Monster\99.Boss\02.WindBoss</Filter>
     </ClCompile>
     <ClCompile Include="..\Code\BlobRoller.cpp">
       <Filter>07.Monster\06.BlobRoller</Filter>

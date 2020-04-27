@@ -41,7 +41,7 @@ class CInven : public CBase
 public:
 	enum SKILL_LIST
 	{
-		LIST_OFF, LIST_ON, FIREBALL, METEOR, AQUAVORTEX, WATERBALL, WATERARC, WINDSKILL1, WINDSKILL2,
+		LIST_OFF, LIST_ON, FIREBALL, METEOR, AQUAVORTEX, WATERBALL, SHARKPOOL, WINDSKILL1, WINDSKILL2,
 		LIGHTSKILL1, LIGHTSKILL2, LIGHTSKILL3, FIRESKILL1, LIST_END
 	};
 
@@ -62,11 +62,14 @@ private:
 	HRESULT Setting_SignatureSkill();
 	HRESULT Setting_SkillImage();
 	HRESULT Setting_SlotImage();
+	Engine::CSkill* Find_Skill(const wstring& SkillTag);
 
 public:
+	HRESULT Add_Skill(const wstring& SkillTag, Engine::CSkill* pSkill);
 	void Add_Coin(const _uint& iCoin)	{ m_iCoin += iCoin; }
 	void Remove_Coin(const _uint& iCoin) { m_iCoin -= iCoin; }
 	const _int& Get_Coin() const { return m_iCoin; }
+	void Set_Player(CPlayer* pPlayer);
 
 private:
 	LPDIRECT3DDEVICE9 m_pGraphicDev = nullptr;
@@ -154,6 +157,9 @@ private:
 
 	/////////////////
 	_int			m_iCoin = 0;
+
+	map<wstring, Engine::CSkill*>  m_MapSkill;
+	CPlayer*	m_pPlayer;
 
 public:
 	virtual void Free() override;
