@@ -8,6 +8,7 @@
 #include "Export_Function.h"
 #include "BasicFollowingEffect.h"
 #include "BasicEffect.h"
+#include "UI.h"
 
 CWindBoss::CWindBoss(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev)
@@ -34,8 +35,8 @@ HRESULT CWindBoss::Ready_GameObject()
 
 	m_uiPattern = 0;
 
-	m_iHP = 700;
-	m_iHPMax = 700;
+	m_iHP = 900;
+	m_iHPMax = 900;
 
 	return S_OK;
 }
@@ -52,7 +53,7 @@ _int CWindBoss::Update_GameObject(const _float & fTimeDelta)
 	WindEffect(fTimeDelta);
 
 	/*if (m_bIsDead)
-		return 0;*/
+	return 0;*/
 
 	_int iExit = CGameObject::Update_GameObject(fTimeDelta);
 
@@ -311,9 +312,9 @@ void CWindBoss::Change_State()
 	case CWindBoss::WBS_FlOAT:
 		Float_State();
 		break;
-	//case CWindBoss::WBS_TAUNT:
-	//	Taunt_State();
-	//	break;
+		//case CWindBoss::WBS_TAUNT:
+		//	Taunt_State();
+		//	break;
 	case CWindBoss::WBS_SPINEND:
 		SpinEnd_State();
 		break;
@@ -359,9 +360,9 @@ void CWindBoss::Update_State(const _float & fTimeDelta)
 	case CWindBoss::WBS_HURT:
 		Hurt_Update(fTimeDelta);
 		break;
-	//case CWindBoss::WBS_TAUNT:
-	//	Taunt_Update(fTimeDelta);
-	//	break;
+		//case CWindBoss::WBS_TAUNT:
+		//	Taunt_Update(fTimeDelta);
+		//	break;
 	case CWindBoss::WBS_DEAD:
 		Dead_Update(fTimeDelta);
 		break;
@@ -570,9 +571,9 @@ _int CWindBoss::Idle_Update(const _float & fTimeDelta)
 	case 8:
 		m_eCurState = WBS_HURT;
 		break;
-	//case 8:
-	//	m_eCurState = FBS_TAUNT;
-	//	break;
+		//case 8:
+		//	m_eCurState = FBS_TAUNT;
+		//	break;
 	}
 
 	++m_uiPattern;
@@ -599,14 +600,17 @@ _int CWindBoss::Attack_Update(const _float & fTimeDelta)
 		_vec3 vPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
 		_vec3 vRight = *m_pTransformCom->GetInfo(Engine::INFO_RIGHT);
 		_vec3 vUp = *m_pTransformCom->GetInfo(Engine::INFO_UP);
-		
+
 		_vec3 vDir = vTargetPos - vPos;
 
 
 		//windball 持失
 		CWindBall* pWindBall = CWindBall::Create(m_pGraphicDev, vPos, vTargetPos, vDir, 15.f, 6.f, 5.f);
 		Engine::Add_GameObject(L"GameLogic", L"WindBall", pWindBall);
+		Engine::PlaySound_(L"WindBlastDeep.wav", CSoundMgr::EFFECT);
 	}
+
+
 
 	return 0;
 }
@@ -635,6 +639,7 @@ _int CWindBoss::Attack_Update2(const _float & fTimeDelta)
 		//windball 持失
 		CWindBall* pWindBall = CWindBall::Create(m_pGraphicDev, vPos, vTargetPos, vDir, 15.f, 6.f, 5.f);
 		Engine::Add_GameObject(L"GameLogic", L"WindBall", pWindBall);
+		Engine::PlaySound_(L"WindBlastSharp.wav", CSoundMgr::EFFECT);
 	}
 
 	return 0;
@@ -645,6 +650,7 @@ _int CWindBoss::Attack_Update3(const _float & fTimeDelta)
 	if (m_bAnimFinish)
 	{
 		m_eCurState = WBS_READYCHARGE;
+		Engine::PlaySound_(L"WindHowl.wav", CSoundMgr::EFFECT);
 		m_bAttack = false;
 	}
 	else if (false == m_bAttack && m_tFrame.fCurFrame >= 1.f)
@@ -664,6 +670,7 @@ _int CWindBoss::Attack_Update3(const _float & fTimeDelta)
 		//windball 持失
 		CWindBall* pWindBall = CWindBall::Create(m_pGraphicDev, vPos, vTargetPos, vDir, 15.f, 6.f, 5.f);
 		Engine::Add_GameObject(L"GameLogic", L"WindBall", pWindBall);
+		Engine::PlaySound_(L"WindBlastDeep.wav", CSoundMgr::EFFECT);
 	}
 
 	return 0;
@@ -675,6 +682,11 @@ void CWindBoss::DashReady_Update(const _float & fTimeDelta)
 	if (m_bAnimFinish)
 	{
 		m_eCurState = WBS_DASH;
+		Engine::PlaySound_(L"WindBlastDeep.wav", CSoundMgr::EFFECT);
+		Engine::PlaySound_(L"WindBlastDeep.wav", CSoundMgr::EFFECT);
+		Engine::PlaySound_(L"WindBlastDeep.wav", CSoundMgr::EFFECT);
+		Engine::PlaySound_(L"WindBlastDeep.wav", CSoundMgr::EFFECT);
+
 		return;
 	}
 
@@ -700,6 +712,8 @@ void CWindBoss::DashReady_Update(const _float & fTimeDelta)
 
 	CBasicFollowingEffect* pEffect = CBasicFollowingEffect::Create(m_pGraphicDev, L"Texture_WindReadyEffect", L"WindReadyEffect", 11.f, 8.f, 0.05f, &_vec3(0.f, 1.f, 0.f), m_pTransformCom, false, 1.f);
 	Add_GameObject(L"Effect", L"WindReadyEffect", pEffect);
+
+
 	CSphereCollider* pColl = CSphereCollider::Create(m_pGraphicDev, pEffect, nullptr, 1.5f, L"MonsterAttack", 10);
 	Add_GameObject(L"GameLogic", L"MonsterAttack", pColl);
 	m_bFillar = false;
@@ -713,12 +727,13 @@ _int CWindBoss::Dash_Update(const _float & fTimeDelta)
 
 	if (m_fDashTime > 1.f)
 	{
-		m_eCurState = WBS_FlOAT;
-		m_fDashTime = 0.f;
-		return 0;
+	m_eCurState = WBS_FlOAT;
+	m_fDashTime = 0.f;
+	return 0;
 	}*/
 	CBasicFollowingEffect* pEffect = CBasicFollowingEffect::Create(m_pGraphicDev, L"Texture_Tornado", L"Tornado", 12.f, 8.f, 0.05f, &_vec3(0.f, 1.f, 0.f), m_pTransformCom, false, 1.f);
 	Add_GameObject(L"Effect", L"Tornado", pEffect);
+
 	CSphereCollider* pColl = CSphereCollider::Create(m_pGraphicDev, pEffect, nullptr, 1.5f, L"MonsterAttack", 10);
 	Add_GameObject(L"GameLogic", L"MonsterAttack", pColl);
 	if (m_bAnimFinish)
@@ -727,7 +742,7 @@ _int CWindBoss::Dash_Update(const _float & fTimeDelta)
 		return 0;
 	}
 	m_pTransformCom->Move_Pos(m_vDashDir * 40.f * fTimeDelta);
-	
+
 	return 0;
 }
 
@@ -757,7 +772,7 @@ _int CWindBoss::Spin_Update(const _float & fTimeDelta)
 	_vec3 mvDir = vPos - vTargetPos;
 	D3DXVec3Normalize(&mvDir, &mvDir);
 	mvDir.y = 0;
-	if (m_fSpinTime > 3.5f)
+	if (m_fSpinTime > 2.5f)
 	{
 		m_eCurState = WBS_SPINEND;
 		m_fSpinTime = 0.f;
@@ -766,14 +781,17 @@ _int CWindBoss::Spin_Update(const _float & fTimeDelta)
 	}
 	if (m_bSpin == true)
 	{
-		CBasicEffect* pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_WindSpin", L"WindSpin", 6.f, 12.f, 0.065f, &vPos, true, 3.5f);
+
+		CBasicEffect* pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_WindSpin", L"WindSpin", 6.f, 12.f, 0.065f, &vPos, true, 2.5f);
 		Add_GameObject(L"Effect", L"WindSpin", pEffect);
-		pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_WindSpin", L"WindSpin", 6.f, 8.f, 0.1f, &vPos, true, 3.5f);
+		pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_WindSpin", L"WindSpin", 6.f, 8.f, 0.1f, &vPos, true, 2.5f);
 		Add_GameObject(L"Effect", L"WindSpin", pEffect);
-		pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_WindSpin", L"WindSpin", 6.f, 6.f, 0.14f, &vPos, true, 3.5f);
+		pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_WindSpin", L"WindSpin", 6.f, 6.f, 0.14f, &vPos, true, 2.5f);
 		Add_GameObject(L"Effect", L"WindSpin", pEffect);
-		pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_WindSpin", L"WindSpin", 6.f, 15.f, 0.19f, &vPos, true, 3.5f);
+		pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_WindSpin", L"WindSpin", 6.f, 15.f, 0.19f, &vPos, true, 2.5f);
 		Add_GameObject(L"Effect", L"WindSpin", pEffect);
+		Engine::PlaySound_(L"WindVortexLoop.wav", CSoundMgr::EFFECT);
+		//	Engine::PlaySound_(L"TornadoLoop.wav", CSoundMgr::EFFECT);
 		m_bSpin = false;
 	}
 	Engine::Player_Move_Pos(&(mvDir * 10.f * fTimeDelta));
@@ -784,7 +802,7 @@ _int CWindBoss::Spin_Update(const _float & fTimeDelta)
 void CWindBoss::SpinEnd_Update(const _float & fTimeDelta)
 {
 	_vec3 vPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
-
+	//Engine::PlaySound_(L"AquaWhoosh.wav", CSoundMgr::EFFECT);
 	_vec3 vDir = { 0.f, -1.f, 0.f };
 	D3DXVec3Normalize(&m_vFloatDir, &vDir);
 	m_pTransformCom->Move_Pos(m_vFloatDir * 10.f * fTimeDelta);
@@ -794,6 +812,9 @@ void CWindBoss::SpinEnd_Update(const _float & fTimeDelta)
 		{
 			CBasicEffect* pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_WindPillar", L"WindPillar", 10.f, 4.f, 0.05f, &(vPos + _vec3(0.f, 1.f, 0.f)), false, 1.5f);
 			Add_GameObject(L"Effect", L"WindPillar", pEffect);
+			Engine::PlaySound_(L"WindWindup.wav", CSoundMgr::EFFECT);
+			Engine::PlaySound_(L"WindWindup.wav", CSoundMgr::EFFECT);
+			Engine::PlaySound_(L"WindWindup.wav", CSoundMgr::EFFECT);
 
 
 			CSphereCollider* pColl = CSphereCollider::Create(m_pGraphicDev, pEffect, nullptr, 1.5f, L"MonsterAttack", 15);
@@ -805,7 +826,7 @@ void CWindBoss::SpinEnd_Update(const _float & fTimeDelta)
 		{
 			vPos.y = 1.5;
 			m_eCurState = WBS_ATTACK;
-			
+
 			return;
 		}
 		m_bFillar = true;
@@ -820,10 +841,13 @@ void CWindBoss::Hurt_Update(const _float & fTimeDelta)
 		m_fHurtTime = 0.f;
 		m_eCurState = WBS_IDLE;
 	}
+	Engine::PlaySound_(L"AirBossHurt0.wav", CSoundMgr::EFFECT);
 }
 
 void CWindBoss::Dead_Update(const _float & fTimeDelta)
 {
+	CUI::GetInstance()->ShowOffBossUI();
+
 	m_fDeadTime += fTimeDelta;
 
 	if (m_fDeadTime >= 3.f)

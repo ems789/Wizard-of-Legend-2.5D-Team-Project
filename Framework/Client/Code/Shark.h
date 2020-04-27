@@ -52,6 +52,7 @@ private:
 	_float	m_fScale = 1.f;
 	FRAME	m_tFrame;
 	Engine::SPHERE m_tSphere;
+	_bool	m_bSharkSound = false;
 
 	_bool	m_bGo = false;
 	_bool	m_bSharkOn = false;

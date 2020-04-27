@@ -67,8 +67,11 @@ _int CFireStage::Update_Scene(const _float& fTimeDelta)
 
 	if (Engine::KeyDown(DIK_O))
 	{
+		CUI::GetInstance()->ShowOnBossUI();
 		CWindBoss* pBoss = CWindBoss::Create(m_pGraphicDev, &_vec3(50.f, 1.f, 37.f));
-		Add_GameObject(L"Monster", L"WindBoss", pBoss);
+		Add_GameObject(L"Monster", L"Boss", pBoss);
+
+		CUI::GetInstance()->Render_BossUI();
 	}
 
 

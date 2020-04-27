@@ -48,6 +48,21 @@ HRESULT CUI::Ready_PlayerUI(LPDIRECT3DDEVICE9 pGraphicDev)
 	return S_OK;
 }
 
+HRESULT CUI::Ready_BossUI(LPDIRECT3DDEVICE9 pGraphicDev)
+{
+
+
+	_matrix matScale, matTrans;
+	D3DXMatrixScaling(&matScale, m_vScale.x, m_vScale.y, m_vScale.z);
+	D3DXMatrixTranslation(&matTrans, m_vPos.x, m_vPos.y, m_vPos.z);
+
+	m_fUISpeed = 0.5f;
+	m_matWorld = matScale * matTrans;
+
+	FAILED_CHECK_RETURN(Setting_BossUI(), E_FAIL);
+	return S_OK;
+}
+
 _int CUI::Update_PlayerUI(const _float & fTimeDelta)
 {
 	if (false == m_bShowUI)
@@ -63,44 +78,45 @@ _int CUI::Update_PlayerUI(const _float & fTimeDelta)
 	PlayerHpMax = Engine::Get_Player()->Get_HPMax();
 
 	_float	fHPRatio = PlayerHp / (_float)PlayerHpMax;
-	
+
 	_vec3 vHpScale = { m_vHpScale.x * fHPRatio, m_vHpScale.y, m_vHpScale.z };
-	_vec3 vHpPos = {m_vHpPos.x - (m_vHpScale.x - vHpScale.x) * 0.5f , m_vHpPos.y, m_vHpPos.z };
+	_vec3 vHpPos = { m_vHpPos.x - (m_vHpScale.x - vHpScale.x) * 0.5f , m_vHpPos.y, m_vHpPos.z };
 	m_pUIHpBar->Set_Scale(vHpScale);
 	m_pUIHpBar->Set_Pos(vHpPos);
-	
+
 	_float fMp = Engine::Get_Player()->Get_MP();
 	_float fMpMax = Engine::Get_Player()->Get_MPMax();
 
 	_float fMpRatio = fMp / fMpMax;
 
-	_vec3 vMpScale	= { m_vManaScale.x * fMpRatio, m_vManaScale.y, m_vManaScale.z };
-	_vec3 vMpPos	= { m_vManaPos.x + (vMpScale.x) * 0.5f, m_vManaPos.y, m_vManaPos.z };
+	_vec3 vMpScale = { m_vManaScale.x * fMpRatio, m_vManaScale.y, m_vManaScale.z };
+	_vec3 vMpPos = { m_vManaPos.x + (vMpScale.x) * 0.5f, m_vManaPos.y, m_vManaPos.z };
 
 	m_pUIManaBar->Set_Scale(vMpScale);
 	m_pUIManaBar->Set_Pos(vMpPos);
 
-	//if (Engine::MouseUp(Engine::DIM_LB))
-	//{
-	//	//마나채우는 평타
-	//	m_vManaScale.x += 19.2f;
-	//	m_vManaPos.x += 10.f;
-	//}
-	//if (m_vManaScale.x < 0.f)
-	//{
-	//	m_vManaScale.x = 0.f;
-	//}
-	//if (m_vManaPos.x < -896.f)
-	//{
-	//	m_vManaPos.x = -896.f;
-	//}
-	//if (m_vManaScale.x > 192.f)
-	//{
-	//	m_vManaScale.x = 192.f;
-	//}
-	//if (m_vManaPos.x > -795.f)
-	//	m_vManaPos.x = -795.f;
+	//_int FireBossHp = 0, FireBossHpMaz = 0;
+	//
+	return 0;
+}
 
+_int CUI::Update_BossUI(const _float & fTimeDelta)
+{
+	const Engine::CGameObject* pBoss = Engine::Get_GameObjcet(L"Monster", L"Boss");
+	if (nullptr == pBoss)
+		return 0;
+	_int BossHP = 0;
+	_int BossHPMax = 0;
+
+	BossHP = pBoss->Get_HP();
+	BossHPMax = pBoss->Get_HPMax();
+
+	_float	fHPRatio = BossHP / (_float)BossHPMax;
+
+	_vec3 vBossHpScale = { m_vBossHpScale.x * fHPRatio, m_vBossHpScale.y, m_vBossHpScale.z };
+	_vec3 vBossHpPos = { m_vBossHpPos.x - (m_vBossHpScale.x - vBossHpScale.x) * 0.5f , m_vBossHpPos.y, m_vBossHpPos.z };
+	m_pEnemyHpBarFill->Set_Scale(vBossHpScale);
+	m_pEnemyHpBarFill->Set_Pos(vBossHpPos);
 
 	return 0;
 }
@@ -113,6 +129,7 @@ void CUI::Render_PlayerUI()
 
 	//m_pTextureCom->Render_Texture();
 	//m_pBufferCom->Render_Buffer();
+	//////수정한 부분
 
 	m_pUIHurtBar->Render_UIImage();
 	m_pUIHpBar->Render_UIImage();
@@ -131,6 +148,19 @@ void CUI::Render_PlayerUI()
 		if (nullptr != m_vecSlotImage[i])
 			m_vecSlotImage[i]->Render_UIImage();
 	}
+
+}
+
+void CUI::Render_BossUI()
+{
+
+	if (false == m_bBossUIOn)
+		return;
+	m_pGraphicDev->SetTransform(D3DTS_WORLD, &m_matWorld);
+
+	m_pEnemyHpBarBG->Render_UIImage();
+	m_pEnemyHpBarFill->Render_UIImage();
+	//보스가죽엇을때 ui off
 
 }
 
@@ -201,6 +231,23 @@ HRESULT CUI::Setting_Coin()
 	return S_OK;
 }
 
+HRESULT CUI::Setting_BossUI()
+{
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"UI_BossHPBarBG", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/UI/Boss/EnemyHealthBarBG.png"), E_FAIL);
+	CUIImage* pBossHPUIBarBG = CUIImage::Create(m_pGraphicDev, _vec3(342.f, 48.f, 0.f), _vec3(0.f, 400.f, 0.f), L"UI_BossHPBarBG");
+	NULL_CHECK_RETURN(pBossHPUIBarBG, E_FAIL);
+
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"UI_BossHpBarFill", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/UI/Boss/EnemyHealthBarFill.png"), E_FAIL);
+	CUIImage* pBossHPUIBarFill = CUIImage::Create(m_pGraphicDev, _vec3(267.f, 21.f, 0.f), _vec3(0.f, 400.f, 0.f), L"UI_BossHpBarFill");
+	NULL_CHECK_RETURN(pBossHPUIBarFill, E_FAIL);
+
+	m_pEnemyHpBarBG = pBossHPUIBarBG;
+	m_pEnemyHpBarFill = pBossHPUIBarFill;
+
+
+	return S_OK;
+}
+
 HRESULT CUI::Setting_PlayerState()
 {
 
@@ -241,6 +288,7 @@ HRESULT CUI::Setting_PlayerState()
 
 void CUI::Free()
 {
+
 	Engine::Safe_Release(m_pNumberFont);
 
 
@@ -251,6 +299,8 @@ void CUI::Free()
 	}
 	m_vecSlotImage.clear();
 
+	Engine::Safe_Release(m_pEnemyHpBarBG);
+	Engine::Safe_Release(m_pEnemyHpBarFill);
 
 	Engine::Safe_Release(m_pUIHurtBar);
 	Engine::Safe_Release(m_pUICoin);

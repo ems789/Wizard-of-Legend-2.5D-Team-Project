@@ -79,7 +79,10 @@ void CWater::Add_Effect(const _vec3* pPos)
 	CBasicEffect* pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_WaterHitEffect", L"WaterHitEffect", 5.f, 20.f, 0.05f, &vPos, false, 0.f);
 
 	Engine::Add_GameObject(L"GameLogic", L"WaterHitEffect", pEffect);
+
+	Engine::PlaySound_(L"WaterExplode.wav", CSoundMgr::EFFECT);
 }
+
 
 void CWater::Go()
 {

@@ -76,6 +76,9 @@ _int CSharkPool::Use_Skill(const _float& fTimeDelta)
 	FAILED_CHECK_RETURN(Engine::Add_GameObject(L"GameLogic", L"WaterThrow", pWaterThrow), -1);
 	
 	m_fCurTime = m_fCoolTime;
+
+	//Engine::PlaySound_(L"AquaWhoosh.wav", CSoundMgr::EFFECT);
+	Engine::PlaySound_(L"WaterBlast.wav", CSoundMgr::EFFECT);
 	return 1;
 }
 

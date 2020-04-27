@@ -118,10 +118,6 @@ _uint CLoading::Loading_ForState()
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_HurtRight",	Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardHurt/WizardHurtRight.png"), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_HurtLeft",	Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardHurt/WizardHurtLeft.png"), E_FAIL);
 
-	////	HP Texture
-	//FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_HPBarBG", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/UI/HP/HPBarBG.png"), E_FAIL);
-	//FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_HPBarFill", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/UI/HP/HPBarFill.png"), E_FAIL);
-	//FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_HPBarHurtFill", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/UI/HP/HPBarHurtFill.png"), E_FAIL);
 
 	//	AirRing
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_AirRingUp", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/AirRing/Up/AirRing%d.png", 4), E_FAIL);
@@ -168,7 +164,10 @@ _uint CLoading::Loading_ForState()
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WaterBall", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Skill/WaterBall/WaterBall_%d.png", 3), E_FAIL);
 	//	AquaVortex Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_AquaVortex", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Skill/AquaVortex/VortexStrike_%d.png", 14), E_FAIL);
-
+	// SKELETONMINION///////////////////
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_SkeletonMinion_Idle", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/SkeletonMinion/Idle/SkeletonMinionIdle.png"), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_SkeletonMinion_AttackLeft", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/SkeletonMinion/Attack/Left/SkeletonMinionAttackLeft%d.png", 3), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_SkeletonMinion_Attack", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/SkeletonMinion/Attack/Right/SkeletonMinionAttackRight%d.png", 3), E_FAIL);
 
 	//	Monster
 	//	Golem

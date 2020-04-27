@@ -33,7 +33,7 @@ HRESULT CMainApp::Ready_MainApp(void)
 	FAILED_CHECK_RETURN(CNumberFont::GetInstance()->Ready_NumberFont(m_pGraphicDev), E_FAIL);
 
 	FAILED_CHECK_RETURN(CCollisionFunctions::Ready_Functions(), E_FAIL);
-	
+
 	m_pGraphicDev->SetRenderState(D3DRS_LIGHTING, FALSE);
 
 	//	Ãà¼Ò ½Ã ¿É¼Ç. 
@@ -42,7 +42,7 @@ HRESULT CMainApp::Ready_MainApp(void)
 	m_pGraphicDev->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_NONE);
 
 	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
-	
+
 
 	return S_OK;
 }
@@ -58,8 +58,10 @@ _int CMainApp::Update_MainApp(const _float& fTimeDelta)
 
 	Engine::Update_MainCamera(fTimeDelta);
 	m_pUI->Update_PlayerUI(fTimeDelta);
+	m_pUI->Update_BossUI(fTimeDelta);
 	m_pMouse->Update_Mouse(fTimeDelta);
 	m_pInven->Update_Inven(fTimeDelta);
+
 
 	return m_iExit;
 }
@@ -70,7 +72,7 @@ void CMainApp::Render_MainApp(void)
 		return;
 
 	Engine::Render_Begin(D3DXCOLOR(0.f, 0.f, 0.f, 1.f));
-	
+
 	if (nullptr != m_pManagement)
 		m_pManagement->Render_Scene();
 
@@ -79,6 +81,7 @@ void CMainApp::Render_MainApp(void)
 	m_pGraphicDev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 
 	m_pUI->Render_PlayerUI();
+	m_pUI->Render_BossUI();
 	m_pInven->Render_Inven();
 	m_pMouse->Render_Mouse();
 
@@ -97,8 +100,8 @@ HRESULT CMainApp::SetUp_DefaultSetting(LPDIRECT3DDEVICE9 * ppGraphicDev)
 	(*ppGraphicDev)->AddRef();
 
 	// FONT
-	FAILED_CHECK_RETURN(Engine::Ready_Font(m_pGraphicDev, L"Font_Default",	L"±Ã¼­", 20, 20, FW_HEAVY), E_FAIL);
-	FAILED_CHECK_RETURN(Engine::Ready_Font(m_pGraphicDev, L"Font_Second",	L"¹ÙÅÁ", 10, 10, FW_THIN), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Font(m_pGraphicDev, L"Font_Default", L"±Ã¼­", 20, 20, FW_HEAVY), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Font(m_pGraphicDev, L"Font_Second", L"¹ÙÅÁ", 10, 10, FW_THIN), E_FAIL);
 
 	// INPUTDEV
 	FAILED_CHECK_RETURN(Engine::Ready_InputDev(g_hInst, g_hWnd), E_FAIL);
@@ -149,6 +152,7 @@ HRESULT CMainApp::UI_Setting()
 	m_pUI = CUI::GetInstance();
 
 	m_pUI->Ready_PlayerUI(m_pGraphicDev);
+	m_pUI->Ready_BossUI(m_pGraphicDev);
 
 	return S_OK;
 }

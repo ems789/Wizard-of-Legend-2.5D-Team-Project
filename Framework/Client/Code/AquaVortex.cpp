@@ -65,7 +65,8 @@ _int CAquaVortex::Use_Skill(const _float& fTimeDelta)
 	FAILED_CHECK_RETURN(Engine::Add_GameObject(L"GameLogic", L"AquaVortex", pAqua), -1);
 
 	m_fCurTime = m_fCoolTime;
-	
+	Engine::PlaySound_(L"AquaVortex.wav", CSoundMgr::EFFECT);
+	Engine::PlaySound_(L"AquaVortex.wav", CSoundMgr::EFFECT);
 	return 1;
 }
 
@@ -106,6 +107,8 @@ _int CAquaVortex::Use_Skill(const _float& fTimeDelta, const _vec3* pPos, const _
 
 
 	m_fCurTime = m_fCoolTime;
+	Engine::PlaySound_(L"AquaVortex.wav", CSoundMgr::EFFECT);
+	Engine::PlaySound_(L"AquaVortex.wav", CSoundMgr::EFFECT);
 
 	return 1;
 }

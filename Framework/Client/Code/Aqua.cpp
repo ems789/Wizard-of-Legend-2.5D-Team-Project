@@ -64,10 +64,21 @@ void CAqua::Add_Effect(const _vec3* pPos)
 {
 	_vec3 vPos = (*m_pTransformCom->GetInfo(Engine::INFO_POS) + *pPos) / 2;
 	vPos.y += 0.5f;
+	Engine::PlaySound_(L"AquaWhoosh.wav", CSoundMgr::EFFECT);
+	Engine::PlaySound_(L"AquaWhoosh.wav", CSoundMgr::EFFECT);
+	Engine::PlaySound_(L"AquaWhoosh.wav", CSoundMgr::EFFECT);
+	Engine::PlaySound_(L"AquaWhoosh.wav", CSoundMgr::EFFECT);
+	Engine::PlaySound_(L"AquaWhoosh.wav", CSoundMgr::EFFECT);
+	Engine::PlaySound_(L"AquaWhoosh.wav", CSoundMgr::EFFECT);
+	Engine::PlaySound_(L"AquaWhoosh.wav", CSoundMgr::EFFECT);
 
+	Engine::PlaySound_(L"AquaBeamStart.wav", CSoundMgr::EFFECT);
 	CBasicEffect* pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_WaterExplosion", L"WaterExplosion", 7.f, 20.f, 0.05f, &vPos, false, 0.f);
 
 	Engine::Add_GameObject(L"GameLogic", L"WaterExplosion", pEffect);
+
+
+
 }
 
 HRESULT CAqua::Add_Component()

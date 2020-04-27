@@ -52,6 +52,8 @@ _int CWaterBall::Use_Skill(const _float& fTimeDelta)
 
 	m_fCurTime = m_fCoolTime;
 
+	Engine::PlaySound_(L"AquaPrisonLoop.wav", CSoundMgr::EFFECT);
+
 	return 1;
 }
 
@@ -78,7 +80,7 @@ _int CWaterBall::Use_Skill(const _float& fTimeDelta, const _vec3* pPos, const _v
 	FAILED_CHECK_RETURN(Engine::Add_GameObject(L"GameLogic", L"Water", pWater), -1);
 
 	m_fCurTime = m_fCoolTime;
-
+	Engine::PlaySound_(L"AquaBeamStart.wav", CSoundMgr::EFFECT);
 	return 1;
 }
 

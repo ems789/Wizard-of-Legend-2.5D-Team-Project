@@ -93,6 +93,8 @@ void CShark::Animation(const _float & fTimeDelta)
 {
 
 	m_tFrame.fCurFrame += fTimeDelta * m_tFrame.fFrameSpeed;
+	//if (m_tFrame.fCurFrame > m_tFrame.fMaxFrame)
+	//	m_tFrame.fCurFrame = 0.f;
 
 	_vec3 vPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
 	vPos.y += 0.1f;
@@ -100,10 +102,22 @@ void CShark::Animation(const _float & fTimeDelta)
 	{
 		if (m_bSharkOn == false)
 		{
-			CBasicEffect* pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_Shark", L"Shark", 8.f, 8.f, 0.07f, &vPos, false, 0.f);
+			CBasicEffect* pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_Shark", L"Shark", 8.f, 13.f, 0.07f, &vPos, false, 0.f);
 
 			Engine::Add_GameObject(L"GameLogic", L"SharkPool", pEffect);
 
+			Engine::PlaySound_(L"AquaSplash.wav", CSoundMgr::EFFECT);
+			Engine::PlaySound_(L"AquaSplash.wav", CSoundMgr::EFFECT);
+			Engine::PlaySound_(L"AquaSplash.wav", CSoundMgr::EFFECT);
+			Engine::PlaySound_(L"AquaSplash.wav", CSoundMgr::EFFECT);
+			Engine::PlaySound_(L"AquaSplash.wav", CSoundMgr::EFFECT);
+			Engine::PlaySound_(L"AquaSplash.wav", CSoundMgr::EFFECT);
+			Engine::PlaySound_(L"AquaSplash.wav", CSoundMgr::EFFECT);
+			Engine::PlaySound_(L"AquaSplash.wav", CSoundMgr::EFFECT);
+			Engine::PlaySound_(L"AquaSplash.wav", CSoundMgr::EFFECT);
+			Engine::PlaySound_(L"AquaSplash.wav", CSoundMgr::EFFECT);
+			Engine::PlaySound_(L"AquaSplash.wav", CSoundMgr::EFFECT);
+			Engine::PlaySound_(L"AquaSplash.wav", CSoundMgr::EFFECT);
 			CSphereCollider* WaterSphere = CSphereCollider::Create(m_pGraphicDev, pEffect, nullptr, 2.f, L"Player_Bullet", 70);
 
 			Engine::Add_GameObject(L"GameLogic", L"Player_Bullet", WaterSphere);
