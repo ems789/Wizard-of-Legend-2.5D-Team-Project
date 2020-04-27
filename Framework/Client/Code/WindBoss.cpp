@@ -25,7 +25,7 @@ HRESULT CWindBoss::Ready_GameObject()
 
 	m_tSphere.fRadius = 0.7f;
 
-	m_fHeight = 2.f;
+	m_fHeight = 1.5f;
 
 	m_eCurDir = WBD_DOWN;
 	m_eCurState = WBS_IDLE;
@@ -149,6 +149,27 @@ HRESULT CWindBoss::Add_Component()
 	m_vvTextureCom[WBS_ATTACK][WBD_RIGHT] = pTextureCom;
 	pTextureCom->AddRef();
 
+	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_WindBoss_Attack2"));
+	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	m_vvTextureCom[WBS_ATTACK2][WBD_UP] = pTextureCom;
+	m_vvTextureCom[WBS_ATTACK2][WBD_DOWN] = pTextureCom;
+	pTextureCom->AddRef();
+	m_vvTextureCom[WBS_ATTACK2][WBD_LEFT] = pTextureCom;
+	pTextureCom->AddRef();
+	m_vvTextureCom[WBS_ATTACK2][WBD_RIGHT] = pTextureCom;
+	pTextureCom->AddRef();
+
+
+	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_WindBoss_Attack"));
+	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	m_vvTextureCom[WBS_ATTACK3][WBD_UP] = pTextureCom;
+	m_vvTextureCom[WBS_ATTACK3][WBD_DOWN] = pTextureCom;
+	pTextureCom->AddRef();
+	m_vvTextureCom[WBS_ATTACK3][WBD_LEFT] = pTextureCom;
+	pTextureCom->AddRef();
+	m_vvTextureCom[WBS_ATTACK3][WBD_RIGHT] = pTextureCom;
+	pTextureCom->AddRef();
+
 	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_WindBoss_ReadyCharge"));
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
 	m_vvTextureCom[WBS_READYCHARGE][WBD_UP] = pTextureCom;
@@ -269,6 +290,12 @@ void CWindBoss::Change_State()
 	case CWindBoss::WBS_ATTACK:
 		Attack_State();
 		break;
+	case CWindBoss::WBS_ATTACK2:
+		Attack_State2();
+		break;
+	case CWindBoss::WBS_ATTACK3:
+		Attack_State3();
+		break;
 	case CWindBoss::WBS_READYCHARGE:
 		DashReady_State();//charge
 		break;
@@ -307,6 +334,12 @@ void CWindBoss::Update_State(const _float & fTimeDelta)
 		break;
 	case CWindBoss::WBS_ATTACK:
 		Attack_Update(fTimeDelta);
+		break;
+	case CWindBoss::WBS_ATTACK2:
+		Attack_Update2(fTimeDelta);
+		break;
+	case CWindBoss::WBS_ATTACK3:
+		Attack_Update3(fTimeDelta);
 		break;
 	case CWindBoss::WBS_READYCHARGE:
 		DashReady_Update(fTimeDelta); //charge
@@ -392,6 +425,30 @@ void CWindBoss::Attack_State()
 	Fitting_Scale_With_Texture(WBS_ATTACK);
 }
 
+void CWindBoss::Attack_State2()
+{
+	m_tFrame.fCurFrame = 0.f;
+	m_tFrame.fMaxFrame = 2.f;
+	m_tFrame.fFrameSpeed = 2.f;
+
+	m_bAnimFinish = false;
+	m_bAnimRepeat = false;
+
+	Fitting_Scale_With_Texture(WBS_ATTACK2);
+}
+
+void CWindBoss::Attack_State3()
+{
+	m_tFrame.fCurFrame = 0.f;
+	m_tFrame.fMaxFrame = 2.f;
+	m_tFrame.fFrameSpeed = 2.f;
+
+	m_bAnimFinish = false;
+	m_bAnimRepeat = false;
+
+	Fitting_Scale_With_Texture(WBS_ATTACK3);
+}
+
 void CWindBoss::DashReady_State() //charge
 {
 	m_tFrame.fCurFrame = 0.f;
@@ -465,19 +522,6 @@ void CWindBoss::Float_State()
 	Fitting_Scale_With_Texture(WBS_FlOAT);
 }
 
-
-//void CWindBoss::Taunt_State()
-//{
-//	m_tFrame.fCurFrame = 0.f;
-//	m_tFrame.fMaxFrame = 6.f;
-//	m_tFrame.fFrameSpeed = 10.f;
-//
-//	m_bAnimFinish = false;
-//	m_bAnimRepeat = false;
-//
-//	Fitting_Scale_With_Texture(FBS_TAUNT);
-//}
-
 void CWindBoss::Dead_State()
 {
 	m_tFrame.fCurFrame = 0.f;
@@ -497,49 +541,33 @@ _int CWindBoss::Idle_Update(const _float & fTimeDelta)
 	if (m_fIdleTime > 3.f)
 		return 0;
 
-	//m_fIdleTime = 0.f;
-
-	//const Engine::CTransform* pTargetTransform = dynamic_cast<const Engine::CTransform*>(Engine::Get_Component_of_Player(L"Com_Transform", Engine::ID_DYNAMIC));
-	//NULL_CHECK_RETURN(pTargetTransform, -1);
-
-	//_vec3 vTargetPos = *pTargetTransform->GetInfo(Engine::INFO_POS);
-	//_vec3 vMyPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
-
-	//_vec3 vLook = *m_pTransformCom->GetInfo(Engine::INFO_LOOK);
-	//_vec3 vRight = *m_pTransformCom->GetInfo(Engine::INFO_RIGHT);
-
-	//_vec3 vDist = vTargetPos - vMyPos;
-	//_float fDist = D3DXVec3Length(&vDist);
-
-	//_float fDotR = D3DXVec3Dot(&vRight, &vDist);
-	//_float fDotL = D3DXVec3Dot(&vLook, &vDist);
-
-	//WindBoss_DIR eUpDown = fDotL < 0.f ? WBD_DOWN : WBD_UP;
-	//WindBoss_DIR eLeftRight = fDotR < 0.f ? WBD_LEFT : WBD_RIGHT;
-
-	//m_eCurDir = fabs(fDotL) > fabs(fDotR) ? eUpDown : eLeftRight;
-
 	switch (m_uiPattern)
 	{
 	case 0:
 		m_eCurState = WBS_ATTACK;
 		break;
 	case 1:
-		m_eCurState = WBS_READYCHARGE;
+		m_eCurState = WBS_ATTACK2;
+		break;
+	case 2:
+		m_eCurState = WBS_ATTACK3;
 		break;
 	case 3:
-		m_eCurState = WBS_DASH;
+		m_eCurState = WBS_READYCHARGE;
 		break;
 	case 4:
-		m_eCurState = WBS_FlOAT;
+		m_eCurState = WBS_DASH;
 		break;
 	case 5:
-		m_eCurState = WBS_SPIN;
+		m_eCurState = WBS_FlOAT;
 		break;
 	case 6:
-		m_eCurState = WBS_SPINEND;
+		m_eCurState = WBS_SPIN;
 		break;
 	case 7:
+		m_eCurState = WBS_SPINEND;
+		break;
+	case 8:
 		m_eCurState = WBS_HURT;
 		break;
 	//case 8:
@@ -548,7 +576,7 @@ _int CWindBoss::Idle_Update(const _float & fTimeDelta)
 	}
 
 	++m_uiPattern;
-	if (m_uiPattern > 7)
+	if (m_uiPattern > 8)
 		m_uiPattern = 0;
 
 	return 0;
@@ -558,7 +586,7 @@ _int CWindBoss::Attack_Update(const _float & fTimeDelta)
 {
 	if (m_bAnimFinish)
 	{
-		m_eCurState = WBS_READYCHARGE;
+		m_eCurState = WBS_ATTACK2;
 		m_bAttack = false;
 	}
 	else if (false == m_bAttack && m_tFrame.fCurFrame >= 1.f)
@@ -576,14 +604,66 @@ _int CWindBoss::Attack_Update(const _float & fTimeDelta)
 
 
 		//windball 持失
-		CWindBall* pWindBall = CWindBall::Create(m_pGraphicDev, vPos, vTargetPos, vDir, 10.f, 6.f, 5.f);
+		CWindBall* pWindBall = CWindBall::Create(m_pGraphicDev, vPos, vTargetPos, vDir, 15.f, 6.f, 5.f);
 		Engine::Add_GameObject(L"GameLogic", L"WindBall", pWindBall);
-	/*	pWindBall = CWindBall::Create(m_pGraphicDev, vPos, vDir, 10.f, 6.f, 5.f);
-		Engine::Add_GameObject(L"GameLogic", L"WindBall", pWindBall);
-		pWindBall = CWindBall::Create(m_pGraphicDev, vPos, vDir, 10.f, 6.f, 5.f);
-		Engine::Add_GameObject(L"GameLogic", L"WindBall", pWindBall);*/
-		//sound
+	}
 
+	return 0;
+}
+
+_int CWindBoss::Attack_Update2(const _float & fTimeDelta)
+{
+	if (m_bAnimFinish)
+	{
+		m_eCurState = WBS_ATTACK3;
+		m_bAttack = false;
+	}
+	else if (false == m_bAttack && m_tFrame.fCurFrame >= 1.f)
+	{
+		m_bAttack = true;
+
+		const Engine::CTransform* pTransform = dynamic_cast<const Engine::CTransform*>(Engine::Get_Component_of_Player(L"Com_Transform", Engine::ID_DYNAMIC));
+		_vec3 vTargetPos = *pTransform->GetInfo(Engine::INFO_POS);
+
+		_vec3 vPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
+		_vec3 vRight = *m_pTransformCom->GetInfo(Engine::INFO_RIGHT);
+		_vec3 vUp = *m_pTransformCom->GetInfo(Engine::INFO_UP);
+
+		_vec3 vDir = vTargetPos - vPos;
+
+
+		//windball 持失
+		CWindBall* pWindBall = CWindBall::Create(m_pGraphicDev, vPos, vTargetPos, vDir, 15.f, 6.f, 5.f);
+		Engine::Add_GameObject(L"GameLogic", L"WindBall", pWindBall);
+	}
+
+	return 0;
+}
+
+_int CWindBoss::Attack_Update3(const _float & fTimeDelta)
+{
+	if (m_bAnimFinish)
+	{
+		m_eCurState = WBS_READYCHARGE;
+		m_bAttack = false;
+	}
+	else if (false == m_bAttack && m_tFrame.fCurFrame >= 1.f)
+	{
+		m_bAttack = true;
+
+		const Engine::CTransform* pTransform = dynamic_cast<const Engine::CTransform*>(Engine::Get_Component_of_Player(L"Com_Transform", Engine::ID_DYNAMIC));
+		_vec3 vTargetPos = *pTransform->GetInfo(Engine::INFO_POS);
+
+		_vec3 vPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
+		_vec3 vRight = *m_pTransformCom->GetInfo(Engine::INFO_RIGHT);
+		_vec3 vUp = *m_pTransformCom->GetInfo(Engine::INFO_UP);
+
+		_vec3 vDir = vTargetPos - vPos;
+
+
+		//windball 持失
+		CWindBall* pWindBall = CWindBall::Create(m_pGraphicDev, vPos, vTargetPos, vDir, 15.f, 6.f, 5.f);
+		Engine::Add_GameObject(L"GameLogic", L"WindBall", pWindBall);
 	}
 
 	return 0;
@@ -618,8 +698,11 @@ void CWindBoss::DashReady_Update(const _float & fTimeDelta)
 
 	m_eCurDir = fabs(fDotL) > fabs(fDotR) ? eUpDown : eLeftRight;
 
-	CBasicFollowingEffect* pEffect = CBasicFollowingEffect::Create(m_pGraphicDev, L"Texture_WindReadyEffect", L"WindReadyEffect", 11.f, 15.f, 0.05f, &_vec3(0.f, 1.f, 0.f), m_pTransformCom->GetInfo(Engine::INFO_POS), false, 1.f);
+	CBasicFollowingEffect* pEffect = CBasicFollowingEffect::Create(m_pGraphicDev, L"Texture_WindReadyEffect", L"WindReadyEffect", 11.f, 8.f, 0.05f, &_vec3(0.f, 1.f, 0.f), m_pTransformCom, false, 1.f);
 	Add_GameObject(L"Effect", L"WindReadyEffect", pEffect);
+	CSphereCollider* pColl = CSphereCollider::Create(m_pGraphicDev, pEffect, nullptr, 1.5f, L"MonsterAttack", 10);
+	Add_GameObject(L"GameLogic", L"MonsterAttack", pColl);
+	m_bFillar = false;
 
 
 }
@@ -634,7 +717,10 @@ _int CWindBoss::Dash_Update(const _float & fTimeDelta)
 		m_fDashTime = 0.f;
 		return 0;
 	}*/
-
+	CBasicFollowingEffect* pEffect = CBasicFollowingEffect::Create(m_pGraphicDev, L"Texture_Tornado", L"Tornado", 12.f, 8.f, 0.05f, &_vec3(0.f, 1.f, 0.f), m_pTransformCom, false, 1.f);
+	Add_GameObject(L"Effect", L"Tornado", pEffect);
+	CSphereCollider* pColl = CSphereCollider::Create(m_pGraphicDev, pEffect, nullptr, 1.5f, L"MonsterAttack", 10);
+	Add_GameObject(L"GameLogic", L"MonsterAttack", pColl);
 	if (m_bAnimFinish)
 	{
 		m_eCurState = WBS_FlOAT;
@@ -686,7 +772,7 @@ _int CWindBoss::Spin_Update(const _float & fTimeDelta)
 		Add_GameObject(L"Effect", L"WindSpin", pEffect);
 		pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_WindSpin", L"WindSpin", 6.f, 6.f, 0.14f, &vPos, true, 3.5f);
 		Add_GameObject(L"Effect", L"WindSpin", pEffect);
-		pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_WindSpin", L"WindSpin", 6.f, 15.f, 0.17f, &vPos, true, 3.5f);
+		pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_WindSpin", L"WindSpin", 6.f, 15.f, 0.19f, &vPos, true, 3.5f);
 		Add_GameObject(L"Effect", L"WindSpin", pEffect);
 		m_bSpin = false;
 	}
@@ -704,22 +790,25 @@ void CWindBoss::SpinEnd_Update(const _float & fTimeDelta)
 	m_pTransformCom->Move_Pos(m_vFloatDir * 10.f * fTimeDelta);
 	if (m_bAnimFinish)
 	{
-		//中宜持失
-		if (vPos.y < 2)
+		if (m_bFillar == true)
 		{
-			vPos.y = 2;
-			m_eCurState = WBS_ATTACK;
-			m_bFillar = false;
-			return;
-		}
-	//	if (m_bFillar == true)
-	//	{
-			CBasicEffect* pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_WindPillar", L"WindPillar", 10.f, 3.f, 0.05f, &vPos, false, 1.5f);
+			CBasicEffect* pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_WindPillar", L"WindPillar", 10.f, 4.f, 0.05f, &(vPos + _vec3(0.f, 1.f, 0.f)), false, 1.5f);
 			Add_GameObject(L"Effect", L"WindPillar", pEffect);
-			CSphereCollider* pColl = CSphereCollider::Create(m_pGraphicDev, this, pEffect, 1.5f, L"MonsterAttack", 15);
+
+
+			CSphereCollider* pColl = CSphereCollider::Create(m_pGraphicDev, pEffect, nullptr, 1.5f, L"MonsterAttack", 15);
 			Add_GameObject(L"GameLogic", L"MonsterAttack", pColl);
 			m_bFillar = false;
-		//}
+		}
+
+		if (vPos.y < 1.5)
+		{
+			vPos.y = 1.5;
+			m_eCurState = WBS_ATTACK;
+			
+			return;
+		}
+		m_bFillar = true;
 	}
 }
 
