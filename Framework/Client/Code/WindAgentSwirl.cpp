@@ -133,7 +133,7 @@ CWindAgentSwirl * CWindAgentSwirl::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _
 	_vec3 vPos = pInstance->m_vInitialPos;
 	D3DXVec3Normalize(&vPos, &vPos);
 
-	CBasicFollowingEffect* pThunderJavelinSpawn = CBasicFollowingEffect::Create(pGraphicDev, L"Texture_WindAgentSwirl", L"", 5.f, 10.f, 0.04f, &_vec3(0.f, 0.f, 0.f), pInstance->m_pTransformCom->GetInfo(Engine::INFO_POS), true, 5.f);
+	CBasicFollowingEffect* pThunderJavelinSpawn = CBasicFollowingEffect::Create(pGraphicDev, L"Texture_WindAgentSwirl", L"", 5.f, 10.f, 0.04f, &_vec3(0.f, 0.f, 0.f), pInstance->m_pTransformCom, true, 5.f);
 	Engine::Add_GameObject(L"Effect", L"Texture_WindAgentSwirl", pThunderJavelinSpawn);
 
 	return pInstance;

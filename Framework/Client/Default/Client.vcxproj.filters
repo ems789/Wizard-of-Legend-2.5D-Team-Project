@@ -277,6 +277,18 @@
     <Filter Include="07.Monster\04.Mage\00.WindAgentSwirl">
       <UniqueIdentifier>{6327eb94-cb23-443f-9217-7139e2309634}</UniqueIdentifier>
     </Filter>
+    <Filter Include="07.Monster\06.BlobRoller">
+      <UniqueIdentifier>{83ec3d50-2d88-4ddb-9f3e-46c40e404c2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="09.Store">
+      <UniqueIdentifier>{12117cd5-2b5c-4411-988f-32a0980b314b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="09.Store\00.ImageObject">
+      <UniqueIdentifier>{33862b9e-d495-4459-9616-c73814131bd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="09.Store\01.SkillCard">
+      <UniqueIdentifier>{d7f4476f-4e67-4dd6-80ee-8ddcf228b777}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -522,6 +534,18 @@
     <ClInclude Include="..\Code\WindAgentSwirl.h">
       <Filter>07.Monster\04.Mage\00.WindAgentSwirl</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\BlobRoller.h">
+      <Filter>07.Monster\06.BlobRoller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Store.h">
+      <Filter>09.Store</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\ImageObject.h">
+      <Filter>09.Store\00.ImageObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\SkillCard.h">
+      <Filter>09.Store\01.SkillCard</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -742,6 +766,18 @@
     </ClCompile>
     <ClCompile Include="..\Code\WindAgentSwirl.cpp">
       <Filter>07.Monster\04.Mage\00.WindAgentSwirl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\BlobRoller.cpp">
+      <Filter>07.Monster\06.BlobRoller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Store.cpp">
+      <Filter>09.Store</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\ImageObject.cpp">
+      <Filter>09.Store\00.ImageObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\SkillCard.cpp">
+      <Filter>09.Store\01.SkillCard</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

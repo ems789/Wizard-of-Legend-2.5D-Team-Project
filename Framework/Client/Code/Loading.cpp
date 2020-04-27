@@ -202,6 +202,9 @@ _uint CLoading::Loading_ForState()
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Knight_Run_Right", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/Knight/Run/Right/KnightRunRight%d.png", 5), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Knight_Dead", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/Knight/Death/KnightDeath%d.png", 7), E_FAIL);
 
+	//	BlobRoller
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_BlobRoller", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/BlobRoller/Roll/BlobRollerRoll%d.png", 7), E_FAIL);
+
 	//	Slash
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Slash", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/Slash.png"), E_FAIL);
 

@@ -27,7 +27,7 @@ _int CBasicFollowingEffect::Update_GameObject(const _float& fTimeDelta)
 	if (m_bIsDead)
 		return 0;
 
-	m_pTransformCom->Set_Pos(*m_pTargetPos + m_vHandPos);
+	m_pTransformCom->Set_Pos(*m_pTarget->GetInfo(Engine::INFO_POS) + m_vHandPos);
 									
 	_int iExit = CEffect::Update_GameObject(fTimeDelta);
 
@@ -100,7 +100,7 @@ void CBasicFollowingEffect::Turn_To_Camera_Look()
 }
 
 CBasicFollowingEffect* CBasicFollowingEffect::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _tchar* pTextureTag, const _tchar* pEffectTag, const _float& fMaxFrame, const _float& fFrameSpeed,
-	const _float& fScale, const _vec3* pPos, const _vec3* pTargetPos,_bool bAnimRepeat, _float fLifeTime)
+	const _float& fScale, const _vec3* pPos, Engine::CTransform* pTarget,_bool bAnimRepeat, _float fLifeTime)
 {
 	CBasicFollowingEffect* pInstance = new CBasicFollowingEffect(pGraphicDev);
 
@@ -114,7 +114,8 @@ CBasicFollowingEffect* CBasicFollowingEffect::Create(LPDIRECT3DDEVICE9 pGraphicD
 	pInstance->m_fScale = fScale;
 	//pInstance->m_pTransformCom->Set_Pos(pPos);
 	pInstance->m_vHandPos = *pPos;
-	pInstance->m_pTargetPos = pTargetPos;
+	pInstance->m_pTarget = pTarget;
+	pTarget->AddRef();
 	pInstance->m_pTransformCom->Update_Component(0.f);
 	
 	pInstance->m_bAnimRepeat = bAnimRepeat;
@@ -126,6 +127,7 @@ CBasicFollowingEffect* CBasicFollowingEffect::Create(LPDIRECT3DDEVICE9 pGraphicD
 
 void CBasicFollowingEffect::Free()
 {
+	Engine::Safe_Release(m_pTarget);
 	CEffect::Free();
 }
 

@@ -638,10 +638,10 @@ void CLightningBoss::Float_Update(const _float & fTimeDelta)
 		m_pHandPos = vRight * -0.5f + vUp * 0.5f;
 		_vec3 vHandPos = vRight * -0.5f + vUp * 0.5f;
 
-		CBasicFollowingEffect* pThunderJavelinSpawn = CBasicFollowingEffect::Create(m_pGraphicDev, L"Texture_ThunderJavelin_Spawn", L"", 4.f, 10.f, 0.035f, &vHandPos, m_pTransformCom->GetInfo(Engine::INFO_POS), false, 0.f);
+		CBasicFollowingEffect* pThunderJavelinSpawn = CBasicFollowingEffect::Create(m_pGraphicDev, L"Texture_ThunderJavelin_Spawn", L"", 4.f, 10.f, 0.035f, &vHandPos, m_pTransformCom, false, 0.f);
 		Engine::Add_GameObject(L"Effect", L"Texture_ThunderJavelin_Spawn", pThunderJavelinSpawn);
 
-		CBasicFollowingEffect* pLightningStageEffect = CBasicFollowingEffect::Create(m_pGraphicDev, L"Texture_LightningStageEffect", L"", 16.f, 40.f, 0.035f, &vHandPos, m_pTransformCom->GetInfo(Engine::INFO_POS), false, 0.f);
+		CBasicFollowingEffect* pLightningStageEffect = CBasicFollowingEffect::Create(m_pGraphicDev, L"Texture_LightningStageEffect", L"", 16.f, 40.f, 0.035f, &vHandPos, m_pTransformCom, false, 0.f);
 		Engine::Add_GameObject(L"Effect", L"Texture_LightningStageEffect", pLightningStageEffect);
 	}
 }

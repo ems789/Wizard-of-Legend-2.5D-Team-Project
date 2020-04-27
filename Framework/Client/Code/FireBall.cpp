@@ -43,7 +43,9 @@ _int CFireBall::Use_Skill(const _float& fTimeDelta)
 	const Engine::CTransform* pTransform = dynamic_cast<const Engine::CTransform*>(Engine::Get_Component_of_Player(L"Com_Transform", Engine::ID_DYNAMIC));
 
 	_vec3 vStartPos = pTransform->GetInfoRef(Engine::INFO_POS);
-	_vec3 vLook = pTransform->GetInfoRef(Engine::INFO_LOOK);
+	//_vec3 vLook = pTransform->GetInfoRef(Engine::INFO_LOOK);
+	_vec3 vLook;
+	Engine::Get_MainCameraLook(&vLook);
 	D3DXVec3Normalize(&vLook, &vLook);
 	vStartPos += vLook;
 

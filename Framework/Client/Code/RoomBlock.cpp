@@ -43,16 +43,6 @@ HRESULT CRoomBlock::Ready_GameObject(const _vec3 * pScale, const _vec3 * pPos, B
 
 	Engine::PlaySound_(L"RoomLock.wav", CSoundMgr::EFFECT);
 
-	if (Engine::Get_MainCamType() == Engine::CCameraMgr::MAIN_CAM_QUATER)
-	{
-		_vec3 vAngle;
-		Engine::Get_MainCamera()->Get_Angle(&vAngle);
-
-		vAngle.x = 0.f;
-		Engine::Change_MainCamera(Engine::CCameraMgr::MAIN_CAM_3RD);
-		Engine::Get_MainCamera()->Set_Angle(&vAngle);
-	}
-
 
 	return S_OK;
 }
@@ -71,7 +61,7 @@ _int CRoomBlock::Update_GameObject(const _float& fTimeDelta)
 	}
 		break;
 	case CRoomBlock::BLOCK_CLOSED:
-		MonsterCheck();
+		//MonsterCheck();
 		break;
 	case CRoomBlock::BLOCK_OPENING:
 		if (m_bAnimFinish)

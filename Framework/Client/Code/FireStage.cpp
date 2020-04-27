@@ -21,6 +21,7 @@
 #include "RoomBlock.h"
 #include "BlobSpitter.h"
 #include "GhoulLarge.h"
+#include "BlobRoller.h"
 
 CFireStage::CFireStage(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CScene(pGraphicDev)
@@ -42,7 +43,7 @@ HRESULT CFireStage::Ready_Scene()
 	FAILED_CHECK_RETURN(Ready_Monster_Layer(L"Monster"), E_FAIL);
 	FAILED_CHECK_RETURN(Ready_UI_Layer(L"UI"), E_FAIL);
 	FAILED_CHECK_RETURN(Ready_Camera(), E_FAIL);
-	//	FAILED_CHECK_RETURN(UI_Setting(), E_FAIL);
+	//FAILED_CHECK_RETURN(UI_Setting(), E_FAIL);
 	CUI::GetInstance()->ShowOnUI();
 
 	Engine::StopAll();
@@ -54,79 +55,16 @@ HRESULT CFireStage::Ready_Scene()
 
 _int CFireStage::Update_Scene(const _float& fTimeDelta)
 {
-	//if (Engine::KeyDown(DIK_F7))
-	//{
-	//	//	FireBoss
-	//	_vec3 vCardPos = { rand() % 20 + 10.f, 1.f, rand() % 20 + 10.f };
-	//	Engine::CGameObject* pGameObject = CFireBoss::Create(m_pGraphicDev, &vCardPos);
-	//	NULL_CHECK_RETURN(pGameObject, E_FAIL);
-
-	//	CCardSpawn* pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
-	//	Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
-	//}
-
-	if (Engine::KeyDown(DIK_F6))
-	{
-		//	Blob
-		_vec3 vCardPos = { 50.f, 1.f, 37.f };
-		Engine::CGameObject* pGameObject = CBlobSpitter::Create(m_pGraphicDev, &vCardPos);
-		NULL_CHECK_RETURN(pGameObject, E_FAIL);
-
-		CCardSpawn* pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
-		Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
-	}
-
-	if (Engine::KeyDown(DIK_F7))
-	{
-		//	GhoulLarge
-		_vec3 vCardPos = { 50.f, 1.f, 37.f };
-		Engine::CGameObject* pGameObject = CGhoulLarge::Create(m_pGraphicDev, &vCardPos);
-		NULL_CHECK_RETURN(pGameObject, E_FAIL);
-
-		CCardSpawn* pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
-		Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
-	}
-	//if (Engine::KeyDown(DIK_F8))
-	//{
-	//	//	Golem
-	//	_vec3 vCardPos = { rand() % 20 + 10.f, 1.f, rand() % 20 + 10.f };
-	//	Engine::CGameObject* pGameObject = CGolem::Create(m_pGraphicDev, &vCardPos);
-	//	NULL_CHECK_RETURN(pGameObject, E_FAIL);
-
-	//	CCardSpawn* pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
-	//	Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
-	//}
-
-		// 테스트용
-	if (Engine::KeyDown(DIK_F9))
-	{
-		_vec3 vCardPos = { 50.f, 1.f, 50.f };
-		Engine::CGameObject* pGameObject = CKnight::Create(m_pGraphicDev, &vCardPos);
-		NULL_CHECK_RETURN(pGameObject, E_FAIL);
-
-		CCardSpawn* pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
-		Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
-	}
-
-	//if (Engine::KeyDown(DIK_F9))
-	//{
-	//	// LightningBoss
-	//	_vec3 vCardPos = { 50, 1.f, 37 };
-	//	Engine::CGameObject* pGameObject = CLightningBoss::Create(m_pGraphicDev, &_vec3(50, 1.f, 37));
-	//	NULL_CHECK_RETURN(pGameObject, E_FAIL);
-
-	//	CCardSpawn* pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
-	//	Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
-	//}
-
 	const Engine::CTransform* pPlayerTransform = dynamic_cast<const Engine::CTransform*>(Engine::Get_Component_of_Player(L"Com_Transform", Engine::ID_DYNAMIC));
 
 	const _vec3* pPlayerPos = pPlayerTransform->GetInfo(Engine::INFO_POS);
 
-	FirstMonsterGen(pPlayerPos);
-	SecondMonsterGen(pPlayerPos);
-	ThirdMonsterGen(pPlayerPos);
-	FourthMonsterGen(pPlayerPos);
+	//FirstMonsterGen(pPlayerPos);
+	//SecondMonsterGen(pPlayerPos);
+	//ThirdMonsterGen(pPlayerPos);
+	//FourthMonsterGen(pPlayerPos);
+
+	Room_State_Update(fTimeDelta);
 
 	_int iExit = CScene::Update_Scene(fTimeDelta);
 
@@ -169,28 +107,9 @@ HRESULT CFireStage::Ready_GameLogic_Layer(const _tchar * pLayerTag)
 
 	Engine::CGameObject* pGameObject = nullptr;
 
-	//	Terrain
-	/*pGameObject = CTestTerrain::Create(m_pGraphicDev);
-	NULL_CHECK_RETURN(pGameObject, E_FAIL);
-	pLayer->Add_GameObject(L"TestTerrain", pGameObject);*/
-
 	pGameObject = CTerrain::Create(m_pGraphicDev, L"../Bin/Data/FireStageTile.dat", L"../Bin/Data/FireStageWall_5.dat");
 	NULL_CHECK_RETURN(pGameObject, E_FAIL);
 	pLayer->Add_GameObject(L"Terrain", pGameObject);
-
-	//	TestMonster
-	//pGameObject = CTestMonster::Create(m_pGraphicDev, &_vec3(20.f, 1.f, 20.f));
-	//NULL_CHECK_RETURN(pGameObject, E_FAIL);
-	//pLayer->Add_GameObject(L"Monster", pGameObject);
-
-	//pGameObject = CGolem::Create(m_pGraphicDev, &_vec3(20.f, 1.f, 25.f));
-	//NULL_CHECK_RETURN(pGameObject, E_FAIL);
-	//pLayer->Add_GameObject(L"Monster", pGameObject);
-
-	//pGameObject = CFireBoss::Create(m_pGraphicDev, &_vec3(10.f, 1.f, 10.f));
-	//NULL_CHECK_RETURN(pGameObject, E_FAIL);
-	//pLayer->Add_GameObject(L"Monster", pGameObject);
-
 
 	m_mapLayer.emplace(pLayerTag, pLayer);
 
@@ -203,10 +122,6 @@ HRESULT CFireStage::Ready_Monster_Layer(const _tchar * pLayerTag)
 	NULL_CHECK_RETURN(pLayer, E_FAIL);
 
 	Engine::CGameObject* pGameObject = nullptr;
-	//pGameObject = CFireBoss::Create(m_pGraphicDev, &_vec3(10.f, 1.f, 10.f));
-	//NULL_CHECK_RETURN(pGameObject, E_FAIL);
-	//pLayer->Add_GameObject(L"Monster", pGameObject);
-
 
 	m_mapLayer.emplace(pLayerTag, pLayer);
 
@@ -323,11 +238,16 @@ void CFireStage::FirstMonsterGen(const _vec3* pPlayerPos)
 
 		CRoomBlock* pRoomBlock = CRoomBlock::Create(m_pGraphicDev, &_vec3(3.5f, 3.5f, 0.f), &_vec3(34., 2.f, 29.f), CRoomBlock::BLOCK_DOWN);
 		Add_GameObject(L"GameLogic", L"RoomBlock", pRoomBlock);
+		m_RoomBlockList.push_back(pRoomBlock);
 
 		pRoomBlock = CRoomBlock::Create(m_pGraphicDev, &_vec3(3.5f, 3.5f, 0.f), &_vec3(22.5, 2.f, 18.f), CRoomBlock::BLOCK_UP);
 		Add_GameObject(L"GameLogic", L"RoomBlock", pRoomBlock);
+		m_RoomBlockList.push_back(pRoomBlock);
 
-		
+		m_eCurState = ROOM_CLOSE;
+		m_eRoomNumber = ROOM_NUM_1;
+
+		RoomBlock_Close();
 
 		m_b1stMonsterGen = true;
 	}
@@ -349,7 +269,7 @@ void CFireStage::SecondMonsterGen(const _vec3 * pPlayerPos)
 		_float	fx = rand() % 9 + 4.f;
 		_float	fz = rand() % 7 + 6.f;
 		_vec3 vCardPos = { fx, 1.f, fz };
-		pGameObject = CCyclops::Create(m_pGraphicDev, &vCardPos);
+		pGameObject = CBlobSpitter::Create(m_pGraphicDev, &vCardPos);
 		NULL_CHECK_RETURN(pGameObject, );
 		pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
 		Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
@@ -357,7 +277,7 @@ void CFireStage::SecondMonsterGen(const _vec3 * pPlayerPos)
 		fx = rand() % 9 + 4.f;
 		fz = rand() % 7 + 6.f;
 		vCardPos = { fx, 1.f, fz };
-		pGameObject = CCyclops::Create(m_pGraphicDev, &vCardPos);
+		pGameObject = CBlobSpitter::Create(m_pGraphicDev, &vCardPos);
 		NULL_CHECK_RETURN(pGameObject, );
 		pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
 		Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
@@ -380,12 +300,15 @@ void CFireStage::SecondMonsterGen(const _vec3 * pPlayerPos)
 
 		CRoomBlock* pRoomBlock = CRoomBlock::Create(m_pGraphicDev, &_vec3(3.5f, 3.5f, 0.f), &_vec3(9.5f, 2.f, 18.5f), CRoomBlock::BLOCK_DOWN);
 		Add_GameObject(L"GameLogic", L"RoomBlock", pRoomBlock);
+		m_RoomBlockList.push_back(pRoomBlock);
 
 		pRoomBlock = CRoomBlock::Create(m_pGraphicDev, &_vec3(3.5f, 3.5f, 0.f), &_vec3(19.f, 2.f, 9.5f), CRoomBlock::BLOCK_LEFT);
 		Add_GameObject(L"GameLogic", L"RoomBlock", pRoomBlock);
+		m_RoomBlockList.push_back(pRoomBlock);
 
-
-
+		m_eCurState = ROOM_CLOSE;
+		m_eRoomNumber = ROOM_NUM_2;
+		RoomBlock_Close();
 		m_b2ndMonsterGen = true;
 	}
 }
@@ -419,26 +342,29 @@ void CFireStage::ThirdMonsterGen(const _vec3 * pPlayerPos)
 		Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
 
 		vCardPos = { rand() % (_int)(fMaxX - fMinX - 2.f) + fMinX + 1.f, 1.f, rand() % (_int)(fMaxZ - fMinZ - 2.f) + fMinZ + 1.f };
-		pGameObject = CGolem::Create(m_pGraphicDev, &vCardPos);
+		pGameObject = CGhoulLarge::Create(m_pGraphicDev, &vCardPos);
 		NULL_CHECK_RETURN(pGameObject, );
 		pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
 		Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
 
 
 		vCardPos = { rand() % (_int)(fMaxX - fMinX - 2.f) + fMinX + 1.f, 1.f, rand() % (_int)(fMaxZ - fMinZ - 2.f) + fMinZ + 1.f };
-		pGameObject = CGolem::Create(m_pGraphicDev, &vCardPos);
+		pGameObject = CGhoulLarge::Create(m_pGraphicDev, &vCardPos);
 		NULL_CHECK_RETURN(pGameObject, );
 		pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
 		Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
 
 		CRoomBlock* pRoomBlock = CRoomBlock::Create(m_pGraphicDev, &_vec3(3.5f, 3.5f, 0.f), &_vec3(16.5f, 2.f, 46.f), CRoomBlock::BLOCK_LEFT);
 		Add_GameObject(L"GameLogic", L"RoomBlock", pRoomBlock);
+		m_RoomBlockList.push_back(pRoomBlock);
 
 		pRoomBlock = CRoomBlock::Create(m_pGraphicDev, &_vec3(3.5f, 3.5f, 0.f), &_vec3(9.5f, 2.f, 36.5f), CRoomBlock::BLOCK_UP);
 		Add_GameObject(L"GameLogic", L"RoomBlock", pRoomBlock);
+		m_RoomBlockList.push_back(pRoomBlock);
 
-
-
+		m_eCurState = ROOM_CLOSE;
+		m_eRoomNumber = ROOM_NUM_3;
+		RoomBlock_Close();
 		m_b3rdMonsterGen = true;
 	}
 }
@@ -448,7 +374,6 @@ void CFireStage::FourthMonsterGen(const _vec3 * pPlayerPos)
 	if (m_b4thMonsterGen)
 		return;
 
-
 	_float	fMinX = 71.f, fMaxX = 90.f;
 	_float	fMinZ = 26.f, fMaxZ = 49.f;
 
@@ -456,18 +381,41 @@ void CFireStage::FourthMonsterGen(const _vec3 * pPlayerPos)
 		pPlayerPos->z >= fMinZ && pPlayerPos->z <= fMaxZ)
 	{
 
-		_vec3 vCardPos = { 82.f, 1.f, 36.f};
-		Engine::CGameObject* pGameObject = CFireBoss::Create(m_pGraphicDev, &vCardPos);
-		NULL_CHECK_RETURN(pGameObject, );
+		//_vec3 vCardPos = { 82.f, 1.f, 36.f};
+		//Engine::CGameObject* pGameObject = CFireBoss::Create(m_pGraphicDev, &vCardPos);
+		//NULL_CHECK_RETURN(pGameObject, );
 
-		CCardSpawn* pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
-		Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
+		//CCardSpawn* pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
+		//Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
+
+
 
 		CRoomBlock* pRoomBlock = CRoomBlock::Create(m_pGraphicDev, &_vec3(3.5f, 3.5f, 0.f), &_vec3(68.5, 2.f, 38.f), CRoomBlock::BLOCK_RIGHT);
 		Add_GameObject(L"GameLogic", L"RoomBlock", pRoomBlock);
+		m_RoomBlockList.push_back(pRoomBlock);
 
 		pRoomBlock = CRoomBlock::Create(m_pGraphicDev, &_vec3(3.5f, 3.5f, 0.f), &_vec3(93.5f, 2.f, 37.f), CRoomBlock::BLOCK_LEFT);
 		Add_GameObject(L"GameLogic", L"RoomBlock", pRoomBlock);
+		m_RoomBlockList.push_back(pRoomBlock);
+
+		m_eCurState = ROOM_CLOSE;
+		m_eRoomNumber = ROOM_NUM_4;
+		m_eRoomPhase = RP_1;
+		m_fTimer = 0.f;
+
+		m_f4RoomX = fMinX;
+		m_f4RoomZ = fMinZ;
+
+		m_fRoomMinX = fMinX;
+		m_fRoomMaxX = fMaxX;
+		m_fRoomMinZ = fMinZ;
+		m_fRoomMaxZ = fMaxZ;
+
+		
+		m_v4RoomPos = { (fMaxX + fMinX) / 2, 1.f, (fMaxZ + fMinZ) / 2 };
+		m_f4RoomRadius = max(m_fRoomMaxX - m_fRoomMinX, m_fRoomMaxZ - m_fRoomMinZ) / 2;
+
+		RoomBlock_Close();
 
 		m_b4thMonsterGen = true;
 	}
@@ -480,6 +428,85 @@ void CFireStage::FifthMonsterGen(const _vec3 * pPlayerPos)
 	if (m_b5thMonsterGen)
 		return;
 }
+
+_int CFireStage::Room_State_Update(const _float & fTimeDelta)
+{
+	switch (m_eCurState)
+	{
+	case CFireStage::ROOM_IDLE:
+		Room_Idle_Update(fTimeDelta);
+		break;
+	case CFireStage::ROOM_CLOSE:
+		Room_Close_Update(fTimeDelta);
+		break;
+	case CFireStage::ROOM_OPEN:
+		Room_Open_Update(fTimeDelta);
+		break;
+	}
+
+	return _int();
+}
+
+_int CFireStage::Room_Idle_Update(const _float & fTimeDelta)
+{
+	const Engine::CTransform* pPlayerTransform = dynamic_cast<const Engine::CTransform*>(Engine::Get_Component_of_Player(L"Com_Transform", Engine::ID_DYNAMIC));
+
+	const _vec3* pPlayerPos = pPlayerTransform->GetInfo(Engine::INFO_POS);
+
+	FirstMonsterGen(pPlayerPos);
+	SecondMonsterGen(pPlayerPos);
+	ThirdMonsterGen(pPlayerPos);
+	FourthMonsterGen(pPlayerPos);
+
+
+	return _int();
+}
+
+_int CFireStage::Room_Close_Update(const _float & fTimeDelta)
+{
+
+	switch (m_eRoomNumber)
+	{
+	case CFireStage::ROOM_NUM_1:
+		FirstRoom_Update(fTimeDelta);
+		break;
+	case CFireStage::ROOM_NUM_2:
+		SecondRoom_Update(fTimeDelta);
+		break;
+	case CFireStage::ROOM_NUM_3:
+		ThirdRoom_Update(fTimeDelta);
+		break;
+	case CFireStage::ROOM_NUM_4:
+		FourthRoom_Update(fTimeDelta);
+		break;
+	case CFireStage::ROOM_NUM_5:
+		FifthRoom_Update(fTimeDelta);
+		break;
+	case CFireStage::ROOM_NUM_6:
+		SixthRoom_Update(fTimeDelta);
+		break;
+	case CFireStage::ROOM_NUM_7:
+		SeventhRoom_Update(fTimeDelta);
+		break;
+	case CFireStage::ROOM_NUM_8:
+		EighthRoom_Update(fTimeDelta);
+		break;
+	case CFireStage::ROOM_NUM_9:
+		NinthRoom_Update(fTimeDelta);
+		break;
+	case CFireStage::ROOM_NUM_10:
+		TenthRoom_Update(fTimeDelta);
+		break;
+	}
+
+	return 0;
+}
+
+_int CFireStage::Room_Open_Update(const _float & fTimeDelta)
+{
+	return _int();
+}
+
 
 CFireStage* CFireStage::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 {
@@ -496,3 +523,277 @@ void CFireStage::Free()
 	CScene::Free();
 }
 
+_int CFireStage::FirstRoom_Update(const _float & fTimeDelta)
+{
+	if (false == Check_Monster())
+		RoomBlock_Open();
+
+	return 0;
+}
+
+_int CFireStage::SecondRoom_Update(const _float & fTimeDelta)
+{
+	if (false == Check_Monster())
+		RoomBlock_Open();
+	return 0;
+}
+
+_int CFireStage::ThirdRoom_Update(const _float & fTimeDelta)
+{
+	if (false == Check_Monster())
+		RoomBlock_Open();
+	return 0;
+}
+
+_int CFireStage::FourthRoom_Update(const _float & fTimeDelta)
+{
+	switch (m_eRoomPhase)
+	{
+	case CFireStage::RP_1:
+		FourthRoom_Gen(fTimeDelta);
+		break;
+	case CFireStage::RP_2:
+		FourthRoom_Go(fTimeDelta);
+		break;
+	case CFireStage::RP_3:
+		FourthRoom_Gen2(fTimeDelta);
+		break;
+	case CFireStage::RP_4:
+		FourthRoom_Go2(fTimeDelta);
+		break;
+	default:
+		break;
+	}
+
+
+	return _int();
+}
+
+_int CFireStage::FourthRoom_Gen(const _float & fTimeDelta)
+{
+	_float	fMinX = 71.f, fMaxX = 90.f;
+	_float	fMinZ = 26.f, fMaxZ = 49.f;
+
+	m_fTimer += fTimeDelta;
+
+	if (m_fTimer > 0.2f)
+	{
+		m_fTimer = 0.f;
+		_vec3 vPos = { m_f4RoomX, 0.f, m_f4RoomZ };
+		const Engine::CTransform* pPlayerTransform = dynamic_cast<const Engine::CTransform*>(Engine::Get_Component_of_Player(L"Com_Transform", Engine::ID_DYNAMIC));
+
+		const _vec3* pPlayerPos = pPlayerTransform->GetInfo(Engine::INFO_POS);
+
+		_vec3 vDir = *pPlayerPos - vPos;
+		vDir.y = 0.f;
+		D3DXVec3Normalize(&vDir, &vDir);
+		switch (m_ui4RoomPattern)
+		{
+		case 0:
+		{
+			m_f4RoomX += 3.f;
+			if (m_f4RoomX >= fMaxX - 1.f)
+			{
+				m_f4RoomX = fMaxX - 1.f;
+				++m_ui4RoomPattern;
+				return 0;
+			}
+			vPos = { m_f4RoomX, 1.f, m_f4RoomZ };
+		}
+		break;
+		case 1:
+			m_f4RoomZ += 3.f;
+			if (m_f4RoomZ >= fMaxZ - 1.f)
+			{
+				m_f4RoomZ = fMaxZ - 1.f;
+				++m_ui4RoomPattern;
+				return 0;
+			}
+			vPos = { m_f4RoomX, 1.f, m_f4RoomZ };
+			break;
+		case 2:
+			m_f4RoomX -= 3.f;
+			if (m_f4RoomX <= fMinX + 1.f)
+			{
+				m_f4RoomX = fMinX + 1.f;
+				++m_ui4RoomPattern;
+				return 0;
+			}
+			vPos = { m_f4RoomX, 1.f, m_f4RoomZ };
+			break;
+		case 3:
+			m_f4RoomZ -= 3.f;
+			if (m_f4RoomZ <= fMinZ + 1.f)
+			{
+				m_f4RoomX = fMinX;
+				m_f4RoomZ = fMinZ;
+				m_ui4RoomPattern = 0;
+				m_eRoomPhase = RP_2;
+				return 0;
+			}
+			vPos = { m_f4RoomX, 1.f, m_f4RoomZ };
+			break;
+		}
+
+		CBlobRoller* pBlobRoller = CBlobRoller::Create(m_pGraphicDev, vPos, vDir, 10.f, 7, 10.f, L"MonsterAttack", false);
+		Engine::Add_GameObject(L"GameLogic", L"BlobRoller", pBlobRoller);
+		m_BlobRollerList.push_back(pBlobRoller);
+	}
+
+	return 0;
+}
+
+_int CFireStage::FourthRoom_Go(const _float & fTimeDelta)
+{
+	if (false == m_bR4Go)
+	{
+		for (auto& pBlob : m_BlobRollerList)
+			pBlob->Go();
+		m_bR4Go = true;
+		m_BlobRollerList.clear();
+	}
+
+	m_fTimer += fTimeDelta;
+
+	if (m_fTimer > 3.f)
+	{
+		m_fTimer = 0;
+		m_bR4Go = false;
+		m_eRoomPhase = RP_3;
+	}
+	return 0;
+}
+
+_int CFireStage::FourthRoom_Gen2(const _float & fTimeDelta)
+{
+	m_fTimer += fTimeDelta;
+	if (m_fTimer > 10.f)
+	{
+		m_eRoomPhase = RP_4;
+		m_fTimer = 0.f;
+		return 0;
+	}
+
+	m_fTimer2 += fTimeDelta;
+	if (m_fTimer2 > 0.3f)
+	{
+		m_fTimer2 = 0.f;
+
+		_float fAngle = D3DXToRadian(rand() % 360);
+		_vec3	vPos = { 0.f, 0.f, m_f4RoomRadius };
+		
+		_matrix matRotY;
+		D3DXMatrixRotationY(&matRotY, fAngle);
+		D3DXVec3TransformNormal(&vPos, &vPos, &matRotY);
+		vPos += m_v4RoomPos;
+
+		const Engine::CTransform* pPlayerTransform = dynamic_cast<const Engine::CTransform*>(Engine::Get_Component_of_Player(L"Com_Transform", Engine::ID_DYNAMIC));
+
+		const _vec3* pPlayerPos = pPlayerTransform->GetInfo(Engine::INFO_POS);
+
+		_vec3 vDir = *pPlayerPos - vPos;
+		vDir.y = 0.f;
+		D3DXVec3Normalize(&vDir, &vDir);
+		
+		CBlobRoller* pBlobRoller = CBlobRoller::Create(m_pGraphicDev, vPos, vDir, 10.f, 7, 10.f, L"MonsterAttack", true);
+		Engine::Add_GameObject(L"GameLogic", L"BlobRoller", pBlobRoller);
+		m_BlobRollerList.push_back(pBlobRoller);
+	}
+
+
+	return 0;
+}
+
+_int CFireStage::FourthRoom_Go2(const _float & fTimeDelta)
+{
+	m_fTimer += fTimeDelta;
+	if (m_fTimer > 3.f)
+	{
+		m_eRoomPhase = RP_1;
+		m_fTimer = 0.f;
+		RoomBlock_Open();
+		return 0;
+	}
+
+	return _int();
+}
+
+_int CFireStage::FifthRoom_Update(const _float & fTimeDelta)
+{
+	return _int();
+}
+
+_int CFireStage::SixthRoom_Update(const _float & fTimeDelta)
+{
+	return _int();
+}
+
+_int CFireStage::SeventhRoom_Update(const _float & fTimeDelta)
+{
+	return _int();
+}
+
+_int CFireStage::EighthRoom_Update(const _float & fTimeDelta)
+{
+	return _int();
+}
+
+_int CFireStage::NinthRoom_Update(const _float & fTimeDelta)
+{
+	return _int();
+}
+
+_int CFireStage::TenthRoom_Update(const _float & fTimeDelta)
+{
+	return _int();
+}
+
+
+_bool CFireStage::Check_Monster()
+{
+	const Engine::CLayer* pLayer = Engine::Get_Layer(L"Monster");
+
+	if (false == m_bMonsterGen && 0 != pLayer->Get_ObjectMapSize())
+	{
+		m_bMonsterGen = true;
+		return true;
+	}
+
+	if (true == m_bMonsterGen && 0 == pLayer->Get_ObjectMapSize())
+	{
+		m_bMonsterGen = false;
+		
+		return false;
+	}
+
+	return true;
+}
+
+void CFireStage::RoomBlock_Close()
+{
+	if (Engine::Get_MainCamType() == Engine::CCameraMgr::MAIN_CAM_QUATER)
+	{
+		_vec3 vAngle;
+		Engine::Get_MainCamera()->Get_Angle(&vAngle);
+
+		vAngle.x = 0.f;
+		Engine::Change_MainCamera(Engine::CCameraMgr::MAIN_CAM_3RD);
+		Engine::Get_MainCamera()->Set_Angle(&vAngle);
+	}
+}
+
+void CFireStage::RoomBlock_Open()
+{
+	m_eCurState = ROOM_IDLE;
+	Engine::PlaySound_(L"RoomVictoryUnlock.wav", CSoundMgr::EFFECT);
+
+	if (Engine::Get_MainCamType() != Engine::CCameraMgr::MAIN_CAM_QUATER)
+	{
+		Engine::Change_MainCamera(Engine::CCameraMgr::MAIN_CAM_QUATER);
+	}
+
+	for (auto& pRoomBlock : m_RoomBlockList)
+		pRoomBlock->Open();
+	m_RoomBlockList.clear();
+
+}
