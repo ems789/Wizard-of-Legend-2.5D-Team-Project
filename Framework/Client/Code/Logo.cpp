@@ -132,6 +132,7 @@ HRESULT CLogo::Ready_Resource(LPDIRECT3DDEVICE9 & pGraphicDev, RESOURCEID eMax)
 	FAILED_CHECK_RETURN(Engine::Ready_Buffer(pGraphicDev, RESOURCE_STATIC, L"Buffer_RcTex", Engine::BUFFER_RCTEX), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Buffer(pGraphicDev, RESOURCE_STATIC, L"Buffer_RcColTex", Engine::BUFFER_RCCOLTEX), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Buffer(pGraphicDev, RESOURCE_STATIC, L"Buffer_TriCol", Engine::BUFFER_TRICOL), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Buffer(pGraphicDev, RESOURCE_STATIC, L"Buffer_CubeTex", Engine::BUFFER_CUBETEX), E_FAIL);
 
 	//	Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(pGraphicDev, RESOURCE_LOGO, L"Texture_Logo", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/BG/Background%d.png"), E_FAIL);

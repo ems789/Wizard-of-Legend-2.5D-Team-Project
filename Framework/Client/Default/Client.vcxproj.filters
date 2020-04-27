@@ -325,6 +325,18 @@
     <Filter Include="02.GameObject\04.FireStage\00.Barrel">
       <UniqueIdentifier>{174d7d60-5a1f-4b7d-833e-316a06b99032}</UniqueIdentifier>
     </Filter>
+    <Filter Include="07.Monster\07.GoldBox">
+      <UniqueIdentifier>{c079e150-c9d8-4ba7-885b-a2304a2baea6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\04.FireStage\01.Scalffold">
+      <UniqueIdentifier>{e92a578f-0cda-4621-8441-46c94ec50583}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\99.public\05.LaidObject">
+      <UniqueIdentifier>{173edef1-dde3-43a0-abba-c0136219fae1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Scene\05.EndingScene">
+      <UniqueIdentifier>{b62a2d35-67a5-4d63-ae5c-745717b06e9f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -603,6 +615,27 @@
     <ClInclude Include="..\Code\Barrel.h">
       <Filter>02.GameObject\04.FireStage\00.Barrel</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\WindBoss.h">
+      <Filter>07.Monster\99.Boss\02.WindBoss</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\WindTornado.h">
+      <Filter>07.Monster\99.Boss\02.WindBoss\02.WindTornado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\WindSpin.h">
+      <Filter>07.Monster\99.Boss\02.WindBoss\00.WindSpin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\WindBall.h">
+      <Filter>07.Monster\99.Boss\02.WindBoss\01.WindBall</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\GoldBox.h">
+      <Filter>07.Monster\07.GoldBox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Scaffold.h">
+      <Filter>02.GameObject\04.FireStage\01.Scalffold</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\LaidObject.h">
+      <Filter>02.GameObject\99.public\05.LaidObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -856,6 +889,27 @@
     </ClCompile>
     <ClCompile Include="..\Code\Barrel.cpp">
       <Filter>02.GameObject\04.FireStage\00.Barrel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\WindBoss.cpp">
+      <Filter>07.Monster\99.Boss\02.WindBoss</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\WindTornado.cpp">
+      <Filter>07.Monster\99.Boss\02.WindBoss\02.WindTornado</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\WindSpin.cpp">
+      <Filter>07.Monster\99.Boss\02.WindBoss\00.WindSpin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\WindBall.cpp">
+      <Filter>07.Monster\99.Boss\02.WindBoss\01.WindBall</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\GoldBox.cpp">
+      <Filter>07.Monster\07.GoldBox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Scaffold.cpp">
+      <Filter>02.GameObject\04.FireStage\01.Scalffold</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\LaidObject.cpp">
+      <Filter>02.GameObject\99.public\05.LaidObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

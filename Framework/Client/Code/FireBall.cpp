@@ -46,6 +46,8 @@ _int CFireBall::Use_Skill(const _float& fTimeDelta)
 	//_vec3 vLook = pTransform->GetInfoRef(Engine::INFO_LOOK);
 	_vec3 vLook;
 	Engine::Get_MainCameraLook(&vLook);
+	if (vLook.y < 0.f)
+		vLook.y = 0.f;
 	D3DXVec3Normalize(&vLook, &vLook);
 	vStartPos += vLook;
 

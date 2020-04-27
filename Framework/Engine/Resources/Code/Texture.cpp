@@ -48,7 +48,8 @@ HRESULT Engine::CTexture::Ready_Texture(const _tchar* pPath, TEXTURETYPE eType, 
 				tImgInfo.Format, D3DPOOL_MANAGED, D3DX_DEFAULT, D3DX_DEFAULT, 0, nullptr, nullptr, (LPDIRECT3DTEXTURE9*)&pTexture), E_FAIL);
 			break;
 		case TEX_CUBE:
-			FAILED_CHECK_RETURN(D3DXCreateCubeTextureFromFile(m_pGraphicDev, szFileName, (LPDIRECT3DCUBETEXTURE9*)&pTexture), E_FAIL);
+			FAILED_CHECK_RETURN(D3DXCreateCubeTextureFromFileEx(m_pGraphicDev, szFileName,D3DX_DEFAULT, tImgInfo.MipLevels, 0, tImgInfo.Format, 
+				D3DPOOL_MANAGED, D3DX_DEFAULT, D3DX_DEFAULT, 0, nullptr, nullptr, (LPDIRECT3DCUBETEXTURE9*)&pTexture), E_FAIL);
 			break;
 		}
 

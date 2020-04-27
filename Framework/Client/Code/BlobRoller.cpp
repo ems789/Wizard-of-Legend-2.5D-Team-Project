@@ -23,6 +23,7 @@ HRESULT CBlobRoller::Ready_GameObject()
 	m_tSphere.fRadius = 1.f;
 
 	
+	Engine::PlaySound_(L"FlameLight.wav", CSoundMgr::EFFECT);
 
 	return S_OK;
 }

@@ -125,6 +125,9 @@ _int CPlayer::Change_Skill(_int SlotNumber, Engine::CSkill * pSkill)
 	if (m_vecEquipSkill[SlotNumber] != nullptr)
 		Engine::Safe_Release(m_vecEquipSkill[SlotNumber]);
 
+	if (nullptr == pSkill)
+		return 0;
+
 	m_vecEquipSkill[SlotNumber] = pSkill;
 	m_vecEquipSkill[SlotNumber]->AddRef();
 

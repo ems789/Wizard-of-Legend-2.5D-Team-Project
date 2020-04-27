@@ -71,7 +71,7 @@ void CBarrel::Hit(const _int & iAtk, const _vec3 * pAtkPos)
 	_vec3 vPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
 	if (m_bBoom)
 	{
-		CFireKick* pFireKick = CFireKick::Create(m_pGraphicDev, vPos, 0.2f, 4.f, 20, 0.05f);
+		CFireKick* pFireKick = CFireKick::Create(m_pGraphicDev, vPos, 0.2f, 4.f, 50, 0.02f);
 		Engine::Add_GameObject(L"GameLogic", L"Barrel_Boom", pFireKick);
 	}
 	else

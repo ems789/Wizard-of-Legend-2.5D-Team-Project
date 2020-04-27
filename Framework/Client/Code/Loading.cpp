@@ -366,6 +366,8 @@ _uint CLoading::Loading_ForState()
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Barrel", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Object/Barrel/Barrel.png"), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_BarrelDestroyed", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Object/Barrel/Destroyed/BarrelDestroyed%d.png", 4), E_FAIL);
 
+	//	Scaffold Texture
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Scaffold", Engine::TEX_CUBE, L"../Bin/Resource/Texture/Object/Scaffold/Texture1.dds"), E_FAIL);
 
 
 	//	WindAgentSwirl Texture
@@ -382,6 +384,8 @@ _uint CLoading::Loading_ForState()
 
 	//	TeleportEffect
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_TeleportEffect", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/TeleportEffect/TeleportEffect%d.png", 9), E_FAIL);
+	
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_TeleportLandingPad", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/TeleportEffect/TeleportLandingPad.png"), E_FAIL);
 
 	//	RoomBlock
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_RoomBlock", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/RoomBlock/RoomBlock%d.png", 18), E_FAIL);
