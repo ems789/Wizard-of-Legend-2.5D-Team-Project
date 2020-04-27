@@ -57,11 +57,13 @@ private:
 	_uint	m_uiFireCnt = 4;
 	_float	m_fSize = 50.f;
 
+	_float	m_fRange = 100.f;
+
 	Engine::SPHERE m_tSphere;
 	const _tchar* m_pCollisionTag = L"";
 
 public:
-	static CFireKick* Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3& vInitialPos, const _float& fLifeTime, const _uint& uiFireCnt = 4, const _int& iAttack = 10, const _float& fSize = 0.01f, const _tchar* pCollisionTag = L"MonsterAttack", const _float& fRadius = 1.f);
+	static CFireKick* Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3& vInitialPos, const _float& fLifeTime, const _uint& uiFireCnt = 4, const _int& iAttack = 10, const _float& fSize = 0.01f, const _tchar* pCollisionTag = L"MonsterAttack", const _float& fRadius = 1.f, const _float& fRange = 0.f);
 
 private:
 	virtual void Free() override;

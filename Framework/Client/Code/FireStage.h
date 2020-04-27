@@ -7,6 +7,7 @@
 
 class CRoomBlock;
 class CBlobRoller;
+class CScaffold;
 class CFireStage : public Engine::CScene
 {
 	enum	ROOM_STATE	{ ROOM_IDLE, ROOM_CLOSE, ROOM_OPEN, ROOM_END };
@@ -39,6 +40,10 @@ private:
 	void		FourthMonsterGen(const _vec3* pPlayerPos);
 	void		FifthMonsterGen(const _vec3* pPlayerPos);
 	void		SixthRoomStart(const _vec3* pPlayerPos);
+	void		SeventhRoomStart(const _vec3* pPlayerPos);
+	void		EighthRoomStart(const _vec3* pPlayerPos);
+	void		EngindRoomStart();
+
 
 private:
 	_int		Room_State_Update(const _float& fTimeDelta);
@@ -61,10 +66,10 @@ private:
 	//	상자 찾기		-> 완료
 	_int		FifthRoom_Update(const _float& fTimeDelta);
 
-	//	두더지 잡기		-> 미완
+	//	장판 피하기	->	완료
 	_int		SixthRoom_Update(const _float& fTimeDelta);
 
-	//	
+	//	발판 누르기	->	완료
 	_int		SeventhRoom_Update(const _float& fTimeDelta);
 
 	//	보스방
@@ -87,13 +92,18 @@ private:
 	_bool		m_b4thMonsterGen = false;
 	_bool		m_b5thMonsterGen = false;
 	_bool		m_b6thRoomStart = false;
+	_bool		m_b7thRoomStart = false;
+	_bool		m_b8thRoomStart = false;
+	_bool		m_b9thRoomStart = false;
 
 	_bool		m_bMonsterGen = false;
 
-	ROOM_STATE	m_eCurState		= ROOM_IDLE;
-	ROOM_NUMBER m_eRoomNumber	= ROOM_NUM_END;
-	ROOM_PHASE	m_eRoomPhase	= RP_END;
+	ROOM_STATE			m_eCurState		= ROOM_IDLE;
+	ROOM_NUMBER			m_eRoomNumber	= ROOM_NUM_END;
+	ROOM_PHASE			m_eRoomPhase	= RP_END;
+	list<CRoomBlock*>	m_RoomBlockList;
 
+	_vec3		m_vRoomPos = {};
 	_float		m_fRoomMinX = 0.f;
 	_float		m_fRoomMaxX = 0.f;
 	_float		m_fRoomMinZ = 0.f;
@@ -112,8 +122,8 @@ private:
 	_bool				m_bR4Go = false;
 	list<CBlobRoller*>	m_BlobRollerList;
 
-
-	list<CRoomBlock*>			m_RoomBlockList;
+	vector<CScaffold*>	m_vecScaffold;
+	_bool				m_bScaffoldAnswer[16];
 
 public:
 	static CFireStage* Create(LPDIRECT3DDEVICE9 pGraphicDev);

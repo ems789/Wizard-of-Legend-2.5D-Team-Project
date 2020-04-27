@@ -191,6 +191,7 @@
     <ClInclude Include="..\Code\FireThrow.h" />
     <ClInclude Include="..\Code\FirstViewCamera.h" />
     <ClInclude Include="..\Code\GhoulLarge.h" />
+    <ClInclude Include="..\Code\GoldBox.h" />
     <ClInclude Include="..\Code\Golem.h" />
     <ClInclude Include="..\Code\GuidedFire.h" />
     <ClInclude Include="..\Code\GuidedFireBall.h" />
@@ -200,6 +201,7 @@
     <ClInclude Include="..\Code\Knight.h" />
     <ClInclude Include="..\Code\LaidEffect.h" />
     <ClInclude Include="..\Code\LaidFollowingEffect.h" />
+    <ClInclude Include="..\Code\LaidObject.h" />
     <ClInclude Include="..\Code\LightningBoss.h" />
     <ClInclude Include="..\Code\LightningChainDash.h" />
     <ClInclude Include="..\Code\LightningFalling.h" />
@@ -218,6 +220,7 @@
     <ClInclude Include="..\Code\QuaterViewCamera.h" />
     <ClInclude Include="..\Code\RoomBlock.h" />
     <ClInclude Include="..\Code\RotatedBillEffect.h" />
+    <ClInclude Include="..\Code\Scaffold.h" />
     <ClInclude Include="..\Code\Shark.h" />
     <ClInclude Include="..\Code\SharkPool.h" />
     <ClInclude Include="..\Code\SignitureEffect.h" />
@@ -289,6 +292,7 @@
     <ClCompile Include="..\Code\FireThrow.cpp" />
     <ClCompile Include="..\Code\FirstViewCamera.cpp" />
     <ClCompile Include="..\Code\GhoulLarge.cpp" />
+    <ClCompile Include="..\Code\GoldBox.cpp" />
     <ClCompile Include="..\Code\Golem.cpp" />
     <ClCompile Include="..\Code\GuidedFire.cpp" />
     <ClCompile Include="..\Code\GuidedFireBall.cpp" />
@@ -298,6 +302,7 @@
     <ClCompile Include="..\Code\Knight.cpp" />
     <ClCompile Include="..\Code\LaidEffect.cpp" />
     <ClCompile Include="..\Code\LaidFollowingEffect.cpp" />
+    <ClCompile Include="..\Code\LaidObject.cpp" />
     <ClCompile Include="..\Code\LightningBoss.cpp" />
     <ClCompile Include="..\Code\LightningChainDash.cpp" />
     <ClCompile Include="..\Code\LightningFalling.cpp" />
@@ -316,6 +321,7 @@
     <ClCompile Include="..\Code\QuaterViewCamera.cpp" />
     <ClCompile Include="..\Code\RoomBlock.cpp" />
     <ClCompile Include="..\Code\RotatedBillEffect.cpp" />
+    <ClCompile Include="..\Code\Scaffold.cpp" />
     <ClCompile Include="..\Code\Shark.cpp" />
     <ClCompile Include="..\Code\SharkPool.cpp" />
     <ClCompile Include="..\Code\SignitureEffect.cpp" />

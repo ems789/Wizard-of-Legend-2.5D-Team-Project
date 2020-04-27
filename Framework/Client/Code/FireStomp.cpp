@@ -45,7 +45,7 @@ _int CFireStomp::Update_GameObject(const _float& fTimeDelta)
 			m_eCurState = FSS_BOOM;
 
 
-			CFireKick* pFireKick = CFireKick::Create(m_pGraphicDev, vPos, 0.5f, 4, m_iAttack, 0.05f);
+			CFireKick* pFireKick = CFireKick::Create(m_pGraphicDev, vPos, 0.5f, 20, m_iAttack, 0.01f, L"MonsterAttack", 3.f, 0.05f);
 			Engine::Add_GameObject(L"GameLogic", L"StompBoom", pFireKick);
 			Engine::Get_MainCamera()->CameraShake();
 			Engine::PlaySound_(L"Explosion2.wav", CSoundMgr::EFFECT);

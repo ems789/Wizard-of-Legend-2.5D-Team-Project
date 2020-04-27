@@ -1,21 +1,22 @@
 #include "stdafx.h"
-#include "Barrel.h"
+#include "GoldBox.h"
 
 #include "Export_Function.h"
 #include "SphereCollider.h"
 #include "FireKick.h"
 #include "BasicEffect.h"
+#include "Coin.h"
 
-CBarrel::CBarrel(LPDIRECT3DDEVICE9 pGraphicDev)
+CGoldBox::CGoldBox(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CGameObject(pGraphicDev)
 {
 }
 
-CBarrel::~CBarrel()
+CGoldBox::~CGoldBox()
 {
 }
 
-HRESULT CBarrel::Ready_GameObject(const _tchar* pTextureTag, const _vec3* pPos, const _float& fScale, const _float& fMaxFrame, const _float& fFrameSpeed, const _bool& bBoom)
+HRESULT CGoldBox::Ready_GameObject(const _tchar* pTextureTag, const _vec3* pPos, const _float& fScale, const _float& fMaxFrame, const _float& fFrameSpeed)
 {
 	FAILED_CHECK_RETURN(Add_Component(pTextureTag), E_FAIL);
 
@@ -26,8 +27,6 @@ HRESULT CBarrel::Ready_GameObject(const _tchar* pTextureTag, const _vec3* pPos, 
 	m_tFrame.fMaxFrame = fMaxFrame;
 	m_tFrame.fFrameSpeed = fFrameSpeed;
 
-	m_bBoom = bBoom;
-
 	m_d3dColor = D3DXCOLOR(1.f, 1.f, 1.f, 1.f);
 
 	Update_Scale();
@@ -35,7 +34,7 @@ HRESULT CBarrel::Ready_GameObject(const _tchar* pTextureTag, const _vec3* pPos, 
 	return S_OK;
 }
 
-_int CBarrel::Update_GameObject(const _float& fTimeDelta)
+_int CGoldBox::Update_GameObject(const _float& fTimeDelta)
 {
 	if (m_bIsDead)
 		return 0;
@@ -55,7 +54,7 @@ _int CBarrel::Update_GameObject(const _float& fTimeDelta)
 	return 0;
 }
 
-void CBarrel::Render_GameObject()
+void CGoldBox::Render_GameObject()
 {
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->GetWorldMatrix());
 
@@ -64,54 +63,62 @@ void CBarrel::Render_GameObject()
 	m_pBufferCom->Render_Buffer();
 }
 
-void CBarrel::Hit(const _int & iAtk, const _vec3 * pAtkPos)
+void CGoldBox::Hit(const _int & iAtk, const _vec3 * pAtkPos)
 {
-	m_bIsDead = true;
+	m_iHP -= iAtk;
 
-	_vec3 vPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
-	if (m_bBoom)
+	if (m_iHP <= 0)
 	{
-		CFireKick* pFireKick = CFireKick::Create(m_pGraphicDev, vPos, 0.2f, 4.f, 50, 0.02f);
-		Engine::Add_GameObject(L"GameLogic", L"Barrel_Boom", pFireKick);
-	}
-	else
-	{
-		CBasicEffect*  pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_BarrelDestroyed", L"", 4.f, 10.f, 0.05f, &vPos, false, 0.f);
-		Engine::Add_GameObject(L"Effect", L"Effect_BarrelDestroyed", pEffect);
+		m_iHP = 0;
+		m_bIsDead = true;
+
+		_uint iRepeat = rand() % 10 + 10;
+		for (_uint i = 0; i < iRepeat; ++i)
+		{
+			_vec3 vDir = { rand() % 100 / 50.f - 1.f, 0.f ,rand() % 100 / 50.f - 1.f };
+			D3DXVec3Normalize(&vDir, &vDir);
+			_float fUpForce = rand() % 100 / 10.f + 20.f;
+			_float	fSpeed = rand() % 100 / 50.f;
+			_int	iCoin = rand() % 20 + 1;
+			CCoin* pCoin = CCoin::Create(m_pGraphicDev, m_pTransformCom->GetInfo(Engine::INFO_POS), &vDir, fUpForce, fSpeed, iCoin);
+			Engine::Add_GameObject(L"GameLogic", L"Coin", pCoin);
+		}
+
+
 	}
 }
 
-const _vec3 * CBarrel::Get_Pos() const
+const _vec3 * CGoldBox::Get_Pos() const
 {
 	return m_pTransformCom->GetInfo(Engine::INFO_POS);
 }
 
-void CBarrel::Set_Pos(const _vec3 * pPos)
+void CGoldBox::Set_Pos(const _vec3 * pPos)
 {
 	m_pTransformCom->Set_Pos(pPos);
 }
 
-void CBarrel::Set_Pos(const _vec3 & vPos)
+void CGoldBox::Set_Pos(const _vec3 & vPos)
 {
 	m_pTransformCom->Set_Pos(vPos);
 }
 
-void CBarrel::Set_PosX(const _float & fx)
+void CGoldBox::Set_PosX(const _float & fx)
 {
 	m_pTransformCom->Set_PosX(fx);
 }
 
-void CBarrel::Set_PosY(const _float & fy)
+void CGoldBox::Set_PosY(const _float & fy)
 {
 	m_pTransformCom->Set_PosY(fy);
 }
 
-void CBarrel::Set_PosZ(const _float & fz)
+void CGoldBox::Set_PosZ(const _float & fz)
 {
 	m_pTransformCom->Set_PosZ(fz);
 }
 
-HRESULT CBarrel::Add_Component(const _tchar * pTextureTag)
+HRESULT CGoldBox::Add_Component(const _tchar * pTextureTag)
 {
 	Engine::CComponent*	pComponent = nullptr;
 
@@ -135,7 +142,7 @@ HRESULT CBarrel::Add_Component(const _tchar * pTextureTag)
 	return S_OK;
 }
 
-void CBarrel::Animation(const _float & fTimeDelta)
+void CGoldBox::Animation(const _float & fTimeDelta)
 {
 	m_tFrame.fCurFrame += fTimeDelta * m_tFrame.fFrameSpeed;
 
@@ -143,7 +150,7 @@ void CBarrel::Animation(const _float & fTimeDelta)
 		m_tFrame.fCurFrame = 0.f;
 }
 
-void CBarrel::Turn_To_Camera_Look()
+void CGoldBox::Turn_To_Camera_Look()
 {
 	_vec3 vAngle = { 0.f, 0.f, 0.f };
 	Engine::Get_MainCameraAngle(&vAngle);
@@ -153,7 +160,7 @@ void CBarrel::Turn_To_Camera_Look()
 	m_pTransformCom->Update_Component(0.f);
 }
 
-void CBarrel::Update_Scale()
+void CGoldBox::Update_Scale()
 {
 	const Engine::TEX_INFO* pTexInfo = m_pTextureCom->Get_TexInfo();
 
@@ -161,17 +168,17 @@ void CBarrel::Update_Scale()
 	m_pTransformCom->Set_Scale(vScale);
 }
 
-CBarrel * CBarrel::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _tchar* pTextureTag, const _vec3 * pPos, const _float& fScale, const _float& fMaxFrame, const _float& fFrameSpeed, const _bool& bBoom)
+CGoldBox * CGoldBox::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _tchar* pTextureTag, const _vec3 * pPos, const _float& fScale, const _float& fMaxFrame, const _float& fFrameSpeed)
 {
-	CBarrel* pInstance = new CBarrel(pGraphicDev);
+	CGoldBox* pInstance = new CGoldBox(pGraphicDev);
 
-	if (FAILED(pInstance->Ready_GameObject(pTextureTag, pPos, fScale, fMaxFrame, fFrameSpeed, bBoom)))
+	if (FAILED(pInstance->Ready_GameObject(pTextureTag, pPos, fScale, fMaxFrame, fFrameSpeed)))
 		Engine::Safe_Release(pInstance);
 
 	return pInstance;
 }
 
-void CBarrel::Free()
+void CGoldBox::Free()
 {
 	CGameObject::Free();
 }

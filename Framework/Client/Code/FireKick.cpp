@@ -165,7 +165,7 @@ void CFireKick::FireKickTail()
 			break;
 		}
 
-		_vec3 vDir = { (rand() % 100 - 50.f) * m_fSize, (rand() % 100 - 50.f) * m_fSize, (rand() % 100 - 50.f) * m_fSize };
+		_vec3 vDir = { (rand() % 100 - 50.f) * m_fRange, (rand() % 100 - 50.f) * m_fRange, (rand() % 100 - 50.f) * m_fRange };
 		_vec3 vCreatePos = vPos + vDir;
 		//vCreatePos.y = 0.f;
 		D3DXVec3Normalize(&vDir, &vDir);
@@ -187,7 +187,7 @@ void CFireKick::Turn_To_Camera_Look()
 	m_pTransformCom->Update_Component(0.f);
 }
 
-CFireKick* CFireKick::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3& vInitialPos, const _float& fLifeTime, const _uint& uiFireCnt, const _int& iAttack, const _float& fSize, const _tchar* pCollisionTag /*= L"MonsterAttack"*/, const _float& fRadius/* = 1.f*/)
+CFireKick* CFireKick::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3& vInitialPos, const _float& fLifeTime, const _uint& uiFireCnt, const _int& iAttack, const _float& fSize, const _tchar* pCollisionTag /*= L"MonsterAttack"*/, const _float& fRadius/* = 1.f*/, const _float& fRange/* = 0.f*/)
 {
 	CFireKick*	pInstance = new CFireKick(pGraphicDev);
 
@@ -203,6 +203,10 @@ CFireKick* CFireKick::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3& vInitia
 	pInstance->m_fSize = fSize;
 	pInstance->m_pCollisionTag = pCollisionTag;
 	pInstance->m_tSphere.fRadius = fRadius;
+	if (fRange == 0.f)
+		pInstance->m_fRange = fSize;
+	else
+		pInstance->m_fRange = fRange;
 
 	return pInstance;
 }

@@ -159,7 +159,7 @@ private:
 	_int			m_iCoin = 100;
 
 	map<wstring, Engine::CSkill*>  m_MapSkill;
-	CPlayer*	m_pPlayer;
+	CPlayer*	m_pPlayer = nullptr;
 
 public:
 	virtual void Free() override;

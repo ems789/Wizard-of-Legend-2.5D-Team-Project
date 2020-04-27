@@ -53,6 +53,8 @@ HRESULT CInven::Ready_Inven(LPDIRECT3DDEVICE9 pGraphicDev)
 	m_eCurSelect = CInven::SELECT_BASE;
 
 	m_iCoin = 600;
+
+	
 	
 	//스킬 추가 부분 추가된 부분
 	//CMeteorStrike* pMeteorStrike = CMeteorStrike::Create(m_pGraphicDev);
@@ -94,6 +96,8 @@ _int CInven::Update_Inven(const _float & fTImeDelta)
 			//m_eCurSkill = CInven::LIST_ON;
 
 		}
+
+
 		break;
 		///////////////////////////////////////////////////////
 	case CInven::INVEN_ON:
@@ -185,6 +189,15 @@ _int CInven::Update_Inven(const _float & fTImeDelta)
 			//
 			//m_eCurSelect = CInven::SELECT_BASE;
 		}
+		if (Engine::KeyDown(DIK_BACKSPACE))
+		{
+			m_bInvenOn = false;
+			m_bListOn = false;
+			m_eCurState = CInven::INVEN_OFF;
+			m_eCurSkill = CInven::LIST_ON;
+
+		}
+
 		break;
 
 	case CInven::BASIC_FIRE:
