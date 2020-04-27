@@ -15,7 +15,7 @@ private:
 	virtual ~CSphereCollider();
 
 public:
-	HRESULT			Ready_Collider(CGameObject* pParent, Engine::CEffect* pHitEffect, const _float& fRadius, const _tchar* pColliderTag, const _int& iAttack);
+	HRESULT			Ready_Collider(CGameObject* pParent, Engine::CEffect* pHitEffect, const _float& fRadius, const _tchar* pColliderTag, const _int& iAttack, const _float& fLifeTime);
 	virtual _int	Update_GameObject(const _float& fTimeDelta) override;
 	virtual void	Render_GameObject() override;
 
@@ -26,14 +26,20 @@ public:	//	Get Functions
 	virtual void			Add_Effect(const _vec3* pPos);
 
 private:
+	void	LifeTimer(const _float& fTimeDelta);
+
+private:
 	Engine::SPHERE		m_tSphere;
 	const _tchar*		m_pColliderTag = nullptr;
 	_int				m_iAttack = 20;
 	Engine::CEffect*	m_pHitEffect = nullptr;
 	_bool				m_bAddEffect = false;
+	_float				m_fLifeCount = 0.f;
+	_float				m_fLifeTime = 0.f;
 
 public:
-	static CSphereCollider* Create(LPDIRECT3DDEVICE9 pGraphicDev, CGameObject* pParent, Engine::CEffect* pHitEffect, const _float& fRadius, const _tchar* pColliderTag, const _int& iAttack);
+	static CSphereCollider* Create(LPDIRECT3DDEVICE9 pGraphicDev, CGameObject* pParent, Engine::CEffect* pHitEffect, const _float& fRadius,
+		const _tchar* pColliderTag, const _int& iAttack, const _float& fLifeTime = 0.f);
 
 protected:
 	virtual void Free() override;

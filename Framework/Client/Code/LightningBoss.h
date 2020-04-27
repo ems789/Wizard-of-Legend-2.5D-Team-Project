@@ -16,8 +16,8 @@ END
 class CLightningBoss : public Engine::CGameObject
 {
 private:
-	enum LightningBoss_STATE	{	FBS_IDLE, FBS_JUMP, FBS_FLOAT, FBS_READY_JAVELIN, FBS_THROW_JAVELIN, FBS_DASH, FBS_SLIDE, FBS_PBAOE_Ready, FBS_PBAOE, FBS_DEAD, FBS_END };
-	enum LightningBoss_DIR	{ FBD_UP, FBD_DOWN, FBD_LEFT, FBD_RIGHT, FBD_END };
+	enum LightningBoss_STATE	{	LBS_IDLE, LBS_JUMP, LBS_FLOAT, LBS_READY_JAVELIN, LBS_THROW_JAVELIN, LBS_DASH, LBS_SLIDE, LBS_PBAOE_Ready, LBS_PBAOE, LBS_DEAD, LBS_END };
+	enum LightningBoss_DIR	{ LBD_UP, LBD_DOWN, LBD_LEFT, LBD_RIGHT, LBD_END };
 
 private:
 	explicit CLightningBoss(LPDIRECT3DDEVICE9 pGraphicDev);
@@ -108,11 +108,11 @@ private:
 	_bool	m_bLightningLand = false;
 	_bool	m_bIsDash = false;
 
-	_int	m_iDashDir = FBD_LEFT;
+	_int	m_iDashDir = LBD_LEFT;
 
-	CLightningBoss::LightningBoss_STATE		m_ePreState = CLightningBoss::FBS_END;
-	CLightningBoss::LightningBoss_STATE		m_eCurState = CLightningBoss::FBS_END;
-	CLightningBoss::LightningBoss_DIR		m_eCurDir	= CLightningBoss::FBD_END;
+	CLightningBoss::LightningBoss_STATE		m_ePreState = CLightningBoss::LBS_END;
+	CLightningBoss::LightningBoss_STATE		m_eCurState = CLightningBoss::LBS_END;
+	CLightningBoss::LightningBoss_DIR		m_eCurDir	= CLightningBoss::LBD_END;
 
 	_vec3	m_pHandPos;
 

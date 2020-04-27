@@ -119,8 +119,8 @@ CLightningChainDash * CLightningChainDash::Create(LPDIRECT3DDEVICE9 pGraphicDev,
 	Engine::Add_GameObject(L"Effect", L"Texture_LightningTip2", pLightningTip2);
 	CLaidEffect* pLightningTip3 = CLaidEffect::Create(pGraphicDev, L"Texture_LightningTip", L"", rand() % 4 + 1, 10.f, 0.05f, &pInstance->m_vInitialPos, fAngle, true, 1.f);
 	Engine::Add_GameObject(L"Effect", L"Texture_LightningTip3", pLightningTip3);
-	CLaidEffect* pLightningTip4 = CLaidEffect::Create(pGraphicDev, L"Texture_LightningTip", L"", rand() % 4 + 1, 10.f, 0.05f, &pInstance->m_vInitialPos, fAngle, true, 1.f);
-	Engine::Add_GameObject(L"Effect", L"Texture_LightningTip4", pLightningTip4);
+	/*CLaidEffect* pLightningTip4 = CLaidEffect::Create(pGraphicDev, L"Texture_LightningTip", L"", rand() % 4 + 1, 10.f, 0.05f, &pInstance->m_vInitialPos, fAngle, true, 1.f);
+	Engine::Add_GameObject(L"Effect", L"Texture_LightningTip4", pLightningTip4);*/
 
 	return pInstance;
 }
