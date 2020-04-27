@@ -17,6 +17,7 @@
 #include "LightningBoss.h"
 #include "CardSpawn.h"
 #include "RoomBlock.h"
+#include "WindBoss.h"
 
 CFireStage::CFireStage(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CScene(pGraphicDev)
@@ -432,8 +433,12 @@ void CFireStage::FourthMonsterGen(const _vec3 * pPlayerPos)
 	{
 
 		_vec3 vCardPos = { 82.f, 1.f, 36.f};
-		Engine::CGameObject* pGameObject = CFireBoss::Create(m_pGraphicDev, &vCardPos);
+		//Engine::CGameObject* pGameObject = CFireBoss::Create(m_pGraphicDev, &vCardPos);
+		//NULL_CHECK_RETURN(pGameObject, );
+
+		Engine::CGameObject* pGameObject = CWindBoss::Create(m_pGraphicDev, &vCardPos);
 		NULL_CHECK_RETURN(pGameObject, );
+
 
 		CCardSpawn* pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
 		Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);

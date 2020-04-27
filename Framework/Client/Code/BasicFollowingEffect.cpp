@@ -39,10 +39,12 @@ _int CBasicFollowingEffect::Update_GameObject(const _float& fTimeDelta)
 
 void CBasicFollowingEffect::Render_GameObject()
 {
+	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->GetWorldMatrix());
 
 	m_pTextureCom->Render_Texture(static_cast<_uint>(m_tFrame.fCurFrame));
 	m_pBufferCom->Render_Buffer();
+	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 }
 
 HRESULT CBasicFollowingEffect::Ready_GameObject(const _tchar * pTextureTag)

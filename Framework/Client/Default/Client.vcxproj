@@ -163,6 +163,8 @@
     <ClInclude Include="..\..\Engine\Utility\Code\UIImage.h" />
     <ClInclude Include="..\Code\AlphaBillEffect.h" />
     <ClInclude Include="..\Code\AlphaLaidEffect.h" />
+    <ClInclude Include="..\Code\Aqua.h" />
+    <ClInclude Include="..\Code\AquaVortex.h" />
     <ClInclude Include="..\Code\BackGround.h" />
     <ClInclude Include="..\Code\BasicEffect.h" />
     <ClInclude Include="..\Code\BasicFollowingEffect.h" />
@@ -209,6 +211,8 @@
     <ClInclude Include="..\Code\Player.h" />
     <ClInclude Include="..\Code\QuaterViewCamera.h" />
     <ClInclude Include="..\Code\RoomBlock.h" />
+    <ClInclude Include="..\Code\Shark.h" />
+    <ClInclude Include="..\Code\SharkPool.h" />
     <ClInclude Include="..\Code\SignitureEffect.h" />
     <ClInclude Include="..\Code\SphereCollider.h" />
     <ClInclude Include="..\Code\Stage.h" />
@@ -223,8 +227,15 @@
     <ClInclude Include="..\Code\UIButton.h" />
     <ClInclude Include="..\Code\UIObject.h" />
     <ClInclude Include="..\Code\Wall.h" />
+    <ClInclude Include="..\Code\Water.h" />
+    <ClInclude Include="..\Code\WaterBall.h" />
+    <ClInclude Include="..\Code\WaterThrow.h" />
     <ClInclude Include="..\Code\Wind.h" />
+    <ClInclude Include="..\Code\WindBall.h" />
+    <ClInclude Include="..\Code\WindBoss.h" />
     <ClInclude Include="..\Code\WindSlash.h" />
+    <ClInclude Include="..\Code\WindSpin.h" />
+    <ClInclude Include="..\Code\WindTornado.h" />
     <ClInclude Include="..\Header\Defines.h" />
     <ClInclude Include="..\Header\Enum.h" />
     <ClInclude Include="..\Header\Function.h" />
@@ -240,6 +251,8 @@
     <ClCompile Include="..\..\Engine\Utility\Code\UIImage.cpp" />
     <ClCompile Include="..\Code\AlphaBillEffect.cpp" />
     <ClCompile Include="..\Code\AlphaLaidEffect.cpp" />
+    <ClCompile Include="..\Code\Aqua.cpp" />
+    <ClCompile Include="..\Code\AquaVortex.cpp" />
     <ClCompile Include="..\Code\BackGround.cpp" />
     <ClCompile Include="..\Code\BasicEffect.cpp" />
     <ClCompile Include="..\Code\BasicFollowingEffect.cpp" />
@@ -286,6 +299,8 @@
     <ClCompile Include="..\Code\Player.cpp" />
     <ClCompile Include="..\Code\QuaterViewCamera.cpp" />
     <ClCompile Include="..\Code\RoomBlock.cpp" />
+    <ClCompile Include="..\Code\Shark.cpp" />
+    <ClCompile Include="..\Code\SharkPool.cpp" />
     <ClCompile Include="..\Code\SignitureEffect.cpp" />
     <ClCompile Include="..\Code\SphereCollider.cpp" />
     <ClCompile Include="..\Code\Stage.cpp" />
@@ -300,8 +315,15 @@
     <ClCompile Include="..\Code\UIButton.cpp" />
     <ClCompile Include="..\Code\UIObject.cpp" />
     <ClCompile Include="..\Code\Wall.cpp" />
+    <ClCompile Include="..\Code\Water.cpp" />
+    <ClCompile Include="..\Code\WaterBall.cpp" />
+    <ClCompile Include="..\Code\WaterThrow.cpp" />
     <ClCompile Include="..\Code\Wind.cpp" />
+    <ClCompile Include="..\Code\WindBall.cpp" />
+    <ClCompile Include="..\Code\WindBoss.cpp" />
     <ClCompile Include="..\Code\WindSlash.cpp" />
+    <ClCompile Include="..\Code\WindSpin.cpp" />
+    <ClCompile Include="..\Code\WindTornado.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
