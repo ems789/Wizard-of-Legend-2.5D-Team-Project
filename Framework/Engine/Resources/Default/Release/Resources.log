@@ -1,24 +1,8 @@
-﻿  BottomWallTex.cpp
-  CeilingWallTex.cpp
-  CubeTex.cpp
-  LeftWallTex.cpp
-  RcAlphaTex.cpp
-  RcCol.cpp
-  RcTex.cpp
-  Resources.cpp
-  ResourcesMgr.cpp
-  RightWallTex.cpp
-  TerrainTex.cpp
-  Texture.cpp
-  TileTex.cpp
-  TopWallTex.cpp
-  TriCol.cpp
-  VIBuffer.cpp
-     Creating library ../Bin/Resources.lib and object ../Bin/Resources.exp
+﻿     Creating library ../Bin/Resources.lib and object ../Bin/Resources.exp
   Generating code
-  1 of 460 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+  0 of 460 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Resources.vcxproj -> D:\TeamProject\Framework\Engine\Resources\Default\../Bin/Resources.dll
   Resources.vcxproj -> ../Bin/Resources.pdb (Full PDB)
@@ -41,8 +25,7 @@
          16개 파일이 복사되었습니다.
           1개 파일이 복사되었습니다.
           1개 파일이 복사되었습니다.
-  다른 프로세스가 파일을 사용 중이기 때문에 프로세스가 액세스 할 수 없습니다.
-          0개 파일이 복사되었습니다.
+          1개 파일이 복사되었습니다.
   .\Engine\Header\Engine_Defines.h
   .\Engine\Header\Engine_Enum.h
   .\Engine\Header\Engine_Function.h
