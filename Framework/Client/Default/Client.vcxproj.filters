@@ -337,6 +337,9 @@
     <Filter Include="01.Scene\05.EndingScene">
       <UniqueIdentifier>{b62a2d35-67a5-4d63-ae5c-745717b06e9f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="07.Monster\08.SkeletonMinion">
+      <UniqueIdentifier>{6b48fb2e-3719-4f4d-a3fd-e0d19c96104c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -636,6 +639,9 @@
     <ClInclude Include="..\Code\LaidObject.h">
       <Filter>02.GameObject\99.public\05.LaidObject</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\SkeletonMinion.h">
+      <Filter>07.Monster\08.SkeletonMinion</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -910,6 +916,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\LaidObject.cpp">
       <Filter>02.GameObject\99.public\05.LaidObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\SkeletonMinion.cpp">
+      <Filter>07.Monster\08.SkeletonMinion</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
