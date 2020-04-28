@@ -36,6 +36,7 @@
 #include "BasicEffect.h"
 #include "SkeletonMinion.h"
 #include "Portal.h"
+#include "FireStage.h"
 
 CLightningStage::CLightningStage(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CScene(pGraphicDev)
@@ -70,6 +71,25 @@ HRESULT CLightningStage::Ready_Scene()
 
 _int CLightningStage::Update_Scene(const _float& fTimeDelta)
 {
+	if (Engine::KeyDown(DIK_B))
+	{
+		CFireStage* pFireStage = CFireStage::Create(m_pGraphicDev);
+		NULL_CHECK_RETURN(pFireStage, -1);
+		Engine::SetUp_Scene(pFireStage);
+		return 1;
+	}
+
+	if (Engine::KeyDown(DIK_F9))
+	{
+		// LightningBoss
+		_vec3 vCardPos = { 50, 1.f, 37 };
+		Engine::CGameObject* pGameObject = CLightningBoss::Create(m_pGraphicDev, &_vec3(50, 1.f, 37));
+		NULL_CHECK_RETURN(pGameObject, E_FAIL);
+
+		CCardSpawn* pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
+		Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
+	}
+
 	const Engine::CTransform* pPlayerTransform = dynamic_cast<const Engine::CTransform*>(Engine::Get_Component_of_Player(L"Com_Transform", Engine::ID_DYNAMIC));
 
 	const _vec3* pPlayerPos = pPlayerTransform->GetInfo(Engine::INFO_POS);

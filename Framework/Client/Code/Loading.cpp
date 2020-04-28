@@ -3,6 +3,8 @@
 
 #include "Export_Function.h"
 
+_bool CLoading::m_bTextureLoading = false;
+
 CLoading::CLoading(LPDIRECT3DDEVICE9 pGraphicDev)
 	: m_pGraphicDev(pGraphicDev)
 	, m_bFinish(false)
@@ -56,6 +58,13 @@ HRESULT CLoading::Ready_Loading(LOADINGID eLoading, const _tchar* pTilePath, con
 
 _uint CLoading::Loading_ForState()
 {
+	if (m_bTextureLoading)
+	{
+		m_bFinish = true;
+		return 0;
+	}
+	
+	m_bTextureLoading = true;
 	//lstrcpy(m_szLoading, L"");
 
 	//	Buffer
@@ -408,6 +417,31 @@ _uint CLoading::Loading_ForState()
 	//	Coin
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Coin", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Coin/Coin_%d.png", 4), E_FAIL);
 
+
+
+	FAILED_CHECK_RETURN(Engine::Ready_Buffer(m_pGraphicDev,
+		::RESOURCE_STATIC,
+		L"Buffer_TerrainTex",
+		Engine::BUFFER_TERRAINTEX,
+		Engine::WALL_OUTER,
+		D3DXCOLOR(1.f, 1.f, 1.f, 1.f),
+		L"",
+		100 + 1,
+		100 + 1,
+		1),
+		E_FAIL);
+
+	FAILED_CHECK_RETURN(Engine::Ready_Buffer(m_pGraphicDev,
+		::RESOURCE_STATIC,
+		L"Buffer_TileTex",
+		Engine::BUFFER_TILETEX,
+		Engine::WALL_OUTER,
+		D3DXCOLOR(1.f, 1.f, 1.f, 1.f),
+		L"",
+		0,
+		0,
+		1),
+		E_FAIL);
 
 
 	//	Scene ¸¸µé±â.

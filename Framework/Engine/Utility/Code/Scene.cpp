@@ -59,10 +59,13 @@ _int Engine::CScene::Update_Scene(const _float& fTimeDelta)
 	for (auto& iter : m_mapLayer)
 	{
 		iExit = iter.second->Update_Layer(fTimeDelta);
+		if (iExit == 1)
+			return 1;
 
 		if (iExit & 0x80000000)
 			return -1;
 	}
+
 
 	m_pCollisionMgr->Collision(fTimeDelta);
 

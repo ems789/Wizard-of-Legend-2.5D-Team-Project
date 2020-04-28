@@ -31,7 +31,6 @@ private:
 	HRESULT		Ready_UI_Layer(const _tchar* pLayerTag);
 	HRESULT		Ready_StaticLayer();
 	HRESULT		Ready_Camera();
-	HRESULT		UI_Setting();
 
 private:
 	void		FirstMonsterGen(const _vec3* pPlayerPos);
@@ -86,15 +85,15 @@ private:
 	HRESULT		Store_Setting();
 
 private:
-	_bool		m_b1stMonsterGen = false;
-	_bool		m_b2ndMonsterGen = false;
-	_bool		m_b3rdMonsterGen = false;
-	_bool		m_b4thMonsterGen = false;
-	_bool		m_b5thMonsterGen = false;
-	_bool		m_b6thRoomStart = false;
-	_bool		m_b7thRoomStart = false;
-	_bool		m_b8thRoomStart = false;
-	_bool		m_b9thRoomStart = false;
+	_bool		m_b1stMonsterGen	= false;
+	_bool		m_b2ndMonsterGen	= false;
+	_bool		m_b3rdMonsterGen	= false;
+	_bool		m_b4thMonsterGen	= false;
+	_bool		m_b5thMonsterGen	= false;
+	_bool		m_b6thRoomStart		= false;
+	_bool		m_b7thRoomStart		= false;
+	_bool		m_b8thRoomStart		= false;
+	_bool		m_b9thRoomStart		= false;
 
 	_bool		m_bMonsterGen = false;
 
@@ -124,6 +123,9 @@ private:
 
 	vector<CScaffold*>	m_vecScaffold;
 	_bool				m_bScaffoldAnswer[16];
+
+	_bool				m_bTeleportDelay = false;
+	_bool				m_bTeleportEffect = false;
 
 public:
 	static CFireStage* Create(LPDIRECT3DDEVICE9 pGraphicDev);

@@ -141,29 +141,6 @@ HRESULT CTerrain::LoadTile(const ::_tchar* pFilePath)
 	LPDIRECT3DDEVICE9 pGraphicDev = Engine::CGraphicDev::GetInstance()->GetDevice();
 	FAILED_CHECK_RETURN(pGraphicDev, E_FAIL);
 
-	FAILED_CHECK_RETURN(Engine::Ready_Buffer(pGraphicDev,
-		::RESOURCE_STATIC,
-		L"Buffer_TerrainTex",
-		Engine::BUFFER_TERRAINTEX,
-		Engine::WALL_OUTER,
-		D3DXCOLOR(1.f,1.f,1.f,1.f),
-		L"",
-		tTempTerrainInfo.dwTileX + 1,
-		tTempTerrainInfo.dwTileZ + 1,
-		tTempTerrainInfo.dwItv),
-		E_FAIL);
-
-	FAILED_CHECK_RETURN(Engine::Ready_Buffer(pGraphicDev,
-		::RESOURCE_STATIC,
-		L"Buffer_TileTex",
-		Engine::BUFFER_TILETEX,
-		Engine::WALL_OUTER,
-		D3DXCOLOR(1.f, 1.f, 1.f, 1.f),
-		L"",
-		0,
-		0,
-		tTempTerrainInfo.dwItv),
-		E_FAIL);
 
 	// 타일 정보를 불러옴
 	CTile* pTile = nullptr;

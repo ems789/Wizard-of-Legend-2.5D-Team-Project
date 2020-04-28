@@ -34,9 +34,9 @@ private:
 	static _bool		m_bResourceLoading;
 	ENDING_SCENE_STATE	m_eCurState;
 	CUIObject*			m_pCredits = nullptr;
-	CUIBlink*			m_pPressEnterKey = nullptr;
 	_float				m_fSpeed = 100.f;
 	
+
 
 public:
 	static CEndingScene* Create(LPDIRECT3DDEVICE9 pGraphicDev);

@@ -41,6 +41,9 @@ _int Engine::CManagement::Update_Scene(const _float& fTimeDelta)
 	if (iExit & 0x80000000)
 		return -1;
 
+	if (1 == iExit)
+		return 1;
+
 	iExit = m_pStaticLayer->Update_Layer(fTimeDelta);
 
 	if (iExit & 0x80000000)
@@ -83,6 +86,16 @@ HRESULT CManagement::Create_StaticLayer()
 		return E_FAIL;
 	
 	m_pStaticLayer = CLayer::Create();
+
+	return S_OK;
+}
+
+HRESULT CManagement::Clear_StaticLayer()
+{
+	if (nullptr == m_pStaticLayer)
+		return S_OK;
+
+	Safe_Release(m_pStaticLayer);
 
 	return S_OK;
 }

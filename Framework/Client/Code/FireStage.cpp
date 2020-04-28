@@ -35,7 +35,7 @@
 #include "Scaffold.h"
 #include "LaidObject.h"
 #include "BasicEffect.h"
-#include "SkeletonMinion.h"
+#include "EndingScene.h"
 
 CFireStage::CFireStage(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CScene(pGraphicDev)
@@ -51,12 +51,12 @@ CFireStage::~CFireStage()
 HRESULT CFireStage::Ready_Scene()
 {
 	FAILED_CHECK_RETURN(CScene::Ready_Scene(), E_FAIL);
-	FAILED_CHECK_RETURN(Ready_StaticLayer(), E_FAIL);
 	FAILED_CHECK_RETURN(Ready_GameLogic_Layer(L"GameLogic"), E_FAIL);
 	FAILED_CHECK_RETURN(Ready_Effect_Layer(L"Effect"), E_FAIL);
 	FAILED_CHECK_RETURN(Ready_Monster_Layer(L"Monster"), E_FAIL);
 	FAILED_CHECK_RETURN(Ready_UI_Layer(L"UI"), E_FAIL);
-	FAILED_CHECK_RETURN(Ready_Camera(), E_FAIL);
+	FAILED_CHECK_RETURN(Ready_StaticLayer(), E_FAIL);
+	//FAILED_CHECK_RETURN(Ready_Camera(), E_FAIL);
 	//FAILED_CHECK_RETURN(UI_Setting(), E_FAIL);
 	FAILED_CHECK_RETURN(Store_Setting(), E_FAIL);
 	CUI::GetInstance()->ShowOnUI();
@@ -74,17 +74,23 @@ _int CFireStage::Update_Scene(const _float& fTimeDelta)
 
 	const _vec3* pPlayerPos = pPlayerTransform->GetInfo(Engine::INFO_POS);
 
-	//FirstMonsterGen(pPlayerPos);
-	//SecondMonsterGen(pPlayerPos);
-	//ThirdMonsterGen(pPlayerPos);
-	//FourthMonsterGen(pPlayerPos);
 
-	if (Engine::KeyDown(DIK_P))
+	if (Engine::KeyDown(DIK_B))
 	{
-		CSkeletonMinion* cs = CSkeletonMinion::Create(m_pGraphicDev, &_vec3(50.f, 0.5f, 37.5f));
-		Add_GameObject(L"Monster", L"SkeletonMinion", cs);
-
+		CEndingScene* pEnding = CEndingScene::Create(m_pGraphicDev);
+		Engine::SetUp_Scene(pEnding);
+		return 1;
 	}
+
+	if (m_bTeleportDelay && false == m_bTeleportEffect) 
+	{
+		CBasicEffect* pTeleEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_TeleportEffect", L"", 9.f, 10.f, 0.05f, &_vec3(50.f, 1.f, 37.5f), false, 0.f);
+		Add_GameObject(L"Effect", L"TeleportEffect", pTeleEffect);
+		m_bTeleportEffect = true;
+	}
+
+	if (false == m_bTeleportDelay)
+		m_bTeleportDelay = true;
 
 	_int iExit = Room_State_Update(fTimeDelta);
 
@@ -173,16 +179,6 @@ HRESULT CFireStage::Ready_UI_Layer(const _tchar * pLayerTag)
 
 	Engine::CGameObject* pGameObject = nullptr;
 
-	//FAILED_CHECK_RETURN(UI_Setting(), E_FAIL);
-
-	//pGameObject = CPlayerHP::Create(m_pGraphicDev, &_vec3(2.f, 2.f, 0.f));
-	//NULL_CHECK_RETURN(pGameObject, E_FAIL);
-	//pLayer->Add_GameObject(L"PlayerHP", pGameObject);
-
-	//pGameObject = CCastingCircle::Create(m_pGraphicDev, 200.f, &_vec3(0.f, 0.f, 0.f), Engine::RENDER_UI);
-	//NULL_CHECK_RETURN(pGameObject, E_FAIL);
-	//pLayer->Add_GameObject(L"CastingCircle", pGameObject);
-
 	m_mapLayer.emplace(pLayerTag, pLayer);
 
 	return S_OK;
@@ -190,12 +186,15 @@ HRESULT CFireStage::Ready_UI_Layer(const _tchar * pLayerTag)
 
 HRESULT CFireStage::Ready_StaticLayer()
 {
-	CPlayer* pPlayer = CPlayer::Create(m_pGraphicDev);
-	NULL_CHECK_RETURN(pPlayer, E_FAIL);
-	pPlayer->Set_PosX(50.f);
-	pPlayer->Set_PosZ(37.5f);
-	Engine::Add_GameObjectToStaticLayer(L"Player", pPlayer);
-	FAILED_CHECK_RETURN(UI_Setting(), E_FAIL);
+	//CPlayer* pPlayer = CPlayer::Create(m_pGraphicDev);
+	//NULL_CHECK_RETURN(pPlayer, E_FAIL);
+	//pPlayer->Set_PosX(50.f);
+	//pPlayer->Set_PosZ(37.5f);
+	//Engine::Add_GameObjectToStaticLayer(L"Player", pPlayer);
+	_vec3 vPlayerPos = { 50.f, 1.f, 37.5f };
+	Engine::Player_Set_Pos(&vPlayerPos);
+
+
 	return S_OK;
 }
 
@@ -216,14 +215,6 @@ HRESULT CFireStage::Ready_Camera()
 	Engine::Add_BasicCamera(2, L"Quater_View_Camera", pCamera);
 
 	Engine::SetUp_MainCamera(Engine::CAM_STATIC, L"Quater_View_Camera");
-	//CMouse::GetInstance()->AnimingPointOff();
-
-	return S_OK;
-}
-
-HRESULT CFireStage::UI_Setting()
-{
-
 
 	return S_OK;
 }
@@ -616,6 +607,7 @@ void CFireStage::EighthRoomStart(const _vec3 * pPlayerPos)	//	Boss Room
 
 		CFireBoss* pBoss = CFireBoss::Create(m_pGraphicDev, &_vec3(fMidX, 1.f, fMidZ));
 		Engine::Add_GameObject(L"Monster", L"Boss", pBoss);
+		CUI::GetInstance()->ShowOnBossUI();
 
 		CRoomBlock* pRoomBlock = CRoomBlock::Create(m_pGraphicDev, &_vec3(4.f, 3.5f, 0.f), &_vec3(26.f, 2.f, 77.f), CRoomBlock::BLOCK_LEFT);
 		Add_GameObject(L"GameLogic", L"RoomBlock", pRoomBlock);
@@ -661,17 +653,19 @@ void CFireStage::EngindRoomStart()
 
 _int CFireStage::Room_State_Update(const _float & fTimeDelta)
 {
+	_int iExit = 0;
+
 	switch (m_eCurState)
 	{
 	case CFireStage::ROOM_IDLE:
-		Room_Idle_Update(fTimeDelta);
+		iExit = Room_Idle_Update(fTimeDelta);
 		break;
 	case CFireStage::ROOM_CLOSE:
-		Room_Close_Update(fTimeDelta);
+		iExit = Room_Close_Update(fTimeDelta);
 		break;
 	}
 
-	return _int();
+	return iExit;
 }
 
 _int CFireStage::Room_Idle_Update(const _float & fTimeDelta)
@@ -700,41 +694,42 @@ _int CFireStage::Room_Idle_Update(const _float & fTimeDelta)
 
 _int CFireStage::Room_Close_Update(const _float & fTimeDelta)
 {
-
+	_int iExit = 0;
 	switch (m_eRoomNumber)
 	{
 	case CFireStage::ROOM_NUM_1:
-		FirstRoom_Update(fTimeDelta);
+		iExit = FirstRoom_Update(fTimeDelta);
 		break;
 	case CFireStage::ROOM_NUM_2:
-		SecondRoom_Update(fTimeDelta);
+		iExit = SecondRoom_Update(fTimeDelta);
 		break;
 	case CFireStage::ROOM_NUM_3:
-		ThirdRoom_Update(fTimeDelta);
+		iExit = ThirdRoom_Update(fTimeDelta);
 		break;
 	case CFireStage::ROOM_NUM_4:
-		FourthRoom_Update(fTimeDelta);
+		iExit = FourthRoom_Update(fTimeDelta);
 		break;
 	case CFireStage::ROOM_NUM_5:
-		FifthRoom_Update(fTimeDelta);
+		iExit = FifthRoom_Update(fTimeDelta);
 		break;
 	case CFireStage::ROOM_NUM_6:
-		SixthRoom_Update(fTimeDelta);
+		iExit = SixthRoom_Update(fTimeDelta);
 		break;
 	case CFireStage::ROOM_NUM_7:
-		SeventhRoom_Update(fTimeDelta);
+		iExit = SeventhRoom_Update(fTimeDelta);
 		break;
 	case CFireStage::ROOM_NUM_8:
-		EighthRoom_Update(fTimeDelta);
+		iExit = EighthRoom_Update(fTimeDelta);
 		break;
 	case CFireStage::ROOM_NUM_9:
-		NinthRoom_Update(fTimeDelta);
+		iExit = NinthRoom_Update(fTimeDelta);
 		break;
 	}
 
-	return 0;
+	return iExit;
 }
-	CFireStage* CFireStage::Create(LPDIRECT3DDEVICE9 pGraphicDev)
+
+CFireStage* CFireStage::Create(LPDIRECT3DDEVICE9 pGraphicDev)
 {
 	CFireStage* pInstance = new CFireStage(pGraphicDev);
 
@@ -1047,7 +1042,10 @@ _int CFireStage::SeventhRoom_Update(const _float & fTimeDelta)
 _int CFireStage::EighthRoom_Update(const _float & fTimeDelta)
 {
 	if (false == Check_Monster())
+	{
 		RoomBlock_Open();
+		CUI::GetInstance()->ShowOffBossUI();
+	}
 
 
 
@@ -1056,37 +1054,44 @@ _int CFireStage::EighthRoom_Update(const _float & fTimeDelta)
 
 _int CFireStage::NinthRoom_Update(const _float & fTimeDelta)
 {
-		switch (m_eRoomPhase)
-		{
-		case CFireStage::RP_1:
-		{
-			const Engine::CComponent* pComponent = Engine::Get_Component_of_Player(L"Com_Transform", Engine::ID_DYNAMIC);
-			const _vec3* pPlayerPos = dynamic_cast<const Engine::CTransform*>(pComponent)->GetInfo(Engine::INFO_POS);
 
-			_vec3 vLandingPadPos = { 86.5, 0.1f, 65.f };
-			_vec3 vDist = *pPlayerPos - vLandingPadPos;
-			_float fDist = D3DXVec3Length(&vDist);
-			if (fDist < 1.f)
+	switch (m_eRoomPhase)
+	{
+	case CFireStage::RP_1:
+	{
+		const Engine::CComponent* pComponent = Engine::Get_Component_of_Player(L"Com_Transform", Engine::ID_DYNAMIC);
+		const _vec3* pPlayerPos = dynamic_cast<const Engine::CTransform*>(pComponent)->GetInfo(Engine::INFO_POS);
+
+		_vec3 vLandingPadPos = { 86.5, 0.1f, 65.f };
+		_vec3 vDist = *pPlayerPos - vLandingPadPos;
+		_float fDist = D3DXVec3Length(&vDist);
+		if (fDist < 1.f)
+		{
+			if (Engine::KeyDown(DIK_F))
 			{
-				if (Engine::KeyDown(DIK_F))
-				{
-					CBasicEffect* pTeleEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_TeleportEffect", L"", 9.f, 10.f, 0.05f, &vLandingPadPos, false, 0.f);
-					Add_GameObject(L"Effect", L"TeleportEffect", pTeleEffect);
-					m_eRoomPhase = RP_2;
-					return 0;
-				}
+				CBasicEffect* pTeleEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_TeleportEffect", L"", 9.f, 10.f, 0.05f, &vLandingPadPos, false, 0.f);
+				Add_GameObject(L"Effect", L"TeleportEffect", pTeleEffect);
+				m_eRoomPhase = RP_2;
+				m_fTimer = 0.f;
+				return 0;
 			}
+		}
+	}
+	break;
+	case CFireStage::RP_2:
+		m_fTimer += fTimeDelta;
+		if (m_fTimer > 0.9f)
+		{
+			m_fTimer = 0.f;
+			m_eCurState = ROOM_IDLE;
+
+			CEndingScene* pEnding = CEndingScene::Create(m_pGraphicDev);
+			Engine::SetUp_Scene(pEnding);
+			return 1;
+
 		}
 		break;
-		case CFireStage::RP_2:
-			m_fTimer += fTimeDelta;
-			if (m_fTimer > 0.9f)
-			{
-				m_fTimer = 0.f;
-				m_eCurState = ROOM_IDLE;
-			}
-			break;
-		}
+	}
 
 	return 0;
 }
