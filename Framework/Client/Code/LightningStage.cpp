@@ -71,24 +71,14 @@ HRESULT CLightningStage::Ready_Scene()
 
 _int CLightningStage::Update_Scene(const _float& fTimeDelta)
 {
-	if (Engine::KeyDown(DIK_B))
+	/*if (Engine::KeyDown(DIK_B))
 	{
 		CFireStage* pFireStage = CFireStage::Create(m_pGraphicDev);
 		NULL_CHECK_RETURN(pFireStage, -1);
 		Engine::SetUp_Scene(pFireStage);
 		return 1;
-	}
+	}*/
 
-	if (Engine::KeyDown(DIK_F9))
-	{
-		// LightningBoss
-		_vec3 vCardPos = { 50, 1.f, 37 };
-		Engine::CGameObject* pGameObject = CLightningBoss::Create(m_pGraphicDev, &_vec3(50, 1.f, 37));
-		NULL_CHECK_RETURN(pGameObject, E_FAIL);
-
-		CCardSpawn* pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
-		Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
-	}
 
 	const Engine::CTransform* pPlayerTransform = dynamic_cast<const Engine::CTransform*>(Engine::Get_Component_of_Player(L"Com_Transform", Engine::ID_DYNAMIC));
 
@@ -107,12 +97,29 @@ _int CLightningStage::Update_Scene(const _float& fTimeDelta)
 
 	_int iExit = CScene::Update_Scene(fTimeDelta);
 
-	/// 포탈 씬 교체
-	if (pPlayerPos->x >= 85.f && pPlayerPos->x <= 86.f &&
-		pPlayerPos->z >= 50.f && pPlayerPos->z <= 51.f)
+	// 포탈에 접근했을 때 씬 교체
+	//(86.f, 1.5f, 51.f)
+	if (pPlayerPos->x >= 85.5f && pPlayerPos->x <= 86.5f &&
+		pPlayerPos->z >= 50.5f && pPlayerPos->z <= 51.5f &&
+		!m_bSceneChange)
 	{
+		m_bSceneChange = true;
+		CBasicEffect* pTeleEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_TeleportEffect", L"", 9.f, 10.f, 0.05f, pPlayerPos, false, 0.f);
+		Add_GameObject(L"Effect", L"TeleportEffect", pTeleEffect);
 	}
 
+	if (m_bSceneChange)
+	{
+		m_fSceneChangeTime += fTimeDelta;
+		if (m_fSceneChangeTime > 1.f)
+		{
+
+			CFireStage* pFireStage = CFireStage::Create(m_pGraphicDev);
+			NULL_CHECK_RETURN(pFireStage, -1);
+			Engine::SetUp_Scene(pFireStage);
+			return 1;
+		}
+	}
 
 	return iExit;
 }
@@ -374,8 +381,8 @@ void CLightningStage::ThirdMonsterGen(const _vec3 * pPlayerPos)
 	if (m_b3rdMonsterGen)
 		return;
 
-	_float	fMinX = 2.5f, fMaxX = 14.5f;
-	_float	fMinZ = 40.f, fMaxZ = 54.f;
+	_float	fMinX = 66.5f, fMaxX = 74.5f;
+	_float	fMinZ = 60.f, fMaxZ = 70.f;
 
 	if (pPlayerPos->x >= fMinX && pPlayerPos->x <= fMaxX &&
 		pPlayerPos->z >= fMinZ && pPlayerPos->z <= fMaxZ)
@@ -383,13 +390,52 @@ void CLightningStage::ThirdMonsterGen(const _vec3 * pPlayerPos)
 		Engine::CGameObject* pGameObject = nullptr;
 		CCardSpawn* pCardSpawn = nullptr;
 
-		CRoomBlock* pRoomBlock = CRoomBlock::Create(m_pGraphicDev, &_vec3(3.5f, 3.f, 0.f), &_vec3(16.5f, 1.5f, 46.f), CRoomBlock::BLOCK_LEFT);
+		_vec3 vCardPos = { 69.5f, 1.f, 67.5f };
+		pGameObject = CSkeletonMinion::Create(m_pGraphicDev, &vCardPos);
+		NULL_CHECK_RETURN(pGameObject, );
+		pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
+		Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
+
+		vCardPos = { 69.5f, 1.f, 64.5f };
+		pGameObject = CSkeletonMinion::Create(m_pGraphicDev, &vCardPos);
+		NULL_CHECK_RETURN(pGameObject, );
+		pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
+		Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
+
+		vCardPos = { 74.5f, 1.f, 66.5f };
+		pGameObject = CKnight::Create(m_pGraphicDev, &vCardPos);
+		NULL_CHECK_RETURN(pGameObject, );
+		pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
+		Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
+
+		vCardPos = { 70.5f, 1.f, 61.5f };
+		pGameObject = CMage::Create(m_pGraphicDev, &vCardPos);
+		NULL_CHECK_RETURN(pGameObject, );
+		pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
+		Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
+
+		vCardPos = { 74.5f, 1.f, 61.5f };
+		pGameObject = CMage::Create(m_pGraphicDev, &vCardPos);
+		NULL_CHECK_RETURN(pGameObject, );
+		pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
+		Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
+
+		CRoomBlock* pRoomBlock = CRoomBlock::Create(m_pGraphicDev, &_vec3(3.5f, 3.f, 0.f), &_vec3(64.5f, 1.5f, 67.5f), CRoomBlock::BLOCK_RIGHT);
 		Add_GameObject(L"GameLogic", L"RoomBlock", pRoomBlock);
 		m_RoomBlockList.push_back(pRoomBlock);
 
-		pRoomBlock = CRoomBlock::Create(m_pGraphicDev, &_vec3(3.5f, 3.f, 0.f), &_vec3(9.5f, 1.5f, 36.5f), CRoomBlock::BLOCK_UP);
+		pRoomBlock = CRoomBlock::Create(m_pGraphicDev, &_vec3(3.5f, 3.f, 0.f), &_vec3(72.5f, 1.5f, 74.5f), CRoomBlock::BLOCK_DOWN);
 		Add_GameObject(L"GameLogic", L"RoomBlock", pRoomBlock);
 		m_RoomBlockList.push_back(pRoomBlock);
+
+		pRoomBlock = CRoomBlock::Create(m_pGraphicDev, &_vec3(3.5f, 3.f, 0.f), &_vec3(80.5f, 1.5f, 62.5f), CRoomBlock::BLOCK_LEFT);
+		Add_GameObject(L"GameLogic", L"RoomBlock", pRoomBlock);
+		m_RoomBlockList.push_back(pRoomBlock);
+
+		m_eCurState = ROOM_CLOSE;
+		m_eRoomNumber = ROOM_NUM_3;
+
+		RoomBlock_Close();
 
 		m_b3rdMonsterGen = true;
 	}
@@ -668,7 +714,6 @@ HRESULT CLightningStage::Store_Setting()
 	pSkillCard = CSkillCard::Create(m_pGraphicDev, L"AquaVortex", &vPos, 0.025f, L"Skill_AquaVortex", pSkill, 100, 1.f);
 	Add_GameObject(L"GameLogic", L"FireBall_SkillCard", pSkillCard);*/
 
-	/// TODO: 번개 스킬 추가
 	vPos.x += 2.f;
 	pSkill = CLightningFist::Create(m_pGraphicDev);
 	pSkillCard = CSkillCard::Create(m_pGraphicDev, L"LightningSkill3", &vPos, 0.025f, L"Skill_LightningSkill3", pSkill, 100, 1.f);

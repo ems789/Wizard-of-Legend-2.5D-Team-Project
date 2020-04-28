@@ -71,6 +71,9 @@ private:
 	_bool		m_b6thMonsterGen = false;
 
 	_bool		m_bMonsterGen = false;
+	
+	_bool		m_bSceneChange = false;
+	_float		m_fSceneChangeTime = 0.f;
 
 
 public:
