@@ -209,6 +209,7 @@
     <ClInclude Include="..\Code\LightningChainDash.h" />
     <ClInclude Include="..\Code\LightningFalling.h" />
     <ClInclude Include="..\Code\LightningFist.h" />
+    <ClInclude Include="..\Code\LightningGen.h" />
     <ClInclude Include="..\Code\LightningJavelinThrow.h" />
     <ClInclude Include="..\Code\LightningSpear.h" />
     <ClInclude Include="..\Code\LightningSpearGen.h" />
@@ -223,12 +224,14 @@
     <ClInclude Include="..\Code\MeteorGen.h" />
     <ClInclude Include="..\Code\MeteorStrike.h" />
     <ClInclude Include="..\Code\Mouse.h" />
+    <ClInclude Include="..\Code\NumberEffect.h" />
     <ClInclude Include="..\Code\NumberFont.h" />
     <ClInclude Include="..\Code\Player.h" />
     <ClInclude Include="..\Code\Portal.h" />
     <ClInclude Include="..\Code\QuaterViewCamera.h" />
     <ClInclude Include="..\Code\RoomBlock.h" />
     <ClInclude Include="..\Code\RotatedBillEffect.h" />
+    <ClInclude Include="..\Code\RotatedObject.h" />
     <ClInclude Include="..\Code\Scaffold.h" />
     <ClInclude Include="..\Code\Shark.h" />
     <ClInclude Include="..\Code\SharkPool.h" />
@@ -320,6 +323,7 @@
     <ClCompile Include="..\Code\LightningChainDash.cpp" />
     <ClCompile Include="..\Code\LightningFalling.cpp" />
     <ClCompile Include="..\Code\LightningFist.cpp" />
+    <ClCompile Include="..\Code\LightningGen.cpp" />
     <ClCompile Include="..\Code\LightningJavelinThrow.cpp" />
     <ClCompile Include="..\Code\LightningSpear.cpp" />
     <ClCompile Include="..\Code\LightningSpearGen.cpp" />
@@ -334,12 +338,14 @@
     <ClCompile Include="..\Code\MeteorGen.cpp" />
     <ClCompile Include="..\Code\MeteorStrike.cpp" />
     <ClCompile Include="..\Code\Mouse.cpp" />
+    <ClCompile Include="..\Code\NumberEffect.cpp" />
     <ClCompile Include="..\Code\NumberFont.cpp" />
     <ClCompile Include="..\Code\Player.cpp" />
     <ClCompile Include="..\Code\Portal.cpp" />
     <ClCompile Include="..\Code\QuaterViewCamera.cpp" />
     <ClCompile Include="..\Code\RoomBlock.cpp" />
     <ClCompile Include="..\Code\RotatedBillEffect.cpp" />
+    <ClCompile Include="..\Code\RotatedObject.cpp" />
     <ClCompile Include="..\Code\Scaffold.cpp" />
     <ClCompile Include="..\Code\Shark.cpp" />
     <ClCompile Include="..\Code\SharkPool.cpp" />

@@ -71,7 +71,7 @@ void CSkillCard::Render_GameObject()
 
 	_vec3 vPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
 	vPos.y += 40.f  * m_fScale;
-	CNumberFont::GetInstance()->DrawNumber(m_iPrice, &vPos, 0.05f, D3DXCOLOR(1.f, 1.f, 1.f, 1.f));
+	CNumberFont::GetInstance()->DrawNumberBill(m_iPrice, &vPos, 0.05f, D3DXCOLOR(1.f, 1.f, 1.f, 1.f));
 }
 
 void CSkillCard::Turn_To_Camera_Look()

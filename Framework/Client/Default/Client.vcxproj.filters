@@ -359,7 +359,19 @@
       <UniqueIdentifier>{a88279ab-0a69-480e-b0d4-ad771327f02f}</UniqueIdentifier>
     </Filter>
     <Filter Include="07.Monster\08.SkeletonMinion">
-      <UniqueIdentifier>{245844c5-20c7-4647-a5f2-0c6d9fee70f9}</UniqueIdentifier>
+      <UniqueIdentifier>{0cbb714d-0eb6-4201-9225-09006fd66b78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\99.public\06.Portal">
+      <UniqueIdentifier>{b68c88d9-7259-4322-a17f-896cdbae0db5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\99.public\07.Dust">
+      <UniqueIdentifier>{71341832-28d5-49b7-9237-ab5cd8e442bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\99.public\08.RotatedImage">
+      <UniqueIdentifier>{0aecf064-e631-4e78-96f6-e96f01671fd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Effect\10.NumberEffect">
+      <UniqueIdentifier>{702e4c36-9513-49da-9e1a-05108aed4a69}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -681,6 +693,21 @@
     <ClInclude Include="..\Code\SkeletonMinion.h">
       <Filter>07.Monster\08.SkeletonMinion</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\Portal.h">
+      <Filter>02.GameObject\99.public\06.Portal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\EndingScene.h">
+      <Filter>01.Scene\05.EndingScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Dust.h">
+      <Filter>02.GameObject\99.public\07.Dust</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\RotatedObject.h">
+      <Filter>02.GameObject\99.public\08.RotatedImage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\NumberEffect.h">
+      <Filter>03.Effect\10.NumberEffect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -976,6 +1003,21 @@
     </ClCompile>
     <ClCompile Include="..\Code\SkeletonMinion.cpp">
       <Filter>07.Monster\08.SkeletonMinion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Portal.cpp">
+      <Filter>02.GameObject\99.public\06.Portal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\EndingScene.cpp">
+      <Filter>01.Scene\05.EndingScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Dust.cpp">
+      <Filter>02.GameObject\99.public\07.Dust</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\RotatedObject.cpp">
+      <Filter>02.GameObject\99.public\08.RotatedImage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\NumberEffect.cpp">
+      <Filter>03.Effect\10.NumberEffect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

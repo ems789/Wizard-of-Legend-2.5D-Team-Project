@@ -36,6 +36,8 @@
 #include "LaidObject.h"
 #include "BasicEffect.h"
 #include "EndingScene.h"
+#include "RotatedObject.h"
+#include "LightningFist.h"
 
 CFireStage::CFireStage(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CScene(pGraphicDev)
@@ -597,6 +599,9 @@ void CFireStage::SeventhRoomStart(const _vec3 * pPlayerPos)
 		m_fRoomMaxX = fMaxX;
 		m_fRoomMinZ = fMinZ;
 		m_fRoomMaxZ = fMaxZ;
+		
+		CRotatedObject* pAnswer = CRotatedObject::Create(m_pGraphicDev, L"Texture_Answer", 1.f, 0.f, 0.05f, &_vec3((fMaxX + fMinX) / 2, 2.f, fMinZ), &_vec3(0.f, D3DXToRadian(180.f), 0.f), false);
+		Add_GameObject(L"Event", L"Answer", pAnswer);
 
 		m_b7thRoomStart = true;
 	}
@@ -1177,34 +1182,28 @@ HRESULT CFireStage::Store_Setting()
 
 	Engine::CSkill* pSkill = nullptr;
 
-	pSkill = CFireBall::Create(m_pGraphicDev);
-	CSkillCard* pSkillCard = CSkillCard::Create(m_pGraphicDev, L"FireBall", &vPos, 0.025f, L"Skill_FireBall", pSkill, 100, 1.f);
-	Add_GameObject(L"GameLogic", L"FireBall_SkillCard", pSkillCard);
+	CSkillCard*	pSkillCard = nullptr;
 
-	vPos.x += 2.f;
-	pSkill = CMeteorStrike::Create(m_pGraphicDev);
-	pSkillCard = CSkillCard::Create(m_pGraphicDev, L"Meteor", &vPos, 0.025f, L"Skill_MeteorStrike", pSkill, 100, 1.f);
-	Add_GameObject(L"GameLogic", L"FireBall_SkillCard", pSkillCard);
+	pSkill = CLightningFist::Create(m_pGraphicDev);
+	pSkillCard = CSkillCard::Create(m_pGraphicDev, L"LightningSkill3", &vPos, 0.025f, L"Skill_LightningSkill3", pSkill, 100, 1.f);
+	Add_GameObject(L"GameLogic", L"LightningSkill3_SkillCard", pSkillCard);
 
-	vPos.x += 2.f;
+	vPos.x += 3.f;
 	pSkill = CGuidedFireBall::Create(m_pGraphicDev);
 	pSkillCard = CSkillCard::Create(m_pGraphicDev, L"FireSkill1", &vPos, 0.025f, L"Skill_GuidedFire", pSkill, 100, 1.f);
 	Add_GameObject(L"GameLogic", L"FireBall_SkillCard", pSkillCard);
 
-	vPos.x += 2.f;
+	vPos.x += 3.f;
 	pSkill = CAquaVortex::Create(m_pGraphicDev);
 	pSkillCard = CSkillCard::Create(m_pGraphicDev, L"AquaVortex", &vPos, 0.025f, L"Skill_AquaVortex", pSkill, 100, 1.f);
 	Add_GameObject(L"GameLogic", L"FireBall_SkillCard", pSkillCard);
 
-	vPos.x += 2.f;
-	pSkill = CWaterBall::Create(m_pGraphicDev);
-	pSkillCard = CSkillCard::Create(m_pGraphicDev, L"WaterBall", &vPos, 0.025f, L"Skill_WaterBall", pSkill, 100, 1.f);
-	Add_GameObject(L"GameLogic", L"FireBall_SkillCard", pSkillCard);
-
-	vPos.x += 2.f;
+	vPos.x += 3.f;
 	pSkill = CSharkPool::Create(m_pGraphicDev);
 	pSkillCard = CSkillCard::Create(m_pGraphicDev, L"WaterArc", &vPos, 0.025f, L"Skill_SharkPool", pSkill, 100, 1.f);
 	Add_GameObject(L"GameLogic", L"FireBall_SkillCard", pSkillCard); 
+
+
 
 
 	return S_OK;

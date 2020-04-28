@@ -7,6 +7,7 @@
 #include "BasicEffect.h"
 #include "Coin.h"
 #include "Golem.h"
+#include "NumberEffect.h"
 
 CGhoulLarge::CGhoulLarge(LPDIRECT3DDEVICE9 pGraphicDev)
 	:Engine::CGameObject(pGraphicDev)
@@ -474,6 +475,9 @@ _int CGhoulLarge::Attack3_Update(const _float & fTimeDelta)
 
 void CGhoulLarge::Hit(const _int & iAtk, const _vec3 * pAtkPos)
 {
+	CNumberEffect* pNumber = CNumberEffect::Create(m_pGraphicDev, 0.05f, m_pTransformCom->GetInfo(Engine::INFO_POS), 1.f, D3DXCOLOR(1.f, 1.f, 1.f, 1.f), iAtk);
+	Engine::Add_GameObject(L"Effect", L"DamageFont", pNumber);
+
 	m_iHP -= iAtk;
 	if (m_iHP <= 0)
 	{

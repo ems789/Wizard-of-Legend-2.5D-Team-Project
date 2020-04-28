@@ -14,6 +14,7 @@
 #include "SignitureEffect.h"
 #include "Coin.h"
 #include "Inven.h"
+#include "NumberEffect.h"
 
 CPlayer::CPlayer(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev)
@@ -288,18 +289,18 @@ HRESULT CPlayer::Add_Component()
 	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_Player_SlamUp"));
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
 	m_vvTextureCom[P_SKILL2][PD_UP] = pTextureCom;
-	m_vvpTextureTag[P_ATTACK2][PD_UP] = L"Texture_Player_SlamUp";
+	m_vvpTextureTag[P_SKILL2][PD_UP] = L"Texture_Player_SlamUp";
 	m_vvTextureCom[P_SKILL2][PD_RIGHT] = pTextureCom;
 	m_vvTextureCom[P_SKILL2][PD_RIGHT]->AddRef();
-	m_vvpTextureTag[P_ATTACK2][PD_RIGHT] = L"Texture_Player_SlamUp";
+	m_vvpTextureTag[P_SKILL2][PD_RIGHT] = L"Texture_Player_SlamUp";
 
 	pComponent = pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_Player_SlamDown"));
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
 	m_vvTextureCom[P_SKILL2][PD_DOWN] = pTextureCom;
-	m_vvpTextureTag[P_ATTACK2][PD_DOWN] = L"Texture_Player_SlamDown";
+	m_vvpTextureTag[P_SKILL2][PD_DOWN] = L"Texture_Player_SlamDown";
 	m_vvTextureCom[P_SKILL2][PD_LEFT] = pTextureCom;
 	m_vvTextureCom[P_SKILL2][PD_LEFT]->AddRef();
-	m_vvpTextureTag[P_ATTACK2][PD_LEFT] = L"Texture_Player_SlamDown";
+	m_vvpTextureTag[P_SKILL2][PD_LEFT] = L"Texture_Player_SlamDown";
 
 	m_vvTextureCom[P_SKILL3][PD_UP] = m_vvTextureCom[P_ATTACK][PD_UP];
 	m_vvTextureCom[P_SKILL3][PD_UP]->AddRef();
@@ -1427,6 +1428,9 @@ void CPlayer::Hit(const _int & iAtk, const _vec3 * pAtkPos)
 	m_iHP -= iAtk;
 	if (m_iHP < 0)
 		m_iHP = 0;
+
+	CNumberEffect* pNumber = CNumberEffect::Create(m_pGraphicDev, 0.05f, m_pTransformCom->GetInfo(Engine::INFO_POS), 1.f, D3DXCOLOR(1.f, 0.f, 0.f, 1.f), iAtk);
+	Engine::Add_GameObject(L"Effect", L"DamageFont", pNumber);
 
 	if (pAtkPos)
 	{

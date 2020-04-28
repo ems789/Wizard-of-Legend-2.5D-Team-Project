@@ -1,14 +1,552 @@
-﻿  LightningBoss.cpp
+﻿  stdafx.cpp
+  UIImage.cpp
 d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
   d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
 d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
   d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
-..\Code\LightningBoss.cpp(782): warning C4244: '=': conversion from 'float' to '_uint', possible loss of data
+  AlphaBillEffect.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  AlphaLaidEffect.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  Aqua.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  AquaVortex.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  BackGround.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  Barrel.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+..\Code\Barrel.cpp(74): warning C4244: 'argument': conversion from 'float' to 'const _uint', possible loss of data
+  BasicEffect.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  BasicFollowingEffect.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  BeamEffect.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  BlobBullet.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  BlobRoller.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  BlobSpitter.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  CardSpawn.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  CastingCircle.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  Coin.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  CollisionFunctions.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+..\Code\CollisionFunctions.cpp(180): warning C4018: '>=': signed/unsigned mismatch
+..\Code\CollisionFunctions.cpp(190): warning C4018: '>=': signed/unsigned mismatch
+..\Code\CollisionFunctions.cpp(204): warning C4018: '>=': signed/unsigned mismatch
+..\Code\CollisionFunctions.cpp(209): warning C4018: '>=': signed/unsigned mismatch
+..\Code\CollisionFunctions.cpp(214): warning C4018: '>=': signed/unsigned mismatch
+..\Code\CollisionFunctions.cpp(219): warning C4018: '>=': signed/unsigned mismatch
+..\Code\CollisionFunctions.cpp(230): warning C4244: '=': conversion from '_ulong' to 'Engine::_float', possible loss of data
+..\Code\CollisionFunctions.cpp(363): warning C4018: '>=': signed/unsigned mismatch
+..\Code\CollisionFunctions.cpp(373): warning C4018: '>=': signed/unsigned mismatch
+  Cyclops.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  Dust.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  EndingScene.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  Compiling...
+  Fire.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  FireBall.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  FireBoss.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  FireEffect.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  FireHeel.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+..\Code\FireHeel.cpp(56): warning C4244: '=': conversion from 'float' to '_uint', possible loss of data
+  FireKick.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  FirePoint.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  FireRoad.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  FireStage.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  FireStomp.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  FireThrow.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  FirstViewCamera.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  GhoulLarge.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  GoldBox.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  Golem.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  GuidedFire.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  GuidedFireBall.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  GuidedFireGen.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  ImageObject.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  Inven.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  Compiling...
+  Knight.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  LaidEffect.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  LaidFollowingEffect.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  LaidObject.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  Lightning.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  LightningBoss.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+..\Code\LightningBoss.cpp(789): warning C4244: '=': conversion from 'float' to '_uint', possible loss of data
+  LightningChainDash.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+..\Code\LightningChainDash.cpp(116): warning C4244: 'argument': conversion from 'int' to 'const _float', possible loss of data
+..\Code\LightningChainDash.cpp(118): warning C4244: 'argument': conversion from 'int' to 'const _float', possible loss of data
+..\Code\LightningChainDash.cpp(120): warning C4244: 'argument': conversion from 'int' to 'const _float', possible loss of data
+  LightningFalling.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  LightningFist.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  LightningJavelinThrow.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  LightningSpear.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  LightningSpearGen.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  LightningSpearShot.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  LightningStage.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  LineCollider.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  Loading.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  LoadingScene.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  Logo.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+..\Code\Logo.cpp(196): warning C4018: '>=': signed/unsigned mismatch
+..\Code\Logo.cpp(200): warning C4018: '<': signed/unsigned mismatch
+  MainApp.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  Meteor.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  Compiling...
+  MeteorGen.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  MeteorStrike.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  Mouse.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  NumberEffect.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  NumberFont.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+..\Code\NumberFont.cpp(126): warning C4244: 'argument': conversion from '_int' to 'FLOAT', possible loss of data
+  Player.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+..\Code\Player.cpp(550): warning C4552: '+': operator has no effect; expected operator with side-effect
+..\Code\Player.cpp(595): warning C4552: '+': operator has no effect; expected operator with side-effect
+  Portal.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  QuaterViewCamera.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  RoomBlock.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  RotatedBillEffect.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  RotatedObject.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  Scaffold.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+..\Code\Scaffold.cpp(63): warning C4244: 'argument': conversion from 'double' to 'const Engine::_float', possible loss of data
+  Shark.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  SharkPool.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  SignitureEffect.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  Mage.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  SkeletonMinion.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  SkillCard.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  SphereCollider.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  Stage.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  Compiling...
+  Terrain.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+..\Code\Terrain.cpp(68): warning C4018: '>=': signed/unsigned mismatch
+..\Code\Terrain.cpp(73): warning C4018: '>': signed/unsigned mismatch
+..\Code\Terrain.cpp(78): warning C4018: '>=': signed/unsigned mismatch
+..\Code\Terrain.cpp(83): warning C4018: '>': signed/unsigned mismatch
+..\Code\Terrain.cpp(88): warning C4018: '<': signed/unsigned mismatch
+..\Code\Terrain.cpp(90): warning C4018: '<': signed/unsigned mismatch
+..\Code\Terrain.cpp(240): warning C4018: '<=': signed/unsigned mismatch
+..\Code\Terrain.cpp(251): warning C4018: '<=': signed/unsigned mismatch
+..\Code\Terrain.cpp(268): warning C4018: '<=': signed/unsigned mismatch
+  TestMonster.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  TestTerrain.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  ThirdViewCamera.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  Tile.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  Town.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  UI.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  UIBlink.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  UIButton.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  UIObject.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  Wall.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  Water.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  WaterBall.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  WaterThrow.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  Wind.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  WindAgentSwirl.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  WindBall.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  WindBoss.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  WindSlash.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  WindSpin.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  Compiling...
+  WindTornado.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
+  Client.cpp
+d:\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(28): note: see previous definition of 'NULL_CHECK_MSG'
+d:\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': macro redefinition
+  d:\teamproject\framework\client\header\Macro.h(41): note: see previous definition of 'FAILED_CHECK_MSG'
      Creating library ../Bin/Client.lib and object ../Bin/Client.exp
   Generating code
-  103 of 2950 functions ( 3.5%) were compiled, the rest were copied from previous compilation.
-    79 functions were new in current compilation
-    426 functions had inline decision re-evaluated but remain unchanged
+  All 3626 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
   Client.vcxproj -> D:\TeamProject\Framework\Client\Default\../Bin/Client.exe
   Client.vcxproj -> ../Bin/Client.pdb (Full PDB)

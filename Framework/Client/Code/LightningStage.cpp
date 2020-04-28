@@ -38,6 +38,7 @@
 #include "Portal.h"
 #include "FireStage.h"
 #include "Portal.h"
+#include "LightningSpearShot.h"
 
 CLightningStage::CLightningStage(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CScene(pGraphicDev)
@@ -97,15 +98,6 @@ _int CLightningStage::Update_Scene(const _float& fTimeDelta)
 	const Engine::CTransform* pPlayerTransform = dynamic_cast<const Engine::CTransform*>(Engine::Get_Component_of_Player(L"Com_Transform", Engine::ID_DYNAMIC));
 
 	const _vec3* pPlayerPos = pPlayerTransform->GetInfo(Engine::INFO_POS);
-
-	/*if (Engine::KeyDown(DIK_O))
-	{
-		CUI::GetInstance()->ShowOnBossUI();
-		CWindBoss* pBoss = CWindBoss::Create(m_pGraphicDev, &_vec3(50.f, 1.f, 37.f));
-		Add_GameObject(L"Monster", L"Boss", pBoss);
-
-		CUI::GetInstance()->Render_BossUI();
-	}*/
 
 	Room_State_Update(fTimeDelta);
 
@@ -456,33 +448,6 @@ void CLightningStage::ThirdMonsterGen(const _vec3 * pPlayerPos)
 
 void CLightningStage::FourthMonsterGen(const _vec3 * pPlayerPos)
 {
-	if (m_b4thMonsterGen)
-		return;
-
-
-	_float	fMinX = 71.f, fMaxX = 90.f;
-	_float	fMinZ = 26.f, fMaxZ = 49.f;
-
-	if (pPlayerPos->x >= fMinX && pPlayerPos->x <= fMaxX &&
-		pPlayerPos->z >= fMinZ && pPlayerPos->z <= fMaxZ)
-	{
-
-		_vec3 vCardPos = { 82.f, 1.f, 36.f};
-		Engine::CGameObject* pGameObject = CWindBoss::Create(m_pGraphicDev, &vCardPos);
-		NULL_CHECK_RETURN(pGameObject, );
-
-		CCardSpawn* pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
-		Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
-
-		CRoomBlock* pRoomBlock = CRoomBlock::Create(m_pGraphicDev, &_vec3(3.5f, 3.5f, 0.f), &_vec3(68.5, 2.f, 38.f), CRoomBlock::BLOCK_RIGHT);
-		Add_GameObject(L"GameLogic", L"RoomBlock", pRoomBlock);
-
-		pRoomBlock = CRoomBlock::Create(m_pGraphicDev, &_vec3(3.5f, 3.5f, 0.f), &_vec3(93.5f, 2.f, 37.f), CRoomBlock::BLOCK_LEFT);
-		Add_GameObject(L"GameLogic", L"RoomBlock", pRoomBlock);
-
-		m_b4thMonsterGen = true;
-	}
-
 
 }
 
@@ -503,14 +468,13 @@ void CLightningStage::FifthMonsterGen(const _vec3 * pPlayerPos)
 		_vec3 vCardPos = { 23.f, 1.f, 80.5f };
 		Engine::CGameObject* pGameObject = CWindBoss::Create(m_pGraphicDev, &vCardPos);
 		NULL_CHECK_RETURN(pGameObject, );
-
-		CCardSpawn* pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
-		Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
+		Add_GameObject(L"Monster", L"Boss", pGameObject);
 
 		CRoomBlock* pRoomBlock = CRoomBlock::Create(m_pGraphicDev, &_vec3(3.5f, 3.f, 0.f), &_vec3(38.5f, 1.5f, 80.5f), CRoomBlock::BLOCK_LEFT);
 		Add_GameObject(L"GameLogic", L"RoomBlock", pRoomBlock);
 		m_RoomBlockList.push_back(pRoomBlock);
 
+		CUI::GetInstance()->ShowOnBossUI();
 
 		m_eCurState = ROOM_CLOSE;
 		m_eRoomNumber = ROOM_NUM_5;
@@ -536,14 +500,13 @@ void CLightningStage::SixMonsterGen(const _vec3 * pPlayerPos)
 		_vec3 vCardPos = { 72.5f, 1.f, 88.f };
 		Engine::CGameObject* pGameObject = CLightningBoss::Create(m_pGraphicDev, &vCardPos);
 		NULL_CHECK_RETURN(pGameObject, );
-
-		CCardSpawn* pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
-		Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
+		Add_GameObject(L"Monster", L"Boss", pGameObject);
 
 		CRoomBlock* pRoomBlock = CRoomBlock::Create(m_pGraphicDev, &_vec3(3.5f, 3.f, 0.f), &_vec3(72.5f, 1.5f, 80.5f), CRoomBlock::BLOCK_UP);
 		Add_GameObject(L"GameLogic", L"RoomBlock", pRoomBlock);
 		m_RoomBlockList.push_back(pRoomBlock);
 
+		CUI::GetInstance()->ShowOnBossUI();
 
 		m_eCurState = ROOM_CLOSE;
 		m_eRoomNumber = ROOM_NUM_6;
@@ -602,7 +565,7 @@ _int CLightningStage::Room_Close_Update(const _float & fTimeDelta)
 		ThirdRoom_Update(fTimeDelta);
 		break;
 	case CLightningStage::ROOM_NUM_5:
-		FirstRoom_Update(fTimeDelta);
+		FifthRoom_Update(fTimeDelta);
 		break;
 	case CLightningStage::ROOM_NUM_6:
 		SixRoom_Update(fTimeDelta);
@@ -637,14 +600,20 @@ _int CLightningStage::ThirdRoom_Update(const _float & fTimeDelta)
 _int CLightningStage::FifthRoom_Update(const _float & fTimeDelta)
 {
 	if (false == Check_Monster())
+	{
 		RoomBlock_Open();
+		CUI::GetInstance()->ShowOffBossUI();
+	}
 	return 0;
 }
 
 _int CLightningStage::SixRoom_Update(const _float & fTimeDelta)
 {
 	if (false == Check_Monster())
+	{
 		RoomBlock_Open();
+		CUI::GetInstance()->ShowOffBossUI();
+	}
 	return 0;
 }
 
@@ -730,19 +699,24 @@ HRESULT CLightningStage::Store_Setting()
 	Add_GameObject(L"GameLogic", L"FireBall_SkillCard", pSkillCard);*/
 
 	vPos.x += 2.f;
+	pSkill = CMeteorStrike::Create(m_pGraphicDev);
+	pSkillCard = CSkillCard::Create(m_pGraphicDev, L"Meteor", &vPos, 0.025f, L"Skill_MeteorStrike", pSkill, 100, 1.f);
+	Add_GameObject(L"GameLogic", L"FireBall_SkillCard", pSkillCard);
+
+	/*vPos.x += 2.f;
 	pSkill = CLightningFist::Create(m_pGraphicDev);
 	pSkillCard = CSkillCard::Create(m_pGraphicDev, L"LightningSkill3", &vPos, 0.025f, L"Skill_LightningSkill3", pSkill, 100, 1.f);
-	Add_GameObject(L"GameLogic", L"LightningSkill3_SkillCard", pSkillCard);
+	Add_GameObject(L"GameLogic", L"LightningFist_SkillCard", pSkillCard); */
 
 	vPos.x += 2.f;
 	pSkill = CWaterBall::Create(m_pGraphicDev);
 	pSkillCard = CSkillCard::Create(m_pGraphicDev, L"WaterBall", &vPos, 0.025f, L"Skill_WaterBall", pSkill, 100, 1.f);
-	Add_GameObject(L"GameLogic", L"FireBall_SkillCard", pSkillCard);
+	Add_GameObject(L"GameLogic", L"WaterBall_SkillCard", pSkillCard);
 
-	// 	vPos.x += 2.f;
-	// 	pSkill = CSharkPool::Create(m_pGraphicDev);
-	// 	pSkillCard = CSkillCard::Create(m_pGraphicDev, L"WaterArc", &vPos, 0.025f, L"Skill_SharkPool", pSkill, 100, 1.f);
-	// 	Add_GameObject(L"GameLogic", L"FireBall_SkillCard", pSkillCard);
+ 	vPos.x += 2.f;
+ 	pSkill = CLightningSpearShot::Create(m_pGraphicDev);
+ 	pSkillCard = CSkillCard::Create(m_pGraphicDev, L"LightningSkill1", &vPos, 0.025f, L"Skill_ShockLace", pSkill, 100, 1.f);
+ 	Add_GameObject(L"GameLogic", L"ShockLace_SkillCard", pSkillCard);
 
 
 	return S_OK;

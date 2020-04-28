@@ -3,6 +3,8 @@
 
 #include "Export_Function.h"
 
+_bool CLoading::m_bTextureLoading = false;
+
 CLoading::CLoading(LPDIRECT3DDEVICE9 pGraphicDev)
 	: m_pGraphicDev(pGraphicDev)
 	, m_bFinish(false)
@@ -56,6 +58,13 @@ HRESULT CLoading::Ready_Loading(LOADINGID eLoading, const _tchar* pTilePath, con
 
 _uint CLoading::Loading_ForState()
 {
+	if (m_bTextureLoading)
+	{
+		m_bFinish = true;
+		return 0;
+	}
+	
+	m_bTextureLoading = true;
 	//lstrcpy(m_szLoading, L"");
 
 	//	Buffer
@@ -110,13 +119,13 @@ _uint CLoading::Loading_ForState()
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_Attack2Right", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardBackhand/Right/WizardBackhandRight%d.png", 9), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_Attack2Left", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardBackhand/Left/WizardBackhandLeft%d.png", 9), E_FAIL);
 
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_SlamUp",		Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardGroundSlamUp/Up/WizardGroundSlamUp%d.png", 10), E_FAIL);
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_SlamDown",	Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardGroundSlamUp/Down/WizardGroundSlamDown%d.png", 10), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_SlamUp", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardGroundSlamUp/Up/WizardGroundSlamUp%d.png", 10), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_SlamDown", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardGroundSlamUp/Down/WizardGroundSlamDown%d.png", 10), E_FAIL);
 
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_HurtUp",		Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardHurt/WizardHurtUp.png"), E_FAIL);
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_HurtDown",	Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardHurt/WizardHurtDown.png"), E_FAIL);
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_HurtRight",	Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardHurt/WizardHurtRight.png"), E_FAIL);
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_HurtLeft",	Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardHurt/WizardHurtLeft.png"), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_HurtUp", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardHurt/WizardHurtUp.png"), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_HurtDown", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardHurt/WizardHurtDown.png"), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_HurtRight", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardHurt/WizardHurtRight.png"), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Player_HurtLeft", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Player/WizardHurt/WizardHurtLeft.png"), E_FAIL);
 
 
 	//	AirRing
@@ -158,12 +167,8 @@ _uint CLoading::Loading_ForState()
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FireParticle3", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/FireParticle/Particle3/FireParticle3_%d.png", 6), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FireParticle4", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/FireParticle/Particle4/FireParticle4_%d.png", 6), E_FAIL);
 
-	//	WaterParticle Texture
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WaterParticle1", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/WaterParticle/Particle1/WaterParticles1_%d.png", 5), E_FAIL);
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WaterParticle2", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/WaterParticle/Particle2/WaterParticles2_%d.png", 5), E_FAIL);
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WaterParticle3", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/WaterParticle/Particle3/WaterParticles3_%d.png", 5), E_FAIL);
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WaterParticle4", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/WaterParticle/Particle4/WaterParticles4_%d.png", 5), E_FAIL);
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WaterParticle5", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/WaterParticle/Particle5/WaterParticles5_%d.png", 5), E_FAIL);
+	//	Void Shift Open
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_VoidShiftOpen", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/VoidShiftOpen/VoidShiftOpen%d.png", 4), E_FAIL);
 
 	// Water---------------
 	/////추가부분
@@ -386,7 +391,8 @@ _uint CLoading::Loading_ForState()
 
 	//	Scaffold Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Scaffold", Engine::TEX_CUBE, L"../Bin/Resource/Texture/Object/Scaffold/Texture1.dds"), E_FAIL);
-	//Portal Texture
+
+	//	Portal Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Portal", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Object/Portal/Portal.png"), E_FAIL);
 
 	//	WindAgentSwirl Texture
@@ -412,6 +418,9 @@ _uint CLoading::Loading_ForState()
 	//	Coin
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Coin", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Coin/Coin_%d.png", 4), E_FAIL);
 
+	//	Answer
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Answer", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Object/Scaffold/Answer.png"), E_FAIL);
+
 	FAILED_CHECK_RETURN(Engine::Ready_Buffer(m_pGraphicDev,
 		::RESOURCE_STATIC,
 		L"Buffer_TerrainTex",
@@ -435,6 +444,7 @@ _uint CLoading::Loading_ForState()
 		0,
 		1),
 		E_FAIL);
+
 
 	//	Scene 만들기.
 	if (0 != lstrcmp(m_szTilePath, L"") && 0 != lstrcmp(m_szWallPath, L""))
