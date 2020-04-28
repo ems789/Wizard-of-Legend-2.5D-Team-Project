@@ -453,6 +453,8 @@ void CLightningStage::FourthMonsterGen(const _vec3 * pPlayerPos)
 
 void CLightningStage::FifthMonsterGen(const _vec3 * pPlayerPos)
 {
+	//CUI::GetInstance()->ShowOnBossUI();
+
 	if (m_b5thMonsterGen)
 		return;
 
