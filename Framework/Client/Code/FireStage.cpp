@@ -450,9 +450,9 @@ _int CFireStage::Room_State_Update(const _float & fTimeDelta)
 	case CFireStage::ROOM_CLOSE:
 		Room_Close_Update(fTimeDelta);
 		break;
-	case CFireStage::ROOM_OPEN:
-		Room_Open_Update(fTimeDelta);
-		break;
+	//case CFireStage::ROOM_OPEN:
+	//	Room_Open_Update(fTimeDelta);
+	//	break;
 	}
 
 	return _int();
@@ -505,18 +505,18 @@ _int CFireStage::Room_Close_Update(const _float & fTimeDelta)
 	case CFireStage::ROOM_NUM_9:
 		NinthRoom_Update(fTimeDelta);
 		break;
-	case CFireStage::ROOM_NUM_10:
+	/*case CFireStage::ROOM_NUM_10:
 		TenthRoom_Update(fTimeDelta);
-		break;
+		break;*/
 	}
 
 	return 0;
 }
 
-_int CFireStage::Room_Open_Update(const _float & fTimeDelta)
-{
-	return _int();
-}
+//_int CFireStage::Room_Open_Update(const _float & fTimeDelta)
+//{
+//	return _int();
+//}
 
 
 CFireStage* CFireStage::Create(LPDIRECT3DDEVICE9 pGraphicDev)
@@ -754,10 +754,10 @@ _int CFireStage::NinthRoom_Update(const _float & fTimeDelta)
 	return _int();
 }
 
-_int CFireStage::TenthRoom_Update(const _float & fTimeDelta)
-{
-	return _int();
-}
+//_int CFireStage::TenthRoom_Update(const _float & fTimeDelta)
+//{
+//	return _int();
+//}
 
 
 _bool CFireStage::Check_Monster()

@@ -148,6 +148,7 @@ c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\defau
 c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\code\terrain.cpp(146): warning C4244: '인수': 'unsigned int'에서 'const _float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   DynamicCamera.cpp
   코드를 생성하고 있습니다...
+  LINK : ../Bin\Tool.exe을(를) 찾을 수 없거나 마지막 증분 링크에 의해 빌드되지 않았습니다. 전체 링크를 수행하고 있습니다.
      ../Bin\Tool.lib 라이브러리 및 ../Bin\Tool.exp 개체를 생성하고 있습니다.
   Tool.vcxproj -> C:\Users\user\OneDrive\Desktop\TeamProject 0428\TeamProject\Framework\Tool\Default\../Bin\Tool.exe
   Tool.vcxproj -> ../Bin\Tool.pdb (Partial PDB)
