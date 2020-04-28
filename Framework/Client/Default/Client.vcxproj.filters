@@ -364,6 +364,9 @@
     <Filter Include="02.GameObject\99.public\06.Portal">
       <UniqueIdentifier>{b68c88d9-7259-4322-a17f-896cdbae0db5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="05.Skill\02.Lightning\00.LightningFist\01.LightningGen">
+      <UniqueIdentifier>{77613db6-d0a5-4679-a21c-ec550e07b0f7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -687,6 +690,11 @@
     <ClInclude Include="..\Code\Portal.h">
       <Filter>02.GameObject\99.public\06.Portal</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\Dust.h" />
+    <ClInclude Include="..\Code\EndingScene.h" />
+    <ClInclude Include="..\Code\LightningGen.h">
+      <Filter>05.Skill\02.Lightning\00.LightningFist\01.LightningGen</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -985,6 +993,11 @@
     </ClCompile>
     <ClCompile Include="..\Code\Portal.cpp">
       <Filter>02.GameObject\99.public\06.Portal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Dust.cpp" />
+    <ClCompile Include="..\Code\EndingScene.cpp" />
+    <ClCompile Include="..\Code\LightningGen.cpp">
+      <Filter>05.Skill\02.Lightning\00.LightningFist\01.LightningGen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

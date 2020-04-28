@@ -209,6 +209,7 @@
     <ClInclude Include="..\Code\LightningChainDash.h" />
     <ClInclude Include="..\Code\LightningFalling.h" />
     <ClInclude Include="..\Code\LightningFist.h" />
+    <ClInclude Include="..\Code\LightningGen.h" />
     <ClInclude Include="..\Code\LightningJavelinThrow.h" />
     <ClInclude Include="..\Code\LightningSpear.h" />
     <ClInclude Include="..\Code\LightningSpearGen.h" />
@@ -320,6 +321,7 @@
     <ClCompile Include="..\Code\LightningChainDash.cpp" />
     <ClCompile Include="..\Code\LightningFalling.cpp" />
     <ClCompile Include="..\Code\LightningFist.cpp" />
+    <ClCompile Include="..\Code\LightningGen.cpp" />
     <ClCompile Include="..\Code\LightningJavelinThrow.cpp" />
     <ClCompile Include="..\Code\LightningSpear.cpp" />
     <ClCompile Include="..\Code\LightningSpearGen.cpp" />
