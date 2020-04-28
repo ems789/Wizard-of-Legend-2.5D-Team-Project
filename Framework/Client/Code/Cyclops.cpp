@@ -500,6 +500,8 @@ _int CCyclops::Attack_Ready_Update(const _float & fTimeDelta)
 		CLineCollider* pLineCollider = CLineCollider::Create(m_pGraphicDev, pBeam, pHitEffect, 10.f, &_vec3(0.f, fAngleY, 0.f), L"MonsterAttack", 30);
 		Engine::Add_GameObject(L"GameLogic", L"MonsterLineColl", pLineCollider);
 		pLineCollider->Add_Hit_Effect(CCyclops::Beam_Hit_Function);
+
+		Engine::PlaySound_(L"LaserBolt.wav", CSoundMgr::EFFECT);
 	}
 
 	return 0;

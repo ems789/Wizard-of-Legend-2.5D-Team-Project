@@ -420,9 +420,10 @@ _int CGhoulLarge::Attack_Update(const _float & fTimeDelta)
 			CBasicEffect* pHitEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_SlashHitSpark", L"SlashHitSpark", 7.f, 20.f, 0.05f, &vPos, false, 0.f);
 			NULL_CHECK_RETURN(pHitEffect, -1);
 
-			CSphereCollider* pCollider = CSphereCollider::Create(m_pGraphicDev, this, pHitEffect, 3.f, L"MonsterAttack", 20, 0.5f);
+			CSphereCollider* pCollider = CSphereCollider::Create(m_pGraphicDev, this, pHitEffect, 5.f, L"MonsterAttack", 20, 0.5f);
 			Engine::Add_GameObject(L"GameLogic", L"MonsterCollider", pCollider);
 			pCollider->Add_Hit_Effect(CGolem::Golem_Hit_Effect);
+			Engine::PlaySound_(L"HeavyFootstep.wav", CSoundMgr::EFFECT);
 		}
 	}
 
@@ -458,7 +459,7 @@ _int CGhoulLarge::Attack3_Update(const _float & fTimeDelta)
 			_vec3 vPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
 			vPos.y = 0.1f;
 
-			CLaidEffect* pCrack = CLaidEffect::Create(m_pGraphicDev, L"Texture_FloorCrack", L"FloorCrack", 1.f, 0.f, 0.1f, &vPos, 0.f, true, 0.05f);
+			CLaidEffect* pCrack = CLaidEffect::Create(m_pGraphicDev, L"Texture_FloorCrator", L"FloorCrack", 1.f, 0.f, 0.2f, &vPos, 0.f, true, 0.5f);
 			Engine::Add_GameObject(L"Effect", L"FloorCrack", pCrack);
 
 			CBasicEffect* pHitEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_SlashHitSpark", L"SlashHitSpark", 7.f, 20.f, 0.05f, &vPos, false, 0.f);

@@ -51,6 +51,7 @@ _int CScaffold::Update_GameObject(const _float& fTimeDelta)
 		{
 			m_bDown = !m_bDown;
 			m_bPreIn = true;
+			Engine::PlaySound_(L"LancerAttackWindup.wav", CSoundMgr::EFFECT);
 		}
 	}
 	else

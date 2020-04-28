@@ -30,6 +30,7 @@ HRESULT CEndingScene::Ready_Scene()
 	FAILED_CHECK_RETURN(Ready_Resource(m_pGraphicDev), E_FAIL);
 	FAILED_CHECK_RETURN(Ready_GameLogic_Layer(L"GameLogic"), E_FAIL);
 	
+	Engine::StopAll();
 	Engine::PlayBGM(L"Credits.wav");
 	Engine::SetVolume(CSoundMgr::BGM, 1.f);
 

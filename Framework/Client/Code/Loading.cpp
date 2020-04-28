@@ -411,6 +411,9 @@ _uint CLoading::Loading_ForState()
 	//	Floor Crack
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FloorCrack", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/FloorCrack/FloorCrack3.png"), E_FAIL);
 
+	//	Floor Crator
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FloorCrator", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/FloorCrater/FloorCrater.png"), E_FAIL);
+
 	//	CardSpawn
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_CardSpawn", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/CardSpawnUnindexed/CardSpawnUnindexed_%d.png", 28), E_FAIL);
 

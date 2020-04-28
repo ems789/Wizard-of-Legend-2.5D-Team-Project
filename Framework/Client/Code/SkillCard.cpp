@@ -51,6 +51,7 @@ _int CSkillCard::Update_GameObject(const _float& fTimeDelta)
 			CInven::GetInstance()->Add_Skill(m_wstrSkillTag, m_pSkill);
 			m_pSkill->AddRef();
 			CInven::GetInstance()->Remove_Coin(m_iPrice);
+			Engine::PlaySound_(L"ItemActivate.wav", CSoundMgr::EFFECT);
 		}
 	}
 	

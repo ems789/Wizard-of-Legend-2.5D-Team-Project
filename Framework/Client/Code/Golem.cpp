@@ -408,6 +408,8 @@ _int CGolem::Attack_Update(const _float & fTimeDelta)
 		CSphereCollider* pCollider = CSphereCollider::Create(m_pGraphicDev, pEffect, pHitEffect, 2.f, L"MonsterAttack", 20);
 		Engine::Add_GameObject(L"GameLogic", L"MonsterCollider", pCollider);
 		pCollider->Add_Hit_Effect(CGolem::Golem_Hit_Effect);
+
+		Engine::PlaySound_(L"HeavySwing.wav", CSoundMgr::EFFECT);
 	}
 	return 0;
 }

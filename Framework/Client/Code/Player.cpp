@@ -926,7 +926,8 @@ void CPlayer::Key_Input_Skill1_For_1stAnd3rdView(const _float & fTimeDelta)
 							m_pTransformCom->GetInfo(Engine::INFO_POS), 0.05f, fRandomLength, fRandomDieLength, 40.f, &vAngle);
 
 						Engine::Add_GameObject(L"Effect", L"SignitureEffect", pSignitureEffect);
-						Engine::PlaySound_(L"ItemActivate.wav", CSoundMgr::EFFECT);
+						//Engine::PlaySound_(L"ItemActivate.wav", CSoundMgr::EFFECT);
+						Engine::PlaySound_(L"PlayerOverdriveActivate.wav", CSoundMgr::EFFECT);
 					}
 				}
 			}
@@ -1445,7 +1446,24 @@ void CPlayer::Hit(const _int & iAtk, const _vec3 * pAtkPos)
 void CPlayer::FullMP_Effect(const _float & fTimeDelta)
 {
 	if (m_fMP < m_fMPMax)
+	{
+		if (m_bManaFull)
+		{
+			m_bManaFull = false;
+			Engine::PlaySound_(L"PlayerOverDriveExpire.wav", CSoundMgr::EFFECT);
+		}
+
 		return;
+	}
+	else
+	{
+		if (!m_bManaFull)
+		{
+			m_bManaFull = true;
+			Engine::PlaySound_(L"PlayerOverdriveActivate.wav", CSoundMgr::EFFECT);
+		}
+	}
+
 
 	m_fManaEffectTime += fTimeDelta;
 

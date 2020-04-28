@@ -443,6 +443,8 @@ void CBlobSpitter::Hit(const _int & iAtk, const _vec3 * pAtkPos)
 			CCoin* pCoin = CCoin::Create(m_pGraphicDev, m_pTransformCom->GetInfo(Engine::INFO_POS), &vDir, fUpForce, fSpeed, iCoin);
 			Engine::Add_GameObject(L"GameLogic", L"Coin", pCoin);
 		}
+
+		Engine::PlaySound_(L"WaterExplode.wav", CSoundMgr::EFFECT);
 	}
 
 }

@@ -167,6 +167,7 @@ private:
 	_bool	m_bFootStepSound = false;
 
 	_float	m_fManaEffectTime = 0.f;
+	_bool	m_bManaFull = false;
 	_float	m_fSlowCount = 0.f;
 	_float	m_fSlowTime = 0.f;
 
