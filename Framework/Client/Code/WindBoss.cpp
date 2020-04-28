@@ -454,7 +454,7 @@ void CWindBoss::DashReady_State() //charge
 {
 	m_tFrame.fCurFrame = 0.f;
 	m_tFrame.fMaxFrame = 11.f;
-	m_tFrame.fFrameSpeed = 3.f;
+	m_tFrame.fFrameSpeed = 8.f;
 
 	m_bAnimFinish = false;
 	m_bAnimRepeat = false;
@@ -466,7 +466,7 @@ void CWindBoss::Dash_State()
 {
 	m_tFrame.fCurFrame = 0.f;
 	m_tFrame.fMaxFrame = 1.f;
-	m_tFrame.fFrameSpeed = 4.f;
+	m_tFrame.fFrameSpeed = 2.f;
 
 	m_bAnimFinish = false;
 	m_bAnimRepeat = false;
@@ -605,7 +605,7 @@ _int CWindBoss::Attack_Update(const _float & fTimeDelta)
 
 
 		//windball 持失
-		CWindBall* pWindBall = CWindBall::Create(m_pGraphicDev, vPos, vTargetPos, vDir, 15.f, 6.f, 5.f);
+		CWindBall* pWindBall = CWindBall::Create(m_pGraphicDev, vPos, vTargetPos, vDir, 20.f, 6.f, 5.f);
 		Engine::Add_GameObject(L"GameLogic", L"WindBall", pWindBall);
 		Engine::PlaySound_(L"WindBlastDeep.wav", CSoundMgr::EFFECT);
 	}
@@ -637,7 +637,7 @@ _int CWindBoss::Attack_Update2(const _float & fTimeDelta)
 
 
 		//windball 持失
-		CWindBall* pWindBall = CWindBall::Create(m_pGraphicDev, vPos, vTargetPos, vDir, 15.f, 6.f, 5.f);
+		CWindBall* pWindBall = CWindBall::Create(m_pGraphicDev, vPos, vTargetPos, vDir, 20.f, 6.f, 5.f);
 		Engine::Add_GameObject(L"GameLogic", L"WindBall", pWindBall);
 		Engine::PlaySound_(L"WindBlastSharp.wav", CSoundMgr::EFFECT);
 	}
@@ -710,10 +710,11 @@ void CWindBoss::DashReady_Update(const _float & fTimeDelta)
 
 	m_eCurDir = fabs(fDotL) > fabs(fDotR) ? eUpDown : eLeftRight;
 
-	CBasicFollowingEffect* pEffect = CBasicFollowingEffect::Create(m_pGraphicDev, L"Texture_WindReadyEffect", L"WindReadyEffect", 11.f, 8.f, 0.05f, &_vec3(0.f, 1.f, 0.f), m_pTransformCom, false, 1.f);
-	Add_GameObject(L"Effect", L"WindReadyEffect", pEffect);
+	//CBasicFollowingEffect* pEffect = CBasicFollowingEffect::Create(m_pGraphicDev, L"Texture_WindReadyEffect", L"WindReadyEffect", 11.f, 8.f, 0.05f, &_vec3(0.f, 1.f, 0.f), m_pTransformCom, false, 1.f);
+	//Add_GameObject(L"Effect", L"WindReadyEffect", pEffect);
 
-
+	CBasicFollowingEffect* pEffect = CBasicFollowingEffect::Create(m_pGraphicDev, L"Texture_Tornado", L"Tornado", 12.f, 6.f, 0.05f, &_vec3(0.f, 0.1f, 0.f), m_pTransformCom, false, 1.f);
+	Add_GameObject(L"Effect", L"Tornado", pEffect);
 	CSphereCollider* pColl = CSphereCollider::Create(m_pGraphicDev, pEffect, nullptr, 1.5f, L"MonsterAttack", 10);
 	Add_GameObject(L"GameLogic", L"MonsterAttack", pColl);
 	m_bFillar = false;
@@ -731,9 +732,11 @@ _int CWindBoss::Dash_Update(const _float & fTimeDelta)
 	m_fDashTime = 0.f;
 	return 0;
 	}*/
-	CBasicFollowingEffect* pEffect = CBasicFollowingEffect::Create(m_pGraphicDev, L"Texture_Tornado", L"Tornado", 12.f, 8.f, 0.05f, &_vec3(0.f, 1.f, 0.f), m_pTransformCom, false, 1.f);
-	Add_GameObject(L"Effect", L"Tornado", pEffect);
+	//CBasicFollowingEffect* pEffect = CBasicFollowingEffect::Create(m_pGraphicDev, L"Texture_Tornado", L"Tornado", 12.f, 8.f, 0.05f, &_vec3(0.f, 1.f, 0.f), m_pTransformCom, false, 1.f);
+	//Add_GameObject(L"Effect", L"Tornado", pEffect);
 
+	CBasicFollowingEffect* pEffect = CBasicFollowingEffect::Create(m_pGraphicDev, L"Texture_WindReadyEffect", L"WindReadyEffect", 11.f, 12.f, 0.05f, &_vec3(0.f, 1.f, 0.f), m_pTransformCom, false, 1.f);
+	Add_GameObject(L"Effect", L"WindReadyEffect", pEffect);
 	CSphereCollider* pColl = CSphereCollider::Create(m_pGraphicDev, pEffect, nullptr, 1.5f, L"MonsterAttack", 10);
 	Add_GameObject(L"GameLogic", L"MonsterAttack", pColl);
 	if (m_bAnimFinish)

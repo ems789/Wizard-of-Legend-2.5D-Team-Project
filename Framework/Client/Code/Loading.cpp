@@ -386,7 +386,8 @@ _uint CLoading::Loading_ForState()
 
 	//	Scaffold Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Scaffold", Engine::TEX_CUBE, L"../Bin/Resource/Texture/Object/Scaffold/Texture1.dds"), E_FAIL);
-
+	//Portal Texture
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Portal", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Object/Portal/Portal.png"), E_FAIL);
 
 	//	WindAgentSwirl Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WindAgentSwirl", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Skill/WindAgentSwirl/WindAgentSwirl%d.png", 5), E_FAIL);
@@ -411,7 +412,29 @@ _uint CLoading::Loading_ForState()
 	//	Coin
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Coin", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Coin/Coin_%d.png", 4), E_FAIL);
 
+	FAILED_CHECK_RETURN(Engine::Ready_Buffer(m_pGraphicDev,
+		::RESOURCE_STATIC,
+		L"Buffer_TerrainTex",
+		Engine::BUFFER_TERRAINTEX,
+		Engine::WALL_OUTER,
+		D3DXCOLOR(1.f, 1.f, 1.f, 1.f),
+		L"",
+		100 + 1,
+		100 + 1,
+		1),
+		E_FAIL);
 
+	FAILED_CHECK_RETURN(Engine::Ready_Buffer(m_pGraphicDev,
+		::RESOURCE_STATIC,
+		L"Buffer_TileTex",
+		Engine::BUFFER_TILETEX,
+		Engine::WALL_OUTER,
+		D3DXCOLOR(1.f, 1.f, 1.f, 1.f),
+		L"",
+		0,
+		0,
+		1),
+		E_FAIL);
 
 	//	Scene ¸¸µé±â.
 	if (0 != lstrcmp(m_szTilePath, L"") && 0 != lstrcmp(m_szWallPath, L""))
