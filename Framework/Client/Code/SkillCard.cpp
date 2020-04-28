@@ -41,8 +41,7 @@ _int CSkillCard::Update_GameObject(const _float& fTimeDelta)
 	_vec3 vDist = *pTargetPos - *m_pTransformCom->GetInfo(Engine::INFO_POS);
 	_float fDist = D3DXVec3Length(&vDist);
 
-	if (fDist < m_tSphere.fRadius)
-		m_bIsOn = true;
+	m_bIsOn = fDist < m_tSphere.fRadius;
 
 	if (m_bIsOn && Engine::KeyDown(DIK_F))
 	{

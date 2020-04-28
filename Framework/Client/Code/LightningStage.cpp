@@ -21,6 +21,7 @@
 #include "RoomBlock.h"
 #include "BlobSpitter.h"
 #include "GhoulLarge.h"
+#include "FireStage.h"
 
 CLightningStage::CLightningStage(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CScene(pGraphicDev)
@@ -54,6 +55,14 @@ HRESULT CLightningStage::Ready_Scene()
 
 _int CLightningStage::Update_Scene(const _float& fTimeDelta)
 {
+	if (Engine::KeyDown(DIK_B))
+	{
+		CFireStage* pFireStage = CFireStage::Create(m_pGraphicDev);
+		NULL_CHECK_RETURN(pFireStage, -1);
+		Engine::SetUp_Scene(pFireStage);
+		return 1;
+	}
+
 	if (Engine::KeyDown(DIK_F9))
 	{
 		// LightningBoss

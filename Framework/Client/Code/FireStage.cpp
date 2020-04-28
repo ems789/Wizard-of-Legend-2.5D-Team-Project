@@ -51,12 +51,12 @@ CFireStage::~CFireStage()
 HRESULT CFireStage::Ready_Scene()
 {
 	FAILED_CHECK_RETURN(CScene::Ready_Scene(), E_FAIL);
-	FAILED_CHECK_RETURN(Ready_StaticLayer(), E_FAIL);
 	FAILED_CHECK_RETURN(Ready_GameLogic_Layer(L"GameLogic"), E_FAIL);
 	FAILED_CHECK_RETURN(Ready_Effect_Layer(L"Effect"), E_FAIL);
 	FAILED_CHECK_RETURN(Ready_Monster_Layer(L"Monster"), E_FAIL);
 	FAILED_CHECK_RETURN(Ready_UI_Layer(L"UI"), E_FAIL);
-	FAILED_CHECK_RETURN(Ready_Camera(), E_FAIL);
+	FAILED_CHECK_RETURN(Ready_StaticLayer(), E_FAIL);
+	//FAILED_CHECK_RETURN(Ready_Camera(), E_FAIL);
 	//FAILED_CHECK_RETURN(UI_Setting(), E_FAIL);
 	FAILED_CHECK_RETURN(Store_Setting(), E_FAIL);
 	CUI::GetInstance()->ShowOnUI();
@@ -81,6 +81,16 @@ _int CFireStage::Update_Scene(const _float& fTimeDelta)
 		Engine::SetUp_Scene(pEnding);
 		return 1;
 	}
+
+	if (m_bTeleportDelay && false == m_bTeleportEffect) 
+	{
+		CBasicEffect* pTeleEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_TeleportEffect", L"", 9.f, 10.f, 0.05f, &_vec3(50.f, 1.f, 37.5f), false, 0.f);
+		Add_GameObject(L"Effect", L"TeleportEffect", pTeleEffect);
+		m_bTeleportEffect = true;
+	}
+
+	if (false == m_bTeleportDelay)
+		m_bTeleportDelay = true;
 
 	_int iExit = Room_State_Update(fTimeDelta);
 
@@ -169,16 +179,6 @@ HRESULT CFireStage::Ready_UI_Layer(const _tchar * pLayerTag)
 
 	Engine::CGameObject* pGameObject = nullptr;
 
-	//FAILED_CHECK_RETURN(UI_Setting(), E_FAIL);
-
-	//pGameObject = CPlayerHP::Create(m_pGraphicDev, &_vec3(2.f, 2.f, 0.f));
-	//NULL_CHECK_RETURN(pGameObject, E_FAIL);
-	//pLayer->Add_GameObject(L"PlayerHP", pGameObject);
-
-	//pGameObject = CCastingCircle::Create(m_pGraphicDev, 200.f, &_vec3(0.f, 0.f, 0.f), Engine::RENDER_UI);
-	//NULL_CHECK_RETURN(pGameObject, E_FAIL);
-	//pLayer->Add_GameObject(L"CastingCircle", pGameObject);
-
 	m_mapLayer.emplace(pLayerTag, pLayer);
 
 	return S_OK;
@@ -186,12 +186,15 @@ HRESULT CFireStage::Ready_UI_Layer(const _tchar * pLayerTag)
 
 HRESULT CFireStage::Ready_StaticLayer()
 {
-	CPlayer* pPlayer = CPlayer::Create(m_pGraphicDev);
-	NULL_CHECK_RETURN(pPlayer, E_FAIL);
-	pPlayer->Set_PosX(50.f);
-	pPlayer->Set_PosZ(37.5f);
-	Engine::Add_GameObjectToStaticLayer(L"Player", pPlayer);
-	FAILED_CHECK_RETURN(UI_Setting(), E_FAIL);
+	//CPlayer* pPlayer = CPlayer::Create(m_pGraphicDev);
+	//NULL_CHECK_RETURN(pPlayer, E_FAIL);
+	//pPlayer->Set_PosX(50.f);
+	//pPlayer->Set_PosZ(37.5f);
+	//Engine::Add_GameObjectToStaticLayer(L"Player", pPlayer);
+	_vec3 vPlayerPos = { 50.f, 1.f, 37.5f };
+	Engine::Player_Set_Pos(&vPlayerPos);
+
+
 	return S_OK;
 }
 
@@ -212,13 +215,6 @@ HRESULT CFireStage::Ready_Camera()
 	Engine::Add_BasicCamera(2, L"Quater_View_Camera", pCamera);
 
 	Engine::SetUp_MainCamera(Engine::CAM_STATIC, L"Quater_View_Camera");
-
-	return S_OK;
-}
-
-HRESULT CFireStage::UI_Setting()
-{
-
 
 	return S_OK;
 }
@@ -1099,7 +1095,6 @@ _int CFireStage::NinthRoom_Update(const _float & fTimeDelta)
 
 	return 0;
 }
-
 
 _bool CFireStage::Check_Monster()
 {

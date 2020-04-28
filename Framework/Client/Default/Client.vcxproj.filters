@@ -675,6 +675,9 @@
     <ClInclude Include="..\Code\LightningStage.h">
       <Filter>01.Scene\06.LightningStage</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\EndingScene.h">
+      <Filter>01.Scene\05.EndingScene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -967,6 +970,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\LightningStage.cpp">
       <Filter>01.Scene\06.LightningStage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\EndingScene.cpp">
+      <Filter>01.Scene\05.EndingScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
