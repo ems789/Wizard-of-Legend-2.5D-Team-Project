@@ -294,6 +294,9 @@ void CLightningBoss::Change_State()
 	case CLightningBoss::LBS_PBAOE:
 		PBAoE_State();
 		break;
+	case CLightningBoss::LBS_DEAD:
+		Dead_State();
+		break;
 	}
 
 	m_ePreState = m_eCurState;
@@ -331,6 +334,9 @@ void CLightningBoss::Update_State(const _float & fTimeDelta)
 		break;
 	case CLightningBoss::LBS_PBAOE:
 		PBAoE_Update(fTimeDelta);
+		break;
+	case CLightningBoss::LBS_DEAD:
+		Dead_Update(fTimeDelta);
 		break;
 	}
 }
@@ -809,18 +815,17 @@ void CLightningBoss::Dead_Update(const _float & fTimeDelta)
 	{
 		m_bIsDead = true;
 
-		const _tchar* pTextureTag = nullptr;
-		switch (rand() % 4)
-		{
-		case 0:
-			break;
-		case 1:
-			break;
-		case 2:
-			break;
-		case 3:
-			break;
-		}
+		CBasicEffect* pLightningBossTeleportAir = CBasicEffect::Create(m_pGraphicDev, L"Texture_LightningGirlTeleportAir", L"", 3.f, 10.f, 0.06f, m_pTransformCom->GetInfo(Engine::INFO_POS), false, 0.f);
+		Engine::Add_GameObject(L"Effect", L"Texture_LightningGirlTeleportAir", pLightningBossTeleportAir);
+
+		m_pTransformCom->Set_PosY(1.f);
+		CBasicEffect* pLightningBossLand = CBasicEffect::Create(m_pGraphicDev, L"Texture_LightningBoss_Land", L"", 7.f, 10.f, 0.06f, m_pTransformCom->GetInfo(Engine::INFO_POS), false, 0.f);
+		Engine::Add_GameObject(L"Effect", L"LightningBoss_Land", pLightningBossLand);
+
+		CBasicEffect* pLightningBossTeleportFloor = CBasicEffect::Create(m_pGraphicDev, L"Texture_LightningGirlTeleportFloor", L"", 6.f, 10.f, 0.06f, m_pTransformCom->GetInfo(Engine::INFO_POS), false, 0.f);
+		Engine::Add_GameObject(L"Effect", L"Texture_LightningGirlTeleportFloor", pLightningBossTeleportFloor);
+
+		Engine::PlaySound_(L"LightningBurst.wav", CSoundMgr::EFFECT);
 	}
 }
 

@@ -19,7 +19,8 @@ CKnight::~CKnight()
 }
 
 HRESULT CKnight::Ready_GameObject()
-{FAILED_CHECK_RETURN(Add_Component(), E_FAIL);
+{
+	FAILED_CHECK_RETURN(Add_Component(), E_FAIL);
 
 	m_tSphere.fRadius = 1.f;
 
@@ -123,7 +124,6 @@ HRESULT CKnight::Add_Component()
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
 	m_vvTextureCom[KS_IDLE][KD_LEFT] = pTextureCom;
 	m_vvTextureCom[KS_IDLE][KD_RIGHT] = pTextureCom;
-
 	pTextureCom->AddRef();
 
 	//  Run
@@ -319,11 +319,11 @@ _int CKnight::Idle_Update(const _float & fTimeDelta)
 	const Engine::CTransform* pTargetTransform = dynamic_cast<const Engine::CTransform*>(Engine::Get_Component_of_Player(L"Com_Transform", Engine::ID_DYNAMIC));
 	NULL_CHECK_RETURN(pTargetTransform, -1);
 
-	_vec3 vTargetPos	= *pTargetTransform->GetInfo(Engine::INFO_POS);
-	_vec3 vMyPos		= *m_pTransformCom->GetInfo(Engine::INFO_POS);
+	_vec3 vTargetPos = *pTargetTransform->GetInfo(Engine::INFO_POS);
+	_vec3 vMyPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
 
-	_vec3 vDist		= vTargetPos - vMyPos;
-	_float fDist	= D3DXVec3Length(&vDist);
+	_vec3 vDist = vTargetPos - vMyPos;
+	_float fDist = D3DXVec3Length(&vDist);
 
 	if (fDist < 1.f)
 	{
@@ -389,7 +389,7 @@ _int CKnight::Run_Update(const _float & fTimeDelta)
 			m_eCurDir = eLeftRight;
 		}
 	}
-		break;
+	break;
 	}
 
 	m_pTransformCom->Move_Pos(vDir * fTimeDelta * m_fSpeed);
@@ -427,7 +427,7 @@ _int CKnight::Dash_Update(const _float & fTimeDelta)
 
 	if (m_bAnimFinish)
 	{
-		m_eCurState = KS_ATTACK;		
+		m_eCurState = KS_ATTACK;
 		m_bIsDash = false;
 
 		// 공격으로 넘어갈때
@@ -450,7 +450,7 @@ _int CKnight::Dash_Update(const _float & fTimeDelta)
 			else
 				m_eCurDir = KD_DOWN;
 		}
-			break;	
+		break;
 		case Engine::CCameraMgr::MAIN_CAM_QUATER:
 		{
 			Knight_DIR eUpDown = m_vTargetDir.z > 0.f ? KD_UP : KD_DOWN;
@@ -458,7 +458,7 @@ _int CKnight::Dash_Update(const _float & fTimeDelta)
 
 			m_eCurDir = fabs(m_vTargetDir.z) > fabs(m_vTargetDir.x) ? eUpDown : eLeftRight;
 		}
-			break;
+		break;
 		}
 	}
 
@@ -504,7 +504,7 @@ _int CKnight::Attack_Update(const _float & fTimeDelta)
 
 		Knight_DIR eLeftRight = vDir.x > 0.f ? KD_RIGHT : KD_LEFT;
 
-		m_eCurDir = eLeftRight;		
+		m_eCurDir = eLeftRight;
 	}
 
 	return 0;
@@ -517,7 +517,7 @@ void CKnight::Hit(const _int & iAtk, const _vec3 * pAtkPos)
 	{
 		m_bIsDead = true;
 		_vec3 vPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
-		CBasicEffect* pDieEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_Knight_Dead_Left", L"KnightDieEffect", 6, 10.f, m_fScale, &vPos, false, 0.f);
+		CBasicEffect* pDieEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_Knight_Dead", L"KnightDieEffect", 6, 10.f, m_fScale, &vPos, false, 0.f);
 		Engine::Add_GameObject(L"GameLogic", L"KnightDieEffect", pDieEffect);
 
 		_uint iRepeat = rand() % 10;

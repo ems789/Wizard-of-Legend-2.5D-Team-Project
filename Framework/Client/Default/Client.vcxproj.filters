@@ -337,8 +337,26 @@
     <Filter Include="01.Scene\05.EndingScene">
       <UniqueIdentifier>{b62a2d35-67a5-4d63-ae5c-745717b06e9f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="07.Monster\08.SkeletonMinion">
-      <UniqueIdentifier>{6b48fb2e-3719-4f4d-a3fd-e0d19c96104c}</UniqueIdentifier>
+    <Filter Include="05.Skill\02.Lightning\00.LightningFist">
+      <UniqueIdentifier>{9f7c6666-087c-470f-9fe6-8881c571d3d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Skill\02.Lightning\00.LightningFist\00.Lightning">
+      <UniqueIdentifier>{683cbf6f-88dd-46e5-a3a4-0bab51b3912f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Skill\02.Lightning\01.LightningSpearShot">
+      <UniqueIdentifier>{81b2612d-8140-48ef-82b3-b1e3a4072b2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Skill\02.Lightning\01.LightningSpearShot\00.LightningSpear">
+      <UniqueIdentifier>{6c60167a-8c4e-485f-80d4-0c32e78e55a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Skill\02.Lightning\01.LightningSpearShot\01.LightningSpearGen">
+      <UniqueIdentifier>{d44366db-e45f-49b2-8f52-e6ce79a8a580}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Skill\02.Lightning\02.ThunderFall">
+      <UniqueIdentifier>{74522264-b418-495d-80c0-8e284e36ad33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Scene\06.LightningStage">
+      <UniqueIdentifier>{a88279ab-0a69-480e-b0d4-ad771327f02f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -639,8 +657,23 @@
     <ClInclude Include="..\Code\LaidObject.h">
       <Filter>02.GameObject\99.public\05.LaidObject</Filter>
     </ClInclude>
-    <ClInclude Include="..\Code\SkeletonMinion.h">
-      <Filter>07.Monster\08.SkeletonMinion</Filter>
+    <ClInclude Include="..\Code\Lightning.h">
+      <Filter>05.Skill\02.Lightning\00.LightningFist\00.Lightning</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\LightningFist.h">
+      <Filter>05.Skill\02.Lightning\00.LightningFist</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\LightningSpear.h">
+      <Filter>05.Skill\02.Lightning\01.LightningSpearShot\00.LightningSpear</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\LightningSpearGen.h">
+      <Filter>05.Skill\02.Lightning\01.LightningSpearShot\01.LightningSpearGen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\LightningSpearShot.h">
+      <Filter>05.Skill\02.Lightning\01.LightningSpearShot</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\LightningStage.h">
+      <Filter>01.Scene\06.LightningStage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -917,8 +950,23 @@
     <ClCompile Include="..\Code\LaidObject.cpp">
       <Filter>02.GameObject\99.public\05.LaidObject</Filter>
     </ClCompile>
-    <ClCompile Include="..\Code\SkeletonMinion.cpp">
-      <Filter>07.Monster\08.SkeletonMinion</Filter>
+    <ClCompile Include="..\Code\Lightning.cpp">
+      <Filter>05.Skill\02.Lightning\00.LightningFist\00.Lightning</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\LightningFist.cpp">
+      <Filter>05.Skill\02.Lightning\00.LightningFist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\LightningSpear.cpp">
+      <Filter>05.Skill\02.Lightning\01.LightningSpearShot\00.LightningSpear</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\LightningSpearGen.cpp">
+      <Filter>05.Skill\02.Lightning\01.LightningSpearShot\01.LightningSpearGen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\LightningSpearShot.cpp">
+      <Filter>05.Skill\02.Lightning\01.LightningSpearShot</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\LightningStage.cpp">
+      <Filter>01.Scene\06.LightningStage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -136,6 +136,16 @@ _uint CLoading::Loading_ForState()
 	//	Explosion Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FireExplosion", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/FireExplosion/FireExplosion%d.png", 7), E_FAIL);
 
+	//	Lightning Fist
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_LightningFistCharge", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Skill/LightningFist/LightningFirstCharge%d.png", 3), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_LightningFistAttack", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Skill/LightningFist/LightningFistAttack%d.png", 4), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_LightningFistAttackLarge", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Skill/LightningFist/LightningFistAttackLarge%d.png", 3), E_FAIL);
+	//  Wind Shuriken
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WindShuriken", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/WindShuriken/WindShuriken%d.png", 3), E_FAIL);
+
+	//	Lightning Spear
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_LightningSpear", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Skill/LightningSpear/LightningSpear%d.png", 7), E_FAIL);
+
 	//	SlashHitSpark Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_SlashHitSpark", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/SlashHitSpark/SlashHitSpark_%d.png", 7), E_FAIL);
 
@@ -168,7 +178,6 @@ _uint CLoading::Loading_ForState()
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_SkeletonMinion_Idle", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/SkeletonMinion/Idle/SkeletonMinionIdle.png"), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_SkeletonMinion_AttackLeft", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/SkeletonMinion/Attack/Left/SkeletonMinionAttackLeft%d.png", 3), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_SkeletonMinion_Attack", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/SkeletonMinion/Attack/Right/SkeletonMinionAttackRight%d.png", 3), E_FAIL);
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_SkeletonMinionDead", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/SkeletonMinion/Dead/SkeletonMinionDead%d.png", 9), E_FAIL);
 
 
 	//	Monster
