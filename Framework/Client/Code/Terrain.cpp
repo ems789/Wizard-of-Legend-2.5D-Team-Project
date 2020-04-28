@@ -58,10 +58,10 @@ void CTerrain::Render_GameObject(void)
 	_int iX = static_cast<_int>(vPlayerPos.x);
 	_int iZ = static_cast<_int>(vPlayerPos.z);
 
-	_int iStartX = iX - 25;
-	_int iEndX = iX + 25;
-	_int iStartZ = iZ - 25;
-	_int iEndZ = iZ + 25;
+	_int iStartX = iX - 36;
+	_int iEndX = iX + 36;
+	_int iStartZ = iZ - 35;
+	_int iEndZ = iZ + 35;
 
 	if (iStartX < 0)
 		iStartX = 0;

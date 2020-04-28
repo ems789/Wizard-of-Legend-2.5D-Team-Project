@@ -37,6 +37,7 @@ private:
 	void		ThirdMonsterGen(const _vec3* pPlayerPos);
 	void		FourthMonsterGen(const _vec3* pPlayerPos);
 	void		FifthMonsterGen(const _vec3* pPlayerPos);
+	void		SixMonsterGen(const _vec3* pPlayerPos);
 
 private:
 	_int		Room_State_Update(const _float& fTimeDelta);
@@ -47,11 +48,14 @@ private:
 	_int		FirstRoom_Update(const _float& fTimeDelta);
 	_int		SecondRoom_Update(const _float& fTimeDelta);
 	_int		ThirdRoom_Update(const _float& fTimeDelta);
+	_int		FifthRoom_Update(const _float& fTimeDelta);
+	_int		SixRoom_Update(const _float& fTimeDelta);
 
 private:
 	_bool		Check_Monster();
 	void		RoomBlock_Close();
 	void		RoomBlock_Open();
+	HRESULT		Store_Setting();
 
 private:
 	ROOM_STATE			m_eCurState = ROOM_IDLE;
@@ -64,6 +68,7 @@ private:
 	_bool		m_b3rdMonsterGen = false;
 	_bool		m_b4thMonsterGen = false;
 	_bool		m_b5thMonsterGen = false;
+	_bool		m_b6thMonsterGen = false;
 
 	_bool		m_bMonsterGen = false;
 

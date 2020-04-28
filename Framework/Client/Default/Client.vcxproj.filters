@@ -358,6 +358,12 @@
     <Filter Include="01.Scene\06.LightningStage">
       <UniqueIdentifier>{a88279ab-0a69-480e-b0d4-ad771327f02f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="07.Monster\08.SkeletonMinion">
+      <UniqueIdentifier>{0cbb714d-0eb6-4201-9225-09006fd66b78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\99.public\06.Portal">
+      <UniqueIdentifier>{b68c88d9-7259-4322-a17f-896cdbae0db5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -675,6 +681,12 @@
     <ClInclude Include="..\Code\LightningStage.h">
       <Filter>01.Scene\06.LightningStage</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\SkeletonMinion.h">
+      <Filter>07.Monster\08.SkeletonMinion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Portal.h">
+      <Filter>02.GameObject\99.public\06.Portal</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -967,6 +979,12 @@
     </ClCompile>
     <ClCompile Include="..\Code\LightningStage.cpp">
       <Filter>01.Scene\06.LightningStage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\SkeletonMinion.cpp">
+      <Filter>07.Monster\08.SkeletonMinion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Portal.cpp">
+      <Filter>02.GameObject\99.public\06.Portal</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -223,6 +223,7 @@
     <ClInclude Include="..\Code\Mouse.h" />
     <ClInclude Include="..\Code\NumberFont.h" />
     <ClInclude Include="..\Code\Player.h" />
+    <ClInclude Include="..\Code\Portal.h" />
     <ClInclude Include="..\Code\QuaterViewCamera.h" />
     <ClInclude Include="..\Code\RoomBlock.h" />
     <ClInclude Include="..\Code\RotatedBillEffect.h" />
@@ -231,6 +232,7 @@
     <ClInclude Include="..\Code\SharkPool.h" />
     <ClInclude Include="..\Code\SignitureEffect.h" />
     <ClInclude Include="..\Code\Mage.h" />
+    <ClInclude Include="..\Code\SkeletonMinion.h" />
     <ClInclude Include="..\Code\SkillCard.h" />
     <ClInclude Include="..\Code\SphereCollider.h" />
     <ClInclude Include="..\Code\Stage.h" />
@@ -330,6 +332,7 @@
     <ClCompile Include="..\Code\Mouse.cpp" />
     <ClCompile Include="..\Code\NumberFont.cpp" />
     <ClCompile Include="..\Code\Player.cpp" />
+    <ClCompile Include="..\Code\Portal.cpp" />
     <ClCompile Include="..\Code\QuaterViewCamera.cpp" />
     <ClCompile Include="..\Code\RoomBlock.cpp" />
     <ClCompile Include="..\Code\RotatedBillEffect.cpp" />
@@ -338,6 +341,7 @@
     <ClCompile Include="..\Code\SharkPool.cpp" />
     <ClCompile Include="..\Code\SignitureEffect.cpp" />
     <ClCompile Include="..\Code\Mage.cpp" />
+    <ClCompile Include="..\Code\SkeletonMinion.cpp" />
     <ClCompile Include="..\Code\SkillCard.cpp" />
     <ClCompile Include="..\Code\SphereCollider.cpp" />
     <ClCompile Include="..\Code\Stage.cpp" />
