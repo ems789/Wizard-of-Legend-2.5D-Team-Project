@@ -17,9 +17,7 @@
   Transform.cpp
      Creating library ../Bin/Utility.lib and object ../Bin/Utility.exp
   Generating code
-  1609 of 1609 functions (100.0%) were compiled, the rest were copied from previous compilation.
-    15 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+  All 1621 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
   Utility.vcxproj -> D:\TeamProject\Framework\Engine\Utility\Default\../Bin/Utility.dll
   Utility.vcxproj -> ../Bin/Utility.pdb (Full PDB)

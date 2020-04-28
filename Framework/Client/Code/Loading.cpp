@@ -418,6 +418,8 @@ _uint CLoading::Loading_ForState()
 	//	Coin
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Coin", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Coin/Coin_%d.png", 4), E_FAIL);
 
+	//	Answer
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Answer", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Object/Scaffold/Answer.png"), E_FAIL);
 
 	FAILED_CHECK_RETURN(Engine::Ready_Buffer(m_pGraphicDev,
 		::RESOURCE_STATIC,

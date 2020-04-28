@@ -7,6 +7,7 @@
 #include "BasicEffect.h"
 #include "LaidEffect.h"
 #include "Coin.h"
+#include "NumberEffect.h"
 CSkeletonMinion::CSkeletonMinion(LPDIRECT3DDEVICE9 pGraphicDev)
 	:Engine::CGameObject(pGraphicDev)
 {
@@ -378,6 +379,11 @@ _int CSkeletonMinion::Attack_Update(const _float & fTimeDelta)
 void CSkeletonMinion::Hit(const _int & iAtk, const _vec3 * pAtkPos)
 {
 	m_iHP -= iAtk;
+
+
+
+	CNumberEffect* pNumber = CNumberEffect::Create(m_pGraphicDev, 0.05f, m_pTransformCom->GetInfo(Engine::INFO_POS), 1.f, D3DXCOLOR(1.f, 1.f, 1.f, 1.f), iAtk);
+	Engine::Add_GameObject(L"Effect", L"DamageFont", pNumber);
 	if (m_iHP <= 0)
 	{
 		m_bIsDead = true;

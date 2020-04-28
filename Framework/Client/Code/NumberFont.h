@@ -25,6 +25,7 @@ private:
 public:
 	HRESULT Ready_NumberFont(LPDIRECT3DDEVICE9 pGraphicDev);
 	void DrawNumber(const _int& iNum, const _vec3* pPos, const _float& fScale, D3DXCOLOR d3dColor);
+	void DrawNumberBill(const _int& iNum, const _vec3* pPos, const _float& fScale, D3DXCOLOR d3dColor);
 
 private:
 	HRESULT		Add_Component();
