@@ -38,6 +38,7 @@ public:
 	HRESULT		Add_GameObject(const _tchar* pLayerTag, const _tchar* pObjTag, CGameObject* pObj);
 	HRESULT		Add_GameObjectToStaticLayer(const _tchar* pObjTag, CGameObject* pObj);
 	HRESULT		Create_StaticLayer();
+	HRESULT		Clear_StaticLayer();
 
 private:
 	CScene*		m_pScene = nullptr;

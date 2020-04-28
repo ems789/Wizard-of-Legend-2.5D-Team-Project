@@ -73,6 +73,10 @@ HRESULT Create_StaticLayer()
 {
 	return CManagement::GetInstance()->Create_StaticLayer();
 }
+HRESULT	Clear_StaticLayer()
+{
+	return CManagement::GetInstance()->Clear_StaticLayer();
+}
 
 //	Renderer
 CRenderer* Get_Renderer()

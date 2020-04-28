@@ -29,6 +29,7 @@ public:
 	void		Move_Pos(const _vec3* pMove);
 	void		Set_Pos(const _vec3* pPos);
 	void		Set_PosY(const _float& fy);
+	
 
 private:
 	HRESULT		Add_Component(const _tchar* pTextureTag);

@@ -86,15 +86,15 @@ private:
 	HRESULT		Store_Setting();
 
 private:
-	_bool		m_b1stMonsterGen = false;
-	_bool		m_b2ndMonsterGen = false;
-	_bool		m_b3rdMonsterGen = false;
-	_bool		m_b4thMonsterGen = false;
-	_bool		m_b5thMonsterGen = false;
-	_bool		m_b6thRoomStart = false;
-	_bool		m_b7thRoomStart = false;
-	_bool		m_b8thRoomStart = false;
-	_bool		m_b9thRoomStart = false;
+	_bool		m_b1stMonsterGen	= false;
+	_bool		m_b2ndMonsterGen	= false;
+	_bool		m_b3rdMonsterGen	= false;
+	_bool		m_b4thMonsterGen	= false;
+	_bool		m_b5thMonsterGen	= false;
+	_bool		m_b6thRoomStart		= false;
+	_bool		m_b7thRoomStart		= false;
+	_bool		m_b8thRoomStart		= false;
+	_bool		m_b9thRoomStart		= false;
 
 	_bool		m_bMonsterGen = false;
 

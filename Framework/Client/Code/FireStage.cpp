@@ -35,6 +35,7 @@
 #include "Scaffold.h"
 #include "LaidObject.h"
 #include "BasicEffect.h"
+#include "EndingScene.h"
 
 CFireStage::CFireStage(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CScene(pGraphicDev)
@@ -73,10 +74,13 @@ _int CFireStage::Update_Scene(const _float& fTimeDelta)
 
 	const _vec3* pPlayerPos = pPlayerTransform->GetInfo(Engine::INFO_POS);
 
-	//FirstMonsterGen(pPlayerPos);
-	//SecondMonsterGen(pPlayerPos);
-	//ThirdMonsterGen(pPlayerPos);
-	//FourthMonsterGen(pPlayerPos);
+
+	if (Engine::KeyDown(DIK_B))
+	{
+		CEndingScene* pEnding = CEndingScene::Create(m_pGraphicDev);
+		Engine::SetUp_Scene(pEnding);
+		return 1;
+	}
 
 	_int iExit = Room_State_Update(fTimeDelta);
 
@@ -653,17 +657,19 @@ void CFireStage::EngindRoomStart()
 
 _int CFireStage::Room_State_Update(const _float & fTimeDelta)
 {
+	_int iExit = 0;
+
 	switch (m_eCurState)
 	{
 	case CFireStage::ROOM_IDLE:
-		Room_Idle_Update(fTimeDelta);
+		iExit = Room_Idle_Update(fTimeDelta);
 		break;
 	case CFireStage::ROOM_CLOSE:
-		Room_Close_Update(fTimeDelta);
+		iExit = Room_Close_Update(fTimeDelta);
 		break;
 	}
 
-	return _int();
+	return iExit;
 }
 
 _int CFireStage::Room_Idle_Update(const _float & fTimeDelta)
@@ -692,39 +698,39 @@ _int CFireStage::Room_Idle_Update(const _float & fTimeDelta)
 
 _int CFireStage::Room_Close_Update(const _float & fTimeDelta)
 {
-
+	_int iExit = 0;
 	switch (m_eRoomNumber)
 	{
 	case CFireStage::ROOM_NUM_1:
-		FirstRoom_Update(fTimeDelta);
+		iExit = FirstRoom_Update(fTimeDelta);
 		break;
 	case CFireStage::ROOM_NUM_2:
-		SecondRoom_Update(fTimeDelta);
+		iExit = SecondRoom_Update(fTimeDelta);
 		break;
 	case CFireStage::ROOM_NUM_3:
-		ThirdRoom_Update(fTimeDelta);
+		iExit = ThirdRoom_Update(fTimeDelta);
 		break;
 	case CFireStage::ROOM_NUM_4:
-		FourthRoom_Update(fTimeDelta);
+		iExit = FourthRoom_Update(fTimeDelta);
 		break;
 	case CFireStage::ROOM_NUM_5:
-		FifthRoom_Update(fTimeDelta);
+		iExit = FifthRoom_Update(fTimeDelta);
 		break;
 	case CFireStage::ROOM_NUM_6:
-		SixthRoom_Update(fTimeDelta);
+		iExit = SixthRoom_Update(fTimeDelta);
 		break;
 	case CFireStage::ROOM_NUM_7:
-		SeventhRoom_Update(fTimeDelta);
+		iExit = SeventhRoom_Update(fTimeDelta);
 		break;
 	case CFireStage::ROOM_NUM_8:
-		EighthRoom_Update(fTimeDelta);
+		iExit = EighthRoom_Update(fTimeDelta);
 		break;
 	case CFireStage::ROOM_NUM_9:
-		NinthRoom_Update(fTimeDelta);
+		iExit = NinthRoom_Update(fTimeDelta);
 		break;
 	}
 
-	return 0;
+	return iExit;
 }
 
 CFireStage* CFireStage::Create(LPDIRECT3DDEVICE9 pGraphicDev)
@@ -1070,6 +1076,7 @@ _int CFireStage::NinthRoom_Update(const _float & fTimeDelta)
 				CBasicEffect* pTeleEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_TeleportEffect", L"", 9.f, 10.f, 0.05f, &vLandingPadPos, false, 0.f);
 				Add_GameObject(L"Effect", L"TeleportEffect", pTeleEffect);
 				m_eRoomPhase = RP_2;
+				m_fTimer = 0.f;
 				return 0;
 			}
 		}
@@ -1081,6 +1088,11 @@ _int CFireStage::NinthRoom_Update(const _float & fTimeDelta)
 		{
 			m_fTimer = 0.f;
 			m_eCurState = ROOM_IDLE;
+
+			CEndingScene* pEnding = CEndingScene::Create(m_pGraphicDev);
+			Engine::SetUp_Scene(pEnding);
+			return 1;
+
 		}
 		break;
 	}
