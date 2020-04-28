@@ -5,6 +5,7 @@
 #include "CastingCircle.h"
 #include "Town.h"
 #include "FireStage.h"
+#include "LightningStage.h"
 
 CLoadingScene::CLoadingScene(LPDIRECT3DDEVICE9 pGraphicDev)
 	:CScene(pGraphicDev)
@@ -37,7 +38,8 @@ _int CLoadingScene::Update_Scene(const _float& fTimeDelta)
 	{
 		//if (Engine::KeyDown(DIK_RETURN))
 		{
-			CFireStage* pScene = CFireStage::Create(m_pGraphicDev);
+			//CFireStage* pScene = CFireStage::Create(m_pGraphicDev);
+			CLightningStage* pScene = CLightningStage::Create(m_pGraphicDev);
 			NULL_CHECK_RETURN(pScene, -1);
 
 			Engine::SetUp_Scene(pScene);
