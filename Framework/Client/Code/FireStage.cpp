@@ -208,7 +208,6 @@ HRESULT CFireStage::Ready_Camera()
 	Engine::Add_BasicCamera(2, L"Quater_View_Camera", pCamera);
 
 	Engine::SetUp_MainCamera(Engine::CAM_STATIC, L"Quater_View_Camera");
-	//CMouse::GetInstance()->AnimingPointOff();
 
 	return S_OK;
 }
@@ -608,6 +607,7 @@ void CFireStage::EighthRoomStart(const _vec3 * pPlayerPos)	//	Boss Room
 
 		CFireBoss* pBoss = CFireBoss::Create(m_pGraphicDev, &_vec3(fMidX, 1.f, fMidZ));
 		Engine::Add_GameObject(L"Monster", L"Boss", pBoss);
+		CUI::GetInstance()->ShowOnBossUI();
 
 		CRoomBlock* pRoomBlock = CRoomBlock::Create(m_pGraphicDev, &_vec3(4.f, 3.5f, 0.f), &_vec3(26.f, 2.f, 77.f), CRoomBlock::BLOCK_LEFT);
 		Add_GameObject(L"GameLogic", L"RoomBlock", pRoomBlock);
@@ -1040,7 +1040,10 @@ _int CFireStage::SeventhRoom_Update(const _float & fTimeDelta)
 _int CFireStage::EighthRoom_Update(const _float & fTimeDelta)
 {
 	if (false == Check_Monster())
+	{
 		RoomBlock_Open();
+		CUI::GetInstance()->ShowOffBossUI();
+	}
 
 
 

@@ -43,6 +43,7 @@ private:
 	vector<CUIButton*>	m_vecButtons;
 	_int				m_iOnButton = 0;
 
+	static _bool m_bResourceLoading;
 	
 
 public:

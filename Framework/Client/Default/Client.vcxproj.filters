@@ -636,6 +636,9 @@
     <ClInclude Include="..\Code\LaidObject.h">
       <Filter>02.GameObject\99.public\05.LaidObject</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\EndingScene.h">
+      <Filter>01.Scene\05.EndingScene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -910,6 +913,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\LaidObject.cpp">
       <Filter>02.GameObject\99.public\05.LaidObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\EndingScene.cpp">
+      <Filter>01.Scene\05.EndingScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

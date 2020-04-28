@@ -8,6 +8,8 @@
 #include "UIButton.h"
 #include "UIBlink.h"
 
+_bool CLogo::m_bResourceLoading = false;
+
 CLogo::CLogo(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CScene(pGraphicDev)
 {
@@ -82,10 +84,6 @@ HRESULT CLogo::Ready_GameLogic_Layer(const _tchar * pLayerTag)
 
 	Engine::CGameObject*	pGameObject = nullptr;
 
-	////	BackGround
-	//pGameObject = CBackGround::Create(m_pGraphicDev);
-	//NULL_CHECK_RETURN(pGameObject, E_FAIL);
-	//FAILED_CHECK_RETURN_MSG(pLayer->Add_GameObject(L"BackGround", pGameObject), E_FAIL, L"Failed to add BackGround");
 	pGameObject = CUIObject::Create(m_pGraphicDev, L"Texture_Logo", &_vec3(1.f, 1.f, 1.f), &_vec3(0.f, 0.f, 0.f));
 	NULL_CHECK_RETURN(pGameObject, E_FAIL);
 	FAILED_CHECK_RETURN_MSG(pLayer->Add_GameObject(L"LogoTitle", pGameObject), E_FAIL, L"Failed to add BackGround");
@@ -100,18 +98,6 @@ HRESULT CLogo::Ready_GameLogic_Layer(const _tchar * pLayerTag)
 	NULL_CHECK_RETURN(pGameObject, E_FAIL);
 	FAILED_CHECK_RETURN_MSG(pLayer->Add_GameObject(L"PressEnterKey", pGameObject), E_FAIL, L"Failed to add PressEnterKey");
 
-	//	Button
-	//CUIButton* pButton = CUIButton::Create(m_pGraphicDev, L"Texture_PlayButton", &_vec3(1.f, 1.f, 1.f), &_vec3(0.f, -200.f, 0.f), D3DXCOLOR(1.f, 1.f, 1.f, 1.f));
-	//NULL_CHECK_RETURN(pButton, E_FAIL);
-	//FAILED_CHECK_RETURN_MSG(pLayer->Add_GameObject(L"PlayButton", pButton), E_FAIL, L"Failed to add PlayButton");
-	//m_vecButtons.push_back(pButton);
-
-	//pButton =  CUIButton::Create(m_pGraphicDev, L"Texture_ExitButton", &_vec3(1.f, 1.f, 1.f), &_vec3(0.f, -300.f, 0.f), D3DXCOLOR(1.f, 1.f, 1.f, 1.f));
-	//NULL_CHECK_RETURN(pButton, E_FAIL);
-	//FAILED_CHECK_RETURN_MSG(pLayer->Add_GameObject(L"ExitButton", pButton), E_FAIL, L"Failed to add PlayButton");
-	//m_vecButtons.push_back(pButton);
-
-
 	m_mapLayer.emplace(pLayerTag, pLayer);
 
 	return S_OK;
@@ -125,6 +111,11 @@ HRESULT CLogo::Ready_UI_Layer(const _tchar* pLayerTag)
 
 HRESULT CLogo::Ready_Resource(LPDIRECT3DDEVICE9 & pGraphicDev, RESOURCEID eMax)
 {
+	if (m_bResourceLoading)
+		return S_OK;
+
+	m_bResourceLoading = false;
+
 	Engine::Reserve_ContainerSize(eMax);
 
 	//	Buffer
@@ -141,7 +132,6 @@ HRESULT CLogo::Ready_Resource(LPDIRECT3DDEVICE9 & pGraphicDev, RESOURCEID eMax)
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(pGraphicDev, RESOURCE_LOGO, L"Texture_PlayButton", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/String/Play.png"), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(pGraphicDev, RESOURCE_LOGO, L"Texture_ExitButton", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/String/Exit.png"), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(pGraphicDev, RESOURCE_STATIC, L"Texture_CastingCircle", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/CastingCircle/CastingCircle_%d.png", 27), E_FAIL);
-	//FAILED_CHECK_RETURN(Engine::Ready_Texture(pGraphicDev, RESOURCE_STATIC, L"Texture_MouseCursor0", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Mouse/MouseCursor0.png"), E_FAIL);
 
 	return S_OK;
 }
