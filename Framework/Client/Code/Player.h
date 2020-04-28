@@ -97,6 +97,8 @@ public:		//	Set_Functions
 
 public:
 	virtual void	Move_Pos(const _vec3* pMove);
+	virtual void	KeyInput_Unable() { m_bKeyInputEnable = false; }
+	virtual void	KeyInput_Enable() { m_bKeyInputEnable = true; }
 
 public:		//	Get Functions
 	virtual Engine::SPHERE*		Get_Sphere() override { return &m_tSphere; }
@@ -170,6 +172,7 @@ private:
 
 	_bool	m_bCanColl = true;
 	_vec3	m_vHurtDir = {0.f, 0.f, 0.f};
+	_bool	m_bKeyInputEnable = true;
 
 public:
 	static CPlayer* Create(LPDIRECT3DDEVICE9 pGraphicDev);
