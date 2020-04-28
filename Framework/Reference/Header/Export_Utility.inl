@@ -73,6 +73,19 @@ HRESULT Create_StaticLayer()
 {
 	return CManagement::GetInstance()->Create_StaticLayer();
 }
+HRESULT	Clear_StaticLayer()
+{
+	return CManagement::GetInstance()->Clear_StaticLayer();
+}
+
+void Player_KeyInput_Unable()
+{
+	CManagement::GetInstance()->Player_KeyInput_Unable();
+}
+void Player_KeyInput_Enable()
+{
+	CManagement::GetInstance()->Player_KeyInput_Enable();
+}
 
 //	Renderer
 CRenderer* Get_Renderer()

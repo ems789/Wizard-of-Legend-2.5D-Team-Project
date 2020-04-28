@@ -28,6 +28,8 @@ public:	//	Get Functions
 
 	void				Player_Move_Pos(const _vec3* pMove);
 	void				Player_Set_Pos(const _vec3* pPos);
+	void				Player_KeyInput_Unable();
+	void				Player_KeyInput_Enable();
 
 public:
 	HRESULT		SetUp_Scene(CScene* pScene);
@@ -38,6 +40,7 @@ public:
 	HRESULT		Add_GameObject(const _tchar* pLayerTag, const _tchar* pObjTag, CGameObject* pObj);
 	HRESULT		Add_GameObjectToStaticLayer(const _tchar* pObjTag, CGameObject* pObj);
 	HRESULT		Create_StaticLayer();
+	HRESULT		Clear_StaticLayer();
 
 private:
 	CScene*		m_pScene = nullptr;

@@ -8,6 +8,7 @@
 #include "UIButton.h"
 #include "UIBlink.h"
 #include "Logo.h"
+#include "UI.h"
 
 _bool	CEndingScene::m_bResourceLoading = false;
 
@@ -23,6 +24,9 @@ CEndingScene::~CEndingScene()
 
 HRESULT CEndingScene::Ready_Scene()
 {
+	Engine::Clear_StaticLayer();
+
+	FAILED_CHECK_RETURN(Engine::CScene::Ready_Scene(), E_FAIL);
 	FAILED_CHECK_RETURN(Ready_Resource(m_pGraphicDev), E_FAIL);
 	FAILED_CHECK_RETURN(Ready_GameLogic_Layer(L"GameLogic"), E_FAIL);
 	
@@ -31,38 +35,33 @@ HRESULT CEndingScene::Ready_Scene()
 
 	m_eCurState = ENDING_MOVING;
 
+	CUI::GetInstance()->ShowOffUI();
+	CUI::GetInstance()->ShowOffBossUI();
+
 	return S_OK;
 }
 
 _int CEndingScene::Update_Scene(const _float& fTimeDelta)
 {
-	_int iExit = CScene::Update_Scene(fTimeDelta);
-
-	if (iExit & 0x80000000)
-		return -1;
-
+	_int iExit = 0;
 
 	switch (m_eCurState)
 	{
 	case CEndingScene::ENDING_MOVING:
-		Update_Moving(fTimeDelta);
+		iExit = Update_Moving(fTimeDelta);
 		break;
 	case CEndingScene::THANKS_FOR_WATCHING:
-		Update_Thanks(fTimeDelta);
+		iExit = Update_Thanks(fTimeDelta);
 		break;
 	}
 
-
-	//	Temporary
-	if (Engine::KeyDown(DIK_RETURN))
-	{
-		Engine::CScene* pScene = CLogo::Create(m_pGraphicDev);
-		NULL_CHECK_RETURN(pScene, -1);
-
-		FAILED_CHECK_RETURN(Engine::SetUp_Scene(pScene), -1);
-
+	if (1 == iExit)
 		return 1;
-	}
+
+	iExit = CScene::Update_Scene(fTimeDelta);
+
+	if (iExit & 0x80000000)
+		return -1;
 
 	return iExit;
 }
@@ -79,7 +78,7 @@ HRESULT CEndingScene::Ready_GameLogic_Layer(const _tchar * pLayerTag)
 
 	Engine::CGameObject*	pGameObject = nullptr;
 
-	pGameObject = CUIObject::Create(m_pGraphicDev, L"Texture_Credits", &_vec3(1.f, 1.f, 1.f), &_vec3(0.f, 0.f, 0.f));
+	pGameObject = m_pCredits = CUIObject::Create(m_pGraphicDev, L"Texture_Credits", &_vec3(1.f, 1.f, 1.f), &_vec3(0.f, -1200.f, 0.f));
 	NULL_CHECK_RETURN(pGameObject, E_FAIL);
 	FAILED_CHECK_RETURN_MSG(pLayer->Add_GameObject(L"EndingSceneTitle", pGameObject), E_FAIL, L"Failed to add BackGround");
 
@@ -111,21 +110,52 @@ HRESULT CEndingScene::Ready_Resource(LPDIRECT3DDEVICE9 & pGraphicDev)
 	m_bResourceLoading = true;
 
 	//	Texture
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(pGraphicDev, RESOURCE_STATIC, L"Texture_Credits", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Credits/Credits.png"), E_FAIL);
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(pGraphicDev, RESOURCE_STATIC, L"Texture_Thanks_for_watching", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Credits/Thanks_for_watching.png"), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(pGraphicDev, RESOURCE_LOGO, L"Texture_Credits", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Credits/Credits.png"), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(pGraphicDev, RESOURCE_LOGO, L"Texture_Thanks_for_watching", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Credits/Thanks_for_watching.png"), E_FAIL);
 
 	return S_OK;
 }
 
 _int CEndingScene::Update_Moving(const _float & fTimeDelta)
 {
+	if (m_pCredits->Get_Pos()->y > 1200.f)
+	{
+		m_eCurState = THANKS_FOR_WATCHING;
 
+		CUIObject* pThanks = CUIObject::Create(m_pGraphicDev, L"Texture_Thanks_for_watching", &_vec3(1.f, 1.f, 1.f), &_vec3(0.f, 0.f, 0.f));
+		Add_GameObject(L"GameLogic", L"Thanks", pThanks);
+
+		return 0;
+	}
+
+	m_pCredits->Move_Pos(&_vec3(0.f, m_fSpeed * fTimeDelta, 0.f));
 
 	return 0;
 }
 
 _int CEndingScene::Update_Thanks(const _float & fTimeDelta)
 {
+	//	Temporary
+	if (Engine::KeyDown(DIK_RETURN))
+	{
+
+	//	Engine::Clear_StaticLayer();
+
+		Engine::Remove_Camera(Engine::CAM_STATIC, L"First_View_Camera");
+		Engine::Remove_Camera(Engine::CAM_STATIC, L"Third_View_Camera");
+		Engine::Remove_Camera(Engine::CAM_STATIC, L"Quater_View_Camera");
+
+		//CInven::GetInstance()->DestroyInstance();
+		//CUI::GetInstance()->DestroyInstance();
+
+
+		Engine::CScene* pScene = CLogo::Create(m_pGraphicDev);
+		NULL_CHECK_RETURN(pScene, -1);
+
+		FAILED_CHECK_RETURN(Engine::SetUp_Scene(pScene), -1);
+
+		return 1;
+	}
 
 
 	return 0;
@@ -147,4 +177,5 @@ void CEndingScene::Free()
 	Engine::StopAll();
 	CScene::Free();
 }
+
 

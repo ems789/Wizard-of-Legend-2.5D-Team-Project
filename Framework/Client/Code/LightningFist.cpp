@@ -126,7 +126,7 @@ _int CLightningFist::Use_UpgradedSkill(const _float & fTimeDelta)
 	D3DXVec3Normalize(&vLook, &vLook);
 	vStartPos += vLook;
 
-	CLightning* pLightning = CLightning::Create(m_pGraphicDev, vStartPos, vLook, 3.f, 30.f, 3.f);
+	CLightning* pLightning = CLightning::Create(m_pGraphicDev, vStartPos, vLook, 3.f, 30.f, 3.f, 3.f, 0.15f);
 	FAILED_CHECK_RETURN(Engine::Add_GameObject(L"GameLogic", L"Lightning", pLightning), -1);
 
 	CLaidEffect* pWindShuriken = CLaidEffect::Create(m_pGraphicDev, L"Texture_WindShuriken", L"", 3.f, 60.f, 0.1f, &vStartPos, 0.f, true, 3.f);

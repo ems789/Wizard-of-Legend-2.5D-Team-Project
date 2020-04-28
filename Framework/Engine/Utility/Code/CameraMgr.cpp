@@ -175,17 +175,12 @@ HRESULT Engine::CCameraMgr::Remove_Camera(const _ulong& dwContainerIdx, const _t
 
 	if (m_mapCamera[dwContainerIdx].end() == iter)
 	{
-		_tchar szFailText[256] = L"";
-		wsprintf(szFailText, L"Remove ", pCameraTag, L" failed. There is no camera that named");
-		MessageBox(NULL, szFailText, L"Remove Camera Failed", MB_OK);
-		return E_FAIL;
-	}
+		wstring wstrText = L"";
+		wstrText = L"Remove";
+		wstrText += pCameraTag;
+		wstrText += L" failed. There is no camera that named";
 
-	if (Safe_Release(iter->second))
-	{
-		_tchar szFailText[256] = L"";
-		wsprintf(szFailText, L"Remove ", pCameraTag, L" failed. Reference Counter is not 0");
-		MessageBox(NULL, szFailText, L"Remove Camera Failed", MB_OK);
+		MessageBox(NULL, wstrText.c_str(), L"Remove Camera Failed", MB_OK);
 		return E_FAIL;
 	}
 
@@ -193,6 +188,17 @@ HRESULT Engine::CCameraMgr::Remove_Camera(const _ulong& dwContainerIdx, const _t
 	{
 		Safe_Release(m_pMainCamera);
 		m_pMainCamera = nullptr;
+	}
+
+	if (Safe_Release(iter->second))
+	{
+		wstring wstrText = L"";
+		wstrText = L"Remove";
+		wstrText += pCameraTag;
+		wstrText += L" failed. Reference Counter is not 0";
+
+		MessageBox(NULL, wstrText.c_str(), L"Remove Camera Failed", MB_OK);
+		return E_FAIL;
 	}
 
 	m_mapCamera[dwContainerIdx].erase(iter);

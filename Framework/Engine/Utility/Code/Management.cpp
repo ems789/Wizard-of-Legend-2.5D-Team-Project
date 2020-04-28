@@ -41,6 +41,9 @@ _int Engine::CManagement::Update_Scene(const _float& fTimeDelta)
 	if (iExit & 0x80000000)
 		return -1;
 
+	if (1 == iExit)
+		return 1;
+
 	iExit = m_pStaticLayer->Update_Layer(fTimeDelta);
 
 	if (iExit & 0x80000000)
@@ -83,6 +86,16 @@ HRESULT CManagement::Create_StaticLayer()
 		return E_FAIL;
 	
 	m_pStaticLayer = CLayer::Create();
+
+	return S_OK;
+}
+
+HRESULT CManagement::Clear_StaticLayer()
+{
+	if (nullptr == m_pStaticLayer)
+		return S_OK;
+
+	Safe_Release(m_pStaticLayer);
 
 	return S_OK;
 }
@@ -144,4 +157,14 @@ void CManagement::Player_Move_Pos(const _vec3 * pMove)
 void CManagement::Player_Set_Pos(const _vec3 * pPos)
 {
 	m_pStaticLayer->Get_GameObject_NC(L"Player")->Set_Pos(pPos);
+}
+
+void CManagement::Player_KeyInput_Unable()
+{
+	m_pStaticLayer->Get_GameObject_NC(L"Player")->KeyInput_Unable();
+}
+
+void CManagement::Player_KeyInput_Enable()
+{
+	m_pStaticLayer->Get_GameObject_NC(L"Player")->KeyInput_Enable();
 }

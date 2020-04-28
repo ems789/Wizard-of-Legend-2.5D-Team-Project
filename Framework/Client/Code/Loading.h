@@ -35,6 +35,8 @@ private:
 	_tchar				m_szTilePath[STR_MAX] = L"";
 	_tchar				m_szWallPath[STR_MAX] = L"";
 
+	static _bool		m_bTextureLoading;
+
 public:
 	static CLoading*	Create(LPDIRECT3DDEVICE9 pGraphicDev, LOADINGID eLoading, const _tchar* pTilePath = L"", const _tchar* pWallPath = L"");
 

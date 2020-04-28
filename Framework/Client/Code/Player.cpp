@@ -480,6 +480,9 @@ void CPlayer::PickingPlane(_vec3 * pOut)
 
 void CPlayer::Key_Input(const _float & fTimeDelta)
 {
+	if (!m_bKeyInputEnable)
+		return;
+
 	switch (m_eCurState)
 	{
 	case CPlayer::P_IDLE:

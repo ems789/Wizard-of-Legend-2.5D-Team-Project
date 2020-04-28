@@ -58,10 +58,10 @@ void CTerrain::Render_GameObject(void)
 	_int iX = static_cast<_int>(vPlayerPos.x);
 	_int iZ = static_cast<_int>(vPlayerPos.z);
 
-	_int iStartX = iX - 25;
-	_int iEndX = iX + 25;
-	_int iStartZ = iZ - 25;
-	_int iEndZ = iZ + 25;
+	_int iStartX = iX - 36;
+	_int iEndX = iX + 36;
+	_int iStartZ = iZ - 35;
+	_int iEndZ = iZ + 35;
 
 	if (iStartX < 0)
 		iStartX = 0;
@@ -113,6 +113,7 @@ void CTerrain::Release_WallList(void)
 
 HRESULT CTerrain::LoadTile(const ::_tchar* pFilePath)
 {
+
 	HANDLE hFile = ::CreateFile(pFilePath, GENERIC_READ, 0, nullptr,
 		OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
 
@@ -141,29 +142,6 @@ HRESULT CTerrain::LoadTile(const ::_tchar* pFilePath)
 	LPDIRECT3DDEVICE9 pGraphicDev = Engine::CGraphicDev::GetInstance()->GetDevice();
 	FAILED_CHECK_RETURN(pGraphicDev, E_FAIL);
 
-	FAILED_CHECK_RETURN(Engine::Ready_Buffer(pGraphicDev,
-		::RESOURCE_STATIC,
-		L"Buffer_TerrainTex",
-		Engine::BUFFER_TERRAINTEX,
-		Engine::WALL_OUTER,
-		D3DXCOLOR(1.f,1.f,1.f,1.f),
-		L"",
-		tTempTerrainInfo.dwTileX + 1,
-		tTempTerrainInfo.dwTileZ + 1,
-		tTempTerrainInfo.dwItv),
-		E_FAIL);
-
-	FAILED_CHECK_RETURN(Engine::Ready_Buffer(pGraphicDev,
-		::RESOURCE_STATIC,
-		L"Buffer_TileTex",
-		Engine::BUFFER_TILETEX,
-		Engine::WALL_OUTER,
-		D3DXCOLOR(1.f, 1.f, 1.f, 1.f),
-		L"",
-		0,
-		0,
-		tTempTerrainInfo.dwItv),
-		E_FAIL);
 
 	// 타일 정보를 불러옴
 	CTile* pTile = nullptr;

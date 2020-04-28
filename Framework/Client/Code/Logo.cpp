@@ -114,7 +114,7 @@ HRESULT CLogo::Ready_Resource(LPDIRECT3DDEVICE9 & pGraphicDev, RESOURCEID eMax)
 	if (m_bResourceLoading)
 		return S_OK;
 
-	m_bResourceLoading = false;
+	m_bResourceLoading = true;
 
 	Engine::Reserve_ContainerSize(eMax);
 
