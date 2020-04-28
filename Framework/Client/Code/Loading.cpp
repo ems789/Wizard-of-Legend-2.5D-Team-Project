@@ -178,6 +178,7 @@ _uint CLoading::Loading_ForState()
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_SkeletonMinion_Idle", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/SkeletonMinion/Idle/SkeletonMinionIdle.png"), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_SkeletonMinion_AttackLeft", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/SkeletonMinion/Attack/Left/SkeletonMinionAttackLeft%d.png", 3), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_SkeletonMinion_Attack", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/SkeletonMinion/Attack/Right/SkeletonMinionAttackRight%d.png", 3), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_SkeletonMinionDead", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/SkeletonMinion/Dead/SkeletonMinionDead%d.png", 9), E_FAIL);
 
 
 	//	Monster
