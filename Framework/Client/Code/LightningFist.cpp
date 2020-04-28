@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "LightningFist.h"
 #include "Lightning.h"
+#include "LightningGen.h"
 #include "LaidEffect.h"
 #include "BasicFollowingEffect.h"
 #include "BasicEffect.h"
@@ -168,24 +169,20 @@ _int CLightningFist::Use_UpgradedSkill(const _float & fTimeDelta, const _vec3 * 
 	_vec3 vAngle;
 	Engine::CMyMath::DirectionalVectorToAngle(&vAngle, pDir);
 
-
-	CLightning* pLightning = CLightning::Create(m_pGraphicDev, vStartPos, *pDir, 3.f, 30.f, 3.f, 3.f, 0.15f);
+	CLightning* pLightning = CLightning::Create(m_pGraphicDev, vStartPos, *pDir, 3.f, 30.f, 3.f, 3.f, true, 0.15f);
 	FAILED_CHECK_RETURN(Engine::Add_GameObject(L"GameLogic", L"Lightning", pLightning), -1);
 
-	CLaidEffect* pWindShuriken = CLaidEffect::Create(m_pGraphicDev, L"Texture_WindShuriken", L"", 3.f, 60.f, 0.1f, &vStartPos, 0.f, true, 3.f);
-	Engine::Add_GameObject(L"GameLogic", L"Texture_WindShuriken", pWindShuriken);
-
-	CBasicEffect* pLightningStageEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_LightningStageEffect", L"", 16.f, 20.f, 0.04f, &vStartPos, true, 3.f);
-	Engine::Add_GameObject(L"Effect", L"Texture_LightningStageEffect2", pLightningStageEffect);
+	// CLaidEffect* pWindShuriken = CLaidEffect::Create(m_pGraphicDev, L"Texture_WindShuriken", L"", 3.f, 60.f, 0.1f, &vStartPos, 0.f, true, 3.f);
+	// Engine::Add_GameObject(L"GameLogic", L"Texture_WindShuriken", pWindShuriken);
 
 	CRotatedBillEffect* pEffect = CRotatedBillEffect::Create(m_pGraphicDev, L"Texture_SlashHitSpark", L"SlashHitSpark", 7.f, 20.f, 0.05f, &vStartPos, false, 0.f, D3DXToRadian(rand() % 367));
 	NULL_CHECK_RETURN(pEffect, -1);
 
-	CSphereCollider* pCollider = CSphereCollider::Create(m_pGraphicDev, pLightning, pEffect, 3.f, L"Player_Bullet", 10, 0.15f);
-	Engine::Add_GameObject(L"GameLogic", L"PlayerCollider", pCollider);
-	pCollider->Add_Hit_Effect(LightningFist_Hit_Func);
+// 	CSphereCollider* pCollider = CSphereCollider::Create(m_pGraphicDev, pLightning, pEffect, 3.f, L"Player_Bullet", 10, 0.15f);
+// 	Engine::Add_GameObject(L"GameLogic", L"PlayerCollider", pCollider);
+// 	pCollider->Add_Hit_Effect(LightningFist_Hit_Func);
 
-	Engine::PlaySound_(L"LightningShuriken.wav", CSoundMgr::EFFECT);
+	//Engine::PlaySound_(L"LightningShuriken.wav", CSoundMgr::EFFECT);
 	m_fCurTime = m_fCoolTime;
 
 	return 3;
