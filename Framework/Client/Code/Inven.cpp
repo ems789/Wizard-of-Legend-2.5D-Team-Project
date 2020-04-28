@@ -494,7 +494,7 @@ _int CInven::Update_Inven(const _float & fTImeDelta)
 	/////////////////////////////
 	if (m_eCurSkill == CInven::SHARKPOOL && m_vSelect.x == -774.f && m_vSelect.y == 2 && Engine::KeyDown(DIK_RETURN))
 	{
-		Engine::CSkill* pSkill = Find_Skill(L"Skill_SharkPool");
+		Engine::CSkill* pSkill = Find_Skill(L"Skill_AquaVortex");
 		m_pPlayer->Change_Skill(1, pSkill);
 		CUI::GetInstance()->SlotSkillOn(0, m_vSlotPos1, L"UseWaterArc");
 		//책 내려가고 판넬에 스킬 이미지 들어가도록
@@ -504,7 +504,7 @@ _int CInven::Update_Inven(const _float & fTImeDelta)
 	}
 	if (m_eCurSkill == CInven::SHARKPOOL && m_vSelect.x == -624.f && m_vSelect.y == 2 && Engine::KeyDown(DIK_RETURN))
 	{
-		Engine::CSkill* pSkill = Find_Skill(L"Skill_SharkPool");
+		Engine::CSkill* pSkill = Find_Skill(L"Skill_AquaVortex");
 		m_pPlayer->Change_Skill(2, pSkill);
 		CUI::GetInstance()->SlotSkillOn(1, m_vSlotPos2, L"UseWaterArc");
 		m_eCurDashEquip = CInven::EQUIP_WATERARC;
@@ -513,7 +513,7 @@ _int CInven::Update_Inven(const _float & fTImeDelta)
 	}
 	if (m_eCurSkill == CInven::SHARKPOOL && m_vSelect.x == -475.f && m_vSelect.y == 2 && Engine::KeyDown(DIK_RETURN))
 	{
-		Engine::CSkill* pSkill = Find_Skill(L"Skill_SharkPool");
+		Engine::CSkill* pSkill = Find_Skill(L"Skill_AquaVortex");
 		m_pPlayer->Change_Skill(3, pSkill);
 		CUI::GetInstance()->SlotSkillOn(2, m_vSlotPos3, L"UseWaterArc");
 		m_eCurStandardEquip = CInven::EQUIP_WATERARC;
@@ -606,7 +606,7 @@ _int CInven::Update_Inven(const _float & fTImeDelta)
 	}
 	if (m_eCurSkill == CInven::AQUAVORTEX && m_vSelect.x == -330.f && m_vSelect.y == 2 && Engine::KeyDown(DIK_RETURN))
 	{
-		Engine::CSkill* pSkill = Find_Skill(L"Skill_AquaVortex");
+		Engine::CSkill* pSkill = Find_Skill(L"Skill_SharkPool");
 		m_pPlayer->Change_Skill(4, pSkill);
 		CUI::GetInstance()->SlotSkillOn(3, m_vSlotPos4, L"UseAquaVortex");
 		m_eCurSignatureEquip = CInven::EQUIP_AQUAVORTEX; 

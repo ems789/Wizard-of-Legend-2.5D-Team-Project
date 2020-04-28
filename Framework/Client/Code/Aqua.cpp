@@ -4,6 +4,7 @@
 #include "Export_Function.h"
 #include "BasicEffect.h"
 #include "SphereCollider.h"
+#include "FireEffect.h"
 
 CAqua::CAqua(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev)
@@ -75,6 +76,7 @@ void CAqua::Add_Effect(const _vec3* pPos)
 	Engine::PlaySound_(L"AquaBeamStart.wav", CSoundMgr::EFFECT);
 	CBasicEffect* pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_WaterExplosion", L"WaterExplosion", 7.f, 20.f, 0.05f, &vPos, false, 0.f);
 
+
 	Engine::Add_GameObject(L"GameLogic", L"WaterExplosion", pEffect);
 
 
@@ -107,19 +109,59 @@ HRESULT CAqua::Add_Component()
 
 void CAqua::Animation(const _float & fTimeDelta)
 {
+	_vec3 vPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
+	vPos.y += 0.1f;
 	m_tFrame.fCurFrame += fTimeDelta * m_tFrame.fFrameSpeed;
 	if (m_tFrame.fCurFrame > m_tFrame.fMaxFrame)
 	{
 		m_tFrame.fCurFrame = 0.f;
 		m_bIsDead = true;
 
+		for (_uint i = 0; i < 60; ++i)
+		{
+			const _tchar* pTextureTag = nullptr;
+			switch (rand() % 5)
+			{
+			case 0:
+				pTextureTag = L"Texture_WaterParticle1";
+				break;
+			case 1:
+				pTextureTag = L"Texture_WaterParticle2";
+				break;
+			case 2:
+				pTextureTag = L"Texture_WaterParticle3";
+				break;
+			case 3:
+				pTextureTag = L"Texture_WaterParticle4";
+				break;
+			case 4:
+				pTextureTag = L"Texture_WaterParticle5";
+				break;
+			default:
+				break;
+			}
+
+			_vec3 vDir = { (rand() % 100 - 50.f) / 10.f, (rand() % 100 - 50.f) / 10.f, (rand() % 100 - 50.f) / 10.f };
+			_vec3 vCreatePos = vPos;
+			vCreatePos.y = 0.5f;
+			vCreatePos += vDir;
+			D3DXVec3Normalize(&vDir, &vDir);
+
+			CFireEffect* pEffect = CFireEffect::Create(m_pGraphicDev, pTextureTag, L"WaterParticle", 5.f, 15.f, 0.3f, &vCreatePos, &vDir, 1.f,
+				false, 0.f, D3DXCOLOR(/*0.16f, 0.19f, 0.4f, 1.f*/0.6f, 1.f, 1.f, 1.f), D3DXCOLOR(1.f, 1.f, 0.f, 0.f));
+
+			Engine::Add_GameObject(L"Effect", L"WaterExplosion", pEffect);
+
+			Engine::Get_MainCamera()->CameraShake();
+
+		}
 		_vec3 vPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
 		vPos.y += 0.1f;
 		CBasicEffect* pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_WaterExplosion", L"WaterExplosion", 7.f, 15.f, 0.1f, &vPos, false, 0.f);
 
 		Engine::Add_GameObject(L"GameLogic", L"WaterExplosion", pEffect);
 
-		CSphereCollider* WaterSphere = CSphereCollider::Create(m_pGraphicDev, pEffect, nullptr, 2.f, L"Player_Bullet", 70);
+		CSphereCollider* WaterSphere = CSphereCollider::Create(m_pGraphicDev, pEffect, nullptr, 5.f, L"Player_Bullet", 70);
 
 		Engine::Add_GameObject(L"GameLogic", L"Player_Bullet", WaterSphere);
 

@@ -4,6 +4,7 @@
 #include "Export_Function.h"
 #include "BasicEffect.h"
 #include "SphereCollider.h"
+#include "FireEffect.h"
 
 CShark::CShark(LPDIRECT3DDEVICE9 pGraphicDev)
 	: Engine::CGameObject(pGraphicDev)
@@ -19,7 +20,7 @@ HRESULT CShark::Ready_GameObject()
 {
 	FAILED_CHECK_RETURN(Add_Component(), E_FAIL);
 
-	m_tSphere.fRadius = 1.f;
+	m_tSphere.fRadius = 5.0f;
 
 	return S_OK;
 }
@@ -58,8 +59,7 @@ const _vec3 * CShark::Get_Pos() const
 void CShark::Add_Effect(const _vec3 * pPos)
 {
 	_vec3 vPos = (*m_pTransformCom->GetInfo(Engine::INFO_POS) + *pPos) / 2;
-	vPos.y += 0.5f;
-
+	vPos.y += 0.8f;
 	CBasicEffect* pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_Shark", L"Shark", 9.f, 17.f, 0.05f, &vPos, false, 0.f);
 
 	Engine::Add_GameObject(L"GameLogic", L"Shark", pEffect);
@@ -102,7 +102,50 @@ void CShark::Animation(const _float & fTimeDelta)
 	{
 		if (m_bSharkOn == false)
 		{
-			CBasicEffect* pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_Shark", L"Shark", 8.f, 13.f, 0.07f, &vPos, false, 0.f);
+			for (_uint i = 0; i < 40; ++i)
+			{
+				const _tchar* pTextureTag = nullptr;
+				switch (rand() % 5)
+				{
+				case 0:
+					pTextureTag = L"Texture_WaterParticle1";
+					break;
+				case 1:
+					pTextureTag = L"Texture_WaterParticle2";
+					break;
+				case 2:
+					pTextureTag = L"Texture_WaterParticle3";
+					break;
+				case 3:
+					pTextureTag = L"Texture_WaterParticle4";
+					break;
+				case 4:
+					pTextureTag = L"Texture_WaterParticle5";
+					break;
+				default:
+					break;
+				}
+				
+				_vec3 vDir = { (rand() % 100 - 50.f) / 10.f, (rand() % 100 - 50.f) / 10.f, (rand() % 100 - 50.f) / 10.f };
+				_vec3 vCreatePos = vPos;
+				vCreatePos.y = 0.5f;
+				vCreatePos += vDir;
+				D3DXVec3Normalize(&vDir, &vDir);
+
+				CFireEffect* pEffect = CFireEffect::Create(m_pGraphicDev, pTextureTag, L"WaterParticle", 5.f, 15.f, 0.3f, &vCreatePos, &vDir, 1.f,
+					false, 0.f, D3DXCOLOR(/*0.16f, 0.19f, 0.4f, 1.f*/0.6f, 1.f, 1.f, 1.f), D3DXCOLOR(1.f, 1.f, 0.f, 0.f));
+
+				Engine::Add_GameObject(L"Effect", L"WaterExplosion", pEffect);
+
+				Engine::Get_MainCamera()->CameraShake();
+
+			}
+
+
+
+
+
+			CBasicEffect* pEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_Shark", L"Shark", 8.f, 13.f, 0.1f, &vPos, false, 0.f);
 
 			Engine::Add_GameObject(L"GameLogic", L"SharkPool", pEffect);
 
@@ -118,7 +161,7 @@ void CShark::Animation(const _float & fTimeDelta)
 			Engine::PlaySound_(L"AquaSplash.wav", CSoundMgr::EFFECT);
 			Engine::PlaySound_(L"AquaSplash.wav", CSoundMgr::EFFECT);
 			Engine::PlaySound_(L"AquaSplash.wav", CSoundMgr::EFFECT);
-			CSphereCollider* WaterSphere = CSphereCollider::Create(m_pGraphicDev, pEffect, nullptr, 2.f, L"Player_Bullet", 70);
+			CSphereCollider* WaterSphere = CSphereCollider::Create(m_pGraphicDev, pEffect, nullptr, 5.f, L"Player_Bullet", 70);
 
 			Engine::Add_GameObject(L"GameLogic", L"Player_Bullet", WaterSphere);
 			m_bSharkOn = true;
