@@ -19,6 +19,7 @@ public:	//Get Functions
 
 public:
 	CGameObject*	Get_GameObject_NC(const _tchar* pObjTag);
+	void			All_Die();
 
 public:
 	HRESULT		Ready_Layer();

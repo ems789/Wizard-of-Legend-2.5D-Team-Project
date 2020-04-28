@@ -158,3 +158,13 @@ void CManagement::Player_Set_Pos(const _vec3 * pPos)
 {
 	m_pStaticLayer->Get_GameObject_NC(L"Player")->Set_Pos(pPos);
 }
+
+void CManagement::Player_KeyInput_Unable()
+{
+	m_pStaticLayer->Get_GameObject_NC(L"Player")->KeyInput_Unable();
+}
+
+void CManagement::Player_KeyInput_Enable()
+{
+	m_pStaticLayer->Get_GameObject_NC(L"Player")->KeyInput_Enable();
+}

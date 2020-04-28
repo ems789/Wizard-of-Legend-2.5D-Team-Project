@@ -28,6 +28,8 @@ public:	//	Get Functions
 
 	void				Player_Move_Pos(const _vec3* pMove);
 	void				Player_Set_Pos(const _vec3* pPos);
+	void				Player_KeyInput_Unable();
+	void				Player_KeyInput_Enable();
 
 public:
 	HRESULT		SetUp_Scene(CScene* pScene);

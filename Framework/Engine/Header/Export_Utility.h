@@ -37,6 +37,8 @@ inline HRESULT	Add_GameObject(const _tchar* pLayerTag, const _tchar* pObjTag, CG
 inline HRESULT	Add_GameObjectToStaticLayer(const _tchar* pObjTag, CGameObject* pObj);
 inline HRESULT	Create_StaticLayer();
 inline HRESULT	Clear_StaticLayer();
+inline void		Player_KeyInput_Unable();
+inline void		Player_KeyInput_Enable();
 
 //	Renderer
 inline CRenderer* Get_Renderer();

@@ -124,6 +124,7 @@ CLaidObject* CLaidObject::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _tchar* pT
 	pInstance->m_tFrame.fMaxFrame = fMaxFrame;
 	pInstance->m_tFrame.fFrameSpeed = fFrameSpeed;
 	pInstance->m_fScale = fScale;
+	pInstance->Update_Scale();
 	pInstance->m_pTransformCom->Set_Pos(pPos);
 	pInstance->m_pTransformCom->Set_Angle(_vec3(D3DXToRadian(90.f), fAngleY, 0.f));
 	pInstance->m_pTransformCom->Update_Component(0.f);

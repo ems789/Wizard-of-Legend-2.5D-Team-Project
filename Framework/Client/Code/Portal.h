@@ -2,53 +2,50 @@
 #define Portal_h__
 
 #include "Defines.h"
-#include "GameObject.h"
+#include "Effect.h"
 
 BEGIN(Engine)
 
-class CRcTex;
-class CTexture;
 class CTransform;
+class CTexture;
+class CRcTex;
 class CRenderer;
 
 END
 
-class CPortal :public Engine::CGameObject
+class CPortal : public Engine::CEffect
 {
-public:
-	CPortal(LPDIRECT3DDEVICE9 pGraphicDev);
+private:
+	explicit CPortal(LPDIRECT3DDEVICE9 pGraphicDev);
 	virtual ~CPortal();
 
 public:
-	HRESULT Ready_GameObject(const _vec3* pPos);
-	virtual _int Update_GameObject(const _float& fTimeDelta) override;
-	virtual void Render_GameObject() override;
+	HRESULT			Ready_GameObject(const _tchar* pTextureTag);
+	virtual _int	Update_GameObject(const _float& fTimeDelta) override;
+	virtual void	Render_GameObject() override;
 
-	virtual Engine::SPHERE* Get_Sphere() override { return &m_tSphere; }
-
-private:
-	HRESULT		Add_Component();	
-	void		Animation(const _float& fTimeDelta);
-	void		Turn_To_Camera_Look();
-	void		Update_Scale();
-	void		Into_Portal();
-
-private:	//	Components
-	Engine::CRcTex*		m_pBufferCom = nullptr;
-	Engine::CTexture*	m_pTextureCom = nullptr;
-	Engine::CTransform* m_pTransformCom = nullptr;
-	Engine::CRenderer*	m_pRendererCom = nullptr;
 
 private:
-	Engine::SPHERE	m_tSphere;
+	void	Animation(const _float& fTimeDelta);
+	void	Update_Scale();
+	void	Generate_Dust(const _float& fTimeDelta);
+	void	Turn_To_Camera_Look();
 
-	FRAME			m_tFrame;
-	float			m_fScale;
+private:
+	_float		m_fCumulativeTime = 0.f;
+	FRAME		m_tFrame;
+	_bool		m_bAnimRepeat = false;
+
+	_float		m_fScale = 1.f;
+	
+	_float		m_fTimer = 0.f;
+
 public:
-	static CPortal* Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3* pPos);
+	static CPortal* Create(LPDIRECT3DDEVICE9 pGraphicDev, const _tchar* pTextureTag, const _float& fMaxFrame, const _float& fFrameSpeed,
+		const _float& fScale, const _vec3* pPos);
 
 private:
-	virtual void Free();
+	virtual void Free() override;
 };
 
 #endif // Portal_h__

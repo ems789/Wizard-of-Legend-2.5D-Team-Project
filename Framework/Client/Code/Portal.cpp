@@ -2,34 +2,20 @@
 #include "Portal.h"
 
 #include "Export_Function.h"
+#include "Dust.h"
 
 CPortal::CPortal(LPDIRECT3DDEVICE9 pGraphicDev)
-	: CGameObject(pGraphicDev)
+	: CEffect(pGraphicDev)
 {
+
 }
 
 CPortal::~CPortal()
 {
+
 }
 
-HRESULT CPortal::Ready_GameObject(const _vec3 * pPos)
-{
-	FAILED_CHECK_RETURN(Add_Component(), E_FAIL);
-
-	m_pTransformCom->Set_Pos(pPos);
-
-	m_tSphere.fRadius = 0.5f;
-
-	m_fScale = 0.05f;
-
-	m_tFrame.fCurFrame = 0.f;
-	m_tFrame.fMaxFrame = 1.f;
-	m_tFrame.fFrameSpeed = 10.f;
-
-	return S_OK;
-}
-
-_int CPortal::Update_GameObject(const _float & fTimeDelta)
+_int CPortal::Update_GameObject(const _float& fTimeDelta)
 {
 	Turn_To_Camera_Look();
 
@@ -37,9 +23,12 @@ _int CPortal::Update_GameObject(const _float & fTimeDelta)
 
 	Update_Scale();
 
-	_int iExit = CGameObject::Update_GameObject(fTimeDelta);
+	Generate_Dust(fTimeDelta);
 
-	m_tSphere.vPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
+	if (m_bIsDead)
+		return 0;
+
+	_int iExit = CEffect::Update_GameObject(fTimeDelta);
 
 	m_pRendererCom->Add_RenderGroup(Engine::RENDER_ALPHA, this);
 
@@ -54,35 +43,11 @@ void CPortal::Render_GameObject()
 	m_pBufferCom->Render_Buffer();
 }
 
-HRESULT CPortal::Add_Component()
+HRESULT CPortal::Ready_GameObject(const _tchar * pTextureTag)
 {
-	Engine::CComponent*	pComponent = nullptr;
-
-	pComponent = m_pBufferCom = dynamic_cast<Engine::CRcTex*>(Engine::Clone(RESOURCE_STATIC, L"Buffer_RcTex"));
-	NULL_CHECK_RETURN(pComponent, E_FAIL);
-	m_mapComponent[Engine::ID_STATIC].emplace(L"Com_Buffer", pComponent);
-
-	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_Portal"));
-	NULL_CHECK_RETURN(pComponent, E_FAIL);
-	m_mapComponent[Engine::ID_STATIC].emplace(L"Com_Texture", pComponent);
-
-	pComponent = m_pTransformCom = Engine::CTransform::Create();
-	NULL_CHECK_RETURN(pComponent, E_FAIL);
-	m_mapComponent[Engine::ID_DYNAMIC].emplace(L"Com_Transform", pComponent);
-
-	pComponent = m_pRendererCom = Engine::Get_Renderer();
-	NULL_CHECK_RETURN(pComponent, E_FAIL);
-	m_mapComponent[Engine::ID_STATIC].emplace(L"Com_Renderer", pComponent);
-	m_pRendererCom->AddRef();
+	FAILED_CHECK_RETURN(Ready_Effect(pTextureTag), E_FAIL);
 
 	return S_OK;
-}
-
-void CPortal::Animation(const _float & fTimeDelta)
-{
-	m_tFrame.fCurFrame += fTimeDelta * m_tFrame.fFrameSpeed;
-	if (m_tFrame.fCurFrame > m_tFrame.fMaxFrame)
-		m_tFrame.fCurFrame = 0.f;
 }
 
 void CPortal::Turn_To_Camera_Look()
@@ -94,6 +59,13 @@ void CPortal::Turn_To_Camera_Look()
 	m_pTransformCom->Set_Angle(&vAngle);
 	m_pTransformCom->Update_Component(0.f);
 }
+void CPortal::Animation(const _float& fTimeDelta)
+{
+	m_tFrame.fCurFrame += fTimeDelta * m_tFrame.fFrameSpeed;
+
+	if (m_tFrame.fCurFrame >= m_tFrame.fMaxFrame)
+		m_tFrame.fCurFrame = 0.f;
+}
 
 void CPortal::Update_Scale()
 {
@@ -103,24 +75,63 @@ void CPortal::Update_Scale()
 	m_pTransformCom->Set_Scale(vScale);
 }
 
-void CPortal::Into_Portal()
+void CPortal::Generate_Dust(const _float & fTimeDelta)
 {
-	Engine::PlaySound_(L"PortalShine.wav", CSoundMgr::EFFECT);
+	m_fTimer += fTimeDelta;
+
+	if (m_fTimer > 0.1f)
+	{
+		m_fTimer -= 0.1f;
+
+		_vec3 vPos = *m_pTransformCom->GetInfo(Engine::INFO_POS);
+
+		_vec3 vUp = { 0.f, 1.f, 0.f };
+		_vec3 vRight, vLook;
+		Engine::Get_MainCameraRight(&vRight);
+		D3DXVec3Cross(&vLook, &vRight, &vUp);
+		_float	fRight = (rand() % 100 - 50.f) / 100.f;
+		_float	fA = 16.f / 80.f;
+		_float	fB = 40.f / 80.f;
+		_float	fUp;
+		if (fA > fRight * fRight)
+			fUp = sqrtf((1.f - (fRight * fRight / fA)) * fB);
+		else
+			fUp = 0.f;
+		if (rand() % 2)
+			fUp *= -1.f;
+
+		_vec3 vDustPos = vPos + fRight * vRight + fUp * vUp - vLook * 0.1f;
+		_vec3 vDir = vDustPos - vPos;
+		D3DXVec3Normalize(&vDir, &vDir);
+
+		_float	fSpeed = 0.1f;
+		_float	fLifeTime = 2.f;
+		CDust* pDust = CDust::Create(m_pGraphicDev, L"Texture_Dust", 11.f, 10.f, 0.02f, &vDustPos, &vDir, fSpeed, true, fLifeTime, D3DXCOLOR(0.4f, 0.9f, 1.f, 1.f), 0.05f, 0.01f, 0.03f);
+		Engine::Add_GameObject(L"Effect", L"Portal_Dust", pDust);
+	}
 }
 
-CPortal* CPortal::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3* pPos)
+CPortal* CPortal::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _tchar* pTextureTag, const _float& fMaxFrame, const _float& fFrameSpeed,
+	const _float& fScale, const _vec3* pPos)
 {
-	CPortal*	pInstance = new CPortal(pGraphicDev);
+	CPortal* pInstance = new CPortal(pGraphicDev);
 
-	if (FAILED(pInstance->Ready_GameObject(pPos)))
+	if (FAILED(pInstance->Ready_GameObject(pTextureTag)))
 		Engine::Safe_Release(pInstance);
-
+	
+	pInstance->m_tFrame.fCurFrame = 0.f;
+	pInstance->m_tFrame.fMaxFrame = fMaxFrame;
+	pInstance->m_tFrame.fFrameSpeed = fFrameSpeed;
+	pInstance->m_fScale = fScale;
+	pInstance->m_pTransformCom->Set_Pos(pPos);
 	pInstance->m_pTransformCom->Update_Component(0.f);
+
 
 	return pInstance;
 }
 
 void CPortal::Free()
 {
-	Engine::CGameObject::Free();
+	Engine::CEffect::Free();
 }
+

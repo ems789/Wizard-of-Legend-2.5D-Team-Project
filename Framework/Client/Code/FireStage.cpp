@@ -55,6 +55,7 @@ HRESULT CFireStage::Ready_Scene()
 	FAILED_CHECK_RETURN(Ready_Effect_Layer(L"Effect"), E_FAIL);
 	FAILED_CHECK_RETURN(Ready_Monster_Layer(L"Monster"), E_FAIL);
 	FAILED_CHECK_RETURN(Ready_UI_Layer(L"UI"), E_FAIL);
+	FAILED_CHECK_RETURN(Ready_Event_Layer(L"Event"), E_FAIL);
 	FAILED_CHECK_RETURN(Ready_StaticLayer(), E_FAIL);
 	//FAILED_CHECK_RETURN(Ready_Camera(), E_FAIL);
 	//FAILED_CHECK_RETURN(UI_Setting(), E_FAIL);
@@ -163,6 +164,16 @@ HRESULT CFireStage::Ready_Monster_Layer(const _tchar * pLayerTag)
 }
 
 HRESULT CFireStage::Ready_Effect_Layer(const _tchar * pLayerTag)
+{
+	Engine::CLayer* pLayer = Engine::CLayer::Create();
+	NULL_CHECK_RETURN(pLayer, E_FAIL);
+
+	m_mapLayer.emplace(pLayerTag, pLayer);
+
+	return S_OK;
+}
+
+HRESULT CFireStage::Ready_Event_Layer(const _tchar * pLayerTag)
 {
 	Engine::CLayer* pLayer = Engine::CLayer::Create();
 	NULL_CHECK_RETURN(pLayer, E_FAIL);
@@ -475,7 +486,7 @@ void CFireStage::FifthMonsterGen(const _vec3 * pPlayerPos)
 				if (bBarrel[i * 3 + j])
 					Engine::Add_GameObject(L"Monster", L"Barrel", pBarrel);
 				else
-					Engine::Add_GameObject(L"GameLogic", L"BoomBarrel", pBarrel);
+					Engine::Add_GameObject(L"Event", L"BoomBarrel", pBarrel);
 			}
 		}
 
@@ -646,7 +657,7 @@ void CFireStage::EngindRoomStart()
 		m_eRoomPhase = RP_1;
 		m_fTimer = 1.f;
 
-		CLaidObject*	pLandingPad = CLaidObject::Create(m_pGraphicDev, L"Texture_TeleportLandingPad", 1.f, 0.f, 0.1f, &_vec3(86.5, 0.1f, 65.f), 0.f, false, 0.f);
+		CLaidObject*	pLandingPad = CLaidObject::Create(m_pGraphicDev, L"Texture_TeleportLandingPad", 1.f, 0.f, 0.05f, &_vec3(86.5, 0.1f, 65.f), 0.f, false, 0.f);
 		Add_GameObject(L"GameLogic", L"Teleport_LandingPad", pLandingPad);
 	}
 }
@@ -960,6 +971,14 @@ _int CFireStage::FifthRoom_Update(const _float & fTimeDelta)
 	{
 		RoomBlock_Open();
 
+		auto& iter = find_if(m_mapLayer.begin(), m_mapLayer.end(), Engine::CTag_Finder(L"Event"));
+		iter->second->All_Die();
+
+
+
+
+
+
 		_vec3 vPos = { (m_fRoomMaxX + m_fRoomMinX) / 2, 1.f, (m_fRoomMaxZ + m_fRoomMinZ) / 2 };
 
 		_uint iRepeat = rand() % 10 + 10;
@@ -1065,7 +1084,7 @@ _int CFireStage::NinthRoom_Update(const _float & fTimeDelta)
 		_vec3 vLandingPadPos = { 86.5, 0.1f, 65.f };
 		_vec3 vDist = *pPlayerPos - vLandingPadPos;
 		_float fDist = D3DXVec3Length(&vDist);
-		if (fDist < 1.f)
+		if (fDist < 3.f)
 		{
 			if (Engine::KeyDown(DIK_F))
 			{
