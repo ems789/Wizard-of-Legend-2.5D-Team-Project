@@ -358,6 +358,12 @@
     <Filter Include="01.Scene\06.LightningStage">
       <UniqueIdentifier>{a88279ab-0a69-480e-b0d4-ad771327f02f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObject\99.public\06.Portal">
+      <UniqueIdentifier>{3ccb844c-3d20-468c-826b-bcfe54b110eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObject\99.public\07.Dust">
+      <UniqueIdentifier>{3186e404-0bfd-47aa-ba3a-f8835b50ce37}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -678,6 +684,12 @@
     <ClInclude Include="..\Code\EndingScene.h">
       <Filter>01.Scene\05.EndingScene</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\Dust.h">
+      <Filter>02.GameObject\99.public\07.Dust</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code\Portal.h">
+      <Filter>02.GameObject\99.public\06.Portal</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -973,6 +985,12 @@
     </ClCompile>
     <ClCompile Include="..\Code\EndingScene.cpp">
       <Filter>01.Scene\05.EndingScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Dust.cpp">
+      <Filter>02.GameObject\99.public\07.Dust</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\Portal.cpp">
+      <Filter>02.GameObject\99.public\06.Portal</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -42,6 +42,14 @@ CGameObject * CLayer::Get_GameObject_NC(const _tchar * pObjTag)
 	return iter->second;
 }
 
+void CLayer::All_Die()
+{
+	for (auto& iter : m_mapObject)
+	{
+		iter.second->Die();
+	}
+}
+
 HRESULT Engine::CLayer::Ready_Layer()
 {
 	return S_OK;

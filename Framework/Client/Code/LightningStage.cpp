@@ -22,6 +22,7 @@
 #include "BlobSpitter.h"
 #include "GhoulLarge.h"
 #include "FireStage.h"
+#include "Portal.h"
 
 CLightningStage::CLightningStage(LPDIRECT3DDEVICE9 pGraphicDev)
 	: CScene(pGraphicDev)
@@ -66,12 +67,15 @@ _int CLightningStage::Update_Scene(const _float& fTimeDelta)
 	if (Engine::KeyDown(DIK_F9))
 	{
 		// LightningBoss
-		_vec3 vCardPos = { 50, 1.f, 37 };
-		Engine::CGameObject* pGameObject = CLightningBoss::Create(m_pGraphicDev, &_vec3(50, 1.f, 37));
-		NULL_CHECK_RETURN(pGameObject, E_FAIL);
+		//_vec3 vCardPos = { 50, 1.f, 37 };
+		//Engine::CGameObject* pGameObject = CLightningBoss::Create(m_pGraphicDev, &_vec3(50, 1.f, 37));
+		//NULL_CHECK_RETURN(pGameObject, E_FAIL);
 
-		CCardSpawn* pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
-		Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
+		//CCardSpawn* pCardSpawn = CCardSpawn::Create(m_pGraphicDev, L"Texture_CardSpawn", 28.f, 20.f, 0.05f, &vCardPos, pGameObject);
+		//Add_GameObject(L"Effect", L"CardSpawn", pCardSpawn);
+
+		CPortal* pPortal = CPortal::Create(m_pGraphicDev, L"Texture_Portal", 1.f, 0.f, 0.05f, &_vec3(50.f, 1.f, 37.f));
+		Add_GameObject(L"GameLogic", L"Portal", pPortal);
 	}
 
 	const Engine::CTransform* pPlayerTransform = dynamic_cast<const Engine::CTransform*>(Engine::Get_Component_of_Player(L"Com_Transform", Engine::ID_DYNAMIC));

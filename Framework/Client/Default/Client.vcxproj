@@ -178,6 +178,7 @@
     <ClInclude Include="..\Code\Coin.h" />
     <ClInclude Include="..\Code\CollisionFunctions.h" />
     <ClInclude Include="..\Code\Cyclops.h" />
+    <ClInclude Include="..\Code\Dust.h" />
     <ClInclude Include="..\Code\EndingScene.h" />
     <ClInclude Include="..\Code\Fire.h" />
     <ClInclude Include="..\Code\FireBall.h" />
@@ -224,6 +225,7 @@
     <ClInclude Include="..\Code\Mouse.h" />
     <ClInclude Include="..\Code\NumberFont.h" />
     <ClInclude Include="..\Code\Player.h" />
+    <ClInclude Include="..\Code\Portal.h" />
     <ClInclude Include="..\Code\QuaterViewCamera.h" />
     <ClInclude Include="..\Code\RoomBlock.h" />
     <ClInclude Include="..\Code\RotatedBillEffect.h" />
@@ -286,6 +288,7 @@
     <ClCompile Include="..\Code\Coin.cpp" />
     <ClCompile Include="..\Code\CollisionFunctions.cpp" />
     <ClCompile Include="..\Code\Cyclops.cpp" />
+    <ClCompile Include="..\Code\Dust.cpp" />
     <ClCompile Include="..\Code\EndingScene.cpp" />
     <ClCompile Include="..\Code\Fire.cpp" />
     <ClCompile Include="..\Code\FireBall.cpp" />
@@ -332,6 +335,7 @@
     <ClCompile Include="..\Code\Mouse.cpp" />
     <ClCompile Include="..\Code\NumberFont.cpp" />
     <ClCompile Include="..\Code\Player.cpp" />
+    <ClCompile Include="..\Code\Portal.cpp" />
     <ClCompile Include="..\Code\QuaterViewCamera.cpp" />
     <ClCompile Include="..\Code\RoomBlock.cpp" />
     <ClCompile Include="..\Code\RotatedBillEffect.cpp" />

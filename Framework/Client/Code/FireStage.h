@@ -28,6 +28,7 @@ private:
 	HRESULT		Ready_GameLogic_Layer(const _tchar* pLayerTag);
 	HRESULT		Ready_Monster_Layer(const _tchar* pLayerTag);
 	HRESULT		Ready_Effect_Layer(const _tchar* pLayerTag);
+	HRESULT		Ready_Event_Layer(const _tchar* pLayerTag);
 	HRESULT		Ready_UI_Layer(const _tchar* pLayerTag);
 	HRESULT		Ready_StaticLayer();
 	HRESULT		Ready_Camera();
@@ -97,9 +98,9 @@ private:
 
 	_bool		m_bMonsterGen = false;
 
-	ROOM_STATE			m_eCurState = ROOM_IDLE;
-	ROOM_NUMBER			m_eRoomNumber = ROOM_NUM_END;
-	ROOM_PHASE			m_eRoomPhase = RP_END;
+	ROOM_STATE			m_eCurState		= ROOM_IDLE;
+	ROOM_NUMBER			m_eRoomNumber	= ROOM_NUM_END;
+	ROOM_PHASE			m_eRoomPhase	= RP_END;
 	list<CRoomBlock*>	m_RoomBlockList;
 
 	_vec3		m_vRoomPos = {};
