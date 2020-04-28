@@ -606,7 +606,7 @@ void CLightningBoss::Float_Update(const _float & fTimeDelta)
 {
 	if (m_bAnimFinish)
 	{
-		m_eCurState = m_uiJavelinCount < 1 ? LBS_READY_JAVELIN : LBS_IDLE;
+		m_eCurState = m_uiJavelinCount < 4 ? LBS_READY_JAVELIN : LBS_IDLE;
 		if (m_eCurState == LBS_IDLE)
 		{
 			CBasicEffect* pLightningBossTeleportAir = CBasicEffect::Create(m_pGraphicDev, L"Texture_LightningGirlTeleportAir", L"", 3.f, 10.f, 0.06f, m_pTransformCom->GetInfo(Engine::INFO_POS), false, 0.f);

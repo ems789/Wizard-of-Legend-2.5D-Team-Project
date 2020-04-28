@@ -18,7 +18,7 @@ HRESULT CLightningFalling::Ready_GameObject()
 {
 	FAILED_CHECK_RETURN(Add_Component(), E_FAIL);
 
-	m_tSphere.fRadius = 0.8f;
+	m_tSphere.fRadius = 1.f;
 
 	return S_OK;
 }

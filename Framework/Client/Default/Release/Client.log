@@ -1,8 +1,13 @@
-﻿     Creating library ../Bin/Client.lib and object ../Bin/Client.exp
-  Generating code
-  0 of 3644 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+﻿  Mage.cpp
+c:\users\ems78\documents\github\new\teamproject\framework\reference\header\Engine_Macro.h(28): warning C4005: 'NULL_CHECK_MSG': 매크로 재정의
+  c:\users\ems78\documents\github\new\teamproject\framework\client\header\Macro.h(28): note: 'NULL_CHECK_MSG'의 이전 정의를 참조하십시오.
+c:\users\ems78\documents\github\new\teamproject\framework\reference\header\Engine_Macro.h(41): warning C4005: 'FAILED_CHECK_MSG': 매크로 재정의
+  c:\users\ems78\documents\github\new\teamproject\framework\client\header\Macro.h(41): note: 'FAILED_CHECK_MSG'의 이전 정의를 참조하십시오.
+     ../Bin/Client.lib 라이브러리 및 ../Bin/Client.exp 개체를 생성하고 있습니다.
+  코드를 생성하고 있습니다.
+  3 of 3644 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    390 functions had inline decision re-evaluated but remain unchanged
-  Finished generating code
-  Client.vcxproj -> D:\TeamProject\Framework\Client\Default\../Bin/Client.exe
+    0 functions had inline decision re-evaluated but remain unchanged
+  코드를 생성했습니다.
+  Client.vcxproj -> C:\Users\ems78\Documents\GitHub\New\TeamProject\Framework\Client\Default\../Bin/Client.exe
   Client.vcxproj -> ../Bin/Client.pdb (Full PDB)

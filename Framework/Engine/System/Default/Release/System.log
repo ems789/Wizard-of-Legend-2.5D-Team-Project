@@ -4,20 +4,20 @@
   FrameMgr.cpp
   GraphicDev.cpp
   InputDev.cpp
-..\Code\InputDev.cpp(18): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
-..\Code\InputDev.cpp(39): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
-..\Code\InputDev.cpp(60): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
-..\Code\InputDev.cpp(65): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
-..\Code\InputDev.cpp(86): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
-..\Code\InputDev.cpp(107): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+..\Code\InputDev.cpp(18): warning C4800: 'int': 'true' 또는 'false'로 bool 값을 강제하고 있습니다(성능 경고).
+..\Code\InputDev.cpp(39): warning C4800: 'int': 'true' 또는 'false'로 bool 값을 강제하고 있습니다(성능 경고).
+..\Code\InputDev.cpp(60): warning C4800: 'int': 'true' 또는 'false'로 bool 값을 강제하고 있습니다(성능 경고).
+..\Code\InputDev.cpp(65): warning C4800: 'int': 'true' 또는 'false'로 bool 값을 강제하고 있습니다(성능 경고).
+..\Code\InputDev.cpp(86): warning C4800: 'int': 'true' 또는 'false'로 bool 값을 강제하고 있습니다(성능 경고).
+..\Code\InputDev.cpp(107): warning C4800: 'int': 'true' 또는 'false'로 bool 값을 강제하고 있습니다(성능 경고).
   SoundMgr.cpp
   Timer.cpp
   TimerMgr.cpp
-     Creating library ../Bin/System.lib and object ../Bin/System.exp
-  Generating code
+     ../Bin/System.lib 라이브러리 및 ../Bin/System.exp 개체를 생성하고 있습니다.
+  코드를 생성하고 있습니다.
   All 766 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
-  Finished generating code
-  System.vcxproj -> D:\TeamProject\Framework\Engine\System\Default\../Bin/System.dll
+  코드를 생성했습니다.
+  System.vcxproj -> C:\Users\ems78\Documents\GitHub\New\TeamProject\Framework\Engine\System\Default\../Bin/System.dll
   System.vcxproj -> ../Bin/System.pdb (Full PDB)
   .\Engine\System\Code\fmod.h
   .\Engine\System\Code\fmod_codec.h

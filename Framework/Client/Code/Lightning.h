@@ -55,16 +55,17 @@ private:
 	_float	m_fAttckDelay = 0.5f;
 	_int	m_iAttack = 50;
 
-	bool	m_bSpawnShuriken = false;
-	bool	m_bIsUpgrade = false;
-
 	FRAME	m_tFrame;
 	Engine::SPHERE m_tSphere;
+
+	bool	m_bSpawn = false;
+	bool	m_bIsUpgrade = false;
+	bool	m_bIsPlaySound = false;
 
 	const _tchar*	m_pCollisionTag = nullptr;
 
 public:
-	static CLightning* Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3& vInitialPos, const _vec3& vDir, const _float& fMaxFrame, const _float& fFrameSpeed, const _float& fLifeTime, const _float& fRadius = 1.f, const _float& fAttackDelay = 0.5f, bool IsUpgrade = false, const _tchar* pCollisionTag = L"Player_Bullet");
+	static CLightning* Create(LPDIRECT3DDEVICE9 pGraphicDev, const _vec3& vInitialPos, const _vec3& vDir, const _float& fMaxFrame, const _float& fFrameSpeed, const _float& fLifeTime, const _float& fRadius = 1.f, const _float& fAttackDelay = 0.5f, bool bIsUpgrade = false,  const _tchar* pCollisionTag = L"Player_Bullet");
 
 private:
 	virtual void Free() override;

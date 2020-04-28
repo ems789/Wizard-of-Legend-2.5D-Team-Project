@@ -53,7 +53,7 @@ _int CLightningSpearShot::Use_Skill(const _float& fTimeDelta)
 	D3DXVec3Normalize(&vLook, &vLook);
 	vStartPos += vLook;
 
-	CLightningSpearGen* pLightningSpearGen = CLightningSpearGen::Create(m_pGraphicDev, &vStartPos, &vLook, 0.05f, 15);
+	CLightningSpearGen* pLightningSpearGen = CLightningSpearGen::Create(m_pGraphicDev, &vStartPos, &vLook, 0.05f, 12);
 	Engine::Add_GameObject(L"GameLogic", L"LightningSpearGen", pLightningSpearGen);
 
 	//Engine::PlaySound_(L"FireballCast.wav", CSoundMgr::EFFECT);
@@ -82,7 +82,7 @@ _int CLightningSpearShot::Use_Skill(const _float & fTimeDelta, const _vec3 * pPo
 	_vec3 vAngle;
 	Engine::CMyMath::DirectionalVectorToAngle(&vAngle, pDir);
 
-	CLightningSpearGen* pLightningSpearGen = CLightningSpearGen::Create(m_pGraphicDev, &vStartPos, pDir, 0.05f, 15);
+	CLightningSpearGen* pLightningSpearGen = CLightningSpearGen::Create(m_pGraphicDev, &vStartPos, pDir, 0.05f, 12);
 	Engine::Add_GameObject(L"GameLogic", L"LightningSpearGen", pLightningSpearGen);
 
 

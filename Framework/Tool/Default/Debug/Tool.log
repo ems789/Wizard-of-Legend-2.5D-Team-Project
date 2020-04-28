@@ -1,15 +1,2 @@
-﻿  PropertyFormView.cpp
-  PathTool.cpp
-  MySheet.cpp
-  MainFrm.cpp
-  DirectoryMgr.cpp
-  Wall.cpp
-  Tile.cpp
-  TerrainGuidLine.cpp
-  Terrain.cpp
-d:\teamproject\framework\tool\code\terrain.cpp(146): warning C4244: 'argument': conversion from 'unsigned int' to 'const _float', possible loss of data
-  DynamicCamera.cpp
-  Generating Code...
-     Creating library ../Bin\Tool.lib and object ../Bin\Tool.exp
-  Tool.vcxproj -> D:\TeamProject\Framework\Tool\Default\../Bin\Tool.exe
+﻿  Tool.vcxproj -> C:\Users\ems78\Documents\GitHub\New\TeamProject\Framework\Tool\Default\../Bin\Tool.exe
   Tool.vcxproj -> ../Bin\Tool.pdb (Partial PDB)

@@ -41,6 +41,8 @@ _int CWindAgentSwirl::Update_GameObject(const _float & fTimeDelta)
 
 	_int	iExit = CGameObject::Update_GameObject(fTimeDelta);
 
+	m_pRendererCom->Add_RenderGroup(Engine::RENDER_ALPHA, this);
+
 	Turn_To_Camera_Look();
 
 	Engine::Add_GameObject_To_CollisionList(L"MonsterAttack", this);
@@ -55,7 +57,7 @@ void CWindAgentSwirl::Render_GameObject()
 	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
 	m_pGraphicDev->SetTransform(D3DTS_WORLD, m_pTransformCom->GetWorldMatrix());
 
-	//m_pTextureCom->Render_Texture();
+	m_pTextureCom->Render_Texture();
 	m_pBufferCom->Render_Buffer();
 	m_pGraphicDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 }
@@ -79,6 +81,10 @@ HRESULT CWindAgentSwirl::Add_Component()
 	pComponent = m_pBufferCom = dynamic_cast<Engine::CRcTex*>(Engine::Clone(RESOURCE_STATIC, L"Buffer_RcTex"));
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
 	m_mapComponent[Engine::ID_STATIC].emplace(L"Com_Buffer", pComponent);
+
+	pComponent = m_pTextureCom = dynamic_cast<Engine::CTexture*>(Engine::Clone(RESOURCE_STATIC, L"Texture_WindAgentSwirl"));
+	NULL_CHECK_RETURN(pComponent, E_FAIL);
+	m_mapComponent[Engine::ID_STATIC].emplace(L"Com_Texture", pComponent);
 
 	pComponent = m_pTransformCom = Engine::CTransform::Create();
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
@@ -133,8 +139,8 @@ CWindAgentSwirl * CWindAgentSwirl::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _
 	_vec3 vPos = pInstance->m_vInitialPos;
 	D3DXVec3Normalize(&vPos, &vPos);
 
-	CBasicFollowingEffect* pThunderJavelinSpawn = CBasicFollowingEffect::Create(pGraphicDev, L"Texture_WindAgentSwirl", L"", 5.f, 10.f, 0.04f, &_vec3(0.f, 0.f, 0.f), pInstance->m_pTransformCom, true, 5.f);
-	Engine::Add_GameObject(L"Effect", L"Texture_WindAgentSwirl", pThunderJavelinSpawn);
+	/*CBasicFollowingEffect* pThunderJavelinSpawn = CBasicFollowingEffect::Create(pGraphicDev, L"Texture_WindAgentSwirl", L"", 5.f, 10.f, 0.04f, &_vec3(0.f, 0.f, 0.f), pInstance->m_pTransformCom, true, 5.f);
+	Engine::Add_GameObject(L"Effect", L"Texture_WindAgentSwirl", pThunderJavelinSpawn);*/
 
 	return pInstance;
 }

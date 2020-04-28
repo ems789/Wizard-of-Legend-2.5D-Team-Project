@@ -59,7 +59,7 @@ void CLightningSpearGen::Generate_LightningSpear(const _float & fTimeDelta)
 	{
 		m_fTimeCount -= m_fLightningSpearTimeItv;
 		++m_uiLightningSpearCnt;
-		m_fAngle += D3DXToRadian(24.f);
+		m_fAngle += D3DXToRadian(30.f);
 
 		if (m_uiLightningSpearCnt > m_uiLightningSpearMax)
 		{
