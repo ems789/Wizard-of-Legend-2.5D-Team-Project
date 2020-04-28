@@ -47,7 +47,7 @@ _int CWaterThrow::Update_GameObject(const _float & fTimeDelta)
 
 	m_pRendererCom->Add_RenderGroup(Engine::RENDER_ALPHA, this);
 
-	Engine::Add_GameObject_To_CollisionList(L"PlayerAttack", this);
+	//Engine::Add_GameObject_To_CollisionList(L"PlayerAttack", this);
 	m_tSphere.vPos = m_pTransformCom->GetInfoRef(Engine::INFO_POS);
 
 	_vec3 vAngle = {0.f, 0.f, 0.f};
@@ -58,7 +58,7 @@ _int CWaterThrow::Update_GameObject(const _float & fTimeDelta)
 	if (m_pTransformCom->GetInfoRef(Engine::INFO_POS).y < 0.f)
 	{
 		m_bIsDead = true;
-		CShark* pShark = CShark::Create(m_pGraphicDev, vWaterPos, vAngle, 20.f, 8.f, 5.f, 0.1f);
+		CShark* pShark = CShark::Create(m_pGraphicDev, vWaterPos, vAngle, 20.f, 8.f, 5.f, 0.17f);
 		FAILED_CHECK_RETURN(Engine::Add_GameObject(L"GameLogic", L"SharkPool", pShark), -1);
 	}
 

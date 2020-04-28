@@ -36,10 +36,10 @@ _int CLoadingScene::Update_Scene(const _float& fTimeDelta)
 
 	if (true == m_pLoading->Get_Finish())
 	{
-		//if (Engine::KeyDown(DIK_RETURN))
+		if (Engine::KeyDown(DIK_RETURN))
 		{
-			//CFireStage* pScene = CFireStage::Create(m_pGraphicDev);
-			CLightningStage* pScene = CLightningStage::Create(m_pGraphicDev);
+			CFireStage* pScene = CFireStage::Create(m_pGraphicDev);
+			//CLightningStage* pScene = CLightningStage::Create(m_pGraphicDev);
 			NULL_CHECK_RETURN(pScene, -1);
 
 			Engine::SetUp_Scene(pScene);

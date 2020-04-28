@@ -358,6 +358,9 @@
     <Filter Include="01.Scene\06.LightningStage">
       <UniqueIdentifier>{a88279ab-0a69-480e-b0d4-ad771327f02f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="07.Monster\08.SkeletonMinion">
+      <UniqueIdentifier>{245844c5-20c7-4647-a5f2-0c6d9fee70f9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -675,6 +678,9 @@
     <ClInclude Include="..\Code\LightningStage.h">
       <Filter>01.Scene\06.LightningStage</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code\SkeletonMinion.h">
+      <Filter>07.Monster\08.SkeletonMinion</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -967,6 +973,9 @@
     </ClCompile>
     <ClCompile Include="..\Code\LightningStage.cpp">
       <Filter>01.Scene\06.LightningStage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code\SkeletonMinion.cpp">
+      <Filter>07.Monster\08.SkeletonMinion</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
