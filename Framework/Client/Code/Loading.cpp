@@ -346,6 +346,7 @@ _uint CLoading::Loading_ForState()
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WindBoss_DashLeft", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/WindBoss/Dash/Left/AirBossSlideLeft.png"), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WindBoss_DashRight", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/WindBoss/Dash/Right/AirBossSlideRight.png"), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WindBoss_Attack", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/WindBoss/Forehand/AirBossFlyingForehand%d.png", 2), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WindBoss_Attack2", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/WindBoss/Backhand/AirBossFlyingBackhandAlt%d.png", 2), E_FAIL);
 
 	// Windboss Effectr
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Tornado", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/Tornado/Tornado_%d.png", 12), E_FAIL);

@@ -1,113 +1,117 @@
-d:\teamproject\framework\client\default\debug\client_dbg.pch
-d:\teamproject\framework\client\default\debug\vc140.pdb
-d:\teamproject\framework\client\default\debug\vc140.idb
-d:\teamproject\framework\client\default\debug\stdafx.obj
-d:\teamproject\framework\client\default\debug\testterrain.obj
-d:\teamproject\framework\client\default\debug\thirdviewcamera.obj
-d:\teamproject\framework\client\default\debug\tile.obj
-d:\teamproject\framework\client\default\debug\town.obj
-d:\teamproject\framework\client\default\debug\ui.obj
-d:\teamproject\framework\client\default\debug\uiblink.obj
-d:\teamproject\framework\client\default\debug\uibutton.obj
-d:\teamproject\framework\client\default\debug\uiobject.obj
-d:\teamproject\framework\client\default\debug\wall.obj
-d:\teamproject\framework\client\default\debug\water.obj
-d:\teamproject\framework\client\default\debug\waterball.obj
-d:\teamproject\framework\client\default\debug\waterthrow.obj
-d:\teamproject\framework\client\default\debug\wind.obj
-d:\teamproject\framework\client\default\debug\windagentswirl.obj
-d:\teamproject\framework\client\default\debug\windball.obj
-d:\teamproject\framework\client\default\debug\windboss.obj
-d:\teamproject\framework\client\default\debug\windslash.obj
-d:\teamproject\framework\client\default\debug\windspin.obj
-d:\teamproject\framework\client\default\debug\windtornado.obj
-d:\teamproject\framework\client\default\debug\client.obj
-d:\teamproject\framework\client\default\debug\logo.obj
-d:\teamproject\framework\client\default\debug\mainapp.obj
-d:\teamproject\framework\client\default\debug\meteor.obj
-d:\teamproject\framework\client\default\debug\meteorgen.obj
-d:\teamproject\framework\client\default\debug\meteorstrike.obj
-d:\teamproject\framework\client\default\debug\mouse.obj
-d:\teamproject\framework\client\default\debug\numberfont.obj
-d:\teamproject\framework\client\default\debug\player.obj
-d:\teamproject\framework\client\default\debug\quaterviewcamera.obj
-d:\teamproject\framework\client\default\debug\roomblock.obj
-d:\teamproject\framework\client\default\debug\rotatedbilleffect.obj
-d:\teamproject\framework\client\default\debug\shark.obj
-d:\teamproject\framework\client\default\debug\sharkpool.obj
-d:\teamproject\framework\client\default\debug\signitureeffect.obj
-d:\teamproject\framework\client\default\debug\mage.obj
-d:\teamproject\framework\client\default\debug\skillcard.obj
-d:\teamproject\framework\client\default\debug\spherecollider.obj
-d:\teamproject\framework\client\default\debug\stage.obj
-d:\teamproject\framework\client\default\debug\terrain.obj
-d:\teamproject\framework\client\default\debug\testmonster.obj
-d:\teamproject\framework\client\default\debug\firestomp.obj
-d:\teamproject\framework\client\default\debug\firethrow.obj
-d:\teamproject\framework\client\default\debug\firstviewcamera.obj
-d:\teamproject\framework\client\default\debug\ghoullarge.obj
-d:\teamproject\framework\client\default\debug\golem.obj
-d:\teamproject\framework\client\default\debug\guidedfire.obj
-d:\teamproject\framework\client\default\debug\guidedfireball.obj
-d:\teamproject\framework\client\default\debug\guidedfiregen.obj
-d:\teamproject\framework\client\default\debug\imageobject.obj
-d:\teamproject\framework\client\default\debug\inven.obj
-d:\teamproject\framework\client\default\debug\knight.obj
-d:\teamproject\framework\client\default\debug\laideffect.obj
-d:\teamproject\framework\client\default\debug\laidfollowingeffect.obj
-d:\teamproject\framework\client\default\debug\lightningboss.obj
-d:\teamproject\framework\client\default\debug\lightningchaindash.obj
-d:\teamproject\framework\client\default\debug\lightningfalling.obj
-d:\teamproject\framework\client\default\debug\lightningjavelinthrow.obj
-d:\teamproject\framework\client\default\debug\linecollider.obj
-d:\teamproject\framework\client\default\debug\loading.obj
-d:\teamproject\framework\client\default\debug\loadingscene.obj
-d:\teamproject\framework\client\default\debug\basiceffect.obj
-d:\teamproject\framework\client\default\debug\basicfollowingeffect.obj
-d:\teamproject\framework\client\default\debug\beameffect.obj
-d:\teamproject\framework\client\default\debug\blobbullet.obj
-d:\teamproject\framework\client\default\debug\blobroller.obj
-d:\teamproject\framework\client\default\debug\blobspitter.obj
-d:\teamproject\framework\client\default\debug\cardspawn.obj
-d:\teamproject\framework\client\default\debug\castingcircle.obj
-d:\teamproject\framework\client\default\debug\coin.obj
-d:\teamproject\framework\client\default\debug\collisionfunctions.obj
-d:\teamproject\framework\client\default\debug\cyclops.obj
-d:\teamproject\framework\client\default\debug\fire.obj
-d:\teamproject\framework\client\default\debug\fireball.obj
-d:\teamproject\framework\client\default\debug\fireboss.obj
-d:\teamproject\framework\client\default\debug\fireeffect.obj
-d:\teamproject\framework\client\default\debug\fireheel.obj
-d:\teamproject\framework\client\default\debug\firekick.obj
-d:\teamproject\framework\client\default\debug\firepoint.obj
-d:\teamproject\framework\client\default\debug\fireroad.obj
-d:\teamproject\framework\client\default\debug\firestage.obj
-d:\teamproject\framework\client\default\debug\uiimage.obj
-d:\teamproject\framework\client\default\debug\alphabilleffect.obj
-d:\teamproject\framework\client\default\debug\alphalaideffect.obj
-d:\teamproject\framework\client\default\debug\aqua.obj
-d:\teamproject\framework\client\default\debug\aquavortex.obj
-d:\teamproject\framework\client\default\debug\background.obj
-d:\teamproject\framework\client\default\debug\barrel.obj
-d:\teamproject\framework\client\default\debug\goldbox.obj
-d:\teamproject\framework\client\default\debug\scalffold.obj
-d:\teamproject\framework\client\default\debug\scaffold.obj
-d:\teamproject\framework\client\default\debug\laidobject.obj
-d:\teamproject\framework\client\bin\client_dbg.lib
-d:\teamproject\framework\client\bin\client_dbg.exp
-d:\teamproject\framework\client\bin\client_dbg.ilk
-d:\teamproject\framework\client\bin\client_dbg.exe
-d:\teamproject\framework\client\bin\client_dbg.pdb
-d:\teamproject\framework\client\default\debug\client.res
-d:\teamproject\framework\client\default\debug\uiimage.obj.enc
-d:\teamproject\framework\client\default\../bin/client_dbg.exe
-d:\teamproject\framework\client\default\debug\client.tlog\cl.command.1.tlog
-d:\teamproject\framework\client\default\debug\client.tlog\cl.read.1.tlog
-d:\teamproject\framework\client\default\debug\client.tlog\cl.write.1.tlog
-d:\teamproject\framework\client\default\debug\client.tlog\client.write.1u.tlog
-d:\teamproject\framework\client\default\debug\client.tlog\link.command.1.tlog
-d:\teamproject\framework\client\default\debug\client.tlog\link.read.1.tlog
-d:\teamproject\framework\client\default\debug\client.tlog\link.write.1.tlog
-d:\teamproject\framework\client\default\debug\client.tlog\rc.command.1.tlog
-d:\teamproject\framework\client\default\debug\client.tlog\rc.read.1.tlog
-d:\teamproject\framework\client\default\debug\client.tlog\rc.write.1.tlog
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\client_dbg.pch
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\vc140.pdb
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\vc140.idb
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\stdafx.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\testmonster.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\testterrain.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\thirdviewcamera.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\tile.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\town.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\ui.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\uiblink.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\uibutton.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\uiobject.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\wall.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\water.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\waterball.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\waterthrow.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\wind.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\windball.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\windboss.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\windslash.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\windspin.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\windtornado.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\client.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\lightningjavelinthrow.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\linecollider.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\loading.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\loadingscene.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\logo.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\mainapp.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\meteor.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\meteorgen.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\meteorstrike.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\mouse.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\numberfont.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\player.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\quaterviewcamera.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\roomblock.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\shark.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\sharkpool.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\signitureeffect.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\spherecollider.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\stage.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\terrain.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\fireboss.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\fireeffect.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\fireheel.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\firekick.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\firepoint.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\fireroad.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\firestage.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\firestomp.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\firethrow.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\firstviewcamera.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\golem.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\guidedfire.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\guidedfireball.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\guidedfiregen.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\inven.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\laideffect.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\laidfollowingeffect.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\lightningboss.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\lightningchaindash.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\lightningfalling.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\uiimage.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\alphabilleffect.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\alphalaideffect.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\aqua.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\aquavortex.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\background.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\basiceffect.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\basicfollowingeffect.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\beameffect.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\blobspitter.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\cardspawn.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\castingcircle.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\coin.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\collisionfunctions.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\cyclops.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\fire.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\fireball.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\blobbullet.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\rotatedbilleffect.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\blobroller.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\ghoullarge.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\imageobject.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\knight.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\mage.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\skillcard.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\store.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\windagentswirl.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\barrel.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\goldbox.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\laidobject.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\scaffold.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\bin\client_dbg.lib
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\bin\client_dbg.exp
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\bin\client_dbg.ilk
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\bin\client_dbg.exe
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\bin\client_dbg.pdb
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\client.res
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\lightning.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\lightningskill1.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\lightningskill2.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\waterarc.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\uiimage.obj.enc
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\../bin/client_dbg.exe
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\client.tlog\cl.command.1.tlog
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\client.tlog\cl.read.1.tlog
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\client.tlog\cl.write.1.tlog
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\client.tlog\client.write.1u.tlog
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\client.tlog\link.command.1.tlog
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\client.tlog\link.read.1.tlog
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\client.tlog\link.write.1.tlog
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\client.tlog\rc.command.1.tlog
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\client.tlog\rc.read.1.tlog
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\client\default\debug\client.tlog\rc.write.1.tlog
