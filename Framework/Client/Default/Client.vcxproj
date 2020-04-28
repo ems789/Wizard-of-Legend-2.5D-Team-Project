@@ -234,6 +234,7 @@
     <ClInclude Include="..\Code\SharkPool.h" />
     <ClInclude Include="..\Code\SignitureEffect.h" />
     <ClInclude Include="..\Code\Mage.h" />
+    <ClInclude Include="..\Code\SkeletonMinion.h" />
     <ClInclude Include="..\Code\SkillCard.h" />
     <ClInclude Include="..\Code\SphereCollider.h" />
     <ClInclude Include="..\Code\Stage.h" />
@@ -344,6 +345,7 @@
     <ClCompile Include="..\Code\SharkPool.cpp" />
     <ClCompile Include="..\Code\SignitureEffect.cpp" />
     <ClCompile Include="..\Code\Mage.cpp" />
+    <ClCompile Include="..\Code\SkeletonMinion.cpp" />
     <ClCompile Include="..\Code\SkillCard.cpp" />
     <ClCompile Include="..\Code\SphereCollider.cpp" />
     <ClCompile Include="..\Code\Stage.cpp" />

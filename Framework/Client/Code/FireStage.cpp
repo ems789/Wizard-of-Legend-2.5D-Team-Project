@@ -1181,7 +1181,6 @@ HRESULT CFireStage::Store_Setting()
 	CSkillCard* pSkillCard = CSkillCard::Create(m_pGraphicDev, L"FireBall", &vPos, 0.025f, L"Skill_FireBall", pSkill, 100, 1.f);
 	Add_GameObject(L"GameLogic", L"FireBall_SkillCard", pSkillCard);
 
-
 	vPos.x += 2.f;
 	pSkill = CMeteorStrike::Create(m_pGraphicDev);
 	pSkillCard = CSkillCard::Create(m_pGraphicDev, L"Meteor", &vPos, 0.025f, L"Skill_MeteorStrike", pSkill, 100, 1.f);
@@ -1205,10 +1204,7 @@ HRESULT CFireStage::Store_Setting()
 	vPos.x += 2.f;
 	pSkill = CSharkPool::Create(m_pGraphicDev);
 	pSkillCard = CSkillCard::Create(m_pGraphicDev, L"WaterArc", &vPos, 0.025f, L"Skill_SharkPool", pSkill, 100, 1.f);
-	Add_GameObject(L"GameLogic", L"FireBall_SkillCard", pSkillCard);
-
-
-
+	Add_GameObject(L"GameLogic", L"FireBall_SkillCard", pSkillCard); 
 
 
 	return S_OK;

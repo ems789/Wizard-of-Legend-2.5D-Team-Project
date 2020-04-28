@@ -167,6 +167,9 @@ _uint CLoading::Loading_ForState()
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FireParticle3", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/FireParticle/Particle3/FireParticle3_%d.png", 6), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FireParticle4", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/FireParticle/Particle4/FireParticle4_%d.png", 6), E_FAIL);
 
+	//	Void Shift Open
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_VoidShiftOpen", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/VoidShiftOpen/VoidShiftOpen%d.png", 4), E_FAIL);
+
 	// Water---------------
 	/////추가부분
 	// WaterThrow
@@ -187,6 +190,7 @@ _uint CLoading::Loading_ForState()
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_SkeletonMinion_Idle", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/SkeletonMinion/Idle/SkeletonMinionIdle.png"), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_SkeletonMinion_AttackLeft", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/SkeletonMinion/Attack/Left/SkeletonMinionAttackLeft%d.png", 3), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_SkeletonMinion_Attack", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/SkeletonMinion/Attack/Right/SkeletonMinionAttackRight%d.png", 3), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_SkeletonMinionDead", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Monster/SkeletonMinion/Dead/SkeletonMinionDead%d.png", 9), E_FAIL);
 
 
 	//	Monster
@@ -388,6 +392,8 @@ _uint CLoading::Loading_ForState()
 	//	Scaffold Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Scaffold", Engine::TEX_CUBE, L"../Bin/Resource/Texture/Object/Scaffold/Texture1.dds"), E_FAIL);
 
+	//	Portal Texture
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Portal", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Object/Portal/Portal.png"), E_FAIL);
 
 	//	WindAgentSwirl Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WindAgentSwirl", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Skill/WindAgentSwirl/WindAgentSwirl%d.png", 5), E_FAIL);
@@ -412,8 +418,6 @@ _uint CLoading::Loading_ForState()
 	//	Coin
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Coin", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Coin/Coin_%d.png", 4), E_FAIL);
 
-	//	Portal
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Portal", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Portal/Portal.png"), E_FAIL);
 
 	FAILED_CHECK_RETURN(Engine::Ready_Buffer(m_pGraphicDev,
 		::RESOURCE_STATIC,

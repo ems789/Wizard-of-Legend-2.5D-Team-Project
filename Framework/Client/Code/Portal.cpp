@@ -21,9 +21,9 @@ _int CPortal::Update_GameObject(const _float& fTimeDelta)
 
 	Animation(fTimeDelta);
 
-	Generate_Dust(fTimeDelta);
-
 	Update_Scale();
+
+	Generate_Dust(fTimeDelta);
 
 	if (m_bIsDead)
 		return 0;
@@ -50,6 +50,15 @@ HRESULT CPortal::Ready_GameObject(const _tchar * pTextureTag)
 	return S_OK;
 }
 
+void CPortal::Turn_To_Camera_Look()
+{
+	_vec3 vAngle = { 0.f, 0.f, 0.f };
+	Engine::Get_MainCameraAngle(&vAngle);
+	vAngle.x = 0.f;
+
+	m_pTransformCom->Set_Angle(&vAngle);
+	m_pTransformCom->Update_Component(0.f);
+}
 void CPortal::Animation(const _float& fTimeDelta)
 {
 	m_tFrame.fCurFrame += fTimeDelta * m_tFrame.fFrameSpeed;
@@ -102,16 +111,6 @@ void CPortal::Generate_Dust(const _float & fTimeDelta)
 	}
 }
 
-void CPortal::Turn_To_Camera_Look()
-{
-	_vec3 vAngle = { 0.f, 0.f, 0.f };
-	Engine::Get_MainCameraAngle(&vAngle);
-	vAngle.x = 0.f;
-
-	m_pTransformCom->Set_Angle(&vAngle);
-	m_pTransformCom->Update_Component(0.f);
-}
-
 CPortal* CPortal::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _tchar* pTextureTag, const _float& fMaxFrame, const _float& fFrameSpeed,
 	const _float& fScale, const _vec3* pPos)
 {
@@ -133,6 +132,6 @@ CPortal* CPortal::Create(LPDIRECT3DDEVICE9 pGraphicDev, const _tchar* pTextureTa
 
 void CPortal::Free()
 {
-	CEffect::Free();
+	Engine::CEffect::Free();
 }
 

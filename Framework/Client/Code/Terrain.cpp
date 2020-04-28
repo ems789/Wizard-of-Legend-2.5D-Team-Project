@@ -113,6 +113,7 @@ void CTerrain::Release_WallList(void)
 
 HRESULT CTerrain::LoadTile(const ::_tchar* pFilePath)
 {
+
 	HANDLE hFile = ::CreateFile(pFilePath, GENERIC_READ, 0, nullptr,
 		OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
 

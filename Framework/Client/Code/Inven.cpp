@@ -603,12 +603,14 @@ _int CInven::Update_Inven(const _float & fTImeDelta)
 		Engine::CSkill* pSkill = Find_Skill(L"Skill_AquaVortex");
 		m_pPlayer->Change_Skill(4, pSkill);
 		CUI::GetInstance()->SlotSkillOn(3, m_vSlotPos4, L"UseAquaVortex");
-		m_eCurSignatureEquip = CInven::EQUIP_AQUAVORTEX;
+		m_eCurSignatureEquip = CInven::EQUIP_AQUAVORTEX; 
 		m_vEquipCardPos = { -330.f, 0.f, 0.f };
 		m_pEquipAquaVortex->Set_Pos(m_vEquipCardPos);
 	}
 	if (m_eCurSkill == CInven::LIGHTSKILL3 && m_vSelect.x == -330.f && m_vSelect.y == 2 && Engine::KeyDown(DIK_RETURN))
 	{
+		Engine::CSkill* pSkill = Find_Skill(L"Skill_LightningSkill3");
+		m_pPlayer->Change_Skill(4, pSkill);
 		CUI::GetInstance()->SlotSkillOn(3, m_vSlotPos4, L"UseLightningXStrike");
 		m_eCurSignatureEquip = CInven::EQUIP_LIGHTSKILL3;
 		m_vEquipCardPos = { -330.f, 0.f, 0.f };
