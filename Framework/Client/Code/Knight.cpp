@@ -124,7 +124,6 @@ HRESULT CKnight::Add_Component()
 	NULL_CHECK_RETURN(pComponent, E_FAIL);
 	m_vvTextureCom[KS_IDLE][KD_LEFT] = pTextureCom;
 	m_vvTextureCom[KS_IDLE][KD_RIGHT] = pTextureCom;
-
 	pTextureCom->AddRef();
 
 	//  Run

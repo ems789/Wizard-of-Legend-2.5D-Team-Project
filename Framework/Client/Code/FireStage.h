@@ -10,9 +10,9 @@ class CBlobRoller;
 class CScaffold;
 class CFireStage : public Engine::CScene
 {
-	enum	ROOM_STATE { ROOM_IDLE, ROOM_CLOSE, ROOM_OPEN, ROOM_END };
+	enum	ROOM_STATE	{ ROOM_IDLE, ROOM_CLOSE, ROOM_OPEN, ROOM_END };
 	enum	ROOM_NUMBER { ROOM_NUM_1, ROOM_NUM_2, ROOM_NUM_3, ROOM_NUM_4, ROOM_NUM_5, ROOM_NUM_6, ROOM_NUM_7, ROOM_NUM_8, ROOM_NUM_9, ROOM_NUM_END };
-	enum	ROOM_PHASE { RP_1, RP_2, RP_3, RP_4, RP_5, RP_6, RP_7, RP_8, RP_9, RP_END };
+	enum	ROOM_PHASE	{ RP_1, RP_2, RP_3, RP_4, RP_5, RP_6, RP_7, RP_8, RP_9, RP_END };
 
 private:
 	explicit CFireStage(LPDIRECT3DDEVICE9 pGraphicDev);
@@ -98,9 +98,9 @@ private:
 
 	_bool		m_bMonsterGen = false;
 
-	ROOM_STATE			m_eCurState = ROOM_IDLE;
-	ROOM_NUMBER			m_eRoomNumber = ROOM_NUM_END;
-	ROOM_PHASE			m_eRoomPhase = RP_END;
+	ROOM_STATE			m_eCurState		= ROOM_IDLE;
+	ROOM_NUMBER			m_eRoomNumber	= ROOM_NUM_END;
+	ROOM_PHASE			m_eRoomPhase	= RP_END;
 	list<CRoomBlock*>	m_RoomBlockList;
 
 	_vec3		m_vRoomPos = {};
@@ -111,7 +111,7 @@ private:
 
 	_float		m_fTimer = 0.f;
 	_float		m_fTimer2 = 0.f;
-
+	
 	_float		m_f4RoomX = 0.f;
 	_float		m_f4RoomZ = 0.f;
 
