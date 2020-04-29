@@ -36,7 +36,7 @@ HRESULT CCameraMgr::SetUp_Alpha()
 	m_pGraphicDev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 
 	m_pGraphicDev->SetRenderState(D3DRS_ALPHAFUNC, D3DCMP_GREATER);
-	m_pGraphicDev->SetRenderState(D3DRS_ALPHAREF, 0x00000000);
+	m_pGraphicDev->SetRenderState(D3DRS_ALPHAREF, 0x00000008);
 
 
 	return S_OK;

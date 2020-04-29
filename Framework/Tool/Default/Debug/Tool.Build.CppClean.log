@@ -17,40 +17,47 @@ d:\teamproject\framework\tool\default\debug\tool.obj
 d:\teamproject\framework\tool\default\debug\tooldoc.obj
 d:\teamproject\framework\tool\default\debug\toolview.obj
 d:\teamproject\framework\tool\default\debug\wallpage.obj
-d:\teamproject\framework\tool\bin\tool.ilk
-d:\teamproject\framework\tool\bin\tool.exe
-d:\teamproject\framework\tool\bin\tool.pdb
-d:\teamproject\framework\tool\default\debug\tool.res
-c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\bin\tool.lib
-c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\bin\tool.exp
-c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\directorymgr.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\tool.pch
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\vc140.pdb
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\vc140.idb
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\stdafx.obj
 c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\dynamiccamera.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\terrain.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\terrainguidline.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\tile.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\wall.obj
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\directorymgr.obj
 c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\mainfrm.obj
 c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\mysheet.obj
 c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\pathtool.obj
 c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\propertyformview.obj
-c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\stdafx.obj
-c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\terrain.obj
-c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\terrainguidline.obj
-c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\tile.obj
 c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\tilepage.obj
 c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\tool.obj
 c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\tooldoc.obj
 c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\toolview.obj
-c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\wall.obj
 c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\wallpage.obj
+d:\teamproject\framework\tool\bin\tool.ilk
+d:\teamproject\framework\tool\bin\tool.exe
+d:\teamproject\framework\tool\bin\tool.pdb
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\bin\tool.ilk
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\bin\tool.exe
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\bin\lnk{f04912a7-11cc-4c64-b092-f4bfbfd99212}.tmp
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\bin\tool.pdb
+d:\teamproject\framework\tool\default\debug\tool.res
 c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\tool.res
-c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\tool.pch
-c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\vc140.idb
-c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\vc140.pdb
-c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\../bin\tool.exe
-c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\tool.tlog\cl.command.1.tlog
-c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\tool.tlog\cl.read.1.tlog
-c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\tool.tlog\cl.write.1.tlog
-c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\tool.tlog\link.command.1.tlog
-c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\tool.tlog\link.read.1.tlog
-c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\tool.tlog\link.write.1.tlog
-c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\tool.tlog\rc.command.1.tlog
-c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\tool.tlog\rc.read.1.tlog
-c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\tool.tlog\rc.write.1.tlog
-c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\default\debug\tool.tlog\tool.write.1u.tlog
+d:\teamproject\framework\tool\bin\tool.lib
+d:\teamproject\framework\tool\bin\tool.exp
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\bin\tool.lib
+c:\users\user\onedrive\desktop\teamproject 0428\teamproject\framework\tool\bin\tool.exp
+d:\teamproject\framework\tool\default\../bin\tool.exe
+d:\teamproject\framework\tool\default\debug\tool.tlog\cl.command.1.tlog
+d:\teamproject\framework\tool\default\debug\tool.tlog\cl.read.1.tlog
+d:\teamproject\framework\tool\default\debug\tool.tlog\cl.write.1.tlog
+d:\teamproject\framework\tool\default\debug\tool.tlog\link.command.1.tlog
+d:\teamproject\framework\tool\default\debug\tool.tlog\link.delete.1.tlog
+d:\teamproject\framework\tool\default\debug\tool.tlog\link.read.1.tlog
+d:\teamproject\framework\tool\default\debug\tool.tlog\link.write.1.tlog
+d:\teamproject\framework\tool\default\debug\tool.tlog\rc.command.1.tlog
+d:\teamproject\framework\tool\default\debug\tool.tlog\rc.read.1.tlog
+d:\teamproject\framework\tool\default\debug\tool.tlog\rc.write.1.tlog
+d:\teamproject\framework\tool\default\debug\tool.tlog\tool.write.1u.tlog
