@@ -175,12 +175,12 @@ _uint CLoading::Loading_ForState()
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FireParticle3", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/FireParticle/Particle3/FireParticle3_%d.png", 6), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FireParticle4", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/FireParticle/Particle4/FireParticle4_%d.png", 6), E_FAIL);
 
-	//   WaterParticle Texture
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WaterParticle1", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/WaterParticle/Particle1/WaterParticles1_%d.png", 5), E_FAIL);
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WaterParticle2", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/WaterParticle/Particle2/WaterParticles2_%d.png", 5), E_FAIL);
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WaterParticle3", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/WaterParticle/Particle3/WaterParticles3_%d.png", 5), E_FAIL);
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WaterParticle4", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/WaterParticle/Particle4/WaterParticles4_%d.png", 5), E_FAIL);
-	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WaterParticle5", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/WaterParticle/Particle5/WaterParticles5_%d.png", 5), E_FAIL);
+	////   WaterParticle Texture
+	//FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WaterParticle1", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/WaterParticle/Particle1/WaterParticles1_%d.png", 5), E_FAIL);
+	//FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WaterParticle2", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/WaterParticle/Particle2/WaterParticles2_%d.png", 5), E_FAIL);
+	//FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WaterParticle3", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/WaterParticle/Particle3/WaterParticles3_%d.png", 5), E_FAIL);
+	//FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WaterParticle4", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/WaterParticle/Particle4/WaterParticles4_%d.png", 5), E_FAIL);
+	//FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WaterParticle5", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/WaterParticle/Particle5/WaterParticles5_%d.png", 5), E_FAIL);
 
 	//	Void Shift Open
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_VoidShiftOpen", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/VoidShiftOpen/VoidShiftOpen%d.png", 4), E_FAIL);
