@@ -53,7 +53,7 @@ private:
 	_float	m_fSpeed = 10.f;
 	_float	m_fLimitDistance = 50.f;
 	_float	m_fScale = 0.05f;
-	_int	m_iAttack = 18;
+	_int	m_iAttack = 15;
 
 	FRAME	m_tFrame;
 	Engine::SPHERE m_tSphere;

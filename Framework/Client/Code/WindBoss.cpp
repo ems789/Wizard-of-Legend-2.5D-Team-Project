@@ -467,7 +467,7 @@ void CWindBoss::Dash_State()
 {
 	m_tFrame.fCurFrame = 0.f;
 	m_tFrame.fMaxFrame = 1.f;
-	m_tFrame.fFrameSpeed = 2.f;
+	m_tFrame.fFrameSpeed = 4.f;
 
 	m_bAnimFinish = false;
 	m_bAnimRepeat = false;

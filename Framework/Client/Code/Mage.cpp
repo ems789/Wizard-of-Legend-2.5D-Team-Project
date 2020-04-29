@@ -350,6 +350,8 @@ _int CMage::Run_Update(const _float & fTimeDelta)
 	else if (fDist > 20.f)
 		m_eCurState = MS_IDLE;
 
+	
+
 	switch (Engine::Get_MainCamType())
 	{
 	case Engine::CCameraMgr::MAIN_CAM_1ST:
@@ -357,11 +359,23 @@ _int CMage::Run_Update(const _float & fTimeDelta)
 	{
 		if (m_eCurState == MS_CAST)
 		{
-			CBasicEffect* pWindAgentEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_WindAgentSwirl", L"", 5.f, 5.f, 0.05f, &_vec3(vPos.x, vPos.y, vPos.z + vDir.z / 10), true, 1.5f);
+			float fX = 0.f, fZ = 0.f;
+			if (vTargetPos.z > vPos.z)
+				fZ = 0.1f;
+			else
+				fZ = -0.1f;
+
+			if (vTargetPos.x > vPos.x)
+				fX = 0.1f;
+			else
+				fX = -0.1f;
+
+			CBasicEffect* pWindAgentEffect = CBasicEffect::Create(m_pGraphicDev, L"Texture_WindAgentSwirl", L"", 5.f, 5.f, 0.05f, &_vec3(vPos.x + fX, vPos.y, vPos.z + fZ), true, 1.5f);
 			Engine::Add_GameObject(L"GameLogic", L"Texture_WindAgentSwirl", pWindAgentEffect);
 			NULL_CHECK_RETURN(pWindAgentEffect, -1);
 		}
 	}
+		break;
 	case Engine::CCameraMgr::MAIN_CAM_QUATER:
 	{
 		if (m_eCurState == MS_CAST)
@@ -411,8 +425,8 @@ _int CMage::Attack_Update(const _float & fTimeDelta)
 		vDir.y = 0.f;
 		D3DXVec3Normalize(&vDir, &vDir);
 
-		CWindAgentSwirl* pWindAgentSwirl = CWindAgentSwirl::Create(m_pGraphicDev, vPos, vDir, 20.f);
-		Engine::Add_GameObject(L"Effect", L"Texture_WindAgentSwirl", pWindAgentSwirl);
+		CWindAgentSwirl* pWindAgentSwirl = CWindAgentSwirl::Create(m_pGraphicDev, vPos, vDir, 20.f);		
+		Engine::Add_GameObject(L"GameLogic", L"Texture_WindAgentSwirl", pWindAgentSwirl);
 	}
 
 	if (m_bAnimFinish)

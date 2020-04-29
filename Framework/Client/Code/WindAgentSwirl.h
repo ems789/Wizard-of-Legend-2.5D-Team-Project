@@ -41,6 +41,7 @@ private:
 
 private:	//	Components
 	Engine::CRcTex*		m_pBufferCom = nullptr;
+	Engine::CTexture*	m_pTextureCom = nullptr;
 	Engine::CTransform* m_pTransformCom = nullptr;
 	Engine::CRenderer*	m_pRendererCom = nullptr;
 

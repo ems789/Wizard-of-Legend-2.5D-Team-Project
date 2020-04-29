@@ -600,7 +600,7 @@ void CFireStage::SeventhRoomStart(const _vec3 * pPlayerPos)
 		m_fRoomMinZ = fMinZ;
 		m_fRoomMaxZ = fMaxZ;
 		
-		CRotatedObject* pAnswer = CRotatedObject::Create(m_pGraphicDev, L"Texture_Answer", 1.f, 0.f, 0.05f, &_vec3((fMaxX + fMinX) / 2, 2.f, fMinZ), &_vec3(0.f, D3DXToRadian(180.f), 0.f), false);
+		CRotatedObject* pAnswer = CRotatedObject::Create(m_pGraphicDev, L"Texture_Answer", 1.f, 0.f, 0.05f, &_vec3((fMaxX + fMinX) / 2, 2.f, fMinZ), &_vec3(D3DXToRadian(180.f), 0.f, 0.f), false);
 		Add_GameObject(L"Event", L"Answer", pAnswer);
 
 		m_b7thRoomStart = true;

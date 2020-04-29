@@ -19,7 +19,7 @@ CAquaVortex::~CAquaVortex()
 
 HRESULT CAquaVortex::Ready_Skill()
 {
-	m_fCoolTime = 0.f;
+	m_fCoolTime = 3.f;
 
 	Engine::Ready_Timer(L"AquaVortex_CoolTime");
 	Engine::Set_TimeDelta(L"AquaVortex_CoolTime");
