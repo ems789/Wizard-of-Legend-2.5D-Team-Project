@@ -161,6 +161,14 @@ _uint CLoading::Loading_ForState()
 	//	Beam Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_Beam", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/ForBeam.png"), E_FAIL);
 
+
+	//	WaterParticle Texture
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WaterParticle1", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/WaterParticle/Particle1/WaterParticles1_%d.png", 5), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WaterParticle2", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/WaterParticle/Particle2/WaterParticles2_%d.png", 5), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WaterParticle3", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/WaterParticle/Particle3/WaterParticles3_%d.png", 5), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WaterParticle4", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/WaterParticle/Particle4/WaterParticles4_%d.png", 5), E_FAIL);
+	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_WaterParticle5", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/WaterParticle/Particle5/WaterParticles5_%d.png", 5), E_FAIL);
+
 	//	FireParticle Texture
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FireParticle1", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/FireParticle/Particle1/FireParticle1_%d.png", 6), E_FAIL);
 	FAILED_CHECK_RETURN(Engine::Ready_Texture(m_pGraphicDev, RESOURCE_STATIC, L"Texture_FireParticle2", Engine::TEX_NORMAL, L"../Bin/Resource/Texture/Effect/FireParticle/Particle2/FireParticle2_%d.png", 6), E_FAIL);
